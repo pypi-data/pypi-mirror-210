@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "pssapi"
+description = "Wrapper for the Pixel Starships API"
+version = "0.1.2"
+license = "MIT"
+authors = [
+    "The worst. <theworstpss@gmail.com>",
+    "Solevis",
+]
+readme = "README.md"
+homepage = "https://github.com/PSS-Tools-Development/pssapi.py"
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: Developers',
+    'Topic :: Software Development :: Libraries',
+    'Programming Language :: Python :: 3.11',
+    'Natural Language :: English',
+    'Operating System :: OS Independent',
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/PSS-Tools-Development/pssapi.py/issues"
+"Changelog" = "https://github.com/PSS-Tools-Development/pssapi.py/releases"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiohttp = "^3.8.4"
+pytz = "^2022.7.1"
+
+[tool.poetry.group.dev.dependencies]
+autoflake = "^2.0.1"
+autopep8 = "^2.0.1"
+flake8 = "^6.0.0"
+flake8-bugbear = "^23.3.12"
+flake8-black = "^0.3.6"
+isort = "^5.12.0"
+black = "^23.1.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
+
+[tool.setuptools_scm]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = [
+  "./src"
+]
+
+[tool.autoflake]
+in-place = true
+remove-all-unused-imports = true
+ignore-init-module-imports = true
+recursive = true
+
+[tool.isort]
+src_paths = ["src", "tests", "showcase.py"]
+profile = "black"
+line_length = 200
+
+[tool.black]
+line-length = 200
+target-version = ['py311']
+include = '\.pyi?$'
