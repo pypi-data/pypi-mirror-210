@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: sword2vec
+Version: 0.1.1
+Summary: A simple skipgram word2vec implementations
+Home-page: https://github.com/aziyan99/sword2vec
+Author: Raja Azian
+Author-email: rajaazian08@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Cython (==0.29.35)
+Requires-Dist: joblib (==1.2.0)
+Requires-Dist: nltk (==3.8.1)
+Requires-Dist: numpy (==1.24.3)
+Provides-Extra: dev
+Requires-Dist: pytest (>=7.0) ; extra == 'dev'
+Requires-Dist: twine (>=4.0.2) ; extra == 'dev'
+
