@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: model-perf
+Version: 0.0.1rc1
+Summary: Model Performance Toolkit (model-perf) is a Python package backed by test applications for different platforms (Windows/MacOS, Android/iOS, Web) to test machine learning models on different target platforms and devices (e.g., Google Pixel for Android, iPhone for iOS).
+Author-email: Microsoft Corporation <ml-inference@microsoft.com>
+Project-URL: Homepage, https://github.com/microsoft/model-perf
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: requests
+Requires-Dist: psutil
+Requires-Dist: msgpack (>=1.0)
+Requires-Dist: msgpack-numpy (==0.4.8)
+Requires-Dist: selenium (>=4.8.2)
+Requires-Dist: webdriver-manager (>=3.8.5)
+Requires-Dist: psutil (>=5.9.4)
+
+# Model Performance Toolkit
+Model Performance Toolkit (model-perf) is a Python package backed by test applications for different platforms (Windows/MacOS, Android/iOS, Web) to test machine learning models on different target platforms and devices (e.g., Google Pixel for Android, iPhone for iOS).
