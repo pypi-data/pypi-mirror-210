@@ -1,0 +1,45 @@
+<style>
+    .drx_btn {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.6em;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin: 2px;
+  /* padding: 0.5rem 0.5rem; */
+  padding-left: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  max-width: 4rem;
+  max-height: 3rem
+}
+
+
+.purple_btn {
+  border-color: #8e44ad;
+  color: #FFF;
+  background-color: #662D91;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+}
+
+.logo_transition {
+  color: #FFF; 
+  transition: color 150ms ease-in-out;
+}
+
+.leaderboard {
+margin-left: 4rem
+}
+</style>
+<a class="drx_btn logo_transition {% if classstring %}{{classstring}}{% endif %}" {% if link %}href="{{link}}"  target="_blank" {% endif %}>{% include "robot_large.svg" %}</a>
+  

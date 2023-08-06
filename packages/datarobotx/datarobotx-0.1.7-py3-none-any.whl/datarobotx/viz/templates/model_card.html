@@ -1,0 +1,189 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+      <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <!-- Import vega-embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        .dr-blue {
+            color: #2D8FE2;
+        }
+        .dr-gray {
+            color: #ABB3BA;
+        }
+        .modelcardbody {
+            font-family: Roboto, sans-serif;
+            {% if theme == 'dark' %}
+            background-color: #333;
+            color: #ABB3BA;
+            {% endif %}
+            
+        }
+
+        .url_pick:hover {
+            fill: #2D8FE2
+
+        }
+        .url_pick:hover  path {
+            fill: #2D8FE2
+
+        }
+
+        .radiotab {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .label {
+            cursor: pointer;
+            color: rgb(205, 209, 210); 
+            /* transition: background .3s, color .3s; */
+            border: none;
+            border-radius: 0;
+
+        }
+
+        .label:hover {
+        color: white;
+        }
+
+
+        .label:active {
+        background: #ccc;  
+        }
+
+        .radiotab:checked + .label {
+            color: rgb(60, 163, 232);
+            }
+
+        .panel {
+            width: 100%;
+            }
+
+            .panelcontainer {
+                display: none;
+            }
+        .loo {
+            opacity: .7;
+         
+        }
+
+        .robot {
+            {% if theme == 'dark' %}
+            fill:white; 
+            {% else %}
+            fill:rgb(47,48,47); 
+            {% endif %}
+        }
+
+    </style>
+</head>
+<body style="width: 100%" class="modelcardbody">
+<div class="fl w-100 pa2">
+
+<!-- Title Area -->
+    <div class="fl w-75 pa1 pl3 f4 fw3">
+        {{params.__dict__['model_name']}}
+    </div>
+    <div class="fl w-25">
+
+        <a href="{{params.model_url}}" target="_blank" class="url_pick"><div>{% include "robot_large.svg" %}</div></a>
+
+    </div>
+<!-- Tab Area -->
+
+<!-- Data Area -->
+    <div class="fl w-40 pt1">
+        <div class="fl w-100 pb2 f5 b">Metrics</div>
+        {% for k in metrics %}
+        <div class="fl w4 pa1 f7" >{{ k }}: <span class="code f7 measure-narrow loo">{{ metrics[k] }}</span></div>
+        {% endfor %}
+    </div>
+    <div class="fl w-60 pt1">
+        <div class="fl w-100 thetabs" id="UniqueTabHolder-{{card_key}}">
+            <!-- Tab Row -->
+            <div class="fl w-100 pb2">
+                {% for k in charts %}
+                <input class="radiotab" id="tab-{{loop.index | string }}-{{card_key}}" type="radio" name="tabs" onchange="tabChange{{card_key}}()">
+                <label for="tab-{{loop.index | string }}-{{card_key}}" class="label fl pr3 f5" >{{k}}</label>
+                {% endfor %}
+            </div>
+            {% for k in charts %}
+            <div class="fl panelcontainer" id="tab-{{loop.index | string }}-{{card_key}}">
+                    <div class="panel w-100">
+                        <!-- <div class="w-100 f5 fw8 pa2">{{k}}</div> -->
+                        <div class="pa1 w-100 vizcontainer"><script>{{charts[k]|safe}}</script></div>
+                    </div>
+                </div>
+            {% endfor %}
+        
+        </div>
+        
+    </div>
+    {% if external_ds_id %}
+    <div class="fl w-100 f7 dr-gray i">Evaluation generated from external prediction dataset '{{external_ds_id}}'</div>
+    {% else %}
+    <div class="fl w-100 f7 dr-gray i">Metrics represent best available out of sample scores for the model</div>
+    {% endif %}
+</div>
+
+
+
+<script type="text/javascript">
+
+  </script>
+
+<script type="text/javascript"> 
+
+    var tabContainer{{card_key}} = document.getElementById("UniqueTabHolder-{{card_key}}")
+
+    function tabChange{{card_key}}() {
+        var inputElements = tabContainer{{card_key}}.getElementsByTagName("input"); 
+        for (element of inputElements) {
+            if (element.checked) {
+                var panels = tabContainer{{card_key}}.getElementsByClassName("panelcontainer"); 
+                for (container of panels)  {
+                    if (element.id === container.id) {
+                        container.style.display = 'block';
+                    }
+                    else {
+                        container.style.display = 'none'
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+    function vizEmbed{{card_key}}() {
+        var vizElements = tabContainer{{card_key}}.getElementsByClassName("vizcontainer"); 
+        for (viz of vizElements) {
+            var specScriptTag = viz.querySelector("script")
+            var spec = JSON.parse(specScriptTag.textContent); 
+            vegaEmbed(viz, spec).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+        }
+
+    }
+
+    var  vega_paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+
+    
+
+    var firstRadio = tabContainer{{card_key}}.querySelector("input"); 
+    firstRadio.checked = true; 
+    tabChange{{card_key}}();
+    vizEmbed{{card_key}}();
+</script>
+</body>
+</html>

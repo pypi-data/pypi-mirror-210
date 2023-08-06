@@ -1,0 +1,131 @@
+Metadata-Version: 2.1
+Name: datarobotx
+Version: 0.1.7
+Summary: DataRobotX is a collection of DataRobot extensions
+Home-page: https://datarobot.github.io/drx
+Author: DataRobot
+Author-email: datarobotx@datarobot.com
+License: DataRobot Tool and Utility Agreement
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+Requires-Dist: altair (<5.0.0)
+Requires-Dist: datarobot
+Requires-Dist: IPython
+Requires-Dist: ipywidgets
+Requires-Dist: names-generator
+Requires-Dist: pandas
+Requires-Dist: PyYaml
+Requires-Dist: setuptools
+Requires-Dist: tenacity
+Requires-Dist: termcolor
+Requires-Dist: tqdm
+Requires-Dist: urllib3 (<2.0.0)
+Provides-Extra: deploy
+Requires-Dist: cloudpickle ; extra == 'deploy'
+Requires-Dist: scikit-learn ; extra == 'deploy'
+Requires-Dist: transformers ; extra == 'deploy'
+Requires-Dist: torch ; extra == 'deploy'
+Provides-Extra: dev
+Requires-Dist: flake8 (==5.0.4) ; extra == 'dev'
+Requires-Dist: pylint (==2.15.0) ; extra == 'dev'
+Requires-Dist: black (==22.8.0) ; extra == 'dev'
+Requires-Dist: isort (==5.10.1) ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-sphinx ; extra == 'dev'
+Requires-Dist: pytest-asyncio ; extra == 'dev'
+Requires-Dist: vcrpy ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: twine (>=1.11.0) ; extra == 'dev'
+Requires-Dist: setuptools ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: Sphinx (<5.1.0,>=4.3.0) ; extra == 'dev'
+Requires-Dist: furo (==2022.6.4.1) ; extra == 'dev'
+Requires-Dist: myst-parser (<1.1.0,>=0.15.2) ; extra == 'dev'
+Requires-Dist: sphinx-copybutton (==0.5.0) ; extra == 'dev'
+Requires-Dist: sphinx-autobuild (==2021.3.14) ; extra == 'dev'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'dev'
+Requires-Dist: sphinx-design ; extra == 'dev'
+Requires-Dist: packaging ; extra == 'dev'
+Requires-Dist: aiohttp ; extra == 'dev'
+Requires-Dist: datarobot ; extra == 'dev'
+Requires-Dist: ipython (<8.13.0) ; extra == 'dev'
+Requires-Dist: ipywidgets (==7.7.2) ; extra == 'dev'
+Requires-Dist: names-generator ; extra == 'dev'
+Requires-Dist: pandas ; extra == 'dev'
+Requires-Dist: PyYaml ; extra == 'dev'
+Requires-Dist: tenacity ; extra == 'dev'
+Requires-Dist: termcolor ; extra == 'dev'
+Requires-Dist: tqdm ; extra == 'dev'
+Requires-Dist: altair (<5.0.0) ; extra == 'dev'
+Requires-Dist: cloudpickle ; extra == 'dev'
+Requires-Dist: transformers ; extra == 'dev'
+Requires-Dist: scikit-learn ; extra == 'dev'
+Requires-Dist: torch ; extra == 'dev'
+Requires-Dist: pyspark ; extra == 'dev'
+Requires-Dist: typing-extensions (<4.6.0) ; extra == 'dev'
+Requires-Dist: openai ; extra == 'dev'
+Requires-Dist: pyarrow (==11.0.0) ; extra == 'dev'
+Requires-Dist: mypy (==1.0.0) ; extra == 'dev'
+Requires-Dist: urllib3 (<2.0.0) ; extra == 'dev'
+Requires-Dist: langchain ; (python_version >= "3.8") and extra == 'dev'
+Requires-Dist: pydantic ; (python_version >= "3.8") and extra == 'dev'
+Requires-Dist: tiktoken (==0.3.3) ; (python_version >= "3.8") and extra == 'dev'
+Provides-Extra: llm
+Requires-Dist: langchain ; extra == 'llm'
+Requires-Dist: pydantic ; extra == 'llm'
+Requires-Dist: tiktoken ; extra == 'llm'
+Requires-Dist: openai ; extra == 'llm'
+Provides-Extra: spark
+Requires-Dist: pyspark ; extra == 'spark'
+
+<img align="center" src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/logo.png" alt="drx">
+
+![PyPI](https://img.shields.io/pypi/v/datarobotx)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/datarobotx)
+![PyPI - Format](https://img.shields.io/pypi/format/datarobotx)
+
+*DataRobotX* is a collection of DataRobot extensions designed to enhance the data science experience.
+
+Check out our [documentation](https://drx.datarobot.com/) to get started.
+
+This package is released under the terms of the DataRobot Tool and Utility Agreement, which can be found on our [Legal](https://www.datarobot.com/legal/) page, along with our privacy policy and more.
+
+<table>
+<tbody><tr>
+<td><strong>Simple syntax</strong></td>
+<td><img src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/intro_gif.gif" alt="Intro"></td>
+</tr>
+<tr>
+<td><strong>Easy predictions</strong></td>
+<td><img src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/predictions_gif.gif" alt="Predict"></td>
+</tr>
+<tr>
+<td><strong>Seamless async</strong></td>
+<td><img src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/async_gif.gif" alt="Async"></td>
+</tr>
+<tr>
+<td><strong>Dynamic widgets</strong></td>
+<td><img src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/EvaluateWidget.gif" alt="Widget"></td>
+</tr>
+<tr>
+<td><strong>Config helpers</strong></td>
+<td><img src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/code_complete_gif.gif" alt="Navigate"></td>
+</tr>
+<tr>
+<td><strong>Extensions</strong></td>
+<td><img src="https://s3.amazonaws.com/datarobot_public/drx/drx_gifs/self_discovery_gif.gif" alt="Extend"></td>
+</tr>
+</tbody></table>
