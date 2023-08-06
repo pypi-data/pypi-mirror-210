@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "publish_pypi_package"
+version = "0.0.2"
+authors = [
+    {name = "Refael Beker", email = "beker.refael@gmail.com"},
+]
+description = "Publish the Python package in PyPI"
+readme = "README.md"
+license = {text = "BSD 3-Clause License"}
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/RefaelBeker7/publish-python-package"
+"Bug Tracker" = "https://github.com/RefaelBeker7/publish-python-package/issues"
