@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: tsd-config
+Version: 0.4.0
+Summary: Library for loading and validating package configuration
+Author: Eirik Haatveit
+Author-email: haatveit@uio.no
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: yaml
+Requires-Dist: deepmerge (>=1.0)
+Requires-Dist: pyyaml (>=6) ; extra == "yaml"
+Requires-Dist: schema (>=0.7.5)
+Requires-Dist: tomli (>=2.0.1) ; python_version < "3.11"
