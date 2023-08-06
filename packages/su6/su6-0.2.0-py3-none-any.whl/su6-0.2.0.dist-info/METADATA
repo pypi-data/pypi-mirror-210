@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: su6
+Version: 0.2.0
+Summary: Python cli tool to use tools for some common code quality checks (opinionated)
+Project-URL: Documentation, https://github.com/robinvandernoord/su6-checker#readme
+Project-URL: Issues, https://github.com/robinvandernoord/su6-checker/issues
+Project-URL: Source, https://github.com/robinvandernoord/su6-checker
+Author-email: Robin van der Noord <robinvandernoord@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.11
+Requires-Dist: bandit
+Requires-Dist: black
+Requires-Dist: isort
+Requires-Dist: mypy
+Requires-Dist: plumbum
+Requires-Dist: ruff
+Requires-Dist: typer[all]
+Provides-Extra: dev
+Requires-Dist: hatch; extra == 'dev'
+Requires-Dist: python-semantic-release; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# su6-checker
+
+[![PyPI - Version](https://img.shields.io/pypi/v/su6.svg)](https://pypi.org/project/su6)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/su6.svg)](https://pypi.org/project/su6)
+
+-----
+su6 (6 is pronounced as '/zɛs/' in Dutch, so 'su6' is basically 'success')  
+This package will hopefully help achieve that!
+
+**Table of Contents**
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Changelog](#changelog)
+
+## Installation
+
+```console
+pip install su6-checker
+```
+
+## Usage
+
+```console
+su6 --help
+# or, easiest to start:
+su6 all
+```
+
+## License
+
+`su6-checker` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+## Changelog
+
+See `CHANGELOG.md` [on GitHub](https://github.com/robinvandernoord/su6-checker/blob/master/CHANGELOG.md)
