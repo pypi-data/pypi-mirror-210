@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: everything2text4prompt
+Version: 0.0.7
+Summary: Convert many medium into text, and the text format is specialized for prompt input
+Home-page: https://github.com/michaelthwan/everything2text4prompt
+Author: michaethwan
+Author-email: michaelthwan@gmail.com
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# everything2text4prompt
+
+**Background**:
+
+ChatGPT and LLM is an extremely powerful tools for general purpose, but it requires text as input.
+Therefore if we can convert many medium (everything) into text, LLM application can be extended to many areas.
+
+**This project is to convert many medium into text, and the text format is specialized for prompt input.**
+
+## Features
+
+- Convert youtube video into text transcript
+- Convert podcast into text transcript
+- Convert pdf into dense text
+
+## Installation
+
+Install by pypi
+
+```
+pip install everything2text4prompt
+```
+
+Install by source code
+
+```
+pip install -r requirements.txt
+```
