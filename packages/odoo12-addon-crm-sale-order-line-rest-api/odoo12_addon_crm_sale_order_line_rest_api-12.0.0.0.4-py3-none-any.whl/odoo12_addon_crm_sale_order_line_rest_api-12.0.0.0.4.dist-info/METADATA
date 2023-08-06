@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: odoo12-addon-crm-sale-order-line-rest-api
+Version: 12.0.0.0.4
+Summary: Expose CRM order lines on the Rest API
+Home-page: 
+Author: Coopdevs Treball SCCL
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 12.0
+Requires-Python: >=3.5
+Requires-Dist: odoo12-addon-crm-rest-api
+Requires-Dist: odoo12-addon-crm-sale-order-line
+Requires-Dist: odoo (<12.1dev,>=12.0a)
+
+========================
+CRM order line rest api
+========================
+
+Expose relationship between crm lead and it's order lines on the rest api
