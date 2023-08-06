@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: easyaiapi
+Version: 0.0.3
+Summary: Easy ai api
+Author: Olivier
+Author-email: luowensheng2018@gmail.com
+Keywords: python,api,websocket,AI
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv-stream
+Requires-Dist: opencv-python
+Requires-Dist: uvicorn[standard]
+Requires-Dist: fastapi
+
+
+# FastAi API
+
+```python
+from fastaiapi import background_thread, WssClient, WssServer
+from fastaiapi.utils import read_base64_image
+
+TARGET_SOCKET_URL = "[ENTER TARGET WS URL]"
+
+client = WssClient()
+
+@client.from_video_source(TARGET_SOCKET_URL, 0)
+def on_data_received(data):
+    print(data)
+
+```
+
