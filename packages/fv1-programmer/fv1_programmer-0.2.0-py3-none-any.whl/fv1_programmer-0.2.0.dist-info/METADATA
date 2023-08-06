@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: fv1-programmer
+Version: 0.2.0
+Summary: An EEPROM programming tool for the FV-1 DSP
+License: MIT
+Author: Mark Melvin
+Author-email: mark.melvin@audiofab.com
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: Microsoft :: Windows :: Windows 11
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Typing :: Typed
+Requires-Dist: easymcp2221 (>=1.6.2,<2.0.0)
+Requires-Dist: intelhex (>=2.3.0,<3.0.0)
+Description-Content-Type: text/markdown
+
+# FV-1 Programmer
+
+An EEPROM programming tool for the FV-1 DSP.
+
+## Installation Instructions
+
+### Dependencies
+
+Install python 3.7 or grater
+
+Install poetry
+
+```powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
+
+Add the installation folder to your `PATH`
+```powershell
+%APPDATA%\Python\Scripts
+```
+
+Restart your console.
+
+Run 'poetry install`
+
+### Running the program
+
+`poetry run python main.py`
+
