@@ -1,0 +1,13 @@
+#/bin/bash
+export URL=https://idoit-test.int.yco.de/src/jsonrpc.php
+export USER=
+export PW=
+export API_KEY=
+curl -H 'Content-Type: application/json' \
+     -H 'X-RPC-Auth-Username: apiuser' \
+     -H 'X-RPC-Auth-Password: passwort' \
+     $URL --data-ascii @- <<EOF 
+{'id': 1, 'jsonrpc': '2.0', 'method': 'cmdb.category.update', 'params': {'apikey': '${API_KEY}', 'category': 'C__CATG__NETWORK_LOG_PORT', 'data': {'active': 0, 'addresses': None,'category_id': 3, 'description': None, 'mac': None, 'net': None, 'parent': None, 'port_type': 2, 'ports': ['9046_C__CATG__NETWORK_PORT', '9045_C__CATG__NETWORK_PORT'],'standard': None, 'title': 'bond0'},'objID': 3105}}
+EOF
+
+
