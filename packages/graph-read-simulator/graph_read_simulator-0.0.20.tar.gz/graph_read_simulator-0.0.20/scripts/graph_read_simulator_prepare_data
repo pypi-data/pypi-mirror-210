@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+population_vcf=$1
+individual_vcf=$2
+linear_ref_fasta=$3
+chromosomes=$4
+n_chromosomes=$5
+individual_ID=$6
+
+
+# Make one graph per chromosome (remember --alt-paths to get variants as paths. We don't chop up nodes to smaller than 1000 bp, since we are not going to map to this graph)
+#cat "chromosomes.txt" | parallel -j $n_chromosomes "time vg construct -C -R {} -r $linear_ref_fasta -v $individual_vcf -t 1 -m 1000 --alt-paths > individual_chr{}.vg"
+for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+        vg construct -C -R $chromosome -r $linear_ref_fasta -v $individual_vcf -t 1 -m 1000 --alt-paths > individual_chr$chromosome.vg &
+done
+wait
+echo "Done with creating individual graphs"
+
+# Node id conversion
+vg ids -j $(for chromosome in $(echo $chromosomes | tr "," "\n"); do echo individual_chr$chromosome.vg; done)
+
+# Index the graph (make a gbwt index that will include all phased variants as paths. We will use this gbwt index later to pull out paths containing phased variants)
+vg index -x individual.xg -G individual.gbwt -v $individual_vcf $(for chromosome in $(echo $chromosomes | tr "," "\n"); do echo individual_chr$chromosome.vg; done)
+
+
+# Get all haplotype paths in gam for each chromosome and each haplotype
+# Also, get haplotype paths in vg format
+# (need the vg paths for later removing all nodes not part of paths to make graphs for single haplotypes, which will be used for read simulation)
+for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+    echo "Chromosome $chromosome"
+	vg paths --gbwt individual.gbwt --extract-vg -x individual.xg -Q _thread_${individual_ID}_${chromosome}_0 > haplotype_${chromosome}_0.paths &
+	vg paths --gbwt individual.gbwt --extract-vg -x individual.xg -Q _thread_${individual_ID}_${chromosome}_1 > haplotype_${chromosome}_1.paths &
+
+	vg paths --gbwt individual.gbwt --extract-gam -x individual.xg -Q _thread_${individual_ID}_${chromosome}_0 > haplotype_${chromosome}_0.gam &
+	vg paths --gbwt individual.gbwt --extract-gam -x individual.xg -Q _thread_${individual_ID}_${chromosome}_1 > haplotype_${chromosome}_1.gam &
+done
+wait
+
+# Extract a linear reference path through each chromosome
+vg paths -X -x individual.xg > individual_reference_paths.gam
+vg view -aj individual_reference_paths.gam > individual_reference_paths.json
+graph_read_simulator vg_path_to_obg_interval individual_reference_paths.json individual_reference_path.intervalcollection
+
+
+# Convert haplotype paths and vg graphs to json
+for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+    vg view -aj haplotype_${chromosome}_0.gam > haplotype_${chromosome}_0.json &
+    vg view -aj haplotype_${chromosome}_1.gam > haplotype_${chromosome}_1.json &
+    vg view -Vj individual_chr$chromosome.vg > individual_chr$chromosome.json &
+done
+wait
+
+# Create ob graph for each chromosome
+for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+    graph_peak_caller create_ob_graph individual_chr$chromosome.json &
+done
+wait
+
+# Note: The haplotype paths are not complete. They may have gaps in them
+# Thus, we want to traverse the giab graph, folloing the haplotype paths, but fill in with reference paths where possible
+for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+	graph_read_simulator make_haplotype_paths individual_chr$chromosome.nobg individual_reference_path_$chromosome.intervalcollection haplotype_${chromosome}_0.json haplotype_${chromosome}_1.json haplotype_${chromosome}_ $chromosome &
+	#python3 ../make_linear_reference_and_interval.py giab_chr$chromosome.nobg giab_reference_path_$chromosome.intervalcollection haplotype_${chromosome}_0.json haplotype_${chromosome}_1.json haplotype_${chromosome}_ $chromosome &
+done
+wait
+
+cat haplotype_*__0.fasta >> haplotype0.fasta
+cat haplotype_*__1.fasta >> haplotype1.fasta
+# Verify by grep ">" haplotype0.fasta
+
+
+# Index reference and haplotype intervals (we need them later to convert coordinates from haplotype interval offset to linear ref offset)
+for chromosome in $(echo $chromosomes | tr "," "\n")
+    do
+    echo $chromosome
+	graph_peak_caller index_interval -g individual_chr$chromosome.nobg individual_reference_path_$chromosome.intervalcollection &
+	graph_peak_caller index_interval -g individual_chr$chromosome.nobg haplotype_${chromosome}__0.intervalcollection &
+	graph_peak_caller index_interval -g individual_chr$chromosome.nobg haplotype_${chromosome}__1.intervalcollection &
+	wait
+done
+
+
+echo "Done"
