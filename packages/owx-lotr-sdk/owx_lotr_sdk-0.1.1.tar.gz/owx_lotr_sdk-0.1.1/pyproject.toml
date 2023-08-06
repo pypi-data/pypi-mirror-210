@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "owx-lotr-sdk"
+version = "0.1.1"
+description = ""
+authors = ["Owen Wiggins <o@owx.dev>"]
+readme = "README.md"
+packages = [{include = "lotr_sdk"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ratelimit = "^2.2.1"
+requests-mock = "^1.10.0"
+pytest = "^7.3.1"
+backoff = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
