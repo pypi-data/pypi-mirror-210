@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sendgrify"
+version = "2.0.2a"
+license = {file = "LICENSE"}
+dependencies = [
+    "sendgrid==5.3.0",
+    "markdown",
+]
+authors = [
+  {email = "sdelquin@gmail.com"},
+  {name = "Sergio Delgado Quintero"}
+]
+maintainers = [
+  {name = "Sergio Delgado Quintero", email = "sdelquin@gmail.com"}
+]
+description = "SendGrid for Humans"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+homepage = "https://github.com/sdelquin/sendgrify"
+repository = "https://github.com/sdelquin/sendgrify"
