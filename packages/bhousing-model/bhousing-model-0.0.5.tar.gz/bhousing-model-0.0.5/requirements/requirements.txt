@@ -1,0 +1,11 @@
+feature-engine==1.6.0
+joblib==1.2.0
+# We use compatible release functionality (see PEP 440 here: https://www.python.org/dev/peps/pep-0440/#compatible-release)
+# to specify acceptable version ranges of our project dependencies. This gives us the flexibility to keep up with small
+# updates/fixes, whilst ensuring we don't install a major update which could introduce backwards incompatible changes.
+numpy==1.24.3
+pandas==2.0.1
+pydantic==1.10.7
+ruamel.yaml==0.17.26
+scikit-learn==1.2.2
+strictyaml==1.7.3
