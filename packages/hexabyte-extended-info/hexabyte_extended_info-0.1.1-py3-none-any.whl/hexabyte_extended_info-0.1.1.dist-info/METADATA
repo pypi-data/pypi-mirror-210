@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: hexabyte-extended-info
+Version: 0.1.1
+Summary: An extended info plugin for the hexabyte hex editor.
+Home-page: https://github.com/thetacom/hexabyte_extended_info
+Keywords: commandline,hexabyte,hexeditor,binary,plugin,fileinfo,file,libmagic
+Author: Justin C
+Author-email: justin@thetacom.info
+Requires-Python: >=3.10,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Requires-Dist: hexabyte (>=0.6.0rc0,<0.7.0)
+Requires-Dist: python-magic (>=0.4.27,<0.5.0)
+Project-URL: Repository, https://github.com/thetacom/hexabyte_extended_info
+Description-Content-Type: text/markdown
+
+# Hexabyte Extended Info Plugin
+
+A hexabyte plugin for displaying additional file info.
+
+## Install
+
+```bash
+~/$ pip install hexabyte-extended-info
+...
+```
+
+Add `hexabyte_extended_info` to the plugins list inside your hexabyte config (`~/.config/hexabyte/config.toml`).
+
+```toml
+plugins = [ "hexabyte_extended_info",]
+```
+
