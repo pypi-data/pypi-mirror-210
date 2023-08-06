@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "triplify_csv"
+version = "0.4.1"
+description = "A tool to generate triples from CSV files according to a configuration file."
+authors = ["Adrian Atley"]
+license = "BSD-3-Clause"
+readme = "README.md"
+repository = "https://github.com/AAtley/triplify_csv"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pytest = "^7.3.0"
+click = "^8.1.3"
+rdflib = "6.3.2"
+
+[tool.poetry.dev-dependencies]
+rdflib = "6.3.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+triplify_csv = "triplify_csv.triplify_csv:process"
