@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: autora-experiment-runner-experimentation-manager-firebase
+Version: 1.0.0a1
+Summary: AutoRA Experimentation Manager Firebase provides functionality to manage communication of conditions and observation between AutoRA and an experiment on Firebase.
+Author-email: Younes Strittmatter <younes_strittmatter@brown.edu>
+License: MIT License
+Project-URL: homepage, http://www.empiricalresearch.ai
+Project-URL: repository, https://github.com/AutoResearch/autora-experiment-runner-experimentation-manager-firebase
+Project-URL: documentation, https://autoresearch.github.io/autora/
+Requires-Python: <4,>=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: autora-core
+Requires-Dist: firebase-admin
+Provides-Extra: dev
+Requires-Dist: autora-core[dev] ; extra == 'dev'
+
+# AutoRA Firebase Experimentation Manager
+
+Firebase Experimentation Manager provides functionality to manage communication of conditions and observation between AutoRA and an experiment on Firebase.
+
+# Quickstart Guide
+
+You will need:
+`python` >=3.8,<4: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+!!! It is recommended to use a python environment manger like virtualenv
+
+Install the package via pip:
+
+```shell
+pip install "aurora[experiment-runner-experimentation-manager-firebase]"
+```
+
+## Test
+```shell
+python -c "from autora.experiment_runner.experimentation_manager.firebase import send_conditions"
+```
+
+
+## Dependencies
+
+autora-core, firebase_admin
