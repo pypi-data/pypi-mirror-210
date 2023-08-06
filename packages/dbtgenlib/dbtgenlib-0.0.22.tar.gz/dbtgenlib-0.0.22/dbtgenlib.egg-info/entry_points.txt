@@ -1,0 +1,6 @@
+
+        [console_scripts]
+        genyml=dbtgenlib.yml_gen:dbtdocgen
+        gendoc=dbtgenlib.doc_gen:dbdoc_gen
+        testkeys=test.test_keys:check_skeys
+        
