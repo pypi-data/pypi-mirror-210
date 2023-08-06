@@ -1,0 +1,188 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  # Run unittests
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        exclude:
+          # skip these builds until https://bugs.launchpad.net/lxml/+bug/1977998 is resolved
+          - os: windows-latest
+            python-version: "3.11"
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          cache: pip
+          cache-dependency-path: "pyproject.toml"
+          python-version: ${{ matrix.python-version }}
+      - name: Install hatch
+        run: |
+          pip install -U hatch
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2.4.0
+        with:
+          working-directory: native
+      - name: Build LibCST
+        run: hatch env create
+      - name: Tests
+        run: hatch run test
+      - name: Pure Parser Tests
+        env:
+          LIBCST_PARSER_TYPE: pure
+        run: hatch run test
+
+  # Run linters
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          cache: pip
+          cache-dependency-path: "pyproject.toml"
+          python-version: "3.10"
+      - name: Install hatch
+        run: pip install -U hatch
+      - run: hatch run lint
+      - run: hatch run fixtures
+
+  # Run pyre typechecker
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          cache: pip
+          cache-dependency-path: "pyproject.toml"
+          python-version: "3.10"
+      - name: Install hatch
+        run: pip install -U hatch
+      - run: hatch run typecheck
+
+  # Upload test coverage
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          cache: pip
+          cache-dependency-path: "pyproject.toml"
+          python-version: "3.10"
+      - name: Install hatch
+        run: pip install -U hatch
+      - name: Generate Coverage
+        run: |
+          hatch run coverage run setup.py test
+          hatch run coverage xml -i
+      - uses: codecov/codecov-action@v3
+        with:
+          files: coverage.xml
+          fail_ci_if_error: true
+          verbose: true
+      - name: Archive Coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage.xml
+
+  # Build the docs
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          cache: pip
+          cache-dependency-path: "pyproject.toml"
+          python-version: "3.10"
+      - name: Install hatch
+        run: pip install -U hatch
+      - uses: ts-graphviz/setup-graphviz@v1
+      - run: hatch run docs
+      - name: Archive Docs
+        uses: actions/upload-artifact@v3
+        with:
+          name: sphinx-docs
+          path: docs/build
+
+  # Test rust parts
+  native:
+    name: Rust unit tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2.4.0
+        with:
+          working-directory: native
+      - uses: actions/setup-python@v4
+        with:
+          cache: pip
+          cache-dependency-path: "pyproject.toml"
+          python-version: "3.10"
+      - name: test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --manifest-path=native/Cargo.toml --release
+      - name: test without python
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --manifest-path=native/Cargo.toml --release --no-default-features
+      - name: clippy
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --manifest-path=native/Cargo.toml --all-features
+
+  rustfmt:
+    name: Rustfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: rustup component add rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all --manifest-path=native/Cargo.toml -- --check
