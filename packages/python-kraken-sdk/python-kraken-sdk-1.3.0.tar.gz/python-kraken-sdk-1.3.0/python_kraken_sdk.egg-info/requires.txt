@@ -1,0 +1,16 @@
+asyncio>=3.4
+requests
+websockets
+
+[dev]
+build
+pytest
+pytest-cov
+sphinx
+sphinx-rtd-theme
+black
+mypy
+types-requests
+
+[examples]
+matplotlib

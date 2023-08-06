@@ -1,0 +1,151 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-kraken-sdk"
+dynamic = ["version"]
+authors = [
+  { name="Benjamin Thomas Schwertfeger", email="contact@b-schwertfeger.de" },
+]
+description = "Collection of REST and websocket clients to interact with the Kraken cryptocurrency exchange."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.7"
+dependencies = [
+    "asyncio>=3.4",
+    "requests",
+    "websockets",
+]
+keywords = ["crypto", "trading", "kraken", "exchange", "api"]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: AsyncIO",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: Unix"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/btschwertfeger/python-kraken-sdk"
+"Bug Tracker" = "https://github.com/btschwertfeger/python-kraken-sdk/issues"
+"Documentation" = "https://python-kraken-sdk.readthedocs.io/en/stable/"
+
+[project.optional-dependencies]
+dev = [
+  # building
+  "build",
+  # testing
+  "pytest",
+  "pytest-cov",
+  # documentation
+  "sphinx",
+  "sphinx-rtd-theme",
+  # formatting
+  "black",
+  # typing
+  "mypy",
+  "types-requests"
+]
+examples = ["matplotlib"]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["kraken*"]
+exclude = ["docs*", "tests*", "examples*", ".env"]
+
+[tool.setuptools_scm]
+write_to = "kraken/_version.py"
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
+
+# ========= T E S T I N G =====================================================
+#
+[tool.pytest]
+junit_family = "xunit2"
+testpaths = ["tests"]
+
+[tool.pytest.ini_options]
+markers = [
+    "selection: Used to run a specific test by hand.",
+    "spot: mark a test that tests a Spot endpoint.",
+    "spot_auth: mark a test that tests a authenticaed Spot endpoint.",
+    "spot_trade: mark a test that tests a Spot Trade endpoint.",
+    "spot_user: mark a test that tests a Spot User endpoint.",
+    "spot_market: mark a test that tests a Spot Market endpoint.",
+    "spot_funding: mark a test that tests a Spot Funding endpoint.",
+    "spot_staking: mark a test that tests a Spot Staking endpoint.",
+    "spot_websocket: mark a test that tests a Spot Websocket endpoint.",
+    "futures: mark a test that tests a Futures endpoint.",
+    "futures_auth: mark a test that tests a authenticated Futures endpoint.",
+    "futures_market: mark a test that tests a Futures Market endpoint.",
+    "futures_user: mark a test that tests a Futures User endpoint.",
+    "futures_trade: mark a test that tests a Futures Trade endpoint.",
+    "futures_funding: mark a test that tests a Futures Funding endpoint.",
+    "futures_websocket: mark a test that tests a Futures Websocket endpoint.",
+]
+
+[tool.coverage.run]
+source = ["kraken"]
+omit = ["*tests*"]
+
+# ========= T Y P I N G =======================================================
+#
+[tool.mypy]
+python_version = "3.7"
+# junit_xml = "mypy.xml"
+files = ["kraken/**/*.py"]
+exclude = ["tests/*/*.py"]
+
+# Disallow dynamic typing
+disallow_any_unimported = false
+disallow_any_expr = false
+disallow_any_decorated = false
+disallow_any_explicit = false
+disallow_any_generics = false
+disallow_subclassing_any = false
+
+# # Untyped definitions and calls
+check_untyped_defs = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = false
+
+# None and Optional handling
+implicit_optional = true
+strict_optional = false
+
+# Configuring warnings
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unused_configs = true
+warn_no_return = true
+warn_return_any = true
+warn_unreachable = true
+
+# Suppressinng errors
+ignore_errors = false
+
+# Configuring error messages
+show_error_context = true
+show_column_numbers = true
+hide_error_codes = false
+pretty = true
+color_output = true
+show_absolute_path = true
+ignore_missing_imports = true
