@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+INHERIT: mkdocs/base.yml  # use the shared AutoRA configuration by default
+
+site_name: AutoRA BSR Theorist
+repo_url: 'https://github.com/autoresearch/autora-theorist-bsr'
+
+nav:
+- Home: 'index.md'
+- Quickstart: 'quickstart.md'
+- How It Works: 'how-it-works.md'
+- Meta Parameters: 'meta-parameters.md'
+- Search Space: 'search-space.md'
+- Examples:
+    - Basic Usage: 'Basic Usage.ipynb'

@@ -1,0 +1,33 @@
+[project]
+name = "autora-theorist-bsr"
+description = "Bayesian Symbolic Regression theorist for AutoRA"
+authors = [
+    { name = "Sida (Star) Li", email = "listar2000@uchicago.edu" },
+]
+dynamic = ["version"]
+
+readme = "README.md"
+license = { text = "MIT License" }
+requires-python = ">=3.8,<4"
+
+dependencies = [
+    "autora-core",
+    "scikit-learn",
+    "scipy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "autora-core[dev]"
+]
+
+[project.urls]
+homepage = "http://www.empiricalresearch.ai"
+repository = "https://github.com/AutoResearch/autora-theorist-bsr"
+documentation = "https://autoresearch.github.io/autora/"
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
