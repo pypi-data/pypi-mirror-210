@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: pydaikin
+Version: 2.9.1
+Summary: Python Daikin HVAC appliances interface
+Home-page: https://bitbucket.org/mustang51/pydaikin
+Author: Yari Adan
+Author-email: mustang@yadan.org
+Maintainer: Fredrik Erlandsson <fredrik.e+pydaikin@gmail.com>, Matthias Lemainque <matthias.lemainque+pydaikin@gmail.com>
+License: GPL
+Keywords: homeautomation,daikin
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Home Automation
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+![PyPI - License](https://img.shields.io/pypi/l/pydaikin?color=green)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr/mustang51/pydaikin?logo=bitbucket&logoColor=white)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/pydaikin?label=downloads&logo=pypi&logoColor=white)
+![PyPI - Version](https://img.shields.io/pypi/v/pydaikin?label=version&logo=pypi&logoColor=white)
+
+PyDaikin is a standalone program and a library that interface AirConditioners from Daikin.
+
+Currently the following Daikin WiFi modules are supported:
+
+* BRP069Axx/BRP069Bxx/BRP072Axx
+* BRP15B61 aka. AirBase (similar protocol as BRP069Axx)
+* BRP072B/Cxx (needs https access and a key)
+* SKYFi (different protocol, have a password)
+
+The integration was initially built by Yari Adan, but lately have been taken over by Fredrik Erlandsson.
+
+
