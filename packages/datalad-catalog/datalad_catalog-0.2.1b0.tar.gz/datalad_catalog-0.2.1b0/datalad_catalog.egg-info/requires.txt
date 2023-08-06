@@ -1,0 +1,12 @@
+datalad>=0.17
+datalad-metalad>=0.4.6
+jsonschema
+pyyaml
+
+[:platform_system != "Windows"]
+jq
+
+[devel]
+nose
+coverage
+pytest

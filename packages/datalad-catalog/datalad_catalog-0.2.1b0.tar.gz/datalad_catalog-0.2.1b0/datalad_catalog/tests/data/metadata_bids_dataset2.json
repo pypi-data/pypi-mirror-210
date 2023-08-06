@@ -1,0 +1,121 @@
+{
+  "type": "dataset",
+  "dataset_id": "5b1081d6-84d7-11e8-b00a-a0369fb55db0",
+  "dataset_version": "3ce9174076694cae7afb3ddccaf1240a0ffbaa07",
+  "extractor_name": "bids_dataset",
+  "extractor_version": "0.0.1",
+  "extraction_parameter": {},
+  "extraction_time": 1658219164.560373,
+  "agent_name": "Stephan Heunis",
+  "agent_email": "s.heunis@fz-juelich.de",
+  "extracted_metadata": {
+    "Authors": [
+      "Ayan Sengupta",
+      "Oliver Speck",
+      "Renat Yakupov",
+      "Martin Kanowski",
+      "Claus Tempelmann",
+      "Stefan Pollmann",
+      "Michael Hanke"
+    ],
+    "BIDSVersion": "1.1.0",
+    "Description": "Extension of a matching fMRI dataset (Sengupta, et al., 2017; OpenFMRI ds000113c) on participants performing a central fixation task while being stimulated with oriented visual gratings. This dataset extends the previous one with acquisitions for 3 matching spatial resolutions (1.4, 2.0, and 3.0 mm) at 3T (complementing the previous 7T acquisitions at 0.8, 1.4, 2.0, and 3.0 mm). Five of the total of seven participants are identical in both datasets. All participants are part of the studyforrest.org project.",
+    "Funding": [
+      "This research was enabled by a grant from the German Research Foundation (DFG) awarded to S. Pollmann and O. Speck (DFG PO 548/15-1).",
+      "This research was, in part, also supported by the German Federal Ministry of Education and Research (BMBF) as part of a US-German collaboration in computational neuroscience (CRCNS), co-funded by the BMBF and the US National Science Foundation (BMBF 01GQ1112; NSF 1129855).",
+      "Data management technology (DataLad) employed for this research was supported by US-German CRCNS project, co-funded by the BMBF and the US National Science Foundation (BMBF 01GQ1411; NSF 1429999)."
+    ],
+    "HowToAcknowledge": "Please cite the preprint of Sengupta, et al. (2018) [DOI: 10.1101/305417] or the relevant final publication.",
+    "License": "PDDL (http://opendatacommons.org/licenses/pddl/)",
+    "Name": "studyforrest_multires3t",
+    "ReferencesAndLinks": [
+      "http://studyforrest.org",
+      "Sengupta, A., Speck, O., Yakupov, R., Kanowski, M., Tempelmann, C., Pollmann, S. & Hanke, M. (2018) The effect of acquisition resolution on orientation decoding from V1: comparison of 3T and 7T. bioRxiv. [DOI: 10.1101/305417]",
+      "Sengupta, A., Pollmann, S. & Hanke, M. (2018). Spatial band-pass filtering aids decoding musical genres from auditory cortex 7T fMRI. F1000Research, 7. [DOI:  10.12688/f1000research.13689.2]",
+      "Sengupta, A., Yakupov, R., Speck, O., Pollmann, S. & Hanke, M. (2017) The effect of acquisition resolution on orientation decoding from V1 BOLD fMRI at 7 Tesla. NeuroImage, 148, 64-76. [DOI: 10.1016/j.neuroimage.2016.12.040]",
+      "Sengupta, A., Yakupov, R., Speck, O., Pollmann, S. & Hanke, M. (2017) Ultra high-field multi-resolution fMRI data for orientation decoding in visual cortex. Data in Brief, 13, 219-222. [DOI: 10.1016/j.dib.2017.05.014]"
+    ],
+    "description": [
+      {
+        "extension": "",
+        "text": "An Extension of studyforrest.org Dataset\n****************************************\n\nMulti-resolution 3T fMRI data on the representation of visual orientation\n=========================================================================\n\nThis dataset consists of empirical 3T fMRI data recorded at three spatial\nresolutions (1.4 mm, 2 mm, and 3 mm isotropic voxel size) for orientation\ndecoding in visual cortex \u2014 in order to test hypotheses on the strength and\nspatial scale of orientation discriminating signals. This is an extension of\nthe studyforrest project. All seven participants previously volunteered for the\naudio-only and the audio-visual Forrest Gump study.\nFive of the seven participants also participated in a matching study using\nidentical protocols, but 7T data acquisition (with the same the three spatial\nresolutions used here, plus a 0.8 mm acquisition). The dataset is compliant\nwith the BIDS data description standard (http://bids.neuroimaging.io).  A\ndetailed description can be found in:\n\n  Sengupta, A., Speck, O., Yakupov, R., Kanowski, M., Tempelmann, C.,\n  Pollmann, S. & Hanke, M. (2018) The effect of acquisition resolution on\n  orientation decoding from V1: comparison of 3T and 7T. bioRxiv.\n\n  https://doi.org/10.1101/305417\n\nFor more information about the project visit: http://studyforrest.org\n\n\nHow to obtain the data files\n----------------------------\n\nThis repository is a `DataLad <https://www.datalad.org/>`__ dataset. It provides\nfine-grained data access down to the level of individual files, and allows for\ntracking future updates. In order to use this repository for data retrieval,\n`DataLad <https://www.datalad.org>`_ is required.\nIt is a free and open source command line tool, available for all\nmajor operating systems, and builds up on Git and `git-annex\n<https://git-annex.branchable.com>`__ to allow sharing, synchronizing, and\nversion controlling collections of large files. You can find information on\nhow to install DataLad at `handbook.datalad.org/en/latest/intro/installation.html\n<http://handbook.datalad.org/en/latest/intro/installation.html>`_.\n\nGet the dataset\n^^^^^^^^^^^^^^^\n\nA DataLad dataset can be ``cloned`` by running::\n\n   datalad clone <url>\n\nOnce a dataset is cloned, it is a light-weight directory on your local machine.\nAt this point, it contains only small metadata and information on the\nidentity of the files in the dataset, but not actual *content* of the\n(sometimes large) data files.\n\nRetrieve dataset content\n^^^^^^^^^^^^^^^^^^^^^^^^\n\nAfter cloning a dataset, you can retrieve file contents by running::\n\n   datalad get <path/to/directory/or/file>\n\nThis command will trigger a download of the files, directories, or\nsubdatasets you have specified.\n\nDataLad datasets can contain other datasets, so called *subdatasets*. If you\nclone the top-level dataset, subdatasets do not yet contain metadata and\ninformation on the identity of files, but appear to be empty directories. In\norder to retrieve file availability metadata in subdatasets, run::\n\n   datalad get -n <path/to/subdataset>\n\nAfterwards, you can browse the retrieved metadata to find out about\nsubdataset contents, and retrieve individual files with ``datalad get``. If you\nuse ``datalad get <path/to/subdataset>``, all contents of the subdataset will\nbe downloaded at once.\n\nStay up-to-date\n^^^^^^^^^^^^^^^\n\nDataLad datasets can be updated. The command ``datalad update`` will *fetch*\nupdates and store them on a different branch (by default\n``remotes/origin/master``). Running::\n\n   datalad update --merge\n\nwill *pull* available updates and integrate them in one go.\n\nFind out what has been done\n^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nDataLad datasets contain their history in the ``git log``.\nBy running ``git log`` (or a tool that displays Git history) in the dataset or on\nspecific files, you can find out what has been done to the dataset or to individual files\nby whom, and when.\n\nMore information\n^^^^^^^^^^^^^^^^\n\nMore information on DataLad and how to use it can be found in the DataLad Handbook at\n`handbook.datalad.org <http://handbook.datalad.org/en/latest/index.html>`_. The\nchapter \"DataLad datasets\" can help you to familiarize yourself with the\nconcept of a dataset."
+      }
+    ],
+    "entities": {
+      "subject": [
+        "06",
+        "20",
+        "16",
+        "21",
+        "09",
+        "17",
+        "10"
+      ],
+      "task": [
+        "orientation"
+      ],
+      "acquisition": [
+        "r14",
+        "r20mb",
+        "r30",
+        "r20"
+      ],
+      "run": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "modality": [
+        "T1w"
+      ],
+      "suffix": [
+        "participants",
+        "description",
+        "events",
+        "defacemask",
+        "scans",
+        "T1w",
+        "bold"
+      ],
+      "scans": [
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-10/sub-10_scans.tsv",
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-20/sub-20_scans.tsv",
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-09/sub-09_scans.tsv",
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-16/sub-16_scans.tsv",
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-17/sub-17_scans.tsv",
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-06/sub-06_scans.tsv",
+        "/Users/jsheunis/Documents/psyinf/Data/sfdata15Jul2022/original/3T_multiresolution_fmri/sub-21/sub-21_scans.tsv"
+      ],
+      "datatype": [
+        "anat",
+        "func"
+      ],
+      "extension": [
+        ".nii.gz",
+        ".json",
+        ".tsv"
+      ]
+    },
+    "variables": {
+      "dataset": [
+        "subject",
+        "age",
+        "gender",
+        "handedness",
+        "suffix"
+      ]
+    },
+    "@context": {
+      "@id": "https://doi.org/10.5281/zenodo.4710751",
+      "description": "ad-hoc vocabulary for the Brain Imaging Data Structure (BIDS) standard v1.6.0",
+      "type": "http://purl.org/dc/dcam/VocabularyEncodingScheme"
+    }
+  }
+}

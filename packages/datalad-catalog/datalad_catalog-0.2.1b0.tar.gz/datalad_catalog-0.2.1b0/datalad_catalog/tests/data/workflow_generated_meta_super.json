@@ -1,0 +1,201 @@
+{
+    "type": "dataset",
+    "dataset_id": "e27af456-a66c-452e-b3cb-62bb5a564307",
+    "dataset_version": "569fd768420742a5de20922526f9d9a5231975e9",
+    "children": [
+        {
+            "type": "directory",
+            "name": "some_dir",
+            "path": "some_dir"
+        }
+    ],
+    "metadata_sources": {
+        "key_source_map": {
+            "type": [
+                "metalad_core"
+            ],
+            "dataset_id": [
+                "metalad_core"
+            ],
+            "dataset_version": [
+                "metalad_core"
+            ],
+            "authors": [
+                "metalad_studyminimeta",
+                "metalad_core"
+            ],
+            "subdatasets": [
+                "metalad_core"
+            ],
+            "name": [
+                "metalad_studyminimeta"
+            ],
+            "description": [
+                "metalad_studyminimeta"
+            ],
+            "url": [
+                "metalad_studyminimeta"
+            ],
+            "keywords": [
+                "metalad_studyminimeta"
+            ],
+            "publications": [
+                "metalad_studyminimeta"
+            ]
+        },
+        "sources": [
+            {
+                "source_name": "metalad_core",
+                "source_version": "1",
+                "source_parameter": {},
+                "source_time": 1675717944.0956402,
+                "agent_email": "s.heunis@fz-juelich.de",
+                "agent_name": "Stephan Heunis"
+            },
+            {
+                "source_name": "metalad_studyminimeta",
+                "source_version": "0.1",
+                "source_parameter": {},
+                "source_time": 1675717944.16534,
+                "agent_email": "s.heunis@fz-juelich.de",
+                "agent_name": "Stephan Heunis"
+            }
+        ]
+    },
+    "authors": [
+        {
+            "name": "DataLad Tester",
+            "email": "test@example.com"
+        },
+        {
+            "@id": "https://schema.datalad.org/person#g@fz-juelich.de",
+            "@type": "Person",
+            "email": "g@fz-juelich.de",
+            "name": " Michael Hanke",
+            "givenName": "Michael",
+            "familyName": "Hanke",
+            "sameAs": "0000-0001-6398-6370"
+        }
+    ],
+    "subdatasets": [
+        {
+            "dataset_id": "48e08e83-4c13-406a-8532-584b4d78ce06",
+            "dataset_version": "4f78ff4a3c5622e0a1475631e882cad3433f98ac",
+            "dataset_path": "some_dir/subdataset",
+            "dirs_from_path": [
+                "some_dir",
+                "subdataset"
+            ]
+        }
+    ],
+    "name": "StudyForrest",
+    "description": "The StudyForrest project centers around the use of the movie Forrest Gump, which provides complex sensory input that is both reproducible and is also richly laden with real-life-like content and contexts. Since its initial release, the StudyForrest dataset has grown and been extended substantially, and now encompasses many hours of fMRI scans, structural brain scans, eye-tracking data, and extensive annotations of the movie.",
+    "url": "https://github.com/psychoinformatics-de/studyforrest-data",
+    "keywords": [
+        "human",
+        "fMRI",
+        "task"
+    ],
+    "publications": [
+        {
+            "type": "ScholarlyArticle",
+            "title": "The effect of acquisition resolution on orientation decoding from V1: comparison of 3T and 7T",
+            "doi": "https://doi.org/10.1101/305417",
+            "datePublished": 2018,
+            "publicationOutlet": "bioRxiv",
+            "authors": [
+                {
+                    "@id": "https://schema.datalad.org/person#a@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "a@fz-juelich.de",
+                    "name": " Ayan Sengupta",
+                    "givenName": "Ayan",
+                    "familyName": "Sengupta"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#b@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "b@fz-juelich.de",
+                    "name": " Oliver Speck",
+                    "givenName": "Oliver",
+                    "familyName": "Speck"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#c@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "c@fz-juelich.de",
+                    "name": " Renat Yakupov",
+                    "givenName": "Renat",
+                    "familyName": "Yakupov"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#d@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "d@fz-juelich.de",
+                    "name": " Martin Kanowski",
+                    "givenName": "Martin",
+                    "familyName": "Kanowski"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#e@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "e@fz-juelich.de",
+                    "name": " Claus Tempelmann",
+                    "givenName": "Claus",
+                    "familyName": "Tempelmann"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#f@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "f@fz-juelich.de",
+                    "name": " Stefan Pollmann",
+                    "givenName": "Stefan",
+                    "familyName": "Pollmann"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#g@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "g@fz-juelich.de",
+                    "name": " Michael Hanke",
+                    "givenName": "Michael",
+                    "familyName": "Hanke",
+                    "sameAs": "0000-0001-6398-6370"
+                }
+            ]
+        },
+        {
+            "type": "ScholarlyArticle",
+            "title": "Spatial band-pass filtering aids decoding musical genres from auditory cortex 7T fMRI",
+            "doi": "https://doi.org/10.12688/f1000research.13689.2",
+            "datePublished": 2018,
+            "publicationOutlet": "F1000Research",
+            "authors": [
+                {
+                    "@id": "https://schema.datalad.org/person#a@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "a@fz-juelich.de",
+                    "name": " Ayan Sengupta",
+                    "givenName": "Ayan",
+                    "familyName": "Sengupta"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#f@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "f@fz-juelich.de",
+                    "name": " Stefan Pollmann",
+                    "givenName": "Stefan",
+                    "familyName": "Pollmann"
+                },
+                {
+                    "@id": "https://schema.datalad.org/person#g@fz-juelich.de",
+                    "@type": "Person",
+                    "email": "g@fz-juelich.de",
+                    "name": " Michael Hanke",
+                    "givenName": "Michael",
+                    "familyName": "Hanke",
+                    "sameAs": "0000-0001-6398-6370"
+                }
+            ]
+        }
+    ]
+}
