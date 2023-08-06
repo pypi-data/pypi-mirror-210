@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pfstools"
+version = "0.2.4"
+authors = [
+  { name="Jake Bridge", email="bridge.jake@gmail.com" },
+]
+description = "Tools for my regular use. Particular to my work environment: SQL Server with Windows authentication"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+  "pyodbc",
+  "pandas",
+  "sqlalchemy",
+  "python-dotenv",
+  "xlsxwriter",
+  "openpyxl"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jakeb/pfs-data-tools"
+"Bug Tracker" = "https://github.com/jakeb/pfs-data-tools/issues"
