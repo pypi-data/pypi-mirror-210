@@ -1,0 +1,15 @@
+# filetypes to ignore
+*.pyc
+.DS_store
+
+# build files/directories to ignore
+/build/
+/dist/
+/.cache/
+/*.egg-info/
+/.eggs/
+__pycache__/
+.coverage
+.pytest_cache/
+/docs/ref
+/dqsegdb2/_version.py

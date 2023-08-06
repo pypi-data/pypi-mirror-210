@@ -1,0 +1,16 @@
+igwn-auth-utils>=0.3.1
+ligo-segments>=1.0.0
+
+[docs]
+sphinx
+sphinx-automodapi
+sphinx-immaterial
+
+[lint]
+flake8>=3.7.0
+flake8-bandit
+
+[test]
+pytest>=2.9.2
+pytest-cov>=2.5.1
+requests-mock>=1.5.0

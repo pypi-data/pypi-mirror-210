@@ -1,0 +1,42 @@
+# -- build
+
+[build-system]
+requires = [
+	"setuptools>=42",
+	"setuptools_scm[toml]>=3.4.3",
+	"wheel",
+]
+build-backend = "setuptools.build_meta"
+
+# -- tools
+
+[tool.coverage.paths]
+# map standard install paths back to the source to
+# enable merging coverage of installed module from
+# multiple platforms
+source = [
+	"dqsegdb2/",  # <-- source path, must come first
+	"/usr/lib/python*/*-packages/dqsegdb2/",
+	"/usr/local/lib/python*/*-packages/dqsegdb2/",
+]
+
+[tool.coverage.run]
+# don't report coverage for _version.py
+# (generated automatically by setuptools-scm)
+omit = [
+    "*/_version.py",
+]
+
+[tool.coverage.report]
+# print report with one decimal point
+precision = 1
+
+[tool.pytest.ini_options]
+addopts = "-r a"
+filterwarnings = [
+	"error",
+	"ignore:.*pkg_resources.*",
+]
+
+[tool.setuptools_scm]
+write_to = "dqsegdb2/_version.py"

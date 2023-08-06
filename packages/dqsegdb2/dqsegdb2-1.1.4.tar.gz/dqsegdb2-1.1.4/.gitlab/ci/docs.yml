@@ -1,0 +1,35 @@
+# ---------------------------
+# Documentation workflow
+# ---------------------------
+
+include:
+  # https://computing.docs.ligo.org/gitlab-ci-templates/
+  - project: computing/gitlab-ci-templates
+    file:
+      # https://computing.docs.ligo.org/gitlab-ci-templates/python/
+      - python.yml
+
+# -- docs -------------------
+#
+# These jobs run the sphinx
+# documentation build
+#
+
+docs:
+  # https://computing.docs.ligo.org/gitlab-ci-templates/conda/#.conda:base
+  extends: .python:sphinx
+  needs: []
+  stage: documentation
+  variables:
+    # install this package and the [docs] extra
+    REQUIREMENTS: ".[docs]"
+
+#
+# Publishing is done automatically
+# on readthedocs.org via a webhook,
+# see
+#
+# https://readthedocs.org/projects/dqsegdb2/builds/
+#
+# for full details
+#
