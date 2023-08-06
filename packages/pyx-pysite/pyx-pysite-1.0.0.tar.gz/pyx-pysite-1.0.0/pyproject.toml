@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools >= 61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyx-pysite"
+authors = [{name = "Carl Furtado", email = "carlzfurtado@gmail.com"}]
+license = {file = "LICENSE"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "flask >= 2.3.0"
+]
+
+version = "1.0.0"
+description = "Pysite is a Python web framework, inspired by JSX. It uses Flask in the backend. Common commands for the `pysite` CLI are `new <projectname>` and `run`."
+
+[project.urls]
+Home = "https://github.com/User0332/pyx"
+
+[project.scripts]
+pysite = "pysite.__main__:main"
