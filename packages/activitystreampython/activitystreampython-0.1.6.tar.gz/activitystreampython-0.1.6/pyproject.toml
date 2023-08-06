@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "activitystreampython"
+version = "0.1.6"
+description = "A convenience library to make retrieving data from the Activity Stream Data Service API easier"
+authors = ["Hugh Topping <hugh@crowdengage.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/crowdengage/activitystreampython/"
+repository = "https://github.com/crowdengage/activitystreampython/"
+
+[tool.poetry.dependencies]
+python = "^3.9.5"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
