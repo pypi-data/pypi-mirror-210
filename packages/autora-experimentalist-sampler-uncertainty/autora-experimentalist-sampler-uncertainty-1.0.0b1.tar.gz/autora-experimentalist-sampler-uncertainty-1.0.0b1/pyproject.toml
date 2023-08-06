@@ -1,0 +1,33 @@
+[project]
+# UPDATE THIS BEFORE PUBLISHING
+name = "autora-experimentalist-sampler-uncertainty"
+description = "Sampler based on where the model is least certain."
+authors = [{ name = "Built by Sebastian Musslick, restructured by Chad Williams", email = "sebastian_musslick@brown.edu" }]
+dynamic = ["version"]
+
+readme = "README.md"
+license = { text = "MIT license" }
+requires-python = ">=3.8,<4"
+
+# ADD NEW DEPENDENCIES HERE
+dependencies = [
+    "autora-core",
+    "scikit-learn",
+]
+
+[project.optional-dependencies]
+dev = [
+    "autora-core[dev]"
+]
+
+[project.urls]
+homepage = "http://www.empiricalresearch.ai"
+repository = "https://github.com/AutoResearch/autora-experimentalist-sampler-uncertainty"
+documentation = "https://autoresearch.github.io/autora/"
+
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
