@@ -1,0 +1,37 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2022-12-09"
+    authors:
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+        - {$ref: "authors/Romuald_Daniel.author.yaml#author"}
+instrumentation:
+    operator: {$ref: "operators/INSU-IPGP.operator_info.yaml#operator"}
+    equipment:
+        model: "BREVE"
+        type: "Short Period Ocean Bottom accelerometer"
+        description: "Guralp short-period OBS 3-component accelerometer, with a flat frequency response between 0.1 Hz and 100 Hz and sensitivity of about 5 V/m/s2. The hydrophone has a flat frequency response between 2Hz and 30 kHz, with a sensitivity of -165dB re: 1V uPa (562V/Bar). The digitiser can record four primary input channels at sample rates of up to 1000 sps."
+        manufacturer: "Guralp"
+        vendor: "Guralp"
+            
+    channels:
+       default:
+           datalogger: {$ref: "dataloggers/CD24.datalogger.yaml#datalogger"}
+           sensor: {$ref: "sensors/GURALP_CMG3T_ESPC.sensor.yaml#sensor"}
+       "1":
+           orientation_code: {"1": {azimuth.deg: [79, 0] } } # N-S channel
+       "2":
+           orientation_code: {"2": {azimuth.deg: [12, 0]} } # E-W channel
+       "3":
+           orientation_code: {"3": {dip.deg: [70, 0] } } # vertical channel
+       "4":
+           orientation_code : {"H": {azimuth.deg: [0, 180]} }
+           sensor: {$ref: "sensors/HITECH_HTI96-MIN.sensor.yaml#sensor"}
+           
+notes: 
+   - " used to show how to change response stages"
+   - "NO RESPONSE PROVIDED IN CHANNEL 3 VALUES ARE WORTHLESS!"
+   - "FILENAME : ****Z*, ****N*, ****E*, ****X* indicate the vertical, north, east components of the seismometer and the hydrophone, respectively. ****M* represent mass positions and ****0* are state-of-health streams."
+   - "54 dB re: 1 µPa/√Hz @ 10 Hz"
+   - "42 dB re: 1 µPa/√Hz @ 100Hz"
+   - "42 dB re: 1 µPa/√Hz @ 1000Hz"

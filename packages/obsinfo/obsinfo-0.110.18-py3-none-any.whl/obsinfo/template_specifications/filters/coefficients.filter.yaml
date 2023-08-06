@@ -1,0 +1,18 @@
+---
+format_version: "<STRING>"
+revision:
+   authors: # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+[yaml_anchors:]
+[notes: -
+    "<STRING>"]
+
+filter:
+   type: "Coefficients"
+   # offset will be used to calculate delay for digital filters at stage level if delay is not specified.
+   [offset: <NUM>]
+   numerator_coefficients:
+       - <NUM>
+   denominator_coefficients:
+       - <NUM>

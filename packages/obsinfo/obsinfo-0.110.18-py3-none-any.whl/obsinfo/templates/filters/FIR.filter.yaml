@@ -1,0 +1,18 @@
+---
+format_version: "1.0"
+revision:
+   authors: {$ref: ""} # Reference to file or fields of an authors file
+   date: ""# yyyy/mm/dd
+
+yaml_anchors:
+notes: 
+   - ""
+
+filter:
+   type: "FIR"
+   # offset will be used to calculate delay for digital filters at stage level if delay is not specified.
+   # offset should be made to coincide with the peak coefficient
+   offset: 
+   symmetry: # "EVEN", "ODD" or "NONE"
+   coefficients:
+       - 

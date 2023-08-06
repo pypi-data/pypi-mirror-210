@@ -1,0 +1,15 @@
+---
+format_version: "<STRING>"
+revision:
+   authors: # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+[yaml_anchors:]
+[notes: 
+   - "<STRING>"]
+
+filter:
+   type : "ResponseList"
+   # offset will be used to calculate delay for digital filters at stage level if delay is not specified.
+   [offset: <NUM>]
+   elements : [[ <NUM>, <NUM>, <NUM> ], ... ] # Frequency, amplitude. phase

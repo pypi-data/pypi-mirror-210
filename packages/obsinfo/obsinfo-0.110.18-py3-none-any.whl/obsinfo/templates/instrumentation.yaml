@@ -1,0 +1,42 @@
+---
+format_version: "1.0"
+revision:
+   authors: {$ref: ""} # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+yaml_anchors:
+notes: 
+   - "" 
+
+instrumentation:
+   operator: {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+
+   equipment:
+      type: ""
+      description: ""
+      manufacturer: ""
+      vendor: ""
+      model: ""
+      serial_number: ""
+      calibration_dates: 
+         - "" #Specify date and time as yyyy-mm-22Thh:mm:ss
+
+   channels:
+      default:
+           datalogger: {$ref: ""}#  Reference to file in the form {$ref: '<PATHNAME>'}
+           preamplifier:  {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+           sensor: {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+           datalogger_configuration: ""
+           preamplifier_configuration: ""
+           sensor_configuration: ""
+
+      "":
+           orientation_code: "" #FSDN defined
+           datalogger: {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+           preamplifier: {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+           sensor: {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+           datalogger_configuration: ""
+           preamplifier_configuration: ""
+           sensor_configuration: ""
+
+   extras:

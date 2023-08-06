@@ -1,0 +1,87 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Response",
+	"description": "OBS instrument/stage response files. Stages will be ordered sensor -> ana_filter -> datalogger",
+	"type": "object",
+	"required": [ "stage","format_version" ],
+	"properties": {
+	    "format_version": {"$ref" : "definitions.schema.json#/format_version"},
+	    "revision":       {"$ref" : "definitions.schema.json#/revision"},
+        "yaml_anchors":   {"$ref" : "definitions.schema.json#/yaml_anchors"},
+        "notes" :                {"$ref": "definitions.schema.json#/note_list"},
+	    "stage":          {"$ref" : "#/definitions/stage"}
+	},
+	"additionalProperties" : false,
+	"definitions": {
+        "stage": {
+            "type" : "object",
+            "description" : "Response type",
+            "required" : [
+                "input_units",
+                "output_units",
+                "gain",
+                "filter"
+            ],
+            "properties": {
+                "input_units":        { "$ref" : "#/definitions/stage_io_units" },
+                "output_units":       { "$ref" : "#/definitions/stage_io_units" },
+                "gain" :              { "$ref" : "#/definitions/gain" },
+                "name":               { "type" : "string",  "description": "BaseFilterType:name"},
+                "description":        { "type" : "string",  "description": "BaseFilterType:Description"},
+                "decimation_factor":  { "type" : "integer", "description": "DecimationType:Factor"},
+                "input_sample_rate" : { "type" : "number",  "description": "DecimationType:InputSampleRate"},
+                "delay" :             { "type" : "number",  "description": "DecimationType:Delay"},
+                "filter" :            { "$ref" : "filter.schema.json#/definitions/filter"},
+                "calibration_date" :  { "$ref" : "definitions.schema.json#/date"},
+                "polarity":           { "$ref" : "definitions.schema.json#/polarity_codes"}
+            },
+            "additionalProperties" : false
+        },
+        "stage_wo_required_fields": {
+            "type" : "object",
+            "description" : "Response type",
+            "properties": {
+                "input_units":        { "$ref" : "#/definitions/stage_io_units" },
+                "output_units":       { "$ref" : "#/definitions/stage_io_units" },
+                "gain" :              { "$ref" : "#/definitions/gain" },
+                "name":               { "type" : "string",  "description": "BaseFilterType:name"},
+                "description":        { "type" : "string",  "description": "BaseFilterType:Description"},
+                "decimation_factor":  { "type" : "integer", "description": "DecimationType:Factor"},
+                "input_sample_rate" : { "type" : "number",  "description": "DecimationType:InputSampleRate"},
+                "delay" :             { "type" : "number",  "description": "DecimationType:Delay"},
+                "filter" :            { "$ref" : "filter.schema.json#/definitions/filter_wo_required_fields"},
+                "calibration_date" :  { "$ref" : "definitions.schema.json#/date"},
+                "polarity":           { "$ref" : "definitions.schema.json#/polarity_codes"}
+            },
+            "additionalProperties" : false
+        },
+         
+        "stage_io_units": { 
+            "type" : "object",
+            "description": "units entering or exiting a stage",
+            "required" : [
+                "name",
+                "description"
+            ],
+            "properties": {
+                "name":               { "type" : "string",  "$ref": "iris_units.json#/iris_units", "description": "BaseFilterType:name"},
+                "description":        { "type" : "string",  "pattern": "[A-Za-z/*12-]+", "description": "BaseFilterType:description"}
+            },
+		    "additionalProperties" : false
+        },
+        "gain" : { 
+            "type" : "object",
+            "description": "output units / input unit.  (Called sensitivity in DBIRD)",
+            "required" : ["value"],
+            "properties" : {
+                "value" : {"type" : "number"},
+                "frequency" : {
+                    "type" : "number",
+                    "description": "Hz",
+                    "default": 0
+                }
+            },
+		    "additionalProperties" : false
+        }
+    }
+}

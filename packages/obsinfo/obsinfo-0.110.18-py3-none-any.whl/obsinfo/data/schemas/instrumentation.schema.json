@@ -1,0 +1,102 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Instrumentation",
+	"description": "OBS operator instruments and their components",
+	"type": "object",
+	"required": ["format_version", "revision", "instrumentation"],
+	"properties": {
+	    "format_version" : {"$ref" : "definitions.schema.json#/format_version"},
+	    "revision" :       {"$ref" : "definitions.schema.json#/revision"},
+        "yaml_anchors" :   {"$ref" : "definitions.schema.json#/yaml_anchors"},
+        "notes" :                {"$ref": "definitions.schema.json#/note_list"},
+		"instrumentation": {"$ref" : "#/definitions/instrumentation" }
+	},
+    "additionalProperties" : false,
+	"definitions": {
+        "instrumentation" : {
+            "description" : "Generic instrument description",
+            "type": "object",
+            "required": ["equipment", "channels"],
+            "properties": {
+		        "operator":       {"$ref" : "definitions.schema.json#/operator" },
+                "equipment":      {"$ref": "definitions.schema.json#/equipmentType"},
+                "channels":       {"$ref": "#/definitions/channels"}
+            },
+            "additionalProperties" : false
+        },
+        "channels": {
+            "type": "object",
+            "required": ["default"],
+            "properties": {
+                "default": { "$ref": "#/definitions/channel_default"}
+            },
+            "patternProperties": {
+                "^(?!default$).*": { "$ref": "#/definitions/channel"}
+            },
+            "additionalProperties": false
+        },
+        "channel_default": {
+            "type": "object",
+            "description": "Description of default DAS channel",
+            "required": ["datalogger", "sensor"],
+            "properties" : {
+                "orientation_code":   {"$ref": "#/definitions/orientation_code"},
+                "datalogger":         {"$ref": "datalogger.schema.json#/definitions/datalogger"},
+                "preamplifier":        {"$ref": "preamplifier.schema.json#/definitions/preamplifier"},
+                "sensor":             {"$ref": "sensor.schema.json#/definitions/sensor"},
+        	    "datalogger_configuration":  { 
+        		    "type": "string",
+            	    "description": "configuration selector for datalogger, preamplifier or sensor"
+        	    },
+                "preamplifier_configuration": {
+        		    "type": "string",
+            	    "description": "configuration selector for datalogger, preamplifier or sensor"
+        	    },
+                "sensor_configuration": {
+        		    "type": "string",
+            	    "description": "configuration selector for datalogger, preamplifier or sensor"},
+                "location_code":      {"type": "string"},
+	            "comments" :          {"$ref" : "definitions.schema.json#/note_list"},
+	 	        "extras":             {"$ref" : "definitions.schema.json#/extras"}
+            },
+            "additionalProperties": false
+        },
+        "channel": {
+            "type": "object",
+            "description": "Description of one DAS channel (overwrites corresponding channel default for that channel)",
+            "properties" : {
+                "orientation_code" :   {"$ref": "#/definitions/orientation_code"},
+                "datalogger" :         {"$ref": "datalogger.schema.json#/definitions/datalogger"},
+                "preamplifier":        {"$ref": "preamplifier.schema.json#/definitions/preamplifier"},
+                "sensor" :             {"$ref": "sensor.schema.json#/definitions/sensor"},
+        	    "datalogger_configuration" :  { 
+        		    "type": ["string", "null"],
+            	    "description": "configuration selector for datalogger, preamplifier or sensor"
+        	    },
+                "preamplifier_configuration":      {
+        		    "type": ["string", "null"],
+            	    "description": "configuration selector for datalogger, preamplifier or sensor"
+        	    },
+                "sensor_configuration" :           {
+        		    "type": ["string", "null"],
+            	    "description": "configuration selector for datalogger, preamplifier or sensor"
+                },
+                "location_code":      {"type": "string"},
+	            "comments" :          {"$ref" : "definitions.schema.json#/note_list"},
+	 	        "extras":             {"$ref" : "definitions.schema.json#/extras"}
+            },
+            "additionalProperties": false
+        },  
+        "orientation_code" : { 
+            "if": {"type": "string"},
+            "then": {"pattern": "^[NEZ]$", "comment":"orientation codes with standard azimuths and dips"},
+            "else": {
+                "type" : "object",
+	            "patternProperties": {
+                    "^[123HNEZ]$": { "$ref": "definitions.schema.json#/orientation_coordinates"}
+                },
+                "additionalProperties": false
+            }
+        }
+	}
+}

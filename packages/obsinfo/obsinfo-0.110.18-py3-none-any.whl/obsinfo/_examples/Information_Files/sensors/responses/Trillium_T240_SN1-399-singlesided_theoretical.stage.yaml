@@ -1,0 +1,15 @@
+---
+format_version: "1.0"
+stage:
+  description : "SENSOR - TRILLIUM 240 SN1-399 (SINGLE-SIDED)"
+  input_units :  {name: "m/s", description: "VELOCITY"}
+  output_units : {name: "V", description: "VOLTS"}
+  gain : 
+    value: 598.45
+    frequency: 1.
+  filter:
+    $ref: "sensors/responses/filters/Trillium_T240_SN1-399_generic.filter.yaml#filter"
+  
+notes: 
+  - "Older version"
+    

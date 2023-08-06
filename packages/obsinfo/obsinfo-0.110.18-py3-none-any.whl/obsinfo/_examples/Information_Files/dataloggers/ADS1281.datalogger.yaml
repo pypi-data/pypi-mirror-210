@@ -1,0 +1,36 @@
+---
+format_version: "0.110"
+revision: 
+    date: "2022-06-15"
+    authors: 
+        - $ref: 'authors/Wayne_Crawford.author.yaml#author'
+
+datalogger:
+    equipment:
+        model: "ADS1281"
+        type: "delta-sigma A/D converter + digital filter"
+        description: "Single Chip High-Resolutio Analog-to-Digital Converter"
+        manufacturer: "Texas Instruments"
+        vendor: "various"
+    sample_rate: 100
+    configuration_default: "100sps_LINEAR"
+    response_stages:
+        - $ref: "dataloggers/responses/TI_ADS1281_100sps-SINC.stage.yaml#stage"
+        - $ref: "dataloggers/responses/TI_ADS1281_FIR1.stage.yaml#stage"
+        - $ref: "dataloggers/responses/TI_ADS1281_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/TI_ADS1281_FIR3_LINEAR.stage.yaml#stage"
+        - $ref: "dataloggers/responses/TI_ADS1281_FIR4_LINEAR.stage.yaml#stage"
+    configuration_definitions:
+        "100sps_LINEAR":
+            configuration_description: "100 sps, linear phase FIR"
+            delay_correction: 0
+        "200sps_LINEAR":
+            configuration_description: "200 sps, linear phase FIR"
+            sample_rate: 200
+            delay_correction: 0
+            response_stages:
+                - $ref: "dataloggers/responses/TI_ADS1281_200sps-SINC.stage.yaml#stage"
+                - $ref: "dataloggers/responses/TI_ADS1281_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/TI_ADS1281_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/TI_ADS1281_FIR3_LINEAR.stage.yaml#stage"
+                - $ref: "dataloggers/responses/TI_ADS1281_FIR4_LINEAR.stage.yaml#stage"

@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Response",
+	"description": "OBS instrument_component response stages",
+	"type": "object",
+	"required": [ "response","format_version" ],
+	"properties": {
+	    "format_version":  {"$ref" : "definitions.schema.json#/format_version"},
+	    "revision":        {"$ref" : "definitions.schema.json#/revision"},
+        "yaml_anchors":    {"$ref" : "definitions.schema.json#/yaml_anchors"},
+        "notes" :                {"$ref": "definitions.schema.json#/note_list"},
+	    "response_stages": {"$ref" : "#/definitions/response_stages" }
+	},
+	"additionalProperties" : false,
+	"definitions": {
+	    "response_stages" : {
+	        "if": {"type": "array"},
+	        "then": {
+               "minItems": 1,
+               "description" : "list of response stages",
+               "items" : { "$ref" : "stage.schema.json#/definitions/stage" }
+	        },
+	        "else": {"$ref" : "stage.schema.json#/definitions/stage" }
+	    },
+	    "response_modifications": {  
+            "type": "object",
+            "description": "individual changes specified by stage number",
+            "patternProperties": {                                                                  
+               "^\\*$":                   { "$ref": "stage.schema.json#/definitions/stage_wo_required_fields"},
+               "^\\[[0-9]+\\-[0-9]+\\]$": { "$ref": "stage.schema.json#/definitions/stage_wo_required_fields"},
+               "^\\[[0-9\\,]*[0-9]+\\]$": { "$ref": "stage.schema.json#/definitions/stage_wo_required_fields"},
+               "^[0-9]+$":                { "$ref": "stage.schema.json#/definitions/stage_wo_required_fields"}
+             }
+        }
+    }
+}

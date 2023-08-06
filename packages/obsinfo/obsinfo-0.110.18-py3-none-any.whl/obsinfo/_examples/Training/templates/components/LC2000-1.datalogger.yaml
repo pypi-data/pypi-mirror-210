@@ -1,0 +1,63 @@
+---
+format_version: "1.0"
+revision: 
+   date: "2019-12-20"
+   authors: 
+        - $ref: 'authors/Wayne_Crawford.author.yaml#author'
+
+datalogger:
+   equipment:
+      type: "delta-sigma A/D converter + digital filter"
+      description: "CS5321/22 delta-sigma A/D converter + FIR digital filter"
+      manufacturer: "Cirrus Logic"
+      vendor: "various"
+      model: "CS5321/22"
+     
+   response_stages:
+        - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+
+   # This is used by obsinfo to calculate StationXML correction for each stage. 
+   # If None, correction = delay for each stage; if not None, correction for each stage 
+   # is 0 except the last one, which is the value of delay_correction (which may be zero).       
+   delay_correction: 0.232
+
+   configuration_default: "125sps"
+   sample_rate: 125
+
+   configuration_definitions:
+      "62.5sps":
+            sample_rate: 62.5
+            delay_correction: 0.464
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+        "125sps":
+            sample_rate: 125
+            delay_correction: 0.232
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+                

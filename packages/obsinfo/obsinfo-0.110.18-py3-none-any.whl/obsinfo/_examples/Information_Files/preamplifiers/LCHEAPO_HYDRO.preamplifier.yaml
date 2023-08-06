@@ -1,0 +1,41 @@
+---
+format_version: "0.110"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+notes: "when highpass filter is cut, should have same response as geophone preamp"
+preamplifier:
+    equipment:
+        model: "HYDRO-GAIN"
+        type: "Analog gain/filter card"
+        description: "SIO gain/filter card, hydro channel"
+        manufacturer: "SIO or IPGP"
+        vendor: ""
+    configuration_default: "64x gain"
+    response_stages:
+        - $ref: "preamplifiers/responses/Scripps_SPOBS_HydroL22x64_theoretical.stage.yaml#stage"
+    configuration_definitions:
+        "16x gain":
+            response_stages:
+                - $ref: "preamplifiers/responses/Scripps_SPOBS_HydroL22x16_theoretical.stage.yaml#stage"
+        "32x gain":
+            response_stages:
+                - $ref: "preamplifiers/responses/Scripps_SPOBS_HydroL22x32_theoretical.stage.yaml#stage"
+        "64x gain":
+             configuration_description: "64x gain"
+        "128x gain":
+            response_stages:
+                - $ref: "preamplifiers/responses/Scripps_SPOBS_HydroL22x128_theoretical.stage.yaml#stage"
+        "16x_noHP":
+            response_stages:
+                - $ref: "preamplifiers/responses/INSU_SPOBS_L28x16_theoretical.stage.yaml#stage"
+        "32x_noHP":
+            response_stages:
+                - $ref: "preamplifiers/responses/INSU_SPOBS_L28x32_theoretical.stage.yaml#stage"
+        "64x_noHP":
+            response_stages:
+                - $ref: "preamplifiers/responses/INSU_SPOBS_L28x64_theoretical.stage.yaml#stage"
+        "128x_noHP":
+            response_stages:
+                - $ref: "preamplifiers/responses/INSU_SPOBS_L28x128_theoretical.stage.yaml#stage"

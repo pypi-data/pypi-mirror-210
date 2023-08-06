@@ -1,0 +1,44 @@
+---
+format_version: "1.0"
+revision:
+   authors: 
+       - {$ref: "authors/Wayne_Crawford.author.yaml"}
+   date: "2021/07/23" # yyyy/mm/dd
+
+notes: 
+   - "This is a test for training"
+
+network:
+   operator:
+       reference_name: "INSU-IPGP OBS operator"
+       full_name: "INSU-IPGP OBS operator"
+       contact:
+           first_name: "Wayne"
+           last_name: "Crawford"
+       phone_number: "+33 (0)1 23 23 23"
+       email: "obs@ipgp.fr"
+   campaign_ref_name: "OURCAMPAIGN"
+   network_info:
+       code: "4G"
+       name: "EMSO-MOMAR"
+       start_date: "2007-07-01" # yyyy/mm/dd
+       end_date: "2025-12-31" # yyyy/mm/dd
+       description: "EMSO-MOMAR"
+       comments: 
+           - "Lucky Strike Volcano, North Mid-Atlantic Ridge"
+       
+   stations:
+       "BB_1":
+           site: "First site"
+           start_date: "2015-04-23T10:00:00" #Specify date and time as yyyy-mm-22Thh:mm:ss
+           end_date: "2016-05-28T15:37:00" #Specify date and time as yyyy-mm-22Thh:mm:ss
+           location_code: "00"
+           instrumentation:
+               {$ref: "instrumentation/BBOBS1_2012+.instrumentation.yaml#instrumentation"} 
+
+           locations:
+               "00":
+                   base: {$ref: 'location_bases/BUC_DROP.location_base.yaml#location_base'}
+                   position: {lon: -32.234, lat: 37.2806, elev: -1950}
+
+       

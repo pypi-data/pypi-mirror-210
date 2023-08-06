@@ -1,0 +1,20 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2022-12-09"
+    authors:
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+        - {$ref: "authors/Romuald_Daniel.author.yaml#author"}
+sensor:
+    equipment:
+        model: "CMG-3T / ESPC"
+        type: "Geophone"
+        description: "Guralp SPOBS acceleration sensor"
+        manufacturer: "Guralp"
+        vendor: "Guralp"
+    seed_codes:
+        band_base: "S"
+        instrument: "H"
+
+    response_stages:
+        - $ref: "sensors/responses/Guralp_CMG3T_ESPC_theoretical.stage.yaml#stage"

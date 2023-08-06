@@ -1,0 +1,33 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2018-06-01"
+    authors:
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+        - {$ref: "authors/Romuald_Daniel.author.yaml#author"}
+        
+instrumentation:
+    operator: {$ref: "operators/INSU-IPGP.operator.yaml#operator"}
+    equipment:
+        model: "WBOBS1"
+        type: "Wideband Ocean Bottom Seismometer"
+        description: "LCHEAPO 2000 WBOBS" 
+        manufacturer: "Scripps Inst. Oceanography - INSU"
+        vendor: ~
+        
+    channels:
+        default:
+            datalogger: {$ref: "dataloggers/LC2000.datalogger.yaml#datalogger"}
+            preamplifier: {$ref: "preamplifiers/LCHEAPO_BBOBS.preamplifier.yaml#preamplifier"}
+            sensor: {$ref: "sensors/NANOMETRICS_TCOMPACT_SINGLESIDED.sensor.yaml#sensor"}
+            preamplifier_configuration: "0.225x gain"
+        
+        "1": {orientation_code: {"2": {azimuth.deg: [90, 180], dip.deg: [0, 0]}}}
+        "2": {orientation_code: {"1": {azimuth.deg: [0, 180],  dip.deg: [0, 0]}}}
+        "3": {orientation_code: {"Z": {azimuth.deg: [0, 0],    dip.deg: [-90, 0]}}}
+           
+        "4":
+            orientation_code : {"H": {azimuth.deg: [0,0], dip.deg: [90,0]}}
+            preamplifier: {$ref: "preamplifiers/LCHEAPO_HYDRO.preamplifier.yaml#preamplifier"}
+            sensor: {$ref: "sensors/HITECH_HTI90U.sensor.yaml#sensor"}
+            preamplifier_configuration: "16x gain"

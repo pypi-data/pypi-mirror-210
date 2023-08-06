@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Instrument Components",
+    "description": "OBS operator instrument components",
+    "type": "object",
+    "required": ["format_version", "preamplifier"],
+    "properties": {
+        "format_version": {"$ref" : "definitions.schema.json#/format_version"},
+        "revision":       {"$ref": "definitions.schema.json#/revision"},
+        "yaml_anchors":   {"$ref": "definitions.schema.json#/yaml_anchors"},
+        "notes" :                {"$ref": "definitions.schema.json#/note_list"},
+        "preamplifier":   {"$ref": "#/definitions/preamplifier" }
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "preamplifier" : {
+            "description": "Basic preamplifier specification",
+            "required": ["equipment"],
+            "properties": {
+                "configuration_default": {"type": "string"},
+                "notes":              {"$ref": "definitions.schema.json#/note_list"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType" },
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "configuration_definitions": {"$ref": "#/definitions/preamplifier_configs_map"}
+            },
+            "additionalProperties": false
+        },
+        "preamplifier_configs_map": {
+            "description": "Map of configuration names for a given  preamplifier",
+            "patternProperties": {
+                "^[A-Za-z0-9_-]+$": {"$ref": "#/definitions/preamplifier_config"}
+            }
+        },
+        "preamplifier_config" : {
+            "description" : "Configuration-specific preamplifier properties",
+            "properties": {
+                "configuration_description": {"type": "string"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType_noRequired"},
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" }
+            },
+            "additionalProperties": false
+        },
+        "preamplifier_modifier" : {
+            "description": "preamplifier specification without any required fields so it can be used for channel modification",
+            "properties": {
+                "configuration_default": {"type": "string"},
+                "notes":              {"$ref": "definitions.schema.json#/note_list"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType_wo_required_fields"},
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "configuration_definitions": {"$ref": "#/definitions/preamplifier_configs_map"},
+                "base":               {"$ref": "#/definitions/preamplifier"},
+                "serial_number":      {"type": "string"},
+                "configuration":      {"type": "string"}
+            },
+            "additionalProperties": false
+        }
+    }
+}

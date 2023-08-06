@@ -1,0 +1,21 @@
+---
+format_version: "1.0"
+revision:
+   date: "2017-11-30"
+   authors: 
+        -   $ref: "authors/Wayne_Crawford.author.yaml#author"
+
+stage:
+   description :  "DECIMATION - CS5322 FIR2"
+   input_units :  { name: "counts", description: "COUNTS"}
+   output_units : { name: "counts", description: "COUNTS"} 
+   decimation_factor : 2
+   gain :
+      value: 1
+      frequency: 0
+   filter:
+      $ref: "dataloggers/responses/filters/CirrusLogic_CS5322_FIR2.filter.yaml#filter"
+
+notes:
+   - "From CS5322_Filter.pdf"
+   - "filter stages of datalogger: convert do digital signal"  

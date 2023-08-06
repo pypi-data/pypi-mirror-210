@@ -1,0 +1,21 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        -   $ref: "authors/Wayne_Crawford.author.yaml#author"
+preamplifier:
+    equipment:
+        model: "GEOPHONE-GAIN"
+        type: "Analog gain/filter card"
+        description: "SIO gain/filter card, seismo channel"
+        manufacturer: "SIO or IPGP"
+        vendor: ""
+    configuration_default: "128x gain"
+    response_stages:
+        - $ref: "preamplifiers/responses/INSU_SPOBS_L28x128_theoretical.stage.yaml#stage"
+    # example of empty configuration definition
+    configuration_definitions:
+        "128x gain":
+            configuration_description: "128x gain"
+           

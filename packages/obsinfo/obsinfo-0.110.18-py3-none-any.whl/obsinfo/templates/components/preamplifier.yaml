@@ -1,0 +1,40 @@
+---
+format_version: "1.0"
+revision:
+   authors: {$ref: ""} # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+yaml_anchors:
+notes: 
+    - ""
+
+preamplifier:
+   equipment:
+      type: ""
+      description: ""
+      manufacturer: ""
+      vendor: ""
+      model: ""
+      serial_number: ""
+      calibration_dates: 
+          - "" #Specify date and time as yyyy-mm-22Thh:mm:ss
+
+   response_stages:
+      - {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+
+   configuration_default: ""
+
+   configuration_definitions:
+      "" :
+          equipment:
+             model: ""
+             type: ""
+             description: ""
+             manufacturer: ""
+             vendor: ""
+             serial_number: ""
+             calibration_dates: 
+                 - "" #Specify date and time as yyyy-mm-22Thh:mm:ss
+
+          response_stages:
+             - # Reference to file in the form {$ref: '<PATHNAME>'}

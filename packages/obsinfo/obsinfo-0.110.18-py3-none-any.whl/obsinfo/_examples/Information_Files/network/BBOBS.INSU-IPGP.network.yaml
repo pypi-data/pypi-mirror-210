@@ -1,0 +1,81 @@
+---
+format_version: "0.110"
+yaml_anchors:
+    A: &LINEAR_CLOCK_DEFAULTS
+        time_base: "Seascan MCXO, ~1e-8 nominal drift"
+        reference: "GPS"
+        start_sync_instrument: 0
+revision:
+    authors:
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+    date: "2019-12-19"
+network:
+    operator:
+        reference_name: "INSU-IPGP"
+        full_name: "INSU-IPGP OBS facility"
+        contact: 
+           first_name: "Wayne"
+           last_name: "Crawford"
+        email:  "crawford@ipgp.fr"
+        phone_number: "+33 (0)1 23 45 67 89"
+        website:  "http://parc-obs.insu.cnrs.fr"
+    campaign_ref_name: "MYCAMPAIGN"
+    network_info:
+        $ref: "network_info/EMSO-MOMAR.network_info.yaml#network_info"
+    stations:
+        "BB_1":
+            site: "My favorite site"
+            start_date: "2011-04-23T10:00:00"
+            end_date: "2011-05-28T15:37:00"
+            location_code: "00"
+            instrumentation:
+                $ref: "instrumentation/BBOBS1_pre2012.instrumentation.yaml#instrumentation"
+            serial_number: "07"
+            channel_modifications:
+                "*-*": {datalogger: {equipment: {serial_number: "27"}},
+                        preamplifier: {equipment: {serial_number: "27"}},
+                        datalogger_configuration: "62.5sps"}
+                "1-*": {sensor_configuration: "Sphere07"}
+                "2-*": {sensor_configuration: "Sphere07"}
+                "Z-*": {sensor_configuration: "Sphere07"}
+                "H-*": {sensor_configuration: "IP007"}
+            locations:
+                "00":
+                    base: {$ref: 'location_bases/BUC_DROP.location_base.yaml#location_base'}
+                    position: {lon: -32.234, lat: 37.2806, elev: -1950}
+            processing:
+                - clock_correction_linear:
+                        <<: *LINEAR_CLOCK_DEFAULTS
+                        start_sync_reference: "2015-04-23T11:20:00"
+                        end_sync_reference: "2016-05-27T14:00:00.2450"
+                        end_sync_instrument: "2016-05-27T14:00:00"       
+        "BB_2":
+            site: "My other favorite site"
+            start_date: "2015-04-23T10:00:00Z"
+            end_date: "2016-05-28T15:37:00Z"
+            location_code: "00"
+            instrumentation:
+                $ref: "instrumentation/BBOBS1_2012+.instrumentation.yaml#instrumentation" 
+            serial_number: "06"
+            notes: ["example of deploying with a different sphere"]
+            channel_modifications:
+                "*-*": {datalogger: {equipment: {serial_number: "26"}},
+                        preamplifier: {equipment: {serial_number: "26"}},
+                        datalogger_configuration: "62.5sps"}
+                "1-*": {sensor_configuration: "Sphere08"}
+                "2-*": {sensor_configuration: "Sphere08"}
+                "Z-*": {sensor_configuration: "Sphere08"}
+#                 "H-*": {sensor_configuration: "5004"}
+            locations:
+                "00":
+                    base: {$ref: 'location_bases/BUC_DROP.location_base.yaml#location_base'}
+                    position: {lon: -32.29756, lat: 37.26049, elev: -1887}
+            processing:
+                - clock_correction_linear:
+                        <<: *LINEAR_CLOCK_DEFAULTS
+                        start_sync_reference: "2015-04-22T12:24:00"
+                        end_sync_reference: "2016-05-28T15:35:00.3660"
+                        end_sync_instrument: "2016-05-28T15:35:02" 
+notes: 
+    - "In version 0.110, I need to specify the sensor serial numbers"
+    - "BB_2 gives example "

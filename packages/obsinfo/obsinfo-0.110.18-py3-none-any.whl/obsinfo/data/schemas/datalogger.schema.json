@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Instrument Components",
+    "description": "OBS operator instrument components",
+    "type": "object",
+    "required": ["format_version", "datalogger"],
+    "properties": {
+        "format_version" :       {"$ref" : "definitions.schema.json#/format_version"},
+        "revision" :             {"$ref": "definitions.schema.json#/revision"},
+        "yaml_anchors" :         {"$ref": "definitions.schema.json#/yaml_anchors"},
+        "notes":                 {"$ref": "definitions.schema.json#/note_list"},
+        "datalogger":            {"$ref": "#/definitions/datalogger" }
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "datalogger" : {
+            "description": "Basic datalogger specification",
+            "required": ["sample_rate", "equipment"],
+            "properties": {
+                "notes":              {"$ref": "definitions.schema.json#/note_list"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType"},
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "sample_rate":        {"type": "number", "minimum": 0},
+                "delay_correction":    {"$ref": "#/definitions/delay_correction"},
+                "polarity":           {"$ref": "definitions.schema.json#/polarity_codes"},
+                "configuration_default": {"type": "string"},
+                "configuration_definitions": {"$ref": "#/definitions/datalogger_configs_map"}
+            },
+            "additionalProperties": false
+        },
+        "datalogger_configs_map": {
+            "description": "Map of configuration names for a given datalogger",
+            "patternProperties": {"^[A-Za-z0-9_-]+$": {"$ref": "#/definitions/datalogger_config" }}
+        },
+        "datalogger_config" : { 
+            "description": "Configuration-specific datalogger properties",
+            "properties": {
+                "configuration_description":{"type": "string"},
+                "equipment":          		{"$ref": "definitions.schema.json#/equipmentType"},
+                "response_stages":    		{"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "sample_rate":              {"type": "number", "minimum": 0},
+                "delay_correction":   		{"$ref": "#/definitions/delay_correction"}
+            },
+            "additionalProperties": false
+        },
+        "delay_correction": {
+			"type" : "number",
+            "description": "If boolean is True ignore all filter (stage) delays, set them to zero and make this total delay in last filter (stage)"  
+        },
+        "datalogger_modifier" : {
+            "description": "Datalogger specification specification without any required fields so it can be used for channel modification",
+            "properties": {
+                "notes":              {"$ref": "definitions.schema.json#/note_list"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType_wo_required_fields"},
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "sample_rate":        {"type": "number", "minimum": 0},
+                "delay_correction":   {"$ref": "#/definitions/delay_correction"},
+                "polarity":           {"$ref": "definitions.schema.json#/polarity_codes"},
+                "configuration_default": {"type": "string"},
+                "configuration_definitions": {"$ref": "#/definitions/datalogger_configs_map"},
+                "base":               {"$ref": "#/definitions/datalogger"},
+                "serial_number":      {"type": "string"},
+                "configuration":      {"type": "string"}
+            },
+            "additionalProperties": false
+        }
+      }
+}

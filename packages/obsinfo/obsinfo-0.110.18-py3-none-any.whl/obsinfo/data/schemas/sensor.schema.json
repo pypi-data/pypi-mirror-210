@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Instrument Components - Sensor",
+    "description": "OBS operator sensors",
+    "type": "object",
+    "required": ["format_version", "sensor"],
+    "properties": {
+        "format_version": {"$ref" : "definitions.schema.json#/format_version"},
+        "revision" :      {"$ref": "definitions.schema.json#/revision"},
+        "yaml_anchors":   {"$ref": "definitions.schema.json#/yaml_anchors"},
+        "notes" :         {"$ref": "definitions.schema.json#/note_list"},
+        "sensor":         {"$ref": "#/definitions/sensor" }
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "sensor": { 
+            "description": "Basic sensor specification",
+            "required": ["equipment", "seed_codes"],
+            "properties": {
+                "configuration_default": {"type": "string"},
+                "notes":              {"$ref": "definitions.schema.json#/note_list"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType"},
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "seed_codes":         {"$ref": "#/definitions/seed_codes"},
+                "configuration_definitions": {"$ref": "#/definitions/sensor_configs_map"}
+            },
+            "additionalProperties": false
+        },
+        "sensor_configs_map": { 
+            "description": "Map of configuration names for a given sensor",
+            "patternProperties": {"^[A-Za-z0-9_-]+$": {"$ref": "#/definitions/sensor_config"}}
+        },
+        "sensor_config": { 
+            "description": "Configuration-specific sensor properties",
+            "properties": {
+                "configuration_description": {"type": "string"},
+                "equipment":             {"$ref": "definitions.schema.json#/equipmentType_noRequired"},
+                "response_stages":       {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "seed_codes":            {"$ref": "#/definitions/seed_codes"}
+            },
+            "additionalProperties": false
+        },
+        "seed_codes" : {
+            "description": "Seed codes, azimuths and dips associated with a sensor",
+            "type" : "object",
+            "required" : [
+                "band_base",
+                "instrument"
+            ],
+            "properties" :  {
+                "band_base":   {"$ref": "#/definitions/seed_band_base" },
+                "instrument":  {"$ref": "#/definitions/seed_instrument_code" }
+            },
+            "additionalProperties": false
+        },
+        "seed_band_base" : {
+            "type": "string",
+            "description": "B for corner period >= 10s, S for <10s (output band code will be adjusted to the sample rate)",
+            "enum": ["B","S","H","L","D","E","C"]
+        },
+        "seed_instrument_code": {
+            "description": "SEED instrument code",
+            "type": "string",
+            "pattern": "^[A-Z]$"
+        },
+        "seed_orientations_map": {
+            "description": "permitted orientation codes and their azimuth and dip",
+            "type": "object",
+            "patternProperties": {
+                "^[A-Z0-9]$": {
+                    "type": "object",
+                    "required": ["azimuth.deg", "dip.deg"],
+                    "properties": {
+                        "azimuth.deg": {"$ref": "definitions.schema.json#/azimuth.deg"},
+                        "dip.deg":     {"$ref": "definitions.schema.json#/dip.deg"}
+                    }
+                }
+            }
+        },
+        "sensor_modifier": { 
+            "description": "Sensor specification without any required fields so it can be used for channel modification",
+            "properties": {
+                "config_description": {"type": "string"},
+                "notes":              {"$ref": "definitions.schema.json#/note_list"},
+                "equipment":          {"$ref": "definitions.schema.json#/equipmentType_wo_required_fields"},
+                "response_stages":    {"$ref": "response_stages.schema.json#/definitions/response_stages" },
+                "response_modifications":    {"$ref": "response_stages.schema.json#/definitions/response_modifications" },
+                "seed_codes":         {"$ref": "#/definitions/seed_codes"},
+                "polarity":           {"$ref": "definitions.schema.json#/polarity_codes"},
+                "configuration_definitions": {"$ref": "#/definitions/sensor_configs_map"},
+                "base":               {"$ref": "#/definitions/sensor"},
+                "serial_number":      {"type": "string"},
+                "configuration":      {"type": "string"}
+            },
+            "additionalProperties": false
+        }
+    }
+}

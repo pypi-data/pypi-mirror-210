@@ -1,0 +1,97 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2019-12-20"
+    authors: 
+        - $ref: 'authors/Wayne_Crawford.author.yaml#author'
+
+datalogger:
+    equipment:
+        model: "CS5321/22"
+        type: "delta-sigma A/D converter + digital filter"
+        description: "CS5321/22 delta-sigma A/D converter + FIR digital filter"
+        manufacturer: "Cirrus Logic"
+        vendor: "various"
+    configuration_default: "125sps"
+    response_stages:
+        - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+        - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+    sample_rate: 125
+    delay_correction: 0.232
+    configuration_definitions:
+        "62.5sps":
+            configuration_description: "62.5 sps"
+            sample_rate: 62.5
+            delay_correction: 0.464
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+        "125sps":
+            configuration_description: "125 sps"
+            sample_rate: 125
+            delay_correction: 0.232
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+        "250sps":
+            configuration_description: "250 sps"
+            sample_rate: 250
+            delay_correction: 0.116
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+        "500sps":
+            configuration_description: "500 sps"
+            sample_rate: 500
+            delay_correction: 0.058
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+        "1000sps":
+            configuration_description: "1000 sps"
+            sample_rate: 1000
+            delay_correction: 0.029
+            response_stages:
+                - $ref: "dataloggers/responses/CS5321_FIR1.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR2.stage.yaml#stage"
+                - $ref: "dataloggers/responses/CS5322_FIR3.stage.yaml#stage"
+                
+notes: 
+    - "Delay correction is hard-coded to 29 samples in LCHEAPO software"
+    

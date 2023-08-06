@@ -1,0 +1,14 @@
+---
+format_version: "1.0"
+stage:
+   description : "Bubblephone +  HITECH HTI-90U LF HYDROPHONE, serial number prefix 220"
+   input_units :  {name: "Pa", description: "PRESSURE"}
+   output_units : {name: "V", description: "VOLTS"}
+   gain : 
+       value: 0.00057
+       frequency: 10
+   filter:
+       type : "Analog"
+ 
+notes:
+    - "Valid for Bubblephone RSAM frequencies > 10 Hz"
