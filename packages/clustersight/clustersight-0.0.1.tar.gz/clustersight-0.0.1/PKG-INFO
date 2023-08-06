@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: clustersight
+Version: 0.0.1
+Summary: A package to analyze and interpret categorical clustered data
+Project-URL: Homepage, https://github.com/jboesen/clustersight
+Project-URL: Bug Tracker, https://github.com/jboesen/clustersight/issues
+Author-email: John Boesen <jmboesen@college.harvard.edu>
+License-File: LICENSE
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: MacOS X
+Classifier: Framework :: IPython
+Classifier: Framework :: Jupyter
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Clustering
+Requires-Python: >=3.7
+Requires-Dist: dtreeviz>=2.2.0
+Requires-Dist: ipython>=8.8.0
+Requires-Dist: ipywidgets>=7.7.1
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: pandas>=1.5.2
+Requires-Dist: plotly>=5.11.0
+Requires-Dist: python>=3.6
+Requires-Dist: sklearn>=0.0.post1
+Description-Content-Type: text/markdown
+
+# Clustering Explorer
+The Clustering Explorer allows users to interactively analyze which factors in a dataset are most associated with clusters. Users can lasso points of interest in a 2D plot of the data, which is created using Principal Component Analysis (PCA) for dimensionality reduction. The tool provides three modes of analysis: 'table', 'histogram', and 'explainer'.
+
+## Usage
+### Create Lasso Tool
+```
+create_lasso(df, mode='table', label_col=None, exclude_cols=[], num_factors = 10, dtreeviz_plot=True)
+```
+
+The create_lasso function creates a lasso tool for data analysis. The parameters for this function are:
+
+`df`: A Pandas DataFrame of the data to be analyzed
+`mode`: The mode of analysis. Can be 'table', 'histogram', or 'explainer'
+`label_col`: The column name to be used for color coding of the plot
+`exclude_cols`: A list of columns to exclude from the analysis
+`num_factors`: Number of factors to consider when mode is 'explainer'
+`dtreeviz_plot`: A boolean value to decide whether to plot decision tree using dtreeviz library
+
+The mode parameter determines the type of analysis that will be performed:
+
+`'table'`: shows a table of the selected points
+`'histogram'`: shows an interactive histogram of each column's values among selected points compared with among all points
+`'explainer'`: predicts which factors lead to the clustered selection with a decision tree
+
+The dtreeviz_plot parameter is used when mode is 'explainer'. If dtreeviz_plot is True, the decision tree is plotted using the dtreeviz library. Otherwise, the decision tree is plotted using sklearn, which is faster.
+
+## Dependencies
+Python 3.6+
+numpy
+pandas
+sklearn
+dtreeviz
+plotly
+ipywidgets
+itertools
+
+## Notes
+The tool is designed for datasets that can fit in memory. For larger datasets, consider using a sampling method or dimensionality reduction techniques before using this tool.
+
+
+
+

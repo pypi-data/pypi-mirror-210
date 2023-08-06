@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[project]
+name = "clustersight"
+version = "0.0.1"
+authors = [
+  { name="John Boesen", email="jmboesen@college.harvard.edu" },
+]
+description = "A package to analyze and interpret categorical clustered data"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+
+    "Development Status :: 3 - Alpha",
+    "Environment :: MacOS X",
+    "Framework :: Jupyter",
+    "Framework :: IPython",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Clustering"
+]
+dependencies = [
+  "python>=3.6",
+  "numpy>=1.24.0",
+  "pandas>=1.5.2",
+  "sklearn>=0.0.post1",
+  "dtreeviz>=2.2.0",
+  "plotly>=5.11.0",
+  "ipywidgets>=7.7.1",
+  "IPython>=8.8.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jboesen/clustersight"
+"Bug Tracker" = "https://github.com/jboesen/clustersight/issues"
+
