@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=65.0", "setuptools_scm[toml]>=7.1.0", "numpy", "cython"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "horton-grid"
+authors = [
+  { name="YingXing Cheng", email="yingxing.cheng@ugent.be" },
+  { name="Toon Verstraelen", email="toon.verstraelen@ugent.be" },
+]
+description = "Molecular grids used in computational chemistry"
+readme = "README.md"
+license = {file = "COPYING"}
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "Framework :: Matplotlib",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Natural Language :: English",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy",
+    "pre-commit",
+    "pytest",
+    "nose",
+    "scipy",
+    "h5py",
+]
+dynamic = ["version"]
+
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+select = ["E", "F"]
+ignore = ["E741", "F405","E401"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+per-file-ignores = {"__init__.py" = ["F403"], "tests/*.py"=["F401", "F403"], "tests/grid/*.py"=["F401", "F403"],"tests/io/*.py"=["F401", "F403"]}
+
+# Same as Black.
+line-length = 100
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.10.
+target-version = "py310"
+
+[tool.setuptools_scm]
+write_to = "src/horton_grid/_version.py"
+version_scheme = "post-release"
+local_scheme = "no-local-version"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = "-v"
