@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pydoftools
+Version: 0.0.1
+Summary: A python library for dof-taiwan
+Author-email: zhyipeng <zhyipeng@outlook.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: anyio (>=3.6.2)
+Requires-Dist: loguru (>=0.7.0)
+Requires-Dist: Pillow (>=9.5.0)
+Requires-Dist: zhconv (>=1.4.3)
+Provides-Extra: tqdm
+Requires-Dist: tqdm ; extra == 'tqdm'
+
+# PyDOFTools
+
+这是一个适用于 dnf-taiwan 的工具库, 目前包含以下工具:
+- pvf 原始数据读取和可读性转换, 部分支持 asyncio-api
+- npk 数据读取和贴图导出, 核心算法和代码来自 [PyDnfEx](https://github.com/HsOjo/PyDnfEx.git)
