@@ -1,0 +1,57 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CLI: List Devices",
+            "type": "python",
+            "request": "launch",
+            "module": "tplink_omada_client.cli",
+            "justMyCode": true,
+            "args": ["devices"]
+        },
+        {
+            "name": "CLI: List Targets",
+            "type": "python",
+            "request": "launch",
+            "module": "tplink_omada_client.cli",
+            "justMyCode": true,
+            "args": ["targets"]
+        },
+        {
+            "name": "CLI: List Switches",
+            "type": "python",
+            "request": "launch",
+            "module": "tplink_omada_client.cli",
+            "justMyCode": true,
+            "args": ["switches"]
+        },
+        {
+            "name": "CLI: Get Switch",
+            "type": "python",
+            "request": "launch",
+            "module": "tplink_omada_client.cli",
+            "justMyCode": true,
+            "args": ["switch", "Main Switch", "--dump"]
+        },
+        {
+            "name": "CLI: Get Switch Ports",
+            "type": "python",
+            "request": "launch",
+            "module": "tplink_omada_client.cli",
+            "justMyCode": true,
+            "args": ["switch_ports", "Main Switch", "-t", "-p", "5"]
+        },
+        {
+            "name": "CLI: Get Gateway",
+            "type": "python",
+            "request": "launch",
+            "module": "tplink_omada_client.cli",
+            "justMyCode": true,
+            "args": ["gateway", "--dump"]
+        }
+
+    ]
+}
