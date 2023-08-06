@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: lib310
+Version: 0.2.66
+Summary: lib310 Python Package
+Author: Mohsen Naghipourfar
+Author-email: naghipourfar@berkeley.edu
+Requires-Python: >=3.8
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Dist: SQLAlchemy (>=2.0.0)
+Requires-Dist: bounded_pool_executor (>=0.0.0)
+Requires-Dist: dask (>=2022.11.0)
+Requires-Dist: dask-sql (>=2022.11.0)
+Requires-Dist: db-dtypes (>=1.0.0)
+Requires-Dist: distributed (>=2022.11.0)
+Requires-Dist: gcsfs (>=2022.11.0)
+Requires-Dist: google-cloud (>=0.34.0)
+Requires-Dist: google-cloud-bigquery (>=3.2.0)
+Requires-Dist: graphviz (>=0.11)
+Requires-Dist: matplotlib (>=3.5.2)
+Requires-Dist: numpy (<1.23.0)
+Requires-Dist: pandas (>=1.4.3)
+Requires-Dist: plotly (>=5.4.0)
+Requires-Dist: psycopg2-binary (>=2.9.0)
+Requires-Dist: pymongo (>=4.0.0)
+Requires-Dist: rich (>=12.4.4)
+Requires-Dist: scanpy (>=1.9.1)
+Requires-Dist: seaborn (>=0.11.2)
+Requires-Dist: torch (>=1.12.0)
