@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "idn_data_models"
+version = "0.1.0"
+description = ""
+authors = ["Konstantinos Samaras-Tsakiris <konstantinos@iduntechnologies.com>"]
+readme = "README.md"
+packages = [{include = "idn_data_models"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.982"
+pylint = "^2.15"
+black = "^22.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
