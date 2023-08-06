@@ -1,0 +1,35 @@
+{% set data = load_setup_py_data() %}
+
+package:
+  name: adc-streaming
+  version: {{ data.get('version') }}
+
+source:
+  path: ..
+
+requirements:
+  build:
+    - pytest
+    - python
+    - python-confluent-kafka
+    - tqdm
+  run:
+    - python
+    - python-confluent-kafka
+    - tqdm
+    - certifi
+
+test:
+  imports:
+    - adc
+
+build:
+  noarch: python
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+
+about:
+  home: https://github.com/astronomy-commons/adc-streaming
+  license: BSD
+  summary: 'Astronomy Data Commons Streaming Client Library'
+  description: |
+    This package installs the ADC Streaming Client library
