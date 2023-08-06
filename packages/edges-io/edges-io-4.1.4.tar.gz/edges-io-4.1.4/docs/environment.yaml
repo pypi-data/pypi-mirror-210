@@ -1,0 +1,25 @@
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - pip
+  - ipython
+  - nbsphinx
+  - numpydoc
+  - sphinx>=4.0
+  - h5py
+  - python==3.9
+  - sphinx_rtd_theme
+  - pip:
+    - sphinx_click
+    - numpy
+    - scipy
+    - read_acq
+    - cached_property
+    - bidict
+    - pyyaml
+    - rich
+    - attrs
+    - toml
+    - dill

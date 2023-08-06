@@ -1,0 +1,21 @@
+numpy
+scipy
+h5py
+read_acq
+cached_property
+bidict
+pyyaml
+rich
+attrs
+toml
+dill
+psutil
+hickle>=5.0.0.dev0
+astropy>=5.0
+
+[:python_version < "3.8"]
+importlib_metadata
+
+[dev]
+pre-commit
+pytest
