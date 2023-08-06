@@ -1,0 +1,264 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-23 15:14-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/choices/customer_type.py:22
+msgid "Not bound"
+msgstr "No relacionado"
+
+#: lib/choices/customer_type.py:23
+msgid "Customer"
+msgstr "Vinculado"
+
+#: lib/choices/customer_type.py:24
+msgid "Partner"
+msgstr "Asociado"
+
+#: lib/managers/oasis_client.py:38
+msgid "OASIS Error. The customer does not exists."
+msgstr "Error OASIS. El cliente no existe."
+
+#: lib/managers/oasis_client.py:64
+msgid "The customer does not belong to the company."
+msgstr "El cliente no tiene relación con la compañía."
+
+#: lib/managers/oasis_cycle.py:28
+msgid "A record for year, cycle and cycle type does not found."
+msgstr "El registro para año, ciclo y tipo de ciclo no se encuentra."
+
+#: lib/managers/oasis_cycle.py:30
+msgid "Not controlled exception at 'get_period' on Cycle manager class."
+msgstr ""
+"Exceptión no controlada en el método 'get_period' de la clase manager Cycle."
+
+#: lib/managers/oasis_geographic_location.py:31
+msgid "The location does not exists."
+msgstr "La ubicación no existe."
+
+#: lib/managers/oasis_operation.py:138 lib/managers/oasis_operation.py:140
+msgid "Error updating OASIS4 database."
+msgstr ""
+
+#: lib/managers/oasis_operation.py:142
+msgid "Error inserting OASIS4 database."
+msgstr ""
+
+#: lib/utils/oasis_actions.py:30
+msgid "Invalid initialization data."
+msgstr ""
+
+#: lib/utils/oasis_actions.py:42
+msgid "Action does not have an associated method."
+msgstr ""
+
+#: lib/utils/oasis_actions.py:75
+#, fuzzy
+#| msgid "The location does not exists."
+msgid "Operation record does not exist!"
+msgstr "La ubicación no existe."
+
+#: lib/utils/oasis_actions.py:77
+msgid "Error changing state. Required data not found."
+msgstr ""
+
+#: models/local_models.py:27
+msgid "Company Id"
+msgstr "Id de la Compañía"
+
+#: models/local_models.py:28
+msgid "Company Name"
+msgstr "Nombre de la Compañía"
+
+#: models/local_models.py:29
+msgid "Tax Id"
+msgstr "NIT"
+
+#: models/local_models.py:30
+msgid "Address"
+msgstr "Dirección"
+
+#: models/local_models.py:31
+msgid "Phone Number"
+msgstr "Número Teléfono"
+
+#: models/local_models.py:32
+msgid "City"
+msgstr "Ciudad"
+
+#: models/local_models.py:34
+msgid "Legal Representative"
+msgstr "Representante Legal"
+
+#: models/local_models.py:35 models/local_models.py:179
+#, fuzzy
+#| msgid "Is enabled"
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: models/local_models.py:49
+msgid "Product id"
+msgstr "ID del Producto"
+
+#: models/local_models.py:50
+msgid "Product name"
+msgstr "Nombre del Producto"
+
+#: models/local_models.py:51
+msgid "Is enabled"
+msgstr "Habilitado"
+
+#: models/local_models.py:65
+msgid "Document type oasis id"
+msgstr "Identificador del tipo de documento OASIS"
+
+#: models/local_models.py:66
+msgid "Document type description"
+msgstr "Descripción del tipo de documento"
+
+#: models/local_models.py:80
+msgid "Location ID"
+msgstr ""
+
+#: models/local_models.py:81
+#, fuzzy
+#| msgid "Company Name"
+msgid "Location Name"
+msgstr "Nombre de la Compañía"
+
+#: models/local_models.py:96
+msgid "State"
+msgstr ""
+
+#: models/local_models.py:98
+msgid "From State"
+msgstr ""
+
+#: models/local_models.py:100
+msgid "Oasis State"
+msgstr ""
+
+#: models/local_models.py:101
+msgid "Oasis Status"
+msgstr ""
+
+#: models/local_models.py:103
+msgid "Notify User"
+msgstr ""
+
+#: models/local_models.py:105
+msgid "Notify Coffee Area"
+msgstr ""
+
+#: models/local_models.py:106
+msgid "Notify Legal Area"
+msgstr ""
+
+#: models/local_models.py:107
+msgid "Is initial state"
+msgstr ""
+
+#: models/local_models.py:108
+msgid "Is final state"
+msgstr ""
+
+#: models/local_models.py:109
+msgid "Validate changes"
+msgstr ""
+
+#: models/local_models.py:110
+msgid "Send contract"
+msgstr ""
+
+#: models/local_models.py:111
+msgid "Update Oasis"
+msgstr ""
+
+#: models/local_models.py:112
+msgid "Timeout (hours)"
+msgstr ""
+
+#: models/local_models.py:113
+msgid "State at timeout"
+msgstr ""
+
+#: models/local_models.py:119
+msgid "Status "
+msgstr ""
+
+#: models/local_models.py:132
+msgid "Contract No"
+msgstr ""
+
+#: models/local_models.py:133
+msgid "Warehouse"
+msgstr ""
+
+#: models/local_models.py:135
+#, fuzzy
+#| msgid "Product id"
+msgid "Product"
+msgstr "ID del Producto"
+
+#: models/local_models.py:137
+msgid "Kg Offered"
+msgstr ""
+
+#: models/local_models.py:139
+msgid "Kg Received"
+msgstr ""
+
+#: models/local_models.py:141
+msgid "Price"
+msgstr ""
+
+#: models/local_models.py:143
+msgid "Status"
+msgstr ""
+
+#: models/local_models.py:144
+msgid "Delivery Date"
+msgstr ""
+
+#: models/local_models.py:174
+msgid "Stat name"
+msgstr "Nombre de la estadística"
+
+#: models/local_models.py:175
+msgid "Query Text"
+msgstr "Texto de consulta (SQL)"
+
+#: models/local_models.py:176
+msgid "Text used to execute the query"
+msgstr "Texto utilizado para ejecutar la consulta (SQL)"
+
+#: models/local_models.py:177
+msgid "Is staff"
+msgstr ""
+
+#: models/local_models.py:178
+msgid "It is required to be staff to see the stat"
+msgstr "Se requiere ser staff para ver la estadística"
+
+#: models/local_models.py:185
+msgid "Stat"
+msgstr "Estadística"
+
+#: models/local_models.py:186
+msgid "Stats"
+msgstr "Estadísticas"
