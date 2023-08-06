@@ -1,0 +1,1 @@
+mapped_data = {'site-name': 'fletxible.', 'nav': [{'Home': 'index.py'}, {'About': 'about.py'}]}
