@@ -1,0 +1,46 @@
+[build-system]
+requires = ["jupyter_packaging",
+	 "jupyterlab~=3.6.3",
+	 "isort",
+	 "poetry",
+	 "black",
+	 "pre-commit"
+]
+build-backend = "jupyter_packaging.build_api"
+
+[tool.jupyter-packaging.options]
+skip-if-exists = ["rsp_jupyter_extensions/labextension/static/style.js"]
+ensured-targets = ["rsp_jupyter_extensions/labextension/static/style.js", "rsp_jupyter_extensions/labextension/package.json"]
+
+[tool.jupyter-packaging.builder]
+factory = "jupyter_packaging.npm_builder"
+
+[tool.jupyter-packaging.build-args]
+build_cmd = "build:prod"
+npm = ["jlpm"]
+
+[tool.check-manifest]
+ignore = ["rsp_jupyter_extensions/labextension/**", "yarn.lock", ".*", "package-lock.json"]
+
+[tool.black]
+line-length = 79
+target-version = ['py310']
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+include_trailing_comma = true
+multi_line_output = 3
+src_paths=["rsp_jupyter_extensions", "tests"]
+
+
