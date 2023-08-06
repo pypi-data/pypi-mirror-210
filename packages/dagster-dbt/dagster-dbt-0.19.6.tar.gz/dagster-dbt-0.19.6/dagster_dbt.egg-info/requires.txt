@@ -1,0 +1,12 @@
+dagster==1.3.6
+dbt-core<1.6
+networkx
+requests
+typer[all]
+
+[test]
+Jinja2
+dbt-rpc<0.3.0
+dbt-duckdb
+dagster-duckdb
+dagster-duckdb-pandas
