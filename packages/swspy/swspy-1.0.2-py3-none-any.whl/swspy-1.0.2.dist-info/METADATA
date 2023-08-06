@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: swspy
+Version: 1.0.2
+Summary: A package for automatically calculating shear wave splitting for large earthquake catalogues.
+Home-page: https://github.com/TomSHudson/swspy/
+Author: Tom Hudson
+Author-email: thomas.hudson@earth.ox.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: scikit-learn
+Requires-Dist: obspy
+Requires-Dist: numba
+Requires-Dist: pytest
+Requires-Dist: nbformat
+Requires-Dist: nbconvert
+Requires-Dist: ipykernel
+
+# swspy
+
+A package for performing shear wave splitting in an automated manner. Based on the eigenvalue method of Silver and Chan (1991), with multi-windowing of Teanby et al (2004), coordinate system transformations from Walsh et al (2013), automation methods based on Wustefeld et al (2010), and some other additions.
+
+## To cite:
+
+If you find this package useful, please do consider citing it. The appropriate work to cite is a manuscript currently in review:
+Hudson, T.S., Asplet, J., Walker, A.M.. (in review) "Automated shear-wave splitting analysis for single- and multi- layer anisotropic media". Seismica.
+
+
+## Documentation:
+
+Full documentation for the package is available [here](https://swspy.readthedocs.io/en/latest/).
+
+## Examples:
+
+Various example notebooks can be found in the examples directory, including the examples contained in the paper: Hudson et al. (in review), Seismica.
+
