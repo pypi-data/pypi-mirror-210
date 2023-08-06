@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "adotsdot"
+version = "0.0.1"
+authors = [
+    { "name"="Lightless Night" },
+]
+description = "JSON serializable data comparator library."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/LightlessNight/adotsdot"
+"Bug Tracker" = "https://gitlab.com/LightlessNight/adotsdot/-/issues"
+
+[tool.hatch.build]
+only-include = [
+    "adotsdot",
+]
