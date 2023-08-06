@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pydesktop"
+version = "0.0.1"
+authors = [
+  { name="Nadir Ghoul", email="fjf55bvp@duck.com" },
+]
+description = "Desktop Entry parser"
+readme = "README.md"
+
+# Is this necessary?
+requires-python = ">=3.7"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+
+    # Should I restrict this?
+    "Operating System :: OS Independent",
+
+    # TODO: Are those necessary?
+    "Environment :: X11 Applications :: Gnome",
+    "Environment :: X11 Applications :: KDE"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/gndu91/example_package_gndu91"
+"Bug Tracker" = "https://github.com/gndu91/example_package_gndu91/issues"
+
