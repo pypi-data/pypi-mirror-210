@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: heudiconv
+Version: 0.13.1
+Summary: Heuristic DICOM Converter
+Author: HeuDiConv team and contributors
+License: Apache 2.0
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Typing :: Typed
+Requires-Python: >=3.7
+Provides-Extra: tests
+Provides-Extra: extras
+Provides-Extra: datalad
+Provides-Extra: all
+License-File: LICENSE
+
+Convert DICOM dirs based on heuristic info - HeuDiConv
+uses the dcmstack package and dcm2niix tool to convert DICOM directories or
+tarballs into collections of NIfTI files following pre-defined heuristic(s).
