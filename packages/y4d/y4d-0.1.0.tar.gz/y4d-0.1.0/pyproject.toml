@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "y4d"
+version = "0.1.0"
+description = ""
+authors = ["BahouA <antonbahou@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+checkAPI = "y4d.checkAPI:app"
+restrict = "y4d.restrictor:app"
+isolate = "y4d.isolator:app"
+commentCtrl = "y4d.commentController:app"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+typer = {extras = ["all"], version = "^0.9.0"}
+libclang = {extras = ["all"], version = "^16.0.0"}
+pyyaml = {extras = ["all"], version = "^6.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
