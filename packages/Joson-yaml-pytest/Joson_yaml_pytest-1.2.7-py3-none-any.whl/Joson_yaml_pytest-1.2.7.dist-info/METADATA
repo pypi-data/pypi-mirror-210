@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: Joson-yaml-pytest
+Version: 1.2.7
+Summary: http/https API run by yaml
+Home-page: https://github.com/Joson/Joson_yaml_pytest
+Author: Bkex-QA-Joson
+Author-email: 994991952@qq.com
+License: proprietary
+Keywords: pytest,py.test,pytest-yaml,Joson_yaml_pytest
+Platform: UNKNOWN
+Classifier: Framework :: Pytest
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.9
+Requires-Dist: Jinja2 (>=3.1.2)
+Requires-Dist: jmespath (>=0.9.5)
+Requires-Dist: jsonpath (>=0.82)
+Requires-Dist: pytest (>=7.2.0)
+Requires-Dist: PyYAML (>=6.0)
+Requires-Dist: requests (==2.18.4)
+Requires-Dist: allure-pytest (>=2.12.0)
+Requires-Dist: pymysql (>=1.0.2)
+Requires-Dist: DingtalkChatbot (>=1.5.7)
+Requires-Dist: Faker (>=15.3.4)
+Requires-Dist: requests-toolbelt (>=0.10.1)
+
+- 1、安装pytest 框架使用
+- 2、编写 yaml 测试用例，使用 pytest 运行的命令
+- 3、extract 功能实现多个接口步骤的参数关联
+- 4、全局登录一次，在用例中自动在请求头部添加token认证
+- 5、用例参数化 parameters 功能实现
+- 6、yaml 中调用 fixture 功能实现
+- 7、yaml 中调用辅助函数功能使用
+- 8、用例分层机制：API和用例层
+- 9、支持 logging 日志
+- 10、支持 allure 报告
+- 11、支持mysql 数据库增删改查
+- 12、支持Lark通知
+
