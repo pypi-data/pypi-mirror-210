@@ -1,0 +1,61 @@
+[tool.pdm.version]
+source = "file"
+path = "odh_core/__init__.py"
+
+[tool.pdm.build]
+excludes = [
+    "tests/*",
+    "test*",
+    "*.log",
+]
+
+[tool.pyright]
+reportGeneralTypeIssues = false
+reportOptionalSubscript = false
+reportOptionalMemberAccess = false
+
+[project]
+authors = [
+    { name = "Jimmy Spets", email = "jimmy.spets@waochurch.com" },
+    { name = "Viktor Freiman", email = "viktor.freiman@waochurch.com" },
+]
+dependencies = [
+    "gql[aiohttp]",
+    "phonenumbers",
+    "python-dotenv",
+    "python-jose[cryptography]",
+]
+description = "ODH Core, helper functions and classes"
+dynamic = []
+name = "odh-core"
+readme = "README.md"
+requires-python = ">=3.10"
+version = "0.1.17"
+
+[project.optional-dependencies]
+dev = [
+    "Sphinx",
+    "black",
+    "flake8",
+    "flake8-bugbear",
+    "flake8-quotes",
+    "rinohtype",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme",
+    "toml",
+    "sphinxcontrib-autoprogram",
+    "docs-helper",
+    "pytest",
+    "pytest-asyncio",
+    "azure-identity",
+    "azure-keyvault-secrets",
+]
+
+[project.license]
+text = "MIT"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
