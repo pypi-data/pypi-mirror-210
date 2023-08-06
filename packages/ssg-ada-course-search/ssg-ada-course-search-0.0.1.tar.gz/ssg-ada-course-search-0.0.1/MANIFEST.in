@@ -1,0 +1,16 @@
+include *.txt
+include *.md
+include *.pkl
+recursive-include ./course_search/*
+
+include course_search/VERSION
+include course_search/params.yaml
+
+include ./requirements/requirements.txt
+exclude course_search/data/*.csv
+exclude course_search/index/*.csv
+exclude *.log
+exclude *.cfg
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
