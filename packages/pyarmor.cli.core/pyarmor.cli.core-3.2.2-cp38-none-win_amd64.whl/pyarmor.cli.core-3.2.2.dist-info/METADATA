@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: pyarmor.cli.core
+Version: 3.2.2
+Summary: Provide extension module pytransform3 for Pyarmor
+Home-page: https://github.com/dashingsoft/pyarmor
+Author: Jondy Zhao
+Author-email: pyarmor@163.com
+License: Free To Use But Restricted
+Keywords: protect obfuscate encrypt obfuscation distribute
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Free To Use But Restricted
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Utilities
+Classifier: Topic :: Security
+Classifier: Topic :: System :: Software Distribution
+
+pyarmo.cli.core
+===============
+
+Pyarmor_ is a command line tool used to obfuscate python scripts, bind
+obfuscated scripts to fixed machine or expire obfuscated scripts.
+
+This package provides `extension module`_ ``pytransform3`` required by
+Pyarmor_
+
+It supports the following arches for Python 3.7+:
+
+.. table::
+   :widths: auto
+
+   ======== ======== ======== ======== ======== ======== ======== =========
+    Arch     x86_64    i686   aarch64   aarch32  armv7    armv6    Remark
+   ======== ======== ======== ======== ======== ======== ======== =========
+   Darwin     Y        N        Y        N         N        N       [#]_
+   Linux      Y        Y        Y        ?         ?        ?
+   Windows    Y        Y        ?        N         N        N
+   ======== ======== ======== ======== ======== ======== ======== =========
+
+* Y: avaiable
+* N: not available even in future
+* ?: not available now, maybe work in future
+
+.. [#] Apple Silicon only for Python 3.9+
+
+.. _Pyarmor: https://pypi.python.org/pypi/pyarmor/
+.. _Extension Module: https://packaging.python.org/en/latest/glossary/#term-Extension-Module
+
+
