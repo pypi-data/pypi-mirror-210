@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: AstroSubtractor
+Version: 0.1
+Summary: Machine learning classifier
+Home-page: https://github.com/Professor-G/AstroSubtractor
+Author: Daniel Godines
+Author-email: danielgodinez123@gmail.com
+License: GPL-3.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7,<4
+License-File: LICENSE.txt
+Requires-Dist: numpy
+Requires-Dist: tensorflow
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-optimize
+Requires-Dist: scipy
+Requires-Dist: photutils
+Requires-Dist: matplotlib
+Requires-Dist: progress
+Requires-Dist: pandas
+Requires-Dist: optuna
+Requires-Dist: boruta
+Requires-Dist: astropy
+Requires-Dist: xgboost
+Requires-Dist: BorutaShap
+Requires-Dist: scikit-plot
+Requires-Dist: dill
+Requires-Dist: opencv-python
+Requires-Dist: imbalanced-learn
+
