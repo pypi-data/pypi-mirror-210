@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: discord_status_updater
+Version: 0.1.0
+Summary: updates Discord status depending on various conditions
+Home-page: https://github.com/Kolcha/DiscordStatusUpdater
+Author: Nick Korotysh
+Author-email: nick.korotysh@gmail.com
+License: MIT
+Keywords: Discord
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+Discord Status Updater
+======================
+
+This simple daemon/application updates your status in Discord depending on various conditions (behavior is customizable through the plugins). Right now only 2 plugins are implemented and enabled out-of-the-box:
+
+* MPRIS listener - sets now playing item info as custom status
+* screen lock listener - sets status to "idle" when screen is locked
+
+Anything else can be implemented as additional plugin (even not in this package!), but there is no stable API for this yet. Some other default plugins may appear in the future.
+
+Why?
+----
+
+Discord may set status depending on which application user runs (for example "Playing Minecraft" or "Listening to Spotify"), at least with some applications on Windows. But what about Linux? and/or whatever application? or if you want to show everyone the specific title of the item you are watching/listening to right now? This piece of software solves these questions (at least some of them).
+
+Environment
+-----------
+
+This software is **Linux-only**, maybe even KDE-specific (not tested with other environments). It was developed in KDE environment and may rely on some KDE-specific DBus interfaces (at least I didn't find any documentation/specification for DBus signal I used to detect screen locking events).
+
+It requires Python 3.8 or higher, developed with Python 3.11, lower versions are not tested but should work. The only "version-specific" code is a part of plugin system implementation, it uses some feature appeared in 3.8 (according to documentation).
+
+Usage
+-----
+
+First of all, just install it as any other Python package, it has only few lightweight and pretty common dependencies. Then do the first run by typing `discord-status-updater` in terminal. It will generate default configuration file at `~/.config/discord-status-updater.json` and exit. You **must edit** this configuration file at least to set your Discord credentials.
+
+No running Discord application is required to use this software. So, it is possible to start it with user session automatically (in any convenient way, e.g. placing .desktop file into `~/.config/autostart` or using "systemd" user service unit).
+
+How it works
+------------
+
+This application is barely *another Discord client* (or "just bot" for simplicity) which listens to whatever system events and updates status according to them. It uses Discord API to update the status, so it needs to login as *you*, so that's why no running Discord app are required and credentials in the configuration file must exist.
+
+Default plugins shipped with this package use DBus to track events they are interested in (aka "now playing" information or screen locking events), that's why it is Linux-specific.

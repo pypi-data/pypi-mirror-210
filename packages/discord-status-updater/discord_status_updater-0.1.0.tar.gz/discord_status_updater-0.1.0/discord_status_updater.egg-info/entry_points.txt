@@ -1,0 +1,6 @@
+[console_scripts]
+discord-status-updater = discord_status_updater.launcher:main
+
+[discord_status_updater_plugins]
+locked = discord_status_updater.plugins.locked:ScreenLockPlugin
+mpris = discord_status_updater.plugins.mpris:PlayerPlugin
