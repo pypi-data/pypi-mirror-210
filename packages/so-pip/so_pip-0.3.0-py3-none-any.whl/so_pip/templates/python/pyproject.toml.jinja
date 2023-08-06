@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "{{ data["name"] }}"
+version = "{{ data["revision_number"] }}"
+description = "{{ data["question_title"] }}"
+authors = ["See AUTHORS.md"]
+keywords = [{% for tag in data["tags"] %}"{{ tag }}"{%- if not loop.last -%}, {% endif %}{% endfor %}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python"
+]
+include = [
+    "{{ data["name"] }}/**/*.py",
+    "{{ data["name"] }}/**/*.md",
+    "{{ data["name"] }}/**/*.txt",
+    "{{ data["name"] }}/**/*.html"
+]
+exclude = [
+]
+license = "CC BY SA"
+readme = "README.md"
+repository = "{{ data["url"] }}"
+
+[tool.poetry.dependencies]
+python = "{{ data["minimum_python"] }}"
+{% for dependency in data["dependencies"] %}
+"{{ dependency }}" = "*"{% endfor %}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

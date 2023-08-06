@@ -1,0 +1,12 @@
+{
+  "name": "{{ data["name"] }}",
+  "description": "{{ data["question_title"] }}",
+  "version": "{{ data["revision_number"] }}",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [{% for tag in data["tags"] %}"{{ tag }}"{%- if not loop.last -%}, {% endif %}{% endfor %}],
+  "author": "See AUTHORS.md <email@example.com> (http://example.com)",
+  "license": "CC BY SA",
+  "homepage": "{{ data["url"] }}"
+}
