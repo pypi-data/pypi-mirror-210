@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: segment_anything_utils
+Version: 0.2.1
+Summary: utils for segment_anything.
+Home-page: https://github.com/tomdyqin/segment-anything-utils
+Author: Tomdy Qin
+Author-email: tomdyqin@qq.com
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+
+
+## 工具箱 for segment_anything
+
+## 发布
+先确保已经安装了最新版本的 setuptools, twine
+```bash
+pip install --user --upgrade setuptools twine
+```
+复制代码生成项目包：
+```bash
+python ./setup.py sdist
+python -m twine upload dist/*
+```
