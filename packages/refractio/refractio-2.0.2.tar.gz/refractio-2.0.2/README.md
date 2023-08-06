@@ -1,0 +1,195 @@
+# Installation:
+## without any dependencies:
+```commandline
+pip install refractio
+```
+## With all dependencies:
+```commandline
+pip install refractio[all]
+```
+## With snowflake:
+```commandline
+pip install refractio[snowflake]
+```
+## With s3:
+```commandline
+pip install refractio[s3]
+```
+## With azureblob:
+```commandline
+pip install refractio[azureblob]
+```
+## With local:
+```commandline
+pip install refractio[local]
+```
+## With sftp:
+```commandline
+pip install refractio[sftp]
+```
+## With mysql:
+```commandline
+pip install refractio[mysql]
+```
+## With hive:
+```commandline
+pip install refractio[hive]
+```
+
+#### Source code is available at: https://git.lti-aiq.in/refract-sdk/refract-sdk.git 
+
+# Usage:
+## To read dataframe with dataset name only -
+```python
+from refractio import get_dataframe
+get_dataframe("dataset_name")
+
+# For reading data from any other RDBMS connection apart from snowflake, hive or mysql please pip install mosaic-connector-python package.
+```
+## To read dataframe with filename from local storage -
+```python
+from refracio import get_local_dataframe
+get_local_dataframe("local_file_name_with_absolute_path")
+```
+## To use snowflake related operations -
+```python
+from refractio import snowflake
+
+# To get snowflake connection object with a default snowflake connection created by the user, if available.
+snowflake.get_connection()
+
+# To get snowflake connection object with a specific connection name
+snowflake.get_connection(connection_name="snowflake_con_name")
+
+# To read a specific dataset published from a snowflake connection
+snowflake.get_dataframe("dataset_name")
+
+# To read a specific dataset published from a snowflake connection with only top few records.
+snowflake.get_dataframe("dataset_name", row_count=3)
+
+# To execute a user specific query in snowflake, with the specified connection name.
+snowflake.execute_query(query="user_query", database="db_name", schema="schema", connection_name="connection_name")
+
+# To execute a user specific query in snowflake, with the current connection object or with the default connection for the user.
+snowflake.execute_query(query="user_query", database="db_name", schema="schema")
+
+# To close snowflake connection, please do close the connection after use!
+snowflake.close_connection()
+```
+
+## To use mysql related operations -
+```python
+from refractio import mysql
+
+# To get mysql connection object with a default mysql connection created by the user, if available.
+mysql.get_connection()
+
+# To get mysql connection object with a specific connection name
+mysql.get_connection(connection_name="mysql_con_name")
+
+# To read a specific dataset published from a mysql connection
+mysql.get_dataframe("dataset_name")
+
+# To read a specific dataset published from a mysql connection with only top few records.
+mysql.get_dataframe("dataset_name", row_count=3)
+
+# To execute a user specific query in mysql, with the specified connection name.
+mysql.execute_query(query="user_query", connection_name="connection_name")
+
+# To execute a user specific query in mysql, with the current connection object or with the default connection for the user.
+mysql.execute_query(query="user_query")
+
+# To close mysql connection, please do close the connection after use!
+mysql.close_connection()
+```
+
+## To use hive related operations -
+```python
+from refractio import hive
+
+# To get hive connection object with a default hive connection created by the user, if available. User id is required (1001 is default user_id used).
+hive.get_connection(user_id=1001)
+
+# To get hive connection object with a specific connection name, User id is required (1001 is default user_id used).
+hive.get_connection(connection_name="hive_con_name", user_id=1001)
+
+# To read a specific dataset published from a hive connection. User id is required (1001 is default user_id used).
+hive.get_dataframe("dataset_name", user_id="1001")
+
+# To read a specific dataset published from a hive connection with only top few records. User id is required (1001 is default user_id used)
+hive.get_dataframe("dataset_name", user_id="1001", row_count=3)
+
+# To execute a user specific query in hive, with the specified connection name. User id is required (1001 is default user_id used).
+hive.execute_query(query="user_query", connection_name="connection_name", user_id="1001")
+
+# To execute a user specific query in hive, with the current connection object or with the default connection for the user. User id is required (1001 is default user_id used).
+hive.execute_query(query="user_query", user_id="1001")
+
+# To close hive connection, please do close the connection after use!
+hive.close_connection()
+```
+
+## To use sftp related operations -
+```python
+from refractio import sftp
+
+# To get sftp connection object with a default sftp connection created by the user, if available.
+sftp.get_connection()
+
+# To get sftp connection object with a specific connection name
+sftp.get_connection(connection_name="sftp_con_name")
+
+# To read a specific dataset published from a sftp connection
+sftp.get_dataframe("dataset_name")
+
+# To read a specific dataset published from a sftp connection with only top few records.
+sftp.get_dataframe("dataset_name", row_count=3)
+
+# Use sftp connection object c to do any operation related to sftp like (get, put, listdir etc)
+c = sftp.get_connection()
+
+# To close sftp connection, please do close the connection after use!
+sftp.close_connection()
+```
+
+## To use amazon S3 related operations -
+```python
+from refractio import s3
+
+# To get s3 connection object with a default s3 connection created by the user, if available.
+s3.get_connection()
+
+# To get s3 connection object with a specific connection name
+s3.get_connection(connection_name="s3_con_name")
+
+# To read a specific dataset published from a s3 connection
+s3.get_dataframe("dataset_name")
+
+# To read a specific dataset published from a s3 connection with only top few records.
+s3.get_dataframe("dataset_name", row_count=3)
+
+# Use s3 connection object c to do any operation related to s3.
+c = s3.get_connection()
+```
+
+## To use azure blob related operations -
+```python
+from refractio import azure
+
+# To get azure blob connection object with a default azure connection created by the user, if available.
+azure.get_connection()
+
+# To get azure blob connection object with a specific connection name
+azure.get_connection(connection_name="azureblob_con_name")
+
+# To read a specific dataset published from a azureblob connection
+azure.get_dataframe("dataset_name")
+
+# To read a specific dataset published from a azure connection with only top few records.
+azure.get_dataframe("dataset_name", row_count=3)
+
+# Use azure connection object c to do any operation related to azure.
+c = azure.get_connection()
+```
+
+*Note: Usage documentation will be updated in upcoming releases.*
