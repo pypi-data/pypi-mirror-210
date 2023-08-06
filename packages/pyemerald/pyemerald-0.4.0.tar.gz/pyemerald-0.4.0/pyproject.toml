@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pyemerald"
+version = "0.4.0"
+description = "A package to modify save files from Pokemon Emerald"
+authors = ["matkvist <kvistanalytics@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+repository = "https://gitlab.com/magnetos_son/pyemerald"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.3.1"
+beautifulsoup4 = "^4.12.2"
+pandas = "^2.0.1"
+requests = "^2.31.0"
+lxml = "^4.9.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
