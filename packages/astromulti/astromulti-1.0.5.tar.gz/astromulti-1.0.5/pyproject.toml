@@ -1,0 +1,30 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "regions>=0.5",
+    "numpy>=1.18",
+    "astropy>=5.2.2",
+    "scipy>=1.5",
+    "matplotlib>=3.3",
+    "colorspacious>=1.1",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astromulti"
+version = "1.0.5"
+authors = [
+  { name="Rohit D", email="rohitd@proton.me" },
+]
+description = "A set of functions for analysis of astronomical images"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/drohi/astromulti"
