@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: interval-tools
+Version: 0.11.0
+Summary: Utility functions and classes used in applications of Interval Design.
+Author-email: Yao Lv <yao.lv@interval.im>
+Project-URL: Homepage, https://github.com/interval-design/python-tools
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: orjson (>=3)
+Provides-Extra: objectid
+Requires-Dist: pymongo (>=4) ; extra == 'objectid'
+
+# Python Tools for Applications of Interval Design
+
+## Requirements
+
+Python 3.11+
+
+## Installation
+
+```sh
+pip install interval-tools
+```
+
+Or if you want to use [ObjectID](https://www.mongodb.com/docs/manual/reference/bson-types/#objectid) as a unique identifier in Domain-Driven Design, run
+
+```sh
+pip install "interval-tools[objectid]"
+```
+
+## Quickstart
+
+```pycon
+>>> from interval.utils import get_stream_logger
+>>> import logging
+>>> formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+>>> logger = get_stream_logger('interval', 'INFO', formatter=formatter)
+>>> logger.info('Readability counts.')
+INFO:interval:Readability counts.
+```
