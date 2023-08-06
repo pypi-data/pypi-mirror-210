@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: openscm-units
+Version: 0.5.2
+Summary: OpenSCM-Units is a repository for handling of units related to simple climate modelling.
+Home-page: https://github.com/openscm/openscm-units
+Author: Zeb Nicholls, Sven Willner, Jared Lewis, Robert Gieseke
+Author-email: zebedee.nicholls@climate-energy-college.org, sven.willner@pik-potsdam.de, jared.lewis@climate-energy-college.org, rob.g@web.de
+License: 3-Clause BSD License
+Keywords: openscm,units,python,repo,simple,climate,model
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: pint
+Requires-Dist: globalwarmingpotentials
+Provides-Extra: deploy
+Requires-Dist: twine (>=1.11.0) ; extra == 'deploy'
+Requires-Dist: setuptools (>=38.6.0) ; extra == 'deploy'
+Requires-Dist: wheel (>=0.31.0) ; extra == 'deploy'
+Provides-Extra: dev
+Requires-Dist: bandit ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: black-nb ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: nbdime ; extra == 'dev'
+Requires-Dist: numpy ; extra == 'dev'
+Requires-Dist: pydocstyle ; extra == 'dev'
+Requires-Dist: pylint (>=2.4.4) ; extra == 'dev'
+Requires-Dist: dephell-changelogs ; extra == 'dev'
+Requires-Dist: nbsphinx ; extra == 'dev'
+Requires-Dist: twine (>=1.11.0) ; extra == 'dev'
+Requires-Dist: setuptools (>=38.6.0) ; extra == 'dev'
+Requires-Dist: wheel (>=0.31.0) ; extra == 'dev'
+Requires-Dist: sphinx (>=1.4) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+Requires-Dist: ipykernel ; extra == 'dev'
+Requires-Dist: notebook ; extra == 'dev'
+Requires-Dist: seaborn ; extra == 'dev'
+Requires-Dist: codecov ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: nbval ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest (>=4.0) ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx (>=1.4) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: nbsphinx ; extra == 'docs'
+Requires-Dist: ipykernel ; extra == 'docs'
+Provides-Extra: notebooks
+Requires-Dist: notebook ; extra == 'notebooks'
+Requires-Dist: seaborn ; extra == 'notebooks'
+Provides-Extra: tests
+Requires-Dist: codecov ; extra == 'tests'
+Requires-Dist: coverage ; extra == 'tests'
+Requires-Dist: nbval ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+Requires-Dist: pytest (>=4.0) ; extra == 'tests'
+
+OpenSCM-Units
+==============
+
+.. sec-begin-index
+
+OpenSCM-Units is a repository for handling of units related to simple climate modelling.
+
+.. sec-end-index
+
+License
+-------
+
+.. sec-begin-license
+
+OpenSCM-Units is free software under a BSD 3-Clause License, see
+`LICENSE <https://github.com/openscm/openscm-units/blob/master/LICENSE>`_.
+
+.. sec-end-license
+
