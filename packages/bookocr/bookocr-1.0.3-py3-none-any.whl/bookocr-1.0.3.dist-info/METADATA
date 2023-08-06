@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: bookocr
+Version: 1.0.3
+Summary: Optical character recognition (OCR) tool for printed book pages
+Author-email: Artem Poliakov <artem4250@gmail.com>
+Project-URL: Homepage, https://github.com/Artem259/bookocr
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv-python (>=4.5.5.64)
+Requires-Dist: numpy (>=1.23.5)
+Requires-Dist: pandas (>=2.0.1)
+Requires-Dist: scipy (>=1.10.1)
+Requires-Dist: tensorflow (>=2.12.0)
+Requires-Dist: Pillow (>=9.5.0)
+
+# BookOcr
+
+### Optical character recognition (OCR) tool for printed book pages.
+
+### Usage examples:
+
+```
+from bookocr.ocr import Ocr
+
+ocr = Ocr()
+image_path = "my_image.png"
+nested_list_structure = ocr.image_ocr(image_path)  # pages > text areas > lines > words
+text = ocr.get_data_as_text()  # the same result, but joined
+
+print(text)
+```
+
+```
+from bookocr.config import OcrConfig
+from bookocr.stats_config import OcrStatsConfig
+from bookocr.ocr import Ocr
+
+# optional
+config = OcrConfig()
+# ... set config values here
+
+# optional as well
+# provides intermediate results of image processing 
+stats_config = OcrStatsConfig()
+stats_config.set_enabled_true("stats_folder")
+# ... set stats_config values here
+
+ocr = Ocr(config, stats_config)
+image_path = "my_image.png"
+nested_list_structure = ocr.image_ocr(image_path)  # pages > text areas > lines > words
+text = ocr.get_data_as_text()  # the same result, but joined
+
+print(text)
+```
