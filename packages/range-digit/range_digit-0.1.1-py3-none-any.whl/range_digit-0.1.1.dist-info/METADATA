@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: range-digit
+Version: 0.1.1
+Summary: 
+Home-page: https://github.com/SaitoTsutomu/range-digit
+License: MIT
+Author: SaitoTsutomu
+Author-email: tsutomu7@hotmail.co.jp
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
+
+## description
+
+`range-digit` is library of decimal digit which has `low` and `sup`.
+
+```
+from range_digit import RangeDigit
+from decimal import Decimal
+
+d = RangeDigit("1.240")
+print(d)  # 1.240
+print(d - Decimal("1.2"))  # 0.040
+print(d / 2)  # 0.620
+print(d.low)  # 1.2395
+print(d.sup)  # 1.2405
+print(d.tostr())  # <RangeDigit [1.2395 - 1.2405)>
+```
+
