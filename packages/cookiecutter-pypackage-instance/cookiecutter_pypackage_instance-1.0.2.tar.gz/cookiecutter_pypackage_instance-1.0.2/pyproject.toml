@@ -1,0 +1,162 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "cookiecutter-pypackage-instance"
+version = "1.0.2"
+description = "🐍 An awesome python package by the name Cookiecutter Pypackage Instance"
+readme = "README.md"
+authors = ["Vasilis Sioros <billsioros97@gmail.com>"]
+license = "MIT"
+homepage = "https://billsioros.github.io/cookiecutter-pypackage-instance"
+repository = "https://github.com/billsioros/cookiecutter-pypackage-instance"
+keywords = []
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/billsioros/cookiecutter-pypackage-instance/issues"
+"Changelog" = "https://github.com/billsioros/cookiecutter-pypackage-instance/releases"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+python-semantic-release = "*"
+isort = "*"
+mypy = "*"
+black = "*"
+pre-commit = "*"
+poethepoet = "*"
+coverage = {extras = ["toml"], version = "*" }
+pytest = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
+pytest-clarity = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocs-minify-plugin = "*"
+mkdocs-redirects = "*"
+mkdocstrings = { extras = ["python"], version = "*" }
+mdx-truly-sane-lists = "*"
+mike = "*"
+ruff = "*"
+
+[tool.semantic_release]
+version_toml = "pyproject.toml:tool.poetry.version"
+changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
+build_command = "python -m pip install poetry && poetry build"
+
+[tool.vulture]
+min_confidence = 95
+paths = ["src/cookiecutter_pypackage_instance", "tests"]
+
+[tool.poe.tasks]
+clean = { cmd = "rm -rf ./**/__pycache__ dist site .pytest_cache .mypy_cache .coverage", help = "Clean up any auxiliary files" }
+format = { shell = "poetry run isort .; poetry run black .", help = "Format your codebase" }
+hooks = { cmd = "poetry run pre-commit run --all-files", help = "Run all pre-commit hooks" }
+test = { cmd = "poetry run pytest --cov=cookiecutter_pypackage_instance", help = "Run the test suite and produce a coverage report" }
+type-check = { cmd = "poetry run mypy", help = "Run static type checking on your codebase" }
+lint = { cmd = "poetry run ruff check src", help = "Lint your code for errors" }
+docs = { shell = "python -c 'import webbrowser; webbrowser.open(\"http://127.0.0.1:8000\")'; poetry run mkdocs serve", help = "Build and serve the documentation" }
+export = { cmd = "poetry export --without-hashes --dev -o requirements.txt" }
+
+[tool.pytest.ini_options]
+addopts = "-vv --color=yes"
+log_cli = false
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+log_cli_format = "%(asctime)s %(levelname)s %(message)s"
+log_cli_level = "INFO"
+python_files = "test_*.py"
+python_functions = "test_*"
+testpaths = "tests"
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["cookiecutter_pypackage_instance"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
+exclude_lines = ["if self.debug:", "pragma: no cover", "raise NotImplementedError", "if __name__ == .__main__.:"]
+ignore_errors = true
+omit = ["tests/*"]
+
+[tool.isort]
+profile = "black"
+src_paths = ["src/cookiecutter_pypackage_instance", "tests"]
+line_length = 99
+known_first_party = "cookiecutter_pypackage_instance"
+
+[tool.black]
+line-length = 99
+target-version = ["py37", "py38"]
+skip-string-normalization = true
+
+[tool.mypy]
+files = ["src/cookiecutter_pypackage_instance"]
+warn_unused_configs = true
+warn_return_any = true
+ignore_missing_imports = true
+pretty = true
+color_output = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+strict = true
+
+
+[tool.ruff]
+select = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+ignore = []
+
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
+
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+per-file-ignores = {}
+
+line-length = 99
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+target-version = "py310"
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "double"
