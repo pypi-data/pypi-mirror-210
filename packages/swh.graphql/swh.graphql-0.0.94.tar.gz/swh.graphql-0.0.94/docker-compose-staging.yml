@@ -1,0 +1,14 @@
+version: "3.4"
+
+services:
+
+  memcached:
+    image: memcached:latest
+
+  app:
+    dns: 192.168.100.29
+    environment:
+      - SWH_CONFIG_FILENAME=swh/graphql/config/staging.yml
+    links:
+      - memcached
+    command: gunicorn --bind=0.0.0.0:8000 -w 2 -k uvicorn.workers.UvicornWorker 'swh.graphql.server:make_app_from_configfile()'

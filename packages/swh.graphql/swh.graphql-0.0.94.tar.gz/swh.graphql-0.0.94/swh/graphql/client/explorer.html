@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SWH GraphQL explorer</title>
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #graphiql {
+        height: 95vh;
+      }
+    </style>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"
+            integrity="sha512-Vf2xGDzpqUOEIKO+X2rgTLWPY+65++WPwCHkX2nFMu9IcstumPsf/uKKRd5prX3wOu8Q0GBylRpsDB26R6ExOg=="
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+            integrity="sha512-Wr9OKCTtq1anK0hq5bY3X/AvDI5EflDSAh0mE9gma+4hl+kXdTJPKZ3TwLMBcrgUeoY0s3dq9JjhCQc7vddtFg=="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/graphiql/graphiql.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous"/>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <span>Software Heritage GraphQL Explorer</span>
+        </a>
+        {% if auth %}
+          <div id="swh-auth-info" class="float-right">
+          </div>
+        {% endif %}
+      </div>
+    </nav>
+    <div id="graphiql">Loading...</div>
+    <script src="https://unpkg.com/graphiql@2.4.0/graphiql.min.js"
+            integrity="sha384-MVcRONLrOPBea05C9lB5pu31zTbPkbZI/gIn2y0r5xH6GefRkJcnrBGlY4zo2nwC"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    {% if auth %}
+      <script src="https://cdn.jsdelivr.net/npm/keycloak-js@21.0.1/dist/keycloak.min.js"
+              integrity="sha256-8xhYXd4t68ydWwydSA5+3SakzW9NRiXGhmKOzk79P3o="
+              crossorigin="anonymous"></script>
+    {% endif %}
+    <script>
+      async function graphQLFetcher(graphQLParams, opts) {
+        const { headers = {} } = opts;
+
+        headers['Accept'] = 'application/json';
+        headers['Content-Type'] = 'application/json';
+
+        {% if auth %}
+          if (keycloak.authenticated) {
+            // ensure to renew access token if expired
+            await keycloak.updateToken(10);
+            headers['Authorization'] = 'Bearer ' + keycloak.token;
+          }
+        {% endif %}
+
+        const response = await fetch(window.location.href, {
+          method: 'post',
+          headers: headers,
+          body: JSON.stringify(graphQLParams),
+        });
+
+        return response.json();
+      }
+
+      function dedent(str) {
+        str = str.replace(/^\n/, "");
+        let match = str.match(/^\s+/);
+        return match ? str.replace(new RegExp("^"+match[0], "gm"), "") : str;
+      }
+
+      function initGraphiQL() {
+        const DEFAULT_QUERY = dedent(`
+          query FindCodeMeta {
+            directoryEntry(
+              directorySWHID: "swh:1:dir:ec88e5b901c034d5a91aa133e824d65cff3788a3"
+              path: "codemeta.json"
+            ) {
+              name {
+                text
+              }
+              target {
+                node {
+                  ... on Content {
+                    data {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }`);
+        ReactDOM.render(
+          React.createElement(GraphiQL, {
+          fetcher: graphQLFetcher,
+            query: DEFAULT_QUERY,
+            defaultEditorToolsVisibility: true,
+          }),
+          document.getElementById('graphiql'),
+        );
+      }
+
+      {% if auth %}
+        const keycloak = new Keycloak({
+          url: '{{ auth.public_server }}',
+          realm: '{{ auth.realm }}',
+          clientId: '{{ auth.client }}',
+        });
+
+        function kcLogin(event) {
+          event.preventDefault();
+          keycloak.login();
+        }
+
+        function kcLogout(event) {
+          event.preventDefault();
+          keycloak.logout();
+        }
+
+        async function kcInitSuccess(authenticated) {
+          const authInfo = document.querySelector('#swh-auth-info');
+          if (authenticated) {
+            const profile = await keycloak.loadUserProfile();
+            authInfo.innerHTML = `Logged in as <b>${profile.username}</b>`;
+            authInfo.innerHTML += " - <a href='#' onclick='kcLogout(event)'>logout</a>";
+          } else {
+            authInfo.innerHTML = "<a href='#' onclick='kcLogin(event)'>login</a>";
+          }
+          initGraphiQL();
+        }
+
+        keycloak.init({
+          onLoad: 'check-sso',
+          pkceMethod: 'S256',
+          checkLoginIframe: false,
+        })
+        .success(kcInitSuccess)
+        .error(initGraphiQL);
+      {% else %}
+        initGraphiQL();
+      {% endif %}
+
+    </script>
+  </body>
+</html>

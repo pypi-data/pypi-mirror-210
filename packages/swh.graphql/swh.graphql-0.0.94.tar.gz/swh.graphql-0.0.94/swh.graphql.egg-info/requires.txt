@@ -1,0 +1,15 @@
+ariadne
+uvicorn
+starlette
+httpx
+aiocache[memcached]
+swh.core[http]>=0.3
+swh.storage>=1.8.0
+swh.model
+swh.search
+swh.auth>=0.7.2
+
+[testing]
+pytest
+pytest-mock
+types-PyYAML
