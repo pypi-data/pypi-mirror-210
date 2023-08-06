@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3 class="text-center">Sorry</h3>
+    <div class="card text-center">
+        <div class="card-body">
+            Name <b>{{ form.name.data }}</b> has already been entered into contest "{{ contest.title }}"
+        </div>
+    </div>
+{% endblock %}
