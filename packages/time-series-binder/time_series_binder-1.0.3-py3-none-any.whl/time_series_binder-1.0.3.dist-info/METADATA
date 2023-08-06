@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: time-series-binder
+Version: 1.0.3
+Summary: Time Series Binder is a Python library for time series analysis and forecasting. It offers a comprehensive set of tools and models, including Pandas integration, statistical methods, neural networks with Keras, and the NeuralProphet library. With Time Series Binder, you can easily manipulate, visualize, and predict time series data, making it an essential toolkit for researchers and analysts.
+Home-page: https://github.com/JhunBrian/time_series_binder
+Author: Jhun Brian Andam
+Author-email: brianandam123@gmail.com
+License: MIT
+Keywords: Time Series Analysis,Forecasting
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: statsmodels
+Requires-Dist: keras
+Requires-Dist: neuralprophet
+Requires-Dist: scikit-learn
+Requires-Dist: tqdm
+Requires-Dist: tabulate
+
+# Time Series Binder
+
+Time Series Binder is a Python library for time series analysis and forecasting. It provides a comprehensive set of tools and models to manipulate, visualize, and predict time series data. This library is designed to assist researchers and analysts in performing various time series tasks with ease and efficiency.
+
+## Features
+
+- Integration with Pandas for seamless data manipulation and preprocessing.
+- Statistical methods for analyzing time series data, including trend analysis, seasonality decomposition, and outlier detection.
+- Neural network models powered by Keras for advanced time series forecasting.
+- Integration with the NeuralProphet library for additional forecasting capabilities.
+- Visualization tools for creating insightful plots and visual representations of time series data.
+- Integration with scikit-learn for additional machine learning functionality.
+
+
+## Import
+
+`from ts_binder import tariner`
+
+Change Log
+==================
+
+1.0.3 (27/05/2023)
+------------------
+Modified Documentation
