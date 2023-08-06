@@ -1,0 +1,12 @@
+pydantic>=1.6
+requests
+
+[dev]
+black
+mypy
+types-requests
+
+[distribute]
+setuptools
+twine
+wheel
