@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "ssrs"
+version = "0.1.2"
+description = "'Simple Scripting for Rust' enables you to run rust source files as scripts, from the command line, by prefixing them with a shebang line. It's useful because sometimes you just want to write a quick-and-dirty 'script', without having to creaate a new crate/package."
+authors = ["Bruno Fauth <149593@upf.br>"]
+license = "MIT"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Rust",
+]
+keywords = ["rust", "scripting", "shebang"]
+repository = "https://github.com/brunofauth/ssrs"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/brunofauth/ssrs/issues"
+"Homepage" = "https://github.com/brunofauth/ssrs"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ssrs = 'ssrs.ssrs:shebang'
+ssrs-cli = 'ssrs.ssrs:cli'
+
