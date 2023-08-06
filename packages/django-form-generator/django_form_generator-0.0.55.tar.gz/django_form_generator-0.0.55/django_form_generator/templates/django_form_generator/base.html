@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{form.instance.title}}</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+
+<body>
+  <div class="container m-5">
+    {% block content %}{% endblock content %}
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script>
+    
+      const multiInputs = document.querySelectorAll('[multi-input]');
+      const multiInputsArray = Array.prototype.slice.call(multiInputs)
+      const isFormEditable = "{{form.instance.is_editable|lower}}" === 'false' && "{{formresponse}}";
+
+      function removeRow(e) {
+        try {
+          e.target.parentNode.remove();
+        } catch (error) {
+          e.parentNode.remove()
+        }
+      };
+
+      function createAddRowBtn(){
+        const addRowBtn = document.createElement("button");
+        addRowBtn.name = 'addRowBtn';
+        addRowBtn.innerHTML = '+';
+        addRowBtn.type = 'button';
+        addRowBtn.classList.add('btn', 'btn-sm', 'addRowBtn');
+        addRowBtn.onclick = addRow;
+        if (isFormEditable){
+          addRowBtn.setAttribute('disabled', true);
+          addRowBtn.classList.add('btn-secondary')
+        }else{
+          addRowBtn.classList.add('btn-outline-success')
+        }
+        return addRowBtn;
+      };
+
+      function createRemoveRowBtn(clonedDiv=null){
+        if (clonedDiv != null && clonedDiv.querySelector('.removeRowBtn') != null){
+          clonedDiv.querySelector('.removeRowBtn').onclick = removeRow;
+          return null;
+        }
+        var removeRowBtn = document.createElement("button");
+        removeRowBtn.name = 'removeRowBtn';
+        removeRowBtn.innerHTML = '-';
+        removeRowBtn.type = 'button';
+        removeRowBtn.classList.add('btn', 'btn-sm', 'removeRowBtn');
+        removeRowBtn.onclick = removeRow;
+        if (isFormEditable){
+          removeRowBtn.setAttribute('disabled', true);
+          removeRowBtn.classList.add('btn-secondary')
+        }else{
+          removeRowBtn.classList.add('btn-outline-danger')
+        }
+        return removeRowBtn;
+      };
+
+
+      function addRow(e, value=null){
+        var element = e;
+        if ('target' in e || e.hasAttribute('target'))
+            element = e.target;
+
+        var clonedDiv = element.parentNode.cloneNode(true);
+        clonedDiv.querySelector('input').value = value;
+        clonedDiv.querySelector('.addRowBtn').onclick = addRow;
+        var removeRowBtn = createRemoveRowBtn(clonedDiv)
+        if (removeRowBtn){
+          clonedDiv.append(removeRowBtn);
+        }
+        element.parentNode.parentNode.append(clonedDiv)
+        return clonedDiv;
+      };
+
+      multiInputs.forEach(element => {
+        element.parentNode.classList.add('input-group');
+        try {
+          var helpText = element.parentNode.querySelector('small')
+          element.parentNode.querySelector('small').remove();
+          var div = document.createElement('div')
+          div.append(helpText)
+          element.parentNode.parentNode.prepend(div);
+        } catch (error) {}
+        
+
+        var label = element.parentNode.querySelector('label')
+        element.parentNode.querySelector('label').remove();
+        element.parentNode.parentNode.prepend(label);
+
+
+        element.parentNode.setAttribute('id', element.getAttribute('id')+ '___' + multiInputsArray.indexOf(element));
+        element.parentNode.append(createAddRowBtn());
+        if (!element.required)
+          element.parentNode.append(createRemoveRowBtn());
+    });
+
+
+    </script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+
+</html>
