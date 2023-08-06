@@ -1,0 +1,7 @@
+#cloud-config
+
+output:
+  all: ">> /var/log/cloud-init.log"
+
+ssh_authorized_keys:
+  - {{ multipass_ssh.public_key }}
