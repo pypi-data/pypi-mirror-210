@@ -1,0 +1,1 @@
+This is the custom library from my CLI music project. More info: https://github.com/dashadmdv/music-player-project
