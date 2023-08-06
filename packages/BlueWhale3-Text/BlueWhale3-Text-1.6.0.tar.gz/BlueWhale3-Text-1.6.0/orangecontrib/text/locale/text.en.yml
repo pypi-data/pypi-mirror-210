@@ -1,0 +1,765 @@
+package_label: "Text Mining"
+package_desc: "Text Mining"
+
+filter:
+  filtering: "Filtering..."
+  stopwords: "Stopwords"
+  lexicon: "Lexicon"
+  regexp: "Regexp"
+  fit_filter: "Fitting filter..."
+  document_frequency: "Document frequency"
+  frequent_tokens: "Most frequent tokens"
+  pos_tags: "POS tags"
+
+pos:
+  pos_tag: "POS Tagging..."
+  stanford_pos_tag: "Stanford POS Tagger"
+  averaged_perceptron_tag: "Averaged Perceptron Tagger"
+  treebank_pos_tag: "Treebank POS Tagger (MaxEnt)"
+
+normalize:
+  normalizing: "Normalizing..."
+  wordnet_lemmatizer: "WordNet Lemmatizer"
+  porter_stemmer: "Porter Stemmer"
+  snowball_stemmer: "Snowball Stemmer"
+  udpipe_lemmatizer: "UDPipe Lemmatizer"
+
+transform:
+  transform: "Transforming..."
+  lowercase: "Lowercase"
+  remove_accents: "Remove accents"
+  parse_html: "Parse html"
+  remove_urls: "Remove urls"
+
+tokenize:
+  tokenizing: "Tokenizing..."
+  word_punctuation: "Word & Punctuation"
+  sentence: "Sentence"
+  whitespace: "Whitespace"
+  regexp: "Regexp"
+  tweet: "Tweet"
+
+bagofwords:
+  count: "Count"
+  binary: "Binary"
+  sublinear: "Sublinear"
+  none: "(None)"
+  idf: "IDF"
+  smooth_idf: "Smooth IDF"
+  l1: "L1 (Sum of elements)"
+  l2: "L2 (Euclidean)"
+
+guardian:
+  headline: "Headline"
+  content: "Content"
+  trail_text: "Trail Text"
+  html: "HTML"
+  type: "Type"
+  language: "Language"
+  tags: "Tags"
+  word_count: "Word Count"
+
+nyt:
+  headline: "Headline"
+  abstract: "Abstract"
+  snippet: "Snippet"
+  lead_paragraph: "Lead Paragraph"
+  subject_keywords: "Subject Keywords"
+  locations: "Locations"
+  persons: "Persons"
+  organizations: "Organizations"
+  creative_works: "Creative Works"
+  article_type: "Article TypeArticle Type"
+  word_count: "Word Count"
+
+twitter:
+  content: 'Content'
+  language: 'Language'
+  location: 'Location'
+  likes: 'Number of Likes'
+  retweets: 'Number of Retweets'
+  reply_to: 'In Reply To'
+  latitude: 'Latitude'
+  longitude: "Longitude"
+  author:
+    name: 'Author Name'
+    description: 'Author Description'
+    status_count: 'Author Statuses Count'
+    favourites_count: 'Author Favourites Count'
+    friends_count: 'Author Friends Count'
+    followers_count: 'Author Followers Count'
+    listed_count: 'Author Listed Count'
+    verified: 'Author Verified'
+
+wikipedia:
+  title: "Title"
+  content: "Content"
+  summary: "Summary"
+  page_id: "Page ID"
+  revision_id: "Revision ID"
+  query: "Query"
+
+item:
+  mean: "Mean"
+  median: "Median"
+  min: "Min"
+  max: "Max"
+
+common:
+  corpus: "Corpus"
+  query_word: "Query Word"
+  selected_document: "Selected Documents"
+  concordance: "Concordances"
+  data: "Data"
+  network: "Network"
+  node_data: "Node Data"
+  match_doc: "Matching Docs"
+  other_doc: "Other Docs"
+  distance: "Distances"
+  corpus_without_duplicates: "Corpus Without Duplicates"
+  duplicates: "Duplicates Cluster"
+  select_topic: "Selected Topic"
+  all_topic: "All Topics"
+  topic: "Topic"
+  select_word: "Selected Words"
+  word_count: "Word Counts"
+  select_data: "Selected Data"
+  lda_wrapper: "Latent Dirichlet Allocation"
+  lsi_wrapper: "Latent Semantic Indexing"
+  hdp_wrapper: "Hierarchical Dirichlet Process"
+  skip_document: "Skipped documents"
+  embeddings: "Embeddings"
+  words: "Words"
+
+owbasevectorizer:
+  options: "Options"
+  commit: "Commit"
+  hide_attrs: "Hide bow attributes"
+
+owbagofwords:
+  name: "Bag of Words"
+  desc: "Generates a bag of words from the input corpus."
+  row_term_frequency: "Term Frequency:"
+  row_document_frequency: "Document Frequency:"  
+  row_regular: "Regularization:"
+
+owconcordance:
+  name: "Concordance"
+  desc: "Display the context of the word."
+  msg_multiple_words_on_input: "Multiple query words on input. Only the first one is considered!"
+  box_info: "Info"
+  btn_commit: "Commit"
+  btn_auto_commit: "Auto commit is on"
+  row:
+    token: "Tokens: %(n_tokens)s"
+    type: "Types: %(n_types)s"
+    match: "Matching: %(n_matching)s"
+    num_of_word: "Number of words:"
+    query: "Query:"
+  dialog:
+    name: "Concordances"
+    label_query: "Query"
+    label_token: "Tokens"
+    label_type: "Types"
+    label_match: "Matching"
+
+owcorpus:
+  name: "Corpus"
+  desc: "Load a corpus of text documents."
+  msg_cannot_read_file: "Can't read file ({})"
+  msg_no_text_features_used: "At least one text feature must be used."
+  msg_corpus_without_text_features: "Corpus doesn't have any textual features."
+  btn_reload: "Reload"
+  btn_browse: "Browse"
+  placeholder_no_title: "(no title)"
+  btn_browse_documentation: "Browse documentation corpora"
+  status:
+    load: "Loading"
+    none: '(none)'
+  box:
+    corpus_file: "Corpus file"
+    title_var: "Title variable"
+    use_text_feature: "Used text features"
+    ignore_text_feature: "Ignored text features"
+  dialog:
+    open: "Open Orange Document Corpus"
+    all_readable_file: "All readable files ({});;"
+    name: "Corpus"
+    label_file: "File"
+    label_document: "Documents"
+    label_use_text_feature: "Used text features"
+    label_ignore_text_feature: "Ignored text features"
+    label_other_feature: "Other features"
+    label_target: "Target"
+
+owcorpustonetwork:
+  name: "Corpus to Network"
+  desc: "Constructs network from given corpus."
+  msg_unknown_error: "Unknown error: {}"
+  msg_no_network_addon: "Please install network add-on to use this widget."
+  msg_params_changed: "Parameters have been changed. Press Start to run with new parameters."
+  gbox_document: "Document"
+  gbox_word: "Word"
+  box_set: "Settings"
+  btn_start: "Start"
+  btn_stop: "Stop"
+  row:
+    node_type: "Node type"
+    threshold: "Threshold"
+    window_size: "Window size"
+    freq_threshold: "Frequency Threshold"
+
+owcorpusviewer:
+  name: "Corpus Viewer"
+  desc: "Display corpus contents."
+  msg_no_feats_search: "No features included in search."
+  msg_no_feats_display: "No features selected for display."
+  box_info: "Info"
+  box_search_feature: "Search features"
+  box_display_feature: "Display features"
+  checkbox_show_token_tag: "Show Tokens && Tags"
+  btn_send_data: "Send data"
+  btn_auto_send: "Auto send is on"
+  label_regexp_filter: "RegExp Filter:"
+  row:
+    token: "Tokens: %(n_tokens)s"
+    type: "Types: %(n_types)s"
+    match: "Matching: %(n_matching)s"
+    match_documents: "Matching documents: %(n_matching)s"
+  dialog:
+    label_query: "Query"
+    label_match_document: "Matching documents"
+    label_matches: "Matches"
+
+owdocmap:
+  name: "Document Map"
+  gbox_world: "World"
+  gbox_europe: "Europe"
+  gbox_usa: "USA"
+  gbox_m_world: "World"
+  gbox_m_europe: "Europe"
+  gbox_m_usa: "USA"
+  label_region_attr: "Region attribute:"
+  label_map_type: "Map type:"
+
+owdocumentembedding:
+  name: "Document Embedding"
+  desc: "Document embedding using pretrained models."
+  msg_no_connection: "No internet connection. Please establish a connection or use another vectorizer."
+  msg_unexpected_error: "Embedding error: {}"
+  msg_unsuccessful_embeddings: "Some embeddings were unsuccessful."
+  mean: "Mean"
+  sum: "Sum"
+  max: "Max"
+  min: "Min"
+  box_set: "Settings"
+  row_language: "Language: "
+  row_aggregator: "Aggregator: "
+  btn_apply: "Apply"
+  btn_cancel: "Cancel"
+
+owduplicates:
+  name: "Duplicate Detection"
+  desc: "Detect & remove duplicates from a corpus."
+  msg_dist_matrix_invalid_shape: "Duplicate detection only supports distances calculated between rows."
+  msg_too_little_documents: "More than one document is required."
+  label_cluster: "Cluster"
+  label_size: "Size"
+  gbox:
+    single: "Single"
+    average: "Average"
+    complete: "Complete"
+    weight: "Weighted"
+    ward: "Ward"
+    attr: "Attributes"
+    class: "Class"
+    meta: "Metas"
+  box:
+    info: "Info"
+    linkage: "Linkage"
+    distance: "Distances"
+    output: "Output"
+  row:
+    document: "Documents: %(n_documents)s"
+    unique: "  ◦ unique: %(n_unique)s"
+    duplicate: "  ◦ duplicates: %(n_duplicates)s"
+    distance_threshold: "Distance threshold"
+    append_cluster_id: "Append Cluster IDs to:"
+  dialog:
+    linkage: "Linkage"
+    distance_threshold: "Distance threshold"
+    document: "Document"
+    unique: "Unique"
+    duplicates: "Duplicates"
+
+owguardian:
+  btn_key: "The Guardian API Key"
+  name: "The Guardian"
+  desc: "Fetch articles from The Guardian API."
+  btn_api_key: "The Guardian API Key"
+  box_query: "Query"
+  box_text_include: "Text includes"
+  box_output: "Output"
+  row_article: "Articles: %(output_info)s"
+  btn_search: "Search"
+  btn_stop: "Stop"
+  dialog:
+    name: "The Guardian Credentials"
+    key_input: "test"
+    msg_invalid_credentials: "These credentials are invalid."
+    row: "Key:"
+    btn: "OK"
+    query: "Query"
+    date_from: "Date from"
+    date_to: "Date to"
+    text_include: "Text includes"
+    output: "Output"
+  msg:
+    no_text_fields: "Text features are inferred when none are selected."
+    no_api: "Please provide a valid API key."
+    no_query: "Please provide a query."
+    limit_exceeded: "Requests limit reached."
+
+owimportdocuments:
+  name: "Import Documents"
+  desc: "Import text documents from folders."
+  tooltip_select_folder_to_load: "Select a folder from which to load the documents"
+  tooltip_reload_document_set: "Reload current document set"
+  row_no_select_document_set: "No document set selected"
+  btn:
+    open: "Open/Load Documents"
+    reload: "Reload"
+    cancel: "Cancel"
+  box:
+    source: "Source"
+    folder: "Folder:"
+    info: "Info"
+    options: "Conllu import options"
+  checkbox:
+    lemma: "Lemma"
+    pos_tags: "POS tags"
+    ner: "NER"
+  msg:
+    read_error: "{} couldn't be read."
+    document: "{} document(s)"
+    category: "{} documents / {} categories"
+    skip: ", {} skipped"
+    cancel: "Cancelled"
+    error: "Error state"
+    not_exist: "'{}' does not exist"
+    not_folder: "'{}' is not a folder"
+  text:
+    select_document: "No document set selected"
+    process: "Processing"
+    cancel: "Cancelled"
+    process_error: "Error during processing"
+  dialog:
+    open: "Select Top Level Folder"
+  report:
+    path: "Path"
+    document_number: "Number of documents"
+    categories: "Categories"
+    skip_number: "Number of skipped"
+
+owkeywords:
+  name: "Extract Keywords"
+  desc: "Infers characteristic words from the input corpus."
+  msg:
+    no_words_column: "Input is missing 'Words' column."
+  box:
+    score_methods: "Scoring Methods"
+    agg: "Aggregation"
+    select_word: "Select Words"
+    words: "Words"
+  status:
+    calculate: "Calculating..."
+  placeholder:
+    filter: "Filter..."
+  item:
+    none: "None"
+    all: "All"
+    manual: "Manual"
+    top_words: "Top words"
+  report:
+    corpus: "Corpus"
+    words: "Words"
+    keywords: "Keywords"
+
+ownyt:
+  name: "NY Times"
+  desc: "Fetch articles from the New York Times search API."
+  btn_api_key: "Article API Key"
+  box_query: "Query"
+  box_include: "Text includes"
+  btn_output: "Output"
+  row_article: "Articles: %(output_info)s"
+  btn_search: "Search"
+  btn_stop: "Stop"
+  msg:
+    no_text_fields: "Text features are inferred when none are selected."
+    no_api: "Please provide a valid API key."
+    no_query: "Please provide a query."
+    offline: "No internet connection."
+    api_error: "API error: {}"
+    rate_limit: "Rate limit exceeded. Please try again later."
+  dialog:
+    name: "New York Times API key"
+    cm_key: "NY Times API Key"
+    msg_invalid_credentials: "This credentials are invalid. Check the key and your internet connection."
+    row_key: "Key:"
+    btn_ok: "OK"
+    query: "Query"
+    date_from: "Date from"
+    date_to: "Date to"
+    text_include: "Text includes"
+    output: "Output"
+
+owpreprocess:
+  name: "Preprocess Text"
+  desc: "Construct a text pre-processing pipeline."
+  box:
+    preview: "Preview"
+    udpipe_tokenizer: "UDPipe tokenizer"
+    language: "Language:"
+  msg:
+    udpipe_offline_no_models: "No UDPipe model is selected."
+    file_not_found: "File not found."
+    invalid_encoding: "Invalid file encoding. Please save the file as UTF-8 and try again."
+    stanford_tagger: "Problem loading Stanford POS Tagger:\n{}"
+    no_token_left: "No tokens on the output."
+    udpipe_offline: "No internet connection. UDPipe works with local models."
+    udpipe_offline_no_model: "No internet connection. UDPipe model is not available."
+    tokenizer_propagated: "Tokenization should be placed before Normalization, Filtering, n-grams and POS Tagger."
+    tokenizer_ignored: "Tokenization has been ignored due to UDPipe tokenizer."
+    filtering_ignored: "Filtering has been ignored due to UDPipe tokenizer."
+    preprocess_method: "Some preprocessing methods require data (like word relationships, stop words, punctuation rules etc.) from the NLTK package. This data was downloaded to:"
+  dialog:
+    open: "Open..."
+    text_file: "Text files (*.txt)"
+    all_file: "All files (*)"
+  row:
+    transform: "Transformation"
+    tokenize: "Tokenization"
+    normalize: "Normalization"
+    filter: "Filtering"
+    ngrams: "N-grams Range"
+    pos: "POS Tagger"
+    range: "Range:"
+    none: "(none)"
+    pattern: "Pattern:"
+
+owpubmed:
+  name: "Pubmed"
+  desc: "Fetch data from Pubmed."
+  box_retrieve: "Retrieve"
+  btn_retrieve_record: "Retrieve records"
+  btn_stop_retrieve: "Stop retrieving"
+  tooltip_retrieve_document: "Retrieves the specified documents."
+  btn_email: "Email"
+  btn_find_record: 'Find records'
+  tab_regular_search: "Regular search"
+  tab_advance_search: "Advanced search"
+  tooltip_search: "Performs a search for articles that fit the specified parameters."
+  box_text_include: "Text includes"
+  msg:
+    no_query: "Please specify the keywords for this query."
+    api_error: "API error: {}."
+    email_error: "Email not set. Pleas set it with the email button."
+    num_of_retrieve: "Number of retrievable records for this search query: {} "
+    record_from: "records from {}."
+    num_of_record: "Number of records retrieved: {} "
+  row:
+    author: "Author:"
+    from: "From:"
+    to: "to:"
+    query: "Query:"
+    num_of_record: "Number of records found: /"
+    record_from: "records from /."
+    orchid: "orchid"
+    hypertension: "hypertension"
+    blood_pressure: "blood pressure"
+    radiology: "radiology"
+  checkbox:
+    author: "Authors"
+    article_title: "Article title"
+    mesh_head: "Mesh headings"
+    abstract: "Abstract"
+    url: "URL"
+  dialog:
+    name:  "Pubmed Email"
+    email: "Email"
+    msg: "This email is invalid."
+    row_email: "Email:"
+    btn_ok: "OK"
+  report:
+    query: "Query"
+    authors: "Authors"
+    date: "Date"
+    num_of_record: "Number of records retrieved"
+
+owscoredocuments:
+  name: "Score Documents"
+  msg:
+    missing_words: "Provide words on the input"
+    missing_corpus: "Provide corpus on the input"
+    corpus_not_normalized: "Use Preprocess Text to normalize corpus."
+  box:
+    method: "Word Scoring Methods"
+    agg: "Aggregation"
+    select_documents: "Select Documents"
+  placeholder:
+    filter: "Filter..."
+  item:
+    none: "None"
+    all: "All"
+    manual: "Manual"
+    top_documents: "Top documents"
+  label:
+    word_count: "Word count"
+    word_count_tip: "Frequency of the word in the document."
+    word_presence: "Word presence"
+    word_presence_tip: "Score word with one if it appears in the document, with zero otherwise."
+    similarity: "Similarity"
+    similarity_tip: "Cosine similarity between the document embedding and the word embedding."
+
+owsentimentanalysis:
+  name: "Sentiment Analysis"
+  desc: "Compute sentiment from text."
+  gbox_english: "English"
+  gbox_slovenian: "Slovenian"
+  msg:
+    senti_offline: "No internet connection! Sentiment now only works with local models."
+    senti_offline_no_lang: "No internet connection and no local language resources are available."
+    one_dict_only: "Only one dictionary loaded."
+    no_dicts_loaded: "No dictionaries loaded."
+  box:
+    mulitilingua_sent: "Multilingua sentiment"
+    method: "Method"
+    custom_list: "Custom dictionary"
+  btn:
+    liu_hu: "Liu Hu"
+    vader: "Vader"
+    commit: "Commit"
+    auto_commit: "Autocommit is on"
+  row:
+    language: "Language:"
+    positive: "Positive:"
+    negative: "Negative:"
+  dialog:
+    method: "Method"
+
+owsimhash:
+  name: "Similarity Hashing"
+  desc: "Computes documents hashes."
+  row_simhash_size: "Simhash size:"
+  row_shingle_length: "Shingle length:"
+
+owstatistics:
+  name: "Statistics"
+  desc: "Create new statistic variables for documents."
+  msg_not_computed: "{} statistics cannot be computed and is omitted from results."
+  btn_apply: "Apply"
+  row_feature: "Feature"
+  row_pattern: "Pattern"
+  gbox:
+    word_count: "Word count"
+    character_count: "Character count"
+    n_gram_count: "N-gram count"
+    average_word_length: "Average word length"
+    punctuation_count: "Punctuation count"
+    capital_count: "Capital letter count"
+    vowel_count: "Vowel count"
+    consonant_count: "Consonant count"
+    per_cent_unique_word: "Per cent unique words"
+    start_with: "Starts with"
+    end_with: "Ends with"
+    contain: "Contains"
+    regex: "Regex"
+    pos_tag: "POS tag"
+    yule: "Yule's I"
+    lix: "LIX index"
+
+owtopicmodeling:
+  row_num_of_topic: "Number of topics"
+  name: "Topic Modelling"
+  desc: "Uncover the hidden thematic structure in a corpus."
+  msg_less_topics_found: "Less topics found than requested."
+  btn_commit: "Commit"
+  box:
+    option: "Options"
+    topic_evaluation: "Topic evaluation"
+  label:
+    topic: "Topics"
+    topic_key: "Topic keywords"
+    perplexity: "Log perplexity: %(perplexity)s"
+    coherence: "Topic coherence: %(coherence)s"
+  gbox:
+    first_level_concentration: "First level concentration (γ)"
+    second_level_concentration: "Second level concentration (α)"
+    the_topic_direchlet: "The topic Dirichlet (α)"
+    top_level_truncation: "Top level truncation level (Τ)"
+    second_level_truncation: "Second level truncation level (Κ)"
+    learn_rate: "Learning rate (κ)"
+    slow_down_parameter: "Slow down parameter (τ)"
+  dialog:
+    topic: "Topics"
+
+owtweetprofiler:
+  name: "Tweet Profiler"
+  desc: "Detect Ekman's, Plutchik's or Profile of Mood States's emotions in tweets."
+  msg_server_down: "Our servers are not responding. Please try again later."
+  msg_unexpected_error: "Unknown error: {}"
+  btn_commit: "Commit"
+  btn_cancel: "Cancel"
+  box_option: "Options"
+  row_attr: "Attribute:"
+  row_emotion: "Emotions:"
+  row_output: "Output:"
+  output_mode:
+    classes: "Classes"
+    probability: "Probabilities"
+    embeddings: "Embeddings"
+  dialog:
+    attr: "Attribute"
+    emotion: "Emotions"
+    output: "Output"
+
+owtwitter:
+  name: "Twitter"
+  desc: "Load tweets from the Twitter API."
+  gbox_content: "Content"
+  gbox_author: "Author"
+  btn_twitter_api_key: "Twitter API Key"
+  tooltip_set_api: "Set the API key for this widget."
+  box_query: "Query"
+  box_text_include: "Text includes"
+  btn_search: "Search"
+  btn_stop: "Stop"
+  placeholder_multiple_line: "Multiple lines are joined with OR."
+  msg:
+    no_text_fields: "Text features are inferred when none selected."
+    api: "Api error ({})"
+    rate_limit: "Rate limit exceeded. Please try again later."
+    empty_authors: "Please provide some authors."
+    wrong_authors: "Query does not match Twitter user handle."
+    key_missing: "Please provide a valid API key to get the data."
+  row:
+    query_word_list: "Query word list:"
+    language: "Language:"
+    max_tweet: "Max tweets:"
+    search_by: "Search by:"
+    allow_retweet: "Allow retweets:"
+    collect_result: "Collect results:"
+  dialog:
+    name: "Twitter API Credentials"
+    cm_key: "Twitter API Key"
+    cm_secret: "Twitter API Secret"
+    msg_invalid_credential: "This credentials are invalid."
+    row_key: "Key:"
+    row_secret: "Secret:"
+    btn_ok: "OK"
+
+owwikipedia:
+  name: "Wikipedia"
+  box_query: "Query"
+  placeholder_each_line_separate_query: "Each line represents a separate query."
+  box_text_include: "Text includes"
+  box_info: "Info"
+  btn_search: "Search"
+  btn_stop: "Stop"
+  dialog:
+    language: "Language"
+    query: "Query"
+    article_count: "Articles count"
+  row:
+    query_word_list: "Query word list:"
+    language: "Language:"
+    article_per_query: "Articles per query:"
+  msg:
+    info_label: "Articles count {:d}"
+    api_error: "API error: {}"
+    no_text_field: "Text features are inferred when none are selected."
+
+owwordcloud:
+  name: "Word Cloud"
+  box_cloud_preference: "Cloud preferences"
+  checkbox_color_word: "Color words"
+  row_words_tilt: "Words tilt:"
+  box_word: "Words && weights"
+  label_weight: "Weight"
+  label_word: "Word"
+  value_no: "no"
+  table_name: "Word Counts"
+  topic_name: "Selected Words"
+  msg:
+    topic_precedence: "Input signal Topic takes priority over Corpus"
+    bow_weight: "Showing bag of words weights."
+    data_info: "{} documents with {} words"
+    word_in_topic: "words in a topic."
+    datas_info: "{} documents\n{} selected words\n{} words with counts"
+  state:
+    calculate: "Calculating"
+
+owwordenrichment:
+  name: "Word Enrichment"
+  desc: "Word enrichment analysis for selected documents."
+  box_info: "Info"
+  row_word_display: "Words displayed: 0"
+  box_filter: "Filter"
+  checkbox_p_value: "p-value"
+  tooltip_filter_p_value: "Filter by word p-value"
+  tooltip_max_p_value: "Max p-value for word"
+  checkbox_fdr: "FDR"
+  tooltip_filter_fdr: "Filter by word FDR"
+  label_word: "Word"
+  label_p_value: "p-value"
+  label_fdr: "FDR"
+  msg:
+    no_bow_features: "No bag-of-words features!"
+    no_words_overlap: "No words overlap!"
+    empty_selection: "Selected data is empty!"
+    all_selected: "All examples can not be selected!"
+    data_word: "Words displayed: {}"
+  dialog:
+    enriche_word: "Enriched words"
+
+owwordlist:
+  name: "Word List"
+  desc: "Create a list of words."
+  msg:
+    no_string_vars: "Input needs at least one Text variable."
+  box:
+    library: "Library"
+    input: "Input"
+  tip:
+    add: "Add a new word list to the library"
+    add_word: "Add a new word"
+    remove: "Remove word list from library"
+    update: "Save changes in the editor to library"
+    more: "More actions"
+    remove_word: "Remove word"
+    sort: "Sort words alphabetically"
+  btn:
+    update: "Update"
+    more: "More"
+    import_file: "Import Words from File"
+    save_file: "Save Words to File"
+    open: "Open Word List"
+    open_type: "Text files (*.txt)\nAll files(*.*)"
+    save_word: "Save Word List"
+    sort: "Sort"
+  label:
+    word_variable: "Word variable:"
+    update: "Update: "
+  report:
+    library: "Library"
+    input_words: "Input Words"
+    word_var: "Word variable"
+    update: "Update"
+    settings: "Settings"
+    words: "Words"
+  item:
+    intersection: "Intersection"
+    union: "Union"
+    only_input: "Only input"
+    ignore_input: "Ignore input"
