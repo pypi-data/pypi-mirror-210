@@ -1,0 +1,150 @@
+Metadata-Version: 2.1
+Name: sickchill
+Version: 2023.5.24
+Summary: Automatic Video Library Manager for TV Shows
+Home-page: https://sickchill.github.io
+License: GPL-3.0-or-later
+Author: Dustyn Gibson
+Author-email: miigotu@gmail.com
+Maintainer: Dustyn Gibson
+Maintainer-email: miigotu@gmail.com
+Requires-Python: >=3.7.2,<4
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Multimedia :: Video
+Provides-Extra: experimental
+Provides-Extra: frontend
+Provides-Extra: speedups
+Provides-Extra: types
+Requires-Dist: IMDbPY (>=2020.09.25)
+Requires-Dist: Mako (>=1.1.4,<2.0.0)
+Requires-Dist: PyGithub (>=1.54.1,<2.0.0)
+Requires-Dist: PyNMA (>=1.0,<2.0)
+Requires-Dist: SQLAlchemy (>=2.0.0,<3.0.0)
+Requires-Dist: Send2Trash (>=1.5.0,<2.0.0)
+Requires-Dist: Unidecode (>=1.2.0,<2.0.0)
+Requires-Dist: babelfish (>=0.6.0b1)
+Requires-Dist: beekeeper-alt (>=2022.9.3)
+Requires-Dist: bencode.py (>=4.0.0,<5.0.0)
+Requires-Dist: cacheyou (>=23.2,<24.0)
+Requires-Dist: configobj (>=5.0.6,<6.0.0)
+Requires-Dist: deluge-client (>=1.9.0,<2.0.0)
+Requires-Dist: enzyme (>=0.4.1,<0.5.0)
+Requires-Dist: gntp (>=1.0.3,<2.0.0)
+Requires-Dist: greenlet (>=1.1.2)
+Requires-Dist: guessit (>=3.3.1,<4.0.0)
+Requires-Dist: ifaddr (>=0.1.7,<0.3.0)
+Requires-Dist: imagesize (>=1.2.0,<2.0.0)
+Requires-Dist: importlib-metadata (<5.0.0); python_version < "3.8"
+Requires-Dist: ipaddress (>=1.0.23,<2.0.0)
+Requires-Dist: jsonrpclib-pelix (>=0.4.2,<0.5.0)
+Requires-Dist: kodipydent-alt (>=2022.9.3)
+Requires-Dist: markdown2 (>=2.4.0,<3.0.0)
+Requires-Dist: new-rtorrent-python (>=1.0.1-alpha.0,<2.0.0)
+Requires-Dist: packaging (>=20.9,<24.0)
+Requires-Dist: profilehooks (>=1.12.0,<2.0.0)
+Requires-Dist: putio.py (>=8.7.0,<9.0.0)
+Requires-Dist: pyOpenSSL (>=20.0.1,<24.0.0)
+Requires-Dist: python-dateutil (>=2.8.1,<3.0.0)
+Requires-Dist: python-slugify (>=4.0.1,<9.0.0)
+Requires-Dist: python-twitter (>=3.5,<4.0)
+Requires-Dist: python3-fanart (>=2.0.0,<3.0.0)
+Requires-Dist: qbittorrent-api (>=2021.3.18,<2024.0.0)
+Requires-Dist: rarfile (>=4.0,<5.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: stevedore (<=3.5.0); python_version < "3.8"
+Requires-Dist: subliminal (>=2.1.0,<3.0.0)
+Requires-Dist: timeago (>=1.0.15,<2.0.0)
+Requires-Dist: tmdbsimple (>=2.8.0,<3.0.0)
+Requires-Dist: tornado (>=6.1,<7.0)
+Requires-Dist: tus.py (>=1.3.4,<2.0.0)
+Requires-Dist: tvdbsimple (>=1.0.6,<2.0.0)
+Requires-Dist: validators (>=0.18.2,<0.21.0)
+Requires-Dist: win-inet-pton (>=1.1.0,<2.0.0)
+Project-URL: Bug Tracker, https://github.com/sickchill/sickchill/issues
+Project-URL: Changelog, https://raw.githubusercontent.com/SickChill/sickchill.github.io/master/sickchill-news/CHANGES.md
+Project-URL: Discord, https://discord.com/invite/U8WPBdf
+Project-URL: Donate, https://github.com/SickChill/SickChill/wiki/Donations
+Project-URL: IRC, https://webchat.freenode.net/?channels=#sickchill
+Project-URL: News, https://raw.githubusercontent.com/SickChill/sickchill.github.io/master/sickchill-news/news.md
+Project-URL: Repository, https://github.com/sickchill/sickchill
+Project-URL: Slack, https://sickchill.slack.com/
+Project-URL: Telegram, https://t.me/sickchill
+Description-Content-Type: text/markdown
+
+SickChill [![Build Status](https://github.com/SickChill/SickChill/actions/workflows/pythonpackage.yml/badge.svg)](https://github.com/SickChill/SickChill/actions/workflows/pythonpackage.yml?query=branch%3Amaster) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo) [![Donate](https://img.shields.io/badge/donations-appreciated-green.svg)](https://github.com/SickChill/SickChill/wiki/Donations)
+====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+
+Huge thanks to JetBrains for providing "All Products Pack" licenses free of charge for SickChill developers as part of their support of OSS.
+[https://jb.gg/OpenSourceSupport](https://jb.gg/OpenSourceSupport)
+
+
+Automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.
+
+#### Features
+ - Kodi/XBMC library updates, poster/banner/fanart downloads, and NFO/TBN generation
+ - Configurable automatic episode renaming, sorting, and other processing
+ - Easily see what episodes you're missing, are airing soon, and more
+ - Automatic torrent/nzb searching, downloading, and processing at the qualities you want
+ - Largest list of supported torrent and nzb providers, both public and private
+ - Can notify Kodi, XBMC, Growl, Trakt, Twitter, and more when new episodes are available
+ - Searches TheTVDB.com and AniDB.net for shows, seasons, episodes, and metadata
+ - Episode status management allows for mass failing seasons/episodes to force retrying
+ - DVD Order numbering for returning the results in DVD order instead of Air-By-Date order
+ - Allows you to choose which indexer to have SickChill search its show info from when importing
+ - Automatic XEM Scene Numbering/Naming for seasons/episodes
+ - Available for any platform, uses a simple HTTP interface
+ - Specials and multi-episode torrent/nzb support
+ - Automatic subtitles matching and downloading
+ - Improved failed download handling
+ - DupeKey/DupeScore for NZBGet 12+
+ - Real SSL certificate validation
+ - Supports Anime shows
+
+#### Installation/Setup
+
+Visit the [Installation & Configuration guides page](https://github.com/SickChill/SickChill/wiki/Installation-&-Configuration-Guides) on our wiki
+
+#### Dependencies
+
+To run SickChill you will need Python 3.7+, preferably 3.10 or newer.
+
+PyPy (python 3.7-3.9) 7.8.x+ is also supported.
+
+#### More info
+
+* [Wiki](https://github.com/SickChill/SickChill/wiki)
+
+* [FAQ](https://github.com/SickChill/SickChill/wiki/FAQ%27s-and-Fixes)
+
+* [Issue Tracker](https://github.com/SickChill/SickChill/issues)
+
+#### Important notes on switching from other forks
+
+Before using this with your existing database (`sickbeard.db`) please make a backup copy of it and delete any other database files such as cache.db and failed.db if present.
+
+We HIGHLY recommend starting out with no database files at all to make this a fresh start but the choice is at your own risk.
+
+#### Supported providers
+
+A full list can be found here: [Link](https://github.com/SickChill/SickChill/wiki/SickChill-Search-Providers)
+
+#### News and Changelog
+[news.md and CHANGES.md have moved to a separate repo, click here](https://github.com/SickChill/SickChill.github.io)
+
+
+<a href="https://jb.gg/OpenSourceSupport"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width="60" height="60"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.svg" width="60" height="60"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm_icon.svg" width="60" height="60"><img src="https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA_icon.svg" width="60" height="60"></a>
+
