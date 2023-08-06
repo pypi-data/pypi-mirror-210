@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: gemd
+Version: 1.14.0
+Summary: Python binding for Citrine's GEMD data model
+Home-page: http://github.com/CitrineInformatics/gemd-python
+Author: Citrine Informatics
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+License-File: LICENSE
+Requires-Dist: toolz (<1,>=0.10.0)
+Requires-Dist: pint (<0.22,>=0.18)
+Requires-Dist: deprecation (<3,>=2.0.7)
+Provides-Extra: gemd.demo.tests
+Requires-Dist: pandas (<2,>=1.3.5) ; extra == 'gemd.demo.tests'
+Provides-Extra: gemd.entity.bounds.tests
+Requires-Dist: numpy ; extra == 'gemd.entity.bounds.tests'
+Provides-Extra: tests
+Requires-Dist: pytest (<8,>=7.3.1) ; extra == 'tests'
+
