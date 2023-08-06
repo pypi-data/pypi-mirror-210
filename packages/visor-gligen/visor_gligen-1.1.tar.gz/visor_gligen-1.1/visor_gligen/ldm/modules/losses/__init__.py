@@ -1,0 +1,1 @@
+from visor_gligen.ldm.modules.losses.contperceptual import LPIPSWithDiscriminator
