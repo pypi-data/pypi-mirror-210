@@ -1,0 +1,9 @@
+[console_scripts]
+splk-py-trace=splunk_otel.cmd.trace:run_deprecated
+splk-py-trace-bootstrap=splunk_otel.cmd.bootstrap:run_deprecated
+splunk-py-trace=splunk_otel.cmd.trace:run
+splunk-py-trace-bootstrap=splunk_otel.cmd.bootstrap:run
+
+[opentelemetry_distro]
+splunk_distro=splunk_otel.distro:_SplunkDistro
+
