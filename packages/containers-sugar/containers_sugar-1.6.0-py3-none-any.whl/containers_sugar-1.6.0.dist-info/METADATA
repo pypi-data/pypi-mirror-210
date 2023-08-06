@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: containers-sugar
+Version: 1.6.0
+Summary: Simplify the usage of containers
+License: BSD 3 Clause
+Author: Ivan Ogasawara
+Author-email: ivan.ogasawara@gmail.com
+Requires-Python: >=3.8.1,<4.0.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: Jinja2 (<3.1.0)
+Requires-Dist: colorama (>=0.4.6,<0.5.0)
+Requires-Dist: pyyaml (>=5)
+Requires-Dist: sh (>=2.0.0,<3.0.0)
+Requires-Dist: urllib3 (<2)
