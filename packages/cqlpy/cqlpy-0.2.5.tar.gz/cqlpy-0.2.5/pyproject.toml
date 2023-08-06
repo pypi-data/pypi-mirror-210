@@ -1,0 +1,28 @@
+[tool.poetry]
+authors = [
+  "John Wyderko <john@careevolution.com>",
+  "Jeremy Fortune <jeremy@careevolution.com>",
+]
+description = "Tooling to execute CQL-like Python against FHIR resources."
+license = "MIT"
+name = "cqlpy"
+readme = "README.md"
+version = "0.2.5"
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["jupyter"], version = "^23.3.0"}
+mypy = "^1.1.1"
+notebook = "^6.5.3"
+types-python-dateutil = "^2.8.19.11"
+types-requests = "^2.30.0.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.2"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.4.0"]

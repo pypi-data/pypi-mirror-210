@@ -1,0 +1,6 @@
+class CqlPyError(Exception):
+    ...
+
+
+class CqlParseError(CqlPyError, ValueError):
+    ...
