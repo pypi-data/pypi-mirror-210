@@ -1,0 +1,21 @@
+.bulma-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: calc(100% - var(--sidenav-width));
+
+  article.article-container {
+    padding: 0 1rem 1rem;
+    overflow-wrap: break-word;
+    text-align: justify;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-align: left;
+    }
+  }
+}
