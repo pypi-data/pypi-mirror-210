@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: prefixed-aiostatsd
+Version: 1.2
+Summary: Prefixed AioStatsD
+Home-page: https://github.com/DomainsBot/prefixed-aiostatsd
+Author: Domainsbot
+Author-email: tech@domainsbot.com
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX :: Linux
+License-File: LICENSE
+Requires-Dist: aiostatsd (~=1.0.0)
+Provides-Extra: dev
+Requires-Dist: aiostatsd (~=1.0.0) ; extra == 'dev'
+Requires-Dist: coverage[toml] (~=7.1) ; extra == 'dev'
+Requires-Dist: invoke (~=2.0) ; extra == 'dev'
+Requires-Dist: mamba-runner (==0.0.2) ; extra == 'dev'
+Requires-Dist: mypy (~=1.1) ; extra == 'dev'
+
