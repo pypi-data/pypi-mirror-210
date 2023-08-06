@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ucampurestorage.lib.options &mdash; ucampurestorage 1.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ucampurestorage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../access.html">Pure Storage Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">UCAM PURE STORAGE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">ucampurestorage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ucampurestorage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ucampurestorage.lib.options</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ucampurestorage.lib.options</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span><span class="p">,</span> <span class="n">ArgumentTypeError</span><span class="p">,</span> <span class="n">Action</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.tokencreater</span> <span class="kn">import</span> <span class="n">TokenCreater</span> <span class="k">as</span> <span class="n">token</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.pureconnect</span> <span class="kn">import</span> <span class="n">PureAdvanceConnection</span> <span class="k">as</span> <span class="n">PureAdvance</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.process</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage</span> <span class="kn">import</span> <span class="n">VERSION</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="LoadFromFile"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.LoadFromFile">[docs]</a><span class="k">class</span> <span class="nc">LoadFromFile</span><span class="p">(</span><span class="n">Action</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">option_string</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">values</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="str2bool"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.str2bool">[docs]</a><span class="k">def</span> <span class="nf">str2bool</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">v</span>
+    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ArgumentTypeError</span><span class="p">(</span><span class="s2">&quot;Boolean value expected.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Options"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.Options">[docs]</a><span class="k">class</span> <span class="nc">Options</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process</span> <span class="o">=</span> <span class="n">Process</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_parser</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_init_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Define arguments for the CLI.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Manage Pure Storage Manager objects via REST API.&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">VERSION</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--storage&quot;</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="s2">&quot;uis-pure-wcdc1.srv.uis.private.cam.ac.uk&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure hostname. Default: uis-pure-wcdc1.srv.uis.private.cam.ac.uk&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">443</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure port. Default: 443&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--client_id&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure Storage Client ID for API&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--key_id&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure Storage Key ID for API&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--client_name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure Storage Client Name for API&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--user&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure Storage username&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--password&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Pure Storage password&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--is_secure&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">str2bool</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Secure connection. Default: False&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--record_config&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">str2bool</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Record multipath and file system config details.</span><span class="se">\</span>
+<span class="s2">                                 Default: False (do not record system config details)&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--file&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">open</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="n">LoadFromFile</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Read arguments from json file&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--keyfile&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to private keys inorder to generate token for the API call&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subparsers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">dest</span><span class="o">=</span><span class="s2">&quot;subparser&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_tokengen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;tokengen&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Generate Pure Storage API token to access objects. </span><span class="se">\</span>
+<span class="s1">                                                      Example: ucampurestorage tokengen --keyfile &quot;./key.pem&quot;&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_tokengen</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;-inkeyfile&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--newkeyfile&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path to the new private key location to make pure storage call&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_tokengen</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;-out&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--outputfile&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;path and file name to generate token file in json as output&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;List Pure objects.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_list</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--object&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+                <span class="s2">&quot;arrays&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;controllers&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;hosts&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;volumes&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;destroyed_volumes&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;volumegroups&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;hostgroups&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;volumesnapshots&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;targetports&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;networkports&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;volumeconnections&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;protectiongroups&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;protectiongroupsnapshots&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;protectiongroupvolmembers&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;pods&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;remotepods&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;localmps&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_list</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--format&quot;</span><span class="p">,</span>
+            <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">],</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Format of the output. Supported formats: json&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_volume_operations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;volume&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Operations with respect to volumes in the Pure objects.&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser_volume_operations</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span>
+            <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;volumeoperation&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listvol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;list a Volume details&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Detail information of the volume on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--format&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Detail information of the volume on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listclones</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;listclones&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;list a Clones of a Volume details&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listclones</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Detail information of the volume on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listclones</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--format&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Detail information of the volume on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createvol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;create&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;create Volume&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--size&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Size of the volume to be created on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to be created on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletevol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;delete Volume&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to be deleted on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;-nop&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--no_prompt&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;No prompt of validation for deletion of volume.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eradicatevol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;eradicate&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;eradicate Volume&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eradicatevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to be eradicate on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eradicatevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;-nop&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--no_prompt&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;No prompt of validation for eradicate of volume.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connectvol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Connect Volume to Host&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connectvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--hostname&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the host specified on Pure Array for initiators to which the volume has to be mapped.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connectvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--volname&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to be connected to the host initiators on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connectvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--lunid&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;HOSTID need to be assigned for the volume while the  host initiators on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disconnectvol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;disconnect&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;disconnect Volume from Host&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disconnectvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--hostname&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the host specified on Pure Array for initiators to which the volume has to be unmapped.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disconnectvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--volname&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to be disconnect from the host initiators of Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapvol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;map&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Maps the volume to local server and </span><span class="se">\</span>
+<span class="s2">                                                      mounts it on the specified mount point.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to map to local server.&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--mp&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;OPTIONAL. If specified, it is the path of the mountpoint </span><span class="se">\</span>
+<span class="s2">                                            to mount the volume on. Otherwise, no mount attempt will take place.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mapvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;-new&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--new_volume&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;NOTE: If volume is create but never formated then use this flag&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unmapvol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;unmap&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Unmaps the volume from local server and </span><span class="se">\</span>
+<span class="s2">                                                      Volume must be unmounted.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unmapvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the volume to unmap from local server.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unmapvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--wwn&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;OPTIONAL: WWN of the volume to unmap from local server.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unmapvol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--mp&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;OPTIONAL: mount point of the local sever to be unmap from local server.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replacevol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Clone the volume mounted on source mountpoint and mount it on destination mountpoint. </span><span class="se">\</span>
+<span class="s2">                Then, delete the volume was initially mounted on destination mountpoint. &quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replacevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--src_mp&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Source mountpoint. Must be on local server.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replacevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--dst_mp&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Destination mountpoint. Must be on local server.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replacevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--unmount_src_mp&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">str2bool</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Optional. If False, do not unmount the source mountpoint. </span><span class="se">\</span>
+<span class="s2">                                        Defaults to True&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clonevol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">volumeoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;clone&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Create a snapshot with label of a volume with WWN, create a view volume from the snapshot, </span><span class="se">\</span>
+<span class="s2">                then, map the view volume to local server and  mount it on target mountpoint.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clonevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the new volume to create&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clonevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--srcvol&quot;</span><span class="p">,</span>
+            <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;Source Volume&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Source Volume for which need to be cloned.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clonevol</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--target_mp&quot;</span><span class="p">,</span>
+            <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;Target Mount Point&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The mountpoint that the view volume will be mounted on. </span><span class="se">\</span>
+<span class="s2">                Must be on local server Eg: /d01&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_host_operations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;host&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Operations with respect to hosts in the Pure objects.&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostoperation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser_host_operations</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span>
+            <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;hostoperation&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listhost</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;list a host details&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listhost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Detail information of the host on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listhost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--format&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Detail information of the host on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createhost</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;create&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;create Volume&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createhost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--iqn&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;IQN of the host to be created on Pure Array.&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createhost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the host to be created on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createhost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--personality&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+                <span class="s2">&quot;aix&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;esxi&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;hpux&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;solaris&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;vms&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;oracle-vm-server&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Personality of the host to be created on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletehost</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;delete host&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletehost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--name&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the host to be deleted on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletehost</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;-nop&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;--no_prompt&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;No prompt of validation for deletion of host.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser_snapshot_operations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;snapshot&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Operations with respect to snapshots in the Pure objects.&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">snapoperation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser_snapshot_operations</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span>
+            <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;snapoperation&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listsnap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;list a snapshots of the volume&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listsnap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--volname&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;information of the snapshot of the volume on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listsnap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--format&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;information of the snapshot on Pure Array in json. Ex: --format=json&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createsnap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;create&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Create a snapshots of the volume&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createsnap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--srcvol&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;name of the volume for which snapshot need to be captured on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createsnap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--suffix&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;suffix of the snapshot of the volume on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletesnap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snapoperation</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span>
+            <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;delete a snapshots of the volume&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deletesnap</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--snapname&quot;</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;name of the snapshot need to be deleted on Pure Array.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="Options.parse"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.Options.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse given arguments and execute an action accordingly.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unknown</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">(</span><span class="n">args</span><span class="p">)[:]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unknown</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Specified parameter is not suitable: </span><span class="se">\n</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unknown</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">def</span> <span class="nf">_checkuserparms</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">inputvalue</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">: &quot;</span><span class="p">)</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">inputvalue</span><span class="p">)</span>
+
+        <span class="n">check_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;Username&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Client ID&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;key_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Key ID&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;client_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Client Name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;keyfile&quot;</span><span class="p">:</span> <span class="s2">&quot;Private file location&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">_checkuserparms</span><span class="p">(</span><span class="n">check_dict</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="o">.</span><span class="n">password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">()</span>
+
+        <span class="c1"># If enabled, record system config before running ucamdsm command</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="o">.</span><span class="n">record_config</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">record_config_details</span><span class="p">()</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">run_option</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="o">.</span><span class="n">subparser</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="p">)</span>
+
+        <span class="c1"># If enabled, record system config after running ucamdsm command</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">known</span><span class="o">.</span><span class="n">record_config</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process</span><span class="o">.</span><span class="n">record_config_details</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">result</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">token</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s2">&quot;outputfile&quot;</span><span class="p">):</span>
+            <span class="n">token_obj</span><span class="o">.</span><span class="n">token_generation</span><span class="p">(</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">key_id</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">client_name</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">keyfile</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">outputfile</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">token_obj</span><span class="o">.</span><span class="n">token_generation</span><span class="p">(</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">key_id</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">client_name</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">keyfile</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+                <span class="kc">None</span><span class="p">,</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">token_obj</span>
+
+
+<div class="viewcode-block" id="create_token"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.create_token">[docs]</a><span class="k">def</span> <span class="nf">create_token</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate Pure Storage token.</span>
+
+<span class="sd">    Example: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  tokengen</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  tokengen</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Access token for </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">client_name</span><span class="si">}</span><span class="s2">:</span><span class="se">\n\n</span><span class="si">{</span><span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="run_option"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.run_option">[docs]</a><span class="k">def</span> <span class="nf">run_option</span><span class="p">(</span><span class="n">subparser</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs a ucampurestorage subcommand.</span>
+<span class="sd">    :param subparser: the subcommand to run.</span>
+<span class="sd">    :param args: args to pass to the ucampurestorage subcommand.</span>
+<span class="sd">    :return: result of the executed subcommand.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">function_switcher</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;tokengen&quot;</span><span class="p">:</span> <span class="n">create_token</span><span class="p">,</span>
+        <span class="s2">&quot;list&quot;</span><span class="p">:</span> <span class="n">list_object</span><span class="p">,</span>
+        <span class="s2">&quot;volume&quot;</span><span class="p">:</span> <span class="n">volume_operations</span><span class="p">,</span>
+        <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="n">host_operations</span><span class="p">,</span>
+        <span class="s2">&quot;snapshot&quot;</span><span class="p">:</span> <span class="n">snap_operations</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">subcommand_func</span> <span class="o">=</span> <span class="n">function_switcher</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subparser</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">subcommand_func</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="n">subcommand_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="list_object"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.list_object">[docs]</a><span class="k">def</span> <span class="nf">list_object</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List Pure Storage objects.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; list --object controllers</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json list --object controllers</span>
+
+<span class="sd">    Example 3: ucampurestorage --file=./ucampurestorage/lib/secrets.json list --object controllers --format=json</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">run_list_object</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="ow">or</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;List of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">object</span><span class="si">}</span><span class="s2">: </span><span class="se">\n</span><span class="si">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;List of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">object</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="volume_operations"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.volume_operations">[docs]</a><span class="k">def</span> <span class="nf">volume_operations</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform Pure Storage volume level Operations.</span>
+
+<span class="sd">    Example: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume {list,create,delete,eradicate,connect,\</span>
+<span class="sd">                                        disconnect,map,unmap,replace,clone}</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume {list,create,delete,eradicate,\</span>
+<span class="sd">                                        connect,disconnect,map,unmap,replace,clone}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">volume_operations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;list&quot;</span><span class="p">:</span> <span class="n">detail_volume</span><span class="p">,</span>
+        <span class="s2">&quot;create&quot;</span><span class="p">:</span> <span class="n">create_volume</span><span class="p">,</span>
+        <span class="s2">&quot;connect&quot;</span><span class="p">:</span> <span class="n">connect_volume</span><span class="p">,</span>
+        <span class="s2">&quot;disconnect&quot;</span><span class="p">:</span> <span class="n">disconnect_volume</span><span class="p">,</span>
+        <span class="s2">&quot;map&quot;</span><span class="p">:</span> <span class="n">map_volume</span><span class="p">,</span>
+        <span class="s2">&quot;unmap&quot;</span><span class="p">:</span> <span class="n">unmap_volume</span><span class="p">,</span>
+        <span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="n">delete_volume</span><span class="p">,</span>
+        <span class="s2">&quot;replace&quot;</span><span class="p">:</span> <span class="n">replace_volume</span><span class="p">,</span>
+        <span class="s2">&quot;clone&quot;</span><span class="p">:</span> <span class="n">clone_volume</span><span class="p">,</span>
+        <span class="s2">&quot;eradicate&quot;</span><span class="p">:</span> <span class="n">eradicate_volume</span><span class="p">,</span>
+        <span class="s2">&quot;listclones&quot;</span><span class="p">:</span> <span class="n">clone_volumes</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">subcommand_func</span> <span class="o">=</span> <span class="n">volume_operations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">volumeoperation</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">subcommand_func</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="n">subcommand_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="host_operations"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.host_operations">[docs]</a><span class="k">def</span> <span class="nf">host_operations</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform Pure Storage host level Operations.</span>
+
+<span class="sd">    Example: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  host {list,create,delete}</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  host {list,create,delete}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">host_operations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;list&quot;</span><span class="p">:</span> <span class="n">detail_host</span><span class="p">,</span>
+        <span class="s2">&quot;create&quot;</span><span class="p">:</span> <span class="n">create_host</span><span class="p">,</span>
+        <span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="n">delete_host</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">subcommand_func</span> <span class="o">=</span> <span class="n">host_operations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hostoperation</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">subcommand_func</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="n">subcommand_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="snap_operations"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.snap_operations">[docs]</a><span class="k">def</span> <span class="nf">snap_operations</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform Pure Storage Snapshot level Operations.</span>
+
+<span class="sd">    Example: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  snapshot {list,create,delete}</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  snapshot {list,create,delete}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">snap_operations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;list&quot;</span><span class="p">:</span> <span class="n">list_snapshots</span><span class="p">,</span>
+        <span class="s2">&quot;create&quot;</span><span class="p">:</span> <span class="n">create_snapshot</span><span class="p">,</span>
+        <span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="n">delete_snapshot</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">subcommand_func</span> <span class="o">=</span> <span class="n">snap_operations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">snapoperation</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">subcommand_func</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="n">subcommand_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="detail_host"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.detail_host">[docs]</a><span class="k">def</span> <span class="nf">detail_host</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List the detail information of the host connected to the  Pure Storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  host  list  --name cs-dev-db2</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  host list --name cs-dev-db2</span>
+
+<span class="sd">    Example 3: ucampurestorage --file=./ucampurestorage/lib/secrets.json  host list --name cs-dev-db2 --format=json</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">get_hosts</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">hosts</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="ow">or</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Details of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="se">\n</span><span class="si">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Details of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="create_host"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.create_host">[docs]</a><span class="k">def</span> <span class="nf">create_host</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create host defination on the Purestorage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  host  create  --name &lt;HOSTNAME&gt; --iqn &lt;IQN number&gt;\</span>
+<span class="sd">            --personality &lt;aix,esxi,hpux,solaris,vms,oracle-vm-server,none&gt;</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json host create --name &lt;HOSTNAME&gt; \</span>
+<span class="sd">            --iqn &lt;IQN number&gt; --personality &lt;aix,esxi,hpux,solaris,vms,oracle-vm-server,none&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">create_host</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">iqn</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">personality</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;Successfully &quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot; created : &quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">iqn</span><span class="si">}</span><span class="s1">&quot; with personality &quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">personality</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failure in creation: &quot;</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot; !!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="delete_host"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.delete_host">[docs]</a><span class="k">def</span> <span class="nf">delete_host</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete host defination on the Pure Storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  host  delete  --name &lt;HOSTNAME&gt;</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json host delete --name &lt;HOSTNAME&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">no_prompt</span><span class="p">:</span>
+        <span class="n">valid_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">invalid</span><span class="p">:</span>
+            <span class="n">validate_deletion</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Are you sure you want to delete </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> [Y/N](yes/no) : &quot;</span>
+            <span class="p">)</span>
+            <span class="n">user_entry</span> <span class="o">=</span> <span class="n">validate_deletion</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span> <span class="ow">and</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">delete_host</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> deleted !!&quot;</span><span class="p">)</span>
+                    <span class="n">invalid</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed in </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> deleted !!&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">elif</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span> <span class="ow">and</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deletion of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> has been cancelled !!&quot;</span><span class="p">)</span>
+                <span class="n">invalid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_entry</span><span class="si">}</span><span class="s2"> is invalide input&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">delete_host</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> deleted !!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed in deletion of Volume : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="detail_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.detail_volume">[docs]</a><span class="k">def</span> <span class="nf">detail_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List the detail information of the volume from the  Pure Storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  list  --name TEST113</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume list  --name TEST113</span>
+
+<span class="sd">    Example 3: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume list  --name TEST113 --format=json</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">get_volumes</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">volumes</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="ow">or</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Details of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="se">\n</span><span class="si">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Details of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="clone_volumes"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.clone_volumes">[docs]</a><span class="k">def</span> <span class="nf">clone_volumes</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">get_vol_clones</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">clone_volumes</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="ow">or</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Clones of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="se">\n</span><span class="si">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Clones of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="create_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.create_volume">[docs]</a><span class="k">def</span> <span class="nf">create_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create Volume on the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  create  --name TEST113 --size 1T</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume create  --name TEST113 --size 1T</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">create_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> created : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failure in </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> created&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="delete_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.delete_volume">[docs]</a><span class="k">def</span> <span class="nf">delete_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete Volume from the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  delete  --name TEST113</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume delete  --name TEST113</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">no_prompt</span><span class="p">:</span>
+        <span class="n">valid_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">invalid</span><span class="p">:</span>
+            <span class="n">validate_deletion</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Are you sure you want to delete </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> [Y/N](yes/no) : &quot;</span>
+            <span class="p">)</span>
+            <span class="n">user_entry</span> <span class="o">=</span> <span class="n">validate_deletion</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span> <span class="ow">and</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">delete_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> deleted !!&quot;</span><span class="p">)</span>
+                    <span class="n">invalid</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed in deletion of Volume : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span>
+            <span class="k">elif</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span> <span class="ow">and</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deletion of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> has been cancelled !!&quot;</span><span class="p">)</span>
+                <span class="n">invalid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_entry</span><span class="si">}</span><span class="s2"> is invalid input&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">delete_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> deleted !!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed in deletion of Volume : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="eradicate_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.eradicate_volume">[docs]</a><span class="k">def</span> <span class="nf">eradicate_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;eradicate Volume from the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  eradicate  --name TEST113</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume eradicate  --name TEST113</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">no_prompt</span><span class="p">:</span>
+        <span class="n">valid_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+        <span class="n">invalid</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">invalid</span><span class="p">:</span>
+            <span class="n">validate_eradicate</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Are you sure you want to delete </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> [Y/N](yes/no) : &quot;</span>
+            <span class="p">)</span>
+            <span class="n">user_entry</span> <span class="o">=</span> <span class="n">validate_eradicate</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span> <span class="ow">and</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">eradicate_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> eradicated !!&quot;</span><span class="p">)</span>
+                    <span class="n">invalid</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed in Eradication of Volume : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span>
+            <span class="k">elif</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span> <span class="ow">and</span> <span class="n">user_entry</span> <span class="ow">in</span> <span class="n">valid_inputs</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Eradication of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> has been cancelled !!&quot;</span><span class="p">)</span>
+                <span class="n">invalid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user_entry</span><span class="si">}</span><span class="s2"> is invalid input&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">eradicate_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> eradicated !!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed in Eradication of Volume : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="connect_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.connect_volume">[docs]</a><span class="k">def</span> <span class="nf">connect_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connect Volume to the host on the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  connect --hostname HOST01 --volname TEST113</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume connect  \</span>
+<span class="sd">        --hostname HOST01 --volname TEST113</span>
+
+<span class="sd">    [optionally define the LUNID]</span>
+<span class="sd">    Example 3: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  connect --hostname HOST01 --volname \</span>
+<span class="sd">            TEST113 --lunid 77</span>
+
+<span class="sd">    Example 4: ucampurestorage --file=./ucampurestorage/lib/secrets.json  volume connect  --hostname HOST01 \</span>
+<span class="sd">        --volname TEST113  --lunid 77</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">connect_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="p">,</span> <span class="n">lunid</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">lunid</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;connections of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="si">}</span><span class="s2"> to initiator </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">hostname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;failure in connections of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="si">}</span><span class="s2"> to initiator </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">hostname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="disconnect_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.disconnect_volume">[docs]</a><span class="k">def</span> <span class="nf">disconnect_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Disconnect Volume from the host on the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  volume  disconnect --hostname HOST01 --volname TEST113</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume disconnect \</span>
+<span class="sd">            --hostname HOST01 --volname TEST113</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">disconnect_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;connections removed of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="si">}</span><span class="s2"> from initiator </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">hostname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;failure in connections removal of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="si">}</span><span class="s2"> from initiator </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">hostname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="replace_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.replace_volume">[docs]</a><span class="k">def</span> <span class="nf">replace_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace the mounted clone volume with new clone from Pure storage and mount to the local server.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume replace --src_mp /t1  --dst_mp /t2</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume replace --src_mp /t1  --dst_mp /t2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">replace_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">src_mp</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dst_mp</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">unmount_src_mp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;replace the volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">src_mp</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">dst_mp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;failed the replace the volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">src_mp</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">dst_mp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="clone_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.clone_volume">[docs]</a><span class="k">def</span> <span class="nf">clone_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone volume on Pure storage and mount to the local server.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume clone --name TEST113_clone --srcvol \</span>
+<span class="sd">            TEST113 --target_mp /t2</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume clone --name TEST113_clone \</span>
+<span class="sd">        --srcvol TEST113 --target_mp /t2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">clone_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">target_mp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">target_mp</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Cloned  volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="si">}</span><span class="s2"> created to be mounted on </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">target_mp</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cloned  volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="si">}</span><span class="s2"> created.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="list_snapshots"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.list_snapshots">[docs]</a><span class="k">def</span> <span class="nf">list_snapshots</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List the detail information of the snapshot from the  Pure Storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot;  snapshot list --volname TEST12</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  snapshot list --volname TEST12</span>
+
+<span class="sd">    Example 3: ucampurestorage --file=./ucampurestorage/lib/secrets.json  snapshot list --volname TEST12  --format=json</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">get_volumesnapshots</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">volumesnapshots</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="ow">or</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Snapshot of Volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="si">}</span><span class="s2">: </span><span class="se">\n</span><span class="si">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Snapshot of Volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">volname</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="create_snapshot"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.create_snapshot">[docs]</a><span class="k">def</span> <span class="nf">create_snapshot</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create snapshot of the volume on the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; snapshot create --srcvol TEST113 --suffix snap01</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  snapshot create \</span>
+<span class="sd">            --srcvol TEST113 --suffix snap01</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">create_snapshot</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">suffix</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Snapshot of the volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="si">}</span><span class="s2"> created : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Failure in Snapshot of the volume </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">srcvol</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="delete_snapshot"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.delete_snapshot">[docs]</a><span class="k">def</span> <span class="nf">delete_snapshot</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete snapshot of the volume on the Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; snapshot delete --snapname TEST113.snap01</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json  snapshot delete --snapname TEST113.snap01</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">delete_snapshot</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">snapname</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deletion of the snapshot </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">snapname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failure in deletion of the snapshot : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">snapname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="map_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.map_volume">[docs]</a><span class="k">def</span> <span class="nf">map_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map volume to the local server which  is provided by Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume map --name TEST113 --mp /t2</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume map --name TEST113 --mp /t2</span>
+
+<span class="sd">    [NOTE: New volume need to be formated therefore -new flag is required]</span>
+
+<span class="sd">    Example 3: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume map --name TEST113_new --mp /t2 -new</span>
+
+<span class="sd">    Example 4: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt; \</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume map --name TEST113 --mp /t2 -new</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">map_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">mp</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">new_volume</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mapping of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to mountpoint </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">mp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fail in mapping of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to mountpoint </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">mp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="unmap_volume"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.options.unmap_volume">[docs]</a><span class="k">def</span> <span class="nf">unmap_volume</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map volume to the local server which  is provided by Pure storage.</span>
+
+<span class="sd">    Example 1: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume unmap --name TEST113</span>
+
+<span class="sd">    Example 2: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume unmap --name TEST113</span>
+
+<span class="sd">    [optionally define the WWN]</span>
+
+<span class="sd">    Example 3: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume unmap --wwn &lt;WWN number&gt;</span>
+
+<span class="sd">    Example 4: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume unmap --wwn &lt;WWN number&gt;</span>
+
+<span class="sd">    [optionally define the mountpoint]</span>
+
+<span class="sd">    Example 5: ucampurestorage --client_id=&lt;clientID&gt; --key_id=&lt;KeyID&gt; --user=&lt;User&gt; --password=&lt;passwd&gt;\</span>
+<span class="sd">        --client_name=&lt;ClientName&gt; --keyfile=&quot;privatekey.pem&quot; volume unmap --mp /t1</span>
+
+<span class="sd">    Example 6: ucampurestorage --file=./ucampurestorage/lib/secrets.json volume unmap --mp /t1</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token_obj</span> <span class="o">=</span> <span class="n">_token_object</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">PureObj</span> <span class="o">=</span> <span class="n">PureAdvance</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+        <span class="n">token_obj</span><span class="o">.</span><span class="n">current_token</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">is_secure</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">wwn</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">mp</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">wwn</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">mp</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">mp</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">wwn</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Specify only one parameter : name, wwn or mount point&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PureObj</span><span class="o">.</span><span class="n">unmap_volume</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">wwn</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">mp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully unmapping of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">wwn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;failure in unmapping of </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">wwn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+    <span class="n">obj</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ishan Mahajan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
