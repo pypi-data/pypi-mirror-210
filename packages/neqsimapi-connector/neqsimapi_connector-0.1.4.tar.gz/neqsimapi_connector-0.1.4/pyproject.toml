@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "neqsimapi-connector"
+version = "0.1.4"
+description = "A python package to simplify calling NeqSimAPI for end-users."
+authors = ["Åsmund Våge Fannemel <asmf@equinor.com>"]
+readme = "README.md"
+packages = [{include = "neqsimapi_connector"}]
+license = "MIT"
+repository = "https://github.com/equinor/NeqSimAPI-connector"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+msal = "^1.22.0"
+msal-extensions = "^1.0.0"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
