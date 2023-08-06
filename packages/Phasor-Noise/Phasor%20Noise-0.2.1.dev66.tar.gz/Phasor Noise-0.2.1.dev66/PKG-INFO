@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: Phasor Noise
+Version: 0.2.1.dev66
+Home-page: https://github.com/etachouzin/phasor_noise
+Author: Alexis Le Meur, Etienne Tachouzin, Paul Martin, Guillaume Hisleur, Paul Bedrossian
+Author-email: phasor_noise_dev@outlook.fr
+Maintainer: Alexis Le Meur, Etienne Tachouzin, Paul Martin, Guillaume Hisleur, Paul Bedrossian
+Maintainer-email: phasor_noise_dev@outlook.fr
+License: GNU
+Keywords: phasor_noise,generator
+License-File: LICENSE
+License-File: AUTHORS
+
+About The Project
+------------------
+We created a Phasor noise generator with a graphical interface to visualize how the different parameters affect the noise created.
+
+Installation
+-------------
+
+1. Install from PyPI
+
+.. code:: console
+
+   pip install Phasor-Noise
+
+Usage
+---------
+You can now use Phasor-Noise and launch the default window setup.
+
+.. code:: python
+
+   import phasor_noise
+   phasor_noise.default_window()
+
+
+
+License
+-----------
+
+Distributed under the GNU License.
+
+Authors
+-----------
+* Alexis Le Meur
+* Etienne Tachouzin
+* Paul Martin
+* Guillaume Hisleur
+* Paul Bedrossian
+
