@@ -1,0 +1,22 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+
+sensor:
+    equipment:
+        model: "L-22D"
+        type: "Geophone"
+        description: "Sercel L-22 2 Hz vertical geophone"
+        manufacturer: "Sercel"
+        vendor: "various"
+    seed_codes:
+        band_base: "S"
+        instrument: "H"
+    response_stages:
+        - $ref: "sensors/responses/Sercel_L22D_LCHEAPO_theoretical.stage.yaml#stage"
+notes: 
+    - "Not sure the L22 is 'high gain', but it is when combined with the LCHEAPO analog filter"
+    - "Geophone Z channel is positive DOWN"

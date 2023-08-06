@@ -1,0 +1,30 @@
+{    
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Operator",
+    "description": "StationXML Operator file",
+    "type": "object",
+    "required": ["format_version", "operator"],
+    "properties": {
+        "format_version" : {"$ref": "definitions.schema.json#/format_version"},
+        "revision" :       {"$ref": "definitions.schema.json#/revision"},
+        "notes":           {"$ref": "definitions.schema.json#/note_list"},
+        "operator" :         {"$ref": "#/definitions/operator"},
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "operator" : {
+            "description": "StationXML Operator information",
+            "type": "object",
+            "required" : [ "reference_name"],
+            "properties" : {
+                "reference_name":  {"$ref": "definitions.schema.json#/reference_name"},
+                "full_name":       {"type": "string" ,  "description": "Full operator name"},
+                "contact":         {"$ref": "definitions.schema.json#/contact_name"},
+                "phone_number":    {"type": "string", "description": "Phone" },
+                "email":           {"type": "string", "format": "email"},
+                "website":         {"$ref": "definitions.schema.json#/website"}
+            },
+            "additionalProperties" : false
+        }
+    }
+}

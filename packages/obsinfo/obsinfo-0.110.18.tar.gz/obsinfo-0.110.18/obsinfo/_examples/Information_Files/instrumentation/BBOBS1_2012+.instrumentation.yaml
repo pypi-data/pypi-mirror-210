@@ -1,0 +1,45 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2019-12-19"
+    authors:
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+        - {$ref: "authors/Romuald_Daniel.author.yaml#author"}
+instrumentation:
+    equipment:
+        model: "BBOBS1"
+        type: "Broadband Ocean Bottom Seismometer"
+        description: "LCHEAPO 2000 BBOBS 2012-present" 
+        manufacturer: "Scripps Inst. Oceanography - INSU"
+        vendor: "Scripps Inst. Oceanography - UNSU"
+            
+    channels:
+        default:
+            datalogger: {$ref: "dataloggers/LC2000.datalogger.yaml#datalogger"}
+            preamplifier:  
+                {$ref: "preamplifiers/LCHEAPO_BBOBS.preamplifier.yaml#preamplifier"}
+            sensor: {$ref: "sensors/NANOMETRICS_T240_SINGLESIDED.sensor.yaml#sensor"}    
+        "1":
+            orientation_code: {"2": {azimuth.deg: [90, 180]}}
+            preamplifier_configuration: "0.225x gain"
+        "2":
+            orientation_code: {"1": {azimuth.deg: [0, 180]}}
+            preamplifier_configuration: "0.225x gain"
+        "3": 
+            orientation_code: {"Z":  {azimuth.deg: [0, ~], dip.deg: [-90, ~]}}
+            preamplifier_configuration: "1x gain"
+        "4":
+            orientation_code : {"H": {azimuth.deg: [0, ~], dip.deg: [90, ~]}}
+            preamplifier: {$ref: "preamplifiers/LCHEAPO_DPG.preamplifier.yaml#preamplifier"}
+            sensor: {$ref: "sensors/SIO_DPG.sensor.yaml#sensor"}            
+            extras:
+                DBIRD_response_type : "CALIBRATED"   
+notes: 
+    - "INSU-IPGP OBS park sphere sensor pairs are: "
+    - "Sphere01-133, Sphere02-132, Sphere03-134"
+    - "Sphere04-138, Sphere05-137, Sphere06-830" 
+    - "Sphere07-136, Sphere08-829, Sphere09-826"
+           
+     
+            
+    

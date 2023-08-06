@@ -1,0 +1,52 @@
+---
+format_version: "0.110"
+datacite:
+    title : EMSO-MOMAR
+    description : "Seismology component of a multi-year multidisciplinary
+                  geophysical observatory on Lucky Strike volcano,
+                  Mid-Atlantic Ridge (37°N, 32°W)"
+    creators:
+        -   name : Cannat, Mathilde
+            identifier: https://orcid.org/0000-0002-5157-8473
+            scheme: ORCID
+        -   name : Crawford, Wayne
+            identifier: https://orcid.org/0000-0002-3260-1826
+            scheme: ORCID
+        -   name : IPGP Marine Geosciences Team
+            type : Organization
+            affiliations : 
+                - name: IPGP
+                  identifier: https://ror.org/004gzqz66
+                  scheme : ROR
+    subjects :
+        - Mid-ocean ridge volcanos
+        - Hydrothermal fields
+    dates_collected:  2007-07-18/2022-08-24
+    contributors:
+        data_collectors:
+            -   name: Daniel, Romuald
+                affiliations:
+                    - name: INSU-IPGP OBS Facility
+            -   name: Besancon, Simon
+                affiliations:
+                    - name: INSU-IPGP OBS Facility
+            -   name: INSU-IPGP OBS Facility
+                type: Organization
+                identifier: "Need to make an ROR for the facility"
+                scheme: ROR
+        project_members:
+            -   name: Bohidar, Soumya
+                affiliations:
+                -   name: IPGP
+    related_identifiers:
+        -   identifier: www.doi.org/1234567
+            scheme: DOI
+            relation: HasMetadata
+    place: Lucky Strike volcano, Mid-Atlantic Ridge
+    funders:
+        -   name: ANR 
+            identifier: https://ror.org/00rbzpz17
+            scheme: ROR
+            award_URI: https://anr.fr/Project-ANR-14-CE02-0008
+            award_title: "Magma chamber to micro-habitats : dynamics of deep sea 
+                         hydrothermal ecosystems – LuckyScales"

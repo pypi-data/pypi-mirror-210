@@ -1,0 +1,33 @@
+{    
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Author",
+    "description": "StationXML Person file",
+    "type": "object",
+    "required": ["format_version", "author"],
+    "properties": {
+        "format_version" : {"$ref": "definitions.schema.json#/format_version"},
+        "revision" :       {"$ref": "definitions.schema.json#/revision"},
+        "notes":           {"$ref": "definitions.schema.json#/note_list"},
+        "author" :         {"$ref": "#/definitions/author"},
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "author" : {
+            "type": "object",
+            "if": { "required": ["$ref"]},
+            "then": {"$ref": "definitions.schema.json#/jsonref"},
+            "else": {
+                "description": "StationXML Person object",
+                "type": "object",
+                "required": ["first_name", "last_name"],
+                "properties": {
+                    "first_name": {"type": "string"},
+                    "last_name": {"type": "string"},
+                    "institution": {"type": "string"},
+                    "email": {"type": "string", "format": "email"},
+                    "phones": {"type": "array", "items": {"$ref": "definitions.schema.json#/phone"}}
+                }
+            }
+        }
+    }
+}

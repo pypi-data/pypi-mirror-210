@@ -1,0 +1,18 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+sensor:
+    equipment:
+        model: "Trillium Compact"
+        type: "Wideband seismometer"
+        description: "Trillium Compact in single-sided mode (negative shorted to ground)"
+        manufacturer: "Nanometrics, Inc"
+        vendor: "Nanometrics, Inc"
+    seed_codes:
+        band_base: "B"
+        instrument: "H"
+    response_stages:
+        - $ref: "sensors/responses/Trillium_TCompact_singlesided_theoretical.stage.yaml#stage"

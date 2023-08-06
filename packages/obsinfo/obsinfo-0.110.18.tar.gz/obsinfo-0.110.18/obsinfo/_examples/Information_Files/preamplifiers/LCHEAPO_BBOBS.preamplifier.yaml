@@ -1,0 +1,24 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        -   $ref: "authors/Wayne_Crawford.author.yaml#author"
+        
+preamplifier:
+    equipment:
+        model: "BBOBS-GAIN"
+        type: "Analog gain card"
+        description: "INSU BBOBS gain card"
+        manufacturer: "SIO or IPGP"
+        vendor: "LCHEAPO"
+    configuration_default: "1x gain"
+    response_stages:
+        - $ref: "preamplifiers/responses/INSU_BBOBS_gain1.0_theoretical.stage.yaml#stage"
+    configuration_definitions:
+        "0.225x gain":
+            configuration_description: "0.225x gain"
+            response_stages:
+                - $ref: "preamplifiers/responses/INSU_BBOBS_gain0.225_theoretical.stage.yaml#stage"
+        "1x gain":
+            configuration_description: "1x gain"

@@ -1,0 +1,21 @@
+---
+format_version: "0.110"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        - $ref: "authors/Wayne_Crawford.author.yaml#author"
+notes: "combination of bubblephone and HTI90U sensor, valid for RSAM frequencies > 100 Hz"
+sensor:
+    equipment:
+        model: "Bubblephone + HTI-90-U"
+        type: "Bubblephone + Hydrophone"
+        description: >-
+                HiTech HTI-90-U hydrophone with integrated preamp,
+                serial number 220xxx, 0.05-2500 Hz
+        manufacturer: "various"
+        vendor: "various"
+    seed_codes:
+        band_base: "B"
+        instrument: "X"
+    response_stages:
+        - $ref: "sensors/responses/BUBBLEPHONE_HTI90U_SIO-preamp_theoretical.stage.yaml#stage"

@@ -1,0 +1,21 @@
+---
+format_version: "1.0"
+revision:
+   authors: {$ref: ""} # Reference to file or fields of an authors file
+   date: "" # yyyy/mm/dd
+
+yaml_anchors:
+notes: 
+   - ""
+
+filter:
+   type: "PolesZeros"
+   # offset will be used to calculate delay for digital filters at stage level if delay is not specified.
+   offset:  
+   transfer_function_type: # "LAPLACE (RADIANS/SECOND)" or "LAPLACE (HERTZ)" or "DIGITAL (Z-TRANSFORM)"
+   normalization_frequency: 
+   normalization_factor:  
+   zeros :
+       -   [, ] # Complex number
+   poles :
+       -   [, ] # Complex number

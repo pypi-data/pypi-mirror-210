@@ -1,0 +1,15 @@
+---
+format_version: "1.0"
+filter:
+    type: "PolesZeros"
+    transfer_function_type: "LAPLACE (RADIANS/SECOND)"
+    zeros:
+        - [0.0, 0.0]
+        - [0.0, 0.0]
+        - [1700, 0.0]
+    poles:
+        - [-0.0707, 0.0707]
+        - [-0.0707, -0.0707]
+        - [-322.2, 0]
+        - [-98.00, 130.0]
+        - [-98.00, -130.0]

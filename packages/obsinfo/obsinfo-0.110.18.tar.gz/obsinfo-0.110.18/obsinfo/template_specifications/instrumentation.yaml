@@ -1,0 +1,40 @@
+---
+format_version: "<STRING>"
+revision:
+   authors: # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+[yaml_anchors:]
+[notes: - "<STRING>" ]
+
+instrumentation:
+   operator: # Reference to file in the form {$ref: '<PATHNAME>'}
+
+   equipment:
+       type: "<STRING>"
+       description: "<STRING>"
+       [manufacturer: "<STRING>"]
+       [vendor: "<STRING>"]
+       [model: "<STRING>"]
+       [serial_number: "<STRING>"]
+       [calibration_dates: - <DATE>...]  #Specify date and time as yyyy-mm-22Thh:mm:ss
+
+   channels:
+      default:
+           [datalogger: # Reference to file in the form {$ref: '<PATHNAME>'}]
+           [preamplifier:  # Reference to file in the form {$ref: '<PATHNAME>'}]
+           [sensor: # Reference to file in the form {$ref: '<PATHNAME>'}]
+           [datalogger_configuration: "<STRING>"]
+           [preamplifier_configuration: "<STRING>"]
+           [sensor_configuration: "<STRING>"]
+
+      "<LABEL>":
+           orientation_code: "<STRING>" #FSDN defined
+           [datalogger: # Reference to file in the form {$ref: '<PATHNAME>'}]
+           [preamplifier: # Reference to file in the form {$ref: '<PATHNAME>'}]
+           [sensor:# Reference to file in the form {$ref: '<PATHNAME>'}]
+           [datalogger_configuration: "<STRING>"]
+           [preamplifier_configuration: "<STRING>"]
+           [sensor_configuration: "<STRING>"]
+
+   [extras: <KEY> : <VALUE>]

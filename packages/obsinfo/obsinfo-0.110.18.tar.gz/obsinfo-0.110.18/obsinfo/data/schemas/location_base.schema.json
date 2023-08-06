@@ -1,0 +1,47 @@
+{    
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Location Base",
+    "description": "location_base file",
+    "type": "object",
+    "required": ["format_version", "location_base"],
+    "properties": {
+        "format_version" : {"$ref": "definitions.schema.json#/format_version"},
+        "revision" :       {"$ref": "definitions.schema.json#/revision"},
+        "notes":           {"$ref": "definitions.schema.json#/note_list"},
+        "location_base":   {"$ref": "#/definitions/location_base"}
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "location_base" : {
+            "type" : "object",
+            "required": [
+                "uncertainties.m",
+                "depth.m",
+                "geology",
+                "vault"
+            ],
+            "properties": {
+                "uncertainties.m" : {"$ref": "#/definitions/GeoJSON_m" },
+                "depth.m" :         {"type": "number", "description" : "depth beneath the seafloor (m)"},
+                "geology" :         {"type": "string", "default" : "unknown"},
+                "vault" :           {"type": "string", "default" : "Sea floor"},
+                "localisation_method" : {
+                    "type": "string", 
+                    "description" : "method used to locate instrument. Examples : 'Short baseline transponder, seafloor release',  'Ship position at deployment', or 'Acoustic (pinger) survey'"
+                }
+            },
+            "additionalProperties" : false
+        },
+        "GeoJSON_m": {
+            "type": "object",
+            "description": "Object uncertainties in meters",
+            "required": ["lat","lon","elev"],
+            "properties": {
+                "lat":  {"type": "number"},
+                "lon":  {"type": "number"},
+                "elev": {"type" :"number"}
+            },
+            "additionalProperties" : false
+        }
+    }
+}

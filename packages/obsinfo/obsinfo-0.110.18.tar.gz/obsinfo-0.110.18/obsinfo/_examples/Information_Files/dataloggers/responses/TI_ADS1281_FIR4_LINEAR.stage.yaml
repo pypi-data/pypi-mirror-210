@@ -1,0 +1,13 @@
+---
+format_version: "1.0"
+
+stage: 
+    gain :         {value: 1, frequency: 0}
+    input_units :  {name : "counts", description: "Digital Counts"}
+    output_units : {name : "counts", description: "Digital Counts"}
+    description : "DECIMATION - ADS1281 Filters4" 
+    decimation_factor : 2
+    filter: 
+        $ref: "dataloggers/responses/filters/TexasInstruments_ADS1281_FIR4-linear.filter.yaml#filter"
+notes:
+    - "From ads1281.pdf"

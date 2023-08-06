@@ -1,0 +1,27 @@
+---
+format_version: "1.0"
+revision:
+   date: "2017-11-30"
+   authors: 
+       -   $ref: "authors/Wayne_Crawford.author.yaml#author"
+
+filter:
+   type: "FIR"
+   # offset will be used to calculate delay for digital filters at stage level if delay is not specified.
+   # offset should be made to coincide with the peak coefficient
+   offset: 6
+   symmetry: "NONE"
+   coefficients:
+      - 2.44141E-4
+      - 0.00292969
+      - 0.0161133
+      - 0.0537109
+      - 0.12085
+      - 0.193359
+      - 0.225586
+      - 0.193359
+      - 0.12085
+      - 0.0537109
+      - 0.0161133
+      - 0.00292969
+      - 2.44141E-4

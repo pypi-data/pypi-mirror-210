@@ -1,0 +1,14 @@
+---
+format_version: "1.0"
+revision:
+   authors: {$ref: ""} # Reference to file or fields of an authors file
+   date: "" # yyyy/mm/dd
+
+yaml_anchors:
+notes: 
+   - ""
+
+filter:
+   type : "ADConversion"
+   input_full_scale :  #  = VREFP - VREFN
+   output_full_scale : 

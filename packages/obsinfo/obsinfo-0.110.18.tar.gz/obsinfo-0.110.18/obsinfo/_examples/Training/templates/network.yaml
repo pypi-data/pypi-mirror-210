@@ -1,0 +1,75 @@
+---
+format_version: "1.0"
+revision:
+   authors: 
+       - {$ref: ""} # Reference to file or fields of an authors file
+   date: "" # yyyy/mm/dd
+
+yaml_anchors:
+notes: 
+    - ""
+
+network:
+   operator:
+      reference_name: ""
+      full_name: "" 
+      contact:
+         first_name: ""
+         last_name: ""
+       
+      phone_number:  ""
+      email: ""
+      website: ""
+   campaign_ref_name: ""
+   network_info:
+      code: ""
+      name: ""
+      start_date: ""# yyyy/mm/dd
+      end_date: "" # yyyy/mm/dd
+      description: ""
+      comments: 
+         - ""
+   stations:
+      "":
+          site: ""
+          start_date: ""#Specify date and time as yyyy-mm-22Thh:mm:ss
+          end_date: "" #Specify date and time as yyyy-mm-22Thh:mm:ss
+          location_code: ""
+          instrumentation:
+             {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+
+          locations:
+              "00":
+                  base: {$ref: ""} # Reference to file in the form {$ref: '<PATHNAME>'}
+                  position: {lon: , lat: , elev: }
+
+          channel_modifications:
+               #All possible attributes under channel, in hierarchical order, 
+               # except selected response stages>
+              "*-*": 
+                         response_modifications:
+                              "*": 
+                          
+
+          processing:
+              - clock_corrections:
+                 linear_drift:
+                      time_base: ""
+                      reference: ""
+                      start_sync_reference: "" #Specify date and time as yyyy-mm-22Thh:mm:ss.mmmm
+                      end_sync_reference: "" #Specify date and time as yyyy-mm-22Thh:mm:ss.mmmm
+                      end_sync_instrument: "" #Specify date and time as yyyy-mm-22Thh:mm:ss.mmmm
+                 leap_second:
+                      time: "" #Specify date and time as yyyy-mm-22Thh:mm:ss
+                      type :  "+" or "-"
+                      description: ""
+                      corrected_in_end_sync: 
+                      corrected_in_data:  
+          comments: 
+               - ""
+          extras: 
+
+   comments: 
+       - ""
+   extras: 
+

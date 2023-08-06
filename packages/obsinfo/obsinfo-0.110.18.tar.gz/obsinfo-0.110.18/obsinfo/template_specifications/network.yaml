@@ -1,0 +1,74 @@
+---
+format_version: "<STRING>"
+revision:
+   authors: # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+[yaml_anchors:]
+[notes: 
+   - "<STRING>"... ]
+
+network:
+   operator:
+       reference_name: "<STRING>"
+       [full_name: "<STRING>" ]
+       [contact:
+           first_name: "<STRING>"
+           last_name: "<STRING>"
+       ]
+       [phone_number: <PHONE>]
+       email: <EMAIL>
+       [website:  <URL>]
+   campaign_ref_name: "<STRING>"
+   network_info:
+       code: "<STRING>"
+       name: "<STRING>"
+       start_date: # yyyy/mm/dd
+       end_date: # yyyy/mm/dd
+       description: "<STRING>"
+       [comments: 
+           - "<STRING>"...]
+   stations:
+       "<LABEL>":
+           site: "<STRING>"
+           [start_date:] #Specify date and time as yyyy-mm-22Thh:mm:ss
+           [end_date:] #Specify date and time as yyyy-mm-22Thh:mm:ss
+           location_code: "<STRING>"
+           instrumentation:
+                   {$ref: '<PATHNAME>'}
+
+           locations:
+               "<LABEL>":
+                   base: # Reference to file in the form {$ref: '<PATHNAME>'}
+                   position: {lon: <NUM.deg>, lat: <NUM.deg>, elev: <NUM.m>}
+
+           [channel_modifications:
+               "<LABEL>": <All possible attributes under channel, in hierarchical order, except selected response stages>
+                          [response_modifications:
+                               "<LABEL>": <Selected response stages attribute and filter modifications>
+                          ]
+           ]
+
+           [processing:
+               - clock_corrections:
+                  [linear_drift:
+                       time_base: "<STRING>"
+                       reference: "<STRING>"
+                       start_sync_reference: #Specify date and time as yyyy-mm-22Thh:mm:ss.mmmm
+                       end_sync_reference: "#Specify date and time as yyyy-mm-22Thh:mm:ss.mmmm
+                       end_sync_instrument: #Specify date and time as yyyy-mm-22Thh:mm:ss.mmmm]
+                  [leap_second:
+                       time: #Specify date and time as yyyy-mm-22Thh:mm:ss
+                       type :  "+" or "-"
+                       description: "<STRING>"
+                       corrected_in_end_sync: <BOOL>
+                       corrected_in_data:  <BOOL>]
+           ]
+
+           [comments: 
+               - "<STRING>"...]
+           [extras: <KEY> : <VALUE>]
+           
+   [comments: 
+       - "<STRING>"...]
+   [extras: <KEY> : <VALUE>]

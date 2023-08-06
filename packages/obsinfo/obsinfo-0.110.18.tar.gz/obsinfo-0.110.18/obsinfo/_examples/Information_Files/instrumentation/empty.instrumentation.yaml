@@ -1,0 +1,45 @@
+---
+notes:
+    - "A minimal instrumentation file with no $refs"
+format_version: "0.110"
+revision: 
+    date: "2022-07-02"
+    authors: 
+        - first_name: "Blaise"
+          last_name: "Pascal"
+instrumentation:
+    equipment:
+        type: "Short Period Ocean Bottom Seismometer"
+        description: "LCHEAPO 2000 SPOBS, 2 channels, L-22 vertical geophone"
+        manufacturer: "Scripps Institution of Oceanography"
+        model: "SPOBS1"
+    channels:
+        default:
+            datalogger:
+                equipment: 
+                    type: "Data logger"
+                    description: "Non-existant data logger"
+                    manufacturer: "None"
+                    model: "0"
+                sample_rate: 100
+                response_stages:
+                    - input_units: {name: "V", description: "VOLTS"}
+                      output_units: {name: "counts", description: "Digital Counts"}
+                      gain: {value: 1}
+                      input_sample_rate: 100
+                      filter: {type: "Digital"}
+            sensor:
+                equipment: 
+                    type: "Vertical geophone"
+                    description: "Non-existant geophone"
+                    manufacturer: "None"
+                    model: "0"
+                seed_codes: {band_base: "S", instrument: "H"}
+                response_stages:
+                    - input_units: {name: "m/s", description: "velocity"}
+                      output_units: {name: "V", description: "VOLTS"}
+                      gain: {value: 1}
+                      filter: {type: "Analog"}
+        "1":
+            orientation_code:
+                "3": {azimuth.deg: [0,0], dip.deg: [90,0]}

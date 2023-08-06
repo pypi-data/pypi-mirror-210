@@ -1,0 +1,25 @@
+format_version: "1.0"
+revision: 
+    date: "2018-06-01"
+    authors:
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+
+stage:
+   description :  "SENSOR - TRILLIUM 240 SN400+ (SINGLE-SIDED)"
+   input_units :  { name: "m/s", description: "VELOCITY"}
+   output_units : { name: "V", description: "VOLTS"}
+   gain :
+      value: 594.5
+      frequency: 1.
+   filter:
+      { $ref: "sensors/responses/filters/Trillium_T240_SN400-_generic.filter.yaml#filter" }
+   
+   # if delay is specified, it will go directly into StationXML without modification
+   # if not specified and this is a digital stage, delay is calculated as filter offset / input_sample_rate
+   delay: 0
+   # polarity is specified when the stage inverts polarity, usually in a sensor. 
+   # In a seismometer, upward movement usually means positive voltage by default. 
+   # In a hydrophone, positive pressure usually means positive voltage by default. 
+   # If it's the contrary, must invert polarity (put a minus). 
+   # Some dataloggers invert polarity too.
+   polarity: "+"

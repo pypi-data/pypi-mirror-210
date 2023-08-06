@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Network",
+    "description": "Network of stations deployed by an OBS operator  $comment: No $id (or id) yet: should be set to a URL at a domain we control (e.g. http://www.ipgp.fr/~crawford/json-schemas/network.schema.json",
+    "type": "object",
+    "required": ["format_version", "network"],
+    "properties": {
+        "format_version": {"$ref" : "definitions.schema.json#/format_version"},
+        "revision":       {"$ref": "definitions.schema.json#/revision"},
+        "yaml_anchors":   {"$ref": "definitions.schema.json#/yaml_anchors"},
+        "notes" :         {"$ref": "definitions.schema.json#/note_list"},
+        "network":        {"$ref": "#/definitions/network"}
+    },
+    "additionalProperties" : false,
+    "definitions" : {
+        "network": {
+            "type": "object",
+            "required": [
+                "operator",
+                "campaign_ref_name",
+                "network_info",
+                "stations"
+            ],
+            "properties": {
+                "operator":          {"$ref": "definitions.schema.json#/operator"},
+                "stations_operator": {"$ref": "definitions.schema.json#/operator"},
+                "campaign_ref_name": {"$ref": "definitions.schema.json#/reference_name"},
+                "network_info":      {"$ref": "#/definitions/network_info"},
+                "stations":          {"$ref": "#/definitions/stations_map"},
+                "restricted_state":  {"$ref": "definitions.schema.json#/restricted_state"},
+                "comments":          {"$ref": "definitions.schema.json#/note_list"},
+                "extras":            {"$ref": "definitions.schema.json#/extras" }
+            },
+            "additionalProperties" : false
+        },
+        "network_info" : {"$ref": "network_info.schema.json#/definitions/network_info"},
+        "stations_map" : {
+            "type": "object",
+            "description": "Seafloor seismological stations, keys are station names",
+            "$comment": "If we use draft-06, 'patternProperties' should probably be replaced by 'propertyNames':{'pattern':}",
+            "patternProperties": {
+                "^[A-Za-z0-9_-]+$": {"$ref": "station.schema.json#/definitions/station" }
+            },
+            "additionalProperties": false
+        }
+    }
+}

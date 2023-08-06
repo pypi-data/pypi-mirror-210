@@ -1,0 +1,15 @@
+---
+format_version: "1.0"
+
+
+filter:
+   type: "PolesZeros"
+   # offset will be used to calculate delay for digital filters at stage level if delay is not specified.
+   transfer_function_type: "LAPLACE (RADIANS/SECOND)"  
+   zeros :
+       -   [0.0, 0.0] # Complex number
+   poles :
+       -   [0.093928, 0.000] # Complex number
+       
+notes:
+   -  "From German (DEPAS) Station XML files (I still don't have better)"

@@ -1,0 +1,36 @@
+{    
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Network Info",
+    "description": "allows separate network_info files to be validated",
+    "type": "object",
+    "required": ["format_version", "network_info"],
+    "properties": {
+        "format_version" : {"$ref": "definitions.schema.json#/format_version"},
+        "revision" :       {"$ref": "definitions.schema.json#/revision"},
+        "notes":           {"$ref": "definitions.schema.json#/note_list"},
+        "network_info" :   {"$ref": "#/definitions/network_info"}
+    },
+    "additionalProperties" : false,
+    "definitions": {
+        "network_info" : {
+            "description": "Network information in FDSN nomenclature",
+            "type": "object",
+            "required" : [
+                "code",
+                "name",
+                "start_date",
+                "end_date",
+                "description"
+            ],
+            "properties" : {
+                "code" :       {"type": "string",  "description": "FDSN network code or 'XX'"},
+                "name" :       {"type": "string",  "description": "FDSN network name"},
+                "end_date":    {"$ref": "definitions.schema.json#/any_date"},
+                "start_date":  {"$ref": "definitions.schema.json#/any_date"},
+                "description": {"type": "string" , "description": "Should use FDSN 'network name'"},
+                "comments":    {"$ref": "definitions.schema.json#/note_list"} 
+            },
+            "additionalProperties" : false
+        }
+    }
+}

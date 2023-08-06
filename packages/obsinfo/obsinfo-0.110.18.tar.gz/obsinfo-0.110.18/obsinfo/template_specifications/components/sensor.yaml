@@ -1,0 +1,49 @@
+---
+format_version: "<STRING>"
+revision:
+   authors: # Reference to file or fields of an authors file
+   date: # yyyy/mm/dd
+
+[yaml_anchors:]
+[notes: 
+    - "<STRING>"]
+
+sensor:
+   equipment:
+       type: "<STRING>"
+       description: "<STRING>"
+       [manufacturer: "<STRING>"]
+       [vendor: "<STRING>"]
+       [model: "<STRING>"]
+       [serial_number: "<STRING>"]
+       [calibration_dates: 
+           - <DATE>...]  #Specify date and time as yyyy-mm-22Thh:mm:ss
+
+   seed_codes:
+       # band base may be a generic broadband code description such as B or H
+       # obsinfo calculates actual base code based on actual sample rate
+       band_base: "<STRING>" # Defined by FSDN
+       instrument: "<STRING>" # Defined by FSDN
+
+   response_stages:
+       - # Reference to file in the form {$ref: '<PATHNAME>'}
+
+   configuration_default: "<LABEL>"
+
+   configuration_definitions:
+       "<LABEL>" :
+           [equipment:
+              [model: "<STRING>"]
+              [type: "<STRING>"]
+              [description: "<STRING>"]
+              [manufacturer: "<STRING>"]
+              [vendor: "<STRING>"]
+              [serial_number: "<STRING>"]
+              [calibration_date: #Specify date and time as yyyy-mm-22Thh:mm:ss]]
+
+           [seed_codes:
+              [band_base: "<STRING>"] # Defined by FSDN
+              [instrument: "<STRING>"] # Defined by FSDN
+
+           [response_stages:
+              - # Reference to file in the form {$ref: '<PATHNAME>'}]

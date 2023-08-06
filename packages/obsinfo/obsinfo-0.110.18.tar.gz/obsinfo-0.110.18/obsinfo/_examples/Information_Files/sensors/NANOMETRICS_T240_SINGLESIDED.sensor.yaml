@@ -1,0 +1,65 @@
+---
+format_version: "1.0"
+revision: 
+    date: "2017-11-30"
+    authors: 
+        - {$ref: "authors/Wayne_Crawford.author.yaml#author"}
+sensor:
+    equipment:
+        model: "Trillium T240"
+        type: "Broadband seismometer"
+        description: "Trillium T240 seismometer, negative shorted to ground"
+        manufacturer: "Nanometrics, Inc"
+        vendor: "Nanometrics, Inc"
+    seed_codes:
+        band_base: "B"
+        instrument: "H" 
+    configuration_default: "SN1-399"
+    response_stages:
+        - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+    configuration_definitions:
+        "Sphere01":
+            equipment: {serial_number: "133"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+        "Sphere02":
+            equipment: {serial_number: "132"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+        "Sphere03":
+            equipment: {serial_number: "134"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+        "Sphere04":
+            equipment: {serial_number: "138"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+        "Sphere05":
+            equipment: {serial_number: "137"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+        "Sphere06":
+            equipment: {serial_number: "830"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN400-singlesided_theoretical.stage.yaml#stage"
+        "Sphere07":
+            equipment: {serial_number: "136"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN1-399-singlesided_theoretical.stage.yaml#stage"
+        "Sphere08":
+            equipment: {serial_number: "829"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN400-singlesided_theoretical.stage.yaml#stage"
+        "Sphere09":
+            equipment: {serial_number: "826"}
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN400-singlesided_theoretical.stage.yaml#stage"
+        "SN1-399" :
+            configuration_description: "serial numbers 1-399"
+                
+        "SN400plus" :
+            configuration_description: "serial numbers 400+"
+            response_stages:
+                - $ref: "sensors/responses/Trillium_T240_SN400-singlesided_theoretical.stage.yaml#stage"
+    
+    
