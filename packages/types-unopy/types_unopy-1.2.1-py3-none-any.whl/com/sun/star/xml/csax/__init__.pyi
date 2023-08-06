@@ -1,0 +1,2 @@
+from .x_compressed_document_handler import XCompressedDocumentHandler as XCompressedDocumentHandler
+from .xml_attribute import XMLAttribute as XMLAttribute
