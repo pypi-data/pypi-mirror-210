@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "py_dot"
+version = "0.6.0"
+authors = [
+  { name="protyliss", email="protyliss@gmail.com" },
+]
+description = "Python Development Utility Library"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/protyliss/py-dot"
+"Bug Tracker" = "https://github.com/protyliss/py-dot/issues"
