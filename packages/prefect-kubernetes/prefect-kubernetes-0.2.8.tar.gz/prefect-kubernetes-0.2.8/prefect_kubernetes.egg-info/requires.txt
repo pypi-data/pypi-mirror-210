@@ -1,0 +1,22 @@
+prefect>=2.10.9
+kubernetes>=24.2.0
+
+[dev]
+pytest
+black
+flake8
+flaky
+mypy
+mkdocs
+mkdocs-material
+mkdocstrings[python]
+isort
+pre-commit
+pytest-asyncio
+mkdocs-gen-files
+interrogate
+coverage
+pillow
+
+[dev:python_version < "3.8"]
+mock
