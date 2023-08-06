@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: lndb_storage
+Version: 0.3.2
+Summary: Storage → object.
+Author-email: Lamin Labs <laminlabs@gmail.com>
+Description-Content-Type: text/markdown
+Requires-Dist: lnschema_core
+Requires-Dist: lndb>=0.45a4
+Requires-Dist: lamin_logger>=0.3.0
+Requires-Dist: nbproject
+Requires-Dist: readfcs
+Requires-Dist: python-dateutil
+Requires-Dist: zarr
+Requires-Dist: anndata>=0.9.1
+Requires-Dist: fsspec
+Requires-Dist: universal_pathlib
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: typeguard
+Requires-Dist: botocore==1.29.76 ; extra == "aws"
+Requires-Dist: fsspec[s3]==2023.5.0 ; extra == "aws"
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: nox ; extra == "dev"
+Requires-Dist: fsspec[gs]==2023.5.0 ; extra == "gcp"
+Requires-Dist: pytest>=6.0 ; extra == "test"
+Requires-Dist: pytest-cov ; extra == "test"
+Requires-Dist: scanpy ; extra == "test"
+Requires-Dist: pyarrow ; extra == "test"
+Requires-Dist: lndb>=0.45a4 ; extra == "test"
+Requires-Dist: nbproject-test ; extra == "test"
+Requires-Dist: lndb_storage[aws,gcp] ; extra == "test"
+Project-URL: Home, https://github.com/laminlabs/lndb-storage
+Provides-Extra: aws
+Provides-Extra: dev
+Provides-Extra: gcp
+Provides-Extra: test
+
+# lndb-storage: LaminDB storage
+
+Latest developer docs: [netlify](https://lndb-storage-soie.netlify.app/docs/lndb-storage/)
+
