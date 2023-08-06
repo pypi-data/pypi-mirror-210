@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clementine"
+version = "0.0.1-dev"
+description = "A peachy little Python package"
+authors = [{name = "Suzen Fylke", email = "codesue@users.noreply.github.com"}]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+]
+requires-python = ">=3.7"
+
+[project.optional-dependencies]
+ml = ["matplotlib", "numpy", "pandas", "scikit-learn", "torch"]
+
+[project.urls]
+repository = "https://github.com/codesue/peach"
