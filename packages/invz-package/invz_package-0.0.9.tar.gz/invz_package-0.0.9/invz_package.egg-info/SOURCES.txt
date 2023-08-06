@@ -1,0 +1,178 @@
+LICENSE.txt
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+innerverz_package/__init__.py
+innerverz_package copy/__init__.py
+innerverz_package copy/_deblurrer/__init__.py
+innerverz_package copy/_deblurrer/main.py
+innerverz_package copy/_deblurrer/nets.py
+innerverz_package copy/_deblurrer/test.py
+innerverz_package copy/data_preprocess/__init__.py
+innerverz_package copy/data_preprocess/main.py
+innerverz_package copy/deca/__init__.py
+innerverz_package copy/deca/main.py
+innerverz_package copy/deca/test.py
+innerverz_package copy/deca/models/FLAME.py
+innerverz_package copy/deca/models/__init__.py
+innerverz_package copy/deca/models/decoders.py
+innerverz_package copy/deca/models/detectors.py
+innerverz_package copy/deca/models/encoders.py
+innerverz_package copy/deca/models/face_detectors.py
+innerverz_package copy/deca/models/lbs.py
+innerverz_package copy/deca/models/resnet.py
+innerverz_package copy/deca/utils/__init__.py
+innerverz_package copy/deca/utils/cfg.py
+innerverz_package copy/deca/utils/renderer.py
+innerverz_package copy/deca/utils/rotation_converter.py
+innerverz_package copy/deca/utils/tensor_cropper.py
+innerverz_package copy/deca/utils/util.py
+innerverz_package copy/deca/utils/rasterizer/__init__.py
+innerverz_package copy/deca/utils/rasterizer/setup.py
+innerverz_package copy/deep3dmm/__init__.py
+innerverz_package copy/deep3dmm/main.py
+innerverz_package copy/deep3dmm/nets.py
+innerverz_package copy/face_alignment/__init__.py
+innerverz_package copy/face_alignment/graphic_utils.py
+innerverz_package copy/face_alignment/landmark.py
+innerverz_package copy/face_alignment/main.py
+innerverz_package copy/face_alignment/retina_face.py
+innerverz_package copy/face_alignment/utils/__init__.py
+innerverz_package copy/face_alignment/utils/face_align.py
+innerverz_package copy/face_alignment/utils/transform.py
+innerverz_package copy/face_color_transfer/__init__.py
+innerverz_package copy/face_color_transfer/main.py
+innerverz_package copy/face_color_transfer/nets.py
+innerverz_package copy/face_color_transfer/sub_nets/__init__.py
+innerverz_package copy/face_color_transfer/sub_nets/blend_net.py
+innerverz_package copy/face_color_transfer/sub_nets/discriminator.py
+innerverz_package copy/face_color_transfer/sub_nets/vgg19_net.py
+innerverz_package copy/face_color_transfer/sub_nets/warp_net.py
+innerverz_package copy/face_color_transfer/utils/__init__.py
+innerverz_package copy/face_color_transfer/utils/utils.py
+innerverz_package copy/face_enhancer/__init__.py
+innerverz_package copy/face_enhancer/fe_test.py
+innerverz_package copy/face_enhancer/main.py
+innerverz_package copy/face_enhancer/nets.py
+innerverz_package copy/face_parser/__init__.py
+innerverz_package copy/face_parser/main.py
+innerverz_package copy/face_parser/nets.py
+innerverz_package copy/head_color_transfer/__init__.py
+innerverz_package copy/head_color_transfer/main.py
+innerverz_package copy/head_color_transfer/nets.py
+innerverz_package copy/head_color_transfer/sub_nets/__init__.py
+innerverz_package copy/head_color_transfer/sub_nets/blend_net.py
+innerverz_package copy/head_color_transfer/sub_nets/discriminator.py
+innerverz_package copy/head_color_transfer/sub_nets/vgg19_net.py
+innerverz_package copy/head_color_transfer/sub_nets/warp_net.py
+innerverz_package copy/head_color_transfer/utils/__init__.py
+innerverz_package copy/head_color_transfer/utils/utils.py
+innerverz_package copy/id_extractor/__init__.py
+innerverz_package copy/id_extractor/main.py
+innerverz_package copy/id_extractor/nets.py
+innerverz_package copy/relighter/__init__.py
+innerverz_package copy/relighter/main.py
+innerverz_package copy/relighter/nets.py
+innerverz_package copy/relighter/utils/__init__.py
+innerverz_package copy/relighter/utils/blocks.py
+innerverz_package copy/relighter/utils/util.py
+innerverz_package copy/upsampler/__init__.py
+innerverz_package copy/upsampler/main.py
+innerverz_package copy/upsampler/nets.py
+innerverz_package copy/utils/__init__.py
+innerverz_package copy/utils/download.py
+innerverz_package copy/utils/input.py
+innerverz_package copy/utils/utils.py
+innerverz_package copy/video_faceparser/__init__.py
+innerverz_package copy/video_faceparser/main.py
+innerverz_package copy/video_faceparser/model/__init__.py
+innerverz_package/data_process/__init__.py
+innerverz_package/data_process/main.py
+innerverz_package/deblurrer/__init__.py
+innerverz_package/deblurrer/main.py
+innerverz_package/deblurrer/nets.py
+innerverz_package/deblurrer/test.py
+innerverz_package/deca/__init__.py
+innerverz_package/deca/main.py
+innerverz_package/deca/test.py
+innerverz_package/deca/models/FLAME.py
+innerverz_package/deca/models/__init__.py
+innerverz_package/deca/models/decoders.py
+innerverz_package/deca/models/detectors.py
+innerverz_package/deca/models/encoders.py
+innerverz_package/deca/models/face_detectors.py
+innerverz_package/deca/models/lbs.py
+innerverz_package/deca/models/resnet.py
+innerverz_package/deca/utils/__init__.py
+innerverz_package/deca/utils/cfg.py
+innerverz_package/deca/utils/renderer.py
+innerverz_package/deca/utils/rotation_converter.py
+innerverz_package/deca/utils/tensor_cropper.py
+innerverz_package/deca/utils/util.py
+innerverz_package/deca/utils/rasterizer/__init__.py
+innerverz_package/deca/utils/rasterizer/setup.py
+innerverz_package/deep3dmm/__init__.py
+innerverz_package/deep3dmm/main.py
+innerverz_package/deep3dmm/nets.py
+innerverz_package/face_alignment/__init__.py
+innerverz_package/face_alignment/graphic_utils.py
+innerverz_package/face_alignment/landmark.py
+innerverz_package/face_alignment/main.py
+innerverz_package/face_alignment/retina_face.py
+innerverz_package/face_alignment/utils/__init__.py
+innerverz_package/face_alignment/utils/face_align.py
+innerverz_package/face_alignment/utils/transform.py
+innerverz_package/face_color_transfer/__init__.py
+innerverz_package/face_color_transfer/main.py
+innerverz_package/face_color_transfer/nets.py
+innerverz_package/face_color_transfer/sub_nets/__init__.py
+innerverz_package/face_color_transfer/sub_nets/blend_net.py
+innerverz_package/face_color_transfer/sub_nets/discriminator.py
+innerverz_package/face_color_transfer/sub_nets/vgg19_net.py
+innerverz_package/face_color_transfer/sub_nets/warp_net.py
+innerverz_package/face_enhancer/__init__.py
+innerverz_package/face_enhancer/main.py
+innerverz_package/face_enhancer/nets.py
+innerverz_package/face_parser/__init__.py
+innerverz_package/face_parser/main.py
+innerverz_package/face_parser/nets.py
+innerverz_package/head_color_transfer/__init__.py
+innerverz_package/head_color_transfer/main.py
+innerverz_package/head_color_transfer/nets.py
+innerverz_package/head_color_transfer/sub_nets/__init__.py
+innerverz_package/head_color_transfer/sub_nets/blend_net.py
+innerverz_package/head_color_transfer/sub_nets/discriminator.py
+innerverz_package/head_color_transfer/sub_nets/vgg19_net.py
+innerverz_package/head_color_transfer/sub_nets/warp_net.py
+innerverz_package/id_extractor/__init__.py
+innerverz_package/id_extractor/main.py
+innerverz_package/id_extractor/nets.py
+innerverz_package/relighter/__init__.py
+innerverz_package/relighter/main.py
+innerverz_package/relighter/nets.py
+innerverz_package/upsampler/__init__.py
+innerverz_package/upsampler/main.py
+innerverz_package/upsampler/nets.py
+innerverz_package/utils/__init__.py
+innerverz_package/utils/download.py
+innerverz_package/utils/input.py
+innerverz_package/utils/utils.py
+innerverz_package/video_faceparser/__init__.py
+innerverz_package/video_faceparser/main.py
+innerverz_package/video_faceparser/nets.py
+innerverz_package/video_faceparser/model/__init__.py
+innerverz_package/video_faceparser/util/__init__.py
+innerverz_package/video_faceparser/util/corr.py
+innerverz_package/video_faceparser/util/extractor.py
+innerverz_package/video_faceparser/util/update.py
+innerverz_package/video_faceparser/util/util.py
+innerverz_package/video_faceparser/util/_utils/__init__.py
+innerverz_package/video_faceparser/util/_utils/augmentor.py
+innerverz_package/video_faceparser/util/_utils/flow_viz.py
+innerverz_package/video_faceparser/util/_utils/frame_utils.py
+invz_package.egg-info/PKG-INFO
+invz_package.egg-info/SOURCES.txt
+invz_package.egg-info/dependency_links.txt
+invz_package.egg-info/requires.txt
+invz_package.egg-info/top_level.txt
