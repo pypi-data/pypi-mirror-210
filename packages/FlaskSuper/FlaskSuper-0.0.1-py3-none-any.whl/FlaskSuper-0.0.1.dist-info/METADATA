@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: FlaskSuper
+Version: 0.0.1
+Summary: A web framework built on top of Flask
+Author: M.Abbas_Dev
+Author-email: realmwls75@gmail.com
+Platform: window
+Platform: mac
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: Flask
+Requires-Dist: Flask-SQLAlchemy
+
+# FlaskPlus
+
+FlaskPlus is a web framework built on top of Flask, providing additional features and utilities to streamline web application development.
+
+## Installation
+
+You can install FlaskPlus using pip:
+
+```bash
+pip install flaskplus
+```
+## Getting Started
+Creating App
+```bash
+pip -m flaskplus  make
+```
+
+This command will generate the necessary directory structure and files for your web app, including an index.html template and a basic Flask app setup.
+
+After running the command, you will see the following output:
+
+Creating an app...
+You can now navigate to the project directory and start building your web application.
+
+cd your_project_directory
+your_project_directory/
+    ├── App.py
+    ├── html/
+    │   └── index.html
+    └── static/
+The App.py file contains the basic Flask application setup, and the html directory contains the index.html template for your app's homepage.
+
+Building and Running the App
+To build and run your FlaskPlus app, make sure you are in the project directory and execute the following command:
+
+python App.py
+This will start the Flask development server, and you can access your app in the browser at http://localhost:5000.
+
+You can now start building your web application by defining routes, creating HTML templates, and adding additional functionality using the FlaskPlus framework.
