@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "OnePagePPT43_LSC"
+version = "0.0.1"
+authors = [
+  { name="Shicheng Lu", email="742466595@qq.com" },
+]
+description = "A python program that fills in formatted PPT"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://www.baidu.com/"
+"Bug Tracker" = "https://www.baidu.com/"
