@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: arg-needle
+Version: 1.0.2
+Summary: Ancestral recombination graph (ARG)
+Home-page: https://github.com/PalamaraLab/arg_needle/
+Author: PalamaraLab (https://palamaralab.github.io/)
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: arg-needle-lib (>=1.0.0)
+Requires-Dist: asmc-asmc (>=1.3)
+Requires-Dist: fastcluster
+Requires-Dist: msprime (>=1.0.0)
+Requires-Dist: numpy (>=1.17.0)
+Requires-Dist: pandas
+Requires-Dist: psutil
+Requires-Dist: tskit (>=0.1.5)
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+
+# arg-needle
+
+This repository contains arg-needle, which implements the ARG inference algorithms ARG-Needle and ASMC-clust.
+
+## Quickstart
+
+### Install the Python module from PyPI
+
+The Python module can be installed with:
+
+```bash
+pip install arg-needle
+```
+
+This Python module is currently available on Linux and macOS.
+
+### Documentation
+
+Please see the [ARG-Needle manual](https://palamaralab.github.io/software/argneedle/) for all usage instructions and documentation.
+
+## License
+
+arg-needle is distributed under the GNU General Public License v3.0 (GPLv3). For any questions or comments on arg-needle, please contact Pier Palamara using `<lastname>@stats.ox.ac.uk`.
+
+## Acknowledgements
+
+arg-needle is developed by Brian C. Zhang with support from Fergus Cooper, Árni Freyr Gunnarsson, and Pier Francesco Palamara.
+
+## Reference
+
+If you use this software, please cite:
+
+Biobank-scale inference of ancestral recombination graphs enables genealogy-based mixed model association of complex traits. B. C. Zhang, A. Biddanda, P. F. Palamara. *bioRxiv*. November 2021.
+
+# arg-needle Release Notes
+
+
+## v1.0.2 (2023-05-25)
+
+Fix default values for sequencing in arg_needle script.
+
+## v1.0.1 (2023-03-17)
+
+Bug fix for running build_arg_simulation with ASMC-clust.
+
+## v1.0.0 (2023-03-10)
+
+Initial PyPI release of arg-needle.
