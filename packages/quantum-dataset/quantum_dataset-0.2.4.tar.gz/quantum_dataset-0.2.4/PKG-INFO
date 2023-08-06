@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: quantum_dataset
+Version: 0.2.4
+Summary: Collection of measurements on quantum devices
+Home-page: https://github.com/QuTech-Delft/quantum_dataset/
+Author: Pieter Eendebak
+Author-email: pieter.eendebak@tno.nl
+Maintainer: Pieter Eendebak
+Maintainer-email: pieter.eendebak@tno.nl
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/markdown
+
+# Quantum Dataset
+
+A collection of measurements on quantum devices.
+
+The data for the QuantumDataset is attached to the github release named `Test`, see
+https://github.com/QuTech-Delft/quantum_dataset/releases/tag/Test
+
+## Example usage
+
+```
+from quantumdataset import QuantumDataset
+quantum_dataset=QuantumDataset(data_directory=None)
+quantum_dataset.list_tags()
+
+dataset = quantum_dataset.load_dataset('allxy', 0)
+quantum_dataset.plot_dataset(dataset)
+
+quantum_dataset.generate_overview_page(quantum_dataset.data_directory / 'overview')
+```
+
+![](docs/anti_crossing.png)
