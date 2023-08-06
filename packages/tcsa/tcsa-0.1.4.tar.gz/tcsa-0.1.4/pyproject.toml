@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tcsa"
+version = "0.1.4"
+authors = [
+  { name="Computational Oncology"},
+]
+description = "temporalis segmentation pipeline to assess CSA of temporalis muscle"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: POSIX",
+]
+dependencies = [
+  'keras==2.2.4',
+  'tensorflow==1.14.0',
+  'segmentation-models==1.0.1',
+  'protobuf==3.20.1',
+  'h5py==2.10.0',
+  'opencv-python',
+  'antspyx',
+  'nibabel',
+  'intensity-normalization==2.1.4',
+  'scikit-image',
+  'gdown',
+  'tqdm',
+  'simpleitk',
+  'requests',
+  'packaging',
+  'dicom2nifti',
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/computational.oncology/temporalis-segmentation-pipeline"
+"Bug Tracker" = "https://gitlab.com/computational.oncology/temporalis-segmentation-pipeline/-/issues" 
+
+
+
