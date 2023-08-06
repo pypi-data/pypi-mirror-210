@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "aiokeepin"
+version = "0.2.0"
+description = "Async python wrapper for KeepinCRM API"
+authors = ["Vadim Radzih <iphonevadim2003@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/radzih/aiokeepin"
+repository = "https://github.com/radzih/aiokeepin"
+license = "MIT"
+keywords = ["keepin", "keepincrm", "api", "wrapper", "async", "httpx", "aiokeepin"]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+httpx = "^0.24.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
