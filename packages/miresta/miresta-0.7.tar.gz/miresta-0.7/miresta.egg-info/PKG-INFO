@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: miresta
+Version: 0.7
+Summary: This package performs a subtraction
+Home-page: https://pypi.org/project/miresta
+Author: Diana Carolina Zapata Zuluaga
+Author-email: dianac.zapata@udea.edu.co
+License: MIT
+Description: # miresta
+        
+        <!-- This are visual tags that you may add to your package at the beginning with useful information on your package --> 
+        [![version](https://img.shields.io/pypi/v/pymiau?color=blue)](https://pypi.org/project/miresta/)
+        [![downloads](https://img.shields.io/pypi/dw/pymiau)](https://pypi.org/project/miresta/)
+        
+        This package performs a subtraction between two numbers.
+        
+        <p align="center"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.smartick.es%2Fblog%2Fmatematicas%2Fsumas-y-restas%2Fla-resta%2F&psig=AOvVaw2XsJ-5Ec05Pur0tQ3zOvoL&ust=1685149930379000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLjohermkf8CFQAAAAAdAAAAABAE" alt="a subtracting cat""/></p>
+        
+        ## Download and install
+        
+        
+        If you are using `PyPI` installation it's as simple as:
+        
+        ```
+        pip install miresta
+        ```
+        
+        You can also test the unstable version of the package with:
+        
+        ```
+        pip install -i https://test.pypi.org/simple/ miresta
+        ```
+        
+        ## Quick start
+        
+        To import the package:
+        
+        ```
+        import miresta  
+        ```
+        
+        ## Code examples
+        ```
+        import miresta
+        print(miresta.resta(6,2))
+        
+        ```
+        
+        ------------
+        
+        This package has been designed and written by Diana Carolina Zapata Zuluaga (C) 2023
+        
+Keywords: subtraction
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
