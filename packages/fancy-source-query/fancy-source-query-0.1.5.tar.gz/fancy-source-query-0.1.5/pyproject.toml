@@ -1,0 +1,39 @@
+[project]
+name = "fancy_source_query"
+version = "0.1.5"
+description = "Intelligent tool to query source servers, with a cli interface and plugin integrates into nonebot."
+authors = [
+    { name = "zombie110year", email = "zombie110year@outlook.com" },
+]
+dependencies = [
+    "nonebot2[fastapi]>=2.0.0rc3",
+    "steam[client]>=1.4.4",
+    "pydantic>=1.10.7",
+    "impaper>=0.1.6",
+    "exrex>=0.11.0",
+    "toml>=0.10.2",
+    "nonebot-adapter-onebot>=2.2.2",
+]
+requires-python = ">=3.10,<4.0"
+readme = "README.md"
+
+[project.license]
+text = "MIT"
+
+[project.scripts]
+fsq = "fancy_source_query.interfaces.cli:cli_main"
+
+[tool.pdm.dev-dependencies]
+test = [
+    "nonebug>=0.3.1",
+    "pytest-asyncio>=0.21.0",
+]
+dev = [
+    "black>=23.1.0",
+]
+
+[build-system]
+requires = [
+    "pdm-pep517>=1.0",
+]
+build-backend = "pdm.pep517.api"
