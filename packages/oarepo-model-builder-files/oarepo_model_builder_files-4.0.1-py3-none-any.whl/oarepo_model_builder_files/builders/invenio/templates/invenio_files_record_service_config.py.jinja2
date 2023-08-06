@@ -1,0 +1,6 @@
+from invenio_records_resources.services import FileLink
+{{ parent_record.record|generate_import }}
+{{ vars.service_config.imports|generate_import }}
+
+class {{ vars.service_config|class_header }}:
+    record_cls = {{ parent_record.record.class|base_name }}

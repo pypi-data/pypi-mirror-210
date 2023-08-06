@@ -1,0 +1,39 @@
+import os
+
+{{ vars.service_config.class|generate_import }}
+{{ vars.service.class|generate_import }}
+{{ vars.resource_config.class|generate_import }}
+from invenio_records_resources.resources import FileResource
+from invenio_app.factory import create_api as _create_api
+import pytest
+
+@pytest.fixture(scope="module")
+def file_service():
+    """File service shared fixture."""
+    service = {{ vars.service.class|base_name }}({{ vars.service_config.class|base_name }}())
+    return service
+
+@pytest.fixture(scope="module")
+def file_resource(file_service):
+    """File Resources."""
+    return FileResource({{ vars.resource_config.class|base_name }}(), file_service)
+
+
+@pytest.fixture(scope="module")
+def headers():
+    """Default headers for making requests."""
+    return {
+        "content-type": "application/json",
+        "accept": "application/json",
+    }
+
+@pytest.fixture(scope="module")
+def app_config(app_config):
+    app_config["FILES_REST_STORAGE_CLASS_LIST"] = {
+        "L": "Local",
+        "F": "Fetch",
+        "R": "Remote",
+    }
+    app_config["FILES_REST_DEFAULT_STORAGE_CLASS"] = "L"
+
+    return app_config

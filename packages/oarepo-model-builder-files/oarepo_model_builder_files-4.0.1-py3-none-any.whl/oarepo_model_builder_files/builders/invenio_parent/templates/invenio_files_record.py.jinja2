@@ -1,0 +1,11 @@
+from invenio_records_resources.records.systemfields import FilesField
+from invenio_records.systemfields import ModelField
+
+{{ vars.record.class|generate_import }}
+
+class {{ parent_record.record.class|base_name }}:
+    files = FilesField(store=False, file_cls={{ vars.record.class|base_name }})
+    bucket_id = ModelField()
+    bucket = ModelField(dump=False)
+
+{{ vars.record.class|base_name }}.record_cls = {{ parent_record.record.class|base_name }}
