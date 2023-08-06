@@ -1,0 +1,13 @@
+
+# In general, we need to be careful with the preamble. A common font for
+# sans serif LaTeX is cmbright. However, it does not support bold fontweights
+# so we use sfmath instead. 
+# pgf.texsystem: lualatex
+# pgf.preamble : \usepackage{amsmath} \usepackage{amssymb} \usepackage{sfmath} \usepackage{fontspec}
+
+# Sans-serif
+font.family : sans-serif
+font.sans-serif : Tex Gyre Heros
+
+# Latex with sans-serif fonts
+# mathtext.fontset : stixsans
