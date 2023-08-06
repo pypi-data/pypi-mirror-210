@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: betfair-parser
+Version: 0.2.6
+Summary: A betfair parser
+Author: Bradley McElroy
+Author-email: bradley.mcelroy@live.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: fsspec (>=2022)
+Requires-Dist: msgspec (>=0.15.1,<0.16.0)
+Description-Content-Type: text/markdown
+
+# betfair_parser
+
+A simple and fast betfair parser, built with [msgspec](https://github.com/jcrist/msgspec).
+
+### Releasing
+
+Releases are published automatically when a tag is pushed to GitHub.
+
+```
+# Set next version number
+export RELEASE=x.x.x
+
+# Create tags
+git commit --allow-empty -m "Release $RELEASE"
+git tag -a $RELEASE -m "Version $RELEASE"
+
+# Push
+git push upstream --tags
+```
