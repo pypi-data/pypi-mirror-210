@@ -1,0 +1,14 @@
+compress_pickle>=2.1.0
+
+[dev]
+pipreqs
+build
+twine
+requests
+
+[encryption]
+cryptography
+argon2-cffi
+
+[lz4]
+compress_pickle[lz4]
