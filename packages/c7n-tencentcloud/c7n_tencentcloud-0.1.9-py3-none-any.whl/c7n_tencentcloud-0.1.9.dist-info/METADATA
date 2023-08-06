@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: c7n-tencentcloud
+Version: 0.1.9
+Summary: Cloud Custodian - Tencent Cloud Provider
+Home-page: https://cloudcustodian.io
+License: Apache-2.0
+Author: Tencent Cloud
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: c7n (==0.9.27) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: pytz (==2023.3) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: retrying (==1.3.4) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: tencentcloud-sdk-python (==3.0.898) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: cos-python-sdk-v5 (==1.9.24) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: argcomplete (==3.0.8) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: boto3 (==1.26.139) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: docutils (==0.18.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: importlib-metadata (==5.2.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: jsonschema (==4.17.3) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: python-dateutil (==2.8.2) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: pyyaml (==6.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: tabulate (==0.9.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: urllib3 (==1.26.16) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: six (==1.16.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: requests (==2.27.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: crcmod (==1.7) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: pycryptodome (==3.18.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: xmltodict (==0.13.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: botocore (==1.29.139) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: jmespath (==1.0.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: s3transfer (==0.6.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: typing-extensions (==4.6.1) ; python_version >= "3.7" and python_version < "3.8"
+Requires-Dist: zipp (==3.15.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: attrs (==23.1.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: importlib-resources (==5.12.0) ; python_version >= "3.7" and python_version < "3.9"
+Requires-Dist: pkgutil-resolve-name (==1.3.10) ; python_version >= "3.7" and python_version < "3.9"
+Requires-Dist: pyrsistent (==0.19.3) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: certifi (==2023.5.7) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: charset-normalizer (==2.0.12) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: idna (==3.4) ; python_version >= "3.7" and python_version < "4.0"
+Project-URL: Bug Tracker, https://github.com/cloud-custodian/cloud-custodian/issues
+Project-URL: Documentation, https://cloudcustodian.io/docs
+Description-Content-Type: text/markdown
+
+# Tencent Cloud
+
+a provider for cloud custodian for usage with Tencent Cloud.
+
+# Installation
+
+
+```shell
+
+pip install c7n_tencentcloud
+```
+
+
+# Usage
+
+To execute policies against tencent cloud you'll need to provide api
+credentials for custodian to interact with the cloud apis.
+
+as a best practice create a sub account / cam user with api keys in the console.
+
+
+```shell
+
+export TENCENTCLOUD_SECRET_ID="xyz"
+export TENCENTCLOUD_SECRET_KEY="abc123"
+export TENCENTCLOUD_REGION="na-ashburn"
+custodian run -v policy.yml
+```
+
+region can also be passed on the cli via the `--region` flag, complete list of regions is here
+https://www.tencentcloud.com/document/product/213/6091
+
+
