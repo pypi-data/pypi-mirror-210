@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-22 21:49+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pretix_cwa/__init__.py:16 pretix_cwa/templates/pretix_cwa/settings.html:5
+msgid "CWA integration"
+msgstr ""
+
+#: pretix_cwa/__init__.py:18
+msgid ""
+"Integrating pretix with the Corona Warn App (CWA) allows you to generate CWA "
+"event QR codes for your event on demand and email them to attendees after "
+"check-in."
+msgstr ""
+
+#: pretix_cwa/forms.py:10
+msgid "QR code generation mode"
+msgstr ""
+
+#: pretix_cwa/forms.py:12
+msgid "New QR code per day"
+msgstr ""
+
+#: pretix_cwa/forms.py:16
+msgid ""
+"New QR code per time slot (should only be used if your venue is guaranteed "
+"to be empty after every time slot)"
+msgstr ""
+
+#: pretix_cwa/forms.py:24
+msgid "Location type"
+msgstr ""
+
+#: pretix_cwa/forms.py:26
+msgid "Unspecified"
+msgstr ""
+
+#: pretix_cwa/forms.py:27
+msgid "Retail"
+msgstr ""
+
+#: pretix_cwa/forms.py:28
+msgid "Food service (restaurant, hotel, bar)"
+msgstr ""
+
+#: pretix_cwa/forms.py:29
+msgid "Craft"
+msgstr ""
+
+#: pretix_cwa/forms.py:30
+msgid "Workplace"
+msgstr ""
+
+#: pretix_cwa/forms.py:31
+msgid "Educational Institution (school, lecture hall, library)"
+msgstr ""
+
+#: pretix_cwa/forms.py:32
+msgid "Public building (public office, museum)"
+msgstr ""
+
+#: pretix_cwa/forms.py:33
+msgid "Other permanent location"
+msgstr ""
+
+#: pretix_cwa/forms.py:34
+msgid "Cultural event (concert, exhibition, …)"
+msgstr ""
+
+#: pretix_cwa/forms.py:35
+msgid "Club activity (sports, general assemblies)"
+msgstr ""
+
+#: pretix_cwa/forms.py:36
+msgid "Private event"
+msgstr ""
+
+#: pretix_cwa/forms.py:37
+msgid "Worship service"
+msgstr ""
+
+#: pretix_cwa/forms.py:38
+msgid "Other event"
+msgstr ""
+
+#: pretix_cwa/forms.py:43
+msgid "Default check-in length in minutes"
+msgstr ""
+
+#: pretix_cwa/forms.py:44
+msgid "If kept empty, it will automatically be filled from the event"
+msgstr ""
+
+#: pretix_cwa/forms.py:49
+msgid "Send email with CWA check-in link after ticket check-in scan"
+msgstr ""
+
+#: pretix_cwa/forms.py:54
+msgid "Email Subject"
+msgstr ""
+
+#: pretix_cwa/forms.py:60
+msgid "Email Body"
+msgstr ""
+
+#: pretix_cwa/forms.py:77
+#, python-brace-format
+msgid "Available placeholders: {list}"
+msgstr ""
+
+#: pretix_cwa/signals.py:24
+msgid "CWA"
+msgstr ""
+
+#: pretix_cwa/signals.py:69
+msgid "Welcome! Remember to check in with Corona Warn App"
+msgstr ""
+
+#: pretix_cwa/signals.py:77
+#, python-brace-format
+msgid ""
+"Hello,\n"
+"\n"
+"now that you've arrived, we kindly ask you to check in with Corona Warn App "
+"by clicking the following link:\n"
+"\n"
+"{cwa_url}\n"
+"\n"
+"Have a great time!\n"
+"\n"
+"Best regards,\n"
+"Your {event} team"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:10
+msgid "QR code content"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:16
+msgid "Reminder email"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:22
+msgid "(Digital) signage"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:24
+msgid ""
+"The following links will always point to the currently valid QR code, which "
+"changes at least once a day (or more often, if configured above). Please do "
+"not share these URLs with your visitors to avoid abuse, but use them to "
+"print out the daily QR code or display it on a screen in your venue!"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:32
+msgid "QR code as a web site"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:37
+msgid ""
+"Use this link to dynamically show the current QR code on a screen. You can "
+"also easily print it using the print button in your browser!"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:47
+#: pretix_cwa/templates/pretix_cwa/settings.html:76
+#: pretix_cwa/templates/pretix_cwa/settings.html:105
+msgid "Copy"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:55
+#: pretix_cwa/templates/pretix_cwa/settings.html:84
+#: pretix_cwa/templates/pretix_cwa/settings.html:113
+msgid "Preview"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:62
+msgid "QR code as a PNG image"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:67
+#: pretix_cwa/templates/pretix_cwa/settings.html:96
+msgid ""
+"Use this link to dynamically embed the QR code into a digital signage system."
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:91
+msgid "QR code as a SVG image"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/settings.html:122
+msgid "Save"
+msgstr ""
+
+#: pretix_cwa/templates/pretix_cwa/signage.html:17
+msgid "Check in using Corona Warn App"
+msgstr ""
