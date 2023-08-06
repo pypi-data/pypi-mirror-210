@@ -1,0 +1,46 @@
+name: Warning Tests
+
+on: [push, pull_request]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  warning_test:
+    env:
+      ENV_NAME: pyuvdata_warning_test
+      PYTHON: 3.9
+    name: Warning Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON }}
+
+      - name: Install
+        run: |
+          CFLAGS="-DCYTHON_TRACE=1 -DCYTHON_TRACE_NOGIL=1" pip install -e .[dev]
+
+      - name: Environment Info
+        run: |
+          pip list
+          PYVER=`python -c "import sys; print('{:d}.{:d}'.format(sys.version_info.major, sys.version_info.minor))"`
+          if [[ $PYVER != ${{ env.PYTHON }} ]]; then
+            exit 1;
+          fi
+
+      - name: Run Tests
+        run: |
+          pytest -W error --pyargs pyuvdata --cov=pyuvdata --cov-config=.coveragerc --cov-report xml:coverage.xml
+
+      - uses: codecov/codecov-action@v3
+        if: success()
+        with:
+          token: ${{secrets.CODECOV_TOKEN}} #required
+          file: ./coverage.xml #optional

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=30.3.0",
+            "wheel",
+            "setuptools_scm!=7.0.0,!=7.0.1,!=7.0.2",
+            "oldest-supported-numpy",
+            "cython>=0.23"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+
+[darglint]
+docstring_style = "numpy"
+
+[tool.black]
+skip_magic_trailing_comma = true

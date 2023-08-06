@@ -1,0 +1,30 @@
+name: pyuvdata
+channels:
+  - conda-forge
+dependencies:
+  - astropy>=5.0.4
+  - astropy-healpix>=0.6
+  - astroquery>=0.4.4
+  - coverage
+  - cython>=0.23
+  - docstring_parser>=0.15
+  - h5py>=3.1
+  - hdf5plugin>=3.1.0
+  - numpy>=1.20
+  - pip
+  - pre-commit
+  - pyerfa>=2.0
+  - pypandoc
+  - pytest>=6.2.0
+  - pytest-cases>=3.6.9
+  - pytest-cov
+  - pytest-xdist
+  - python-casacore>=3.3.1
+  - pyyaml>=5.1
+  - scipy>=1.5
+  - setuptools_scm<7.0|>=7.0.3
+  - sphinx
+  - pip:
+      - lunarsky>=0.2.1
+      - novas
+      - novas_de405
