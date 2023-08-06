@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: transcriptionary
+Version: 0.1.1
+Summary: transcript plots
+Home-page: https://github.com/quinlan-lab/transcriptionary
+Author: Suchita Lulla
+Author-email: suchitalulla@gmail.com
+License: MIT
+Keywords: genome variants genes transcripts
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: bokeh (<3.0.0,>=2.4.3)
+Requires-Dist: geneimpacts (>=0.3.7)
+Requires-Dist: gffutils (>=0.11.1)
+Requires-Dist: numpy (>=1.23.5)
+Requires-Dist: pandas (>=1.5.2)
+Requires-Dist: pyyaml (>=6.0)
+Requires-Dist: cyvcf2 (>=0.20.0)
+
+Create interactive and customizable gene transcript visualizations
