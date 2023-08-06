@@ -1,0 +1,149 @@
+main.bulma-content {
+  ul,
+  ol {
+    li {
+      & > p:first-child {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
+
+      & > p:last-child {
+        margin-top: 0.25rem;
+      }
+    }
+  }
+
+  ul {
+    ul {
+      padding-left: 1.2rem;
+    }
+  }
+
+  ol {
+    padding-left: 1.2rem;
+
+    &.arabic {
+      list-style: decimal;
+    }
+
+    &.loweralpha {
+      list-style: lower-alpha;
+    }
+
+    &.upperalpha {
+      list-style: upper-alpha;
+    }
+
+    &.lowerroman {
+      list-style: lower-roman;
+    }
+
+    &.upperroman {
+      list-style: upper-roman;
+    }
+  }
+
+  .toctree-wrapper {
+    p.caption {
+      font-size: $size-4;
+      margin-bottom: 0em;
+    }
+
+    & > ul {
+      padding-left: 0;
+    }
+
+    li[class^="toctree-l"] {
+      list-style: none;
+      margin-bottom: 0.2em;
+
+      & > a {
+        list-style: none;
+        font-size: 1.1em;
+      }
+
+      & > ul {
+        list-style: none;
+        padding-inline-start: 1.5em;
+      }
+    }
+
+    // slightly bigger font for l1
+    .toctree-l1 > a {
+      font-size: $size-5;
+    }
+  }
+
+  .field-list,
+  .option-list,
+  dl:not([class]),
+  dl.simple,
+  dl.footnote,
+  dl.glossary {
+    dt {
+      font-weight: 500;
+      margin-top: 0.25rem;
+
+      + dt {
+        margin-top: 0;
+      }
+
+      .classifier::before {
+        content: ":";
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+      }
+    }
+
+    dd {
+      margin-left: 1.2rem;
+
+      > p:first-child,
+      ul {
+        margin-top: 0.125rem;
+      }
+
+      ul {
+        margin-bottom: 0.125rem;
+      }
+    }
+  }
+}
+
+article.article-container {
+  ul {
+    padding-left: 1.2rem;
+    list-style-type: disc;
+
+    & > li {
+      list-style-type: disc;
+    }
+
+    ul {
+      list-style-type: circle;
+
+      & > li {
+        list-style-type: circle;
+      }
+
+      ul {
+        list-style-type: square;
+
+        & > li {
+          list-style-type: square;
+        }
+      }
+    }
+  }
+}
+
+div.topic.contents,
+// Docutils <= 0.17
+nav.contents // Docutils >= 0.18
+{
+  // Style similarly to toctree
+  ul.simple {
+    list-style: none;
+    padding-left: 0;
+  }
+}
