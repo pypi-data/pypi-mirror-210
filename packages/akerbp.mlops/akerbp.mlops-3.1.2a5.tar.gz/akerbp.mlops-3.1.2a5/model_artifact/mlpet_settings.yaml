@@ -1,0 +1,16 @@
+datasets:
+  id_column: well_name
+  label_column: CALI
+  depth_column: DEPTH
+
+  keep_columns: # iterate on these
+    - GR
+    - BS
+    - CALI
+    - DEN
+    - NEU
+    - RDEP
+    - FORMATION_GROUP
+    - well_name
+  preprocessing_pipeline:
+    set_as_nan: {}
