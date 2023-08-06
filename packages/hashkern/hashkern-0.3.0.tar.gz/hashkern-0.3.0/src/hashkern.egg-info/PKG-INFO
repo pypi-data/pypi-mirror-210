@@ -1,0 +1,301 @@
+Metadata-Version: 2.1
+Name: hashkern
+Version: 0.3.0
+Summary: A tool for managing resources in a mono repository
+Author: Mouhsen Ibrahim
+Author-email: mouhsen.ibrahim@gmail.com
+Project-URL: Documentation, https://hashkern.readthedocs.io/en/latest/index.html
+Project-URL: Source, https://gitlab.com/hash-platform/hashkern
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Hash kern
+
+Hash kern is the core of the Hash platform, it allows you to define your resources in your Mono Repository and
+it can be used to manage building, testing, publishing, and deploying those resources to your own environments,
+Hash kern uses yaml files to define resources and their kinds along with the environments used in your project.
+It allows you also to specify dependencies between resources and in many cases it can automatically detect
+them. It uses a backend store for storing the state of your resources which include the hash of the resource's
+code along with the results from running actions on the resource in an env.
+
+Hash kern achieves all of this using well designed kern package, Dependency Graph and a set of plugins for defining
+resources, state storage backends and targets for executing some actions in enviornments (more about these later).
+
+## Quick Architecture Introduction
+
+The following diagram shows the most important packages and modules in Hash kern and their interactions
+
+![Hash kern Archirecture](assets/hash-kern.jpg "Hash kern Archirecture")
+
+* **kern Package** It contains modules for defining state, hash templates, actions, planning actions and executing them.
+It is designed to be independent from resources and it interacts with resources and store packages to manage resources and store their state.
+
+* **Resources Package** It contains the base class for all resources and it also defines the Environment resource, along with some built in resources and the targets used by resources to execute some actions in some environments.
+
+* **Store Package** This package contains the base for all store plugins and some built in plugins, it is used to store the state which results from running actions on resources in its own store which can be local file, GCP buckets, Digital Ocean spaces, etc....
+
+* **DAG Module** This module defines the dependency graph as directed asyclic graph, it is used to create a plan for running action x on resource y in enviornment z, which includes running actions on all of the resource's dependencies in the right order
+
+## Installing Hash kern
+
+### Install from PyPi
+
+Hash kern is published to PyPi [here](https://pypi.org/project/hashkern/), you can install it using this command
+
+```bash
+pip install hashkern
+```
+
+Then you can use the CLI like this
+
+```bash
+> hashc
+usage: hash [-h] [--storage STORAGE] [--config CONFIG] [--env ENV] {build,test,publish,deploy} ...
+
+A tool to build resources based on their hash and type
+
+positional arguments:
+  {build,test,publish,deploy}
+
+options:
+  -h, --help            show this help message and exit
+  --storage STORAGE     The storage system used default is Local File
+  --config CONFIG       The configuration file default is config.ini
+  --env ENV             An environment to run the action in it
+```
+
+### Install from source
+
+Install the required packages to clone the code, create virtual env and run the tests with make
+
+```bash
+sudo apt install git make python3 python3-venv python3-apt
+```
+
+Now clone the repository and cd into its directory
+
+```bash
+git clone https://gitlab.com/hash-platform/hash-kern.git
+cd hash-kern
+```
+
+Create a virtual env and activate it with these commands
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Now install hash kern in editable mode and all of its dependecnies with these commands
+
+```bash
+pip install -e .
+pip install -r requirements.txt
+```
+
+Now you can use the CLI located at `src/client/main.py`
+
+You can run tests with this command
+
+```bash
+make test
+```
+
+## Using the client
+
+Hash kern comes with a CLI interface which exposes its main functionality, which is running an action on a resource
+in an environment, you will see two directories in src called `cli` and `client`, `cli` is the client that used to interact
+with old hash kern implemnation, it will be deleted soon after moving all of its features to new client in `client` directory.
+
+To run the client first enable the virtual env with this command:
+
+```bash
+source venv/bin/activate
+```
+
+Print the help for the client with this command
+
+```bash
+> python src/client/main.py
+
+usage: hash [-h] [--storage STORAGE] [--config CONFIG] [--env ENV] {build,test,publish,deploy} ...
+
+A tool to build resources based on their hash and type
+
+positional arguments:
+  {build,test,publish,deploy}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --storage STORAGE     The storage system used default is Local File
+  --config CONFIG       The configuration file default is config.ini
+  --env ENV             An environment to run the action in it
+```
+
+The client takes three options:
+
+* `--storage` this one is used to select a storage backend for the state, the options for storage backend are in the config file.
+* `--config` this option is used to select a config file for storage backends, it is an INI file, its default value is `config.ini`
+* `--env` this option is used to select the environment name where the action will be executed, its default value is `None`, this
+  value is acceptabe for some actions on some resources and it is not acceptable for some other actions, the environment
+  must exist in the repository otherwise we get an error.
+
+The format for config file is as follows:
+
+```ini
+[LocalFile]
+output = hash_test/storage
+organization = hashio
+project = hash
+```
+
+Here `LocalFile` is the name of storage backend, and everything inside are options for the backend, these options are different
+from one backend to the other except for `organization` and `project` which are required for all storage backends.
+
+For now they are used to select paths for the resources specific to one project in an organization, more about these will
+be added later.
+
+The LocalFile backend requires one other option that is `output` directory for storing the state inside it.
+
+We currently have three sub-commands for the CLI, these are `build`, `test`, `publish` and `deploy` all of these
+commands take one argument that is the path to the resource's file, they accept directory argument if the name
+of the resource's file is `resource.yaml`, otherwise you need to use a path to the file itself.
+
+For example to build resource in path `services/A` in environment `development` use this command
+
+```bash
+python src/client/main.py --env development build services/A
+```
+
+Assuming the name of resource's file is `resource.yaml` if it is `resource.A.yaml` then use this command
+
+```bash
+python src/client/main.py --env development build services/A/resource.A.yaml
+```
+
+More features will be added later to the CLI according to our Road Map, and the old CLI code will be removed.
+
+## Demos
+
+The demos with their guides and code are available [here](https://gitlab.com/hash-platform/getting-started-demos)
+
+## Hash kern principles and goals
+
+As with any successfull open source project, it must follow a strict set of rules and principles to keep it growing
+and successfull, here at hash kern we have established a set of rules and principles to follow when developing, they
+help us when discussing features and where to implement those features, in the kern, resources, store or dag etc...
+
+* **Simplicity is a tool to achieve something and not a target by itself**
+
+  At hash kern we use simplicity as a tool when implementing features, we DO NOT care about simplicity when planning
+  the features because we believe that if we refuse to have feature X because it is hard or complex then someone else
+  will do it in his own simple way and outsmart use, so we make sure that any needed feature for our goals and developers
+  is implemented in the best simple way no matter how hard/complex is the actual feature is.
+
+* **Trust your users and give them freedom**
+
+  Here we mean by users, the developers who will use hash kern to manage their own resources, these are the devs who
+  will write the resource yaml files and the code for their resources wether it is go code, terraform, yaml or Dockerfiles etc...
+  We SHOULD NOT judge the users or make decessions on their behalf. However, we have to help them to protect them selves from
+  any mistakes they may make, we will work to implement this later with project and organizational constraints.
+
+* **Hash kern should be independent from resources**
+
+  The kern package should not contain anycode that is specific to one resource and all of its functionality must be tested
+  using a Fake resource. We should try to keep the kern as simple as possible and also well tested. However, it is sometimes
+  preferable to implement the complex features in the kern because this implementation is written only once and tested well
+  so resource plugins' developers and users can benefit from those trusted features in the kern and not have to implement
+  them on their own in their resources which might contain more bugs and be less tested.
+
+* **The kern is the best place to implement complex features**
+
+  As we said in the previous point, when we have a complex feature we need to consider implemnting it in the kern, if this
+  feature could be usefull for many resources, the next is to implement the feature in the resources plugin itself, if this
+  feature cannot be useful for all resources, and lastly is to leave it for users to implement it in their own resources.
+
+Now we talked about our rules and principles, let's talk about our goals
+
+* **Hash kern should be able to manage your resources everywhere, wether in CI or on your local machine**
+
+Hash kern uses a state storage which can be shared among developers, this storage along with code hash
+is used to determine which resources needs building, testing, publishing or deploying to run an action
+on a single resource, so the input is the action, resource name and environment name, and the output is
+a plan to run this action on this resoucre in this environment while respecting dependencies. Hash kern
+doesn't need git data or a list of changed files to run just your resource code and the state storage,
+determining what needs to be done given a list of changes in a Merge Request for example will be the
+task of hash CI to be implemented later which will work along side with hash kern to give you the
+best CI experience in a mono repository.
+
+* **You can have dynamic levels of abstractions using your resources**
+
+People often ask about the right amount of abstraction, while we at hash kern would like to give you the freedom
+to have dynamic levels of abstractions based on your resources and mabe later you can help us or help others
+to get the right amount of abstraction. Your resources might be as simple as compiling a go code, generating
+manifests and pushing a docker image all of your choice, or you can imbed the manifests and your Dockerfile
+in the resources plugin's source code or even more implement creating the right storage buckets, databases
+and granting permissions for your service in your plugin's source code, it is up to you to decide what your
+developers need to worry about and manage them selves.
+
+* **DO NOT repeat the same action using the same inputs and state and expect a different results**
+
+That is the actual defenition of insanity, we try our best at hash kern not to re-run the actions on resources
+if they are not needed, this is implemented by checking the hash of the resource, the hashes of deps and whether
+this action was run before in this env or not if we spot any differences then we need to re-run the action. However,
+sometimes the action must be re-run even if those conditions are not met such as changing the version of go compiler,
+that's why we enable the resources to force re-running the action even if all of the previous conditions are False.
+
+* **DO NOT repeat the values that change at the same time**
+
+Hash templates help us to re-use outputs from other resources in any resource, so we don't need to hard code this
+output in our resources, this adds a dependency on the other resource.
+
+## Road Map
+
+So far Hash kern has the most basic features to manage your resources in a mono repository and it also contains
+some built-in resources which help you to run your services and deploy the infrastructure needed for them, these
+resources are still limited and very basic.
+
+Our Road Map is the fllowing
+
+* Improve the built-in resources that we already have and add more of them.
+* Improve the CLI output and options, add an option to do a plan only and save the plan to a file that can be executed later.
+* Test the remote state storage backends for performance.
+* Add logging, metrics and tracing to different hash kern components so we can debug better later.
+* Test hash kern in real world use cases and add more features accordingly.
+* Evaluate our graph implementation and add more tests to it.
+
+## Contribution Guide
+
+We highly welcome any contributions to Hash kern as it helps us to improve it and test it more before it is declared as production ready.
+
+You can check open issues [here](https://gitlab.com/hash-platform/hash-kern/-/issues), you can follow the installation guide
+above to get sarted with development, hash kern is written in python so you can install it in development mode and get started
+quickly, it is tested using python 3.7, 3.8, 3.9, 3.10 and 3.11.
+
+Make sure to install the latest version of python, create the virtual env and get started with one of the issues.
+
+You can run the test suite after you are finished implemneting the feature or fix using this command
+
+```bash
+make test
+```
+
+## Release versions
+
+We use a tag based releases, the versions correspond to the tags. [Semantic versioning](https://semver.org) is used to create tags, all
+versions before the first stable release `1.0.0` might include backward incompatible changes.
+
+To create a new version you simply increase the version argument in setup.py, create a merge request to merge it with main
+and then create a tag that corresponds to the new version number.
+
+The [CHANGLOG.md](https://gitlab.com/hash-platform/hash-kern/-/blob/main/CHANGELOG.md) contains all changes between releases and their release dates.
+
+More detailed contribution guide will be shared later :)
