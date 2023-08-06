@@ -1,0 +1,39 @@
+# Use this config file to create a conda development environment. This
+# environment installs liionpack in editable mode which is useful for
+# development of the liionpack source code. General users should install
+# liionpack via pip.
+
+# Create a conda environment named lipack
+# $ cd liionpack
+# $ conda env create --file environment.yml
+
+# Activate the environment
+# $ conda activate lipack
+
+# Exit the environment
+# $ conda deactivate
+
+# Delete the environment
+# $ conda env remove --name lipack
+
+name: lipack
+
+dependencies:
+  - python=3.9.*
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - ipython
+  - jupyter
+  - sympy
+  - pip
+  - pip:
+    - pybamm>=23.3
+    - ipdb
+    - ruff
+    - mkdocstrings-python-legacy
+    - mkdocs-material
+    - mkdocs-jupyter
+    - nbconvert
+    - -e .
