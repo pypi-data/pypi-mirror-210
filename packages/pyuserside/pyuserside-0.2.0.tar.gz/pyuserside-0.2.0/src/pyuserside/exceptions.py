@@ -1,0 +1,2 @@
+class UsersideException(BaseException):
+    pass
