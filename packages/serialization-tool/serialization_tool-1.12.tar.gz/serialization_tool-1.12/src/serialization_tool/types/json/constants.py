@@ -1,0 +1,6 @@
+TYPE = "TYPE"
+VALUE = "VALUE"
+
+ARRAY_IN_ARRAY_REGEX = "\"VALUE\": \[\["
+ARRAY_REGEX = "\"VALUE\": \["
+VALUE_REGEX = "\"VALUE\": \{"
