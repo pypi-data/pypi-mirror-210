@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: quarchCalibration
+Version: 1.1.4
+Summary: This packpage offers calibration for Quarch Technology modules.
+Author: Quarch Technology ltd
+Author-email: support@quarch.com
+License: Quarch Technology ltd
+Keywords: quarch quarchpy calibration torridon
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: System
+Classifier: Topic :: System :: Power (UPS)
+Description-Content-Type: text/x-rst
+
+=============================
+Changelog (QuarchCalibration)
+=============================
+QuarchCalibration
+-----------------
+*QuarchCalibration is a python package that allows calibration of Quarch modules.*
+
+
+Change Log
+----------
+
+1.1.4
+-----
+- fixes for edsff calibration
+- fixes for modules with no noise test
+
+1.1.3
+-----
+- Added QTL1944_06
+- Added Noise Test.
+
+1.1.2
+-----
+- Added QTL2887  Gen5 EDSFF Fixture (E1)
+- Added QTL2888  GEN5 EDSFF Fixture (E3)
+
+1.1.1
+-----
+- Added QTL2674 EDSFF Fixture (E3)
+
+1.1.0
+-----
+- Added QTL2788 Gen 5 SFF PAM Fixture calibration
+
+1.0.0
+-----
+- Added QTL2673 EDSFF Fixture (E1)
+- fixes for import bug
+
+0.0.0
+-----
+- Initial separation of calibration from QuarchPy
