@@ -1,0 +1,52 @@
+{% extends 'blog/blog.html' %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% load post_extras %}
+{% load solo_tags %}
+{% comment %} 标题 {% endcomment %}
+{% block title %}<title>{% get_solo 'tbase_config.General' as site_config %}{{site_config.site_title}}</title>{% endblock %}
+
+
+{% block top_nav %}
+
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% comment %} article_list start {% endcomment %}
+ {% block article_list %}
+    <!--object_list start-->
+    {% for detail in object_list %}
+                <article class="w-full flex flex-col shadow my-4">
+                    <!-- Article Image -->
+                    {% comment %} <div href="#" class="hover:opacity-75">
+                        <img src="{% static 'images/photo-1578707399887-e6d183c9e598.jpeg' %}">
+                    </div> {% endcomment %}
+
+
+                    <div class="bg-white flex flex-col justify-start p-6">
+                        <a href="{% url 'detail_view' detail.pk %}" class="text-3xl font-bold hover:text-gray-700 pb-4">{{detail.title|truncatechars:48}}</a>
+                        <p  class="text-sm pb-3">
+                            {% comment %} By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>,  {% endcomment %}
+                            Published on {{detail.created_on}}
+                        </p>
+
+                        <p class="pb-6">
+                            {% comment %} 限制文本长度 {% endcomment %}
+                            {{detail.content|truncatechars:128}}
+                        </p>
+    {% tags detail.tags.all%}
+    <a href="{% url 'detail_view' detail.pk %}" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
+    </div>
+    </article>
+    {% endfor %}
+     <!--object_list end-->
+
+{% endblock %}
+{% comment %} article_list end {% endcomment %}
+
+
+
+
+
