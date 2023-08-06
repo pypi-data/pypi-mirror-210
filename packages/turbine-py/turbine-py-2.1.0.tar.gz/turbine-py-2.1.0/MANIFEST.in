@@ -1,0 +1,5 @@
+graft pkg/turbine/src/function_deploy/
+include pkg/turbine/src/function_deploy/Dockerfile
+
+global-exclude *.py[co]
+global-exclude __pycache__
