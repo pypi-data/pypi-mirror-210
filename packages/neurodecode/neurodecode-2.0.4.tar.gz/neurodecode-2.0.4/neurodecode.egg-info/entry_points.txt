@@ -1,0 +1,15 @@
+[console_scripts]
+nd_add_lsl_events = neurodecode.utils.add_lsl_events:main
+nd_convert2fif = neurodecode.utils.convert2fif:main
+nd_decoder = neurodecode.decoder.decoder:main
+nd_fif2mat = neurodecode.utils.fif2mat:main
+nd_fif_info = neurodecode.utils.fif_info:main
+nd_fif_resample = neurodecode.utils.fif_resample:main
+nd_parse_features = neurodecode.analysis.parse_features:main
+nd_stream_player = neurodecode.stream_player.stream_player:main
+nd_stream_recorder = neurodecode.stream_recorder.stream_recorder:main
+nd_stream_viewer = neurodecode.stream_viewer.stream_viewer:main
+nd_test_mi = neurodecode.protocols.mi.test_mi:main
+nd_tfr_export = neurodecode.analysis.tfr_export:main
+nd_train_mi = neurodecode.protocols.mi.train_mi:main
+nd_trainer = neurodecode.decoder.trainer:main
