@@ -1,0 +1,8 @@
+include LICENSE
+include setup_constants.py
+
+recursive-exclude tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include *.py *.pyi *.jpg *.png *.gif
