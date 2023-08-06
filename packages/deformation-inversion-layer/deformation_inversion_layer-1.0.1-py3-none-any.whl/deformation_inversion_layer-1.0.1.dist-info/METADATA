@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: deformation-inversion-layer
+Version: 1.0.1
+Summary: Deformation inversion layer is a neural network layer for inverting deformation fields
+Author: Joel Honkamaa
+License: MIT License
+        
+        Copyright (c) 2023 Joel Honkamaa
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/honkamj/deformation-inversion-layer
+Keywords: deep learning,neural networks,fixed point iteration,deep equilibrium networks,image registration,deformation,coordinate mapping,pytorch
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch (>=1.10)
+
+# Deformation inversion layer
+
+*Deformation inversion layer* is a neural network layer for inverting deformation fields develped as part of SITReg, a deep learning intra-modality image registration arhitecture fulfilling strict symmetry properties.
+
+## Installation
+
+Install using pip by running the command
+
+    pip install deformation-inversion-layer
+
+## Requirements
+
+- `Python 3.6+`
+- `PyTorch 1.10+`
+
+## Source code
+
+Code repository can be found at GitHub [https://github.com/honkamj/deformation-inversion-layer](https://github.com/honkamj/deformation-inversion-layer)
+
+## Documentation
+
+For documentation, see the GitHub repository.
+
+## Publication
+
+If you use deformation inversion layer, please cite the SITReg paper. Details for citing can be found at the GitHub repository.
+
+## Acknowledgments
+
+[Tutorial](http://implicit-layers-tutorial.org/) by Zico Kolter, David Duvenaud, and Matt Johnson was very helpful in implementing the layer.
+
+## License
+
+Deformation inversion layer is released under the MIT license.
