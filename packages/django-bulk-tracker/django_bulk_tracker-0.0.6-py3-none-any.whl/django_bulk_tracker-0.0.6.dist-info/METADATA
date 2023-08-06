@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: django-bulk-tracker
+Version: 0.0.6
+Summary: A Django app that allows you to have more control over bulk operations.
+Home-page: https://github.com/hassaanalansary/django-bulk-tracker
+Author: Hassaan Alansary
+Author-email: hassaanalansary@yahoo.com
+License: Mozilla Public License 2.0
+Keywords: django,django-bulk-tracker,bulk-update,bulk-create,signals,django-signals
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 4.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: Django (>=3.2)
+Requires-Dist: django-model-utils (>=4.0.0)
+Provides-Extra: testing
+Requires-Dist: pytest (>=7.2.1) ; extra == 'testing'
+Requires-Dist: tox (>=4.4.5) ; extra == 'testing'
+
+django-bulk-tracker
+===============
+
+[![Build Status](https://github.com/hassaanalansary/django-bulk-tracker/actions/workflows/tests.yml/badge.svg)](https://github.com/hassaanalansary/django-bulk-tracker/actions)
+
+
+
+
+Run tests
+==========
+```shell
+pip install -r requirements_dev.txt
+pytest
+```
+
+Contribute
+----------
+
+If you have great ideas for django-bulk-tracker, or if you like to improve something,
+feel free to fork this repository and/or create a pull request. 
+I'm open for suggestions. 
+If you like to discuss something with me (about django-bulk-tracker), please open an issue.
+
+
+#### GitHub repository: https://github.com/hassaanalansary/django-bulk-tracker
+#### issue tracker: https://github.com/hassaanalansary/django-bulk-tracker/issues
