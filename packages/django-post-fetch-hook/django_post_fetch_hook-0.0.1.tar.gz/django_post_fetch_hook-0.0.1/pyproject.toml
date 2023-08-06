@@ -1,0 +1,156 @@
+[tool.poetry]
+name = "django-post-fetch-hook"
+version = "0.0.1"
+description = "Modify data fetched from a database after it has been fetched but before it has been cached in django's result cache."
+authors = [
+    "Matti Lamppu <lamppu.matti.akseli@gmail.com>",
+]
+packages = [
+    { include = "post_fetch_hook" },
+]
+license = "MIT"
+readme = "README.md"
+homepage = "https://mrthearman.github.io/django-post-fetch-hook"
+repository = "https://github.com/MrThearMan/django-post-fetch-hook"
+keywords = [
+    "django",
+    "post",
+    "fetch",
+    "hook",
+    "database",
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+include = [
+    "README.md",
+    "LICENSE",
+]
+exclude = [
+    "tests",
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/MrThearMan/django-post-fetch-hook/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4"
+Django = ">=3.2"
+
+[tool.poetry.group.test.dependencies]
+pytest = "7.3.0"
+coverage = "6.5.0"
+pytest-django = "4.5.2"
+pre-commit = "3.2.2"
+tox = "4.4.12"
+tox-gh-actions = "3.1.0"
+coveralls = "3.3.1"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "1.4.2"
+pymdown-extensions = "9.11"
+mkdocs-mermaid2-plugin = "0.6.0"
+
+[tool.poetry.group.lint.dependencies]
+mypy = "1.2.0"
+django-stubs = "1.16.0"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+fix = true
+line-length = 120
+extend-exclude = [
+    "tests/*",
+]
+typing-modules = [
+    "post_fetch_hook.typing",
+]
+select = [
+    "F",  # pyflakes
+    "E",  # pycodestyle errors
+    "I",  # isort
+    "S",  # flake8-bandit
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+    "T",  # flake8-print
+    "W",  # pycodestyle warnings
+]
+ignore = [
+]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = "True"
+warn_unused_configs = "True"
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+
+[tool.django-stubs]
+django_settings_module = "tests.django.settings"
+
+[tool.coverage.run]
+relative_files = true
+
+[tool.coverage.report]
+omit = [
+    "tests/*",
+    "docs/*",
+    ".venv/*",
+    ".tox/*",
+]
+exclude_lines = [
+    "if TYPE_CHECKING:",
+    "except ImportError:",
+    "pragma: no cover",
+]
+
+[tool.pytest.ini_options]
+addopts = "-vv -s --log-cli-level=INFO"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py{39, 310, 311}-django{32, 40, 41, 42}
+isolated_build = true
+
+[gh-actions]
+python =
+    3.9: py39
+    3.10: py310
+    3.11: py311
+
+[testenv]
+allowlist_externals =
+    poetry
+setenv =
+    PYTHONPATH = {toxinidir}
+    DJANGO_SETTINGS_MODULE = tests.django.settings
+deps =
+    django32: Django >=3.2,<4.0
+    django40: Django >=4.0,<4.1
+    django41: Django >=4.1,<4.2
+    django42: Django >=4.2,<4.3
+
+    pytest
+    coverage
+    pytest-django
+commands =
+    coverage run -m pytest -vv -s --log-cli-level=INFO
+"""
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
