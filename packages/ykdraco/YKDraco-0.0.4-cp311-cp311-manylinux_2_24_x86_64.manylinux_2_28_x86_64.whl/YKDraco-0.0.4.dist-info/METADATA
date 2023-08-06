@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: YKDraco
+Version: 0.0.4
+Summary: Decode I3S geometry with draco compressed
+Author: Lun A
+Author-email: 517308447@qq.com
+License: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# YKDraco
+
+```python
+import YKDraco
+
+file = "1.bin"
+
+# read I3S geometry file with draco compressed
+with open(file, "rb") as f:
+    content = f.read()
+
+# parse draco content
+draco = YKDraco.decode(content)
+# points, numpy array, format as (x, y, z)
+print(f"The count of vertex: {len(draco.points)}")
+# normal, numpy array, format as (x, y, z)
+print(f"The count of normal: {len(draco.normals)}")
+# colors, numpy array, format as (r, g, b, a)
+print(f"The count of colors: {len(draco.colors)}")
+# uv, numpy array, format as (u, v)
+print(f"The count of uv0: {len(draco.tex_coord)}")
+```
+
+I3S draco geometry file decoder
+
+
+
+## Installation
+
+Binary wheels are available for users with Python >= 3.6 and pip >= 20.
+
+Installation from source requires Python >= 3.6, pip >= 10, and a C++ compiler that is fully compatible with C++11.
+
+It supports Linux, OS X, and Windows. Numpy is required.
+
+```bash
+pip install YKDraco
+```
