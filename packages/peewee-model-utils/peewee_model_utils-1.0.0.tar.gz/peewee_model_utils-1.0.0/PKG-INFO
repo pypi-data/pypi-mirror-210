@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: peewee-model-utils
+Version: 1.0.0
+Summary: 
+Author: Rahul Mondal
+Author-email: rahul.mondal@ingrammicro.com
+Requires-Python: >=3.7,<4
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: peewee (==3.15.4)
+Description-Content-Type: text/markdown
+
+# Peewee Model Utils
+
+
+## Run tests
+
+`peewee-model-utils` uses [poetry](https://python-poetry.org/) for dependencies management and packaging.
+
+To run the `peewee-model-utils` tests suite run:
+
+```
+$ pip install poetry
+$ poetry install
+$ poetry run pytest
+```
+
+
+## License
+
+`peewee-model-utils` is released under the [Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
