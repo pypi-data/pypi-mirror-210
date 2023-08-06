@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: tkmfly
+Version: 0.1.0b1
+Summary: 
+Author: XiangQinxi
+Author-email: 1379773753@qq.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: pmw (>=2.1.1,<3.0.0)
+Description-Content-Type: text/markdown
+
+# tkMiniFly
+![PyPI - Downloads](https://img.shields.io/pypi/dm/tkmfly?color=7cf6b9&style=for-the-badge)
+![PyPI](https://img.shields.io/pypi/v/tkmfly?color=%234cc2ff&style=for-the-badge)
+
+![Require](https://img.shields.io/badge/Requires-Tkinter-8be8ff?&style=for-the-badge)
+![Require](https://img.shields.io/badge/Requires-Pmw-99ebff?&style=for-the-badge)
+
+## 介绍
+继`tkfly`之后，我发现库文件大了起来，就不会再上传到中国国内的部分镜像内了。如果想要使用轻量`tkfly`就推荐使用这个。
+我将`tkfly`的`巨型库`，`轻量库`隔开制作出了`tkfly 0.1.0b1^`和`tkminifly 0.1.0b1^`
+
+## 使用
+### FlySimpleTree
+```python
+from tkmfly import FlySimpleTree
+from tkinter import Tk
+
+root = Tk()
+
+tree = FlySimpleTree()
+tree.add(0, "1")
+tree.add(0, "2")
+tree.add(2, "2-1")
+tree.add(2, "2-2")
+tree.add(2, "2-3")
+tree.add(0, "3")
+tree.add(6, "3-1")
+tree.add(7, "4-1")
+tree.pack(fill="both", expand="yes")
+
+root.mainloop()
+```
