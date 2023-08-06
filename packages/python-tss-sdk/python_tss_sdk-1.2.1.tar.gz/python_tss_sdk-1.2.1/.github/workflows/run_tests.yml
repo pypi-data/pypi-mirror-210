@@ -1,0 +1,35 @@
+name: Run Tests
+
+on: [pull_request]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    environment: testing
+    strategy:
+      matrix:
+        python: [3.8, 3.9, "3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install Tox
+        run: |
+          python -m pip install --upgrade pip
+          pip install tox
+
+      - name: Run Tox
+        # Run tox using the version of Python in `PATH`
+        run: tox -e py
+        env:
+          TSS_USERNAME: ${{ secrets.TSS_USERNAME }}
+          TSS_PASSWORD: ${{ secrets.TSS_PASSWORD }}
+          TSS_TENANT: ${{ secrets.TSS_TENANT }}
+          TSS_SECRET_ID: ${{ secrets.TSS_SECRET_ID }}
+          TSS_SECRET_PATH: ${{ secrets.TSS_SECRET_PATH }}
+          TSS_FOLDER_ID: ${{ secrets.TSS_FOLDER_ID }}
