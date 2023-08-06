@@ -1,0 +1,1 @@
+This is a caching library that generates a MD5 hash for a JSON payload and caches it as a key-value pair in RedisQ.
