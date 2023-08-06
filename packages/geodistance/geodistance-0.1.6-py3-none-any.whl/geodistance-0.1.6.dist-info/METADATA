@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: geodistance
+Version: 0.1.6
+Summary: Distance calculation library
+Home-page: https://geodistance.readthedocs.io/
+Author: Adebayo Adeoye
+Author-email: adeoyeadebayo18@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+A library that is used to calculate the distance between 2 coordinates \ **Installation** \ `pip install geodistance` \ **Get Started** \ Calculating distance between 2 coordinates \ `from geodistance import Geodistance` \ `length = Geodistance().distance(42.546245, 1.601554, 23.424076, 53.847818)` \ `print(length)`
+
+
