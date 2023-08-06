@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: d20-communications
+Version: 0.0.5a4
+Summary: A small ORM for multimodel DBs
+Home-page: https://github.com/d20services/python_arango_communications_module
+Author: Alex Sánchez Vega
+Author-email: alex@d20.services
+Project-URL: Bug Tracker, https://github.com/d20services/python_arango_communications_module/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyArango
+Requires-Dist: datetime
+Requires-Dist: d20-orm (>=2.0)
+Requires-Dist: requests
+Requires-Dist: sendgrid
+Requires-Dist: exponent-server-sdk
+Requires-Dist: Twilio
+
+# python_arango_communications_module
+Simple communications engine
