@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: autoscale-queue-celery
+Version: 0.2.0
+Summary: Produces Celery queue metrics for the Autoscale.app Agent
+Home-page: https://autoscale.app
+License: MIT
+Keywords: python,queue,worker,autoscale,celery
+Author: Michael R. van Rooijen
+Author-email: support@autoscale.app
+Requires-Python: >=3.8,<3.12
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: celery (>=5.0,<6)
+Requires-Dist: redis (>=4.1,<6)
+Project-URL: Repository, https://github.com/autoscale-app/python-queue-celery
+Description-Content-Type: text/markdown
+
+# Python Queue Celery (Autoscale.app)
+
+Produces [Celery] queue metrics for the [Autoscale.app] [Agent].
+
+## Installation
+
+Install the package:
+
+    pip install autoscale-queue-celery
+
+## Usage
+
+Instructions are provided during the autoscaler setup process on [Autoscale.app].
+
+## Development
+
+Prepare environment:
+
+    pip install poetry
+    poetry install
+
+Boot the shell:
+
+    poetry shell
+
+See Paver for relevant tasks:
+
+    paver --help
+
+## Release
+
+1. Update `pyproject.toml` and `__init__.py`
+2. Create and push a new tag (`v.1.2.3`)
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/autoscale-app/python-queue-celery
+
+[Autoscale.app]: https://autoscale.app
+[Agent]: https://github.com/autoscale-app/python-agent
+[Celery]: https://docs.celeryq.dev/en/stable/
+
