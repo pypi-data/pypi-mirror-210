@@ -1,0 +1,14 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ubami"
+authors = [{name = "Chris Coleman", email = "chris@chriscoleman.uk"}]
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+dependencies = ["click", "httpx"]
+
+[project.scripts]
+ubami = "ubami:main"
