@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block headline %}
+<h1>Welcome to your LoopHost</h1>
+{% endblock%}
+
+{% block head %}
+{{ super() }}
+<meta http-equiv="refresh" content="60;URL='/'" /> 
+<style>
+
+body {
+    font-family: monospace;
+    background-color: black;
+    color: green;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+{{ super() }}
+<main>
+
+  <div class="container px-5 mt-2 mb-5 font-monospace">
+
+{% include "partials/apptable.html" %}
+
+<div class="col-sm-8 m-2">    
+<h2>Add a new application</h2>
+<form method="get" onsubmit="event.preventDefault(); window.location.href = `https://{{fqdn}}/config/${document.getElementById('new_app_field').value}`;">
+App name (no spaces, please): <input id="new_app_field" type="text" name="new_app"/> 
+<input type="submit"  value="Set it up"/>
+</form>
+</div>
+
+</div>
+</main>
+
+{% endblock %}
