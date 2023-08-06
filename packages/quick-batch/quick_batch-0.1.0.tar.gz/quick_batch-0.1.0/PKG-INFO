@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: quick-batch
+Version: 0.1.0
+Summary: ultra simple python + docker scaling for quick batch processing
+Home-page: https://github.com/jermwatt/quick_batch
+License: MIT
+Author: Jeremy Watt
+Author-email: jermwatt@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: docker (>=6.1.2,<7.0.0)
+Requires-Dist: fire (>=0.5.0,<0.6.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Description-Content-Type: text/markdown
+
+# quick_batch 
+
+```python 
+python quick_batch --config=config.yaml
+
+python quick_batch/main.py --config=${PWD}/tests/test_configs/test_quick_batch.yaml
+```
