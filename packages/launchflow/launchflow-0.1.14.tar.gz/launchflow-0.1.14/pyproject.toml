@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "launchflow"
+version = "0.1.14"
+authors = [
+    { name = "Caleb Van Dyke", email = "caleb@launchflow.com" },
+    { name = "Josh Tanke", email = "josh@launchflow.com" },
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "buildflow",
+    "fastapi",
+    "google-auth",
+    "httpx[http2]",
+    "nest-asyncio",
+    "pydantic",
+    "pydata-google-auth",
+    "pyaml",
+    "requests",
+    "ray",
+    "urwid",
+    "uvicorn",
+    "typer[all]",
+    "websockets",
+    "websocket-client",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx",
+    "pytest",
+    "flake8",
+    "requests-mock",
+    "setuptools",
+    "wheel"
+]
+
+[project.scripts]
+launch = "launch.main:main"
+
+[tool.setuptools.packages]
+find = {}  # Scan the project directory with the default parameters
+
+[tool.setuptools]
+py-modules = ["custom_cmds"]
+
+[tool.setuptools.cmdclass]
+build = "custom_cmds.InstallCustomDeps"
+
+[tool.setuptools.package-data]
+launch = [
+    'prometheus/linux/prometheus',
+    'prometheus/linux/prometheus.yml',
+    'prometheus/mac/prometheus',
+    'prometheus/mac/prometheus.yml',
+]
