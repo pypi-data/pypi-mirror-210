@@ -1,0 +1,35 @@
+# Gmtestplugin
+
+    大家软件Python插件定制私有库开发项目
+
+## change logs
+
+v0.0.6 
+ 修改gm_request_utils的请求参数verfiy的默认值,由NONE调整成False
+
+v0.0.5
+
+ 增加gm_assert_utils：assert验证封装
+
+ 增加gm_excel_utils: excel工具类封装
+
+ 增加gm_stock_enum: 增加采购数据枚举类
+
+ 增加gm_yaml_process_utils: 增加yaml工具类
+
+ 增加gm_request_utils：增加requests请求封装类	
+
+v0.0.4
+  增加gm_prase_response.py: 解析request请求返回值
+  增加gm_timestamp.py： 生成测试的时间戳
+
+v0.0.3 
+  优化目录结构
+  china_address.py 
+  getrandomdata.py -- 生成随机数据
+  mysqlconn.py -- 数据库连接池
+v0.0.2 
+  try something
+
+v0.0.1 
+  mydemo-package 实验项目
