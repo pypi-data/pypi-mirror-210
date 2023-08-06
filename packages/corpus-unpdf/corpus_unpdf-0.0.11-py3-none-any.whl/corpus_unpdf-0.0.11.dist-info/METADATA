@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: corpus-unpdf
+Version: 0.0.11
+Summary: Parse Philippine Supreme Court decisions issued in PDF format as text.
+Home-page: https://lawsql.com
+License: MIT
+Author: Marcelino G. Veloso III
+Author-email: mars@veloso.one
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Legal Industry
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Typing :: Typed
+Requires-Dist: loguru (>=0.6.0,<0.7.0)
+Requires-Dist: opencv-python (>=4.7.0.72,<5.0.0.0)
+Requires-Dist: pdfplumber (>=0.7.6,<0.8.0)
+Requires-Dist: pillow (>=9.4.0,<10.0.0)
+Requires-Dist: pytesseract (>=0.3.10,<0.4.0)
+Requires-Dist: python-dotenv (>=1.0,<2.0)
+Project-URL: Documentation, https://justmars.github.io/corpus-unpdf
+Project-URL: Repository, https://github.com/justmars/corpus-unpdf
+Description-Content-Type: text/markdown
+
+# corpus-unpdf
+
+![Github CI](https://github.com/justmars/corpus-unpdf/actions/workflows/main.yml/badge.svg)
+
+Parse Philippine Supreme Court decisions issued in PDF format as text; _hopefully_, this can be utilized in the [LawSQL dataset](https://lawsql.com).
+
+## Documentation
+
+See [documentation](https://justmars.github.io/corpus-unpdf).
+
+## Development
+
+Checkout code, create a new virtual environment:
+
+```sh
+poetry add corpus-unpdf # python -m pip install corpus-unpdf
+poetry update # install dependencies
+poetry shell
+```
+
+Run tests:
+
+```sh
+pytest
+```
+
