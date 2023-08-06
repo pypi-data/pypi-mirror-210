@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+service Resource {
+    rpc upload_log (UploadLogRequest) returns (UploadLogResponse) {}
+    rpc upload_artifact (UploadArtifactRequest) returns (UploadArtifactResponse) {}
+    rpc upload_file (stream UploadFileRequest) returns (UploadFileResponse) {}
+    rpc use_artifact (UseArtifactRequest) returns (UseArtifactResponse) {}
+    rpc download_file (DownloadFileRequest) returns (stream DownloadFileResponse) {}
+    rpc update_config (UpdateConfigRequest) returns (UpdateConfigResponse) {}
+    rpc send_alert (SendAlertRequest) returns (SendAlertResponse) {}
+
+}
+
+message UploadLogRequest{
+    repeated LogItem item = 1; // 로그에 기록될 key,value 쌍
+    LogStep step = 2;
+    RunInfo run = 3;
+    string teamName = 4;
+    string expName = 5;
+    string authorization = 6;
+}
+
+message UploadLogResponse {
+    ResponseResult rsp_result = 1;
+}
+
+message ResponseResult {
+    string result = 1;
+    string message = 2;
+}
+
+message LogItem {
+    string key = 1;
+    oneof value {
+        string valueAsString = 2;
+        int32 valueAsInt = 3;
+        float valueAsFloat = 4;
+        int64 valueAsLong = 5;
+        bool valueAsBool = 6;
+    }
+}
+
+message LogStep{
+   int64 num = 1; 
+}
+
+message RunInfo{
+    int64 run_id = 1;
+}
+
+message UploadArtifactRequest {
+    ArtifactRecord artifact = 1;
+    string authorization = 2;
+}
+
+message UploadArtifactResponse {
+    int64 artifact_id = 1;
+    ResponseResult rsp_result = 2;
+}
+
+message ArtifactRecord {
+    int64 run_id = 1;
+    string type = 2;
+    string name = 3;
+    string digest = 4;
+    string description = 5;
+    string versioning = 6;
+    string metadata = 7;
+    string teamName = 8;
+    string expName = 9;
+    repeated ArtifactEntry artifact_entry = 10;
+}
+
+message ArtifactEntry {
+    string path = 1;
+    string digest = 2;
+    int64 size = 3;
+    string status = 4;  //'SYNC', 'ADD', 'DEL'
+    string lfsYN = 5;
+    string repoTag = 6;
+    string key = 7; // entry_key
+    string type = 8; // FILE, TABLE, CHART, IMAGE
+    string metadata = 9;
+}
+
+message UploadFileRequest {
+  string uploadType =1; // "RUN" | "ARTI_FILES" | "ARTI_REPO"
+  FileRecord file = 2;
+  int64 artifact_id = 3;  //artifact upload의 경우에 artifact id, 아닌경우 “”
+  int64 run_id =4;
+  string artifactName =5; //artifact의 name
+  string artifactType =6; //artifact의 type
+  string digest =7; //각 파일의 digest
+  string last_file_yn = 8;  //마지막 파일 업로드여부 “Y” or “N” 서버측에서 완료를 알기위함
+  string authorization =9;
+  string teamName = 10;
+  string expName = 11;
+  string runName = 12;
+  TotalFileInfo total_file_info =13;  //artifact upload의 경우에 마지막 파일인경우
+}
+
+message UploadFileResponse {
+    ResponseResult rsp_result = 1;
+}
+
+message FileRecord {
+    FileItem file = 1;
+}
+
+message FileItem {
+    oneof request {
+        FilePath filepath = 1; // 파일 보낼 때 처음엔 path만 보내고
+        bytes contents = 2; // 이후부터는 onnext 함수에서 반복적으로 contents에 데이터를 실어서 보낸다
+    }
+}
+
+message FilePath{
+    string path = 1; // 파일의 상대 경로
+    string root_path = 2; // 파일의 상위 폴더 경로
+}
+
+message TotalFileInfo {
+    string digest = 1; // artifact의 digest, artifact가 아닌경우 ""
+    repeated ArtifactEntry entry = 2; // artifact의 entry 리스트, aritfact가 아닌경우 []
+}
+
+message UseArtifactRequest {
+    string artifact_name = 1;
+    string artifact_type = 2;
+    string artifact_tag = 3;
+    string team_name = 4;
+    string exp_name = 5;
+    int64 run_id = 6;
+    string authorization = 7;
+}
+
+message UseArtifactResponse {
+    int64 artifact_id = 1;
+    ResponseResult rsp_result = 2;
+    ArtifactRecord artifact = 3;
+}
+
+message DownloadFileRequest {
+  string path = 1;
+  int64 artifact_id = 2;
+  string artifactName = 3;
+  string artifactType = 4;
+  string teamName = 5;
+  string expName =6;
+  string versioning = 7;
+  string lfsYN =8;
+  string repoTag =9;
+  string authorization =10;
+}
+
+message DownloadFileResponse {
+    ResponseResult rsp_result = 1;
+    bytes contents = 2;
+    string digest = 3; //해당 파일의 digest
+}
+
+
+message ConfigItem {
+  string key = 1;
+  oneof value {
+      string valueAsString = 2;
+      int32 valueAsInt = 3;
+      float valueAsFloat = 4;
+      int64 valueAsLong = 5;
+      bool valueAsBool = 6;
+  }
+}
+message UpdateConfigRequest {
+  int64 runId = 1;
+  repeated ConfigItem item = 2; // config값의  key,value 쌍
+  string teamName = 3;
+  string expName = 4;
+  string authorization = 5;
+}
+
+message UpdateConfigResponse {
+  ResponseResult rsp_result = 1;
+}
+
+message SendAlertRequest {
+  int64 runId = 1;
+  string teamName = 2;
+  string expName = 3;
+  string alertMessage =4;
+}
+message SendAlertResponse{
+  ResponseResult rsp_result = 1;
+}
