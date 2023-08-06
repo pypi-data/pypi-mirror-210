@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "tkfly"
+version = "0.1.0beta1"
+description = ""
+authors = ["XiangQinxi <1379773753@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[project.optional-dependencies]
+all_win = ["Pythonnet>=3.0.0"]
+
+[tool.setuptools.packages.find]
+exclude = ["devexpress", "_devexpress"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
