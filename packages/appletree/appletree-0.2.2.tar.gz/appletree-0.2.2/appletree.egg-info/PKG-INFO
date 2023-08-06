@@ -1,0 +1,123 @@
+Metadata-Version: 2.1
+Name: appletree
+Version: 0.2.2
+Summary: A high-Performance Program simuLatEs and fiTs REsponse of xEnon.
+Home-page: https://github.com/XENONnT/appletree
+Author: Appletree contributors, the XENON collaboration
+License: UNKNOWN
+Description: # Appletree
+        A high-Performance Program simuLatEs and fiTs REsponse of xEnon.
+        
+        [![DOI](https://zenodo.org/badge/534803881.svg)](https://zenodo.org/badge/latestdoi/534803881)
+        [![Test package](https://github.com/XENONnT/appletree/actions/workflows/pytest.yml/badge.svg?branch=master)](https://github.com/XENONnT/appletree/actions/workflows/pytest.yml)
+        [![Coverage Status](https://coveralls.io/repos/github/XENONnT/appletree/badge.svg)](https://coveralls.io/github/XENONnT/appletree)
+        [![PyPI version shields.io](https://img.shields.io/pypi/v/appletree.svg)](https://pypi.python.org/pypi/appletree/)
+        [![Readthedocs Badge](https://readthedocs.org/projects/appletree/badge/?version=latest)](https://appletree.readthedocs.io/en/latest/?badge=latest)
+        [![CodeFactor](https://www.codefactor.io/repository/github/xenonnt/appletree/badge)](https://www.codefactor.io/repository/github/xenonnt/appletree)
+        
+        ## Installation and Set-Up
+        
+        ### Regular installation:
+        ```
+        pip install appletree -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+        ```
+        
+        ### Developer setup:
+        Clone the repository:
+        
+        ```
+        git clone https://github.com/XENONnT/appletree
+        cd appletree
+        ```
+        
+        Install the package and requirements in your environment:
+        
+        ```
+        pip install -r requirements.txt
+        python3 -m pip install ./ --user
+        ```
+        
+        If you wanna install appletree in editable mode, replace the last line with
+        
+        ```
+        python3 -m pip install --editable ./ --user
+        ```
+        
+        You are now good to go!
+        
+        ## Usage
+        The best way to start with the `appletree` package is to have a look at the tutorial `notebooks`. 
+        
+        ## Contributing
+        Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+        
+        Please make sure to update tests as appropriate.
+        
+        
+        v0.2.2 / 2023-05-25
+        -------------------
+        * Stop using MANIFEST.in, move to a modern way of file system configuration by @dachengx in https://github.com/XENONnT/appletree/pull/94
+        
+        **Full Changelog**: https://github.com/XENONnT/appletree/compare/v0.2.1...v0.2.2
+        
+        
+        v0.2.1 / 2023-05-22
+        -------------------
+        * Change variables `s1` `s2` to `s1_area` `s2_area` by @dachengx in https://github.com/XENONnT/appletree/pull/86
+        * Remove duplicated import pd by @xzh19980906 in https://github.com/XENONnT/appletree/pull/87
+        * Generate number of events in the defined ROI by @dachengx in https://github.com/XENONnT/appletree/pull/88
+        * Update DOI link by @dachengx in https://github.com/XENONnT/appletree/pull/89
+        * Loosen requirement after beta phase and specify jax find-links by @dachengx in https://github.com/XENONnT/appletree/pull/90
+        * Update notebooks by @dachengx in https://github.com/XENONnT/appletree/pull/91
+        * Add more tests by @dachengx in https://github.com/XENONnT/appletree/pull/92
+        
+        **Full Changelog**: https://github.com/XENONnT/appletree/compare/v0.2.0...v0.2.1
+        
+        
+        v0.2.0 / 2023-03-15
+        -------------------
+        * Add NESTv2 yields parameterization and literature constrain by @dachengx in https://github.com/XENONnT/appletree/pull/82
+        * Add uncertainty on electron lifetime by @dachengx in https://github.com/XENONnT/appletree/pull/83
+        * Add NESTv2 NR parameters of quanta distribution's width by @dachengx in https://github.com/XENONnT/appletree/pull/85
+        
+        **Full Changelog**: https://github.com/XENONnT/appletree/compare/v0.1.0...v0.2.0
+        
+        
+        v0.1.0 / 2023-02-12
+        -------------------
+        * Add corner as dependency by @dachengx in https://github.com/XENONnT/appletree/pull/55
+        * Add .h5 backend to store MCMC results by @dachengx in https://github.com/XENONnT/appletree/pull/57
+        * Add document by @xzh19980906 in https://github.com/XENONnT/appletree/pull/61
+        * More docs by @xzh19980906 in https://github.com/XENONnT/appletree/pull/62
+        * Deduce and compile codes to generate Ly & Qy curve by @dachengx in https://github.com/XENONnT/appletree/pull/60
+        * Convert PDF spectrum to CDF by default by @xzh19980906 in https://github.com/XENONnT/appletree/pull/72
+        * Add R dimension for template generation by @xzh19980906 in https://github.com/XENONnT/appletree/pull/74
+        * Use specific config for certain llh by @dachengx in https://github.com/XENONnT/appletree/pull/78
+        * Config can read map and assign itself a mapping function by @dachengx in https://github.com/XENONnT/appletree/pull/79
+        * Stricter needed parameters check and save meta data to samples by @dachengx in https://github.com/XENONnT/appletree/pull/80
+        * Irregular binning option in likelihood by @xzh19980906 in https://github.com/XENONnT/appletree/pull/81
+        
+        **Full Changelog**: https://github.com/XENONnT/appletree/compare/v0.0.0...v0.1.0
+        
+        
+        v0.0.0 / 2022-10-13
+        -------------------
+        * Add more notebooks by @dachengx in https://github.com/XENONnT/appletree/pull/52
+        * Introduce numpyro as dependency by @dachengx in https://github.com/XENONnT/appletree/pull/53
+        * Try upload to pypi by @dachengx in https://github.com/XENONnT/appletree/pull/54
+        
+        **Full Changelog**: https://github.com/XENONnT/appletree/commits/v0.0.0
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: doc
+Provides-Extra: test
