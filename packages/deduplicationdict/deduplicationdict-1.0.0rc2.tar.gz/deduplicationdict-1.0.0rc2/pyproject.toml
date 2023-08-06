@@ -1,0 +1,112 @@
+# pyproject-build
+
+[build-system]
+requires = ["wheel", "setuptools>=61.0.0", "flit_core >=3.2,<4"]
+#build-backend = "setuptools.build_meta"
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "deduplicationdict"
+
+[tool.setuptools]
+py-modules = ['deduplicationdict']
+
+[project]
+# $ pip install deduplicationdict
+name = "deduplicationdict"
+version = "1.0.0rc2"
+description = "A dictionary that de-duplicates values."
+readme = "README.md"
+requires-python = ">=3.7"
+license = { file = "LICENSE" }
+keywords = ["python", "dict", "deduplication", "optimization", ]
+authors = [
+    { name = "Vivswan Shah", email = "vivswanshah@pitt.edu" }
+]
+maintainers = [
+    { name = "Vivswan Shah", email = "vivswanshah@pitt.edu" }
+]
+# For a list of valid classifiers, see https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: File Formats :: JSON",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+# This field lists other packages that your project depends on to run.
+# Any package you put here will be installed by pip when your project is
+# installed, so they must be valid existing projects.
+#
+# For an analysis of this field vs pip's requirements files see:
+# https://packaging.python.org/discussions/install-requires-vs-requirements/
+dependencies = []
+
+# List additional groups of dependencies here (e.g. development
+# dependencies). Users will be able to install these using the "extras"
+# syntax, for example:
+#
+#   $ pip install deduplicationdict[dev]
+#
+# Similar to `dependencies` above, these must be valid existing
+# projects.
+[project.optional-dependencies]
+doc = [
+    "sphinx>=4.2.0",
+    "sphinx-autobuild",
+    "rst-to-myst[sphinx]",
+    "furo",
+    "myst_parser",
+    "sphinx-rtd-theme",
+    "sphinx-autoapi",
+    "sphinx-copybutton",
+    "sphinx-notfound-page",
+    "sphinx-inline-tabs",
+    "sphinxext-opengraph",
+    "sphinxcontrib-katex", # for math
+]
+flake8 = [
+    "flake8",
+    "flake8-docstrings",
+    "flake8-quotes",
+    "flake8-bugbear",
+    "flake8-comprehensions",
+    "flake8-executable",
+    "flake8-coding",
+    "flake8-return",
+    #"flake8-noreturn; python_version >= '3.8'",
+    "flake8-deprecated",
+]
+dev = [
+    "flit", # for building {flit build}
+    "setuptools>=61.0.0",
+    "build", # building the package {pyproject-build}
+    "twine", # to publish on pypi {twine upload --repository-url=https://test.pypi.org/legacy/ dist/*} {twine upload dist/*}
+    "johnnydep", # to see dependencies {johnnydep <package>}
+]
+test = [
+    "deduplicationdict[flake8]",
+    "deepdiff",
+    "coverage",
+]
+all = ["deduplicationdict[dev,doc,test]"]
+
+[project.urls]
+"Author" = "https://vivswan.github.io/"
+"Bug Reports" = "https://github.com/Vivswan/DeDuplicationDict/issues"
+"Documentation" = "https://deduplicationdict.readthedocs.io/en/latest/"
+"Homepage" = "https://github.com/Vivswan/DeDuplicationDict"
+"Say Thanks!" = "https://vivswan.github.io/"
+"Source" = "https://github.com/Vivswan/DeDuplicationDict"
