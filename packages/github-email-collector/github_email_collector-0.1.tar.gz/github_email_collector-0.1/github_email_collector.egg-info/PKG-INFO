@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: github-email-collector
+Version: 0.1
+Summary: Collect email address of users affiliated to a given repository
+Home-page: https://github.com/LucBerge/github-email-collector
+Author: LucBerge
+Author-email: lucas.bergeron@outlook.fr
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# Github Email Collector
+
+Collect the email address of users affiliated to a given repository
+
+## Installation
+
+Download from PyPi:
+```python
+pip install github-email-collector
+```
+
+## Usage
+
+From your python script
+```python
+from  github_email_collector import EmailCollector
+
+email_collector = EmailCollector("MY_GITHUB_TOKEN", "owner/repo")
+emails = email_collector.get_emails()
+print(emails)
+```
+
+
