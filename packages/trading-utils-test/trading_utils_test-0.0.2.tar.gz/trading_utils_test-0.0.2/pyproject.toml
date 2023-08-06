@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "trading-utils-test"
+version = "0.0.2"
+description = ""
+authors = ["Trading IT"]
+readme = "README.md"
+packages = [{include = "trading_utils"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+json-log-formatter = "^0.5.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
