@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: finddd
+Version: 0.2.0
+Author-Email: ayasechan <529157057@qq.com>
+License: MIT
+Requires-Python: >=3.8
+Requires-Dist: igittigitt>=2.1.2
+Description-Content-Type: text/markdown
+
+# finddd
+
+
+# example
+
+```python
+import finddd
+
+# get all dirs and files in current dir
+files = finddd.find(r".", filetypes=[finddd.FT_DIRECTORY, finddd.FT_FILE],)
+print(files)
+
+```
