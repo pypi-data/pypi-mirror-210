@@ -1,0 +1,92 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vector-pipelines"
+description = "Create scalable vector search powered pipelines with ease"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+keywords = []
+authors = [
+  { name = "Gabriel Martín Blázquez", email = "gmartinbdev@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "pydantic >=1.8.2",
+  "typer >=0.9.0"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+  "black ==23.3.0",
+  "ruff ==0.0.263",
+  "mypy ==1.2.0",
+  "pre-commit >=3.2.2",
+  "pytest >=7.2.0",
+  "coverage[toml] >=7.0.0",
+  "grpcio-tools >=1.54.0",
+]
+grpc = [
+  "grpcio >=1.54.0",
+  "dill >=0.3.4",
+]
+sentence_transformers = [
+  "sentence-transformers >=2.0.0",
+]
+
+[project.urls]
+Documentation = "https://github.com/gabrielmbmb/vector-pipelines#readme"
+Issues = "https://github.com/gabrielmbmb/vector-pipelines/issues"
+Source = "https://github.com/gabrielmbmb/vector-pipelines"
+
+[project.scripts]
+vector_pipelines = "vector_pipelines.cli.app:app"
+
+[tool.hatch.version]
+path = "vector_pipelines/__init__.py"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "W", "F", "I", "C", "B"]
+ignore = ["E501", "B905"]
+exclude = [
+  "vector_pipelines/grpc/*.py"
+]
+
+[tool.ruff.isort]
+required-imports = ["from __future__ import annotations"]
+
+[tool.coverage.run]
+source = ["vector_pipelines"]
+parallel = true
+branch = true
+context = '${CONTEXT}'
+
+[tool.mypy]
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+  "vector_pipelines.grpc.*",
+]
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = [
+  "sentence_transformers.*",
+  "grpc.*",
+  "dill.*",
+]
+ignore_missing_imports = true
