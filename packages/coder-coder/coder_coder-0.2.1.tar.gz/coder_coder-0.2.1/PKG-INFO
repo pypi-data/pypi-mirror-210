@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: coder-coder
+Version: 0.2.1
+Summary: 
+Author: Kevin Fortier
+Author-email: kevin.r.fortier@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: install (>=1.3.5,<2.0.0)
+Requires-Dist: openai (>=0.27.5,<0.28.0)
+Requires-Dist: pip (>=23.1.2,<24.0.0)
+Requires-Dist: typer[all] (>=0.7.0,<0.8.0)
+Description-Content-Type: text/markdown
+
+# Coder-Coder
+Coder-Coder is a commandline tool that facilitates coding with GPT-4.
+
+## Installation
+``` commandline
+pip install coder-coder
+```
+
+## Configuration
+Before using the Coder-Coder app, you need to set your OpenAI API token and Organization ID. These are required for authenticating with the OpenAI API.
+
+Set the OpenAI API token:
+``` commandline
+coder set-config OPENAI_API_KEY your_openai_api_key
+coder set-config OPENAI_API_ORG_AI your_openai_org_id
+```
+Replace your_openai_api_token with your actual OpenAI API token.
+
+Usage
+
+``` commandline
+coder code <code description>
+```
+
