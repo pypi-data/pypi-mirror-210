@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "tah_example_pkg"
+version = "0.3.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "src/model"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+python-dotenv = "^1.0.0"
+onnxruntime = "^1.14.1"
+filetype = "^1.2.0"
+opencv-python = "^4.7.0.72"
+
+
+[tool.poetry.group.dev.dependencies]
+mlflow = "^2.3.2"
+boto3 = "^1.26.133"
+paddlepaddle = "^2.4.2"
+paddlepaddle-gpu = "2.3.2"
+paddleseg = "2.7.0"
+paddle-bfloat = "0.1.7"
+mock = "^5.0.2"
+pyyaml = "^6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
