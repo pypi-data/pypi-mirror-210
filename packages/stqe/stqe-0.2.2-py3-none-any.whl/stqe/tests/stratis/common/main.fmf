@@ -1,0 +1,35 @@
+requires_setup: [stratis/setup/storage/setup_*]
+stratis_version: [2, 3]
+
+/verify_data_in_restarted_pool:
+  description: Verify data in restarted pool
+  stratis_version: [3]
+  test: verify_data_in_restarted_pool.py
+  requires_setup+:
+    - stratis/setup/pool_create_single_blockdev/1
+
+/stratis_fs_repeat_create_destroy:
+  description: Create and destroy stratis pool and stratis fs 100x
+  test: stratis_repeat_create_destroy.py
+
+/test_fs_limit:
+  description: Test fs limit of a stratis pool
+  stratis_version: [3]
+  test: stratis_fs_limit.py
+
+/stratis_pid:
+  description: Remove /var/run to verify stratis is still able to start without it
+  test: bz1754649_stratis_pid.py
+
+/pool_out_of_space:
+  description+: Tries to create fs in pool that has not enough space left.
+  message+: "with pool out of space"
+  tags: [pool_out_of_space]
+  test: stratis_pool_out_of_space.py
+
+/pool_out_of_space_nooverprovisioning:
+  description+: Tries to create fs in pool that has not enough space left.
+  message+: "with pool out of space"
+  tags: [pool_out_of_space]
+  pool_nooverprovision: True
+  test: stratis_pool_out_of_space.py

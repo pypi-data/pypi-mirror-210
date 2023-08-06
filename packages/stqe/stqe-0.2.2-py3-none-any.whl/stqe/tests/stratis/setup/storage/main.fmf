@@ -1,0 +1,84 @@
+description: These setups prepare the raw storage to be used.
+storage: True
+
+/setup_manual:
+  description: This lets user manually setup the storage and write the path to '/tmp/STRATIS_DEVICE' file
+  test: setup_manual.py
+
+/setup_free_disks:
+  description: Add free scsi disks to stratis blockdevs STRATIS_DEVICE
+  test: setup_free_disks.py
+  requires_install+: [targetcli]
+  required_disks: 2
+  requires_cleanup: stratis/setup/storage/cleanup_free_disks
+
+/cleanup_free_disks:
+  description: Cleans up STRATIS_DEVICE to previous state
+  test: cleanup_free_disks.py
+
+/setup_iscsi:
+  description: setup iscsi for free disk
+  test: setup_iscsi.py
+
+/cleanup_iscsi:
+  description: clean iscsi disks
+  test: cleanup_iscsi.py
+
+/setup_loopdev:
+  description: Add loopdev to stratis blockdevs STRATIS_DEVICE
+  test: setup_loopdev.py
+  requires_cleanup: stratis/setup/storage/cleanup_loopdev
+
+/cleanup_loopdev:
+  description: clean iscsi disks
+  test: cleanup_loopdev.py
+
+/setup_lvm:
+  description: Add free scsi disks to stratis blockdevs STRATIS_DEVICE
+  test: setup_lvm.py
+  requires_cleanup: stratis/setup/storage/cleanup_lvm
+
+/cleanup_lvm:
+  description: Cleans up STRATIS_DEVICE to previous state
+  test: cleanup_lvm.py
+
+/setup_raid:
+  description: Sets up MD RAID on free local disks
+  test: ../setup_raid.py
+  requires_cleanup: stratis/setup/storage/cleanup_raid
+  requires_install+: [mdadm]
+  /0:
+    raid_level: 0
+    description+: ", raid level 0."
+  /1:
+    raid_level: 1
+    description+: ", raid level 1."
+  /5:
+    raid_level: 5
+    description+: ", raid level 5."
+  /6:
+    raid_level: 6
+    description+: ", raid level 6."
+  /10:
+    raid_level: 10
+    description+: ", raid level 10."
+  /50:
+    raid_level: 50
+    description+: ", raid level 50."
+  /60:
+    raid_level: 60
+    description+: ", raid level 60."
+
+/cleanup_raid:
+  description: Cleans up MD RAID
+  test: cleanup_raid.py
+  requires_install+: [mdadm]
+
+/setup_stratis_loopback_device:
+  description: Setting up loopback device used as stratis testing device
+  test: setup_loopback_device.py
+  requires_cleanup: stratis/setup/storage/cleanup_loopback_device
+
+/cleanup_loopback_device:
+  description: Cleaning up loopback device
+  test: cleanup_loopback_device.py

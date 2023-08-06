@@ -1,0 +1,24 @@
+description: Testing stratis fs using 'fio' tool
+requires_setup: [stratis/setup/storage/setup_*]
+requires_install: fio
+# fio settings
+ioengine: libaio
+direct: 1
+group_reporting: 1
+bs: 4k
+iodepth: 16
+numjobs: 8
+rw: randrw
+rwmixread: 80
+randrepeat: 0
+norandommap: 1
+size: 4G
+verify: sha1
+runtime: 1
+
+/basic_stress:
+  description: Simple stress test of basic stratis FS.
+  tier: 1
+  time: 20 min
+  test: basic_stress.py
+  tags: [stratisbasicstress]
