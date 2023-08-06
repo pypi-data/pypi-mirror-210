@@ -1,0 +1,121 @@
+{% extends "consents/base.html" %}
+{% load static %}
+
+
+{% block title %} - sign consent{% endblock %}
+
+
+{% block extra_css %}
+#jsign_signature {border: 1px solid black}
+.btn {visibility: hidden}
+{% endblock %}
+
+
+{% block body %}
+<form class="ui form {% if form.errors %}error{% endif%}" method="POST">
+    {% csrf_token %}
+
+    <div class="ui centered grid" style="padding-top: 50px;">
+        <div class="row">
+            <div class="center aligned eight wide column">
+                <h1>{{ consent.name }}</h1>
+            </div>
+        </div>
+
+        {% if form.errors %}
+        <div class="ui error message">
+            <div class="header">Errors occured</div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="eight wide column">
+                <div class="field">
+                    <label>Name</label>
+                    <div class="two fields">
+                        <div class="field">
+                            {{ form.first_name.label }} {{ form.first_name }}
+                        </div>
+                        <div class="field">
+                            {{ form.last_name.label }} {{ form.last_name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Address</label>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            {{ form.street.label }} {{ form.street }}
+                        </div>
+                        <div class="three wide field">
+                            {{ form.postal_code.label }} {{ form.postal_code }}
+                        </div>
+                        <div class="five wide field">
+                            {{ form.city.label }} {{ form.city }}
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Conact data</label>
+                    <div class="two fields">
+                        <div class="field">
+                            {% for error in form.phone_number.errors %}
+                            <div class="ui error message">
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                            {{ form.phone_number.label }} {{ form.phone_number }}
+                        </div>
+                        <div class="field">
+                            {{ form.email.label }} {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Birthday</label>
+                    <div class="field">
+                        {% for error in form.date_of_birth.errors %}
+                        <div class="ui error message">
+                            {{ error }}
+                        </div>
+                        {% endfor %}
+                        {{ form.date_of_birth }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="eight wide column">
+                {% for text_fragment in consent.text_fragments %}
+                {% with template_name="consents/text_fragments/"|add:text_fragment.type|add:".html" %}
+                {% include template_name with index=forloop.counter0 %}
+                {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="six wide column">
+                {% for error in form.signature.errors %}
+                <div class="ui error message">
+                    {{ error }}
+                </div>
+                {% endfor %}
+                {{ form.signature.label }}
+                {{ form.signature }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="six wide column">
+                <button class="ui right floated primary button">Submit</button>
+                <div class="ui right floated button" onClick="document.getElementsByClassName('btn')[0].click()">Reset</div>
+
+                <script src="{% static 'consents/js/popper.min.js' %}"></script>
+                {{ form.media }}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: huscy.consents
+Version: 0.8.0a21
+Summary: consents
+Home-page: https://bitbucket.org/huscy/consents
+Author: Gefan Qian, Stefan Bunde
+Author-email: gefan.qian@gmail.com, stefanbunde+git@posteo.de
+License: AGPLv3+
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.1
+Classifier: Framework :: Django :: 4.2
+Description-Content-Type: text/markdown
+Requires-Dist: Django (>=3.2)
+Requires-Dist: django-jsignature (>=0.9)
+Requires-Dist: django-markdownify
+Requires-Dist: django-phonenumber-field[phonenumberslite] (>=5)
+Requires-Dist: djangorestframework (>=3.11)
+Requires-Dist: jsonschema (>=3.2)
+Requires-Dist: weasyprint
+Provides-Extra: development
+Requires-Dist: psycopg2-binary ; extra == 'development'
+Provides-Extra: testing
+Requires-Dist: tox ; extra == 'testing'
+Requires-Dist: watchdog ; extra == 'testing'
+
+# huscy.consents
+
+

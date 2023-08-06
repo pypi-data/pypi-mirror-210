@@ -1,0 +1,141 @@
+{% extends "consents/base.html" %}
+
+
+{% block title %} - create consent{% endblock %}
+
+
+{% block body %}
+<div class="ui container">
+    <h1>Create consent</h1>
+
+    <div class="ui grid">
+        <div class="eight wide column">
+            <div class="ui list">
+                <div class="item">
+                    <form class="ui form" id="CreateConsentForm" method="post">
+                        {% csrf_token %}
+                        <div class="two fields">
+                            <div class="field">
+                                <input type="text" name="name" placeholder="Consent name" required>
+                            </div>
+                            <input type="hidden" name="text_fragments" value="{{ text_fragments_as_json }}">
+                            <button class="ui primary button">
+                                Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                {% for text_fragment in text_fragments %}
+                <div class="item TextFragment">
+                    <div class="ui secondary segment">
+                        <div class="ui grid">
+                            <div class="thirteen wide column">
+                                <form>
+                                    <input type="hidden" name="category" value="{{ selected_category.id }}">
+                                    <input type="hidden" name="index" value="{{ forloop.counter0 }}">
+                                    <input type="hidden" name="text_fragments" value="{{ text_fragments_as_json }}">
+
+                                    <textarea name="text" rows="4" style="width: 100%">{{ text_fragment.properties.text }}</textarea>
+                                    <p>
+                                        {% if text_fragment.type == "paragraph" %}
+                                        <input type="checkbox" {% if text_fragment.properties.boldface %}checked{% endif %}>boldface</input>
+                                        {% elif text_fragment.type == "checkbox" %}
+                                        <input type="checkbox" {% if text_fragment.properties.required %}checked{% endif %}>required</input>
+                                        {% endif %}
+                                    </p>
+
+                                    <button class="ui button UpdateButton" name="action" value="update">update</button>
+                                </form>
+                            </div>
+                            <div class="three wide column">
+                                <form>
+                                    <input type="hidden" name="category" value="{{ selected_category.id }}">
+                                    <input type="hidden" name="index" value="{{ forloop.counter0 }}">
+                                    <input type="hidden" name="text_fragments" value="{{ text_fragments_as_json }}">
+                                    <div class="ui vertical buttons">
+                                        {% if not forloop.first %}
+                                        <button class="ui button MoveUpButton" name="action" value="move_up">up</button>
+                                        {% endif %}
+                                        <button class="ui red button RemoveButton" name="action" value="remove">rm</button>
+                                        {% if not forloop.last %}
+                                        <button class="ui button MoveDownButton" name="action" value="move_down">down</button>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="item">
+                    no text fragments in this list.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="eight wide column">
+            <form id="ConsentCategoryDropdown">
+                <div class="ui fluid search selection dropdown" id="ConsentCategoryDropdown">
+                    <input type="hidden" name="category" {% if selected_category %}value="default"{% endif %}>
+                    <input type="hidden" name="action" value="select_category">
+
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select category</div>
+                    <div class="menu">
+                        {% for category in categories %}
+                        <div class="item ConsentCategory" data-value="{% if category.id == selected_category.id %}default{% else %}{{ category.id }}{% endif %}">
+                            {{ category.name }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </form>
+
+            <div class="ui list">
+                {% for text_fragment in selected_category.template_text_fragments %}
+                <div class="item TemplateTextFragment">
+                    <div class="ui secondary segment">
+                        <div class="ui center inverted dimmer">
+                            <div class="content">
+                                <form>
+                                    <input type="hidden" name="category" value="{{ selected_category.id }}">
+                                    <input type="hidden" name="template_text_fragment" value="{{ text_fragment }}">
+                                    <input type="hidden" name="text_fragments" value="{{ text_fragments_as_json }}">
+                                    <button class="ui primary button AddTemplateTextFragmentButton" name="action" value="add">add</button>
+                                </form>
+                            </div>
+                        </div>
+                        <p>
+                            {% with template_name="consents/text_fragments/"|add:text_fragment.type|add:".html" %}
+                            {% include template_name %}
+                            {% endwith %}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+$('.ui.dropdown')
+    .dropdown()
+;
+
+$('.ui.dropdown').dropdown({
+    'onChange': function (value, text, $choice) {
+        $('#ConsentCategoryDropdown').submit();
+    }
+});
+
+$('.dimmer')
+    .dimmer({
+        transition: 'fade up',
+        on: 'hover'
+    })
+;
+{% endblock %}

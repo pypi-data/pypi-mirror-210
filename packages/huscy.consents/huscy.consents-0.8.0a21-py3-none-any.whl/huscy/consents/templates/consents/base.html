@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>huscy{% block title %}{% endblock %}</title>
+
+        <script src="{% static 'consents/js/jquery.min.js' %}"></script>
+        <script src="{% static 'consents/js/fomantic.min.js' %}"></script>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'consents/css/fomantic.min.css' %}">
+
+        <style>
+            {% block extra_css %}{% endblock %}
+        </style>
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+
+    <script>
+        {% block extra_js %}{% endblock %}
+    </script>
+</html>
