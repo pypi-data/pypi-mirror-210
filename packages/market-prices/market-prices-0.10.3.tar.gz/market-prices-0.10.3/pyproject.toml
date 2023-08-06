@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "market-prices"
+description = "Meaningful OHLCV datasets"
+authors = [
+  {email = "marcusaread@gmail.com"},
+  {name = "Marcus Read"}
+]
+readme = "README.md"
+license = {text = "MIT License"}
+keywords = [
+    "finance",
+    "prices",
+    "historical-data",
+    "yahoo",
+    "investing",
+    "stocks",
+    "currencies",
+    "forex",
+    "crypto",
+    "etf",
+    "funds",
+    "bonds",
+    "commodities",
+    "indices",
+]
+requires-python = "~=3.8"
+
+classifiers = [
+	"Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Science/Research",
+	"Natural Language :: English",
+	"License :: OSI Approved :: MIT License",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3 :: Only",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Education",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "exchange_calendars >=4.0.1",
+    "numpy",
+    "pandas >= 1.1",
+    "pydantic",
+    "pytz",
+    "yahooquery >=2.3",
+]
+
+dynamic = ["version"]
+
+[project.optional-dependencies]
+tests = [
+    "black",
+    "flake8",
+    "flake8-docstrings",
+    "hypothesis",
+    "pytest",
+    "pytest-mock",
+    "tables",
+    "types-pytz",
+]
+dev = [
+    "market-prices[tests]",
+    "mypy",
+    "mypy-extensions",
+    "pandas-stubs",
+    "pip-tools",
+    "pre-commit",
+    "pylint",
+]
+
+[project.urls]
+homepage = "https://github.com/maread99/market_prices"
+documentation = "https://github.com/maread99/market_prices/blob/master/docs/tutorials_docs.md"
+"Issue Tracker" = "https://github.com/maread99/market_prices/issues"
+"Source Code" = "https://github.com/maread99/market_prices"
+
+[tool.setuptools_scm]
+write_to = "src/market_prices/_version.py"
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310']
