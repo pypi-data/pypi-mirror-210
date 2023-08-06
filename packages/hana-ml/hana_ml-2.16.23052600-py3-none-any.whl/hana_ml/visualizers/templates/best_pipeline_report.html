@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    
+    {% block styles %}
+    <style>
+      {% include "best_pipeline_report.css" %}
+    </style>
+    {% endblock %}
+	
+    <script>
+      window.routerBase = "./";
+      const pipeline_iframe_html = '{{ pipeline_iframe_html }}';
+      const bestPipelinesJSONObj = {{ data_json }};
+      const highlightedMetricName = '{{ highlighted_metric_name }}';
+    </script>
+
+    <style>
+      .ant-timeline-item {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .ant-pro-card-border {
+        border: 1px solid #ccc !important;
+      }      
+    </style>
+  </head>
+  <body>
+    <div id="inroot" style="display: none;"></div>
+    <div id="root"></div>
+
+    {% block javascript %}
+    <script type="text/javascript" id="originScript">
+      {% include "embedded_digraph.js" %}
+    </script>    
+    <script type="text/javascript">
+      {% include "best_pipeline_report.js" %}
+    </script>
+    {% endblock %}
+		
+  </body>
+</html>
