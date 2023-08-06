@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rising_plugin"
+version = "0.0.6"
+authors = [
+  { name="Thomas Richardson", email="thomasr37oss@gmail.com" },
+]
+description = "It is a plugin for Rising GPT"
+readme = "README.md"
+dependencies = [
+    "langchain >= 0.0.148",
+    "pinecone-client >= 2.2.1",
+    "openai >= 0.27.4",
+]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/sampleproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
