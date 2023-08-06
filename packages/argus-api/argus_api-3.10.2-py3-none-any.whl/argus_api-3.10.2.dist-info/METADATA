@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: argus-api
+Version: 3.10.2
+Summary: SDK for the Argus API
+Home-page: https://mnemonic.io
+License: ISC
+Author: mnemonic
+Author-email: opensource@mnemonic.no
+Requires-Python: >=3.6.2,<4.0.0
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: oauth
+Requires-Dist: certifi (>=2022.12.7)
+Requires-Dist: importlib-resources (>=5.4.0,<6.0.0)
+Requires-Dist: importlib_metadata
+Requires-Dist: oauthlib (>=3.2.1,<4.0.0)
+Requires-Dist: requests (>=2.25,<3.0)
+Requires-Dist: requests-oauthlib (>=1.3.1,<2.0.0) ; extra == "oauth"
+Project-URL: Documentation, https://argus-api.docs.mnemonic.no
+Description-Content-Type: text/markdown
+
+# argus-api
+
+`argus-api` is the python API client library for [mnemonic](https://www.mnemonic.io/)'s Argus API.
+
+Documentation for this library can be found at: [argus-api documentation](https://argus-api.docs.mnemonic.no)
+
+## feedback
+
+In order to report issues or request features, please contact Mnemonic's development
+team: [opensource@mnemonic.no](mailto:opensource@mnemonic.no)
+

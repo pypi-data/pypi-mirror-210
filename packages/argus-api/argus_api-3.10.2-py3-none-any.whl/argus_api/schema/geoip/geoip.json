@@ -1,0 +1,2350 @@
+{
+  "swagger": "2.0",
+  "info": {},
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "/geoip/v1"
+    }
+  ],
+  "paths": {
+    "/geoip/v1/country": {
+      "get": {
+        "tags": [
+          "development"
+        ],
+        "summary": "List GeoIP countries (DEV)",
+        "description": "",
+        "operationId": "listCountries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max number of items to return",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The amount of items to skip from the beginning",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Fields to sort results by (without a sign is ascending, with '-' sign is descending)",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "fromID",
+            "in": "query",
+            "description": "Only return countries with numeric ID greater than or equal to this value",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.Country-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Add new country (DEV)",
+        "description": "",
+        "operationId": "addCountry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.geoip.spi.request.CountryAddRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.Country-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/country/{id}": {
+      "put": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Update an existing country (DEV)",
+        "description": "",
+        "operationId": "updateCountry",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Country ID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.geoip.spi.request.CountryUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.Country-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/region": {
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Add new region (DEV)",
+        "description": "",
+        "operationId": "addRegion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.Region"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.Region-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/location": {
+      "get": {
+        "tags": [
+          "development"
+        ],
+        "summary": "List GeoIP locations (DEV)",
+        "description": "",
+        "operationId": "listLocations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max number of items to return",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "The amount of items to skip from the beginning",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Fields to sort results by (without a sign is ascending, with '-' sign is descending)",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "fromID",
+            "in": "query",
+            "description": "Only return locations with numeric ID greater than or equal to this value",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoLocation-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Add new location (DEV)",
+        "description": "",
+        "operationId": "addLocation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.GeoLocation"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoLocation-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/ranges": {
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Add or update IP ranges (DEV)",
+        "description": "",
+        "operationId": "addOrUpdateRanges",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/no.mnemonic.services.geoip.spi.request.GeoIPRangeRequest"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoIPRange-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/country/search": {
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Find GeoIP countries (DEV)",
+        "description": "",
+        "operationId": "searchCountries",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search criteria",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.geoip.spi.request.CountrySearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.Country-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/location/search": {
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Find GeoIP locations (DEV)",
+        "description": "",
+        "operationId": "searchLocations",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search criteria",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.dao.criteria.geoip.GeoIPLocationSearchCriteria"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoLocation-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/location/{id}": {
+      "get": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Lookup location (DEV)",
+        "description": "",
+        "operationId": "getLocation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Location ID",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoLocation-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/ranges/search": {
+      "post": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Find IP ranges (DEV)",
+        "description": "",
+        "operationId": "findRanges",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search criteria",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.dao.criteria.geoip.GeoIPRangeSearchCriteria"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoIPRange-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    },
+    "/geoip/v1/ip/{address}": {
+      "get": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Lookup IP range (DEV)",
+        "description": "",
+        "operationId": "lookupIP",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "IP-address to search for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.geoip.GeoIPRange-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation failed"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "no.mnemonic.services.geoip.spi.request.CountrySearchRequest": {
+      "type": "object",
+      "properties": {
+        "sortBy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "id",
+              "countryName",
+              "countryCode",
+              "-id",
+              "-countryName",
+              "-countryCode"
+            ]
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Max number of results.",
+          "minimum": 0
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object.",
+          "minimum": 0
+        },
+        "fromID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Only return countries where the numeric id is larger than this value. By default, this is disabled.",
+          "minimum": 0
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, also include countries marked as deleted."
+        }
+      },
+      "description": "Request to search for countries"
+    },
+    "no.mnemonic.services.argus.common.rest.model.ResultStash": {
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Returned results (might be an array or a single object)"
+        }
+      }
+    },
+    "no.mnemonic.jargus.net.IPRange": {
+      "type": "object",
+      "properties": {
+        "fromAddress": {
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        },
+        "toAddress": {
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        }
+      }
+    },
+    "ResultStash": {
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Returned results (might be an array or a single object)"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.Region-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.Region"
+        }
+      }
+    },
+    "no.mnemonic.jargus.net.IPAddress": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "readOnly": true
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "ipv6": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "readOnly": true
+        },
+        "maskBits": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "multicast": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "no.mnemonic.jargus.dao.criteria.geoip.GeoIPLocationSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "countTimeout": {
+          "type": "integer",
+          "format": "int32",
+          "example": -1,
+          "description": "Max wait in seconds for the count query to run. Set the value to -1 to skip counting (count will be returned -1). Set the value to 0 to execute the count query as long as the service allows, max allowed timeout value is 30 (seconds), default value is -1.",
+          "minimum": -1,
+          "maximum": 30
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Also include deleted objects (where implemented)"
+        },
+        "countryID": {
+          "type": "array",
+          "position": 0,
+          "description": "Deprecated, use country instead",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "country": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these countries (by country ID or two-letter code)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "extID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return locations bound to these external locationIDs",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "fromID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Only return locations with ID greater or equal to this ID"
+        },
+        "excludeWithoutExtID": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, only return locations which are bound to an external locationID. By default, non-bound locations are also returned (typically, these are marked disabled)"
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "Order results by these properties (prefix with - to sort descending)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "startTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects from this timestamp"
+        },
+        "endTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects until this timestamp"
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Only include objects which have includeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted",
+              "disabled"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Exclude objects which have excludeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted",
+              "disabled"
+            ]
+          }
+        }
+      },
+      "description": "Search criteria to search for location"
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.GeoIPRange-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.GeoIPRange"
+        }
+      }
+    },
+    "GeoIPLocationSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "countTimeout": {
+          "type": "integer",
+          "format": "int32",
+          "example": -1,
+          "description": "Max wait in seconds for the count query to run. Set the value to -1 to skip counting (count will be returned -1). Set the value to 0 to execute the count query as long as the service allows, max allowed timeout value is 30 (seconds), default value is -1.",
+          "minimum": -1,
+          "maximum": 30
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Also include deleted objects (where implemented)"
+        },
+        "countryID": {
+          "type": "array",
+          "position": 0,
+          "description": "Deprecated, use country instead",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "country": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these countries (by country ID or two-letter code)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "extID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return locations bound to these external locationIDs",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "fromID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Only return locations with ID greater or equal to this ID"
+        },
+        "excludeWithoutExtID": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, only return locations which are bound to an external locationID. By default, non-bound locations are also returned (typically, these are marked disabled)"
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "Order results by these properties (prefix with - to sort descending)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "startTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects from this timestamp"
+        },
+        "endTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects until this timestamp"
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Only include objects which have includeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted",
+              "disabled"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Exclude objects which have excludeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted",
+              "disabled"
+            ]
+          }
+        }
+      },
+      "description": "Search criteria to search for location"
+    },
+    "GeoIPRangeRequest": {
+      "type": "object",
+      "properties": {
+        "fromAddress": {
+          "type": "string",
+          "position": 0,
+          "description": "The lower end of the IP-address range (inclusive)."
+        },
+        "toAddress": {
+          "type": "string",
+          "position": 0,
+          "description": "The upper end of the IP-address range (inclusive)."
+        },
+        "locationID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The ID of the location associated with the IP-address range."
+        }
+      },
+      "description": "Request to add or update IP-address range"
+    },
+    "IPRange": {
+      "type": "object",
+      "properties": {
+        "fromAddress": {
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        },
+        "toAddress": {
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.geoip.GeoIPRange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "range": {
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPRange"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter code of the country where this IP-range is located"
+        },
+        "locationID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The location ID associated with this IP-range"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this IP-range was last modified"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted"
+            ]
+          }
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "position": 0,
+          "description": "Geographic latitude of the spot where this IP-range is located (0.0 if not set)"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "position": 0,
+          "description": "Geographic longitude of the spot where this IP-range is located (0.0 if not set)"
+        }
+      },
+      "description": "Combines IP-address range (from- and to-address) with country and location data"
+    },
+    "no.mnemonic.jargus.model.geoip.Region": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "minLocationID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxLocationID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter code of the country where this region is in"
+        },
+        "regionCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The code of the region"
+        },
+        "regionName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the region"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this region was last modified"
+        }
+      },
+      "description": "Region is a subunit of a country. It contains data about the region and also the country it belongs to."
+    },
+    "no.mnemonic.services.geoip.spi.request.CountryAddRequest": {
+      "type": "object",
+      "required": [
+        "countryCode",
+        "countryName"
+      ],
+      "properties": {
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter country-code",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "countryName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the country",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.GeoLocation-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.GeoLocation"
+        }
+      }
+    },
+    "GeoIPRange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "range": {
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPRange"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter code of the country where this IP-range is located"
+        },
+        "locationID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The location ID associated with this IP-range"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this IP-range was last modified"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted"
+            ]
+          }
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "position": 0,
+          "description": "Geographic latitude of the spot where this IP-range is located (0.0 if not set)"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "position": 0,
+          "description": "Geographic longitude of the spot where this IP-range is located (0.0 if not set)"
+        }
+      },
+      "description": "Combines IP-address range (from- and to-address) with country and location data"
+    },
+    "CountrySearchRequest": {
+      "type": "object",
+      "properties": {
+        "sortBy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "id",
+              "countryName",
+              "countryCode",
+              "-id",
+              "-countryName",
+              "-countryCode"
+            ]
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Max number of results.",
+          "minimum": 0
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object.",
+          "minimum": 0
+        },
+        "fromID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Only return countries where the numeric id is larger than this value. By default, this is disabled.",
+          "minimum": 0
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, also include countries marked as deleted."
+        }
+      },
+      "description": "Request to search for countries"
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.Country-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.Country"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.geoip.Country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countryName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the country"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter country-code"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this country was last modified"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "description": "Contains basic data about a country"
+    },
+    "no.mnemonic.services.geoip.spi.request.CountryUpdateRequest": {
+      "type": "object",
+      "required": [
+        "countryName"
+      ],
+      "properties": {
+        "countryName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the country",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      }
+    },
+    "GeoIPRangeSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "countTimeout": {
+          "type": "integer",
+          "format": "int32",
+          "example": -1,
+          "description": "Max wait in seconds for the count query to run. Set the value to -1 to skip counting (count will be returned -1). Set the value to 0 to execute the count query as long as the service allows, max allowed timeout value is 30 (seconds), default value is -1.",
+          "minimum": -1,
+          "maximum": 30
+        },
+        "ipAddress": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Also include deleted objects (where implemented)"
+        },
+        "includeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects with these flags set"
+        },
+        "excludeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Exclude objects with these flags set"
+        },
+        "countryID": {
+          "type": "array",
+          "position": 0,
+          "description": "Deprecated, use country instead",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "country": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these countries (by country ID or two-letter code)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "regionID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these regions (by regionID)",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "locationID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these locations (by locationID)",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "rangeID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return specific ranges (by ID)",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "startIPAddress": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges where the range start-address matches one of these IP-addresses",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+          }
+        },
+        "fromIP": {
+          "position": 0,
+          "description": "Only return ranges where the range start-address is greater or equal than this IP-address",
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        },
+        "toIP": {
+          "position": 0,
+          "description": "Only return ranges where the range start-address is lower or equal than this IP-address",
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        },
+        "addressFamily": {
+          "type": "string",
+          "position": 0,
+          "description": "Only return ranges for this address family range (ipv4 or ipv6)",
+          "enum": [
+            "IPv4",
+            "IPv6"
+          ]
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "Order results by these properties (prefix with - to sort descending)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "startTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects from this timestamp"
+        },
+        "endTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects until this timestamp"
+        }
+      },
+      "description": "Search criteria to search for IP-address range"
+    },
+    "no.mnemonic.jargus.model.geoip.GeoLocation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "extID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The external ID of the location (0 if not set)"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter code of the country where this location is in"
+        },
+        "cityName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the the location (it isn't always a city)"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this location was last modified"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted",
+              "disabled"
+            ]
+          }
+        }
+      },
+      "description": "Location is a subunit of a region. It contains data about the location and also the region and country it belongs to."
+    },
+    "no.mnemonic.jargus.dao.criteria.geoip.GeoIPRangeSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "countTimeout": {
+          "type": "integer",
+          "format": "int32",
+          "example": -1,
+          "description": "Max wait in seconds for the count query to run. Set the value to -1 to skip counting (count will be returned -1). Set the value to 0 to execute the count query as long as the service allows, max allowed timeout value is 30 (seconds), default value is -1.",
+          "minimum": -1,
+          "maximum": 30
+        },
+        "ipAddress": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Also include deleted objects (where implemented)"
+        },
+        "includeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects with these flags set"
+        },
+        "excludeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Exclude objects with these flags set"
+        },
+        "countryID": {
+          "type": "array",
+          "position": 0,
+          "description": "Deprecated, use country instead",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "country": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these countries (by country ID or two-letter code)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "regionID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these regions (by regionID)",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "locationID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges from these locations (by locationID)",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "rangeID": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return specific ranges (by ID)",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "startIPAddress": {
+          "type": "array",
+          "position": 0,
+          "description": "Only return ranges where the range start-address matches one of these IP-addresses",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+          }
+        },
+        "fromIP": {
+          "position": 0,
+          "description": "Only return ranges where the range start-address is greater or equal than this IP-address",
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        },
+        "toIP": {
+          "position": 0,
+          "description": "Only return ranges where the range start-address is lower or equal than this IP-address",
+          "$ref": "#/definitions/no.mnemonic.jargus.net.IPAddress"
+        },
+        "addressFamily": {
+          "type": "string",
+          "position": 0,
+          "description": "Only return ranges for this address family range (ipv4 or ipv6)",
+          "enum": [
+            "IPv4",
+            "IPv6"
+          ]
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "Order results by these properties (prefix with - to sort descending)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "startTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects from this timestamp"
+        },
+        "endTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "xml": {
+            "attribute": true
+          },
+          "position": 0,
+          "description": "Search objects until this timestamp"
+        }
+      },
+      "description": "Search criteria to search for IP-address range"
+    },
+    "no.mnemonic.services.argus.common.rest.model.ResultMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "messageTemplate": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIELD_ERROR",
+            "ACTION_ERROR",
+            "WARNING",
+            "NOTIFICATION",
+            "INFO"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ResultMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "messageTemplate": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIELD_ERROR",
+            "ACTION_ERROR",
+            "WARNING",
+            "NOTIFICATION",
+            "INFO"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "no.mnemonic.services.geoip.spi.request.GeoIPRangeRequest": {
+      "type": "object",
+      "properties": {
+        "fromAddress": {
+          "type": "string",
+          "position": 0,
+          "description": "The lower end of the IP-address range (inclusive)."
+        },
+        "toAddress": {
+          "type": "string",
+          "position": 0,
+          "description": "The upper end of the IP-address range (inclusive)."
+        },
+        "locationID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The ID of the location associated with the IP-address range."
+        }
+      },
+      "description": "Request to add or update IP-address range"
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.Country-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.Country"
+          }
+        }
+      }
+    },
+    "Country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "countryName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the country"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter country-code"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this country was last modified"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "description": "Contains basic data about a country"
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "minLocationID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxLocationID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter code of the country where this region is in"
+        },
+        "regionCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The code of the region"
+        },
+        "regionName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the region"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this region was last modified"
+        }
+      },
+      "description": "Region is a subunit of a country. It contains data about the region and also the country it belongs to."
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.GeoLocation-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.GeoLocation"
+          }
+        }
+      }
+    },
+    "CountryUpdateRequest": {
+      "type": "object",
+      "required": [
+        "countryName"
+      ],
+      "properties": {
+        "countryName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the country",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      }
+    },
+    "GeoLocation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "extID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The external ID of the location (0 if not set)"
+        },
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter code of the country where this location is in"
+        },
+        "cityName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the the location (it isn't always a city)"
+        },
+        "lastModified": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this location was last modified"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "deleted",
+              "disabled"
+            ]
+          }
+        }
+      },
+      "description": "Location is a subunit of a region. It contains data about the location and also the region and country it belongs to."
+    },
+    "ResultStash-no.mnemonic.jargus.model.geoip.GeoIPRange-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.geoip.GeoIPRange"
+          }
+        }
+      }
+    },
+    "IPAddress": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "readOnly": true
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "ipv6": {
+          "type": "boolean",
+          "xml": {
+            "attribute": true
+          },
+          "readOnly": true
+        },
+        "maskBits": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "multicast": {
+          "type": "boolean"
+        },
+        "address": {
+          "type": "string",
+          "xml": {
+            "attribute": true
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CountryAddRequest": {
+      "type": "object",
+      "required": [
+        "countryCode",
+        "countryName"
+      ],
+      "properties": {
+        "countryCode": {
+          "type": "string",
+          "position": 0,
+          "description": "The two-letter country-code",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "countryName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the country",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      }
+    }
+  }
+}

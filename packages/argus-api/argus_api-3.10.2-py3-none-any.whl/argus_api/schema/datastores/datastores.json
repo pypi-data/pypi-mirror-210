@@ -1,0 +1,2395 @@
+{
+  "swagger": "2.0",
+  "info": {},
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "datastores/v1"
+    }
+  ],
+  "paths": {
+    "/datastores/v1/descriptor/{dataStore}": {
+      "get": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Returns a datastore descriptor identified by its name. (PUBLIC)",
+        "description": "",
+        "operationId": "getDescriptor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Updates an existing datastore descriptor. (PUBLIC)",
+        "description": "",
+        "operationId": "updateDataStoreDescriptor",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.service.request.datastore.v1.DataStoreDescriptorUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Deletes an existing datastore descriptor. (PUBLIC)",
+        "description": "This operation will permanently remove all entries stored inside the datastore. It is not possible to undo this operation.",
+        "operationId": "deleteDataStoreDescriptor",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/datastores/v1/descriptor": {
+      "get": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Returns an array of datastore descriptors matching search parameters. (PUBLIC)",
+        "description": "",
+        "operationId": "searchDescriptorsSimple",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip a number of results",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of returned results",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "keywords",
+            "in": "query",
+            "description": "Search by keywords",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "keywordMatch",
+            "in": "query",
+            "description": "Set match strategy for keyword search",
+            "required": false,
+            "type": "string",
+            "default": "all",
+            "enum": [
+              "all",
+              "any"
+            ]
+          },
+          {
+            "name": "keywordField",
+            "in": "query",
+            "description": "Set field strategy for keyword search",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "all",
+              "enum": [
+                "name",
+                "description",
+                "all"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Sort search result",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "name",
+                "lastUpdatedTimestamp",
+                "-name",
+                "-lastUpdatedTimestamp"
+              ]
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Adds a new datastore descriptor. (PUBLIC)",
+        "description": "",
+        "operationId": "addDataStoreDescriptor",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.service.request.datastore.v1.DataStoreDescriptorAddRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/datastores/v1/descriptor/search": {
+      "post": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Returns an array of datastore descriptors matching search criteria. (PUBLIC)",
+        "description": "",
+        "operationId": "searchDescriptors",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search criteria",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.criteria.datastore.v1.DataStoreDescriptorSearchCriteria"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/datastores/v1/store/{dataStore}/{key}": {
+      "get": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Returns the specified datastore entry for the specified store, or null if it does not exist (PUBLIC)",
+        "description": "",
+        "operationId": "getSingleEntry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Key to identify entry",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerID",
+            "in": "query",
+            "description": "Customer the entry belongs to (defaults to the user's customer)",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "includeDeleted",
+            "in": "query",
+            "description": "Return deleted/expired entry",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Adds the provided datastore entry to the specified store. (PUBLIC)",
+        "description": "This operation should only be used with datastores of type LIST.",
+        "operationId": "putSingleDataStoreListEntry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Entry to add to the specified store",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerID",
+            "in": "query",
+            "description": "Customer the entry belongs to (defaults to the user's customer)",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry$ListEntry-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/datastores/v1/store/{dataStore}/search": {
+      "post": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Returns datastore entries for the specified store, matching the search criteria. (PUBLIC)",
+        "description": "",
+        "operationId": "getEntriesFromStore",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search criteria",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.criteria.DataStoreSearchCriteria"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/datastores/v1/store/{dataStore}": {
+      "get": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Returns datastore entries for the specified store, matching query parameters. (PUBLIC)",
+        "description": "",
+        "operationId": "getEntriesFromStoreSimplified",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip a number of results",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of returned results",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "customerID",
+            "in": "query",
+            "description": "Limit search to entries belonging to the specified customers",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "Limit search to the specified entry keys",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "includeDeleted",
+            "in": "query",
+            "description": "Include deleted/expired entries",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Adds or updates the provided datastore entries for the specified store. (PUBLIC)",
+        "description": "Previously unknown entries will be added to the store. The value of existing entries will be updated.",
+        "operationId": "putDataStoreEntries",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Request specifying entries to add/update",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.jargus.service.request.datastore.v1.DataStoreEntryPutRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Deletes the provided datastore entries from the specified store. (PUBLIC)",
+        "description": "This operation marks entries as deleted. They are not permanently removed and can be retrieved using the 'includeDeleted' parameter.",
+        "operationId": "deleteDataStoreEntries",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "Entries to delete from the specified store",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "maxItems": 2147483647,
+            "minItems": 1
+          },
+          {
+            "name": "customerID",
+            "in": "query",
+            "description": "Customer the entries belong to (defaults to the user's customer)",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/datastores/v1/store/{dataStore}/{key}/{value}": {
+      "put": {
+        "tags": [
+          "datastores/v1"
+        ],
+        "summary": "Updates the provided datastore entry for the specified store. (PUBLIC)",
+        "description": "This operation should only be used with datastores of type MAP.",
+        "operationId": "putSingleDataStoreMapEntry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dataStore",
+            "in": "path",
+            "description": "Store name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Key to identify entry",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "path",
+            "description": "Value to set for the specified entry",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerID",
+            "in": "query",
+            "description": "Customer the entry belongs to (defaults to the user's customer)",
+            "required": false,
+            "type": "integer",
+            "minimum": 0,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.DataStoreEntry-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Datastore not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "no.mnemonic.jargus.model.DataStoreDescriptor": {
+      "type": "object",
+      "required": [
+        "behaviourType",
+        "dataType",
+        "description",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The datastore's unique identifier."
+        },
+        "description": {
+          "type": "string",
+          "position": 0,
+          "description": "A textual description of the datastore."
+        },
+        "dataType": {
+          "type": "string",
+          "position": 0,
+          "description": "The type of data stored in the datastore (MAP or LIST). Maps have keys with values, lists only have keys.",
+          "enum": [
+            "MAP",
+            "LIST"
+          ]
+        },
+        "behaviourType": {
+          "type": "string",
+          "position": 0,
+          "description": "The behaviour of the datastore. CENTRAL datastores define their data in the central Argus application. LOCAL and DISTRIBUTED datastores are used to control expiry and format for stores used in distributed processing.",
+          "enum": [
+            "LOCAL",
+            "DISTRIBUTED",
+            "CENTRAL"
+          ]
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp for the last update of this descriptor."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "Information about the user who performed the last update of this descriptor.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "lifeTime": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "For datastores with expireData, the lifeTime defines the time period (in milliseconds) until an entry will be removed from the datastore after it has been written (added or updated)."
+        },
+        "globalData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Datastores with globalData do not accept data per customer, but only to a common global store."
+        },
+        "expireData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Datastores with expireData will automatically expire data which is older than lifeTime millis."
+        },
+        "deleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Indicates if the datastore and all of its data has been removed."
+        }
+      },
+      "description": "A datastore descriptor contains the configuration of one datastore."
+    },
+    "no.mnemonic.services.argus.common.rest.model.ResultStash": {
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Returned results (might be an array or a single object)"
+        }
+      }
+    },
+    "DataStoreDescriptor": {
+      "type": "object",
+      "required": [
+        "behaviourType",
+        "dataType",
+        "description",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The datastore's unique identifier."
+        },
+        "description": {
+          "type": "string",
+          "position": 0,
+          "description": "A textual description of the datastore."
+        },
+        "dataType": {
+          "type": "string",
+          "position": 0,
+          "description": "The type of data stored in the datastore (MAP or LIST). Maps have keys with values, lists only have keys.",
+          "enum": [
+            "MAP",
+            "LIST"
+          ]
+        },
+        "behaviourType": {
+          "type": "string",
+          "position": 0,
+          "description": "The behaviour of the datastore. CENTRAL datastores define their data in the central Argus application. LOCAL and DISTRIBUTED datastores are used to control expiry and format for stores used in distributed processing.",
+          "enum": [
+            "LOCAL",
+            "DISTRIBUTED",
+            "CENTRAL"
+          ]
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp for the last update of this descriptor."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "Information about the user who performed the last update of this descriptor.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "lifeTime": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "For datastores with expireData, the lifeTime defines the time period (in milliseconds) until an entry will be removed from the datastore after it has been written (added or updated)."
+        },
+        "globalData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Datastores with globalData do not accept data per customer, but only to a common global store."
+        },
+        "expireData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Datastores with expireData will automatically expire data which is older than lifeTime millis."
+        },
+        "deleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Indicates if the datastore and all of its data has been removed."
+        }
+      },
+      "description": "A datastore descriptor contains the configuration of one datastore."
+    },
+    "no.mnemonic.jargus.service.request.datastore.v1.DataStoreDescriptorAddRequest": {
+      "type": "object",
+      "required": [
+        "behaviourType",
+        "dataType",
+        "description",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Name for the new datastore, must be unique. => [a-zA-Z0-9_:\\-\\.]*",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "position": 0,
+          "description": "A textual description of the datastore. => [\\s\\w\\{\\}\\$\\-\\(\\)\\.\\[\\]\"\\'_/\\\\,\\*\\+\\#:@!?;=]*",
+          "minLength": 0,
+          "maxLength": 2048
+        },
+        "globalData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, the datastore only accepts global data (not customer bound)."
+        },
+        "expireData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, the datastore entries will expire after the configured time period since added/last updated."
+        },
+        "lifeTime": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The requested expiry time in milliseconds. Requires a positive value (if expireData is true).",
+          "minimum": 1
+        },
+        "behaviourType": {
+          "type": "string",
+          "position": 0,
+          "description": "The behaviour of the datastore. CENTRAL datastores are only updated centrally, but may be used in distributed processing. LOCAL and DISTRIBUTED datastores are not stored centrally, but updated in the distributed system. DISTRIBUTED may be shared between processing nodes. (default CENTRAL)",
+          "enum": [
+            "LOCAL",
+            "DISTRIBUTED",
+            "CENTRAL"
+          ]
+        },
+        "dataType": {
+          "type": "string",
+          "position": 0,
+          "description": "The type of data stored in the datastore (MAP or LIST). Maps have keys with values, lists only have keys. (default MAP)",
+          "enum": [
+            "MAP",
+            "LIST"
+          ]
+        }
+      },
+      "description": "Request to create a new datastore descriptor."
+    },
+    "ResultStash": {
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Returned results (might be an array or a single object)"
+        }
+      }
+    },
+    "no.mnemonic.jargus.service.request.datastore.v1.DataStoreDescriptorUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "If set, change the name of this datastore. All entries will be updated (may take long time for large stores). => [a-zA-Z0-9_:\\-\\.]*",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "position": 0,
+          "description": "If set, change the textual description of this datastore. => [\\s\\w\\{\\}\\$\\-\\(\\)\\.\\[\\]\"\\'_/\\\\,\\*\\+\\#:@!?;=]*",
+          "minLength": 0,
+          "maxLength": 2048
+        },
+        "globalData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set, change the global data flag on this datastore. Default is no change."
+        },
+        "expireData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set, change the expire data flag on this datastore. Default is no change."
+        },
+        "lifeTime": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "If set (to a positive value), change the expiry time of this datastore. Requires that the store has enabled expireData. Default is no change.",
+          "minimum": 1
+        }
+      },
+      "description": "Request to update an existing datastore descriptor."
+    },
+    "no.mnemonic.jargus.model.CustomerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        }
+      }
+    },
+    "DataStoreDescriptorUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "If set, change the name of this datastore. All entries will be updated (may take long time for large stores). => [a-zA-Z0-9_:\\-\\.]*",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "position": 0,
+          "description": "If set, change the textual description of this datastore. => [\\s\\w\\{\\}\\$\\-\\(\\)\\.\\[\\]\"\\'_/\\\\,\\*\\+\\#:@!?;=]*",
+          "minLength": 0,
+          "maxLength": 2048
+        },
+        "globalData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set, change the global data flag on this datastore. Default is no change."
+        },
+        "expireData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set, change the expire data flag on this datastore. Default is no change."
+        },
+        "lifeTime": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "If set (to a positive value), change the expiry time of this datastore. Requires that the store has enabled expireData. Default is no change.",
+          "minimum": 1
+        }
+      },
+      "description": "Request to update an existing datastore descriptor."
+    },
+    "UserInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customer": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "customerID": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.jargus.model.DataStoreEntry-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DataStoreEntry"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.DomainInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.DataStoreEntry$ListEntry": {
+      "type": "object",
+      "required": [
+        "dataStoreName",
+        "key"
+      ],
+      "properties": {
+        "dataStoreName": {
+          "type": "string",
+          "position": 0,
+          "description": "Name of the datastore this entry belongs to."
+        },
+        "customer": {
+          "position": 0,
+          "description": "Customer this entry belongs to, or unset if the datastore contains global data.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp for the last update of this entry."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "Information about the user who performed the last update of this entry.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "key": {
+          "type": "string",
+          "position": 0,
+          "description": "An entry's key if the datastore is of type MAP, or a list entry if the datastore is of type LIST."
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      }
+    },
+    "no.mnemonic.jargus.criteria.DataStoreSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Set to true to include deleted objects. By default, exclude deleted objects."
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias which are applied using a logical OR.",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.criteria.DataStoreSearchCriteria"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        },
+        "customerID": {
+          "type": "array",
+          "position": 0,
+          "description": "Restrict search to data belonging to specified customers.",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userID": {
+          "type": "array",
+          "position": 0,
+          "description": "Restrict search to entries which were last updated by specified users.",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "key": {
+          "type": "array",
+          "position": 0,
+          "description": "Restrict search to entries with the specified keys.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "fromKey": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries (map keys) which are greater than this key (including, by lexical order)."
+        },
+        "toKey": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries (map keys) which are less than this key (including, by lexical order)."
+        },
+        "startTimestamp": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries which were last updated after this timestamp (including). Allows unix timestamp (milliseconds), ISO timestamp, or relative time notation. See https://docs.mnemonic.no/x/AQDXAQ"
+        },
+        "endTimestamp": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries which were last updated before this timestamp (including). Allows unix timestamp (milliseconds), ISO timestamp, or relative time notation. See https://docs.mnemonic.no/x/AQDXAQ"
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "List of properties to sort by (prefix with \"-\" to sort descending).",
+          "items": {
+            "type": "string",
+            "enum": [
+              "key",
+              "lastUpdatedTimestamp",
+              "-key",
+              "-lastUpdatedTimestamp"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Only include objects which have includeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Exclude objects which have excludeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "description": "Criteria to search for entries inside one datastore."
+    },
+    "Entry": {
+      "type": "object",
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "position": 0,
+          "description": "Map value. Not valid when writing entries to datastores of type LIST.",
+          "readOnly": true,
+          "minLength": 0,
+          "maxLength": 2048
+        },
+        "key": {
+          "type": "string",
+          "position": 0,
+          "description": "List entry or map key.",
+          "minLength": 0,
+          "maxLength": 255
+        }
+      },
+      "description": "Add/update a single entry of a datastore."
+    },
+    "no.mnemonic.jargus.service.request.datastore.v1.DataStoreEntryPutRequest": {
+      "type": "object",
+      "required": [
+        "entries"
+      ],
+      "properties": {
+        "customerID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Entries will be bound to the provided customer. If not set, defaults to bind to the current user's customer (or none, if the datastore is global).",
+          "minimum": 0
+        },
+        "entries": {
+          "type": "array",
+          "position": 0,
+          "description": "Entries to add/update. If an entry for a given customer and key already exists the entry will be updated. Otherwise, a new entry will be added.",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.service.request.datastore.v1.DataStoreEntryPutRequest$Entry"
+          },
+          "maxItems": 2147483647,
+          "minItems": 1
+        }
+      },
+      "description": "Request to add/update multiple entries of a datastore."
+    },
+    "ResultStash-no.mnemonic.jargus.model.DataStoreEntry-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.DataStoreEntry"
+          }
+        }
+      }
+    },
+    "DataStoreSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Set to true to include deleted objects. By default, exclude deleted objects."
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias which are applied using a logical OR.",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.criteria.DataStoreSearchCriteria"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        },
+        "customerID": {
+          "type": "array",
+          "position": 0,
+          "description": "Restrict search to data belonging to specified customers.",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userID": {
+          "type": "array",
+          "position": 0,
+          "description": "Restrict search to entries which were last updated by specified users.",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "key": {
+          "type": "array",
+          "position": 0,
+          "description": "Restrict search to entries with the specified keys.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "fromKey": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries (map keys) which are greater than this key (including, by lexical order)."
+        },
+        "toKey": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries (map keys) which are less than this key (including, by lexical order)."
+        },
+        "startTimestamp": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries which were last updated after this timestamp (including). Allows unix timestamp (milliseconds), ISO timestamp, or relative time notation. See https://docs.mnemonic.no/x/AQDXAQ"
+        },
+        "endTimestamp": {
+          "type": "string",
+          "position": 0,
+          "description": "Restrict search to entries which were last updated before this timestamp (including). Allows unix timestamp (milliseconds), ISO timestamp, or relative time notation. See https://docs.mnemonic.no/x/AQDXAQ"
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "List of properties to sort by (prefix with \"-\" to sort descending).",
+          "items": {
+            "type": "string",
+            "enum": [
+              "key",
+              "lastUpdatedTimestamp",
+              "-key",
+              "-lastUpdatedTimestamp"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Only include objects which have includeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "Exclude objects which have excludeFlags set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "description": "Criteria to search for entries inside one datastore."
+    },
+    "DomainInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DataStoreDescriptorAddRequest": {
+      "type": "object",
+      "required": [
+        "behaviourType",
+        "dataType",
+        "description",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Name for the new datastore, must be unique. => [a-zA-Z0-9_:\\-\\.]*",
+          "minLength": 0,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "position": 0,
+          "description": "A textual description of the datastore. => [\\s\\w\\{\\}\\$\\-\\(\\)\\.\\[\\]\"\\'_/\\\\,\\*\\+\\#:@!?;=]*",
+          "minLength": 0,
+          "maxLength": 2048
+        },
+        "globalData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, the datastore only accepts global data (not customer bound)."
+        },
+        "expireData": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If true, the datastore entries will expire after the configured time period since added/last updated."
+        },
+        "lifeTime": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The requested expiry time in milliseconds. Requires a positive value (if expireData is true).",
+          "minimum": 1
+        },
+        "behaviourType": {
+          "type": "string",
+          "position": 0,
+          "description": "The behaviour of the datastore. CENTRAL datastores are only updated centrally, but may be used in distributed processing. LOCAL and DISTRIBUTED datastores are not stored centrally, but updated in the distributed system. DISTRIBUTED may be shared between processing nodes. (default CENTRAL)",
+          "enum": [
+            "LOCAL",
+            "DISTRIBUTED",
+            "CENTRAL"
+          ]
+        },
+        "dataType": {
+          "type": "string",
+          "position": 0,
+          "description": "The type of data stored in the datastore (MAP or LIST). Maps have keys with values, lists only have keys. (default MAP)",
+          "enum": [
+            "MAP",
+            "LIST"
+          ]
+        }
+      },
+      "description": "Request to create a new datastore descriptor."
+    },
+    "ListEntry": {
+      "type": "object",
+      "required": [
+        "dataStoreName",
+        "key"
+      ],
+      "properties": {
+        "dataStoreName": {
+          "type": "string",
+          "position": 0,
+          "description": "Name of the datastore this entry belongs to."
+        },
+        "customer": {
+          "position": 0,
+          "description": "Customer this entry belongs to, or unset if the datastore contains global data.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp for the last update of this entry."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "Information about the user who performed the last update of this entry.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "key": {
+          "type": "string",
+          "position": 0,
+          "description": "An entry's key if the datastore is of type MAP, or a list entry if the datastore is of type LIST."
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      }
+    },
+    "no.mnemonic.jargus.criteria.datastore.v1.DataStoreDescriptorSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Set to true to include deleted objects. By default, exclude deleted objects."
+        },
+        "includeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Only include objects which have includeFlags set."
+        },
+        "excludeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Exclude objects which have excludeFlags set."
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias which are applied using a logical OR.",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.criteria.datastore.v1.DataStoreDescriptorSearchCriteria"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        },
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "Search for datastores matching keywords.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "keywordFieldStrategy": {
+          "type": "array",
+          "position": 0,
+          "description": "Defines which fields will be searched by keywords (default all supported fields).",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "description",
+              "all"
+            ]
+          }
+        },
+        "keywordMatchStrategy": {
+          "type": "string",
+          "position": 0,
+          "description": "Defines the MatchStrategy for keywords (default match all keywords).",
+          "enum": [
+            "all",
+            "any"
+          ]
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "List of properties to sort by (prefix with \"-\" to sort descending).",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "lastUpdatedTimestamp",
+              "-name",
+              "-lastUpdatedTimestamp"
+            ]
+          }
+        }
+      },
+      "description": "Criteria to search for datastore descriptors."
+    },
+    "no.mnemonic.jargus.model.UserInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customer": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "customerID": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DataStoreDescriptorSearchCriteria": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Max number of results."
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Skip the first (offset) objects. By default, return result from first object."
+        },
+        "includeDeleted": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Set to true to include deleted objects. By default, exclude deleted objects."
+        },
+        "includeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Only include objects which have includeFlags set."
+        },
+        "excludeFlags": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Exclude objects which have excludeFlags set."
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias which are applied using a logical OR.",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.criteria.datastore.v1.DataStoreDescriptorSearchCriteria"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "Only relevant for subcriteria. If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        },
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "Search for datastores matching keywords.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "keywordFieldStrategy": {
+          "type": "array",
+          "position": 0,
+          "description": "Defines which fields will be searched by keywords (default all supported fields).",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "description",
+              "all"
+            ]
+          }
+        },
+        "keywordMatchStrategy": {
+          "type": "string",
+          "position": 0,
+          "description": "Defines the MatchStrategy for keywords (default match all keywords).",
+          "enum": [
+            "all",
+            "any"
+          ]
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "List of properties to sort by (prefix with \"-\" to sort descending).",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "lastUpdatedTimestamp",
+              "-name",
+              "-lastUpdatedTimestamp"
+            ]
+          }
+        }
+      },
+      "description": "Criteria to search for datastore descriptors."
+    },
+    "no.mnemonic.services.argus.common.rest.model.ResultMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "messageTemplate": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIELD_ERROR",
+            "ACTION_ERROR",
+            "WARNING",
+            "NOTIFICATION",
+            "INFO"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DataStoreDescriptor"
+        }
+      }
+    },
+    "ResultMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "messageTemplate": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIELD_ERROR",
+            "ACTION_ERROR",
+            "WARNING",
+            "NOTIFICATION",
+            "INFO"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DataStoreEntry": {
+      "type": "object",
+      "required": [
+        "dataStoreName",
+        "key"
+      ],
+      "properties": {
+        "dataStoreName": {
+          "type": "string",
+          "position": 0,
+          "description": "Name of the datastore this entry belongs to."
+        },
+        "customer": {
+          "position": 0,
+          "description": "Customer this entry belongs to, or unset if the datastore contains global data.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp for the last update of this entry."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "Information about the user who performed the last update of this entry.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "key": {
+          "type": "string",
+          "position": 0,
+          "description": "An entry's key if the datastore is of type MAP, or a list entry if the datastore is of type LIST."
+        },
+        "value": {
+          "type": "string",
+          "position": 0,
+          "description": "An entry's value if the datastore is of type MAP, or unset if the datastore is of type LIST."
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "description": "A datastore entry is one item stored inside a datastore."
+    },
+    "ResultStash-no.mnemonic.jargus.model.DataStoreEntry$ListEntry-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DataStoreEntry$ListEntry"
+        }
+      }
+    },
+    "DataStoreEntryPutRequest": {
+      "type": "object",
+      "required": [
+        "entries"
+      ],
+      "properties": {
+        "customerID": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "Entries will be bound to the provided customer. If not set, defaults to bind to the current user's customer (or none, if the datastore is global).",
+          "minimum": 0
+        },
+        "entries": {
+          "type": "array",
+          "position": 0,
+          "description": "Entries to add/update. If an entry for a given customer and key already exists the entry will be updated. Otherwise, a new entry will be added.",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.service.request.datastore.v1.DataStoreEntryPutRequest$Entry"
+          },
+          "maxItems": 2147483647,
+          "minItems": 1
+        }
+      },
+      "description": "Request to add/update multiple entries of a datastore."
+    },
+    "no.mnemonic.jargus.model.DataStoreEntry": {
+      "type": "object",
+      "required": [
+        "dataStoreName",
+        "key"
+      ],
+      "properties": {
+        "dataStoreName": {
+          "type": "string",
+          "position": 0,
+          "description": "Name of the datastore this entry belongs to."
+        },
+        "customer": {
+          "position": 0,
+          "description": "Customer this entry belongs to, or unset if the datastore contains global data.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp for the last update of this entry."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "Information about the user who performed the last update of this entry.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "key": {
+          "type": "string",
+          "position": 0,
+          "description": "An entry's key if the datastore is of type MAP, or a list entry if the datastore is of type LIST."
+        },
+        "value": {
+          "type": "string",
+          "position": 0,
+          "description": "An entry's value if the datastore is of type MAP, or unset if the datastore is of type LIST."
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "description": "A datastore entry is one item stored inside a datastore."
+    },
+    "CustomerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        }
+      }
+    },
+    "no.mnemonic.jargus.service.request.datastore.v1.DataStoreEntryPutRequest$Entry": {
+      "type": "object",
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "position": 0,
+          "description": "Map value. Not valid when writing entries to datastores of type LIST.",
+          "readOnly": true,
+          "minLength": 0,
+          "maxLength": 2048
+        },
+        "key": {
+          "type": "string",
+          "position": 0,
+          "description": "List entry or map key.",
+          "minLength": 0,
+          "maxLength": 255
+        }
+      },
+      "description": "Add/update a single entry of a datastore."
+    },
+    "ResultStash-no.mnemonic.jargus.model.DataStoreDescriptor-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.DataStoreDescriptor"
+          }
+        }
+      }
+    }
+  }
+}

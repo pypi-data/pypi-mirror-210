@@ -1,0 +1,6158 @@
+{
+  "swagger": "2.0",
+  "info": {},
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "componentadmin/v1"
+    },
+    {
+      "name": "componentadmin/v2"
+    }
+  ],
+  "paths": {
+    "/componentadmin/v1/status/refresh": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Request all components to immediately refresh status (INTERNAL)",
+        "description": "",
+        "operationId": "refresh",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/status": {
+      "get": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Fetch status map (INTERNAL)",
+        "description": "",
+        "operationId": "getHostMap",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationHostStatusWrapper-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Clear component directory (INTERNAL)",
+        "description": "",
+        "operationId": "clearComponentDirectory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/status": {
+      "get": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Fetch status for specified component (INTERNAL)",
+        "description": "",
+        "operationId": "getInstanceStatusV1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of host to fetch status for",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationInstanceStatusWrapper-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{id}/status/refresh": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Request all components on specified host to immediately refresh status (INTERNAL)",
+        "description": "",
+        "operationId": "refreshHostStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of host to request update from",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/status/refresh": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Request specified component to immediately refresh status (INTERNAL)",
+        "description": "",
+        "operationId": "refreshInstanceStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of component to request update from",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/performance": {
+      "get": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Fetch performance details from specified component. Data format in a JSON chart stats container format, see ChartDataGenerator (INTERNAL)",
+        "description": "",
+        "operationId": "getContainerPerformance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance to fetch performance data from",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/properties": {
+      "post": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Fetch all properties from specified component. Response format is a map of property names to values, each value is either a String or a Number (INTERNAL)",
+        "description": "",
+        "operationId": "getProperties",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Component identity",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/property/{property}": {
+      "post": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Fetch property from runtime components (INTERNAL)",
+        "description": "",
+        "operationId": "getProperty",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "property",
+            "in": "path",
+            "description": "Property to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Property fetch request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetProperty$GetPropertyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.rest.v1.GetProperty$GetPropertyResult-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/task/{id}": {
+      "get": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Fetch specified task (INTERNAL)",
+        "description": "",
+        "operationId": "getTask",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of task to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/task": {
+      "get": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "List current tasks for currentuser (INTERNAL)",
+        "description": "",
+        "operationId": "listTasks",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/invoke": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Invoke operation (INTERNAL)",
+        "description": "",
+        "operationId": "call",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Invocation request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.Invoke$CallRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/lookup": {
+      "post": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Lookup runtime components (INTERNAL)",
+        "description": "",
+        "operationId": "lookup",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Lookup request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.Lookup$LookupRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.rest.v1.Lookup$LookupResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{hostID}/cachedconfigurations/clear": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Clear all installed configurations on this host (INTERNAL)",
+        "description": "",
+        "operationId": "clearCachedConfigurations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hostID",
+            "in": "path",
+            "description": "ID of host to clear",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.configuration.ConfigurationInstance-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{hostID}/reboot": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Reboot host (INTERNAL)",
+        "description": "",
+        "operationId": "rebootHost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hostID",
+            "in": "path",
+            "description": "ID of host to reboot",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{hostID}/installAll": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Install all defined configurations defined for this host (INTERNAL)",
+        "description": "",
+        "operationId": "installAll",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hostID",
+            "in": "path",
+            "description": "ID of host to install on",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.configuration.ConfigurationInstance-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/start": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Initiate runtime instance (INTERNAL)",
+        "description": "",
+        "operationId": "start",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance to start",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/stop": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Shutdown runtime instance (INTERNAL)",
+        "description": "",
+        "operationId": "stop",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance to stop",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/install": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Install configuration for instance (INTERNAL)",
+        "description": "",
+        "operationId": "install",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance to install",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.component.ComponentIdentity-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/uninstall": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Uninstall configuration for instance (INTERNAL)",
+        "description": "",
+        "operationId": "uninstall",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance to uninstall",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.component.ComponentIdentity-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/instance/{id}/reboot": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Reboot runtime instance (INTERNAL)",
+        "description": "",
+        "operationId": "rebootInstance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance to reboot",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{hostID}/persistence": {
+      "get": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "List persistent components on host (INTERNAL)",
+        "description": "",
+        "operationId": "listPersistentComponents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hostID",
+            "in": "path",
+            "description": "ID of host to fetch list from",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentPersistenceResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{hostID}/persistence/compact": {
+      "put": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Initiate compacting of persistence database on host (INTERNAL)",
+        "description": "",
+        "operationId": "compactPersistence",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hostID",
+            "in": "path",
+            "description": "ID of host to fetch list from",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.jargus.model.ComponentTask-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v1/host/{hostID}/container/{container}/persistence/{component}": {
+      "delete": {
+        "tags": [
+          "componentadmin/v1"
+        ],
+        "summary": "Delete component persistence (INTERNAL)",
+        "description": "",
+        "operationId": "deleteComponentPersistence",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hostID",
+            "in": "path",
+            "description": "ID of host to clear persistence on",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "container",
+            "in": "path",
+            "description": "Name of container component belongs to",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "component",
+            "in": "path",
+            "description": "Name of component to clear persistence for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.component.ComponentIdentity-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "409": {
+            "description": "Remote invocation failed"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/component/{componentID}": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Fetch status for specified component (INTERNAL)",
+        "description": "",
+        "operationId": "getComponentStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "componentID",
+            "in": "path",
+            "description": "Component ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/component/search": {
+      "post": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Advanced component status search (INTERNAL)",
+        "description": "",
+        "operationId": "searchComponentStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search request object",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.ComponentStatusSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/host/{host}": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Request status for specific host (INTERNAL)",
+        "description": "",
+        "operationId": "getHostStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "host",
+            "in": "path",
+            "description": "ID or name of host to request status for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.HostStatusResponse-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/instance/{instanceID}": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Request status for specific instance (INTERNAL)",
+        "description": "",
+        "operationId": "getInstanceStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instanceID",
+            "in": "path",
+            "description": "ID of instance to request status for",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Submit status update for a specific component. The host will be resolved by agent using the current user.The instanceID must be a valid instance for the current users host. (INTERNAL)",
+        "description": "",
+        "operationId": "updateInstanceStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instanceID",
+            "in": "path",
+            "description": "ID of instance",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Status update request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSubmissionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Request status overview (INTERNAL)",
+        "description": "",
+        "operationId": "getStatusOverview",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Submit status update for a host which may also have running containers. The host will be resolved by agent using the current user. (INTERNAL)",
+        "description": "",
+        "operationId": "updateHostStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Status  update request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.HostStatusSubmissionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/host/search": {
+      "post": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Advanced host status search (INTERNAL)",
+        "description": "",
+        "operationId": "searchHostStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search request object",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.HostStatusSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.HostStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/template/{template}": {
+      "get": {
+        "tags": [
+          "development"
+        ],
+        "summary": "Get template status (DEV)",
+        "description": "",
+        "operationId": "getTemplateStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "template",
+            "in": "path",
+            "description": "ID or shortname of template to fetch status for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse-single"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/instance/search": {
+      "post": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Advanced instance status search (INTERNAL)",
+        "description": "",
+        "operationId": "searchInstanceStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search request object",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/host": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Simple host status search (INTERNAL)",
+        "description": "",
+        "operationId": "listHostStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instanceState",
+            "in": "query",
+            "description": "Filter result by instance state",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "started",
+                "missing"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "hostState",
+            "in": "query",
+            "description": "Filter result by host state",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "started",
+                "missing"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results, or 0 for unlimited. Default is 25.",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this number of results.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Specify sort ordering. Default is sort by name ascending.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.HostStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/instance": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Simple instance status search (INTERNAL)",
+        "description": "",
+        "operationId": "listInstanceStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instanceState",
+            "in": "query",
+            "description": "Filter result by instance state",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "started",
+                "missing"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results, or 0 for unlimited. Default is 25.",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this number of results.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/component": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "List component status (INTERNAL)",
+        "description": "",
+        "operationId": "listComponentStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "componentType",
+            "in": "query",
+            "description": "Component type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results, or 0 for unlimited. Default is 25.",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this number of results.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/template": {
+      "get": {
+        "tags": [
+          "development"
+        ],
+        "summary": "List template status, ordered by template name (DEV)",
+        "description": "",
+        "operationId": "listTemplateStatus",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results, or 0 for unlimited. Default is 25.",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this number of results.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/status/host/{host}/instances": {
+      "get": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "Request status for all instances on specified host (INTERNAL)",
+        "description": "",
+        "operationId": "getHostInstances",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "host",
+            "in": "path",
+            "description": "ID or name of host to request instance status for",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results, or 0 for unlimited. Default is 25.",
+            "required": false,
+            "type": "integer",
+            "default": 25,
+            "minimum": 0,
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this number of results.",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResultStash-no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse-list"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Object not found"
+          },
+          "412": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/componentadmin/v2/instance/{id}/status": {
+      "put": {
+        "tags": [
+          "componentadmin/v2"
+        ],
+        "summary": "null (INTERNAL)",
+        "operationId": "updateInstanceStatus2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of instance",
+            "required": true,
+            "type": "integer",
+            "minimum": 1,
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Status update request",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSubmissionRequest"
+            }
+          }
+        ],
+        "deprecated": true,
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "InstanceOverview": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "running": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "scheduledDowntime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "disabledMonitoring": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "missing": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outdatedConfig": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outdatedRuntime": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Serializable": {
+      "type": "object"
+    },
+    "no.mnemonic.services.argus.common.rest.model.ResultStash": {
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Returned results (might be an array or a single object)"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.CustomerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.InstalledContainerRequest": {
+      "type": "object",
+      "properties": {
+        "instanceID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of installed instance"
+        },
+        "templateID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of template of installed instance"
+        },
+        "instanceRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Revision of installed instance"
+        },
+        "templateRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Revision of template of installed instance"
+        }
+      }
+    },
+    "CodeArtifact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "groupID": {
+          "type": "string",
+          "position": 0,
+          "description": "The MVN groupID"
+        },
+        "artifactID": {
+          "type": "string",
+          "position": 0,
+          "description": "The MVN artifactID"
+        },
+        "version": {
+          "type": "string",
+          "position": 0,
+          "description": "The MVN version"
+        },
+        "status": {
+          "type": "string",
+          "position": 0,
+          "description": "The artifacts status. Can only be deleted if UNUSED.",
+          "enum": [
+            "UNUSED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        },
+        "createdTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when the artifact was created."
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when the artifact was last updated."
+        },
+        "createdByUser": {
+          "position": 0,
+          "description": "The user that created this artifact.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "The user that last updated this artifact.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "length": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The size of this artifact (in bytes)."
+        },
+        "data": {
+          "type": "string",
+          "position": 0,
+          "description": "DEPRECATED: This field is always null"
+        }
+      },
+      "description": "Describes a code artifact, typically a JAR file, which is available for download. The ID of the artifact is the SHA256-sum of the file."
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse$HostOverview": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "missing": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "running": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "scheduledDowntime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "disabledMonitoring": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "DomainInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "HostStatusSearchRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against hosts.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to hosts in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.HostStatusSearchSubRequest"
+          }
+        },
+        "instanceCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Filter hosts by instance status search criteria. Will filter hosts which contain the matching instances",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to set max number of results. By default, result set size is 25. (default 25)",
+          "default": 25
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to skip the first (offset) objects. By default, return result from first object."
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "Specify sort ordering for returned host status. Default is sort by host name. (default [name])",
+          "items": {
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "-id",
+              "-name"
+            ]
+          }
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationHostStatusWrapper-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationHostStatusWrapper"
+          }
+        }
+      }
+    },
+    "ConfigurationTemplateInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The template name",
+          "readOnly": true
+        },
+        "shortName": {
+          "type": "string",
+          "position": 0,
+          "description": "The shortname for this template",
+          "readOnly": true
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision index for the current template configuration. This is bumped on every change to the template.",
+          "readOnly": true
+        },
+        "mnemonic": {
+          "type": "string",
+          "position": 0,
+          "description": "DEPRECATED: The shortname for this template"
+        }
+      },
+      "description": "Informational reference model of a template"
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentPersistenceResponse-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.ComponentPersistenceResponse"
+          }
+        }
+      }
+    },
+    "CallRequest": {
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "properties": {
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/java.io.Serializable"
+          }
+        },
+        "method": {
+          "type": "string"
+        },
+        "pattern": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.UserInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customer": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "customerID": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.HostStatusSearchSubRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against hosts.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to hosts in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.HostStatusSearchSubRequest"
+          }
+        },
+        "instanceCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Filter hosts by instance status search criteria. Will filter hosts which contain the matching instances",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        }
+      }
+    },
+    "InstanceStatusSubmissionRequest": {
+      "type": "object",
+      "required": [
+        "components",
+        "identifiers",
+        "state"
+      ],
+      "properties": {
+        "containerID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of the currently running container"
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Any identifiers for this instance container",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "The state of this instance container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped"
+          ]
+        },
+        "components": {
+          "type": "array",
+          "position": 0,
+          "description": "An optional list of component updates for the root container",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.ComponentDescriptionSubmissionRequest"
+          }
+        },
+        "instanceID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The instanceID of this container"
+        },
+        "runningInstanceRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The instance revision of the running container"
+        },
+        "runningTemplateRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The template revision of the running container"
+        }
+      }
+    },
+    "java.io.Serializable": {
+      "type": "object"
+    },
+    "no.mnemonic.services.componentadministration.spi.request.ComponentDescriptionSubmissionRequest": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "The component UUID"
+        },
+        "type": {
+          "type": "string",
+          "position": 0,
+          "description": "The component class type"
+        },
+        "interfaces": {
+          "type": "array",
+          "position": 0,
+          "description": "Implementing interfaces",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The component name"
+        },
+        "status": {
+          "type": "string",
+          "position": 0,
+          "description": "The component status"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.HostStatusSubmissionRequest": {
+      "type": "object",
+      "required": [
+        "components",
+        "containers",
+        "identifiers",
+        "installedContainers",
+        "state"
+      ],
+      "properties": {
+        "containerID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of the currently running container"
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Any identifiers for this instance container",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "The state of this instance container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped"
+          ]
+        },
+        "components": {
+          "type": "array",
+          "position": 0,
+          "description": "An optional list of component updates for the root container",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.ComponentDescriptionSubmissionRequest"
+          }
+        },
+        "containers": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of instance container status records",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSubmissionRequest"
+          }
+        },
+        "installedContainers": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of installed instance descriptors",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstalledContainerRequest"
+          }
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against instances, or their template or host.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "host": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances for any of these hosts (by id or hostname).",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "template": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances of any of these templates (by id or shortname)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to set max number of results. By default, result set size is 25. (default 25)",
+          "default": 25
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to skip the first (offset) objects. By default, return result from first object."
+        }
+      }
+    },
+    "ComponentStatusResponse": {
+      "type": "object",
+      "required": [
+        "componentID",
+        "componentType",
+        "hostID",
+        "timestamp"
+      ],
+      "properties": {
+        "componentID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of this component"
+        },
+        "containerID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of the container this component runs in"
+        },
+        "componentIdentifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "The identifiers set on this component",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "componentType": {
+          "type": "string",
+          "position": 0,
+          "description": "The class name of this component"
+        },
+        "componentName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of this component"
+        },
+        "hostID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The ID of the host this component belongs to"
+        },
+        "instanceID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The ID of the instance this component belongs to, or null if it belongs to the root container"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp of the last status update for this component"
+        },
+        "status": {
+          "type": "string",
+          "position": 0,
+          "description": "The last reported text status for this component"
+        },
+        "interfaces": {
+          "type": "array",
+          "position": 0,
+          "description": "All interfaces implemented by this component",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "StatusOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse$HostOverview"
+        },
+        "instances": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse$InstanceOverview"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationInstanceStatusWrapper": {
+      "type": "object",
+      "properties": {
+        "installedInstanceRevision": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "installedTemplateRevision": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ContainerStatusWrapper"
+        },
+        "instanceID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templateID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templateName": {
+          "type": "string"
+        },
+        "inDowntime": {
+          "type": "boolean"
+        },
+        "monitored": {
+          "type": "boolean"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$HostInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object.",
+          "readOnly": true
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse$InstanceOverview": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "running": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "scheduledDowntime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "disabledMonitoring": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "missing": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outdatedConfig": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outdatedRuntime": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.HostStatusSearchRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against hosts.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to hosts in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.HostStatusSearchSubRequest"
+          }
+        },
+        "instanceCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Filter hosts by instance status search criteria. Will filter hosts which contain the matching instances",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to set max number of results. By default, result set size is 25. (default 25)",
+          "default": 25
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to skip the first (offset) objects. By default, return result from first object."
+        },
+        "sortBy": {
+          "type": "array",
+          "position": 0,
+          "description": "Specify sort ordering for returned host status. Default is sort by host name. (default [name])",
+          "items": {
+            "type": "string",
+            "enum": [
+              "id",
+              "name",
+              "-id",
+              "-name"
+            ]
+          }
+        }
+      }
+    },
+    "InstanceStatusSearchRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against instances, or their template or host.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "host": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances for any of these hosts (by id or hostname).",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "template": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances of any of these templates (by id or shortname)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to set max number of results. By default, result set size is 25. (default 25)",
+          "default": 25
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to skip the first (offset) objects. By default, return result from first object."
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "shortName": {
+          "type": "string",
+          "position": 0,
+          "description": "Template shortname"
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Template name"
+        },
+        "latestRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The latest revision of this template"
+        },
+        "oldRevisionCount": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The number of instances which are not promoted to this revision of the template"
+        },
+        "outdatedConfigCount": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The number of instances for this template which are reporting outdated config (e.g. promoted, but not upgraded)"
+        },
+        "outdatedRuntimeCount": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The number of instances for this template which are running with outdated runtime (e.g. upgraded/installed, but not restarted)"
+        }
+      }
+    },
+    "Revisions": {
+      "type": "object",
+      "properties": {
+        "master": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision which is currently the master for this configuration instance"
+        },
+        "installed": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision which is installed on the distributed host, or null if not installed."
+        },
+        "running": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision which is running on the distributed host, or null if not running."
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.jargus.model.configuration.ConfigurationInstance-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationInstance"
+          }
+        }
+      }
+    },
+    "InstanceStatusSearchSubRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against instances, or their template or host.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "host": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances for any of these hosts (by id or hostname).",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "template": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances of any of these templates (by id or shortname)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        }
+      }
+    },
+    "ComponentTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "The state of this task",
+          "enum": [
+            "RUNNING",
+            "DONE",
+            "EXCEPTION",
+            "TIMEOUT"
+          ]
+        },
+        "target": {
+          "position": 0,
+          "description": "The identity of the component this task is executing on",
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "method": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the invoked method"
+        },
+        "arguments": {
+          "type": "array",
+          "position": 0,
+          "description": "The arguments used when invoking the method",
+          "items": {
+            "$ref": "#/definitions/java.io.Serializable"
+          }
+        },
+        "result": {
+          "position": 0,
+          "description": "The resulting data of the execution. Only set if state is DONE. The data format may be any valid JSON value.",
+          "$ref": "#/definitions/java.io.Serializable"
+        },
+        "started": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this task was started"
+        },
+        "finished": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this task was finished. If task is still RUNNING, this is not set."
+        },
+        "children": {
+          "type": "array",
+          "position": 0,
+          "description": "A map of component identities and subtasks, if this task has spawned tasks for multiple target components",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.ComponentTask"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.Lookup$LookupResponse": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "identity": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.configuration.CodeProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "finalized": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of this profile"
+        },
+        "created": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this profile was created"
+        },
+        "createdByUser": {
+          "position": 0,
+          "description": "The user that created this profile",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this profile was last updated. Profiles which are finalized cannot be updated."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "The user that last updated this profile.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "artifacts": {
+          "type": "array",
+          "position": 0,
+          "description": "The list of artifacts in this profile. May be null when searching for profiles, unless includeArtifacts is true",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.CodeArtifact"
+          }
+        }
+      },
+      "description": "A profile is a specific bundle of code artifacts. Non-finalized profiles cannot be used in templates, only in specific instances."
+    },
+    "no.mnemonic.services.argus.common.spi.response.DomainInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Name of the domain."
+        }
+      },
+      "description": "SPI DomainInfo"
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationInstanceStatusWrapper-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationInstanceStatusWrapper"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.HostStatusResponse-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.HostStatusResponse"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.Lookup$LookupRequest": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "ComponentIdentity": {
+      "type": "object",
+      "properties": {
+        "exact": {
+          "type": "boolean"
+        },
+        "identifiers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ConfigurationHostInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "agentUserID": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The host name",
+          "readOnly": true
+        },
+        "customer": {
+          "position": 0,
+          "description": "The customer this host is defined for",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.services.argus.common.spi.response.CustomerInfo"
+        }
+      },
+      "description": "Informational reference model for a host"
+    },
+    "ResultStash-no.mnemonic.jargus.model.ComponentTask-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.ComponentTask"
+          }
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.Comment": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "When the comment was added."
+        },
+        "user": {
+          "position": 0,
+          "description": "Who added the comment.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "comment": {
+          "type": "string",
+          "position": 0,
+          "description": "The comment's text."
+        }
+      }
+    },
+    "no.mnemonic.services.argus.common.rest.model.ResultMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "messageTemplate": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIELD_ERROR",
+            "ACTION_ERROR",
+            "WARNING",
+            "NOTIFICATION",
+            "INFO"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ResultMessage": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "messageTemplate": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FIELD_ERROR",
+            "ACTION_ERROR",
+            "WARNING",
+            "NOTIFICATION",
+            "INFO"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "parameter": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "InstanceStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "host": {
+          "position": 0,
+          "description": "Host this instance is running on",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$HostInfo"
+        },
+        "template": {
+          "position": 0,
+          "description": "The configuration template this instance is based on",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$TemplateInfo"
+        },
+        "parentID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "If set, this instance is run as a child of the instance with this ID"
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "Current state for instance container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped",
+            "missing"
+          ]
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Container identifier properties",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Instance status flags",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "installedConfig",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored",
+              "parentDaytimeMonitored"
+            ]
+          }
+        },
+        "templateRevision": {
+          "position": 0,
+          "description": "Running, installed and master template revisions",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$Revisions"
+        },
+        "instanceRevision": {
+          "position": 0,
+          "description": "Running, installed and master instance revisions",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$Revisions"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.configuration.ConfigurationInstanceInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision of this instance",
+          "readOnly": true
+        },
+        "template": {
+          "position": 0,
+          "description": "The template this instance is bound to",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationTemplateInfo"
+        },
+        "host": {
+          "position": 0,
+          "description": "The host this instance is running on",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationHostInfo"
+        },
+        "parent": {
+          "position": 0,
+          "description": "If set, this instance should run as a subcontainer of the referenced parent instance",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationInstanceInfo"
+        }
+      },
+      "description": "Informational reference model of an instance"
+    },
+    "no.mnemonic.services.componentadministration.spi.response.HostStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Host name"
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "Current state for host container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped",
+            "missing"
+          ]
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Host status flags",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        }
+      }
+    },
+    "HostInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object.",
+          "readOnly": true
+        }
+      }
+    },
+    "ComponentPersistenceResponse": {
+      "type": "object",
+      "properties": {
+        "hostID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the host this persistent component resides on"
+        },
+        "containerName": {
+          "type": "string",
+          "position": 0,
+          "description": "The persistence name of the components parent container"
+        },
+        "componentName": {
+          "type": "string",
+          "position": 0,
+          "description": "The persistence name of the component"
+        }
+      }
+    },
+    "HostStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Host name"
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "Current state for host container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped",
+            "missing"
+          ]
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Host status flags",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.jargus.model.ComponentTask-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.ComponentTask"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.configuration.ConfigurationTemplateInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The template name",
+          "readOnly": true
+        },
+        "shortName": {
+          "type": "string",
+          "position": 0,
+          "description": "The shortname for this template",
+          "readOnly": true
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision index for the current template configuration. This is bumped on every change to the template.",
+          "readOnly": true
+        },
+        "mnemonic": {
+          "type": "string",
+          "position": 0,
+          "description": "DEPRECATED: The shortname for this template"
+        }
+      },
+      "description": "Informational reference model of a template"
+    },
+    "InstalledContainerRequest": {
+      "type": "object",
+      "properties": {
+        "instanceID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of installed instance"
+        },
+        "templateID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of template of installed instance"
+        },
+        "instanceRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Revision of installed instance"
+        },
+        "templateRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Revision of template of installed instance"
+        }
+      }
+    },
+    "ResultStash": {
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Returned results (might be an array or a single object)"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.rest.v1.GetProperty$GetPropertyResult-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetProperty$GetPropertyResult"
+          }
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.ComponentTask": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "The state of this task",
+          "enum": [
+            "RUNNING",
+            "DONE",
+            "EXCEPTION",
+            "TIMEOUT"
+          ]
+        },
+        "target": {
+          "position": 0,
+          "description": "The identity of the component this task is executing on",
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "method": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of the invoked method"
+        },
+        "arguments": {
+          "type": "array",
+          "position": 0,
+          "description": "The arguments used when invoking the method",
+          "items": {
+            "$ref": "#/definitions/java.io.Serializable"
+          }
+        },
+        "result": {
+          "position": 0,
+          "description": "The resulting data of the execution. Only set if state is DONE. The data format may be any valid JSON value.",
+          "$ref": "#/definitions/java.io.Serializable"
+        },
+        "started": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this task was started"
+        },
+        "finished": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this task was finished. If task is still RUNNING, this is not set."
+        },
+        "children": {
+          "type": "array",
+          "position": 0,
+          "description": "A map of component identities and subtasks, if this task has spawned tasks for multiple target components",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.ComponentTask"
+          }
+        }
+      }
+    },
+    "ConfigurationInstanceInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision of this instance",
+          "readOnly": true
+        },
+        "template": {
+          "position": 0,
+          "description": "The template this instance is bound to",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationTemplateInfo"
+        },
+        "host": {
+          "position": 0,
+          "description": "The host this instance is running on",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationHostInfo"
+        },
+        "parent": {
+          "position": 0,
+          "description": "If set, this instance should run as a subcontainer of the referenced parent instance",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationInstanceInfo"
+        }
+      },
+      "description": "Informational reference model of an instance"
+    },
+    "LookupRequest": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.DomainInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.HostStatusResponse-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.HostStatusResponse"
+        }
+      }
+    },
+    "ConfigurationInstance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "parent": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationInstanceInfo"
+        },
+        "host": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationHostInfo"
+        },
+        "template": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationTemplateInfo"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED",
+              "CONTROLLED_VERSION",
+              "DISABLED_MONITORING",
+              "DAYTIME_MONITORED",
+              "PARENT_DAYTIME_MONITORED"
+            ]
+          }
+        },
+        "scheduledDowntimeFrom": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "If non-zero, the instance is scheduled for downtime from this timestamp."
+        },
+        "scheduledDowntimeTo": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "If non-zero, the instance is scheduled for downtime until this timestamp. If current time has passed this timestamp, the instance is no longer scheduled in downtime."
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision of the instance configuration. This is bumped for every configuration change."
+        },
+        "pinnedTemplateRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision of the template configuration this instance is pinned to. If this revision equals the current revision of the template, then this instance is pinned to the latest revision."
+        },
+        "masterID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "If this object represents a configuration revision, this is the ID of the master instance configuration which is currently the latest revision."
+        },
+        "createdTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this instance was created."
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this instance was last updated."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "The user that last updated this instance.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "information": {
+          "type": "string",
+          "position": 0,
+          "description": "Informational text about this instance (plain text, default sanitation)."
+        },
+        "codeProfile": {
+          "position": 0,
+          "description": "The code profile this instance should use. If not set, it should use the code profile defined on the associated template.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.CodeProfile"
+        },
+        "properties": {
+          "type": "object",
+          "position": 0,
+          "description": "Configuration properties set on this instance. Will be merged with properties set on the template and host. Properties set on the instance will override any property set on host or template.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Instance identifiers, used to label sets of components, or to distinguish between multiple instances of the same template running on the same host.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "position": 0,
+          "description": "Comments added to this instance.",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.Comment"
+          }
+        }
+      },
+      "description": "Represents an instance running on a distributed host"
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.ComponentPersistenceResponse": {
+      "type": "object",
+      "properties": {
+        "hostID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the host this persistent component resides on"
+        },
+        "containerName": {
+          "type": "string",
+          "position": 0,
+          "description": "The persistence name of the components parent container"
+        },
+        "componentName": {
+          "type": "string",
+          "position": 0,
+          "description": "The persistence name of the component"
+        }
+      }
+    },
+    "ComponentStatusSearchRequest": {
+      "type": "object",
+      "properties": {
+        "componentType": {
+          "type": "string",
+          "position": 0,
+          "description": "Type of components to invoke"
+        },
+        "componentIdentifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Identifiers of components to invoke",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to set max number of results. By default, result set size is 25. (default 25)",
+          "minimum": 0,
+          "default": 25
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to skip the first (offset) objects. By default, return result from first object.",
+          "minimum": 0
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.Invoke$CallRequest": {
+      "type": "object",
+      "required": [
+        "method"
+      ],
+      "properties": {
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/java.io.Serializable"
+          }
+        },
+        "method": {
+          "type": "string"
+        },
+        "pattern": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "LookupResponse": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "identity": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "ComponentDescriptionSubmissionRequest": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "The component UUID"
+        },
+        "type": {
+          "type": "string",
+          "position": 0,
+          "description": "The component class type"
+        },
+        "interfaces": {
+          "type": "array",
+          "position": 0,
+          "description": "Implementing interfaces",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The component name"
+        },
+        "status": {
+          "type": "string",
+          "position": 0,
+          "description": "The component status"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.component.ComponentIdentity-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationHostStatusWrapper": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationInstanceStatusWrapper"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ContainerStatusWrapper"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "hostID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "inDowntime": {
+          "type": "boolean"
+        },
+        "monitored": {
+          "type": "boolean"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "host": {
+          "position": 0,
+          "description": "Host this instance is running on",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$HostInfo"
+        },
+        "template": {
+          "position": 0,
+          "description": "The configuration template this instance is based on",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$TemplateInfo"
+        },
+        "parentID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "If set, this instance is run as a child of the instance with this ID"
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "Current state for instance container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped",
+            "missing"
+          ]
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Container identifier properties",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Instance status flags",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "installedConfig",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored",
+              "parentDaytimeMonitored"
+            ]
+          }
+        },
+        "templateRevision": {
+          "position": 0,
+          "description": "Running, installed and master template revisions",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$Revisions"
+        },
+        "instanceRevision": {
+          "position": 0,
+          "description": "Running, installed and master instance revisions",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$Revisions"
+        }
+      }
+    },
+    "GetPropertyRequest": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "ConfigurationHostStatusWrapper": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ConfigurationInstanceStatusWrapper"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ContainerStatusWrapper"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "hostID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "inDowntime": {
+          "type": "boolean"
+        },
+        "monitored": {
+          "type": "boolean"
+        }
+      }
+    },
+    "CustomerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        }
+      }
+    },
+    "HostStatusSubmissionRequest": {
+      "type": "object",
+      "required": [
+        "components",
+        "containers",
+        "identifiers",
+        "installedContainers",
+        "state"
+      ],
+      "properties": {
+        "containerID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of the currently running container"
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Any identifiers for this instance container",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "The state of this instance container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped"
+          ]
+        },
+        "components": {
+          "type": "array",
+          "position": 0,
+          "description": "An optional list of component updates for the root container",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.ComponentDescriptionSubmissionRequest"
+          }
+        },
+        "containers": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of instance container status records",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSubmissionRequest"
+          }
+        },
+        "installedContainers": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of installed instance descriptors",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstalledContainerRequest"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.InstanceStatusSubmissionRequest": {
+      "type": "object",
+      "required": [
+        "components",
+        "identifiers",
+        "state"
+      ],
+      "properties": {
+        "containerID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of the currently running container"
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Any identifiers for this instance container",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "string",
+          "position": 0,
+          "description": "The state of this instance container",
+          "enum": [
+            "initializing",
+            "started",
+            "shuttingDown",
+            "stopped"
+          ]
+        },
+        "components": {
+          "type": "array",
+          "position": 0,
+          "description": "An optional list of component updates for the root container",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.ComponentDescriptionSubmissionRequest"
+          }
+        },
+        "instanceID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The instanceID of this container"
+        },
+        "runningInstanceRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The instance revision of the running container"
+        },
+        "runningTemplateRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The template revision of the running container"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.ComponentStatusSearchRequest": {
+      "type": "object",
+      "properties": {
+        "componentType": {
+          "type": "string",
+          "position": 0,
+          "description": "Type of components to invoke"
+        },
+        "componentIdentifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Identifiers of components to invoke",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to set max number of results. By default, result set size is 25. (default 25)",
+          "minimum": 0,
+          "default": 25
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "Set this value to skip the first (offset) objects. By default, return result from first object.",
+          "minimum": 0
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against instances, or their template or host.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "host": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances for any of these hosts (by id or hostname).",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "template": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances of any of these templates (by id or shortname)",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to instances in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "outdatedConfig",
+              "outdatedRuntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        }
+      }
+    },
+    "UserInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customer": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.CustomerInfo"
+        },
+        "domain": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.DomainInfo"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "customerID": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.configuration.ConfigurationHostInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true
+        },
+        "agentUserID": {
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The host name",
+          "readOnly": true
+        },
+        "customer": {
+          "position": 0,
+          "description": "The customer this host is defined for",
+          "readOnly": true,
+          "$ref": "#/definitions/no.mnemonic.services.argus.common.spi.response.CustomerInfo"
+        }
+      },
+      "description": "Informational reference model for a host"
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.rest.v1.Lookup$LookupResponse-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.Lookup$LookupResponse"
+          }
+        }
+      }
+    },
+    "ContainerStatusWrapper": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "NOT_STARTED",
+            "INITIALIZING",
+            "STARTED",
+            "WARNING",
+            "STOPPING",
+            "STOPPED",
+            "FAILED"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        }
+      }
+    },
+    "no.mnemonic.services.argus.common.spi.response.CustomerInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Name of the customer."
+        },
+        "shortName": {
+          "type": "string",
+          "position": 0,
+          "description": "Shortname of the customer."
+        },
+        "domain": {
+          "position": 0,
+          "description": "Domain that this customer belongs to.",
+          "$ref": "#/definitions/no.mnemonic.services.argus.common.spi.response.DomainInfo"
+        }
+      },
+      "description": "SPI CustomerInfo"
+    },
+    "CodeProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "finalized": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of this profile"
+        },
+        "created": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this profile was created"
+        },
+        "createdByUser": {
+          "position": 0,
+          "description": "The user that created this profile",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this profile was last updated. Profiles which are finalized cannot be updated."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "The user that last updated this profile.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "artifacts": {
+          "type": "array",
+          "position": 0,
+          "description": "The list of artifacts in this profile. May be null when searching for profiles, unless includeArtifacts is true",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.CodeArtifact"
+          }
+        }
+      },
+      "description": "A profile is a specific bundle of code artifacts. Non-finalized profiles cannot be used in templates, only in specific instances."
+    },
+    "no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$TemplateInfo": {
+      "type": "object",
+      "properties": {
+        "shortName": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object.",
+          "readOnly": true
+        }
+      }
+    },
+    "ConfigurationInstanceStatusWrapper": {
+      "type": "object",
+      "properties": {
+        "installedInstanceRevision": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "installedTemplateRevision": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ContainerStatusWrapper"
+        },
+        "instanceID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templateID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "templateName": {
+          "type": "string"
+        },
+        "inDowntime": {
+          "type": "boolean"
+        },
+        "monitored": {
+          "type": "boolean"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.configuration.CodeArtifact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "groupID": {
+          "type": "string",
+          "position": 0,
+          "description": "The MVN groupID"
+        },
+        "artifactID": {
+          "type": "string",
+          "position": 0,
+          "description": "The MVN artifactID"
+        },
+        "version": {
+          "type": "string",
+          "position": 0,
+          "description": "The MVN version"
+        },
+        "status": {
+          "type": "string",
+          "position": 0,
+          "description": "The artifacts status. Can only be deleted if UNUSED.",
+          "enum": [
+            "UNUSED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        },
+        "createdTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when the artifact was created."
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when the artifact was last updated."
+        },
+        "createdByUser": {
+          "position": 0,
+          "description": "The user that created this artifact.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "The user that last updated this artifact.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "length": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The size of this artifact (in bytes)."
+        },
+        "data": {
+          "type": "string",
+          "position": 0,
+          "description": "DEPRECATED: This field is always null"
+        }
+      },
+      "description": "Describes a code artifact, typically a JAR file, which is available for download. The ID of the artifact is the SHA256-sum of the file."
+    },
+    "TemplateStatusResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object."
+        },
+        "shortName": {
+          "type": "string",
+          "position": 0,
+          "description": "Template shortname"
+        },
+        "name": {
+          "type": "string",
+          "position": 0,
+          "description": "Template name"
+        },
+        "latestRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The latest revision of this template"
+        },
+        "oldRevisionCount": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The number of instances which are not promoted to this revision of the template"
+        },
+        "outdatedConfigCount": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The number of instances for this template which are reporting outdated config (e.g. promoted, but not upgraded)"
+        },
+        "outdatedRuntimeCount": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The number of instances for this template which are running with outdated runtime (e.g. upgraded/installed, but not restarted)"
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "When the comment was added."
+        },
+        "user": {
+          "position": 0,
+          "description": "Who added the comment.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "comment": {
+          "type": "string",
+          "position": 0,
+          "description": "The comment's text."
+        }
+      }
+    },
+    "HostStatusSearchSubRequest": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "position": 0,
+          "description": "A set of keywords matched against hosts.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, limit result to hosts in one of these states.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "started",
+              "missing"
+            ]
+          }
+        },
+        "includeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, include only results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "excludeFlags": {
+          "type": "array",
+          "position": 0,
+          "description": "If set, exclude all results where all these flags are set.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitoringDisabled",
+              "inDowntime",
+              "daytimeMonitored"
+            ]
+          }
+        },
+        "subCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Set additional criterias (by default applied using a logical OR, unless required/excluded is set).",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.HostStatusSearchSubRequest"
+          }
+        },
+        "instanceCriteria": {
+          "type": "array",
+          "position": 0,
+          "description": "Filter hosts by instance status search criteria. Will filter hosts which contain the matching instances",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.request.InstanceStatusSearchSubRequest"
+          }
+        },
+        "exclude": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria object will be excluded."
+        },
+        "required": {
+          "type": "boolean",
+          "position": 0,
+          "description": "If set to true, objects matching this subcriteria are required (AND-ed together with parent criteria)."
+        }
+      }
+    },
+    "no.mnemonic.component.ComponentIdentity": {
+      "type": "object",
+      "properties": {
+        "exact": {
+          "type": "boolean"
+        },
+        "identifiers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse$HostOverview"
+        },
+        "instances": {
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.StatusOverviewResponse$InstanceOverview"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.GetProperty$GetPropertyResult": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "position": 0,
+          "description": "Identity of a component (in ComponentIdentity format)",
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "value": {
+          "type": "object",
+          "position": 0,
+          "description": "The value of the property for this component"
+        }
+      }
+    },
+    "no.mnemonic.jargus.model.configuration.ConfigurationInstance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "parent": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationInstanceInfo"
+        },
+        "host": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationHostInfo"
+        },
+        "template": {
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.ConfigurationTemplateInfo"
+        },
+        "flags": {
+          "type": "array",
+          "position": 0,
+          "description": "Flags assigned to the object.",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "DELETED",
+              "CONTROLLED_VERSION",
+              "DISABLED_MONITORING",
+              "DAYTIME_MONITORED",
+              "PARENT_DAYTIME_MONITORED"
+            ]
+          }
+        },
+        "scheduledDowntimeFrom": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "If non-zero, the instance is scheduled for downtime from this timestamp."
+        },
+        "scheduledDowntimeTo": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "If non-zero, the instance is scheduled for downtime until this timestamp. If current time has passed this timestamp, the instance is no longer scheduled in downtime."
+        },
+        "revision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision of the instance configuration. This is bumped for every configuration change."
+        },
+        "pinnedTemplateRevision": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision of the template configuration this instance is pinned to. If this revision equals the current revision of the template, then this instance is pinned to the latest revision."
+        },
+        "masterID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "If this object represents a configuration revision, this is the ID of the master instance configuration which is currently the latest revision."
+        },
+        "createdTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this instance was created."
+        },
+        "lastUpdatedTimestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp when this instance was last updated."
+        },
+        "lastUpdatedByUser": {
+          "position": 0,
+          "description": "The user that last updated this instance.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.UserInfo"
+        },
+        "information": {
+          "type": "string",
+          "position": 0,
+          "description": "Informational text about this instance (plain text, default sanitation)."
+        },
+        "codeProfile": {
+          "position": 0,
+          "description": "The code profile this instance should use. If not set, it should use the code profile defined on the associated template.",
+          "$ref": "#/definitions/no.mnemonic.jargus.model.configuration.CodeProfile"
+        },
+        "properties": {
+          "type": "object",
+          "position": 0,
+          "description": "Configuration properties set on this instance. Will be merged with properties set on the template and host. Properties set on the instance will override any property set on host or template.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "identifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "Instance identifiers, used to label sets of components, or to distinguish between multiple instances of the same template running on the same host.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "comments": {
+          "type": "array",
+          "position": 0,
+          "description": "Comments added to this instance.",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.jargus.model.Comment"
+          }
+        }
+      },
+      "description": "Represents an instance running on a distributed host"
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.GetProperty$GetPropertyRequest": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "TemplateInfo": {
+      "type": "object",
+      "properties": {
+        "shortName": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "ID of the response object.",
+          "readOnly": true
+        }
+      }
+    },
+    "HostOverview": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "missing": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "running": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "scheduledDowntime": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "disabledMonitoring": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse-list": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Contains an array of results",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse"
+          }
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.services.componentadministration.spi.response.TemplateStatusResponse"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.InstanceStatusResponse$Revisions": {
+      "type": "object",
+      "properties": {
+        "master": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision which is currently the master for this configuration instance"
+        },
+        "installed": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision which is installed on the distributed host, or null if not installed."
+        },
+        "running": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The revision which is running on the distributed host, or null if not running."
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.rest.v1.GetComponentStatus$ContainerStatusWrapper": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "NOT_STARTED",
+            "INITIALIZING",
+            "STARTED",
+            "WARNING",
+            "STOPPING",
+            "STOPPED",
+            "FAILED"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        }
+      }
+    },
+    "GetPropertyResult": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "position": 0,
+          "description": "Identity of a component (in ComponentIdentity format)",
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        },
+        "value": {
+          "type": "object",
+          "position": 0,
+          "description": "The value of the property for this component"
+        }
+      }
+    },
+    "ResultStash-no.mnemonic.component.ComponentIdentity-single": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "responseCode": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Status code returned from API"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Maximum number of returned results"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of skipped results"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Number of available results on server"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Actual number of returned results"
+        },
+        "metaData": {
+          "type": "object",
+          "description": "Additional unstructured meta data associated with response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Contains messages returned from the API, usually error messages",
+          "items": {
+            "$ref": "#/definitions/no.mnemonic.services.argus.common.rest.model.ResultMessage"
+          }
+        },
+        "data": {
+          "description": "Contains a single result",
+          "$ref": "#/definitions/no.mnemonic.component.ComponentIdentity"
+        }
+      }
+    },
+    "no.mnemonic.services.componentadministration.spi.response.ComponentStatusResponse": {
+      "type": "object",
+      "required": [
+        "componentID",
+        "componentType",
+        "hostID",
+        "timestamp"
+      ],
+      "properties": {
+        "componentID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of this component"
+        },
+        "containerID": {
+          "type": "string",
+          "format": "uuid",
+          "position": 0,
+          "description": "ID of the container this component runs in"
+        },
+        "componentIdentifiers": {
+          "type": "object",
+          "position": 0,
+          "description": "The identifiers set on this component",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "componentType": {
+          "type": "string",
+          "position": 0,
+          "description": "The class name of this component"
+        },
+        "componentName": {
+          "type": "string",
+          "position": 0,
+          "description": "The name of this component"
+        },
+        "hostID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The ID of the host this component belongs to"
+        },
+        "instanceID": {
+          "type": "integer",
+          "format": "int32",
+          "position": 0,
+          "description": "The ID of the instance this component belongs to, or null if it belongs to the root container"
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "position": 0,
+          "description": "The timestamp of the last status update for this component"
+        },
+        "status": {
+          "type": "string",
+          "position": 0,
+          "description": "The last reported text status for this component"
+        },
+        "interfaces": {
+          "type": "array",
+          "position": 0,
+          "description": "All interfaces implemented by this component",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
