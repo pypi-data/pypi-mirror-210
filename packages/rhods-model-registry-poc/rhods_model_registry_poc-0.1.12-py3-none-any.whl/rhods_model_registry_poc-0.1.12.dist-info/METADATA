@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: rhods-model-registry-poc
+Version: 0.1.12
+Summary: 
+Author: Andrea Peruffo
+Author-email: andrea.peruffo1982@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: apicurio-registry-python-sdk-preview (>=2.4.14,<3.0.0)
+Requires-Dist: minio (>=7.1.14,<8.0.0)
+Description-Content-Type: text/markdown
+
+# Python SDK to use Apicurio Registry as a model registry
+
+This is a POC library used to demo a possible workflow.
