@@ -1,0 +1,93 @@
+{%- from  'map.jinja' import env with context %}
+
+{%- set family = grains['os_family'] |lower %}
+
+{%- set scap = {} %}
+
+{%- if family == 'windows' %}
+
+    {#- Determine the scap guide to apply to the OS #}
+    {%- set role_path_map = {
+        '2' : '-ms',
+        '3' : '-ms',
+        '4' : '-dc',
+        '5' : '-dc'
+    } %}
+
+    {%- set role = salt['cmd.shell'](
+        'wmic ComputerSystem get DomainRole /format:list').split('=')[1] %}
+
+    {%- set guide_map = salt.grains.filter_by({
+        '2019Server' : {
+            'os' : 'ws2019',
+            'role' : ''
+        },
+        '2016Server' : {
+            'os' : 'ws2016',
+            'role' : ''
+        },
+        '2012ServerR2' : {
+            'os' : 'ws2012',
+            'role' : role_path_map[role]
+        },
+        '2008ServerR2' : {
+            'os' : 'ws2008r2',
+            'role' : role_path_map[role]
+        },
+        '8.1' : {
+            'os' : 'win8',
+            'role' : ''
+        },
+        '10' : {
+            'os' : 'win10',
+            'role' : ''
+        }
+    }, grain='osrelease') %}
+
+    {%- do scap.update({
+        'output_dir': env.systemdrive ~ '\\Watchmaker\\SCAP',
+        'local_dir': env.systemdrive ~ '\\Watchmaker\\SCAP\\Content',
+        'guide_patterns': [
+            'disa/stig-dotnet4',
+            'disa/stig-ie' ~ env.ie_ver,
+            'disa/stig-' ~ guide_map.os ~ guide_map.role
+        ]
+    }) %}
+
+{%- elif family == 'redhat' %}
+
+    {%- set os = salt.grains.filter_by({
+        'AlmaLinux': 'centos',
+        'CentOS': 'centos',
+        'CentOS Stream': 'centos',
+        'OEL': 'ol',
+        'RedHat': 'rhel',
+        'Rocky': 'centos',
+    }, grain='os') %}
+
+    {%- do scap.update(salt.grains.filter_by({
+        '7': {
+            'guide_patterns': [
+                'disa/stig-el' ~ grains['osmajorrelease'] ~ '-scap_1-2'
+            ],
+            'oscap': {
+                'xccdf': 'openscap/ssg-' ~ os ~ '7-xccdf.xml',
+                'cpe': 'openscap/ssg-rhel7-cpe-dictionary.xml',
+                'profile': 'xccdf_org.ssgproject.content_profile_stig'
+            },
+            'scc_source': 'https://watchmaker.cloudarmor.io/repo/spawar/scc/scc-5.7.1.rhel7.x86_64.rpm'
+        },
+        '8': {
+            'guide_patterns': [
+                'disa/stig-el' ~ grains['osmajorrelease'] ~ '-scap_1-2'
+            ],
+            'oscap': {
+                'xccdf': 'openscap/ssg-' ~ os ~ '8-xccdf.xml',
+                'cpe': 'openscap/ssg-rhel8-cpe-dictionary.xml',
+                'profile': 'xccdf_org.ssgproject.content_profile_stig'
+            },
+            'scc_source': 'https://watchmaker.cloudarmor.io/repo/spawar/scc/scc-5.7.1.rhel8.x86_64.rpm'
+        }
+    }, grain='osmajorrelease')) %}
+
+{%- endif %}

@@ -1,0 +1,14 @@
+include:
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-010490
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-020200
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-020300
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-021240
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-021250
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-021260
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-021270
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-021600
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-021610
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-040010
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-040300
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-040320
+  - ash-linux.el7.STIGbyID.cat3.RHEL-07-040530
