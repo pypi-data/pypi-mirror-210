@@ -1,0 +1,1 @@
+{"name": "scaler", "type": "trait", "description": "Manually scale K8s pod for your workload which follows the pod spec in path 'spec.template'.", "parameters": [{"usage": "Specify the number of workload", "mandatory": true, "name": "replicas", "type": "*1 | int"}]}

@@ -1,0 +1,1 @@
+{"name": "shared-resource", "description": "Configure the resources to be sharable across applications.", "type": "policy", "parameters": [{"usage": "Specify the list of rules to control shared-resource strategy at resource level.", "mandatory": false, "name": "rules", "type": "[...#SharedResourcePolicyRule]"}]}
