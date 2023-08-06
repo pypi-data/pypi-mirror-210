@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "outlines"
+authors= [{name = "Normal Computing", email = "support@normalcomputing.com"}]
+description = "Probabilistic Generative Model Programming"
+requires-python = ">=3.7"
+keywords=[
+    "normal computing",
+    "machine learning",
+    "deep learning",
+    "language models",
+    "diffusion models",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+   "jinja2",
+   "numpy",
+   "pillow",
+   "perscache",
+   "pydantic",
+   "scipy",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = [
+    "diffusers",
+    "pre-commit",
+    "pytest",
+    "torch",
+    "transformers"
+]
+
+[project.urls]
+homepage = "https://github.com/normal-computing/outlines"
+documentation = "https://normal-computing.github.io/outlines/"
+repository = "https://github.com/normal-computing/outlines"
+
+[project.readme]
+file="README.md"
+content-type = "text/markdown"
+
+[tool.setuptools_scm]
+write_to = "outlines/_version.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "error",
+    "ignore::FutureWarning:transformers.*",
+    "ignore::FutureWarning:diffusers.*",
+    "ignore::UserWarning:torch.cuda.*"
+]
+
+[tool.mypy]
+exclude=["examples"]
+
+[[tool.mypy.overrides]]
+module = [
+    "diffusers",
+    "jinja2",
+    "joblib",
+    "numpy.*",
+    "openai",
+    "perscache.*",
+    "PIL",
+    "PIL.Image",
+    "pydantic",
+    "pytest",
+    "scipy.*",
+    "tiktoken.*",
+    "torch",
+    "transformers",
+]
+ignore_missing_imports = true
