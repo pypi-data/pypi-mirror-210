@@ -1,0 +1,19 @@
+# Folder for storing data
+data/*
+
+# Version file needs to stay out of git
+src/tidy_tweet/_version.py
+
+# Logs (eg twarc logs)
+*.log
+
+# Python environment bits & IDE artefacts
+.python-version
+.idea
+*__pycache__*
+.eggs
+*.egg-info
+dist/*
+build/*
+.nox/*
+*.pytest_cache/*
