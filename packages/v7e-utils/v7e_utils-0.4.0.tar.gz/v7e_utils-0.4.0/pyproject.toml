@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "v7e-utils"
+version = "0.4.0"
+description = "A collection of utility functions for V6E projects"
+authors = ["Luis Valverde <lvalverde@istmocenter.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+django = "*"
+pandas = "*"
+numpy = "*"
+requests = "*"
+geopy = ">=2.2.0"
+tqdm = ">=4.62.2"
+openpyxl = ">=3.0.9"
+pysftp = ">=0.2.9"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+

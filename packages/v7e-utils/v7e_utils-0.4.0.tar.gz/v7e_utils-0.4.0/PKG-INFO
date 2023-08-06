@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: v7e-utils
+Version: 0.4.0
+Summary: A collection of utility functions for V6E projects
+License: MIT
+Author: Luis Valverde
+Author-email: lvalverde@istmocenter.com
+Requires-Python: >=3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: django
+Requires-Dist: geopy (>=2.2.0)
+Requires-Dist: numpy
+Requires-Dist: openpyxl (>=3.0.9)
+Requires-Dist: pandas
+Requires-Dist: pysftp (>=0.2.9)
+Requires-Dist: requests
+Requires-Dist: tqdm (>=4.62.2)
