@@ -1,0 +1,69 @@
+triad>=0.8.8
+adagio>=0.2.4
+qpd>=0.4.1
+fugue-sql-antlr>=0.1.6
+pyarrow>=0.15.1
+pandas>=1.2.0
+sqlglot
+jinja2
+
+[all]
+fugue-sql-antlr[cpp]>=0.1.6
+pyspark
+ray[data]>=2.0.0
+qpd[dask]>=0.4.0
+notebook
+jupyterlab
+ipython>=7.10.0
+duckdb>=0.5.0
+pyarrow>=6.0.1
+polars
+
+[all:python_version < "3.8"]
+dask[dataframe,distributed]
+ibis-framework>=2.1.1
+
+[all:python_version >= "3.8"]
+dask[dataframe,distributed]>=2022.9.0
+ibis-framework>=3.2.0
+
+[cpp_sql_parser]
+fugue-sql-antlr[cpp]>=0.1.6
+
+[dask]
+qpd[dask]>=0.4.1
+
+[dask:python_version < "3.8"]
+dask[dataframe,distributed]
+
+[dask:python_version >= "3.8"]
+dask[dataframe,distributed]>=2022.9.0
+
+[duckdb]
+duckdb>=0.5.0
+pyarrow>=6.0.1
+numpy
+
+[ibis]
+
+[ibis:python_version < "3.8"]
+ibis-framework>=2.1.1
+
+[ibis:python_version >= "3.8"]
+ibis-framework>=3.2.0
+
+[notebook]
+notebook
+jupyterlab
+ipython>=7.10.0
+
+[polars]
+polars
+
+[ray]
+ray[data]>=2.0.0
+duckdb>=0.5.0
+pyarrow>=6.0.1
+
+[spark]
+pyspark
