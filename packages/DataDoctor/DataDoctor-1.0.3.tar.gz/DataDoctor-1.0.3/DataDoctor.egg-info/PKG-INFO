@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: DataDoctor
+Version: 1.0.3
+Summary: A Python package for data cleaning and preprocessing.
+Author: Aryan Bajaj
+Author-email: aryanbajaj104@email.com
+Description-Content-Type: text/markdown
+
+# DataDoctor
+
+DataDoctor is a Python package for data cleaning and preprocessing. It provides various methods to treat common issues in data such as missing values, duplicate records, inconsistent data formats, outliers, inconsistent naming conventions, data entry errors, and more. The package uses popular libraries such as pandas, numpy, scikit-learn, fuzzywuzzy, and chardet.
+
+## Index
+- [Why is there a need for this type of automation?](#why-is-there-a-need-for-this-type-of-automation)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Why is there a need for this type of automation?
+
+Data cleaning and preprocessing is a crucial step in any data analysis or machine learning project. However, it can be a time-consuming and tedious process. Automating this process using a package like DataDoctor can save time and effort while ensuring that the data is treated consistently and accurately.
+
+## Installation
+
+You can install DataDoctor using pip:
+
+```
+pip install DataDoctor
+```
+
+
+## Dependencies
+
+DataDoctor requires the following packages:
+
+- pandas
+- numpy
+- scikit-learn
+- fuzzywuzzy
+- python-Levenshtein
+- chardet
+
+## Usage
+
+To use DataDoctor, first import the package:
+
+```
+from data_doctor import DataDoctor
+```
+
+Then, create an instance of the DataDoctor class and use its methods to treat your data:
+
+```
+doctor = DataDoctor()
+doctor.load_data(data)
+doctor.treat_missing_data()
+```
+
+## Contributing
+Contributions to DataDoctor are welcome! Please submit a pull request or open an issue on the GitHub repository.
+
+## License
+DataDoctor is licensed under the MIT License.
