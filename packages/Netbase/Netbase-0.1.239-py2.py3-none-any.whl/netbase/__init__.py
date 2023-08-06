@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+
+# import netbase
+version = "0.1.23" # todo: use setup.py version
+# from netbase import world, the, net, Netbase
+# from netbase import Netbase, the
+# from netbase import Netbase
+from .netbase import Netbase, get
+
+# from netbase import net, Netbase
+# if py3:
+# 	from alle import All
+#
+world = net = all = Netbase()
+
+#
+#
+# class Alle(type):
+# 	def __getattr__(self, name):
+# 		return net._all(name, False, False)
+#
+#
+# class All:
+# 	__metaclass__ = Alle
+
+# print(All.USA)
+# print(the.USA)
+
+# net = netbase.net
+# the = netbase.world
+# cache = netbase.cache
+# import netbase
+# import netbase
