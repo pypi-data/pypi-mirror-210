@@ -1,0 +1,69 @@
+{% import "macros/flash.html" as mac_flash %}
+{% extends "pages/skeleton.html" %}
+
+{% block head_styles %}
+{{ super() -}}
+{% filter indent(width=8, first=True) %}
+<link rel="stylesheet" media="all" href="{{ url_for('static', filename='styles/app.css') }}">
+{% endfilter %}
+{% endblock head_styles %}
+
+{% block body_content %}
+{{ super() -}}
+{% include "components/header.html" +%}
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        {% filter indent(width=8, first=True) %}
+        {% include "components/sidebar/sidebar.html" %}
+        {% endfilter +%}
+        <main class="col-md-9 ms-sm-auto col-xl-10 px-md-4 pb-4 app-content">
+            {% block main_title %}
+            <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+                <div class="d-lg-flex d-grid gap-lg-3">
+                    {% if title %}
+                    <h1 class="text-nowrap">{{ title }}</h1>
+                    {% endif %}
+                    {% if subtitle %}
+                    <h2 class="align-self-end text-break">{{ subtitle }}</h2>
+                    {% endif %}
+                </div>
+                <div class="my-2">
+                    {% block main_toolbar %}
+                    {% endblock main_toolbar %}
+                </div>
+            </div>
+            {% endblock main_title %}
+            {% filter indent(width=12, first=True) %}
+            {% block main_content %}
+            {% endblock main_content %}
+            {% endfilter %}
+        </main>
+    </div>
+</div>
+<div id="messages" class="position-fixed top-0 start-50 translate-middle-x overflow-auto p-3 app-messages">
+    {{- mac_flash.display_messages() }}
+</div>
+{% endblock body_content %}
+
+{% block body_scripts %}
+{{ super() -}}
+{% filter indent(width=8, first=True) %}
+<script type="module">
+    import { App } from "{{ url_for('static', filename='scripts/app.js') }}";
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        let options = {
+            campaignContext: {{ g.campaign_ctxt.toJSON() | tojson }},
+            notificationUpdaterDelay: {{ config.BEMSERVER_UI_NOTIFICATION_UPDATER_DELAY }},
+        };
+
+        let app = new App(options);
+        app.mount();
+
+    });
+
+</script>
+{% endfilter %}
+{% endblock body_scripts %}
