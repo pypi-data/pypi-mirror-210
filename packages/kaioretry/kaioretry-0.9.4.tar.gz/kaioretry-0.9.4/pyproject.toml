@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "kaioretry"
+version = "0.9.4"
+description = "All in one retry and aioretry decorators"
+authors = ["Damien Nadé <anvil.github+kaioretry@livna.org>"]
+license = "LGPL-2.1-or-later"
+repository = "https://github.com/Anvil/kaioretry/"
+readme = "README.md"
+keywords = ["retry", "decorator", "asyncio"]
+documentation = "https://kaioretry.readthedocs.io/en/latest/"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+decorator = ">=5.1.1"
+typing_extensions = ">=4.5.0"
+
+[tool.poetry.dev-dependencies]
+pytest = ">6"
+pytest-asyncio = "^0.20"
+pytest-mock = "^3.10"
+pytest-cases = "^3.6"
+pytest-cov = ">=4"
+
+[tool.poetry.group.sphinx]
+optional = true
+
+[tool.poetry.group.sphinx.dependencies]
+sphinx = ">=5"
+sphinx-autodoc-typehints = ">=1.17"
+
+[build-system]
+requires = ["poetry-core>=1.4.0"]
+build-backend = "poetry.core.masonry.api"
