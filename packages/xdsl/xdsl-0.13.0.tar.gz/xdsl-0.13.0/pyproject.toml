@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+
+[tool.pyright]
+reportImportCycles = false
+reportUnnecessaryIsInstance = false
+typeCheckingMode = "strict"
+"include" = ["docs", "xdsl", "tests", "bench"]
+"exclude" = [
+    "tests/test_frontend_op_resolver.py",
+    "tests/test_frontend_python_code_check.py",
+    "tests/dialects/test_arith.py",
+    "tests/dialects/test_memref.py",
+    "tests/dialects/test_mpi.py",
+    "tests/dialects/test_mpi_lowering.py",
+]
+"ignore" = [
+    "tests/filecheck/frontend/dialects/builtin.py",
+    "tests/filecheck/frontend/dialects/invalid.py",
+    "tests/filecheck/frontend/programs/invalid.py",
+]
