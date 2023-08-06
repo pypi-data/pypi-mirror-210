@@ -1,0 +1,31 @@
+[project]
+name = "datanalyse"
+version = "0.0.6"
+authors = [
+    { name = "Maximilian Beyer", email = "maximilian.beyer@tu-dresden.de" },
+]
+description = "A data analysis package."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas>=2.0.1",
+    "matplotlib>=3.7.1",
+    "openpyxl>=3.1.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/MakusuB/datanalyse"
+"Bug Tracker" = "https://github.com/MakusuB/datanalyse/issues"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.pdm]
