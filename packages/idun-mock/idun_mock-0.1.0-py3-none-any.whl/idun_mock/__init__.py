@@ -1,0 +1,1 @@
+from .data_generator.generator import generate as generate
