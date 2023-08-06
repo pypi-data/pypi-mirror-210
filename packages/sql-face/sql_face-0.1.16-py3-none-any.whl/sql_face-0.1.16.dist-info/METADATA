@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: sql-face
+Version: 0.1.16
+Summary: Saves face image attributes in SQL database.
+Home-page: https://github.com/AndreaMacarulla/sql-face
+Author: AndreaMacarulla
+Author-email: andrea.macarulla@gmail.com
+License: Apache Software License 2.0
+Keywords: nbdev jupyter notebook python
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: sqlalchemy
+Requires-Dist: pandas
+Requires-Dist: tqdm
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-image
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: mxnet-cu112
+Requires-Dist: deepface (==0.0.75)
+Provides-Extra: dev
+
+
+::: {.cell 0=‘h’ 1=‘i’ 2=‘d’ 3=‘e’}
+
+``` python
+from sql_face.core import *
+```
+
+:::
+
+# sql-face
+
+> Saves face image attributes in SQL database.
+
+This file will become your README and also the index of your
+documentation.
+
+## Install
+
+``` sh
+pip install sql_face
+```
+
+## How to use
+
+Fill me in please! Don’t forget code examples:
+
+``` python
+1+1
+```
+
+    2
+
+
