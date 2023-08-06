@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: Loterias
+Version: 0.0.11
+Summary: Wrapper não oficial para pesquisa de dados lotéricos em thread
+Home-page: UNKNOWN
+Author: PKG
+Author-email: drjpp.drjpp@gmail.com
+License: MIT License
+Keywords: loterias CEF
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+License-File: LICENCE
+
+#Biblioteca Python para extrair, via thread, dados de jogos lotÃ©ricos
+
+Sintaxe bÃ¡sica
+    from Loterias import CollectionType, CollectionByType
+
+
+Onde:
+    CollectionType
+                    Contem identificador bÃ¡sico para coleÃ§Ãµes de dados
+
+    CollectionByType(typed=CollectionType.DiaDeSorte, maxThreads=8, concursoStart=1, verbose=False, autoStart=False)
+                    Instancia a classe para busca de dados    
+
+    typed           Tipo de jogo, definido por CollectionType
+    maxThreads      NÃºmero de mÃ¡ximo de Threads, default 8 [para mÃºltipla pesquisa]
+    concursoStart   NÃºmero do primeiro concurso que serÃ¡ pesquisado, default 1
+    verbose         Apresenta ou nÃ£o algumas informaÃ§Ãµes durante a pesquisa
+    autoStart       Inicia a pesquisa de imediato
+
+Elementos/Rotinas de CollectionByType
+    maxThreads      Ajusta o nÃºmero mÃ¡ximo de threads [para mÃºltipla pesquisa]
+    sorteioInicial  Ajusta o nÃºmero do sorteio inicial
+    sorteioFinal    Limita o nÃºmero do sorteio final [default Ã© o Ãºltimo sorteio
+    verbose         Apresenta ou nÃ£o algumas informaÃ§Ãµes durante a pesquisa
+    value           Inicia a busca, se necessÃ¡rio, de dados e apresenta o resultado em pandas.DataFrame
+
+v 0.0.5
+    Adicionados mÃ©todos
+    getDezenas      Extrai a lista de dezemas
+    getSomas        Extrai a lista de somas, considerado cada sorteio
+    getContagem     Extrai a contagem individual relativo a cada sorteio
+
