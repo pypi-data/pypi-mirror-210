@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-19 14:01+0100\n"
+"PO-Revision-Date: 2020-02-19 14:06+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: .\forms.py:30 .\forms.py:106 .\models.py:43
+msgid "Child"
+msgstr "Enfant"
+
+#: .\forms.py:38 .\forms.py:84 .\models.py:34
+msgid "Staff"
+msgstr "Personnel"
+
+#: .\forms.py:80
+msgid "Create"
+msgstr "Créer"
+
+#: .\forms.py:122
+msgid "Submit"
+msgstr "Envoyer"
+
+#: .\menus.py:22 .\models.py:58
+msgid "Observations"
+msgstr "Observations"
+
+#: .\menus.py:27
+msgid "Journal of observations"
+msgstr "Journal des observations"
+
+#: .\menus.py:31
+msgid "Add Observation"
+msgstr "Ajouter une observation"
+
+#: .\models.py:47
+msgid "Date"
+msgstr "Date"
+
+#: .\models.py:48
+msgid "Comment"
+msgstr "Remarque"
+
+#: .\models.py:49
+msgid ""
+"Looks for the marker &lt;!-- split --&gt; alone on a line and takes "
+"everything before that marker as the excerpt.<br> If no marker is found in "
+"the content, the first two paragraphs (where paragraphs are blocks of text "
+"separated by a blank line) are taken to be the excerpt."
+msgstr ""
+"Chercher le marqueur &lt;!-- split --&gt; seul sur une ligne, l'extrait "
+"sera pris avant ce marqueur.<br>Si aucun marqueur n’est trouvé dans le "
+"contenu, les deux premiers paragraphes (où les paragraphes sont des blocs "
+"de texte séparés par une ligne blanche) sont pris pour être l’extrait."
+
+#: .\models.py:57 .\templates\nobinobi_observation\observation_choice.html:9
+#: .\templates\nobinobi_observation\observation_detail_list.html:63
+#: .\templates\nobinobi_observation\observation_form.html:9
+msgid "Observation"
+msgstr "Observation"
+
+#: .\templates\nobinobi_observation\observation_choice.html:5
+#: .\templates\nobinobi_observation\observation_choice.html:11
+#: .\templates\nobinobi_observation\observation_choice.html:17
+#: .\templates\nobinobi_observation\observation_form.html:11
+msgid "Choice a child"
+msgstr "Choix d’un enfant"
+
+#: .\templates\nobinobi_observation\observation_choice.html:5
+#: .\templates\nobinobi_observation\observation_choice.html:10
+#: .\templates\nobinobi_observation\observation_choice.html:15 .\views.py:73
+msgid "List of observations"
+msgstr "Liste des observations"
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:7
+msgid "Delete Observation"
+msgstr "Supprimer l’observation"
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:14
+msgid "Are you sure you want to delete observation:"
+msgstr "Etes-vous sûr que vous voulez supprimer l’observation:"
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:14
+msgid "for child"
+msgstr "pour l'enfant"
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:18
+msgid "Delete"
+msgstr "Supprimer"
+
+#: .\templates\nobinobi_observation\observation_detail.html:4
+msgid "Observation detail"
+msgstr "Détail de l'observation"
+
+#: .\templates\nobinobi_observation\observation_detail.html:18
+msgid "by"
+msgstr "par"
+
+#: .\templates\nobinobi_observation\observation_detail.html:23
+msgid "Close"
+msgstr "Fermer"
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:75
+msgid "date"
+msgstr "date"
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:76
+msgid "staff"
+msgstr "Personnel"
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:77
+msgid "status"
+msgstr "statut"
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:78
+msgid "excerpt"
+msgstr "extrait"
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:79
+msgid "Actions"
+msgstr "Actions"
+
+#: .\templates\nobinobi_observation\observation_form.html:5
+#: .\templates\nobinobi_observation\observation_form.html:10
+#: .\templates\nobinobi_observation\observation_form.html:15
+msgid "Create Observation"
+msgstr "Créer une observation"
+
+#: .\templates\nobinobi_observation\observation_list.html:5
+msgid "Observation list"
+msgstr "Liste des observations"
+
+#: .\templates\nobinobi_observation\observation_update.html:8
+msgid "Update Observation"
+msgstr "Mise à jour de l’observation"
+
+#: .\templates\nobinobi_observation\observation_update.html:40
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: .\views.py:43
+msgid "The observation was successfully deleted."
+msgstr "L’observation a été supprimée avec succès."
+
+#: .\views.py:58
+msgid "The observation was successfully updated."
+msgstr "L’observation a été mise à jour avec succès."
+
+#~ msgid "comment"
+#~ msgstr "commentaire"
+
+#~ msgid "Observation Choice"
+#~ msgstr "Choix d’une observation"

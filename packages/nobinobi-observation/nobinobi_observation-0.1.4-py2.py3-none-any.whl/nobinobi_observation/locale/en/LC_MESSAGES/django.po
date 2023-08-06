@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-19 14:01+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\forms.py:30 .\forms.py:106 .\models.py:43
+msgid "Child"
+msgstr ""
+
+#: .\forms.py:38 .\forms.py:84 .\models.py:34
+msgid "Staff"
+msgstr ""
+
+#: .\forms.py:80
+msgid "Create"
+msgstr ""
+
+#: .\forms.py:122
+msgid "Submit"
+msgstr ""
+
+#: .\menus.py:22 .\models.py:58
+msgid "Observations"
+msgstr ""
+
+#: .\menus.py:27
+msgid "Journal of observations"
+msgstr ""
+
+#: .\menus.py:31
+msgid "Add Observation"
+msgstr ""
+
+#: .\models.py:47
+msgid "Date"
+msgstr ""
+
+#: .\models.py:48
+msgid "Comment"
+msgstr ""
+
+#: .\models.py:49
+msgid ""
+"Looks for the marker &lt;!-- split --&gt; alone on a line and takes "
+"everything before that marker as the excerpt.<br> If no marker is found in "
+"the content, the first two paragraphs (where paragraphs are blocks of text "
+"separated by a blank line) are taken to be the excerpt."
+msgstr ""
+
+#: .\models.py:57 .\templates\nobinobi_observation\observation_choice.html:9
+#: .\templates\nobinobi_observation\observation_detail_list.html:63
+#: .\templates\nobinobi_observation\observation_form.html:9
+msgid "Observation"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_choice.html:5
+#: .\templates\nobinobi_observation\observation_choice.html:11
+#: .\templates\nobinobi_observation\observation_choice.html:17
+#: .\templates\nobinobi_observation\observation_form.html:11
+msgid "Choice a child"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_choice.html:5
+#: .\templates\nobinobi_observation\observation_choice.html:10
+#: .\templates\nobinobi_observation\observation_choice.html:15 .\views.py:73
+msgid "List of observations"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:7
+msgid "Delete Observation"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:14
+msgid "Are you sure you want to delete observation:"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:14
+msgid "for child"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_confirm_delete.html:18
+msgid "Delete"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail.html:4
+msgid "Observation detail"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail.html:18
+msgid "by"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail.html:23
+msgid "Close"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:75
+msgid "date"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:76
+msgid "staff"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:77
+msgid "status"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:78
+msgid "excerpt"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_detail_list.html:79
+msgid "Actions"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_form.html:5
+#: .\templates\nobinobi_observation\observation_form.html:10
+#: .\templates\nobinobi_observation\observation_form.html:15
+msgid "Create Observation"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_list.html:5
+msgid "Observation list"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_update.html:8
+msgid "Update Observation"
+msgstr ""
+
+#: .\templates\nobinobi_observation\observation_update.html:40
+msgid "Update"
+msgstr ""
+
+#: .\views.py:43
+msgid "The observation was successfully deleted."
+msgstr ""
+
+#: .\views.py:58
+msgid "The observation was successfully updated."
+msgstr ""

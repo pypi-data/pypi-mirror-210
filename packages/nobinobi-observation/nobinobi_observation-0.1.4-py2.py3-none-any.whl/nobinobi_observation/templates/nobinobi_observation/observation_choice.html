@@ -1,0 +1,23 @@
+{% extends "nobinobi_child/base.html" %}
+{% load i18n crispy_forms_tags %}
+
+
+{% block title %}{% trans "Choice a child" %} - {% trans "List of observations" %}{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li class="breadcrumb-item">{% trans "Observation" %}</li>
+  <li class="breadcrumb-item">{% trans "List of observations" %}</li>
+  <li class="breadcrumb-item active">{% trans "Choice a child" %}</li>
+{% endblock %}
+
+{% block content_title %}
+  {% trans "List of observations" %}
+{% endblock %}
+{% block content_card_title %}{% trans "Choice a child" %}{% endblock %}
+{% block content_card_body %}
+  {% crispy form form.helper %}
+{% endblock %}
+{% block content_card_footer %}
+
+{% endblock %}

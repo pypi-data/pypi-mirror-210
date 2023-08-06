@@ -1,0 +1,210 @@
+<!--
+  ~   Copyright (C) Prolibre Sarl 2019 <Florian Alu> <alu@prolibre.com>
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU Affero General Public License as
+  ~     published by the Free Software Foundation, either version 3 of the
+  ~     License and any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU Affero General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU Affero General Public License
+  ~     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+{% extends "nobinobi_child/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ child.full_name }} - {{ title }}{% endblock %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/DataTables/datatables.min.css' %}"/>
+  <style>
+    .img-container {
+    {#width: 150px;#}{#height: 225px;#} position: relative;
+      display: inline-block;
+    {#margin: 10px 5px 5px;#}
+    }
+
+    .img-text {
+      text-align: center;
+      bottom: 2%;
+      left: 0;
+      right: 0;
+      height: 30px;
+      position: absolute;
+      background-color: white;
+      opacity: 0.85;
+      display: block;
+    }
+
+    .border-gray {
+      border-color: #adb5bd !important;
+    }
+
+    .btn-group-xs > .btn, .btn-xs {
+      padding: .25rem .4rem;
+      font-size: .875rem;
+      line-height: .5;
+      border-radius: .2rem;
+    }
+
+    .modal-backdrop {
+      z-index: auto;
+    }
+
+  </style>
+{% endblock %}
+
+{% block content_title_block %}
+  <h1>{{ title }} - {{ child.full_name }}</h1>
+{% endblock %}
+
+{% block breadcrumb %}
+	{{ block.super }}
+  <li class="breadcrumb-item">{% trans "Observation" %}</li>
+  <li class="breadcrumb-item">{{ child.full_name }}</li>
+  <li class="breadcrumb-item active">{{ title }}</li>
+{% endblock %}
+
+
+{% block content_card %}
+	{% include "includes/messages.html" %}
+  <div class="card-body">
+    <table id="child_datatables" class="display table mt- table-bordered table-condensed" style="width:100%">
+      <thead>
+      <tr>
+        <th width="20%">{% trans "date" %}</th>
+        <th width="15%">{% trans "staff" %}</th>
+        <th width="10%">{% trans "status" %}</th>
+        <th width="50%">{% trans "excerpt" %}</th>
+        <th width="5%">{% trans "Actions" %}</th>
+
+      </tr>
+      </thead>
+    </table>
+  </div>
+	<!-- modal instanstiation -->
+	{% include "includes/modal.html" %}
+{% endblock %}
+
+{% block extrajs %}
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+  <script src="{% static 'vendor/DataTables/datatables.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/moment-with-locales.min.js' %}"></script>
+	{#  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>#}
+  <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+  <script>
+      let table = null;
+      $(document).ready(function () {
+          table = $('#child_datatables').DataTable({
+              "language": {
+                  "url": "{% static 'vendor/DataTables/DataTables-1.10.18/i18n/French.json' %}"
+              },
+              "processing": true,
+              "serverSide": true,
+              "ajax": {
+                  url: "{% url 'nobinobi_observation:api-observation' child_pk=child.pk %}?format=datatables",
+              },
+              "order": [[0, "desc"]],
+              "columns": [
+                  {
+                      data: "date",
+                      name: "date",
+                      render: function (row, index, datatable) {
+                          moment.locale("fr");         // en
+                          let date = moment(row);
+                          return date.format('lll');
+                      },
+                  },
+                  {
+                      data: "staff",
+                      name: "staff__first_name, staff__last_name",
+                      render: function (row, index, datatable) {
+                          if (row == null || row === 'undefined'){
+                            return "{% trans "Empty" %}";
+                          } else {
+                              return row.first_name + " " + row.last_name;
+                          }
+                      },
+                  },
+                  {
+                      data: "status",
+                      name: "status",
+                      render: function (row, index, datatable) {
+                          return '<img width="30px "src="{% static "img/smiley" %}/' + row + '" alt="' + row + '">';
+                      },
+                  },
+                  {
+                      data: "_comment_excerpt",
+                      name: "_comment_excerpt",
+                      render: function (row, index, data) {
+                          return row.replace("\n\n", "<br><br>").replace("\n", "<br>");
+                      },
+                  },
+                  {
+                      data: null,
+                      orderable: false,
+                      searchable: false,
+                      render: function (row, index, datatable) {
+                          return '<div class="btn-group">' +
+                              '{% if perms.nobinobi_observation.view_observation %}' +
+                                  '<button data-id="{% url "nobinobi_observation:Observation_detail" pk=123 %}" class="observation-detail btn btn-info"><i class="fa fa-eye"></i></button>'.replace(123, datatable.id)
+                                  +
+                                  '{% endif %}' +
+                              '{% if perms.nobinobi_observation.change_observation %}' +
+                                  '<button data-id="{% url "nobinobi_observation:Observation_update" pk=123 %}" class="observation-update btn btn-primary"><i class="fa fa-edit"></i></button>'.replace(123, datatable.id)
+                                  +
+                                  '{% endif %}' +
+                              '{% if perms.nobinobi_observation.delete_observation %}' +
+                                  '<button data-id="{% url "nobinobi_observation:Observation_delete" pk=123 %}" class="observation-delete btn btn-danger"><i class="fa fa-times"></i></button>'.replace(123, datatable.id)
+                                  +
+                                  '{% endif %}' +
+                              '</div>';
+                      },
+                  },
+
+              ],
+              dom: 'Bfrtip',
+              buttons:
+                  [
+                      'print',
+                      'csvHtml5',
+                      'pdfHtml5',
+                  ],
+              responsive:
+                  true,
+              {#"searchCols": [#}
+              {#  {"search": 'in_progress'},#}
+              {#],#}
+          });
+          table.on('draw', function () {
+              create_event_button();
+          });
+          table.on('responsive-display', function (e, datatable, row, showHide, update) {
+              create_event_button();
+          });
+      });
+
+      function create_event_button() {
+          // Update observation buttons
+          $(".observation-update").each(function () {
+              $(this).modalForm({formURL: $(this).data('id')});
+          });
+
+          // Read observation buttons
+          $(".observation-detail").each(function () {
+              $(this).modalForm({formURL: $(this).data('id')});
+          });
+
+          // Delete observation buttons
+          $(".observation-delete").each(function () {
+              $(this).modalForm({formURL: $(this).data('id')});
+          });
+      }
+
+  </script>
+{% endblock %}
+
