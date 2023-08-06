@@ -1,0 +1,1 @@
+Quand la mer est tranquille, chaque bateau a un bon capitaine.
