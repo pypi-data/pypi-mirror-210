@@ -1,0 +1,155 @@
+scheming_presets_version: 2
+about: ~
+about_url: ~
+_presets:
+  - &preset_select
+    form_snippet: select.html
+    display_snippet: select.html
+    validators: scheming_required scheming_choices
+  - &preset_multiple_select
+    form_snippet: multiple_select.html
+    display_snippet: multiple_choice.html
+    validators: scheming_multiple_choice
+    output_validators: scheming_multiple_choice_output
+
+
+presets:
+  - preset_name: iso19115_vector_spatial_representation
+    values:
+        label: Vector representation
+        repeating_label: Record
+        repeating_subfields:
+          - field_name: type
+            label: Object type
+            preset: select
+            required: true
+            choices_helper: iso19115_codelist_as_options
+            iso19115_source: MD_GeometricObjectTypeCode
+            form_include_blank_choice: true
+            form_attrs:
+              data-module: selectpicker
+              data-live-search: true
+              data-dropup-auto: 0
+            help_text: >
+              <h4>Complex</h4> set of geometric primitives such that their boundaries can be represented as a union of other primitives
+              <h4>Composite</h4> connected set of curves, solids or surfaces
+              <h4>Curve</h4> bounded, 1-dimensional geometric primitive, representing the continuous image of a line
+              <h4>Point</h4> zero-dimensional geometric primitive, representing a position but not having an extent
+              <h4>Solid</h4> bounded, connected 3-dimensional geometric primitive, representing the continuous image of a region of space
+              <h4>Surface</h4> bounded, connected 2-dimensional geometric primitive, representing the continuous image of a region of a plane
+
+            extra_help_text: >
+              Name of point and vector spatial objects used to locate zero-,
+              one-, and two-dimensional spatial locations in the dataset
+
+          - field_name: count
+            label: Object count
+            validators: ignore_empty natural_number_validator
+            help_text: >
+              Total number of the point or vector object type occurring in the
+              dataset
+
+  - preset_name: iso19115_contact
+    values:
+        label: Contacts
+        repeating_label: Contact
+        repeating_subfields:
+          - field_name: role
+            label: Role
+            required: true
+            preset: select
+            choices_helper: iso19115_codelist_as_options
+            iso19115_source: CI_RoleCode
+          - field_name: name
+            label: Name
+          - field_name: position
+            label: Position
+          - field_name: individual
+            label: Individual
+          - field_name: phone
+            label: Phone
+          - field_name: email
+            label: Email
+
+
+  - preset_name: iso19115_date_info
+    values:
+        label: Dates
+        repeating_label: Date
+        repeating_subfields:
+          - field_name: type
+            label: Type
+            required: true
+            preset: select
+            choices_helper: iso19115_codelist_as_options
+            iso19115_source: CI_DateTypeCode
+          - field_name: date
+            label: Date
+            preset: date
+            required: true
+
+  - preset_name: iso19115_data_quality
+    values:
+        label: Reports
+        repeating_label: Report
+        repeating_subfields:
+          - field_name: type
+            label: Report Type
+            help_text: >
+                <h4>Completeness Commission</h4> Excess data in the dataset, as described by the scope. For example, the Atlas of NSW Wildlife contains some records for Victoria and Queensland.
+                <h4>Conceptual Consistency</h4> Adherence to the conceptual schema rules. Inconsistencies could include for example, invalid placement of features within a defined tolerance, duplication of features or invalid overlap of features.
+                <h4>Completeness Omission</h4> Data absent from the dataset, as described by the scope.
+                <h4>Absolute external positional accuracy</h4> Accuracy of the position features i.e. closeness of reported coordinate values to values accepted as being true.
+                <h4>Topological consistency</h4> Correctness of the explicitly encoded topological characteristics of the dataset, as described by the scope.
+                <h4>Non quantitative attribute accuracy</h4> Attribute correctness.
+
+            required: true
+            preset: select
+            choices_helper: iso19115_implementation_as_options
+            form_include_blank_choice: true
+            form_attrs:
+              data-module: selectpicker
+              data-live-search: true
+              data-dropup-auto: 0
+            iso19115_source: "mdq:AbstractDQ_Element"
+
+          - field_name: date
+            label: Date
+            preset: date
+            required: false
+            help_text: Date when the report was generated
+
+          - field_name: details
+            label: Details
+            form_snippet: textarea.html
+            required: false
+
+  - preset_name: iso19115_presentation_form_field
+    values:
+      <<: *preset_select
+      choices_helper: iso19115_codelist_as_options
+      iso19115_source: CI_PresentationFormCode
+
+  - preset_name: iso19115_progress_field
+    values:
+      <<: *preset_select
+      choices_helper: iso19115_codelist_as_options
+      iso19115_source: MD_ProgressCode
+
+  - preset_name: iso19115_restriction_field
+    values:
+      <<: *preset_select
+      choices_helper: iso19115_codelist_as_options
+      iso19115_source: MD_RestrictionCode
+
+  - preset_name: iso19115_update_frequency_field
+    values:
+      <<: *preset_select
+      choices_helper: iso19115_codelist_as_options
+      iso19115_source: MD_MaintenanceFrequencyCode
+
+  - preset_name: iso19115_topic_field
+    values:
+      <<: *preset_multiple_select
+      choices_helper: iso19115_codelist_as_options
+      iso19115_source: MD_TopicCategoryCode
