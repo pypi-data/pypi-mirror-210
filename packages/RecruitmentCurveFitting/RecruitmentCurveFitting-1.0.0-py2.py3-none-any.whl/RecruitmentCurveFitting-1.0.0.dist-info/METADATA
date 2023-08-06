@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: RecruitmentCurveFitting
+Version: 1.0.0
+Summary: A package for fitting sigmoid and bell-shaped functions to EMG recruitment-curve measurements
+Home-page: UNKNOWN
+Author: Jeremy Hill
+Author-email: jezhill@gmail.com
+License: GPL v3+
+Platform: UNKNOWN
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+
+
+If you use this software in your research, your report should cite
+the article in which this approach was introduced, as follows:
+
+- McKinnon ML, Hill NJ, Carp JS, Dellenbach B & Thompson AK (2023).
+  Automated identification of EMG responses evoked by peripheral
+  nerve stimulation: quantitative effects on critical parameters
+  of diagnostic and closed-loop therapeutic applications.
+  @JOURNAL@ @NUMBER@(@VOLUME@):@PAGES@
+  @DOI@
+    
+The corresponding BibTeX entry is::
+
+    @article{mckinnonhill2023,
+        author  = {McKinnon, Michael L. and Hill, N. Jeremy  and  Carp, Jonathan S.  and Dellenbach, Blair and Thompson, Aiko K.},
+        title   = {Automated Identification of {EMG} Responses Evoked by Peripheral Nerve Stimulation: Quantitative Effects on Critical Parameters of Diagnostic and Closed-Loop Therapeutic Applications},
+        journal = {xxxx},
+        volume  = {x},
+        number  = {x},
+        pages   = {xx-xx},
+        month   = {xxx},
+        year    = {2023},
+        date    = {2023-xx-xx},
+        doi     = {xxx/xxxx},
+        url     = {https://doi.org/xxx/xxxx},
+    }
+
+
