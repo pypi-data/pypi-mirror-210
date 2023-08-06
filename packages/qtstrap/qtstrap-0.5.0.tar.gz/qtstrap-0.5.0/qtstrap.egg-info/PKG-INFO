@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: qtstrap
+Version: 0.5.0
+Summary: Like Bootstrap, but qt-er.
+Home-page: https://github.com/qtstrap/qtstrap
+Author: David Kincaid
+Author-email: dlkincaid0@gmail.com
+License: MIT
+Project-URL: Documentation, https://qtstrap.github.io/qtstrap/
+Project-URL: Source, https://github.com/qtstrap/qtstrap
+Project-URL: Tracker, https://github.com/qtstrap/qtstrap/issues
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Widget Sets
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8
+License-File: LICENSE
+
+# QtStrap: Qt application bootstrapping framework
+
+
+[![license](https://img.shields.io/pypi/l/qtstrap.svg)](./LICENSE)
+[![pypi version](https://img.shields.io/pypi/v/qtstrap.svg)](https://pypi.org/project/qtstrap/)
+[![PyPI status](https://img.shields.io/pypi/status/qtstrap.svg)](https://github.com/qtstrap/qtstrap)
+
+
+Qt is excellent, but it's also enormous. There's a lot of topics, and many of them have hidden gotchas. PySide2 and PyQt are also excellent, letting us leverage the powerful Qt libraries from up in the clouds in PythonLand, but this arrangement has its own gotchas. 
+
+The goal of qtstrap is get your applications up and running quickly, so you can focus on your problem instead of on Qt's idiosyncracies.
+
+# Features
+
+More complete docs are available [here](https://qtstrap.github.io/qtstrap/).
+
+* `qtstrap` command line tool to bootstrap new projects
+* crossplatform makefile with useful development commands
+* preconfigured build system using PyInstaller and InnoSetup
+* custom Qt widgets with useful behaviors
+* Pythonic layout system using ContextLayouts
+* Some other stuff I haven't remembered yet
+
+## Custom Widgets
+
+- `LabelEdit`
+- `HLine` and `VLine`
+- `LinkLabel`
+- Buttons:
+  - `StateButton`
+  - `IconToggleButton`
+  - `ConfirmToggleButton`
+  - `MenuButton`
+- Persistent Widgets (for rapid prototyping of saved data):
+  - `PersistentCheckableAction`
+  - `PersistentCheckBox`
+  - `PersistentComboBox`
+  - `PersistentLineEdit`
+  - `PersistentListWidget`
+  - `PersistentPlainTextEdit`
+  - `PersistentTabWidget`
+  - `PersistentTextEdit`
+  - `PersistentTreeWidget`
+
+## Utility Classes and Functions
+- `Adapter`
+- `TimeStamp`
+- `StringBuilder`
+- `call_later()`
+
+## decorators:
+- `@accepts_file_drops`
+- `@trace`
+- `@singleton`
+
+## context managers:
+- `Defer`
+- `SignalBlocker`
+
+## qtstrap.extras:
+  - `CommandPalette`, like VSCode or SublimeText
+  - Logging Subsystem: log to local database + log viewer widgets
+  - `CodeEditor`: Custom QTextEditor subclass customized for code editing
+
+
+# Dependencies
+
+* Python 3
+* PySide2 or PyQt5
+* Make(optional, but recommended)
+
+# Installation
+
+```sh 
+pip install qtstrap
+```
+
+# Contributing
+
+Contributions are always welcome. Feel free to [open an issue](https://github.com/qtstrap/qtstrap/issues/new)
+or [start a new discussion](https://github.com/qtstrap/qtstrap/discussions/new) on our GitHub.
