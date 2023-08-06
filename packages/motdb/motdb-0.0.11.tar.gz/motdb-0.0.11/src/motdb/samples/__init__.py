@@ -1,0 +1,1 @@
+from motdb.samples import sample
