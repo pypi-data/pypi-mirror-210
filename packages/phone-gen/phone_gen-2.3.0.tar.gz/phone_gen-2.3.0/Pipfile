@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==23.3.0"
+flake8 = "==6.0.0"
+pep8-naming = "==0.13.3"
+phonenumbers = "==8.13.11"
+pytest = "==7.3.1"
+pytest-cov = "==4.0.0"
+requests = "==2.31.0"
+twine = "==4.0.2"
+
+[packages]
+phone-gen = {editable = true, path = "."}
+
+[requires]
+python_version = "3.11"
