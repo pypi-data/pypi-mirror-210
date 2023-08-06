@@ -1,0 +1,17 @@
+{% from 'macros.jinja2' import evidence_for, probability,
+                               citeskymap_number %}
+{% filter rewrap %}
+{% if subject == 'Update' %}Based on posterior support from parameter
+estimation {{citeskymap_number(updated_skymap.pipeline, citation_index)}},
+under the assumption that the candidate {{gracedb_id}} is astrophysical in
+origin,{% else %}Assuming the candidate is astrophysical in origin, {% endif %}
+the probability that the lighter compact object is consistent with a neutron star mass
+(HasNS) is {{probability(prob_has_ns)}}.
+[{{citation_index['em_bright']}}] Using the masses and spins inferred from the signal, the
+probability of matter outside the final compact object (HasRemnant) is
+{{probability(prob_has_remnant)}}. [{{citation_index['em_bright']}}]
+Both HasNS and HasRemnant consider the support of several neutron star
+equations of state. The probability that any one of the binary components
+lie between 3 to 5 solar mass (HasMassgap) is {{probability(prob_has_massgap)}}.
+
+{% endfilter %}
