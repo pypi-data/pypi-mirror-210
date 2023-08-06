@@ -1,0 +1,59 @@
+{% load i18n %}
+<nav class="navbar bg-white" style="--bs-bg-opacity: .20;">
+    <div class="container-fluid justify-content-center">
+        <span class="navbar-brand text-light">
+            <span id="announcements-title">{% translate "Announcements of the day | Absent teachers" %}</span>
+        </span>
+    </div>
+</nav>
+<div class="table-responsive">
+    <table id="announcements-table" class="table table-bordered border-white table-dark table-striped">
+        <thead>
+            <tr>
+                <th width="14%">{% translate "Type" %}</th>
+                <th width="86%">{% translate "Message" %}</th>
+            </tr>
+        </thead>
+        <tbody id="announcements-body">
+            {% for announcement in announcements %}
+            <tr id="announcements-row">
+                <td>{{ announcement.type }}</td>
+                <td>{{ announcement.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>    
+    </table>
+</div>
+<script>
+    const announcements = document.querySelectorAll("#announcements-row");
+    let currentIndex = 0;
+    // Style depending on screen size
+    if (window.innerWidth >= 3000) {
+        // Digital Signage
+        document.getElementById("announcements-title").classList.add("display-6");
+        document.getElementById("announcements-table").classList.add("display-6");
+        rotateAnnouncements(5);
+        setInterval(() => rotateAnnouncements(5), 3750);
+    } else if (window.innerWidth <= 1000) {
+        // Mobile
+        document.getElementById("announcements-title").classList.add("display-4");
+        document.getElementById("announcements-table").classList.add("display-3");
+    } else {
+        // Desktop
+        rotateAnnouncements(2);
+        setInterval(() => rotateAnnouncements(2), 3750);
+    }
+
+    function rotateAnnouncements(numberPerRotation) {
+        for (let i = 0; i < announcements.length; i++) {
+            announcements[i].style.display = "none";
+        }
+        
+            for (let i = currentIndex; i < currentIndex + numberPerRotation; i++) {
+            announcements[i % announcements.length].style.display = "table-row";
+        }
+
+        currentIndex = (currentIndex + numberPerRotation) % announcements.length;
+    }
+
+</script>
