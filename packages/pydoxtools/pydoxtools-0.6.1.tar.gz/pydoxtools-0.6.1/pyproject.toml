@@ -1,0 +1,151 @@
+[tool.poetry]
+name = "pydoxtools"
+version = "0.6.1"
+description = "This library contains a set of tools in order to extract and synthesize structured information from documents"
+authors = ["thomas meschede <yeusblender@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://pydoxtools.xyntopia.com"
+repository = "https://github.com/xyntopia/pydoxtools"
+documentation = "https://pydoxtools.xyntopia.com"
+keywords = ["AI", "document-analysis", "LLM", "NLP", "ML"]
+
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0" # python version constraints are caused by scipy
+goose3 = { optional = true, version = ">=3.1.6" }
+# we are using this version of readability as the other version has a little bug...
+readability-lxml = { optional = true, version = ">=0.8.1" }
+appdirs = ">=1.4.4"
+langdetect = { optional = true, version = ">=1.0.8" }
+transformers = { optional = true, version = ">=4.17.0" }
+# TODO: get rid of this library, can be replace by custom function
+tldextract = { optional = true, version = ">=2.2.3" }
+"pdfminer.six" = { optional = true, version = ">=20200726" }
+extruct = { optional = true, version = ">=0.9.0" }
+quantulum3 = { optional = true, version = ">=0.7.4" }
+quantities = { optional = true, version = ">=0.12.4" }
+tqdm = { optional = true, version = ">=4.47.0" }
+urlextract = { optional = true, version = ">=1.1.0" }
+pydantic = { version = ">=1.7.2" }
+beautifulsoup4 = { optional = true, version = ">=4.8.0" }
+lxml = { optional = true, version = ">=4.6.2" }
+# stemming is needed for quantulum3
+stemming = { optional = true, version = ">=1.0.1" }
+# TODO: try to replace quantulum with Pint
+Pint = ">=0.16.1"
+# used to "repair" pdfs
+pikepdf = ">=2.10.0"
+# TODO: try to get rid of this and move it only to "development"
+pytorch-lightning = { optional = true, version = ">=1.5.6" }
+pdf2image = { version = "^1.16.0", optional = true }
+Shapely = { version = "^1.8.0", optional = true }
+scikit-learn = { version = "^1.0.2", optional = true }
+spacy = { version = "^3.2.3", optional = true }
+pandas = "^2.0.1"
+hnswlib = { version = ">=0.6.2", optional = true }
+networkx = { version = "^2.8.6", optional = true }
+python-magic = { version = "^0.4.27" } # for fil type identification
+openai = { version = "^0.27.4", optional = true }
+python-pptx = { version = "^0.6.21", optional = true }
+# TODO: odp  / open document presentation
+pandoc = { version = "^2.3", optional = true }
+packaging = "^23.0"
+torch = { version = ">=1.12.1", optional = true }
+pytesseract = {version = "^0.3.10", optional = true}
+pyyaml = "^6.0"
+dask = {extras = ["complete"], version = "^2023.4.1", optional = true}
+diskcache = "^5.6.1"
+chardet = "^5.1.0"
+chromadb = {version = "^0.3.23", optional = true}
+
+[tool.poetry.extras]
+# extraction-transformation-load facilities
+etl = ["goose3", "langdetect", "tldextract", "spacy", "pdfminer.six",
+    "extruct", "urlextract", "quantulum3", "stemming",
+    "quantities", "readability-lxml", "pandas", "beautifulsoup4", "hnswlib",
+    "networkx", "openai", "textract", "pandoc", "python-pptx", "dask", "pytesseract"
+]
+# TODO: rename & regroups extras (e.g. light, medium average or something like that...)
+inference = ["transformers", "scikit-learn", "tqdm", "torch", "pytorch-lightning", "spacy",
+    "beautifulsoup4", "pandas", "urlextract", "hnswlib", "chromadb"]
+
+all = ["chromadb"]
+
+[tool.poetry.group.colab]
+optional = true
+
+[tool.poetry.group.colab.dependencies]
+pytest = ">=6.0.1"
+yattag = ">=1.13.2" #for html text coloring
+pigeonXT-jupyter = "^0.6.1" # for labeling purposes...
+odfpy = "^1.4.1"
+openpyxl = "^3.0.9"
+optuna = "^3.0.5"
+Faker = { version = "^10.0.0" }
+jupytext = "^1.13.7"
+# TODO:  move to group
+fastparquet = { version = "^0.7.2" }
+
+# TODO: clean up all these groups try to create a group which has all the "basic"
+#       dependencies such as Faker
+# the pytorch-docker option below should be used in combination with the pytorch/pytorch dockerimage
+# we are leaving out torch nd lightning here because we want the GPU support!  or use the
+# already installed version....
+[tool.poetry.group.pytorchdocker]
+optional = true
+
+[tool.poetry.group.pytorchdocker.dependencies]
+pytest = ">=6.0.1"
+yattag = ">=1.13.2" #for html text coloring
+pigeonXT-jupyter = "^0.6.1" # for labeling purposes...
+odfpy = "^1.4.1"
+openpyxl = "^3.0.9"
+optuna = "^3.0.5"
+Faker = { version = "^10.0.0" }
+jupytext = "^1.13.7"
+# TODO:  move to group
+fastparquet = { version = "^0.7.2" }
+matplotlib = "^3.5.1"
+
+# our dev-dependencies here also include all the
+# libraries required for training and analyzing the training datasets
+# thats why there are so many ;).
+[tool.poetry.group.dev.dependencies]
+# TODO:  move to group
+fastparquet = { version = "^0.7.2", optional = true }
+ipywidgets = "^8.0.3"
+matplotlib = "^3.5.1"
+pytest = ">=6.0.1"
+yattag = ">=1.13.2" #for html text coloring
+jupyterlab = "^3.5.1"
+tensorboard = "^2.7.0"
+pigeonXT-jupyter = "^0.6.1" # for labeling purposes...
+odfpy = "^1.4.1"
+openpyxl = "^3.0.9"
+optuna = "^3.0.5"
+# TODO: until webdavclient removes a bug in push:
+#       https://github.com/ezhov-evgeny/webdav-client-python-3/issues/89
+#       we need to use our own fork. check regularly if we can revert to the master
+#webdavclient3 = {version = "^3.14.6", optional = true}
+# we can probably remove webdavclient3 because we are using rclone for synchronization
+webdavclient3 = { git = "https://github.com/yeus/webdav-client-python-3.git", branch = "master" }
+Faker = { version = "^10.0.0" }
+jupytext = "^1.13.7"
+datasets = "^2.10.1"
+evaluate = "^0.4.0"
+pygraphviz = "^1.10"
+mkdocs = "^1.4.2"
+mkdocstrings = {extras = ["crystal", "python"], version = "^0.21.2"}
+mkdocs-material = "^9.1.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+testpaths = "tests"
