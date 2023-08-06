@@ -1,0 +1,21 @@
+{
+    "@krassowski/jupyterlab-lsp:plugin": {
+        "language_servers": {
+            "trino-language-server": {
+                "serverSettings": {
+                    "sqlLanguageServer": {
+                        "connections": [
+                            {
+                                "name": "trino-conf",
+                                "adapter": "json",
+                                "filename": "/home/jovyan/.local/trinodb.schema.json",
+                                "jupyterLabMode": true
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "extra_node_roots": []
+    }
+}
