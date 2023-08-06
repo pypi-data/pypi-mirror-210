@@ -1,0 +1,5 @@
+mutation ($orderForm: ID!, $accessCode: String, $order: OrderInputType!) {
+  sendOrder(orderForm: $orderForm, accessCode: $accessCode, order: $order) {
+    ok
+  }
+}

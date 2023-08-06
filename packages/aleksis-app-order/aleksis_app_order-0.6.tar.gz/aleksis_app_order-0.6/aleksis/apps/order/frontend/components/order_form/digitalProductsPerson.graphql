@@ -1,0 +1,25 @@
+query {
+  data: digitalProductsByPerson {
+    order {
+      id
+      form {
+        title
+      }
+      digitalProductsKey
+    }
+    items {
+      id
+      count
+      sharesLeft
+      shares {
+        id
+        shareUrl
+        shareExpiration
+      }
+      item {
+        name
+        image
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{% load i18n html2text %}
+
+{% block subject %}{% trans "Digital products" %}: {{ order.form.title }} (#{{ order.pk }}){% endblock %}
+
+
+{% block plain %}{% trans "Digital products" %}
+
+{% include "templated_email/order_number.email" %}
+
+{% blocktrans %}You now have access to digital products of your order. Please use the following link to access them:{% endblocktrans %}
+
+{{ digital_products_url }}
+
+{{ order.form.help_text|textify }}
+{% endblock %}
+
+{% block html %}
+  <style>
+    {% include "templated_email/order_email.css" %}
+  </style>
+  <div id="main">
+    <div class="align-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" width="70px" height="70px">
+       <path fill="currentColor" d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7l7-7Z"/>
+      </svg>
+    </div>
+
+    <h1 class="align-center">{% trans "Digital products" %}</h1>
+
+    {% include "templated_email/order_number.html" %}
+
+    <p>
+      {% blocktrans %}
+        You now have access to digital products of your order. Please use the following link to access them:
+      {% endblocktrans %}
+
+        <a href="{{ digital_products_url }}">{{ digital_products_url }}</a>
+    </p>
+
+    {{ order.form.help_text|safe }}
+  </div>
+{% endblock %}

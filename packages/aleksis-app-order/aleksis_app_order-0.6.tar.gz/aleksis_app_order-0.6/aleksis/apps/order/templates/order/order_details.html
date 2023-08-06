@@ -1,0 +1,109 @@
+{% load i18n %}
+
+<table>
+  <tr>
+    <th>{% trans "Status" %}</th>
+    <td>
+      {% if order.submitted %}
+        <span class="chip green white-text">
+          <i class="material-icons left iconify" data-icon="mdi:email-fast-outline"></i>
+          {% trans "Submitted" %}
+        </span>
+        {% if order.confirmed %}
+          <span class="chip green white-text">
+            <i class="material-icons left iconify" data-icon="mdi:check"></i>
+            {% trans "Confirmed" %}</span>
+        {% else %}
+          <span class="chip red white-text">{% trans "Unconfirmed" %}</span>
+        {% endif %}
+        {% if order.paid %}
+          <span class="chip green white-text">
+            <i class="material-icons left iconify" data-icon="mdi:currency-eur"></i>
+            {% trans "Paid" %}
+          </span>
+        {% else %}
+          <span class="chip red white-text">{% trans "Unpaid" %}</span>
+        {% endif %}
+        {% if order.sent %}
+          <span class="chip green white-text">
+            <i class="material-icons left iconify" data-icon="mdi:truck"></i>
+            {% trans "Sent" %}
+          </span>
+        {% else %}
+          <span class="chip red white-text">{% trans "Not sent" %}</span>
+        {% endif %}
+      {% else %}
+        <span class="chip green white-text">{% trans "Not submitted" %}</span>
+      {% endif %}
+    </td>
+  </tr>
+  <tr>
+    <th>{% trans "Full name" %}</th>
+    <td>{{ order.full_name }}</td>
+  </tr>
+  <tr>
+    <th>{% trans "Email" %}</th>
+    <td>
+      <a href="mailto:{{ order.email }}">{{ order.email }}</a>
+    </td>
+  </tr>
+
+  {% if order.shipping_option.address_necessary %}
+    <tr>
+      <th>{% trans "Shipping address" %}</th>
+
+      <td>
+        {{ order.shipping_full_name }} <br/>
+        {{ order.second_address_row }} <br/>
+        {{ order.street }} {{ order.housenumber }}<br/>
+        {{ order.plz }} {{ order.place }}
+      </td>
+    </tr>
+  {% endif %}
+  <tr>
+    <th>{% trans "Digital products" %}</th>
+    <td>
+      <a class="btn waves-effect waves-light" href="{% url "digital_products" order.digital_products_key %}">
+        {% trans "Open digital products page" %}
+      </a>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>{% trans "Count" %}</th>
+    <th>{% trans "Item" %}</th>
+    <th class="right-align">{% trans "Price" %}</th>
+    <th class="right-align">{% trans "Sum" %}</th>
+  </tr>
+  {% for item in order.items.all %}
+    <tr>
+      <td>{{ item.count }}</td>
+      <td>{{ item.item.name }}</td>
+      <td class="right-align">{{ item.item.price|floatformat:"2" }} €</td>
+      <td class="right-align">{{ item.total|floatformat:"2" }} €</td>
+    </tr>
+  {% endfor %}
+  <tr>
+    <td></td>
+    <td> + {{ order.shipping_option.name }}</td>
+    <td colspan="2" style="text-align: right;">
+      {{ order.shipping_price|floatformat:"2" }} €
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td> + {{ order.payment_option.name }}</td>
+    <td colspan="2" style="text-align: right;">
+      {{ order.payment_price|floatformat:"2" }} €
+    </td>
+  </tr>
+  <tr class="sum-row">
+    <td></td>
+    <th>{% trans "Total" %}</th>
+    <th colspan="2" style="text-align: right;">
+      {{ order.total|floatformat:"2" }} €
+    </th>
+  </tr>
+</table>

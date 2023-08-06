@@ -1,0 +1,774 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-04 18:05+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: aleksis/apps/order/forms.py:17
+msgid "Send confirmation reminder"
+msgstr ""
+
+#: aleksis/apps/order/forms.py:26
+msgid "Send pay reminder"
+msgstr ""
+
+#: aleksis/apps/order/forms.py:43
+msgid "Send digital products link"
+msgstr ""
+
+#: aleksis/apps/order/forms.py:52
+msgid "Order id"
+msgstr ""
+
+#: aleksis/apps/order/forms.py:61
+msgid "You must enter a valid number as order id."
+msgstr ""
+
+#: aleksis/apps/order/forms.py:65
+msgid "This order doesn't exist."
+msgstr ""
+
+#: aleksis/apps/order/models.py:25 aleksis/apps/order/models.py:78
+#: aleksis/apps/order/models.py:124 aleksis/apps/order/models.py:156
+#: aleksis/apps/order/models.py:175
+#: aleksis/apps/order/templates/order/packing_lists.html:15
+msgid "Name"
+msgstr ""
+
+#: aleksis/apps/order/models.py:26
+msgid "URL"
+msgstr ""
+
+#: aleksis/apps/order/models.py:27
+msgid "Username"
+msgstr ""
+
+#: aleksis/apps/order/models.py:28
+msgid "Password"
+msgstr ""
+
+#: aleksis/apps/order/models.py:55 aleksis/apps/order/models.py:80
+msgid "Nextcloud provider"
+msgstr ""
+
+#: aleksis/apps/order/models.py:56
+msgid "Nextcloud providers"
+msgstr ""
+
+#: aleksis/apps/order/models.py:63
+msgid "Order item"
+msgstr ""
+
+#: aleksis/apps/order/models.py:65
+msgid "Share ID"
+msgstr ""
+
+#: aleksis/apps/order/models.py:66
+msgid "Share URL"
+msgstr ""
+
+#: aleksis/apps/order/models.py:67
+msgid "Share expiration"
+msgstr ""
+
+#: aleksis/apps/order/models.py:73
+msgid "Digital product share"
+msgstr ""
+
+#: aleksis/apps/order/models.py:74
+msgid "Digital product shares"
+msgstr ""
+
+#: aleksis/apps/order/models.py:82
+msgid "Nextcloud path"
+msgstr ""
+
+#: aleksis/apps/order/models.py:83
+msgid "Published"
+msgstr ""
+
+#: aleksis/apps/order/models.py:93
+#, python-brace-format
+msgid "Personal download link for {name}"
+msgstr ""
+
+#: aleksis/apps/order/models.py:118 aleksis/apps/order/models.py:136
+#: aleksis/apps/order/models.py:142
+msgid "Digital product"
+msgstr ""
+
+#: aleksis/apps/order/models.py:119
+#: aleksis/apps/order/templates/order/order_details.html:64
+#: aleksis/apps/order/templates/templated_email/digital_products.email:3
+#: aleksis/apps/order/templates/templated_email/digital_products.email:6
+#: aleksis/apps/order/templates/templated_email/digital_products.email:28
+msgid "Digital products"
+msgstr ""
+
+#: aleksis/apps/order/models.py:123 aleksis/apps/order/models.py:155
+#: aleksis/apps/order/models.py:174
+msgid "Short name"
+msgstr ""
+
+#: aleksis/apps/order/models.py:126 aleksis/apps/order/models.py:158
+#: aleksis/apps/order/models.py:177
+msgid "Notice"
+msgstr ""
+
+#: aleksis/apps/order/models.py:126
+msgid "Shown below the item"
+msgstr ""
+
+#: aleksis/apps/order/models.py:130
+msgid "Maximum count of items"
+msgstr ""
+
+#: aleksis/apps/order/models.py:132
+msgid "Count for shipping"
+msgstr ""
+
+#: aleksis/apps/order/models.py:134
+msgid "Image"
+msgstr ""
+
+#: aleksis/apps/order/models.py:144 aleksis/apps/order/models.py:474
+#: aleksis/apps/order/models.py:483
+msgid "Order"
+msgstr ""
+
+#: aleksis/apps/order/models.py:150 aleksis/apps/order/models.py:481
+#: aleksis/apps/order/templates/order/list.html:41
+#: aleksis/apps/order/templates/order/order_details.html:76
+#: aleksis/apps/order/templates/order/packing_lists.html:38
+#: aleksis/apps/order/templates/templated_email/order_details.html:23
+msgid "Item"
+msgstr ""
+
+#: aleksis/apps/order/models.py:151
+#: aleksis/apps/order/templates/order/packing_lists.html:34
+msgid "Items"
+msgstr ""
+
+#: aleksis/apps/order/models.py:158 aleksis/apps/order/models.py:177
+msgid "Shown below the option"
+msgstr ""
+
+#: aleksis/apps/order/models.py:161 aleksis/apps/order/models.py:180
+msgid "Email notice"
+msgstr ""
+
+#: aleksis/apps/order/models.py:161 aleksis/apps/order/models.py:180
+msgid "Shown in the confirmation email"
+msgstr ""
+
+#: aleksis/apps/order/models.py:169
+msgid "Payment option"
+msgstr ""
+
+#: aleksis/apps/order/models.py:170
+msgid "Payment options"
+msgstr ""
+
+#: aleksis/apps/order/models.py:182
+msgid "Address necessary"
+msgstr ""
+
+#: aleksis/apps/order/models.py:184
+msgid "For digital products"
+msgstr ""
+
+#: aleksis/apps/order/models.py:199
+msgid "Shipping option"
+msgstr ""
+
+#: aleksis/apps/order/models.py:202
+msgid "Min count of items"
+msgstr ""
+
+#: aleksis/apps/order/models.py:205
+msgid "Max count of items"
+msgstr ""
+
+#: aleksis/apps/order/models.py:214
+msgid "Form title"
+msgstr ""
+
+#: aleksis/apps/order/models.py:216
+msgid "Available items"
+msgstr ""
+
+#: aleksis/apps/order/models.py:219
+msgid "Available shipping options"
+msgstr ""
+
+#: aleksis/apps/order/models.py:222
+msgid "Available payment options"
+msgstr ""
+
+#: aleksis/apps/order/models.py:225
+msgid "Help text"
+msgstr ""
+
+#: aleksis/apps/order/models.py:225
+msgid "Shown in the form's footer"
+msgstr ""
+
+#: aleksis/apps/order/models.py:227
+msgid "From email address"
+msgstr ""
+
+#: aleksis/apps/order/models.py:228
+msgid "From name"
+msgstr ""
+
+#: aleksis/apps/order/models.py:229
+msgid "Access code"
+msgstr ""
+
+#: aleksis/apps/order/models.py:230
+msgid "Form closed for orders"
+msgstr ""
+
+#: aleksis/apps/order/models.py:231
+msgid "Sender"
+msgstr ""
+
+#: aleksis/apps/order/models.py:310 aleksis/apps/order/models.py:317
+#: aleksis/apps/order/templates/order/list.html:40
+msgid "Order form"
+msgstr ""
+
+#: aleksis/apps/order/models.py:311
+msgid "Order forms"
+msgstr ""
+
+#: aleksis/apps/order/models.py:312
+msgid "Can manage orders of form"
+msgstr ""
+
+#: aleksis/apps/order/models.py:321
+msgid "Person"
+msgstr ""
+
+#: aleksis/apps/order/models.py:324 aleksis/apps/order/models.py:342
+msgid "First and last name"
+msgstr ""
+
+#: aleksis/apps/order/models.py:325
+#: aleksis/apps/order/templates/order/list_print.html:36
+#: aleksis/apps/order/templates/order/order_details.html:45
+#: aleksis/apps/order/templates/order/packing_lists.html:18
+#: aleksis/apps/order/templates/templated_email/order_details.email:7
+#: aleksis/apps/order/templates/templated_email/order_details.html:6
+msgid "Email"
+msgstr ""
+
+#: aleksis/apps/order/models.py:326
+#: aleksis/apps/order/templates/order/list_print.html:37
+msgid "Notes"
+msgstr ""
+
+#: aleksis/apps/order/models.py:328
+#: aleksis/apps/order/templates/order/order_details.html:10
+msgid "Submitted"
+msgstr ""
+
+#: aleksis/apps/order/models.py:329
+#: aleksis/apps/order/templates/order/list.html:45
+#: aleksis/apps/order/templates/order/order_details.html:15
+msgid "Confirmed"
+msgstr ""
+
+#: aleksis/apps/order/models.py:330
+msgid "Confirm key"
+msgstr ""
+
+#: aleksis/apps/order/models.py:331
+#: aleksis/apps/order/templates/order/list.html:49
+#: aleksis/apps/order/templates/order/order_details.html:22
+msgid "Paid"
+msgstr ""
+
+#: aleksis/apps/order/models.py:332
+#: aleksis/apps/order/templates/order/list.html:53
+#: aleksis/apps/order/templates/order/order_details.html:30
+msgid "Sent"
+msgstr ""
+
+#: aleksis/apps/order/models.py:339
+msgid "Selected shipping option"
+msgstr ""
+
+#: aleksis/apps/order/models.py:345
+msgid "Second address row"
+msgstr ""
+
+#: aleksis/apps/order/models.py:347
+msgid "Street"
+msgstr ""
+
+#: aleksis/apps/order/models.py:348
+msgid "Housenumber"
+msgstr ""
+
+#: aleksis/apps/order/models.py:349
+msgid "PLZ"
+msgstr ""
+
+#: aleksis/apps/order/models.py:350
+msgid "Place"
+msgstr ""
+
+#: aleksis/apps/order/models.py:357
+msgid "Selected payment option"
+msgstr ""
+
+#: aleksis/apps/order/models.py:360
+msgid "Digital products key"
+msgstr ""
+
+#: aleksis/apps/order/models.py:475
+msgid "Orders"
+msgstr ""
+
+#: aleksis/apps/order/models.py:476
+msgid "Can manage orders"
+msgstr ""
+
+#: aleksis/apps/order/models.py:480
+#: aleksis/apps/order/templates/order/list.html:42
+#: aleksis/apps/order/templates/order/order_details.html:75
+#: aleksis/apps/order/templates/order/packing_lists.html:37
+#: aleksis/apps/order/templates/templated_email/order_details.html:22
+msgid "Count"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/access.html:14
+msgid ""
+"\n"
+"        Please enter the access code to open this order form:\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/order/access.html:24
+msgid "Open form"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/actions.html:5
+#: aleksis/apps/order/templates/order/actions.html:9
+msgid "Show details"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/actions.html:13
+#: aleksis/apps/order/templates/order/detail.html:26
+msgid "Mark as paid"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/actions.html:19
+#: aleksis/apps/order/templates/order/detail.html:30
+msgid "Mark as paid and send pay confirmation"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/actions.html:24
+msgid "Mark as sent"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/breadcrumbs.html:38
+msgid "Select items"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/breadcrumbs.html:46
+msgid "Select shipping option"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/breadcrumbs.html:54
+msgid "Select payment option"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/breadcrumbs.html:62
+msgid "Confirm"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/confirmed.html:14
+msgid "Your order has been confirmed!"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/confirmed.html:17
+msgid ""
+"\n"
+"      Your order has been confirmed successfully. Please check your emails to get information about the further\n"
+"      process.\n"
+"    "
+msgstr ""
+
+#: aleksis/apps/order/templates/order/detail.html:13
+msgid "Back"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/detail.html:16
+#: aleksis/apps/order/templates/order/edit.html:5
+#: aleksis/apps/order/templates/order/edit.html:8
+msgid "Edit order"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/detail.html:19
+msgid "Delete order"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/finished.html:17
+msgid "Thank you!"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/finished.html:20
+msgid ""
+"\n"
+"        Your order was submitted successfully. Please check your emails and\n"
+"        <strong>confirm your order by clicking the link sent to you.</strong>\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:5
+#: aleksis/apps/order/templates/order/list.html:8
+#: aleksis/apps/order/templates/order/list_print.html:8
+msgid "Order list"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:25
+msgid "List"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:31
+msgid "Overview"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:55
+#: aleksis/apps/order/templates/order/list.html:60
+#: aleksis/apps/order/templates/order/order_details.html:78
+#: aleksis/apps/order/templates/templated_email/order_details.html:25
+msgid "Sum"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:86
+msgid "Refresh filters"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:96
+msgid "Print"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:100
+msgid "Print labels"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:104
+msgid "Print address labels"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:108
+msgid "Print packing lists"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list.html:121
+msgid "Execute"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:7
+msgid "Print: Order list"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:26
+#: aleksis/apps/order/templates/order/order_details.html:41
+#: aleksis/apps/order/templates/templated_email/order_details.email:6
+#: aleksis/apps/order/templates/templated_email/order_details.html:5
+msgid "Full name"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:27
+msgid "Created at"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:31
+msgid "Shipping"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:32
+msgid "Payment"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:33
+msgid "Items count"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:38
+#: aleksis/apps/order/templates/order/list_print.html:39
+#: aleksis/apps/order/templates/order/order_details.html:77
+#: aleksis/apps/order/templates/templated_email/order_details.html:24
+msgid "Price"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/list_print.html:40
+#: aleksis/apps/order/templates/order/order_details.html:104
+#: aleksis/apps/order/templates/templated_email/order_details.email:24
+#: aleksis/apps/order/templates/templated_email/order_details.html:51
+msgid "Total"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:5
+msgid "Status"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:17
+msgid "Unconfirmed"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:25
+msgid "Unpaid"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:33
+msgid "Not sent"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:36
+msgid "Not submitted"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:53
+#: aleksis/apps/order/templates/order/packing_lists.html:23
+#: aleksis/apps/order/templates/templated_email/order_details.email:9
+#: aleksis/apps/order/templates/templated_email/order_details.html:9
+msgid "Shipping address"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/order_details.html:67
+msgid "Open digital products page"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/packing_lists.html:7
+msgid "Print: Packing lists"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/packing_lists.html:8
+msgid "Packing list"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/packing_lists.html:12
+msgid "Ordered by"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:5
+#: aleksis/apps/order/templates/order/pickup.html:8
+msgid "Pick up orders"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:16
+msgid "Open"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:29
+msgid "Options for Order"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:31
+msgid "Order not paid yet"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:35
+msgid "Mark as manually paid and collected"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:39
+msgid "Mark as normally paid and collected"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:43
+#: aleksis/apps/order/templates/order/pickup.html:54
+#: aleksis/apps/order/templates/order/pickup.html:60
+msgid "Abort"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:47
+msgid "Order paid"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:50
+msgid "Mark as collected"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:57
+msgid "All done!"
+msgstr ""
+
+#: aleksis/apps/order/templates/order/pickup.html:69
+msgid "Current Order"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation.email:3
+#: aleksis/apps/order/templates/templated_email/confirmation.email:6
+#: aleksis/apps/order/templates/templated_email/confirmation.email:34
+msgid "Order confirmation"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation.email:10
+msgid "Your order has been registered successfully."
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation.email:39
+msgid ""
+"\n"
+"        Your order has been registered successfully.\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation_reminder.email:3
+msgid "REMINDER: Please confirm your order"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation_reminder.email:8
+msgid ""
+"Thank you very much for your order! Please click on the following link or open it in your browser to confirm\n"
+"your order. If you don't do that, your order won't be registered. If the order was a mistake, please reply\n"
+"to this email and we will delete the order."
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation_reminder.email:12
+#: aleksis/apps/order/templates/templated_email/confirmation_reminder.email:44
+#: aleksis/apps/order/templates/templated_email/overview.email:11
+#: aleksis/apps/order/templates/templated_email/overview.email:42
+msgid "Confirm your order:"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation_reminder.email:31
+#: aleksis/apps/order/templates/templated_email/overview.email:3
+#: aleksis/apps/order/templates/templated_email/overview.email:30
+msgid "Please confirm your order"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/confirmation_reminder.email:36
+msgid ""
+"\n"
+"        Thank you very much for your order! Please click on the following link or open it in your browser to confirm\n"
+"        your order. If you don't do that, your order won't be registered. If the order was a mistake, please reply\n"
+"        to this email and we will delete the order.\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/digital_products.email:10
+msgid "You now have access to digital products of your order. Please use the following link to access them:"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/digital_products.email:33
+msgid ""
+"\n"
+"        You now have access to digital products of your order. Please use the following link to access them:\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/order_details.email:3
+#: aleksis/apps/order/templates/templated_email/order_details.html:3
+msgid "Your data"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/order_details.email:16
+#: aleksis/apps/order/templates/templated_email/order_details.html:19
+msgid "Your order"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/order_number.email:1
+#: aleksis/apps/order/templates/templated_email/order_number.html:3
+msgid "Your order number"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/overview.email:8
+msgid ""
+"Thank you very much for your order! Please click on the following link or open it in your browser to confirm\n"
+"your order. If you don't do that, your order won't be registered."
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/overview.email:35
+msgid ""
+"\n"
+"        Thank you very much for your order! Please click on the following link or open it in your browser to confirm\n"
+"        your order. If you don't do that, your order won't be registered.\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_confirmation.email:3
+#: aleksis/apps/order/templates/templated_email/pay_confirmation.email:6
+#: aleksis/apps/order/templates/templated_email/pay_confirmation.email:30
+msgid "Pay confirmation"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_confirmation.email:10
+msgid "Your transfer was registered and we will notify you for further progress."
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_confirmation.email:35
+msgid ""
+"\n"
+"        Your transfer was registered and we will notify you for further progress.\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_reminder.email:3
+msgid "REMINDER: Please pay your order"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_reminder.email:6
+#: aleksis/apps/order/templates/templated_email/pay_reminder.email:33
+msgid "REMINDER: Please pay your order!"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_reminder.email:10
+msgid ""
+"We haven't got a payment for your order. If you think that this is a mistake,\n"
+"please reply us and we will take a second look. You will find all information from the confirmation email below:"
+msgstr ""
+
+#: aleksis/apps/order/templates/templated_email/pay_reminder.email:38
+msgid ""
+"\n"
+"        We haven't got a payment for your order. If you think that this is a mistake,\n"
+"        please reply us and we will take a second look. You will find all information from the confirmation email below:\n"
+"      "
+msgstr ""
+
+#: aleksis/apps/order/views.py:68
+msgid "The order has been changed successfully."
+msgstr ""
+
+#: aleksis/apps/order/views.py:90
+msgid "The order has been deleted successfully."
+msgstr ""
+
+#: aleksis/apps/order/views.py:188
+msgid "The order was successfully marked as collected."
+msgstr ""
+
+#: aleksis/apps/order/views.py:192
+msgid ""
+"\n"
+"Manually paid"
+msgstr ""
+
+#: aleksis/apps/order/views.py:195
+msgid "The order was successfully marked as manually paid and collected."
+msgstr ""
+
+#: aleksis/apps/order/views.py:203
+msgid "The order was successfully marked as normally paid and collected."
+msgstr ""

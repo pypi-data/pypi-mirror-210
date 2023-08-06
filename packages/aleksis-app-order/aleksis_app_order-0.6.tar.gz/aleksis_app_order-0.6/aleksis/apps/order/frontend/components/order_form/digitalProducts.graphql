@@ -1,0 +1,26 @@
+query ($key: String!) {
+  data: digitalProductsByKey(key: $key) {
+    order {
+      id
+      form {
+        title
+        helpText
+      }
+      digitalProductsKey
+    }
+    items {
+      id
+      count
+      sharesLeft
+      shares {
+        id
+        shareUrl
+        shareExpiration
+      }
+      item {
+        name
+        image
+      }
+    }
+  }
+}

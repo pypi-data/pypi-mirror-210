@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load i18n material_form %}
+
+{% block page_title %}
+  {% trans "Pick up orders" %}
+{% endblock %}
+{% block browser_title %}
+  {% trans "Pick up orders" %}
+{% endblock %}
+
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {% form form=form %}{% endform %}
+    <button type="submit" class="btn waves-effect waves-light">
+      {% trans "Open" %}
+    </button>
+  </form>
+
+
+  {% if order %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="order_id_action" value="{{ order.id }}">
+      <div class="row">
+        <div class="col s12 m12 l6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-title"> {% trans "Options for Order" %} #{{ order.id }}</div>
+              {% if not order.paid %}
+                <div class=" chip large red white-text">{% trans "Order not paid yet" %}</div>
+                <div>
+                  <button type="submit" name="manually-paid-collected" value="do"
+                          class="btn-large waves-effect waves-light green white-text margin-bottom hundred-percent">
+                    {% trans "Mark as manually paid and collected" %}
+                  </button>
+                  <button type="submit" name="paid-collected" value="do"
+                          class="btn-large waves-effect waves-light green white-text margin-bottom hundred-percent">
+                    {% trans "Mark as normally paid and collected" %}
+                  </button>
+                  <button type="submit" name="abort" value="do"
+                          class="btn-large waves-effect waves-light red white-text margin-bottom hundred-percent">
+                    {% trans "Abort" %}
+                  </button>
+                </div>
+                {% elif not order.sent %}
+                <div class=" chip large green white-text">{% trans "Order paid" %}</div>
+                <button type="submit" name="collected" value="do"
+                        class="btn-large waves-effect waves-light green white-text margin-bottom hundred-percent">
+                  {% trans "Mark as collected" %}
+                </button>
+                <button type="submit" name="abort" value="do"
+                        class="btn-large waves-effect waves-light red white-text margin-bottom hundred-percent">
+                  {% trans "Abort" %}
+                </button>
+              {% else %}
+                <div class=" chip large green white-text">{% trans "All done!" %}</div>
+                <button type="submit" name="abort" value="do"
+                        class="btn-large waves-effect waves-light red white-text margin-bottom hundred-percent">
+                  {% trans "Abort" %}
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m12 l6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-title"> {% trans "Current Order" %}: #{{ order.id }}</div>
+              {% include "order/order_details.html" %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  {% endif %}
+
+{% endblock %}

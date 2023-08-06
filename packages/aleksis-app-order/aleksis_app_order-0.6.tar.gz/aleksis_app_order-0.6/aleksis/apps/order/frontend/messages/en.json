@@ -1,0 +1,109 @@
+{
+  "order": {
+    "menu_title": "Orders",
+    "list": {
+      "menu_title": "List"
+    },
+    "access": {
+      "title": "Unlock order form",
+      "hint": "Please enter the access code to open this order form:",
+      "label": "Access code"
+    },
+    "steps": {
+      "items": "Select items",
+      "shipping": "Select shipping option",
+      "payment": "Select payment option",
+      "confirm": "Confirm order"
+    },
+    "personal_data": {
+      "title": "Personal data",
+      "imported": "The personal data have automatically been imported from your user account.",
+      "label_name": "Full name",
+      "label_email": "Email"
+    },
+    "items": {
+      "title": "Items",
+      "items_count": "0 items | 1 item | {count} items",
+      "quantity": "Quantity",
+      "price": "Price",
+      "total": "Total"
+    },
+    "shipping": {
+      "title": "Shipping option",
+      "address": "Shipping address",
+      "label_name": "Full name",
+      "label_second_address_row": "Second address row",
+      "label_street": "Street",
+      "label_housenumber": "Housenumber",
+      "label_postal_code": "Postal code",
+      "label_place": "Place"
+    },
+    "payment": {
+      "title": "Payment option"
+    },
+    "confirm": {
+      "title_notes": "Notes to your order",
+      "label_notes": "Notes",
+      "hint": "Please check the details of your order and send it by clicking \"Confirm order\""
+    },
+    "submitted": {
+      "thank_you": "Thank you!",
+      "submitted_successfully": "Your order has been submitted successfully.",
+      "confirm_necessary": "Please check your emails and confirm your order by clicking the link sent to you."
+    },
+    "digital_products": {
+      "menu_title": "My digital products",
+      "my_digital_products": "My digital products",
+      "licenses_bought": "You have bought one license.|You have bought {count} licenses.",
+      "shares_left": "You can't create any more download links.|You still can generate one download link.|You still can generate {count} download links.",
+      "link_number": "Link #{number}",
+      "link_valid_until": "Valid until {date}",
+      "download": "Download",
+      "copy_link": "Copy link",
+      "generate_link": "Generate new download link"
+    },
+    "copied": "Copied!",
+    "actions": {
+      "back": "Back",
+      "confirm": "Confirm order",
+      "next": "Next step"
+    },
+    "rules": {
+      "name": {
+        "required": "Name is required",
+        "max": "Name must be less than 255 characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "valid": "Email is invalid",
+        "max": "Email must be less than 255 characters"
+      },
+      "shipping_option": {
+        "required": "Shipping option is required"
+      },
+      "payment_option": {
+        "required": "Payment option is required"
+      },
+      "street": {
+        "required": "Street is required",
+        "max": "Street must be less than 255 characters"
+      },
+      "housenumber": {
+        "required": "Housenumber is required",
+        "max": "Housenumber must be less than 255 characters"
+      },
+      "postal_code": {
+        "required": "Postal code is required",
+        "valid": "Postal code is invalid"
+      },
+      "place": {
+        "required": "Place is required",
+        "max": "Place must be less than 255 characters"
+      }
+    },
+    "free": "free",
+    "pick_up": {
+      "menu_title": "Pick up"
+    }
+  }
+}
