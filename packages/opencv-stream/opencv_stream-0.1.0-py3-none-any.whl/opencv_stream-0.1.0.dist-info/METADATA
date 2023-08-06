@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: opencv-stream
+Version: 0.1.0
+Summary: Wrapper over opencv for video processing and API development
+Author: Olivier
+Author-email: luowensheng2018@gmail.com
+Keywords: python,video,stream,AI,API
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv-python
+Requires-Dist: numpy
+
+
+# opencv_stream
+
+Under construction
+
+Developed by Olivier 
+
+## Examples of How To Use 
+
+Creating A Stream
+
+
+```python
+
+from opencv_stream import VideoStreamer, ModelOutput, Model
+import time
+import numpy as np
+import cv2
+
+class TempModelOutput(ModelOutput):
+
+    def to_dict(self) -> dict:
+        return {"success": True}
+    
+    def draw(self, image: np.ndarray) -> None:
+        w, h, _ = image.shape
+        cv2.putText(image, "Hello from opencv_stream", (w//2, h//2), fontFace=1, fontScale=1, color=(255, 0, 0))
+
+class TempModel(Model):
+
+    def predict(self, image: np.ndarray) -> ModelOutput:
+        return TempModelOutput()
+
+stream = VideoStreamer.from_webcam()
+
+
+stream.start_with_model(TempModel(), )
+
+
+```
