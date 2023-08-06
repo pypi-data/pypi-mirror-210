@@ -1,0 +1,9 @@
+graft src
+
+exclude tox.ini
+
+prune assets
+prune tests
+prune */.pytest_cache 
+
+global-exclude */__pycache__/* *.log
