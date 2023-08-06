@@ -1,0 +1,13 @@
+colour>=0.1.5
+construct-typing>=0.5.6
+sortedcontainers>=2.4.0
+typing_extensions>=4.6.1
+
+[:python_version <= "3.10"]
+f-enum>=0.2.0
+
+[dev]
+coverage>=7.2.6
+pre-commit>=3.3.2
+pytest>=7.3.1
+tox>=4.5.1

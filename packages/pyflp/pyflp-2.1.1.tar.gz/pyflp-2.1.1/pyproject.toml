@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyflp"
+authors = [{ name = "demberto", email = "demberto@protonmail.com" }]
+description = "FL Studio project file parser"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Multimedia",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+license = { text = "GPL-3.0" }
+dependencies = [
+  "colour>=0.1.5",
+  "f-enum>=0.2.0;python_version<='3.10'",
+  "construct-typing>=0.5.6",
+  "sortedcontainers>=2.4.0",
+  "typing_extensions>=4.6.1",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = ["coverage >=7.2.6", "pre-commit >= 3.3.2", "pytest >=7.3.1", "tox >=4.5.1"]
+# for docs dependencies see docs/requirements.txt
+
+[project.urls]
+Source = "https://github.com/demberto/PyFLP"
+Changelog = "https://github.com/demberto/PyFLP/blob/master/CHANGELOG.md"
+Documentation = "https://pyflp.rtfd.io"
+"Bug Tracker" = "https://github.com/demberto/PyFLP/issues"
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = ["main.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",         # Have to re-enable the standard pragma
+  "def __repr__",
+  "\\.\\.\\.",                # Ellipsis operator used in protocols
+  "if owner is None:",        # Descriptor __get__() checks
+  "@(abc\\.)?abstractmethod", # "@abc.abstractmethod" or "@abstractmethod"
+]
+ignore_errors = true
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.7"
+check_untyped_defs = true
+enable_incomplete_feature = ["Unpack"]
+ignore_missing_imports = true
+warn_no_return = false
+
+[tool.pyright]
+ignore = ["./venv"]
+reportPrivateUsage = false
+reportMissingTypeStubs = false
+venvPath = "."
+venv = "venv"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = "tests"
+
+[tool.ruff]
+target-version = "py37"
+
+[tool.setuptools]
+packages = ["pyflp"]
+
+[tool.setuptools_scm]
+write_to = "pyflp/_version.py"
