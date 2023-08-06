@@ -1,0 +1,5 @@
+recursive-include horton_grid *.pyx *.pxd *.h *.cpp
+recursive-exclude horton_grid cext.cpp
+
+include README
+include COPYING
