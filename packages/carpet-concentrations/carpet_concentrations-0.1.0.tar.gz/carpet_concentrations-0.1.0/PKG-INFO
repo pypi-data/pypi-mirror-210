@@ -1,0 +1,87 @@
+Metadata-Version: 2.1
+Name: carpet-concentrations
+Version: 0.1.0
+Summary: 
+Author: Zebedee Nicholls
+Author-email: zebedee.nicholls@climate-resource.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: notebooks
+Provides-Extra: plots
+Requires-Dist: cftime (>=1.6.2,<2.0.0)
+Requires-Dist: ipywidgets (>=8.0.6,<9.0.0) ; extra == "notebooks"
+Requires-Dist: notebook (>=6.5.3,<7.0.0) ; extra == "notebooks"
+Requires-Dist: seaborn (>=0.12.2,<0.13.0) ; extra == "plots"
+Requires-Dist: xarray (>=2023.4.2,<2024.0.0)
+Description-Content-Type: text/x-rst
+
+.. sec-begin-description
+
+Carpet - Concentrations
+=======================
+
+[TODO badges here #1]
+
+Core tools for the development of greenhouse gas concentration input files (i.e.
+flying carpets).
+
+Full documentation can be found at: [TODO read the docs link here #2]
+
+.. sec-begin-links
+
+.. _issue tracker: https://gitlab.com/climate-resource/carpet-concentrations/-/issues
+
+.. sec-end-links
+
+.. sec-end-description
+
+Installation
+------------
+
+Carpet - concentrations can be installed with conda or pip:
+
+.. code:: bash
+
+    pip install carpet-concentrations
+    conda install -c conda-forge carpet-concentrations
+
+Additional dependencies can be installed using
+
+.. code:: bash
+
+    # To add plotting dependencies
+    pip install carpet-concentrations[plots]
+    # To run the notebooks
+    pip install carpet-concentrations[notebooks, plots]
+    # If you are installing with conda, we recommend
+    # installing the extras by hand because there is no stable
+    # solution yet (issue here: https://github.com/conda/conda/issues/7502)
+
+.. sec-end-installation
+
+.. sec-begin-installation-dev
+
+For developers
+~~~~~~~~~~~~~~
+
+For development, we rely on `poetry <https://python-poetry.org>`_ for all our
+dependency management. To get started, you will need to make sure that poetry
+is installed
+(https://python-poetry.org/docs/#installing-with-the-official-installer, we
+found that pipx and pip worked better to install on a Mac).
+
+For all of work, we use our ``Makefile``.
+You can read the instructions out and run the commands by hand if you wish,
+but we generally discourage this because it can be error prone and doesn't
+update if dependencies change (e.g. the environment is updated).
+In order to create your environment, run ``make virtual-environment``.
+
+If there are any issues, the messages from the ``Makefile`` should guide you
+through. If not, please raise an issue in the
+`issue tracker`_.
+
+.. sec-end-installation-dev
+

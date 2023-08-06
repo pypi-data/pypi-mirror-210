@@ -1,0 +1,112 @@
+[tool.poetry]
+name = "carpet-concentrations"
+version = "0.1.0"
+description = ""
+authors = ["Zebedee Nicholls <zebedee.nicholls@climate-resource.com>"]
+readme = "README.rst"
+packages = [{include = "carpet_concentrations", from = "src"}]
+
+[tool.coverage.run]
+source = ["carpet_concentrations"]
+
+[tool.isort]
+known_first_party = "carpet_concentrations"
+default_section = "THIRDPARTY"
+profile = "black"
+# comma after multiline breaks like black:
+include_trailing_comma = true
+# black default line length:
+line_length = 88
+# multiline breaks like black:
+multi_line_output = 3
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+notebook = { version = "^6.5.3", optional = true }
+ipywidgets = { version = "^8.0.6", optional = true }
+seaborn = { version = "^0.12.2", optional = true }
+xarray = "^2023.4.2"
+cftime = "^1.6.2"
+
+[tool.poetry.extras]
+notebooks = ["notebook", "ipywidgets"]
+plots = ["seaborn"]
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^7.3.1"
+
+[tool.poetry.group.docs.dependencies]
+myst-nb = "^0.17.0"
+sphinx-rtd-theme = "^1.2.0"
+sphinx-autodoc-typehints = "^1.23.0"
+jupytext = "^1.14.5"
+sphinx-copybutton = "^0.5.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.0.0"
+black = "^23.3.0"
+commitizen = "^3.1.1"
+blacken-docs = { git = "https://github.com/znicholls/blacken-docs.git", rev = "8dd86fc" }
+tokenize-rt = "^5.0.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+mypy = "^1.2.0"
+pylint = "^2.17.3"
+pydocstyle = "^6.3.0"
+bandit = "^1.7.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.report]
+fail_under = 95
+skip_empty = true
+show_missing = true
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    "pragma: no cover",
+    # Don't complain about missing type checking code:
+    "if TYPE_CHECKING",
+]
+
+[tool.mypy]
+strict = true
+# prevent unimported libraries silently being treated as Any
+disallow_any_unimported = true
+# show error codes on failure with context
+show_error_codes = true
+show_error_context = true
+# warn if code can't be reached
+warn_unreachable = true
+# importing following uses default settings
+follow_imports = "normal"
+
+[tool.pylint.messages_control]
+disable = ["format"]
+
+[tool.pydocstyle]
+# D213 - Multi-line docstring summary should start at the second line
+# D402 - First line should not be the function's "signature"
+add_select = "D213, D402"
+
+# D105 - Missing docstring in magic method
+# D200 - One-line docstring should fit on one line with quotes
+# D205 - 1 blank line required between summary line and description
+# D400 - First line should end with a period
+add_ignore = "D200, D205, D400, D105"
+
+convention = "numpy"
+inherit = false
+
+[tool.bandit]
+
+[tool.commitizen]
+version = "0.1.0"
+version_files = ["pyproject.toml:^version"]
+tag_format = "v$version"
+major_version_zero = true
+
+[tool.jupytext]
+formats = "ipynb,myst"
