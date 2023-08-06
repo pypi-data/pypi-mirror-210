@@ -1,0 +1,55 @@
+model_name: test_model
+human_friendly_model_name: Test model
+model_file: model_code/model.py
+req_file: model_code/requirements.model
+info:
+  prediction:
+    description: dummy settings for testing
+    metadata:
+      required_input:
+        - log1
+        - log2
+      optional_input:
+        - log3
+        - log4
+      output_curves:
+        - output1
+      keyword_arguments:
+        - name: kwarg1
+          required: True
+          default: null
+        - name: kwarg2
+          required: True
+          default: null
+      supports_external_retrieval: False
+      petrel_exposure: True
+      petrel_template_family: petrel template family
+      well_section_template: template
+    owner: owner@company.com
+---
+model_name: test_model2
+human_friendly_model_name: Test model 2
+model_file: model_code/model.py
+req_file: model_code/requirements.model
+info:
+  prediction:
+    description: dummy settings for testing
+    metadata:
+      required_input:
+        - log1
+        - log2
+      optional_input:
+        - log3
+        - log4
+      output_curves:
+        - output1
+      keyword_arguments:
+        - name: kwarg1
+          required: True
+          default: null
+        - name: kwarg2
+          required: True
+          default: null
+      supports_external_retrieval: False
+      petrel_exposure: False
+    owner: owner@company.com
