@@ -1,0 +1,35 @@
+-r requirements.txt
+
+# GCP
+google-cloud-vision
+
+# AWS
+boto3
+
+# Azure
+azure-cognitiveservices-vision-computervision
+
+# Paddle
+paddlepaddle; python_version < '3.11'
+paddleocr>=2.0.6; python_version < '3.11'
+
+# EasyOCR
+easyocr >= 1/7.0
+
+# Test dependencies
+pytest >= 6
+pytest-cov
+pytest-xdist
+openpyxl
+sewar
+
+# Examples dependencies
+jupyter
+ipython-autotime
+Pillow
+
+# Build tools
+wheel
+setuptools
+pbr
+twine
