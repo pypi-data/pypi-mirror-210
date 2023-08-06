@@ -1,0 +1,54 @@
+{% extends 'charlink/base_audit.html' %}
+{% load charlinkutils %}
+
+{% block page_title %}Charlink User Audit{% endblock page_title %}
+
+{% block extra_css %}
+    <style>
+        .glyphicon-ok {
+            color: green;
+        }
+
+        .glyphicon-remove {
+            color: red;
+        }
+    </style>
+{% endblock extra_css %}
+
+{% block auditblock %}
+    <div class="panel panel-default text-center">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">Linked Characters</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-aa">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="text-center">Character</th>
+                        {% for app in characters_added.apps.values %}
+                            <th scope="row" class="text-center">{{ app.field_label }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for char in characters_added.characters %}
+                        <tr>
+                            <td><img src="{{ char.portrait_url }}" class="img-circle" alt="{{ char }}"></td>
+                            <td>{{ char }}</td>
+                            {% for app, data in characters_added.apps.items %}
+                                {% with is_added=char|get_char_attr:app %}
+                                    {% if is_added %}
+                                        <td><span class="glyphicon glyphicon-ok"></span></td>
+                                    {% else %}
+                                        <td><span class="glyphicon glyphicon-remove"></span></td>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock auditblock %}
