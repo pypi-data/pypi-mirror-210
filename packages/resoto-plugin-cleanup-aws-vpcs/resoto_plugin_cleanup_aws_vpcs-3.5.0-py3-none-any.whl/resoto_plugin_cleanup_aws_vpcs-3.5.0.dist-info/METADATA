@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: resoto-plugin-cleanup-aws-vpcs
+Version: 3.5.0
+Summary: AWS VPC Cleaner Plugin
+Home-page: https://github.com/someengineering/resoto/tree/main/plugins/cleanup_aws_vpcs
+License: Apache 2.0
+Keywords: cloud security
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Topic :: Security
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: resotolib (==3.5.0)
+Requires-Dist: resoto-plugin-aws (==3.5.0)
+
+# resoto-plugin-cleanup-aws-vpcs
+AWS VPC Cleanup Plugin for Resoto
+
+This plugin marks all VPC dependencies for cleanup. The VPC must have been previously marked for cleanup by another cleanup plugin.
+
+The following resources are currently being marked for cleanup
+
+- AWS VPC Peering Connections
+- AWS EC2 Network ACLs
+- AWS EC2 Network Interfaces
+- AWS ELB
+- AWS ALB
+- AWS ALB Target Groups
+- AWS EC2 Subnets
+- AWS EC2 Security Groups
+- AWS EC2 Internet Gateways
+- AWS EC2 NAT Gateways
+- AWS EC2 Route Tables
+
+## Usage
+
+In `resh` execute
+
+```
+> config edit resoto.worker
+```
+
+and find the following section
+
+```
+plugin_cleanup_aws_vpcs:
+  # Dictionary of key cloud with list of account IDs for which the plugin should be active as value
+  config:
+    aws:
+      - '1234567'
+      - '567890'
+  # Enable plugin?
+  enabled: false
+```
