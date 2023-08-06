@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "blockdivision"
+version = "0.1.0"
+description = ""
+authors = ["Batyrkhan <batirkhangainitdinov@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sklearn = "^0.0.post5"
+pandas = "^2.0.1"
+transformers = {extras = ["torch"], version = "^4.29.2"}
+torch = "^2.0.1"
+sentence-transformers = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
