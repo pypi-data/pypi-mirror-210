@@ -1,0 +1,141 @@
+\usepackage[Export]{adjustbox}
+\usepackage{environ}
+\usepackage{framed}
+
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{1}
+\setcounter{totalnumber}{3}
+
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.2}
+\renewcommand{\floatpagefraction}{0.8}
+
+\setlength{\textfloatsep}{2em plus 1ex minus 1ex}
+\setlength{\floatsep}{2em plus 1ex minus 1ex}
+\setlength{\intextsep}{2em plus 1ex minus 1ex}
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+
+\makeatletter
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
+\makeatother
+
+% Maximum width/height for figures and tables.
+\newcommand{\maxfigwidth}{\textwidth}
+\newcommand{\maxfigheight}{\textheight}
+\newcommand{\maxtabwidth}{\textwidth}
+\newcommand{\maxtabheight}{\textheight}
+
+% Maintain aspect ratio of figures.
+\let\origincgfx\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+\origincgfx[%
+  #1,keepaspectratio,max width=\maxfigwidth,max height=\maxfigheight%
+]{#2}%
+}
+
+% Global placeholder variables.
+\def\mdccap{CAPTION}
+\def\mdclab{LABEL}
+
+% Automatically adjust figure layout based on width.
+\let\oldfigure\figure
+\let\endoldfigure\endfigure
+\RenewEnviron{figure}{
+  % Save old caption/label commands.
+  \let\oldcaption\caption
+  \let\oldsetcaptionsubtype\setcaptionsubtype
+  \let\oldlabel\label
+
+  \renewcommand{\setcaptionsubtype}{}
+  % Update caption/label commands to save the values to a global variable.
+  \renewcommand{\caption}[2][]{\global\def\mdccap{##2}}
+  % Label command is updated conditionally based on if 'insubfloat' is defined.
+  \renewcommand{\label}[1]{%
+    \ifdefined\insubfloat
+      \oldlabel{##1}
+    \else
+      \global\def\mdclab{##1}
+    \fi
+  }
+
+  % Update \subfloat to define 'insubfloat' so that labels within sub-floats still work.
+  \let\oldsubfloat\subfloat
+  \renewcommand{\subfloat}[2][]{\def\insubfloat{}\oldsubfloat[##1]{##2}\let\insubfloat\undefined}
+
+  % Render the body inside a box.
+  \sbox{0}{\BODY}
+
+  \let\setcaptionsubtype\oldsetcaptionsubtype
+
+  % Save the linewidth to a constant (the macro will change depending on environment).
+  \xdef\thelinew{\the\linewidth}
+
+  \ifdim\wd0>\thelinew
+    \begin{figure*}[tbp]
+  \else
+    \begin{oldfigure}[htbp]
+  \fi
+
+      \setlength{\FrameRule}{0pt}
+      \setlength{\FrameSep}{0pt}
+
+      \begin{framed}
+      \begin{adjustbox}{center}
+      \begin{adjustbox}{max totalheight=\maxfigheight}
+        \begin{minipage}{\maxfigwidth}
+          \centering
+          \BODY
+        \end{minipage}
+      \end{adjustbox}
+      \end{adjustbox}
+      \end{framed}
+
+      \oldcaption{\mdccap}
+      \oldlabel{\mdclab}
+
+  \ifdim\wd0>\thelinew
+    \end{figure*}
+  \else
+    \end{oldfigure}
+  \fi
+
+  % Restore caption/label commands.
+  \let\caption\oldcaption
+  \let\label\oldlabel
+}
+
+% Automatically adjust table layout based on width.
+\let\oldtable\table
+\let\endoldtable\endtable
+\RenewEnviron{table}{
+  \let\oldcaption\caption
+  \renewcommand{\caption}[2][]{\global\def\mdccap{##2}}
+
+  \sbox{0}{\BODY}
+
+  \xdef\thelinew{\the\linewidth}
+
+  \ifdim\wd0>\thelinew
+    \begin{table*}[tbp]
+  \else
+    \begin{oldtable}[htbp]
+  \fi
+
+      \begin{adjustbox}{center}
+        \maxsizebox{\maxtabwidth}{\maxtabheight}{\BODY}
+      \end{adjustbox}
+
+      \oldcaption{\mdccap}
+
+  \ifdim\wd0>\thelinew
+    \end{table*}
+  \else
+    \end{oldtable}
+  \fi
+}

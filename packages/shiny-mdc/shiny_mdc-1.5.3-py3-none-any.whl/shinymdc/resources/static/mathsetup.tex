@@ -1,0 +1,27 @@
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mleftright}
+\usepackage{bm}
+\usepackage{array}
+
+% Use 'mleft'/'mright' instead of 'left/right'.
+\renewcommand\left\mleft
+\renewcommand\right\mright
+
+% Automatically use '\left' and '\right' with parentheses.
+\makeatletter
+\def\resetMathstrut@{%
+  \setbox\z@\hbox{%
+    \mathchardef\@tempa\mathcode`\[\relax
+    \mathchardef\@tempc\mathcode`\]\relax
+    \def\@tempb##1"##2##3{\the\textfont"##3\char"}%
+    \expandafter\@tempb\meaning\@tempa \relax
+  }%
+  \ht\Mathstrutbox@\ht\z@ \dp\Mathstrutbox@\dp\z@}
+\makeatother
+\begingroup
+  \catcode`(\active \xdef({\left\string(}
+  \catcode`)\active \xdef){\right\string)}
+\endgroup
+\mathcode`(="8000 \mathcode`)="8000
