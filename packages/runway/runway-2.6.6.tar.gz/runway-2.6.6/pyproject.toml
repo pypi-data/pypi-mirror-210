@@ -1,0 +1,392 @@
+[tool.poetry]
+name = "runway"
+version = "2.6.6"  # do not change
+description = "Simplify infrastructure/app testing/deployment"
+license = "Apache-2.0"
+authors = [
+  "Onica Group LLC <opensource@onica.com>",
+]
+maintainers = [
+  "Kyle Finley <kyle@finley.sh>",
+]
+readme = "README.md"
+homepage = "https://github.com/onicagroup/runway"
+repository = "https://github.com/onicagroup/runway"
+documentation = "https://docs.onica.com/projects/runway"
+keywords = ["cli"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Utilities",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+]
+packages = [
+  { include = "runway" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8, <3.12"
+
+# dependencies needed for building docs are included here.
+# they are marked as "optional" and are installed as the extra "docs".
+# this is a workaround for ReadTheDocs to work with poetry until fill support
+# is added or poetry dependency groups are added.
+
+"backports.cached_property" = { version = "*", python = "<3.8" }
+awacs = "*"
+boto3 = "^1.16"
+cfn-lint = "*"
+cfn_flip = "^1.2"  # only used in runway._cli.commands._gen_sample.utils
+click = "^8.0"
+coloredlogs = "*, !=15.0.1"
+docker = ">=3.0.0"  # used in runway.cfngin.hooks
+dunamai = { version = "^1.5", optional = true }  # docs
+formic2 = "*"  # only used in runway.cfngin.hooks.aws_lambda
+gitpython = "*"
+igittigitt = ">=2.0.5"
+importlib-metadata = { version = "*", python = "<3.8" }
+jinja2 = ">=2.7"  # used in runway.cfngin.blueprints.raw
+jsx-lexer = { version = "^1.0", optional = true }  # docs
+packaging = "*"  # component of setuptools needed for version compare
+pyOpenSSL = "*"  # For embedded hook & associated script usage
+pydantic = "^1.4"
+pyhcl = "^0.4"  # does not support HCL2, possibly move to extras_require in the future
+python-hcl2 = ">=3.0.0"
+pyyaml = ">5.4"
+requests = "*"
+send2trash = "*"
+sphinx = { version = "^4.3", optional = true }  # docs
+sphinx-github-changelog = { version = "^1.1", optional = true }  # docs
+sphinx-rtd-theme = { version = "^1.0", optional = true } # docs
+sphinx-tabs = { version = "^3.2", optional = true }  # docs
+sphinxcontrib-apidoc = { version = "^0.3", optional = true }  # docs
+sphinxcontrib-programoutput = { version = "^0.17", optional = true }  # docs
+tomli = ">=1.2.2"
+troposphere = ">=2.4, <5"
+typing_extensions = "*"  # only really needed for < 3.8 but can still be used in >= 3.8
+urllib3 = "*"  # allow us to follow botocore's hard pinning without needing to update our own
+yamllint = "*"
+pipenv = "2022.1.8"
+moto = "3.0.5"
+testfixtures = "^7.0.3"
+str2bool = "^1.1"
+
+[tool.poetry.dev-dependencies]
+black = ">=22.1"
+coverage = { version = ">=6.3", extras = ["toml"] }
+doc8 = ">=0.10"  # for linting with vscode rst extension
+dunamai = "^1.5"
+flake8 = ">=4.0.1"
+flake8-bugbear = ">=21.9.2"  # flake8 plugin
+flake8-comprehensions = ">=3.7.0"  # flake8 plugin
+flake8-docstrings = ">=1.6"  # flake8 plugin
+flake8-print = ">=4.0.0"  # flake8 plugin
+flake8-use-fstring = ">=1.3"  # flake8 plugin
+isort = ">=5.12"
+mock = ">=4.0"
+moto = { version = ">=3.0", extras = ["ec2", "ecs", "iam", "s3", "ssm"] }
+mypy-boto3 = "^1.16"  # importable boto3 type annotations
+pep8-naming = ">=0.12.1"  # flake8 plugin
+pipenv = "^2022.1.8"  # only used in tests
+pre-commit = ">=2.14"
+pydocstyle = ">=6.1.1"  # flake8 plugin
+pyinstaller = ">=4.6"
+pylint = ">=2.12"
+pytest = ">=7.0"
+pytest-cov = ">=3.0"  # pytest plugin
+pytest-mock = ">=3.7"  # pytest plugin
+pytest-order = ">=1"  # pytest plugin
+pytest-subprocess = ">=1.4"  # pytest plugin
+pytest-sugar = ">=0.9"  # pytest plugin
+pytest-xdist = ">=2.5"  # pytest plugin
+semver = "^2.13"  # only used in .github/scripts/urlshortener
+testfixtures = "^7.0.3"  # TODO remove use of this dependency - was inherited
+tomli-w = ">=1.0"
+
+[tool.poetry.dev-dependencies.boto3-stubs]
+extras = [
+  "acm",
+  "awslambda",
+  "cloudformation",
+  "cloudfront",
+  "cognito-idp",
+  "dynamodb",
+  "ec2",
+  "ecr",
+  "ecs",
+  "iam",
+  "kms",
+  "lambda",
+  "route53",
+  "s3",
+  "ssm",
+  "sts",
+]
+version = "^1.16"
+
+[tool.poetry.extras]
+docs = [
+  "dunamai",
+  "jsx-lexer",
+  "sphinx",
+  "sphinx-github-changelog",
+  "sphinx-rtd-theme",
+  "sphinx-tabs",
+  "sphinxcontrib-apidoc",
+  "sphinxcontrib-programoutput",
+]
+
+[tool.poetry.scripts]
+runway = "runway._cli.main:cli"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/onicagroup/runway/issues"
+
+[build-system]
+requires = ["poetry_core>=1.0.7"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+force-exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.demo
+  | \.hg
+  | \.mypy_cache
+  | \.runway
+  | \.tox
+  | \.venv
+  | _build
+  | build
+  | dist
+  | npm
+  | runway/aws_sso_botocore
+)/
+'''
+include = '\.pyi?$'
+line-length = 88
+target-version = ["py38", "py39"]
+
+
+[tool.coverage.report]
+exclude_lines = [
+  "cov: ignore",  # standard exclude comment
+  "if TYPE_CHECKING:",  # excluded blocks
+  "if __name__ == .__main__.:",
+  "raise AssertionError",  # defensive exceptions
+  "raise NotImplementedError",
+  "from pathlib import Path",
+  "@overload",
+]
+fail_under = 85
+precision = 2
+show_missing = true
+
+
+[tool.coverage.run]
+concurrency = [
+  "multiprocessing",
+  "thread",
+]
+omit = [
+  "*/runway/aws_sso_botocore/*",  # TODO remove native support is added to botocore
+  "*/runway/cfngin/hooks/staticsite/auth_at_edge/templates/*",
+  "*/compat.py",
+  "*/type_defs.py",
+]
+
+[tool.isort]
+profile = "black"
+known_local_folder = [
+  "jwks_rsa",
+  "shared",
+  "update_urls",
+]
+skip = [
+  ".demo",
+  ".eggs",
+  ".git",
+  ".mypy_cache",
+  ".runway",
+  ".runway_cache",
+  ".venv",
+  "_build",
+  "build",
+  "dist",
+  "integration_tests",
+  "node_modules",
+  "venv",
+]
+
+
+[tool.pylint.basic]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#basic-checker
+attr-rgx = "([a-z_][a-z0-9_]{2,50}|VARIABLES)$"
+# attr-name-hint = "([a-z_][a-z0-9_]{2,50}|VARIABLES)$"
+good-names = [
+  "_",
+  "a",
+  "b",
+  "ci",
+  "db",
+  "f",
+  "fn",
+  "fp",
+  "gb",
+  "i",
+  "id",
+  "j",
+  "k",
+  "kb",
+  "mb",
+  "ok",
+  "os",
+  "ui",
+  "v",
+]
+
+[tool.pylint.classes]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#classes-checker
+defining-attr-methods = [
+  "__init__",
+  "__new__",
+  "setUp",
+]
+exclude-protected=[
+  "_asdict",
+  "_fields",
+  "_replace",
+  "_source",
+  "_make",
+  "_session",  # for boto3.session.Session
+  "_prompter",
+  "_client_config",  # boto3.client.Client._client_config contains info like region
+  "_endpoint",  # boto3.client.Client._endpoint contains s3 endpoint info
+  "_validate_props"  # called on troposphere resources
+]
+
+[tool.pylint.design]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#design-checker-options
+max-args = 10
+max-attributes = 20
+max-bool-expr = 5
+max-branches = 20
+max-locals = 25
+max-parents = 10
+max-public-methods = 30
+max-returns = 10
+max-statements = 50
+min-public-methods = 0
+
+[tool.pylint.format]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#format-checker
+max-line-length = 100
+max-module-lines = 1000
+
+[tool.pylint.imports]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#imports-checker
+allow-wildcard-with-all = "no"
+
+[tool.pylint.logging]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#logging-checker
+logging-format-style = "old"  # TODO update to new
+
+[tool.pylint.master]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#general-options
+extension-pkg-whitelist = [
+  "pydantic",  # https://github.com/samuelcolvin/pydantic/issues/992#issuecomment-553545180
+]
+ignore-patterns = [
+  ".+py[ci]$",
+]
+jobs = 0
+
+[tool.pylint.miscellaneous]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#miscellaneous-checker
+notes = ["FIXME"]
+
+[tool.pylint.message_control]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#messages-control-options
+disable = [
+  "line-too-long",  # flake8 overlap
+  "missing-class-docstring",  # flake8 (pydocstyle) overlap
+  "missing-function-docstring",  # flake8 (pydocstyle) overlap
+  "missing-module-docstring",  # flake8 (pydocstyle) overlap
+  "similarities",  # black overcomplicated this
+  "ungrouped-imports", # false positive when using TYPE_CHECKING; isort should cover this
+  "unused-import",  # flake8 overlap (F401)
+  "broad-exception-raised",
+  "missing-timeout"
+]
+
+[tool.pylint.typecheck]
+# http://pylint.pycqa.org/en/latest/technical_reference/features.html#typecheck-checker
+ignored-classes = [
+  "runway.config.ConfigComponent",
+  "runway.utils.MutableMap",
+]
+ignored-modules = ["_typeshed", "distutils"]
+
+
+[tool.pyright]
+exclude = [
+  "**/__pycache__",
+  "**/.demo",
+  "**/.eggs",
+  "**/.git",
+  "**/.runway",
+  "**/.venv",
+  "**/docs",
+  "**/node_modules",
+  "**/quickstarts",
+  "**/typings",
+  "**/runway/aws_sso_botocore",
+  "**/runway/cfngin/hooks/staticsite/auth_at_edge/templates",
+  "**/runway/templates/cdk-py",
+  "**/tests/functional/cfngin/test_aws_lambda_hook/lambda_src",
+  "**/tests/unit"
+]
+extraPaths = [
+  "./.github/scripts/urlshortener",
+]
+pythonPlatform = "All"
+pythonVersion = "3.8"
+reportDuplicateImport = "none"
+reportImportCycles = "none"
+reportIncompatibleMethodOverride = "warning"
+reportMissingTypeStubs = "none"
+reportPrivateUsage = "none"
+reportUnknownMemberType = "none"
+reportUnnecessaryIsInstance = "warning"
+reportUnusedImport = "none"
+reportUnusedVariable = "none"
+reportWildcardImportFromLibrary = "none"
+strictParameterNoneValue = false
+typeCheckingMode = "strict"
+useLibraryCodeForTypes = true
+venv = ".venv"
+
+
+[tool.pytest.ini_options]
+addopts = [
+  "--cov-config=pyproject.toml",
+  "--no-cov-on-fail",
+]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+  "ignore::pytest_mock.PytestMockWarning",
+]
+markers = [
+  "wip: isolate tests currently being worked on.",
+]
+minversion = 6.0
+python_classes = ["Test*"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+testpaths = ["tests"]
