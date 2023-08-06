@@ -1,0 +1,2532 @@
+@prefix : <http://cltl.nl/leolani/integration/> .
+@prefix eps: <http://cltl.nl/episodicawareness/> .
+@prefix gaf: <http://groundedannotationframework.org/gaf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix n2mu: <http://cltl.nl/leolani/n2mu/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix grasp: <http://groundedannotationframework.org/grasp#> .
+@prefix graspe: <http://groundedannotationframework.org/grasp/emotion#> .
+@prefix graspf: <http://groundedannotationframework.org/grasp/factuality#> .
+@prefix grasps: <http://groundedannotationframework.org/grasp/sentiment#> .
+@base <http://cltl.nl/leolani/n2mu/> .
+
+<http://cltl.nl/leolani/n2mu/> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://cltl.nl/leolani/n2mu/profession
+n2mu:profession rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#broadMatch
+skos:broadMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#narrowMatch
+skos:narrowMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#category
+prov:category rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#component
+prov:component rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#definition
+prov:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#inverse
+prov:inverse rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#qualifiedForm
+prov:qualifiedForm rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://cltl.nl/episodicawareness/contextProperty
+eps:contextProperty rdf:type owl:ObjectProperty ;
+                    rdfs:comment "Context properties connect Context to other SEM Core entities." ;
+                    rdfs:label "context property" .
+
+
+###  http://cltl.nl/episodicawareness/hasContext
+eps:hasContext rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf sem:eventProperty ;
+               rdfs:domain gaf:Instance ,
+                           sem:Event ;
+               rdfs:range eps:Context .
+
+
+###  http://cltl.nl/episodicawareness/hasDetection
+eps:hasDetection rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf eps:contextProperty ;
+                 rdfs:domain eps:Context ;
+                 rdfs:range n2mu:object ,
+                            n2mu:person ,
+                            grasp:Detection .
+
+
+###  http://cltl.nl/leolani/n2mu/be-ancestor-of
+n2mu:be-ancestor-of rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf n2mu:be-family-of ;
+                    rdfs:domain n2mu:person ;
+                    rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-at
+n2mu:be-at rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:locate-in .
+
+
+###  http://cltl.nl/leolani/n2mu/be-before
+n2mu:be-before rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:be-at .
+
+
+###  http://cltl.nl/leolani/n2mu/be-behind
+n2mu:be-behind rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:be-at .
+
+
+###  http://cltl.nl/leolani/n2mu/be-brother-of
+n2mu:be-brother-of rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf n2mu:be-sibling-of ;
+                   rdfs:domain n2mu:person ;
+                   rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-child-of
+n2mu:be-child-of rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf n2mu:be-descendant-of ;
+                 rdfs:domain n2mu:person ;
+                 rdfs:range n2mu:person ;
+                 owl:propertyDisjointWith n2mu:be-parent-of .
+
+
+###  http://cltl.nl/leolani/n2mu/be-colleague-of
+n2mu:be-colleague-of rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf n2mu:know ;
+                     rdfs:domain n2mu:agent ;
+                     rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/be-daughter-of
+n2mu:be-daughter-of rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf n2mu:be-child-of ;
+                    rdfs:domain n2mu:person ;
+                    rdfs:range n2mu:person ;
+                    owl:propertyDisjointWith n2mu:be-son-of .
+
+
+###  http://cltl.nl/leolani/n2mu/be-descendant-of
+n2mu:be-descendant-of rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf n2mu:be-family-of ;
+                      rdfs:domain n2mu:person ;
+                      rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-family-of
+n2mu:be-family-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:know ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-father-of
+n2mu:be-father-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:be-parent-of ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person ;
+                  owl:propertyDisjointWith n2mu:be-mother-of .
+
+
+###  http://cltl.nl/leolani/n2mu/be-friends-with
+n2mu:be-friends-with rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf n2mu:know ;
+                     rdfs:domain n2mu:agent ;
+                     rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/be-from
+n2mu:be-from rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ,
+                         n2mu:cuisine ;
+             rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/be-grandfather-of
+n2mu:be-grandfather-of rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf n2mu:be-grandparent-of ;
+                       rdfs:domain n2mu:person ;
+                       rdfs:range n2mu:person ;
+                       owl:propertyDisjointWith n2mu:be-grandmother-of .
+
+
+###  http://cltl.nl/leolani/n2mu/be-grandmother-of
+n2mu:be-grandmother-of rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf n2mu:be-grandparent-of ;
+                       rdfs:domain n2mu:person ;
+                       rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-grandparent-of
+n2mu:be-grandparent-of rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf n2mu:be-ancestor-of ;
+                       rdfs:domain n2mu:person ;
+                       rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-husband-of
+n2mu:be-husband-of rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf n2mu:be-spouse-of ;
+                   rdfs:domain n2mu:person ;
+                   rdfs:range n2mu:person ;
+                   owl:propertyDisjointWith n2mu:be-wife-of .
+
+
+###  http://cltl.nl/leolani/n2mu/be-inside
+n2mu:be-inside rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:locate-in ;
+               rdfs:domain n2mu:agent ,
+                           n2mu:object ;
+               rdfs:range n2mu:container .
+
+
+###  http://cltl.nl/leolani/n2mu/be-member-of
+n2mu:be-member-of rdf:type owl:ObjectProperty ;
+                  rdfs:domain n2mu:agent ;
+                  rdfs:range n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/be-mother-of
+n2mu:be-mother-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:be-parent-of ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-next-to
+n2mu:be-next-to rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf n2mu:be-at .
+
+
+###  http://cltl.nl/leolani/n2mu/be-on
+n2mu:be-on rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:be-at .
+
+
+###  http://cltl.nl/leolani/n2mu/be-parent-of
+n2mu:be-parent-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:be-ancestor-of ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-partner-of
+n2mu:be-partner-of rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf n2mu:be-spouse-of ;
+                   rdfs:domain n2mu:person ;
+                   rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-sibling-of
+n2mu:be-sibling-of rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf n2mu:be-family-of ;
+                   rdfs:domain n2mu:person ;
+                   rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-sister-of
+n2mu:be-sister-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:be-sibling-of ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-son-of
+n2mu:be-son-of rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:be-child-of ;
+               rdfs:domain n2mu:person ;
+               rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-spouse-of
+n2mu:be-spouse-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:be-family-of ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-under
+n2mu:be-under rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf n2mu:be-at .
+
+
+###  http://cltl.nl/leolani/n2mu/be-wife-of
+n2mu:be-wife-of rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf n2mu:be-spouse-of ;
+                rdfs:domain n2mu:person ;
+                rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/born-in
+n2mu:born-in rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:be-from ;
+             rdfs:domain n2mu:person ;
+             rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/clean
+n2mu:clean rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:do-activity ;
+           rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/cook
+n2mu:cook rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf n2mu:create ;
+          rdfs:domain n2mu:person ;
+          rdfs:range n2mu:dish ,
+                     n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/create
+n2mu:create rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf n2mu:do-activity ;
+            rdfs:domain n2mu:person ;
+            rdfs:range n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/dislike
+n2mu:dislike rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:agent ,
+                        n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/do-activity
+n2mu:do-activity rdf:type owl:ObjectProperty ;
+                 rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/drink
+n2mu:drink rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:have-meal ;
+           rdfs:domain n2mu:person ;
+           rdfs:range n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/eat
+n2mu:eat rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf n2mu:have-meal ;
+         rdfs:domain n2mu:person ;
+         rdfs:range n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/feel
+n2mu:feel rdf:type owl:ObjectProperty ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range grasp:EmotionValue .
+
+
+###  http://cltl.nl/leolani/n2mu/game
+n2mu:game rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf n2mu:play .
+
+
+###  http://cltl.nl/leolani/n2mu/have-breakfast
+n2mu:have-breakfast rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf n2mu:have-meal ;
+                    rdfs:domain n2mu:person ;
+                    rdfs:range n2mu:drink ,
+                               n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/have-dinner
+n2mu:have-dinner rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf n2mu:have-meal ;
+                 rdfs:domain n2mu:person ;
+                 rdfs:range n2mu:drink ,
+                            n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/have-lunch
+n2mu:have-lunch rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf n2mu:have-meal ;
+                rdfs:domain n2mu:person ;
+                rdfs:range n2mu:drink ,
+                           n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/have-meal
+n2mu:have-meal rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:do-activity ;
+               rdfs:domain n2mu:person ;
+               rdfs:range n2mu:cuisine ,
+                          n2mu:dish ,
+                          n2mu:drink ,
+                          n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/know
+n2mu:know rdf:type owl:ObjectProperty ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/like
+n2mu:like rdf:type owl:ObjectProperty ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:agent ,
+                     n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/listen-to
+n2mu:listen-to rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:do-activity ;
+               rdfs:domain n2mu:agent ;
+               rdfs:range n2mu:band ,
+                          n2mu:concert ,
+                          n2mu:music-genre ,
+                          n2mu:musical-work ,
+                          n2mu:song .
+
+
+###  http://cltl.nl/leolani/n2mu/live-in
+n2mu:live-in rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/locate-in
+n2mu:locate-in rdf:type owl:ObjectProperty ;
+               rdfs:domain n2mu:institution ;
+               rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/love
+n2mu:love rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf n2mu:like ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/manufacture-in
+n2mu:manufacture-in rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf n2mu:be-from ;
+                    rdfs:domain n2mu:robot ;
+                    rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/music
+n2mu:music rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:play ;
+           rdfs:domain n2mu:agent ;
+           rdfs:range n2mu:band ,
+                      n2mu:concert ,
+                      n2mu:music-genre ,
+                      n2mu:musical-work ,
+                      n2mu:song .
+
+
+###  http://cltl.nl/leolani/n2mu/own
+n2mu:own rdf:type owl:ObjectProperty ;
+         rdfs:domain n2mu:agent ;
+         rdfs:range n2mu:animal ,
+                    n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/party
+n2mu:party rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:do-activity ;
+           rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/perform
+n2mu:perform rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:create .
+
+
+###  http://cltl.nl/leolani/n2mu/play
+n2mu:play rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf n2mu:do-activity ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:song ,
+                     n2mu:sport .
+
+
+###  http://cltl.nl/leolani/n2mu/prepare-drink
+n2mu:prepare-drink rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf n2mu:create ;
+                   rdfs:domain n2mu:agent ;
+                   rdfs:range n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/program
+n2mu:program rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:create .
+
+
+###  http://cltl.nl/leolani/n2mu/read
+n2mu:read rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf n2mu:do-activity ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:book .
+
+
+###  http://cltl.nl/leolani/n2mu/sport
+n2mu:sport rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:play ;
+           rdfs:domain n2mu:agent ;
+           rdfs:range n2mu:sport ,
+                      n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/study-at
+n2mu:study-at rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf n2mu:be-member-of ;
+              rdfs:domain n2mu:agent ;
+              rdfs:range n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/travel-to
+n2mu:travel-to rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf n2mu:do-activity ;
+               rdfs:domain n2mu:agent ;
+               rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/visit
+n2mu:visit rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:do-activity ;
+           rdfs:domain n2mu:agent ;
+           rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/watch
+n2mu:watch rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:do-activity ;
+           rdfs:domain n2mu:agent ;
+           rdfs:range n2mu:exhibition ,
+                      n2mu:film-genre ,
+                      n2mu:movie ,
+                      n2mu:museum ,
+                      n2mu:sport ,
+                      n2mu:theater .
+
+
+###  http://cltl.nl/leolani/n2mu/work-as
+n2mu:work-as rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:do-activity ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/work-at
+n2mu:work-at rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:be-member-of ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/write
+n2mu:write rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:create ;
+           rdfs:domain n2mu:person ;
+           rdfs:range n2mu:book .
+
+
+###  http://groundedannotationframework.org/gaf#containsDenotation
+gaf:containsDenotation rdf:type owl:ObjectProperty ;
+                       rdfs:domain gaf:Mention ;
+                       rdfs:range gaf:Instance .
+
+
+###  http://groundedannotationframework.org/gaf#denotedBy
+gaf:denotedBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf gaf:denotedIn ;
+              rdfs:domain gaf:Instance ;
+              rdfs:range gaf:Mention .
+
+
+###  http://groundedannotationframework.org/gaf#denotedIn
+gaf:denotedIn rdf:type owl:ObjectProperty ;
+              rdfs:domain gaf:Instance ;
+              rdfs:range gaf:Mention .
+
+
+###  http://groundedannotationframework.org/gaf#denotes
+gaf:denotes rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf gaf:containsDenotation ;
+            rdfs:domain gaf:Mention ;
+            rdfs:range gaf:Instance .
+
+
+###  http://groundedannotationframework.org/grasp#hasAttribution
+grasp:hasAttribution rdf:type owl:ObjectProperty ;
+                     owl:inverseOf grasp:isAttributionFor ;
+                     rdfs:domain gaf:Mention ;
+                     rdfs:range grasp:Attribution .
+
+
+###  http://groundedannotationframework.org/grasp#isAttributionFor
+grasp:isAttributionFor rdf:type owl:ObjectProperty ;
+                       rdfs:domain grasp:Attribution ;
+                       rdfs:range gaf:Mention .
+
+
+###  http://groundedannotationframework.org/grasp#wasAttributedTo
+grasp:wasAttributedTo rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf prov:wasAttributedTo ;
+                      rdfs:domain gaf:Mention ;
+                      rdfs:range grasp:Source ;
+                      rdfs:comment "States that a gaf:Mention was attributed to a gaf:Instance. This is a sub property of the prov:wasAttributedTo relation that can be used to relate any prov:Entity to any prov:Agent."^^xsd:string ;
+                      rdfs:label "was attributed to" .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/eventProperty
+sem:eventProperty rdf:type owl:ObjectProperty ;
+                  rdfs:comment "Event properties connect Events to other SEM Core entities." ;
+                  rdfs:label "event property" .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasActor
+sem:hasActor rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf sem:eventProperty ;
+             rdfs:domain grasp:Chat ,
+                         grasp:Utterance ,
+                         sem:Event ;
+             rdfs:range sem:Actor .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasPlace
+sem:hasPlace rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf eps:contextProperty ;
+             rdfs:domain eps:Context ;
+             rdfs:range sem:Place .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasSubEvent
+sem:hasSubEvent rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf sem:eventProperty ;
+                rdfs:domain grasp:Chat ,
+                            grasp:Visual ,
+                            sem:Event ;
+                rdfs:range grasp:Detection ,
+                           grasp:Utterance ,
+                           sem:Event .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasTime
+sem:hasTime rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf eps:contextProperty ;
+            rdfs:domain eps:Context ;
+            rdfs:range sem:Time .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#value
+rdf:value rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#hadDerivation
+prov:hadDerivation rdf:type owl:ObjectProperty ;
+                   owl:inverseOf prov:wasDerivedFrom .
+
+
+###  http://www.w3.org/ns/prov#wasAttributedTo
+prov:wasAttributedTo rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasDerivedFrom
+prov:wasDerivedFrom rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain gaf:Mention ;
+                    rdfs:range grasp:Detection ,
+                               grasp:Utterance ;
+                    rdfs:comment "The more specific subproperties of prov:wasDerivedFrom (i.e., prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource) should be used when applicable."@en ;
+                    rdfs:label "wasDerivedFrom" ;
+                    prov:category "starting-point" ;
+                    prov:component "derivations" ;
+                    prov:definition "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."@en ;
+                    prov:inverse "hadDerivation" ;
+                    prov:qualifiedForm prov:Derivation .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://cltl.nl/leolani/n2mu/age
+n2mu:age rdf:type owl:DatatypeProperty ;
+         rdfs:domain n2mu:person ;
+         rdfs:range xsd:int .
+
+
+###  http://cltl.nl/leolani/n2mu/birthday
+n2mu:birthday rdf:type owl:DatatypeProperty ;
+              rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/color
+n2mu:color rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf n2mu:physical-feature ;
+           rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/faceID
+n2mu:faceID rdf:type owl:DatatypeProperty ;
+            rdfs:domain n2mu:person ;
+            rdfs:range rdfs:Literal .
+
+
+###  http://cltl.nl/leolani/n2mu/hight
+n2mu:hight rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf n2mu:physical-feature ;
+           rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/name
+n2mu:name rdf:type owl:DatatypeProperty ;
+          rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/physical-feature
+n2mu:physical-feature rdf:type owl:DatatypeProperty ;
+                      rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/shape
+n2mu:shape rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf n2mu:physical-feature ;
+           rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/size
+n2mu:size rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf n2mu:physical-feature ;
+          rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/weight
+n2mu:weight rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf n2mu:physical-feature ;
+            rdfs:domain n2mu:object .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://cltl.nl/episodicawareness/Context
+eps:Context rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/accountant
+n2mu:accountant rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/actor
+n2mu:actor rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/actress
+n2mu:actress rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/agent
+n2mu:agent rdf:type owl:Class ;
+           owl:equivalentClass foaf:Agent .
+
+
+###  http://cltl.nl/leolani/n2mu/airplane
+n2mu:airplane rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/analyst
+n2mu:analyst rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/animal
+n2mu:animal rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/apple
+n2mu:apple rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/architect
+n2mu:architect rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/artifact
+n2mu:artifact rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/artist
+n2mu:artist rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/astronomer
+n2mu:astronomer rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/avocado
+n2mu:avocado rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/backpack
+n2mu:backpack rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:bag .
+
+
+###  http://cltl.nl/leolani/n2mu/bag
+n2mu:bag rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:container ,
+                         n2mu:wearables .
+
+
+###  http://cltl.nl/leolani/n2mu/baker
+n2mu:baker rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/banana
+n2mu:banana rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/band
+n2mu:band rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/bar
+n2mu:bar rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/bartender
+n2mu:bartender rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/baseball
+n2mu:baseball rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/baseball-glove
+n2mu:baseball-glove rdf:type owl:Class ;
+                    rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/bear
+n2mu:bear rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/bed
+n2mu:bed rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/beer
+n2mu:beer rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/beer-glass
+n2mu:beer-glass rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:glass ;
+                owl:disjointWith n2mu:wine-glass .
+
+
+###  http://cltl.nl/leolani/n2mu/bench
+n2mu:bench rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/bicycle
+n2mu:bicycle rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/bird
+n2mu:bird rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:animal .
+
+
+###  http://cltl.nl/leolani/n2mu/book
+n2mu:book rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:artifact ,
+                          n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/book-author
+n2mu:book-author rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/bottle
+n2mu:bottle rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:container ,
+                            n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/bowl
+n2mu:bowl rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:container ,
+                          n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/boy
+n2mu:boy rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:child ;
+         owl:disjointWith n2mu:girl .
+
+
+###  http://cltl.nl/leolani/n2mu/bricklayer
+n2mu:bricklayer rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/broccoli
+n2mu:broccoli rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/building
+n2mu:building rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:container ,
+                              n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/bus
+n2mu:bus rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/bush
+n2mu:bush rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:plant .
+
+
+###  http://cltl.nl/leolani/n2mu/butcher
+n2mu:butcher rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/cabbage
+n2mu:cabbage rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/cafe
+n2mu:cafe rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/cake
+n2mu:cake rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/captain
+n2mu:captain rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/car
+n2mu:car rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/carpenter
+n2mu:carpenter rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/carrot
+n2mu:carrot rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/cat
+n2mu:cat rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/chair
+n2mu:chair rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/chauffeur
+n2mu:chauffeur rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/chef
+n2mu:chef rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/child
+n2mu:child rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/church
+n2mu:church rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/city
+n2mu:city rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/cleaner
+n2mu:cleaner rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/closet
+n2mu:closet rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:container ,
+                            n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/club
+n2mu:club rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/coach
+n2mu:coach rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/coffee
+n2mu:coffee rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/coke
+n2mu:coke rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/comedian
+n2mu:comedian rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/company
+n2mu:company rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/computer
+n2mu:computer rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/computer-mouse
+n2mu:computer-mouse rdf:type owl:Class ;
+                    rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/concert
+n2mu:concert rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/construction-worker
+n2mu:construction-worker rdf:type owl:Class ;
+                         rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/container
+n2mu:container rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/corn
+n2mu:corn rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:plant .
+
+
+###  http://cltl.nl/leolani/n2mu/couch
+n2mu:couch rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/country
+n2mu:country rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/cow
+n2mu:cow rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/cuisine
+n2mu:cuisine rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/cup
+n2mu:cup rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/cutlery
+n2mu:cutlery rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/data-analyst
+n2mu:data-analyst rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/dentist
+n2mu:dentist rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/designer
+n2mu:designer rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/desk-officer
+n2mu:desk-officer rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/device
+n2mu:device rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/dinky-toy
+n2mu:dinky-toy rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:toy .
+
+
+###  http://cltl.nl/leolani/n2mu/dish
+n2mu:dish rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/doctor
+n2mu:doctor rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/dog
+n2mu:dog rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/donut
+n2mu:donut rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/drawer
+n2mu:drawer rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:container .
+
+
+###  http://cltl.nl/leolani/n2mu/drink
+n2mu:drink rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/driver
+n2mu:driver rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/electrician
+n2mu:electrician rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/elephant
+n2mu:elephant rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/engineer
+n2mu:engineer rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/exhibition
+n2mu:exhibition rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/farmer
+n2mu:farmer rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/film-genre
+n2mu:film-genre rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/fire-hydrant
+n2mu:fire-hydrant rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/fish
+n2mu:fish rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:animal .
+
+
+###  http://cltl.nl/leolani/n2mu/fisherman
+n2mu:fisherman rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/florist
+n2mu:florist rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/flower
+n2mu:flower rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:plant .
+
+
+###  http://cltl.nl/leolani/n2mu/food
+n2mu:food rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/fork
+n2mu:fork rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:cutlery .
+
+
+###  http://cltl.nl/leolani/n2mu/frisbee
+n2mu:frisbee rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/furniture
+n2mu:furniture rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/gardener
+n2mu:gardener rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/general
+n2mu:general rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/giraffe
+n2mu:giraffe rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/girl
+n2mu:girl rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:child .
+
+
+###  http://cltl.nl/leolani/n2mu/glass
+n2mu:glass rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:container ,
+                           n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/glasses
+n2mu:glasses rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:wearables .
+
+
+###  http://cltl.nl/leolani/n2mu/grass
+n2mu:grass rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:plant .
+
+
+###  http://cltl.nl/leolani/n2mu/hairdresser
+n2mu:hairdresser rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/handbag
+n2mu:handbag rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:bag .
+
+
+###  http://cltl.nl/leolani/n2mu/health-professional
+n2mu:health-professional rdf:type owl:Class ;
+                         rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/home
+n2mu:home rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:house .
+
+
+###  http://cltl.nl/leolani/n2mu/horse
+n2mu:horse rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/hot-dog
+n2mu:hot-dog rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/house
+n2mu:house rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/insect
+n2mu:insect rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:animal .
+
+
+###  http://cltl.nl/leolani/n2mu/institution
+n2mu:institution rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/instructor
+n2mu:instructor rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/instrument
+n2mu:instrument rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/interest
+n2mu:interest rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/journalist
+n2mu:journalist rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/judge
+n2mu:judge rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/juice
+n2mu:juice rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/kettle
+n2mu:kettle rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:container ,
+                            n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/keyboard
+n2mu:keyboard rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/kitchen-utensils
+n2mu:kitchen-utensils rdf:type owl:Class ;
+                      rdfs:subClassOf n2mu:instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/kite
+n2mu:kite rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/knife
+n2mu:knife rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:cutlery .
+
+
+###  http://cltl.nl/leolani/n2mu/laptop
+n2mu:laptop rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/lecturer
+n2mu:lecturer rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/lemonade
+n2mu:lemonade rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/library
+n2mu:library rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/lieutenant
+n2mu:lieutenant rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/lifeguard
+n2mu:lifeguard rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/linguist
+n2mu:linguist rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/literature-genre
+n2mu:literature-genre rdf:type owl:Class ;
+                      rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/location
+n2mu:location rdf:type owl:Class ;
+              owl:equivalentClass <http://schema.org/Place> .
+
+
+###  http://cltl.nl/leolani/n2mu/mammal
+n2mu:mammal rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:animal .
+
+
+###  http://cltl.nl/leolani/n2mu/man
+n2mu:man rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/manager
+n2mu:manager rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/mechanic
+n2mu:mechanic rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/model
+n2mu:model rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/monk
+n2mu:monk rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/motorcycle
+n2mu:motorcycle rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/movie
+n2mu:movie rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/museum
+n2mu:museum rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:building ,
+                            n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/music-genre
+n2mu:music-genre rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/musical-work
+n2mu:musical-work rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:artifact ,
+                                  n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/newsreader
+n2mu:newsreader rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/nurse
+n2mu:nurse rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/object
+n2mu:object rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/office
+n2mu:office rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/optician
+n2mu:optician rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/orange
+n2mu:orange rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/oven
+n2mu:oven rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:container ,
+                          n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/painter
+n2mu:painter rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/parking-meter
+n2mu:parking-meter rdf:type owl:Class ;
+                   rdfs:subClassOf n2mu:instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/person
+n2mu:person rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/pharmacist
+n2mu:pharmacist rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/phone
+n2mu:phone rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/pilot
+n2mu:pilot rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/pizza
+n2mu:pizza rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/plant
+n2mu:plant rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/plate
+n2mu:plate rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:container ,
+                           n2mu:kitchen-utensils .
+
+
+###  http://cltl.nl/leolani/n2mu/plumber
+n2mu:plumber rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/poet
+n2mu:poet rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/police-officer
+n2mu:police-officer rdf:type owl:Class ;
+                    rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/policeman
+n2mu:policeman rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/policewoman
+n2mu:policewoman rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/politician
+n2mu:politician rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/pot
+n2mu:pot rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:container .
+
+
+###  http://cltl.nl/leolani/n2mu/potato
+n2mu:potato rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/potted-plant
+n2mu:potted-plant rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/priest
+n2mu:priest rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/profession
+n2mu:profession rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/professor
+n2mu:professor rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/programmer
+n2mu:programmer rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/psychiatrist
+n2mu:psychiatrist rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/psychologist
+n2mu:psychologist rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/pub
+n2mu:pub rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/puppet
+n2mu:puppet rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:toy .
+
+
+###  http://cltl.nl/leolani/n2mu/receptionist
+n2mu:receptionist rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/refrigerator
+n2mu:refrigerator rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:container ,
+                                  n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/remote
+n2mu:remote rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/reptile
+n2mu:reptile rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:animal .
+
+
+###  http://cltl.nl/leolani/n2mu/restaurant
+n2mu:restaurant rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:building .
+
+
+###  http://cltl.nl/leolani/n2mu/robot
+n2mu:robot rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:agent ,
+                           n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/sailor
+n2mu:sailor rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/sandwich
+n2mu:sandwich rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/scientist
+n2mu:scientist rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/secret-agent
+n2mu:secret-agent rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/secretary
+n2mu:secretary rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/sergeant
+n2mu:sergeant rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/sheep
+n2mu:sheep rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:mammal .
+
+
+###  http://cltl.nl/leolani/n2mu/ship
+n2mu:ship rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/shirt
+n2mu:shirt rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:wearables .
+
+
+###  http://cltl.nl/leolani/n2mu/sign
+n2mu:sign rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/sink
+n2mu:sink rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:container ,
+                          n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/skateboard
+n2mu:skateboard rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/skis
+n2mu:skis rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/snowboard
+n2mu:snowboard rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/soda
+n2mu:soda rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/sofa
+n2mu:sofa rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/soldier
+n2mu:soldier rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/song
+n2mu:song rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/spoon
+n2mu:spoon rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:container ,
+                           n2mu:cutlery .
+
+
+###  http://cltl.nl/leolani/n2mu/sport
+n2mu:sport rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/sports-ball
+n2mu:sports-ball rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/sports-instrument
+n2mu:sports-instrument rdf:type owl:Class ;
+                       rdfs:subClassOf n2mu:instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/sports-team
+n2mu:sports-team rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/stay-at-home-father
+n2mu:stay-at-home-father rdf:type owl:Class ;
+                         rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/stay-at-home-mother
+n2mu:stay-at-home-mother rdf:type owl:Class ;
+                         rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/stop-sign
+n2mu:stop-sign rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:sign ;
+               owl:disjointWith n2mu:traffic-light .
+
+
+###  http://cltl.nl/leolani/n2mu/student
+n2mu:student rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/suitcase
+n2mu:suitcase rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:bag .
+
+
+###  http://cltl.nl/leolani/n2mu/surfboard
+n2mu:surfboard rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/surgeon
+n2mu:surgeon rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/table
+n2mu:table rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/taco
+n2mu:taco rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:food .
+
+
+###  http://cltl.nl/leolani/n2mu/tea
+n2mu:tea rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/teacher
+n2mu:teacher rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/teddy-bear
+n2mu:teddy-bear rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:toy .
+
+
+###  http://cltl.nl/leolani/n2mu/tennis-racket
+n2mu:tennis-racket rdf:type owl:Class ;
+                   rdfs:subClassOf n2mu:sports-instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/theater
+n2mu:theater rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/tie
+n2mu:tie rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:wearables .
+
+
+###  http://cltl.nl/leolani/n2mu/toaster
+n2mu:toaster rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:container ,
+                             n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/toilet
+n2mu:toilet rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:furniture .
+
+
+###  http://cltl.nl/leolani/n2mu/toy
+n2mu:toy rdf:type owl:Class ;
+         rdfs:subClassOf n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/traffic-light
+n2mu:traffic-light rdf:type owl:Class ;
+                   rdfs:subClassOf n2mu:sign .
+
+
+###  http://cltl.nl/leolani/n2mu/train
+n2mu:train rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/tree
+n2mu:tree rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:plant .
+
+
+###  http://cltl.nl/leolani/n2mu/truck
+n2mu:truck rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:vehicle .
+
+
+###  http://cltl.nl/leolani/n2mu/tv
+n2mu:tv rdf:type owl:Class ;
+        rdfs:subClassOf n2mu:device .
+
+
+###  http://cltl.nl/leolani/n2mu/umbrella
+n2mu:umbrella rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:wearables .
+
+
+###  http://cltl.nl/leolani/n2mu/university
+n2mu:university rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/vase
+n2mu:vase rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:container .
+
+
+###  http://cltl.nl/leolani/n2mu/vehicle
+n2mu:vehicle rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:container ,
+                             n2mu:instrument .
+
+
+###  http://cltl.nl/leolani/n2mu/waiter
+n2mu:waiter rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/waitress
+n2mu:waitress rdf:type owl:Class ;
+              rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/water
+n2mu:water rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/wearables
+n2mu:wearables rdf:type owl:Class ;
+               rdfs:subClassOf n2mu:artifact .
+
+
+###  http://cltl.nl/leolani/n2mu/wheat
+n2mu:wheat rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:plant .
+
+
+###  http://cltl.nl/leolani/n2mu/wine
+n2mu:wine rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:drink .
+
+
+###  http://cltl.nl/leolani/n2mu/wine-glass
+n2mu:wine-glass rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:glass .
+
+
+###  http://cltl.nl/leolani/n2mu/woman
+n2mu:woman rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/writer
+n2mu:writer rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:profession .
+
+
+###  http://cltl.nl/leolani/n2mu/zebra
+n2mu:zebra rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:mammal .
+
+
+###  http://groundedannotationframework.org/gaf#Assertion
+gaf:Assertion rdf:type owl:Class ;
+              rdfs:subClassOf gaf:Instance .
+
+
+###  http://groundedannotationframework.org/gaf#Instance
+gaf:Instance rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty gaf:denotedBy ;
+                                   owl:someValuesFrom gaf:Mention
+                                 ] ;
+             rdfs:subClassOf owl:Thing ;
+             owl:disjointWith grasp:AttributionValue ;
+             rdfs:comment "Instances are statements about real world entities, including actions, processes and abstract notions. They are the primary subject of individuals of type gaf:Mention that can denote them."^^xsd:string ;
+             rdfs:label "Instance" .
+
+
+###  http://groundedannotationframework.org/gaf#Mention
+gaf:Mention rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty gaf:denotes ;
+                                  owl:someValuesFrom gaf:Instance
+                                ] ;
+            rdfs:subClassOf owl:Thing ;
+            owl:disjointWith grasp:AttributionValue ;
+            rdfs:comment """Mentions are references to members of the gaf:Instance class as they occur in (web) media such as texts, video, audio, images, etc. Mentions denote gaf:Instances.
+
+A Mention uniquely identifies the (part of a) web source that denotes the mention. We refer to the standard use of fragment identifiers for different media types. """^^xsd:string ;
+            rdfs:label "Mention" .
+
+
+###  http://groundedannotationframework.org/grasp#Attribution
+grasp:Attribution rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                               owl:onProperty grasp:isAttributionFor ;
+                                                               owl:someValuesFrom gaf:Mention
+                                                             ]
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty rdf:value ;
+                                                               owl:someValuesFrom grasp:AttributionValue
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  owl:disjointWith grasp:AttributionValue ;
+                  rdfs:comment "A grasp:Attribution reflects the attribution of some interpretation, some perspective to a gaf:Mention. An attribution expresses such things as certainty, emotion, polarity, sentiment, temporality."^^xsd:string ;
+                  rdfs:label "Attribution" .
+
+
+###  http://groundedannotationframework.org/grasp#AttributionValue
+grasp:AttributionValue rdf:type owl:Class ;
+                       rdfs:subClassOf owl:Thing ;
+                       rdfs:comment "The value of a grasp:Attribution"^^xsd:string ;
+                       rdfs:label "Attribution value"^^xsd:string .
+
+
+###  http://groundedannotationframework.org/grasp#CertaintyValue
+grasp:CertaintyValue rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:oneOf ( graspf:certain
+                                                       graspf:possible
+                                                       graspf:probable
+                                                       graspf:underspecified
+                                                     )
+                                         ] ;
+                     rdfs:subClassOf grasp:FactualityValue ;
+                     owl:disjointWith grasp:PolarityValue ,
+                                      grasp:TemporalValue ;
+                     rdfs:comment "The level of certainty of a gaf:Mention"^^xsd:string ;
+                     rdfs:label "Certainty Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Chat
+grasp:Chat rdf:type owl:Class ;
+           rdfs:subClassOf sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#Detection
+grasp:Detection rdf:type owl:Class ;
+                rdfs:subClassOf sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#EmotionValue
+grasp:EmotionValue rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( graspe:anger
+                                                     graspe:disgust
+                                                     graspe:fear
+                                                     graspe:happiness
+                                                     graspe:sadness
+                                                     graspe:surprise
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf grasp:AttributionValue ;
+                   owl:disjointWith grasp:FactualityValue ,
+                                    grasp:SentimentValue ;
+                   rdfs:comment "The emotion expressed in a gaf:Mention"^^xsd:string ;
+                   rdfs:label "Emotion Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Experience
+grasp:Experience rdf:type owl:Class ;
+                 rdfs:subClassOf gaf:Mention ,
+                                 sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#FactualityValue
+grasp:FactualityValue rdf:type owl:Class ;
+                      rdfs:subClassOf grasp:AttributionValue ;
+                      owl:disjointWith grasp:SentimentValue ;
+                      rdfs:label "Factuality value"^^xsd:string .
+
+
+###  http://groundedannotationframework.org/grasp#PolarityValue
+grasp:PolarityValue rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( graspf:negative
+                                                      graspf:positive
+                                                    )
+                                        ] ;
+                    rdfs:subClassOf grasp:FactualityValue ;
+                    owl:disjointWith grasp:TemporalValue ;
+                    rdfs:comment "The polarity of a gaf:Mention (e.g. if something is or isn't the case)"^^xsd:string ;
+                    rdfs:label "Polarity Value" .
+
+
+###  http://groundedannotationframework.org/grasp#SentimentValue
+grasp:SentimentValue rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:oneOf ( grasps:negative
+                                                       grasps:positive
+                                                     )
+                                         ] ;
+                     rdfs:subClassOf grasp:AttributionValue ;
+                     rdfs:comment "The sentiment expressed by a gaf:Mention"^^xsd:string ;
+                     rdfs:label "Sentiment Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Source
+grasp:Source rdf:type owl:Class ;
+             rdfs:subClassOf owl:Thing ;
+             rdfs:comment "" ;
+             rdfs:label "Source" .
+
+
+###  http://groundedannotationframework.org/grasp#Statement
+grasp:Statement rdf:type owl:Class ;
+                rdfs:subClassOf gaf:Mention ,
+                                sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#TemporalValue
+grasp:TemporalValue rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( graspf:future
+                                                      graspf:non-future
+                                                    )
+                                        ] ;
+                    rdfs:subClassOf grasp:FactualityValue ;
+                    rdfs:comment "The temporal property of a gaf:Mention"^^xsd:string ;
+                    rdfs:label "Temporal Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Utterance
+grasp:Utterance rdf:type owl:Class ;
+                rdfs:subClassOf sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#Visual
+grasp:Visual rdf:type owl:Class ;
+             rdfs:subClassOf sem:Event .
+
+
+###  http://schema.org/Place
+<http://schema.org/Place> rdf:type owl:Class .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Actor
+sem:Actor rdf:type owl:Class ;
+          rdfs:comment """Actors are entities that take part in an Event, either actively or passively. Actors do not necessarily have to be sentient. They can also be objects. Actors are a thing, animate or inanimate, physical or non-physical.
+""" ;
+          rdfs:label "Actor" ;
+          skos:broadMatch <http://sw.opencyc.org/2009/04/07/concept/en/SomethingExisting> ,
+                          <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#endurant> ;
+          skos:closeMatch <http://purl.org/dc/terms/Agent> ,
+                          <http://purl.org/dc/terms/AgentClass> ,
+                          <http://sw.opencyc.org/2009/04/07/concept/en/Agent-Generic> ,
+                          <http://www.ontologyportal.org/translations/SUMO.owl.txt#Agent> ,
+                          <http://www8.informatik.uni-erlangen.de/IMMD8/Services/cidoc-crm/erlangen-crm_090330_5_0_1.owl#E39.Actor> ,
+                          foaf:Agent .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Event
+sem:Event rdf:type owl:Class ;
+          rdfs:comment "Events are things that happen. This comprises everything from historical events to web site sessions and mythical journeys. Event is the central class of SEM." ;
+          rdfs:label "Event" ;
+          skos:broadMatch <http://linkedevents.org/ontology/Event> ,
+                          <http://purl.org/NET/c4dm/event.owl#Event> ;
+          skos:closeMatch <http://purl.org/dc/dcmitype/Event> ,
+                          <http://sw.opencyc.org/2009/04/07/concept/en/Situation> ,
+                          <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#perdurant> ,
+                          <http://www.ontologyportal.org/translations/SUMO.owl.txt#Process> ,
+                          <http://www8.informatik.uni-erlangen.de/IMMD8/Services/cidoc-crm/erlangen-crm_090330_5_0_1.owl#E5.Event> .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Place
+sem:Place rdf:type owl:Class ;
+          rdfs:comment "Places are locations where an Event happens. They do not need to be physical places and hence do not necessarily need coordinates. Neither do they need to have any significance apart from them being the location of an Event." ;
+          rdfs:label "Place" ;
+          skos:closeMatch <http://purl.org/dc/terms/Location> ,
+                          <http://sw.opencyc.org/2009/04/07/concept/en/EnduringThing-Localized> ,
+                          <http://www.ontologyportal.org/translations/SUMO.owl.txt#GeographicArea> ,
+                          <http://www8.informatik.uni-erlangen.de/IMMD8/Services/cidoc-crm/erlangen-crm_090330_5_0_1.owl#E53.Place> ;
+          skos:narrowMatch <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#PhysicalRegion> ,
+                           <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Time
+sem:Time rdf:type owl:Class ;
+         rdfs:comment "Time contains symbolic representations of when an Event took place. Time instances do not necessarily need to have a timestamp associated with them. The Time class exists to represent semantics of time, e.g. that one thing happens before another, even though the exact timestamps are unknown." ;
+         rdfs:label "Time" ;
+         skos:broadMatch <http://www.w3.org/2006/timeTemporalEntity> .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://groundedannotationframework.org/grasp/emotion#anger
+graspe:anger rdf:type owl:NamedIndividual ,
+                      grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#disgust
+graspe:disgust rdf:type owl:NamedIndividual ,
+                        grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#fear
+graspe:fear rdf:type owl:NamedIndividual ,
+                     grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#happiness
+graspe:happiness rdf:type owl:NamedIndividual ,
+                          grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#sadness
+graspe:sadness rdf:type owl:NamedIndividual ,
+                        grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#surprise
+graspe:surprise rdf:type owl:NamedIndividual ,
+                         grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#certain
+graspf:certain rdf:type owl:NamedIndividual ,
+                        grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#future
+graspf:future rdf:type owl:NamedIndividual ,
+                       grasp:TemporalValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#negative
+graspf:negative rdf:type owl:NamedIndividual ,
+                         grasp:PolarityValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#non-future
+graspf:non-future rdf:type owl:NamedIndividual ,
+                           grasp:TemporalValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#positive
+graspf:positive rdf:type owl:NamedIndividual ,
+                         grasp:PolarityValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#possible
+graspf:possible rdf:type owl:NamedIndividual ,
+                         grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#probable
+graspf:probable rdf:type owl:NamedIndividual ,
+                         grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#underspecified
+graspf:underspecified rdf:type owl:NamedIndividual ,
+                               grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/sentiment#negative
+grasps:negative rdf:type owl:NamedIndividual ,
+                         grasp:SentimentValue .
+
+
+###  http://groundedannotationframework.org/grasp/sentiment#positive
+grasps:positive rdf:type owl:NamedIndividual ,
+                         grasp:SentimentValue .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:airplane
+                n2mu:bicycle
+                n2mu:bus
+                n2mu:car
+                n2mu:motorcycle
+                n2mu:ship
+                n2mu:train
+                n2mu:truck
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:apple
+                n2mu:avocado
+                n2mu:banana
+                n2mu:broccoli
+                n2mu:cabbage
+                n2mu:cake
+                n2mu:carrot
+                n2mu:donut
+                n2mu:hot-dog
+                n2mu:orange
+                n2mu:pizza
+                n2mu:potato
+                n2mu:sandwich
+                n2mu:taco
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:backpack
+                n2mu:handbag
+                n2mu:suitcase
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bag
+                n2mu:glasses
+                n2mu:shirt
+                n2mu:tie
+                n2mu:umbrella
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bar
+                n2mu:cafe
+                n2mu:church
+                n2mu:club
+                n2mu:house
+                n2mu:library
+                n2mu:museum
+                n2mu:office
+                n2mu:pub
+                n2mu:restaurant
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:baseball
+                n2mu:baseball-glove
+                n2mu:frisbee
+                n2mu:kite
+                n2mu:skateboard
+                n2mu:skis
+                n2mu:snowboard
+                n2mu:sports-ball
+                n2mu:surfboard
+                n2mu:tennis-racket
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bear
+                n2mu:cat
+                n2mu:cow
+                n2mu:dog
+                n2mu:elephant
+                n2mu:giraffe
+                n2mu:horse
+                n2mu:sheep
+                n2mu:zebra
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bed
+                n2mu:bench
+                n2mu:chair
+                n2mu:closet
+                n2mu:couch
+                n2mu:potted-plant
+                n2mu:sofa
+                n2mu:table
+                n2mu:toilet
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:beer
+                n2mu:coffee
+                n2mu:coke
+                n2mu:juice
+                n2mu:lemonade
+                n2mu:soda
+                n2mu:tea
+                n2mu:water
+                n2mu:wine
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bird
+                n2mu:fish
+                n2mu:insect
+                n2mu:mammal
+                n2mu:reptile
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bottle
+                n2mu:bowl
+                n2mu:cup
+                n2mu:cutlery
+                n2mu:glass
+                n2mu:kettle
+                n2mu:plate
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:building
+                n2mu:city
+                n2mu:country
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:bush
+                n2mu:corn
+                n2mu:flower
+                n2mu:grass
+                n2mu:tree
+                n2mu:wheat
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:child
+                n2mu:man
+                n2mu:woman
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:computer
+                n2mu:computer-mouse
+                n2mu:keyboard
+                n2mu:laptop
+                n2mu:oven
+                n2mu:phone
+                n2mu:refrigerator
+                n2mu:remote
+                n2mu:robot
+                n2mu:sink
+                n2mu:toaster
+                n2mu:tv
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:device
+                n2mu:fire-hydrant
+                n2mu:kitchen-utensils
+                n2mu:parking-meter
+                n2mu:sports-instrument
+                n2mu:vehicle
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:dinky-toy
+                n2mu:puppet
+                n2mu:teddy-bear
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:fork
+                n2mu:knife
+                n2mu:spoon
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
