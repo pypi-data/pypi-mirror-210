@@ -1,0 +1,1 @@
+{"name": "take-over", "description": "Configure the resources to be able to take over when it belongs to no application.", "type": "policy", "parameters": [{"usage": "Specify the list of rules to control take over strategy at resource level.", "mandatory": false, "name": "rules", "type": "[...#PolicyRule]"}]}
