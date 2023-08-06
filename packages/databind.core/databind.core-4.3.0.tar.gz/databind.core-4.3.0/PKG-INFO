@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: databind.core
+Version: 4.3.0
+Summary: Databind is a library inspired by jackson-databind to de-/serialize Python dataclasses. Compatible with Python 3.7 and newer.
+License: MIT
+Author: Niklas Rosenstein
+Author-email: rosensteinniklas@gmail.com
+Requires-Python: >=3.6.3,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: Deprecated (>=1.2.12,<2.0.0)
+Requires-Dist: nr-date (>=2.0.0,<3.0.0)
+Requires-Dist: nr-stream (>=1.0.0,<2.0.0)
+Requires-Dist: typeapi (>=1.4.2,<2.0.0)
+Requires-Dist: typing-extensions (>=3.10.0)
+Project-URL: Bug Tracker, https://github.com/NiklasRosenstein/python-databind/issues
+Project-URL: Documentation, https://niklasrosenstein.github.io/python-databind/
+Project-URL: Repository, https://github.com/NiklasRosenstein/python-databind
+Description-Content-Type: text/markdown
+
+# `databind.core`
+
+This library provides the core functionality to implement serialization functions to and from Python objects, with
+a great support for many features of the Python type system. A JSON implementation is provided by the `databind.json`
+package.
+
+---
+
+<p align="center">Copyright &copy; 2020 &ndash; Niklas Rosenstein</p>
+
