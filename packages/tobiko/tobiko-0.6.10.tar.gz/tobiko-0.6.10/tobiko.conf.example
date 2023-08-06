@@ -1,0 +1,498 @@
+[DEFAULT]
+
+
+[ansible]
+
+#
+# From tobiko
+#
+
+# Default Ansible inventory files (list value)
+#inventory_files = /etc/ansible/hosts
+
+# Default Ansible playbook verbosity (integer value)
+#verbosity = <None>
+
+
+[cirros]
+
+#
+# From tobiko
+#
+
+# Default cirros image name (string value)
+#image_name = <None>
+
+# Default cirros image URL (string value)
+#image_url = <None>
+
+# Default cirros image filename (string value)
+#image_file = <None>
+
+# Default cirros container format (string value)
+#container_format = <None>
+
+# Default cirros disk format (string value)
+#disk_format = <None>
+
+# Default cirros username (string value)
+#username = <None>
+
+# Default cirros password (string value)
+#password = <None>
+
+# Default cirros SSH connection timeout (seconds) (floating point value)
+#connection_timeout = <None>
+
+# Allow to disable SSH auth algorithmsin order to SSH to old servers likeCirrOS ones
+# (dict value)
+#disabled_algorithms = <None>
+
+
+[common]
+
+#
+# From tobiko
+#
+
+# Default directory where to look for shelves. (string value)
+#shelves_dir = ~/.tobiko/cache/shelves
+
+
+[glance]
+
+#
+# From tobiko
+#
+
+# Default directory where to look for image files (string value)
+#image_dir = ~/.tobiko/cache/glance/images
+
+
+[http]
+
+#
+# From tobiko
+#
+
+# HTTP proxy URL for Rest APIs (string value)
+#http_proxy = <None>
+
+# HTTPS proxy URL for Rest APIs (string value)
+#https_proxy = <None>
+
+# Don't use proxy server to connect to listed hosts (string value)
+#no_proxy = <None>
+
+
+[iperf3]
+
+#
+# From tobiko
+#
+
+# Port number (integer value)
+#port = <None>
+
+# tcp and udp values are supported (string value)
+# Possible values:
+# tcp - <No description provided>
+# udp - <No description provided>
+#protocol = <None>
+
+# target bit rate (integer value)
+#bitrate = 20000000
+
+# direction download (True) or upload (False) (boolean value)
+#download = <None>
+
+# timeout of the iperf test (integer value)
+#timeout = 10
+
+
+[keystone]
+
+#
+# From tobiko
+#
+
+# Identity API version (integer value)
+#api_version = <None>
+
+# Identity service URL (string value)
+#auth_url = <None>
+
+# Username (string value)
+#username = <None>
+
+# Project name (string value)
+#project_name = <None>
+
+# Password (string value)
+#password = <None>
+
+# Domain name (string value)
+#domain_name = <None>
+
+# User domain name (string value)
+#user_domain_name = <None>
+
+# Project domain name (string value)
+#project_domain_name = <None>
+
+# Project domain ID (string value)
+#project_domain_id = <None>
+
+# Trust ID for trust scoping. (string value)
+#trust_id = <None>
+
+# Cloud name used pick authentication parameters from clouds.* (string value)
+#cloud_name = <None>
+
+# Host login from where to search for clouds file (list value)
+#clouds_file_hosts = localhost
+
+# Directories where to look for clouds files (list value)
+#clouds_file_dirs = .,~/.config/openstack,/etc/openstack
+
+# Clouds file names (list value)
+#clouds_file_names = clouds.yaml,clouds.yml,clouds.json
+
+
+[neutron]
+
+#
+# From tobiko
+#
+
+# Network for creating ports on an external network (string value)
+#external_network = <None>
+
+# Network for creating floating IPs (string value)
+#floating_network = <None>
+
+# The CIDR block to allocate IPv4 subnets from (string value)
+#ipv4_cidr = 10.100.0.0/16
+
+# The mask bits for IPv4 subnets (integer value)
+#ipv4_prefixlen = 24
+
+# List of nameservers IPv4 addresses (list value)
+#ipv4_dns_nameservers = <None>
+
+# The CIDR block to allocate IPv6 subnets from (string value)
+#ipv6_cidr = 2001:db8::/48
+
+# The mask bits for IPv6 subnets (integer value)
+#ipv6_prefixlen = 64
+
+# List of nameservers IPv6 addresses (list value)
+#ipv6_dns_nameservers = <None>
+
+# Customized maximum transfer unit size
+# Notes:
+#  - MTU values as small as 1000 has been seen breaking networking binding due to an
+# unknown cause.
+#  - Too big MTU values (like greater than 1400) may be refused during network creation
+# (integer value)
+#custom_mtu_size = 1350
+
+# Host where nameservers files are located (string value)
+#nameservers_host = <None>
+
+# File to parse for getting default nameservers list (list value)
+#nameservers_filenames = /etc/resolv.conf
+
+# The BW limit value configured for the QoS Policy Rule (integer value)
+#bwlimit_kbps = 1000
+
+# The direction for the QoS Policy Rule (string value)
+#direction = egress
+
+# The DSCP marking value for the QoS Policy Rule (integer value)
+#dscp_mark = 40
+
+# VLAN trunk subport segmentation ID (integer value)
+#vlan_id = 101
+
+# Behave as these networking extensions are not available (list value)
+#ignore_extensions =
+
+
+[nova]
+
+#
+# From tobiko
+#
+
+# Default SSH key to login to server instances (string value)
+#key_file = ~/.ssh/id_ecdsa
+
+# Default SSH key type to login to server instances (string value)
+#key_type = ecdsa
+
+
+[octavia]
+
+#
+# From tobiko
+#
+
+# Interval to check for status changes, in seconds. (integer value)
+#check_interval = 5
+
+# Timeout, in seconds, to wait for a status change. (integer value)
+#check_timeout = 360
+
+# The user we should use when we SSH the amphora. (string value)
+#amphora_user = cloud-user
+
+
+[ping]
+
+#
+# From tobiko
+#
+
+# Number of ICMP messages to wait before ending ping command execution (integer value)
+#count = 1
+
+# Max seconds waited from ping command before self terminating himself (integer value)
+#deadline = 5
+
+# If False it will not allow ICMP messages to be delivered in smaller fragments (string
+# value)
+#fragmentation = <None>
+
+# Seconds of time interval between consecutive before ICMP messages (string value)
+#interval = 1
+
+# Size in bytes of ICMP messages (including headers and payload) (integer value)
+#packet_size = <None>
+
+# Maximum time in seconds a sequence of ICMP messages is sent to a destination host
+# before reporting as a failure (integer value)
+#timeout = 300.0
+
+
+[shell]
+
+#
+# From tobiko
+#
+
+# Default shell command used for executing local commands (string value)
+#command = /bin/sh -c
+
+# Default sudo command used for executing commands as superuser or another user (string
+# value)
+#sudo = sudo
+
+
+[shiftstack]
+
+#
+# From tobiko
+#
+
+# local clouds file path (string value)
+#local_clouds_file_path = .tobiko/shifstack/clouds.yaml
+
+# remote clouds file path on undercloud-0 host (string value)
+#remote_clouds_file_path = ~/clouds.yaml
+
+# Keystone credentials cloud name (string value)
+#cloud_name = shiftstack
+
+# Path to the RC file used to populate OS_* environment variables (list value)
+#rcfile = ./shiftstackrc
+
+
+[ssh]
+
+#
+# From tobiko
+#
+
+# Logout debugging messages of paramiko library (boolean value)
+#debug = false
+
+# Default SSH client command (string value)
+#command = /usr/bin/ssh
+
+# Default SSH port (string value)
+#port = <None>
+
+# Default SSH username (string value)
+#username = <None>
+
+# Default user SSH configuration files (list value)
+#config_files = ssh_config,.ssh/config
+
+# Default SSH private key file(s) wildcard (list value)
+#key_file = .ssh/id,~/.ssh/id_dsa,~/.ssh/id_rsa,~/.ssh/id_ecdsa,~/.ssh/id_ed25519
+
+# Set to False to disable connecting to the SSH agent (boolean value)
+#allow_agent = false
+
+# Set to True to turn on compression (boolean value)
+#compress = false
+
+# SSH connect timeout in seconds (floating point value)
+#timeout = 15.0
+
+# Maximum number of connection attempts to be tried before timeout (integer value)
+#connection_attempts = 120
+
+# Minimal seconds to wait between every failed SSH connection attempt (floating point
+# value)
+#connection_interval = 5.0
+
+# Time before stopping retrying establishing an SSH connection (integer value)
+#connection_timeout = 200.0
+
+# Default SSH proxy server (string value)
+#proxy_jump = <None>
+
+# Default proxy command (string value)
+#proxy_command = <None>
+
+
+[testcase]
+
+#
+# From tobiko
+#
+
+# Timeout (in seconds) used for interrupting test case execution (floating point value)
+#timeout = <None>
+
+# Timeout (in seconds) used for interrupting test runner execution (floating point
+# value)
+#test_runner_timeout = <None>
+
+
+[topology]
+
+#
+# From tobiko
+#
+
+# List of hostname nodes (list value)
+#nodes = <None>
+
+# Default SSH key to login to cloud nodes (string value)
+#key_file = <None>
+
+# Default username for SSH login (string value)
+#username = <None>
+
+# Default port for SSH login (string value)
+#port = <None>
+
+# Limit connectivity to cloud to IPv4 o IPv6 (string value)
+# Possible values:
+# '' - <No description provided>
+# 4 - <No description provided>
+# 6 - <No description provided>
+#ip_version = <None>
+
+# Regex to be used to parse date and time from the OpenStack services' log lines.
+# (string value)
+#log_datetime_pattern = (\d{4}-\d{2}-\d{2} [0-9:.]+) .+
+
+
+[tripleo]
+
+#
+# From tobiko
+#
+
+# hostname or IP address to be used to connect to undercloud host (string value)
+#undercloud_ssh_hostname = undercloud-0
+
+# TCP port of SSH server on undercloud host (integer value)
+#undercloud_ssh_port = <None>
+
+# Username with access to stackrc and overcloudrc files (string value)
+#undercloud_ssh_username = stack
+
+# SSH key filename used to login to Undercloud node (string value)
+#undercloud_ssh_key_filename = <None>
+
+# Undercloud RC filename (list value)
+#undercloud_rcfile = ~/stackrc
+
+# undercloud cloud name to be used for loading credentials from the undercloud clouds
+# files (string value)
+#undercloud_cloud_name = undercloud
+
+# TCP port of SSH server on overcloud hosts (integer value)
+#overcloud_ssh_port = <None>
+
+# Default username used to connect to overcloud nodes (string value)
+#overcloud_ssh_username = <None>
+
+# SSH key filename used to login to Overcloud nodes (string value)
+#overcloud_ssh_key_filename = ~/.ssh/id_overcloud
+
+# Overcloud RC filenames (list value)
+#overcloud_rcfile = ~/overcloudrc,~/qe-Cloud-0rc
+
+# overcloud cloud name to be used for loading credentials from the overcloud clouds
+# files (string value)
+#overcloud_cloud_name = overcloud
+
+# Default IP address version to be used to connect to overcloud nodes  (integer value)
+#overcloud_ip_version = <None>
+
+# Name of network used to connect to overcloud nodes (string value)
+#overcloud_network_name = <None>
+
+# Dictionary with the node groups corresponding to different hostname prefixes (dict
+# value)
+#overcloud_groups_dict = cmp:compute,ctrl:controller
+
+# path to where to export tripleo inventory file (string value)
+#inventory_file = .ansible/inventory/tripleo.yaml
+
+# OSP env was done with an external load balancer (boolean value)
+#has_external_load_balancer = false
+
+# whether Ceph RGW is deployed (boolean value)
+#ceph_rgw = false
+
+
+[ubuntu]
+
+#
+# From tobiko
+#
+
+# Default ubuntu image name (string value)
+#image_name = <None>
+
+# Default ubuntu image URL (string value)
+#image_url = <None>
+
+# Default ubuntu image filename (string value)
+#image_file = <None>
+
+# Default ubuntu container format (string value)
+#container_format = <None>
+
+# Default ubuntu disk format (string value)
+#disk_format = <None>
+
+# Default ubuntu username (string value)
+#username = <None>
+
+# Default ubuntu password (string value)
+#password = <None>
+
+# Default ubuntu SSH connection timeout (seconds) (floating point value)
+#connection_timeout = <None>
+
+# Allow to disable SSH auth algorithmsin order to SSH to old servers likeCirrOS ones
+# (dict value)
+#disabled_algorithms = <None>
