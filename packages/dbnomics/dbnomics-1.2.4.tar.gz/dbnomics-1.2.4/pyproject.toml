@@ -1,0 +1,106 @@
+[project]
+name = "dbnomics"
+version = "1.2.4"
+description = "DBnomics Python client"
+authors = [{ name = "Christophe Benz", email = "christophe.benz@nomics.world" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+  "Operating System :: OS Independent",
+]
+dependencies = ["httpx", "pandas", "tenacity"]
+
+[project.optional-dependencies]
+dev = ["black", "mypy", "pip-tools", "pre-commit", "pytest", "ruff", "vermin"]
+
+[project.urls]
+"Homepage" = "https://git.nomics.world/dbnomics/dbnomics-python-client"
+"Bug Tracker" = "https://git.nomics.world/dbnomics/dbnomics-python-client/-/issues"
+
+[tool.black]
+line-length = 120
+
+[tool.mypy]
+packages = [""]
+# plugins = ["pydantic.mypy"]
+# strict = true
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = ["pandas"]
+
+[tool.ruff]
+exclude = [
+  "__pycache__",
+  ".cache",
+  ".eggs",
+  ".git",
+  ".mypy_cache",
+  ".pytest_cache",
+  ".venv",
+  "*.egg-info",
+  "build",
+  "dist",
+]
+ignore = [
+  "ANN101",
+  "ANN102",
+  "ANN401",
+  "BLE001",
+  "COM",
+  "D100",
+  "D101",
+  "D102",
+  "D103",
+  "D103",
+  "D104",
+  "D105",
+  "D106",
+  "D107",
+  "N818",
+  "PD",
+  "S101",
+
+  # To be removed when source code will be refactored:
+  "ANN001",
+  "ANN201",
+  "ANN202",
+  "ERA001",
+]
+line-length = 120
+select = ["ALL"]
+unfixable = ["COM", "ERA", "F841"]
+
+# [tool.ruff.flake8-builtins]
+# builtins-ignorelist = []
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "double"
+
+# [tool.ruff.flake8-type-checking]
+# runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+
+[tool.ruff.isort]
+known-first-party = ["dbnomics"]
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.mccabe]
+max-complexity = 25
+
+# [tool.ruff.pep8-naming]
+# classmethod-decorators = [
+#   "classmethod",
+#   "pydantic.root_validator",
+#   "pydantic.validator",
+# ]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F403"]
+
+[tool.ruff.pylint]
+max-args = 10
+max-branches = 20
+max-statements = 60
