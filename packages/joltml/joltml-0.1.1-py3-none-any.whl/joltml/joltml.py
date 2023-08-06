@@ -1,0 +1,2 @@
+class JoltML:
+    pass
