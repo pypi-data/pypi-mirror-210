@@ -1,0 +1,27 @@
+FROM ros:kinetic
+
+RUN apt-get update && apt-get install -y \
+    git \
+    ros-${ROS_DISTRO}-control-msgs \
+    ros-${ROS_DISTRO}-cv-bridge \
+    ros-${ROS_DISTRO}-xacro \
+    && rm -rf /var/lib/apt/lists/*
+# Note: rosdep fails to install control_msgs, cv_bridge and xacro on kinetic, so we install them manually with apt-get
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
+# Download source dependencies
+RUN git clone --branch master https://github.com/RethinkRobotics/baxter.git \
+    && git clone --branch master https://github.com/RethinkRobotics/baxter_common.git \
+    && git clone --branch master https://github.com/RethinkRobotics/baxter_examples.git \
+    && git clone --branch master https://github.com/RethinkRobotics/baxter_interface.git \
+    && git clone --branch master https://github.com/RethinkRobotics/baxter_tools.git
+
+# Install dependencies using rosdep
+WORKDIR /ros_ws
+RUN apt-get update \
+    && rosdep update \
+    && DEBIAN_FRONTEND=noninteractive rosdep install --from-paths src --ignore-src -r --default-yes \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN /bin/bash -c '. /opt/ros/$ROS_DISTRO/setup.bash; cd /ros_ws; catkin_make -DCMAKE_BUILD_TYPE=Release'

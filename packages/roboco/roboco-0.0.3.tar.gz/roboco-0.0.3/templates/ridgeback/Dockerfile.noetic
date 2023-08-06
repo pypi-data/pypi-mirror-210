@@ -1,0 +1,13 @@
+FROM ros:noetic
+
+RUN apt-get update && apt-get install -y \
+    ros-${ROS_DISTRO}-ridgeback-control \
+    ros-${ROS_DISTRO}-ridgeback-description \
+    ros-${ROS_DISTRO}-ridgeback-msgs \
+    ros-${ROS_DISTRO}-ridgeback-navigation \
+    ros-${ROS_DISTRO}-ridgeback-desktop \
+    ros-${ROS_DISTRO}-ridgeback-gazebo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src

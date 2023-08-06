@@ -1,0 +1,23 @@
+FROM ros:noetic
+
+# Follows installation instructions from https://frankaemika.github.io/docs/installation_linux.html
+RUN apt-get update && apt-get install -y \
+    git \
+    ros-noetic-franka-ros \
+    ros-noetic-libfranka \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
+# Download source dependencies
+# COPY ./panda/noetic.repos /
+# RUN vcs import . < /noetic.repos
+
+# Install dependencies using rosdep
+WORKDIR /ros_ws
+# RUN apt-get update \
+#     && rosdep update \
+#     && DEBIAN_FRONTEND=noninteractive rosdep install --from-paths src --ignore-src -r --default-yes \
+#     && rm -rf /var/lib/apt/lists/*
+
+# RUN /bin/bash -c '. /opt/ros/$ROS_DISTRO/setup.bash; cd /ros_ws; catkin_make -DCMAKE_BUILD_TYPE=Release'

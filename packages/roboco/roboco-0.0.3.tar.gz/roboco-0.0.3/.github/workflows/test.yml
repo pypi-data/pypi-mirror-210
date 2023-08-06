@@ -1,0 +1,23 @@
+name: test
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: psf/black@stable
+      - uses: chartboost/ruff-action@v1
+      - name: Check types with mypy
+        run: |
+          pip install .
+          pip install mypy
+          mypy .

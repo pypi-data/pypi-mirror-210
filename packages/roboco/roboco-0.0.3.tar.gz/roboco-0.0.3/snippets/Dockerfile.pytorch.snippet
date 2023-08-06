@@ -1,0 +1,11 @@
+RUN python3 -m pip --no-cache-dir install --upgrade pip \
+    && pip install \
+    torch==1.13.1 \
+    torchvision==0.14.1
+
+
+
+ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:-all}
+
+Use this to get nvidia support: https://github.com/osrf/rocker/blob/main/src/rocker/templates/nvidia_snippet.Dockerfile.em

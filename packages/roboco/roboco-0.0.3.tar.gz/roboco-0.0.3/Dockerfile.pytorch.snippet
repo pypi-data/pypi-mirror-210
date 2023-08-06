@@ -1,0 +1,7 @@
+# Insert this into your dockerfile to install pytorch
+
+RUN python3 -m pip --no-cache-dir install \
+    torch==1.13.1 \
+    torchvision==0.14.1 \
+
+Use this to get nvidia support: https://github.com/osrf/rocker/blob/main/src/rocker/templates/nvidia_snippet.Dockerfile.em

@@ -1,0 +1,13 @@
+FROM ros:noetic
+
+RUN apt-get update && apt-get install -y \
+    ros-${ROS_DISTRO}-jackal-control \
+    ros-${ROS_DISTRO}-jackal-description \
+    ros-${ROS_DISTRO}-jackal-msgs \
+    ros-${ROS_DISTRO}-jackal-navigation \
+    ros-${ROS_DISTRO}-jackal-desktop \
+    ros-${ROS_DISTRO}-jackal-gazebo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src

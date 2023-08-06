@@ -1,0 +1,25 @@
+FROM ros:noetic
+
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
+# Download source dependencies
+RUN git clone --branch master https://github.com/RethinkRobotics/baxter.git \
+    && git clone --branch master https://github.com/RethinkRobotics/baxter_common.git \
+    && git clone --branch noetic_devel https://github.com/cwru-eecs-275/baxter_examples.git \
+    && git clone --branch development https://github.com/k-okada/baxter_interface.git \
+    && git clone --branch noetic_devel https://github.com/cwru-eecs-275/baxter_tools.git
+# This could be included if simulation was needed, but it brings in a lot of dependencies
+#   && git clone --branch fix_noetic https://github.com/k-okada/baxter_simulator.git
+
+# Install dependencies using rosdep
+WORKDIR /ros_ws
+RUN apt-get update \
+    && rosdep update \
+    && DEBIAN_FRONTEND=noninteractive rosdep install --from-paths src --ignore-src -r --default-yes \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN /bin/bash -c '. /opt/ros/$ROS_DISTRO/setup.bash; cd /ros_ws; catkin_make -DCMAKE_BUILD_TYPE=Release'

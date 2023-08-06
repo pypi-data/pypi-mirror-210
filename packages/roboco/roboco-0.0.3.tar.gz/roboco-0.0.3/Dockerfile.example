@@ -1,0 +1,6 @@
+FROM ros:melodic
+
+RUN apt-get update && apt-get install -y git
+
+RUN mkdir -p /ros_ws/src/my_project
+

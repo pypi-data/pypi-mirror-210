@@ -1,0 +1,10 @@
+FROM ros:noetic
+
+RUN apt-get update && apt-get install -y \
+    ros-${ROS_DISTRO}-fetch-ros \
+    python-is-python3 \
+    && rm -rf /var/lib/apt/lists/*
+# Note: python-is-python3 required to get fetch python nodes to work, otherwise received error: /usr/bin/env: ‘python’: No such file or directory
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
