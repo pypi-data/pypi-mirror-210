@@ -1,0 +1,224 @@
+:py:mod:`abacusai.pipeline`
+===========================
+
+.. py:module:: abacusai.pipeline
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   abacusai.pipeline.Pipeline
+
+
+
+
+.. py:class:: Pipeline(client, pipelineName=None, pipelineId=None, createdAt=None, pipelineVariableMappings=None, notebookId=None, cron=None, nextRunTime=None, steps={}, pipelineReferences={}, latestPipelineVersion={})
+
+   Bases: :py:obj:`abacusai.return_class.AbstractApiClass`
+
+   A Pipeline For Steps.
+
+   :param client: An authenticated API Client instance
+   :type client: ApiClient
+   :param pipelineName: The name of the pipeline this step is a part of.
+   :type pipelineName: str
+   :param pipelineId: The reference to the pipeline this step belongs to.
+   :type pipelineId: str
+   :param createdAt: The date and time which the pipeline was created.
+   :type createdAt: str
+   :param pipelineVariableMappings: A description of the function variables into the pipeline.
+   :type pipelineVariableMappings: dict
+   :param notebookId: The reference to the notebook this pipeline belongs to.
+   :type notebookId: str
+   :param cron: A cron-style string that describes when this refresh policy is to be executed in UTC
+   :type cron: str
+   :param nextRunTime: The next time this pipeline will be run.
+   :type nextRunTime: str
+   :param steps: A list of the pipeline steps attached to the pipeline.
+   :type steps: PipelineStep
+   :param pipelineReferences: A list of references from the pipeline to other objects
+   :type pipelineReferences: PipelineReference
+   :param latestPipelineVersion: The latest version of the pipeline.
+   :type latestPipelineVersion: PipelineVersion
+
+   .. py:method:: __repr__()
+
+      Return repr(self).
+
+
+   .. py:method:: to_dict()
+
+      Get a dict representation of the parameters in this class
+
+      :returns: The dict value representation of the class parameters
+      :rtype: dict
+
+
+   .. py:method:: refresh()
+
+      Calls describe and refreshes the current object's fields
+
+      :returns: The current object
+      :rtype: Pipeline
+
+
+   .. py:method:: describe()
+
+      Describes a given pipeline.
+
+      :param pipeline_id: The ID of the pipeline to describe.
+      :type pipeline_id: str
+
+      :returns: An object describing a Pipeline
+      :rtype: Pipeline
+
+
+   .. py:method:: update(project_id = None, pipeline_variable_mappings = None, cron = None)
+
+      Updates a pipeline for executing multiple steps.
+
+      :param project_id: A unique string identifier for the pipeline.
+      :type project_id: str
+      :param pipeline_variable_mappings: List of Python function arguments for the pipeline.
+      :type pipeline_variable_mappings: list
+      :param cron: A cron-like string specifying the frequency of the scheduled pipeline runs.
+      :type cron: str
+
+      :returns: An object that describes a Pipeline.
+      :rtype: Pipeline
+
+
+   .. py:method:: delete()
+
+      Deletes a pipeline.
+
+      :param pipeline_id: The ID of the pipeline to delete.
+      :type pipeline_id: str
+
+
+   .. py:method:: list_versions()
+
+      Lists the pipeline versions for a specified pipeline
+
+      :param pipeline_id: The ID of the pipeline to list versions for.
+      :type pipeline_id: str
+
+      :returns: A list of pipeline versions.
+      :rtype: PipelineVersion
+
+
+   .. py:method:: run(pipeline_variable_mappings = None)
+
+      Runs a specified pipeline with the arguments provided.
+
+      :param pipeline_variable_mappings: List of Python function arguments for the pipeline.
+      :type pipeline_variable_mappings: list
+
+      :returns: The object describing the pipeline
+      :rtype: PipelineVersion
+
+
+   .. py:method:: create_step(step_name, function_name = None, source_code = None, step_input_mappings = None, output_variable_mappings = None, step_dependencies = None, package_requirements = None)
+
+      Creates a step in a given pipeline.
+
+      :param step_name: The name of the step.
+      :type step_name: str
+      :param function_name: The name of the Python function.
+      :type function_name: str
+      :param source_code: Contents of a valid Python source code file. The source code should contain the transform feature group functions. A list of allowed imports and system libraries for each language is specified in the user functions documentation section.
+      :type source_code: str
+      :param step_input_mappings: List of Python function arguments.
+      :type step_input_mappings: list
+      :param output_variable_mappings: List of Python function ouputs.
+      :type output_variable_mappings: list
+      :param step_dependencies: List of step names this step depends on.
+      :type step_dependencies: list
+      :param package_requirements: List of package requirement strings. For example: ['numpy==1.2.3', 'pandas>=1.4.0'].
+      :type package_requirements: list
+
+      :returns: Object describing the pipeline.
+      :rtype: Pipeline
+
+
+   .. py:method:: delete_step_by_name(step_name)
+
+      Deletes a step from a pipeline.
+
+      :param step_name: The name of the step.
+      :type step_name: str
+
+
+   .. py:method:: update_step_by_name(step_name, function_name = None, source_code = None, step_input_mappings = None, output_variable_mappings = None, step_dependencies = None, package_requirements = None)
+
+      Creates a step in a given pipeline.
+
+      :param step_name: The name of the step.
+      :type step_name: str
+      :param function_name: The name of the Python function.
+      :type function_name: str
+      :param source_code: Contents of a valid Python source code file. The source code should contain the transform feature group functions. A list of allowed imports and system libraries for each language is specified in the user functions documentation section.
+      :type source_code: str
+      :param step_input_mappings: List of Python function arguments.
+      :type step_input_mappings: list
+      :param output_variable_mappings: List of Python function ouputs.
+      :type output_variable_mappings: list
+      :param step_dependencies: List of step names this step depends on.
+      :type step_dependencies: list
+      :param package_requirements: List of package requirement strings. For example: ['numpy==1.2.3', 'pandas>=1.4.0'].
+      :type package_requirements: list
+
+      :returns: Object describing the pipeline.
+      :rtype: PipelineStep
+
+
+   .. py:method:: describe_step_by_name(step_name)
+
+      Describes a pipeline step by the step name.
+
+      :param step_name: The name of the step.
+      :type step_name: str
+
+      :returns: An object describing the pipeline step.
+      :rtype: PipelineStep
+
+
+   .. py:method:: unset_refresh_schedule()
+
+      Deletes the refresh schedule for a given pipeline.
+
+      :param pipeline_id: The id of the pipeline.
+      :type pipeline_id: str
+
+      :returns: Object describing the pipeline.
+      :rtype: Pipeline
+
+
+   .. py:method:: pause_refresh_schedule()
+
+      Pauses the refresh schedule for a given pipeline.
+
+      :param pipeline_id: The id of the pipeline.
+      :type pipeline_id: str
+
+      :returns: Object describing the pipeline.
+      :rtype: Pipeline
+
+
+   .. py:method:: resume_refresh_schedule()
+
+      Resumes the refresh schedule for a given pipeline.
+
+      :param pipeline_id: The id of the pipeline.
+      :type pipeline_id: str
+
+      :returns: Object describing the pipeline.
+      :rtype: Pipeline
+
+
+
