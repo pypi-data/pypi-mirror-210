@@ -1,0 +1,5 @@
+[console_scripts]
+mmexport = mmenot.exporter:export
+mmprune = mmenot.pruner:prune
+mmtune = mmenot.trainer:train
+mmval = mmenot.tester:test
