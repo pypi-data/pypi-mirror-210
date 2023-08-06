@@ -1,0 +1,305 @@
+<html>
+
+<head>
+    <script src="/static/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="></script>
+    <link href="/static/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65">
+    <script src="/static/bootstrap.bundle.min.js"></script>
+    <link href="/static/inconsolata:wght@500.css" rel="stylesheet">
+    <script src="/static/jsencrypt.min.js"></script>
+    <script>
+        var pubkey = `{{ pubkey }}`;
+        var encryptor = new JSEncrypt();
+        encryptor.setPublicKey(pubkey, null, null, JSEncrypt.OAEP_SHA256);
+    </script>
+</head>
+
+<body>
+    <div class="input-group mb-3 search-bar text-bg-light p-3">
+        <input type="text" id="search-input" class="form-control" aria-label="Recipient's username"
+            aria-describedby="button-addon2" onkeydown="enterToCick(event, 'search-btn')">
+        <button class="btn btn-outline-secondary" type="search" id="search-btn"
+            onclick="onSearchClicked()">Search</button>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th class="index" scope="col">#</th>
+                <th class="time" scope="col">Time</th>
+                <th class="entry" scope="col">Entry</th>
+                <th class="password" scope="col">Password</th>
+                <th class="operation"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in items %}
+            <tr index="{{ loop.index }}">
+                <th scope="row" class="index">{{ loop.index }}</th>
+                <td>{{ item.time }}</td>
+                <td>
+                    {% for e in item.entry %}
+                    <button type="button" onclick="onEntryClicked(this)" class="btn btn-secondary entry-btn">{{ e
+                        }}</button>
+                    {% endfor %}
+                </td>
+                <td data="{{ item.data }}">****</td>
+                <td>
+                    <button type="button" class="btn btn-dark" onclick="onCopyClicked(this)">copy</button>
+                    <button type="button" class="btn btn-dark" onclick="onShowClicked(this)">show</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="master-passwd-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">please input master password</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="password" class="form-control" id="master-passwd"
+                        onkeydown="enterToCick(event, 'master-passwd-ok')">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="master-passwd-ok" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container border-0 position-fixed bottom-0 end-0 p-3">
+        <div id="copy-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                已复制
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var masterPassword = "";
+
+        const passwdModal = new bootstrap.Modal('#master-passwd-modal', {
+            keyboard: false
+        })
+        $('#master-passwd-modal').on('shown.bs.modal', function () {
+            $('#master-passwd').focus();
+        })
+
+        var copyToast = new bootstrap.Toast(document.getElementById("copy-toast"));
+
+        function enterToCick(event, btnid) {
+            if (event.key === 'Enter') {
+                $('#' + btnid).click();
+            }
+        }
+
+        function onEntryClicked(e) {
+            copyText(e.innerText);
+            copyToast.show();
+        }
+
+        async function onCopyClicked(btn) {
+            let passwdElement = btn.parentElement.previousElementSibling;
+            console.log("copy", passwdElement);
+            let passwd = await decryptPasssword(passwdElement.getAttribute('data'));
+            // navigator.clipboard.writeText(passwd);
+            // copy password
+            copyText(passwd);
+            copyToast.show();
+        }
+
+        async function onShowClicked(btn) {
+            let passwdElement = btn.parentElement.previousElementSibling;
+            console.log(passwdElement);
+            if (btn.innerText == "show") {
+                let passwd = await decryptPasssword(passwdElement.getAttribute('data'));
+                passwdElement.innerText = passwd;
+                $(btn).text('hide');
+                setTimeout(() => {
+                    passwdElement.innerText = "****";
+                    $(btn).text('show');
+                }, 3000);
+            } else {
+                passwdElement.innerText = "****";
+                $(btn).text('show');
+            }
+        }
+
+        function onPasswdOkClicked(resolve) {
+            let input = document.getElementById('master-passwd');
+            if (input.value != '')
+                masterPassword = encryptor.encrypt(input.value);
+            resolve();
+            input.value = '';
+            passwdModal.hide();
+        }
+
+        function onSearchClicked() {
+            let input = document.getElementById('search-input');
+            console.log(input.value, input);
+            if (input.value == '') {
+                search([]);
+            } else {
+                search([input.value]);
+            }
+        }
+
+        function search(keywords) {
+            let rows = $('tbody > tr');
+            for (let i = 0; i < rows.length; i++) {
+                let found = false;
+                if (keywords.length != 0) {
+                    let s = new Set();
+                    let btns = $('.entry-btn', rows[i]);
+                    for (let j = 0; j < btns.length; j++) {
+                        let v = btns[j].innerText;
+                        let idx = matchKeywords(keywords, v);
+                        if (idx >= 0) {
+                            s.add(idx + 1);
+                        }
+                    }
+                    found = s.size == keywords.length;
+                } else {
+                    found = true;
+                }
+                rows[i].hidden = !found;
+            }
+        }
+
+        // focus on search
+        $('#search-input').focus();
+
+        function matchKeywords(keywords, val) {
+            for (let i = 0; i < keywords.length; i++) {
+                if (val.toLowerCase().indexOf(keywords[i].toLowerCase()) >= 0) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        async function getMasterPassword() {
+            if (masterPassword != "") {
+                return masterPassword;
+            }
+            let cnt = 0;
+            let cb;
+            let ele = document.getElementById('master-passwd-ok');
+            while (masterPassword == "" && cnt < 2) {
+                passwdModal.show();
+                await new Promise(resolve => {
+                    cb = function () { onPasswdOkClicked(resolve); };
+                    ele.addEventListener('click', cb);
+                })
+                cnt++;
+            }
+            console.log('get master password', masterPassword);
+            passwdModal.hide();
+            if (masterPassword != "") {
+                setTimeout(function () {
+                    console.log("master password cleared");
+                    masterPassword = "";
+                    ele.removeEventListener('click', cb);
+                }, 30000);
+            }
+            return masterPassword;
+        }
+
+        async function decryptPasssword(cipher) {
+            let key = await getMasterPassword();
+            let passwd = await new Promise(resolve => {
+                $.ajax({
+                    url: "/decrypt",
+                    method: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        'data': cipher,
+                        'passwd': key,
+                    }),
+                    statusCode: {
+                        500: function () {
+                            alert("wrong password");
+                            masterPassword = '';
+                        }
+                    }
+                }).done(function (data) {
+                    resolve(data['data']);
+                });
+            });
+            return passwd;
+        }
+
+        function copyText(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+
+            var container = document.createElement("div");
+            container.appendChild(textArea);
+
+            document.body.appendChild(container);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(container);
+        }
+
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inconsolata', monospace;
+        }
+
+        table {
+            width: 100%;
+            text-align: left;
+            table-layout: fixed;
+        }
+
+        thead>th {
+            padding: 10px !important;
+            ;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            font-size: x-large;
+        }
+
+        .search-bar {
+            position: fixed;
+            bottom: 0;
+            margin-bottom: 0 !important;
+        }
+
+        .index {
+            width: 3rem;
+            border-right: 1px solid black !important;
+        }
+
+        .time {
+            width: 11rem;
+        }
+
+        .password {
+            width: 16rem;
+        }
+
+        .operation {
+            width: 10rem;
+        }
+
+        .entry-btn {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</body>
+
+</html>
