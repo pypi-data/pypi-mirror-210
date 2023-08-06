@@ -1,0 +1,1 @@
+from .minimizer_multiprocess import FitMultiProcessCPU
