@@ -1,0 +1,172 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[project]
+authors = [
+  {name = "Shinsuke Mori", email = "sincekmori@gmail.com"},
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: Hatch",
+  "Framework :: Pytest",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+  "tiktoken>=0.4.0",
+]
+description = "A text splitting tool"
+dynamic = ["version"]
+keywords = ["openai", "tiktoken", "token"]
+license = "MIT"
+name = "tixent"
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.urls]
+Documentation = "https://github.com/sincekmori/tixent#readme"
+Issues = "https://github.com/sincekmori/tixent/issues"
+Source = "https://github.com/sincekmori/tixent"
+
+[tool.hatch.build.targets.sdist]
+packages = ["src/tixent"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tixent"]
+
+[tool.hatch.version]
+path = "src/tixent/__init__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "coverage[toml]",
+  "pre-commit",
+  "pytest",
+]
+[tool.hatch.envs.default.scripts]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+cov-report = [
+  "- coverage combine",
+  "coverage report --show-missing",
+]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+
+[[tool.hatch.envs.all.matrix]]
+# If you are using pyenv, just run `pyenv global 3.8 3.9 3.10 3.11` beforehand.
+python = ["3.8", "3.9", "3.10", "3.11"]
+
+[tool.hatch.envs.lint]
+dependencies = [
+  "black",
+  "docformatter[tomli]",
+  "isort",
+  "mypy",
+  "tiktoken",
+  "pytest",
+  "ruff",
+]
+detached = true
+python = "3.11"
+
+[tool.hatch.envs.lint.scripts]
+check = [
+  "black --check --diff {args:.}",
+  "isort --check {args:.}",
+  "docformatter {args:--check .}",
+  "ruff {args:.}",
+  "typing",
+]
+format = [
+  "black {args:.}",
+  "isort {args:.}",
+  "docformatter {args:--in-place .}",
+  "ruff --fix {args:.}",
+  "typing",
+]
+typing = "mypy --install-types --non-interactive {args:src tests}"
+
+[tool.coverage.run]
+branch = true
+omit = ["src/tixent/types.py"]
+parallel = true
+source_pkgs = ["tixent"]
+
+[tool.coverage.paths]
+tests = ["tests", "*/tixent/tests"]
+tixent = ["src/tixent", "*/tixent/src/tixent"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.docformatter]
+close-quotes-on-newline = true
+in-place = true
+pre-summary-newline = true
+recursive = true
+wrap-descriptions = 88
+wrap-summaries = 88
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+profile = "black"
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+ignore = [
+  "D200",
+  "D205",
+  "ANN",
+  "S101",
+  "FBT",
+  "A",
+  "COM",
+  "FA100",
+  "G004",
+  "INP",
+  "ERA",
+  "PLR2004",
+  "TRY300",
+]
+line-length = 88
+select = ["ALL"]
+target-version = "py38"
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.isort]
+known-first-party = ["tixent"]
+
+[tool.ruff.mccabe]
+max-complexity = 5
+
+[tool.ruff.per-file-ignores]
+"tests/**/*" = ["D10"]
+
+[tool.ruff.pydocstyle]
+convention = "numpy"
