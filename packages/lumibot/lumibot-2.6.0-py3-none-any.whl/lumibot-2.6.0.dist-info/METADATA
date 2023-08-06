@@ -1,0 +1,106 @@
+Metadata-Version: 2.1
+Name: lumibot
+Version: 2.6.0
+Summary: Backtesting and Trading Library, Made by Lumiwealth
+Home-page: https://github.com/Lumiwealth/lumibot
+Author: Robert Grzesik
+Author-email: rob@lumiwealth.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic
+Requires-Dist: alpaca-trade-api (==2.3.0)
+Requires-Dist: alpha-vantage
+Requires-Dist: ibapi (==9.81.1.post1)
+Requires-Dist: yfinance (>=0.2.18)
+Requires-Dist: matplotlib (>=3.3.3)
+Requires-Dist: quandl
+Requires-Dist: pandas (<2.0.0,>=1.4.0)
+Requires-Dist: pandas-datareader
+Requires-Dist: pandas-market-calendars (>=4.1.2)
+Requires-Dist: plotly
+Requires-Dist: flask-socketio
+Requires-Dist: flask-sqlalchemy
+Requires-Dist: flask-marshmallow
+Requires-Dist: marshmallow-sqlalchemy
+Requires-Dist: flask-security
+Requires-Dist: email-validator
+Requires-Dist: bcrypt
+Requires-Dist: pytest
+Requires-Dist: scipy
+Requires-Dist: quantstats (==0.0.59)
+Requires-Dist: ccxt (==3.0.61)
+Requires-Dist: termcolor
+Requires-Dist: jsonpickle
+
+Backtesting and trading for stocks, options, crypto, futures and more!
+
+# Documentation
+
+**Check out the documentation for the project here: <http://lumibot.lumiwealth.com/>**
+
+# Community
+
+If you want to learn more about Lumibot or Algorithmic Trading then you will love out communities! You can join us on our forum or Discord.
+
+**To join/view our forum: <https://lumiwealth.circle.so/c/lumibot/>**
+
+**To join us on Discord: <https://discord.gg/TmMsJCKY3T>**
+
+# Courses
+
+If you need extra help building your algorithm, we have courses to help you out.
+
+**For our Algorithmic Trading course: <https://lumiwealth.com/algorithmic-trading-landing-page>**
+
+**For our Machine Learning for Trading course: <https://www.lumiwealth.com/product-category/machine-learning-purchase/>**
+
+**For our Options Trading course: <https://www.lumiwealth.com/product-category/options-trading-purchase/>**
+
+# License
+
+This library is covered by the MIT license for open sourced software which can be found here: <https://github.com/Lumiwealth/lumibot/blob/master/LICENSE>
+
+# Profiling and Optimization Tips to Improve Performance
+
+## Profiling
+
+We recommend using yappi to profile your code. You can install it with `pip install yappi`. You can then use it to profile your code like this:
+
+```python
+import yappi
+
+yappi.start()
+# Run your code here, eg. a backtest
+MachineLearningLongShort.backtest(
+    PandasDataBacktesting,
+    backtesting_start,
+    backtesting_end,
+    pandas_data=pandas_data,
+    benchmark_asset="TQQQ",
+)
+# Stop the profiler
+yappi.stop()
+
+# Save the results
+threads = yappi.get_thread_stats()
+for thread in threads:
+    print(
+        "Function stats for (%s) (%d)" % (thread.name, thread.id)
+    )  # it is the Thread.__class__.__name__
+    yappi.get_func_stats(ctx_id=thread.id).save(
+        f"profile_{thread.name}.out", type="pstat"
+    )
+
+```
+
+## Viewing the results
+
+We recommend using snakeviz to view the results. You can install it with `pip install snakeviz`. You can then use it to view the results like this:
+
+```bash
+snakeviz profile_MachineLearningLongShort.out
+```
