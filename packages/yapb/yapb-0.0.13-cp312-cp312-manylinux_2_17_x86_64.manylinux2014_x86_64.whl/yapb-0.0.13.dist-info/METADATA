@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: yapb
+Version: 0.0.13
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: bumpver; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pre-commit; extra == 'dev'
+Provides-Extra: dev
+License-File: LICENSE
+Summary: A Minimalist Progress Bar for Python
+Keywords: progress,bar,progressbar,progress-bar
+Author: Wilhelm Söderkvist Vermelin
+Author-email: wilhelm.wermelin@icloud.com
+Maintainer-email: Wilhelm Söderkvist Vermelin <wilhelm.wermelin@icloud.com>
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: repository, https://github.com/wilswer/yapb
+
+# YAPB: A Minimalist Progress Bar for Python
+
+![Rust Tests](https://github.com/wilswer/yapb/actions/workflows/rust_tests.yml/badge.svg)
+
+## Usage
+
+```python
+from yapb import ProgressBar
+
+N = 100
+pb = ProgressBar(N, message="Computing...", description="Progress")
+for _ in range(N):
+    pb.update(message="Still computing...", description=f"At {_}/{N}")
+    pb.render()
+```
+
+## Installation
+
+```pip install yapb```
+
