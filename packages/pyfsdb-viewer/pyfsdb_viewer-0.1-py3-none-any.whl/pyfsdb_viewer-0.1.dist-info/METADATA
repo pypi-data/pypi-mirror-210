@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: pyfsdb-viewer
+Version: 0.1
+Summary: A pyfsdb and textual based viewer
+Home-page: https://github.com/gawseed/pyfsdb-viewer
+Author: Wes Hardaker
+Author-email: opensource@hardakers.net
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pyfsdb
+Requires-Dist: textual
+
+# pyfsdb viewer
+
+This package is a [textual] display interface for visually showing the
+contents of an [pyfsdb] table of data.
+
+[textual]: https://pypi.org/project/textual/
+[pyfsdb]: https://fsdb.readthedocs.io/
