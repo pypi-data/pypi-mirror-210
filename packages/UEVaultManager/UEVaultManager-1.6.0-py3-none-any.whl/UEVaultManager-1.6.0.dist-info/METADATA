@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: UEVaultManager
+Version: 1.6.0
+Summary: Free and open-source replacement for the Epic Games Launcher application, mainly to manage the assets for Unreal Engine
+Home-page: https://github.com/LaurentOngaro/UEVaultManager
+Author: Laurent Ongaro
+Author-email: laurent@gameamea.com
+License: GPL-3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Pillow (>=9.5)
+Requires-Dist: beautifulsoup4 (>=4.11)
+Requires-Dist: future (>=0.18)
+Requires-Dist: pandastable (>=0.13)
+Requires-Dist: pandas (>=2.0)
+Requires-Dist: pywebview (>=4.0.2)
+Requires-Dist: requests (>=2.28.2)
+Requires-Dist: screeninfo (>=0.8)
+Requires-Dist: setuptools (>=67.4.0)
+Requires-Dist: termcolor (>=2.3)
+Requires-Dist: ttkbootstrap (>=1.10)
+Requires-Dist: packaging (>=23)
+Requires-Dist: requirements-parser (>=0.2.0)
+Provides-Extra: webview
+Requires-Dist: pywebview (>=3.4) ; extra == 'webview'
+Provides-Extra: webview_gtk
+Requires-Dist: pywebview (>=3.4) ; extra == 'webview_gtk'
+Requires-Dist: PyGObject ; extra == 'webview_gtk'
+
+Welcome to UEVaultManager
+==========================================
+![Logo](https://laurentongaro.github.io/UEVaultManager/statics/UEVM_200x200.png)
+
+| pypi                                                                                                                 | py_versions                                                                                                          | github                                                                                                                         | docs                                                                                                                               |
+|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| [![Current PyPi Version](https://img.shields.io/pypi/v/uevaultmanager)](https://pypi.python.org/pypi/uevaultmanager) | [![py_versions](https://img.shields.io/pypi/pyversions/uevaultmanager)](https://pypi.python.org/pypi/uevaultmanager) | [![github](https://img.shields.io/github/v/tag/LaurentOngaro/uevaultmanager)](https://github.com/LaurentOngaro/UEVaultManager) | [![docs](https://img.shields.io/readthedocs/uevaultmanager/latest)](https://uevaultmanager.readthedocs.io/en/latest/?badge=latest) |
+
+**UEVaultManager** is an open-source assets manager that can list assets and
+their data from the Epic Games Marketplace. It is developed in Python, so
+it can run on any platform that support this language.
+
+Its main purpose is to list the assets (with or without user login),
+filter (optional) and save the list into a file that can be reused later
+as a data source (in an Excel sheet for instance).
+
+| Hot news                                                                                                                                                                                         |                                                                                                           |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| The new version is out : Now with a GUI !<br/>Edit the data in the GUI and save it back to the file<br/>Use colors to visualize your asset status<br/>Use filters and search to find them easily | [![preview](https://i.imgur.com/dXS62o4.png)](https://uevaultmanager.readthedocs.io/en/latest/tkgui.html) |
+
+**This project is still under active development**                                                                    |
+
+To go further, dive into [the documentation](https://uevaultmanager.readthedocs.io/en/latest/index.html) or just go
+for [a quickstart](https://uevaultmanager.readthedocs.io/en/latest/quickstart.html)
+
+Contents:
+
+* [Hot new feature !](https://uevaultmanager.readthedocs.io/en/latest/tkgui.html)
+* [UEVaultManager](https://uevaultmanager.readthedocs.io/en/latest/intro.html)
+  * [A free and open-source Epic Games Assets Manager for Unreal Engine](https://uevaultmanager.readthedocs.io/en/latest/intro.html#a-free-and-open-source-epic-games-assets-manager-for-unreal-engine)
+  * [Known bugs and limitations](https://uevaultmanager.readthedocs.io/en/latest/intro.html#known-bugs-and-limitations)
+* [Quickstart](https://uevaultmanager.readthedocs.io/en/latest/quickstart.html)
+  * [Installation](https://uevaultmanager.readthedocs.io/en/latest/quickstart.html#installation)
+  * [log in](https://uevaultmanager.readthedocs.io/en/latest/quickstart.html#log-in)
+  * [Listing your asset](https://uevaultmanager.readthedocs.io/en/latest/quickstart.html#listing-your-asset)
+  * [Saving the list into a CSV file](https://uevaultmanager.readthedocs.io/en/latest/quickstart.html#saving-the-list-into-a-csv-file)
+* [How to run/install](https://uevaultmanager.readthedocs.io/en/latest/setup.html)
+  * [Requirements](https://uevaultmanager.readthedocs.io/en/latest/setup.html#requirements)
+  * [Prerequisites](https://uevaultmanager.readthedocs.io/en/latest/setup.html#prerequisites)
+  * [Directly from the repo](https://uevaultmanager.readthedocs.io/en/latest/setup.html#directly-from-the-repo)
+  * [Direct installation (any)](https://uevaultmanager.readthedocs.io/en/latest/setup.html#direct-installation-any)
+* [Usage](https://uevaultmanager.readthedocs.io/en/latest/usage.html)
+* [Configuration](https://uevaultmanager.readthedocs.io/en/latest/configuration.html)
+  * [Config folder](https://uevaultmanager.readthedocs.io/en/latest/configuration.html#config-folder)
+  * [Config file](https://uevaultmanager.readthedocs.io/en/latest/configuration.html#config-file)
+
+[More info](https://uevaultmanager.readthedocs.io/en/latest/intro.html "UEVaultManager")
+
+
+ UEVaultManager ## version:1.6.0 ## codename: Virgo
