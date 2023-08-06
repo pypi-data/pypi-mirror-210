@@ -1,0 +1,115 @@
+Metadata-Version: 2.1
+Name: nemollm
+Version: 0.3.1
+Summary: Python client library for the NeMo LLM API
+Home-page: https://pypi.org/project/nemollm
+Author: NVIDIA NeMo LLM
+Author-email: nvidia-nemollm@nvidia.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: python-dateutil (>=2.5.3)
+Requires-Dist: urllib3 (>=1.25.3)
+Requires-Dist: requests-futures
+Requires-Dist: requests-toolbelt
+Requires-Dist: tqdm
+Requires-Dist: typing-extensions
+
+# nemollm
+## Introduction
+NeMo LLM Service offers state-of-the-art LLMs that were pre-trained on internet-scale text corpora. </br> With NeMo LLM Service API users can invoke the services from within their application code. </br> These models can be flexibly adapted to solve almost any language processing task for your use cases. You can conveniently and quickly try them out, and via an API that you can easily integrate into your applications. </br> Further, the NeMo LLM Service also offers customization capabilities, where the models can be effectively adapted to new tasks, using your own uploaded data.
+
+## Feature summary
+  - Text Completion. With one of the available and pre-trained model the LLM service responds to an input prompt by generating an extension to the provided intut text, that is, a completion. This technique can be used for solving multiple NLP tasks using Zero/Few-shot learning techniques.
+  - Model Customization. With which you can finetune an existing model on your own custom data in the form of prompt+completion pairs. This enhances the model’s ability to adapt to your use cases by ingesting hundreds to thousands of domain-specific examples.
+
+## Requirements.
+
+Python >=3.6
+
+## Installation & Usage
+### pip install
+
+```sh
+pip install nemollm
+```
+
+Or if you have this folder locally and wish to develop with it,
+
+```sh
+pip install -e .
+```
+
+### Authenticate with NGC API KEY
+```sh
+export NGC_API_KEY=<your_ngc_api_key>
+```
+
+### Usage with Python
+
+```python
+from nemollm.api import NemoLLM
+
+# Basic instantiation
+conn = NemoLLM()
+
+# Advanced instantiation, when defaults need to be modified
+conn = NemoLLM(api_key=<ngc_api_key>, org_id=<ngc_org_id>, api_host=<api_host>/<base_url>)
+
+# Text completion
+response = conn.generate(model="gpt5b", prompt="Winnie the Pooh")
+print(response)
+
+# Multiple async text completion 
+responses = conn.generate_multiple(model="gpt5b", prompts=["Winnie the Pooh", "Scooby Doo", "Spongebob Squarepants"])
+print(responses)
+
+# Single async text completion
+future = conn.generate(model="gpt5b", prompt="Winnie the Pooh", return_type="async")
+response = future.result()
+response = NemoLLM.post_process_generate_response(response)
+print(response)
+
+# File upload 
+response = conn.upload("path/to/local/jsonl/file")
+print(response)
+
+# Create customization
+response = conn.create_customization(
+  model="gpt5b",
+  name="training job name",
+  training_dataset_file_id="training_dataset_file_id", 
+  validation_dataset_file_id="validation_dataset_file_id"
+)
+print(response)
+```
+Each function above has additional params that can be customized. Please check nemollm/api_calls.py for further details
+
+Other functions including {download, delete, list, get_info} customization, {get_info, delete} file are also available. Please check nemollm/api_calls.py for usage
+
+### Usage with CLI
+
+Every function (except generate_multiple) is also supported via CLI
+
+```sh
+# Text generation
+nemollm generate -p "Winnie the Pooh" -m gpt5b
+
+# File upload
+nemollm upload -f "<path/to/local/jsonl/file>"
+
+# Create customization
+nemollm create_customization -m gpt5b -t "<training/jsonl/file/id>" -v "<validation/jsonl/file/id>" --name "training job name" -epochs 1
+```
+Each function above has additional params that can be customized. Please check nemollm/cli.py for further details
+
+Other functions including {download, delete, list, get_info} customization, {download, delete} file are also available. Please check nemollm/cli.py for usage
+
+## Author
+
+nvidia-nemollm@nvidia.com
+
+
+
+
