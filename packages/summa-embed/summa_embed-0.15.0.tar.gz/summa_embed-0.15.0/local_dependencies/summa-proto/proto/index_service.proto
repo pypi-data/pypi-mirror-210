@@ -1,0 +1,383 @@
+syntax = "proto3";
+package summa.proto;
+
+import "query.proto";
+import "utils.proto";
+
+// Manages indices
+service IndexApi {
+  // Attaches index to Summa server. Attaching allows to incorporate and start using of downloaded or network indices
+  rpc attach_index(AttachIndexRequest) returns (AttachIndexResponse) {}
+  // Committing all collected writes to the index
+  rpc commit_index (CommitIndexRequest) returns (CommitIndexResponse) {}
+  // Copy documents from one index to another
+  rpc copy_documents (CopyDocumentsRequest) returns (CopyDocumentsResponse) {}
+  // Creates new index from scratch
+  rpc create_index (CreateIndexRequest) returns (CreateIndexResponse) {}
+  // Creates new index from scratch
+  rpc copy_index (CopyIndexRequest) returns (CopyIndexResponse) {}
+  // Deletes single document from the index by its primary key (therefore, index must have primary key)
+  rpc delete_documents (DeleteDocumentsRequest) returns (DeleteDocumentsResponse) {}
+  // Deletes index and physically removes file in the case of `FileEngine`
+  rpc delete_index (DeleteIndexRequest) returns (DeleteIndexResponse) {}
+  // Stream of all documents from the index
+  rpc documents (DocumentsRequest) returns (stream DocumentsResponse) {}
+  // Gets all existing index aliases
+  rpc get_indices_aliases (GetIndicesAliasesRequest) returns (GetIndicesAliasesResponse) {}
+  // Gets index description
+  rpc get_index (GetIndexRequest) returns (GetIndexResponse) {}
+  // Gets all existing index descriptions
+  rpc get_indices (GetIndicesRequest) returns (GetIndicesResponse) {}
+  // Adds document to the index in a streaming way
+  rpc index_document_stream (stream IndexDocumentStreamRequest) returns (IndexDocumentStreamResponse) {}
+  // Adds document to the index
+  rpc index_document (IndexDocumentRequest) returns (IndexDocumentResponse) {}
+  // Merges multiple segments into a single one. Used for service purposes
+  rpc merge_segments (MergeSegmentsRequest) returns (MergeSegmentsResponse) {}
+  // Sets or replaces existing index alias
+  rpc set_index_alias (SetIndexAliasRequest) returns (SetIndexAliasResponse) {}
+  // Removes deletions from all segments
+  rpc vacuum_index (VacuumIndexRequest) returns (VacuumIndexResponse) {}
+  // Loads all hot parts of the index into the memory
+  rpc warmup_index (WarmupIndexRequest) returns (WarmupIndexResponse) {}
+}
+
+// Possible primary keys
+message PrimaryKey {
+  oneof value {
+    string str = 1;
+    int64 i64 = 2;
+  }
+}
+
+// Merge policy that describes how to merge committed segments
+message MergePolicy {
+  oneof merge_policy {
+   LogMergePolicy log = 11;
+   TemporalMergePolicy temporal = 12;
+ }
+}
+
+// Attach file engine request
+message AttachFileEngineRequest {}
+
+// Attach remote engine request
+message AttachRemoteEngineRequest {
+  RemoteEngineConfig config = 1;
+}
+
+// Attach index request
+message AttachIndexRequest {
+  // Index name for attaching
+  string index_name = 1;
+  // Attach index engine request
+  oneof index_engine {
+    AttachFileEngineRequest file = 2;
+    AttachRemoteEngineRequest remote = 3;
+  }
+  MergePolicy merge_policy = 10;
+}
+
+// Description of the attached index
+message AttachIndexResponse {
+  IndexDescription index = 1;
+}
+
+// Store the state of index to the storage
+message CommitIndexRequest {
+  string index_name = 1;
+}
+
+// Returned data from the commit command
+message CommitIndexResponse {
+  // Pure time spent for committing
+  double elapsed_secs = 1;
+}
+
+// Copy documents from one index to another. Their schemes must be compatible
+message CopyDocumentsRequest {
+  // Where documents should be taken from
+  string source_index_name = 1;
+  // Where documents should be copied to
+  string target_index_name = 2;
+}
+
+// Copy documents response
+message CopyDocumentsResponse {
+  double elapsed_secs = 1;
+  uint32 copied_documents = 2;
+}
+
+// Request that changes index engine. Currently possible to convert File to IPFS
+message CopyIndexRequest {
+  // Name of index that will be migrated. It will be left intact after migration.
+  string source_index_name = 1;
+  // Name of index that will be created
+  string target_index_name = 2;
+  // Target index engine
+  oneof target_index_engine {
+    CreateFileEngineRequest file = 3;
+    CreateMemoryEngineRequest memory = 4;
+  }
+  MergePolicy merge_policy = 6;
+}
+
+// Response describing migrated index
+message CopyIndexResponse {
+  IndexDescription index = 1;
+}
+
+message SortByField {
+  string field = 1;
+  Order order = 2;
+}
+
+message CreateFileEngineRequest {}
+message CreateMemoryEngineRequest {}
+
+enum ConflictStrategy {
+  DO_NOTHING = 0;
+  OVERWRITE_ALWAYS = 1;
+  OVERWRITE = 2;
+  MERGE = 3;
+}
+
+message IndexAttributes {
+  // Timestamp when index has been created
+  uint64 created_at = 1;
+  // Unique fields of the index. Summa maintains unique constraint on them and uses for deduplicating data
+  repeated string unique_fields = 2;
+  // Default fields that are using in `MatchQuery`
+  repeated string default_fields = 3;
+  // Multi fields is ones that may have multiple values and processed as lists. All other fields will be forcefully converted to singular value
+  repeated string multi_fields = 4;
+  // Descriptive field that may be used as name for index when indices are replicating over wire
+  optional string default_index_name = 5;
+  // Text index description
+  optional string description = 6;
+  // (Not-used)
+  repeated string default_snippets = 7;
+  ConflictStrategy conflict_strategy = 8;
+}
+
+// Request for index creation
+message CreateIndexRequest {
+  // Index name
+  string index_name = 1;
+  // Index engine
+  oneof index_engine {
+    CreateFileEngineRequest file = 7;
+    CreateMemoryEngineRequest memory = 8;
+  }
+  // Index schema in Tantivy format
+  string schema = 2;
+  // Compression for store
+  Compression compression = 3;
+  // Size of store blocks
+  optional uint32 blocksize = 4;
+  // Field for sorting
+  optional SortByField sort_by_field = 5;
+  // Optional index fields
+  IndexAttributes index_attributes = 6;
+  // Merge policy
+  MergePolicy merge_policy = 20;
+}
+
+message CreateIndexResponse {
+  IndexDescription index = 1;
+}
+
+message DeleteDocumentsRequest {
+  string index_name = 1;
+  Query query = 2;
+}
+
+message DeleteDocumentsResponse {
+  uint64 deleted_documents = 1;
+}
+
+message DeleteIndexRequest {
+  string index_name = 1;
+}
+
+message DeleteIndexResponse {
+  string deleted_index_name = 1;
+}
+
+message GetIndicesAliasesRequest {}
+
+message GetIndicesAliasesResponse {
+  map<string, string> indices_aliases = 1;
+}
+
+message GetIndexRequest {
+  string index_name = 1;
+}
+
+message GetIndexResponse {
+  IndexDescription index = 1;
+}
+
+message GetIndicesRequest {}
+
+message GetIndicesResponse {
+  repeated string index_names = 1;
+}
+
+message IndexDocumentStreamRequest {
+  string index_name = 1;
+  repeated bytes documents = 2;
+}
+
+message IndexDocumentStreamResponse {
+  double elapsed_secs = 1;
+  uint64 success_docs = 2;
+  uint64 failed_docs = 3;
+}
+
+message IndexDocumentRequest {
+  string index_name = 1;
+  bytes document = 2;
+}
+
+message IndexDocumentResponse {}
+
+message MergeSegmentsRequest {
+  string index_name = 1;
+  repeated string segment_ids = 2;
+}
+
+message MergeSegmentsResponse {
+  optional string segment_id = 1;
+}
+
+message SetIndexAliasRequest {
+  string index_alias = 1;
+  string index_name = 2;
+}
+
+message SetIndexAliasResponse {
+  // If set, equals to the previous alias of the index
+  optional string old_index_name = 1;
+}
+
+// Request a stream of all documents from the index
+message DocumentsRequest {
+  string index_name = 1;
+  repeated string fields = 2;
+}
+
+// Single document from the index
+message DocumentsResponse {
+  string document = 1;
+}
+
+message VacuumIndexRequest {
+  string index_name = 1;
+  repeated string excluded_segments = 2;
+}
+
+message VacuumIndexResponse {
+  uint64 freed_space_bytes = 1;
+}
+
+message WarmupIndexRequest {
+  string index_name = 1;
+  // If set to false, only term dictionaries will be warmed, otherwise the entire index will be read.
+  bool is_full = 2;
+}
+
+message WarmupIndexResponse {
+  // Time spent in warming operation
+  double elapsed_secs = 1;
+}
+
+// Compression library for store, implies on both performance and occupied disk space
+enum Compression {
+  None = 0;
+  Brotli = 1;
+  Lz4 = 2;
+  Snappy = 3;
+  Zstd = 4;
+  Zstd7 = 5;
+  Zstd9 = 6;
+  Zstd14 = 7;
+  Zstd19 = 8;
+  Zstd22 = 9;
+}
+
+message FileEngineConfig {
+  string path = 1;
+}
+
+message MemoryEngineConfig {
+  // Schema of the index for memory engine
+  string schema = 1;
+}
+
+message CacheConfig {
+  // Total cache size in bytes
+  uint64 cache_size = 1;
+}
+
+// Remote HTTP engine config
+message RemoteEngineConfig {
+  // Which method should be used to request remote endpoint
+  string method = 1;
+  // URL template which will be used to generate real URL by variables substitution
+  string url_template = 2;
+  // Headers template which will be used to generate real URL by variables substitution
+  map<string, string> headers_template = 3;
+  // Description of the cache for the engine
+  CacheConfig cache_config = 4;
+  // Timeout for the request
+  optional uint32 timeout_ms = 5;
+}
+
+// Merge policy for implementing [LogMergePolicy](https://docs.rs/tantivy/latest/tantivy/merge_policy/struct.LogMergePolicy.html)
+message LogMergePolicy {
+  // Set if once merged segment should be left intact
+  bool is_frozen = 1;
+}
+
+// Merge policy for compressing old segments
+message TemporalMergePolicy{
+  uint64 merge_older_then_secs = 1;
+}
+
+// Description of the `IndexEngine` responsible for managing files in the persistent storage
+message IndexEngineConfig {
+  oneof config {
+    FileEngineConfig file = 1;
+    MemoryEngineConfig memory = 2;
+    RemoteEngineConfig remote = 3;
+  }
+  // Merge policy
+  MergePolicy merge_policy = 10;
+}
+
+// Description containing `Index` metadata fields
+message IndexDescription {
+  string index_name = 1;
+  // All index aliases
+  repeated string index_aliases = 2;
+  IndexEngineConfig index_engine = 3;
+  // The number of committed documents
+  uint64 num_docs = 4;
+  // Used compression for `store`
+  Compression compression = 5;
+  // All custom index attributes
+  IndexAttributes index_attributes = 6;
+}
+
+// Indexing operations that contains document serialized in JSON format
+message IndexDocumentOperation {
+  bytes document = 1;
+}
+
+// Message that should be put in Kafka for ingesting by Summa consumers
+message IndexOperation {
+ oneof operation {
+   IndexDocumentOperation index_document = 2;
+ }
+}
