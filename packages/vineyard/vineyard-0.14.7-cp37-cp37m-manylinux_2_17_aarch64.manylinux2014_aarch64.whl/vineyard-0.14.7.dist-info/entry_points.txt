@@ -1,0 +1,8 @@
+[console_scripts]
+vineyard-codegen = vineyard.core.codegen:main
+
+[vineyardcli]
+vineyard-codegen = vineyard.cli:main
+
+[vineyardctl]
+vineyard-codegen = vineyard.deploy.ctl:_main
