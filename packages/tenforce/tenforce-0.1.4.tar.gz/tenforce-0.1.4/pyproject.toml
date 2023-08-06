@@ -1,0 +1,19 @@
+[project]
+name = "tenforce"
+version = "0.1.4"
+authors = [
+    {name = "Hunter LaFaille", email = "hunterlafaille@gmail.com"}
+]
+keywords = ["type enforcement", "validation", "fast", "types", "cython"]
+description = "Type enforcement for Python"
+readme = "README.md"
+license = {file = "LICENSE.md"}
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["setuptools", "Cython==0.29.34"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["tenforce*", "tenforce/lib/*"]
+exclude = ["docs*", "tests*"]
