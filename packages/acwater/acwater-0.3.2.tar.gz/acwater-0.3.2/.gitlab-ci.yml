@@ -1,0 +1,189 @@
+#image: python:latest
+#
+## Tell Gitlab to load these environmental variables
+#variables:
+#    PYPI_USER: SECURE
+#    PYPI_PASS: SECURE
+#
+#stages:
+#    - test
+##    - build
+##    - deploy
+##
+##before_script:
+##    - pip install tox
+##
+#
+#test_acwater:
+#  stage: test
+#  script:
+##     - source /root/miniconda3/bin/activate ci_env
+##
+##     # install EnPT
+##     - pip install .
+#
+#    # create the docs
+#    - pip install sphinx_rtd_theme  # Read-the-docs theme for SPHINX documentation
+#    - make docs
+#  artifacts:
+#    paths:
+#    - htmlcov/
+#    - docs/_build/html/
+#    - nosetests.html
+#    - nosetests.xml
+#    - tests/linting
+#  when: always
+#
+#test_styles:
+#  stage: test
+#  script:
+#    - source /root/miniconda3/bin/activate ci_env
+#    - make lint
+#  artifacts:
+#    paths:
+#    # - tests/data/test_outputs/*.log  # log files are deleted by test teardown method
+#    - tests/linting/flake8.log
+#    - tests/linting/pycodestyle.log
+#    - tests/linting/pydocstyle.log
+#    when: always
+
+##pep8:
+##    stage: build
+##    script:
+##        - tox -e flake8 | tee pep8.log
+##        - export COUNT=$(grep -E '^[0-9]+' pep8.log)
+##        - curl -o pep8.svg "https://baas_url?label=PEP8&value=${COUNT}&threshold=?<10:green;?<100:yellow;?<200:orange;red"
+##    artifacts:
+##        paths:
+##            - pep8
+##            - pep8.svg
+##        expire_in: 1 week
+##    except:
+##        - tags
+##
+##lint:
+##    stage: build
+##    script:
+##        - pip install pylint pylint-json2html
+##        - python setup.py develop
+##        - pip install -r requirements_dev.txt
+##        - tox -e pylint | tee pylint.log
+##        - export SCORE=$(grep 'Your code has been rated at ' pylint.log | sed 's|^.* at \([0-9.]*\)/10.*$|\1|')
+##        - curl -o pylint.svg "https://baas_url?label=pylint&value=${SCORE}&threshold=?>9:green;?>7:yellow;?>5:orange;red"
+##        - make lint-report
+##    artifacts:
+##        paths:
+##            - pylint.svg
+##            - pylint.html
+##        expire_in: 1 week
+##    except:
+##        - tags
+##
+#docs:
+#    stage: build
+#    script:
+#        - pip install -r requirements_dev.txt
+#        - make docs
+#        - curl -o sphinx.svg "https://baas_url?label=doc&svalue=passing&threshold=blue"
+#    artifacts:
+#        paths:
+#            - docs/_build/html
+#            - sphinx.svg
+#        expire_in: 1 week
+#    except:
+#        - tags
+##
+##coverage:
+##    stage: build
+##    script:
+##        - pip install -r requirements_dev.txt
+##        - python setup.py develop
+##        - make coverage
+##    artifacts:
+##        paths:
+##            - htmlcov/
+##        expire_in: 1 week
+##    coverage: '/^TOTAL.*\s+(\d+\%)$/'
+##    except:
+##        - tags
+##
+##pages:
+##    stage: deploy
+##    script:
+##        - mkdir -p public/docs
+##        - mv docs/_build/html/* public/docs
+##        - mv *.svg public/
+##        - mv pylint.html public/
+##        - mv pep8 public/
+##        - mv htmlcov/ public/coverage
+##    artifacts:
+##        paths:
+##            - public/
+##        expire_in: 1 week
+##    dependencies:
+##        - docs
+##        - lint
+##        - pep8
+##        - coverage
+##    only:
+##        - master
+##
+##python27:
+##    image: python:2.7
+##    stage: test
+##    script:
+##        - tox -e py27
+##    except:
+##        - tags
+##
+##python34:
+##    image: python:3.4
+##    stage: test
+##    script:
+##        - tox -e py34
+##    except:
+##        - tags
+##
+##python35:
+##    image: python:3.5
+##    stage: test
+##    script:
+##        - tox -e py35
+##    except:
+##        - tags
+##
+##python36:
+##    image: python:3.6
+##    stage: test
+##    script:
+##        - tox -e py36
+##    except:
+##        - tags
+##
+#python37:
+#    image: python:3.7
+#    stage: test
+#    script:
+#        - tox -e py37
+#    except:
+#        - tags
+#
+#build:
+#    stage: build
+#    script:
+#        - pip install -r requirements_dev.txt
+#        - make dist
+#    artifacts:
+#        paths:
+#            - dist/
+#        expire_in: 1 week
+##
+##upload:
+##    stage: deploy
+##    script:
+##        - pip install twine
+##        - twine upload --repository pypi dist/* --username $PYPI_USER --password $PYPI_PASS
+##    dependencies:
+##        - build
+##    only:
+##        - tags

@@ -1,0 +1,65 @@
+# Atmospheric correction of EnMAP hyperspectral data for water surfaces
+# acwater.py is a wrapper for Polymer algorithm (Hygeos) to run in EnPT (GFZ-Potsdam)
+# Polymer was further adapted to process EnMAP L1B satellite data.
+#
+# Copyright (C) 2020  by Alfred Wegener Institute (AWI), Helmholtz Centre for Polar and Marine Research
+# Astrid Bracher (AWI Bremerhaven, abracher@awi.de),
+# Mariana Soppa (AWI Bremerhaven, msoppa@awi.de),
+# Leonardo Alvarado (AWI Bremerhaven, leonardo.alvarado@awi.de) and,
+# Brenner Silva (AWI Bremerhaven)
+#
+# This software was developed at the Alfred-Wegener-Institute, Bremerhaven, supported by the DLR Space Administration
+# with funds of the German Federal Ministry of Economic Affairs and Energy
+# (on the basis of a decision by the German Bundestag: 50 EE 1529, 50 EE 1923 and 50 EE 1915)
+# and contributions from GFZ, Potsdam.
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+#
+# Please note that for proposed application of this software, specific terms do apply to the software dependencies:
+# - Polymer is distributed under its own licence (https://www.hygeos.com/polymer/licence)
+# - EnPT is free software (GPLv3), with dependencies (https://gitext.gfz-potsdam.de/EnMAP/GFZ_Tools_EnMAP_BOX/EnPT/-/blob/master/LICENSE)
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+# For mor information on the GNU Lesser General Public License see <http://www.gnu.org/licenses/>.
+
+
+GNU GENERAL PUBLIC LICENSE
+                      Version 3, 29 June 2007
+
+    Atmospheric correction of hyperspectral data on water surfaces
+    using Polymer (Hygeos) and EnPT (GFZ-Potsdam)
+    Copyright (C) 2020 by AWI, Phytooptics group of Prof. Astrid Bracher
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Also add information on how to contact you by electronic and paper mail.
+
+  You should also get your employer (if you work as a programmer) or school,
+if any, to sign a "copyright disclaimer" for the program, if necessary.
+For more information on this, and how to apply and follow the GNU GPL, see
+<http://www.gnu.org/licenses/>.
+
+  The GNU General Public License does not permit incorporating your program
+into proprietary programs.  If your program is a subroutine library, you
+may consider it more useful to permit linking proprietary applications with
+the library.  If this is what you want to do, use the GNU Lesser General
+Public License instead of this License.  But first, please read
+<http://www.gnu.org/philosophy/why-not-lgpl.html>.
+
