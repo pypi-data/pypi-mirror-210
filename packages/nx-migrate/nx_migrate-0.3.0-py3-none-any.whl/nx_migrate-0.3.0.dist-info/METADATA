@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: nx-migrate
+Version: 0.3.0
+Summary: call nx migrate anywhere
+Home-page: https://github.com/time4Wiley/nx.migrate
+License: MIT
+Author: Wei Sun
+Author-email: sunwei415@126.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: argparse (>=1.4.0,<2.0.0)
+Project-URL: Repository, https://github.com/time4Wiley/nx.migrate
+Description-Content-Type: text/markdown
+
+# nx_migrate Package
+
+## installation
+```
+pip install nx-migrate
+```
+
+## Usage
+- Example on Windows
+```
+nx-migrate -u "C:\my-monorepo"
+```
+
+- Example on Linux/macOS
+```
+nx-migrate -u "/Users/me/my-monorepo"
+```
+
+
