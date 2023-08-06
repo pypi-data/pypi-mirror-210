@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "Report-Ranger"
+version = "2.0"
+description = "Create a report using markdown files."
+authors = ["Matthew Strahan <matt@volkis.com.au>"]
+packages = [
+    { include = "report_ranger" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mistune = "*"
+kaleido = "0.2.1"
+jinja2 = "*"
+argparse = "*"
+pyyaml = "*"
+cerberus = "*"
+num2words = "*"
+plotly = "*"
+pandas = "*"
+tabulate = "*"
+openpyxl = "*"
+numpy = "*"
+watchdog = "*"
