@@ -1,0 +1,67 @@
+[spacy_architectures]
+eds.span_multi_classifier.v1 = edsnlp.pipelines.trainable.span_qualifier.span_multi_classifier:create_model
+eds.stack_crf_ner_model.v1 = edsnlp.pipelines.trainable.nested_ner.stack_crf_ner:create_model
+
+[spacy_factories]
+AIDS = edsnlp.components:AIDS
+CKD = edsnlp.components:CKD
+COPD = edsnlp.components:COPD
+accents = edsnlp.components:accents
+adicap = edsnlp.components:adicap
+alcohol = edsnlp.components:alcohol
+ccmu = edsnlp.components:ccmu
+cerebrovascular_accident = edsnlp.components:cerebrovascular_accident
+charlson = edsnlp.components:charlson
+cim10 = edsnlp.components:cim10
+congestive_heart_failure = edsnlp.components:congestive_heart_failure
+connective_tissue_disease = edsnlp.components:connective_tissue_disease
+consultation_dates = edsnlp.components:consultation_dates
+context = edsnlp.components:context
+contextual_matcher = edsnlp.components:contextual_matcher
+covid = edsnlp.components:covid
+dates = edsnlp.components:dates
+dementia = edsnlp.components:dementia
+diabetes = edsnlp.components:diabetes
+drugs = edsnlp.components:drugs
+eds.span_qualifier = edsnlp.pipelines.trainable.span_qualifier.factory:create_component
+endlines = edsnlp.components:endlines
+family = edsnlp.components:family
+gemsa = edsnlp.components:gemsa
+hemiplegia = edsnlp.components:hemiplegia
+history = edsnlp.components:history
+hypothesis = edsnlp.components:hypothesis
+leukemia = edsnlp.components:leukemia
+liver_disease = edsnlp.components:liver_disease
+lowercase = edsnlp.components:remove_lowercase
+lymphoma = edsnlp.components:lymphoma
+matcher = edsnlp.components:matcher
+measurements = edsnlp.components:measurements
+myocardial_infarction = edsnlp.components:myocardial_infarction
+negation = edsnlp.components:negation
+nested_ner = edsnlp.components:nested_ner
+normalizer = edsnlp.components:normalizer
+peptic_ulcer_disease = edsnlp.components:peptic_ulcer_disease
+peripheral_vascular_disease = edsnlp.components:peripheral_vascular_disease
+pollution = edsnlp.components:pollution
+priority = edsnlp.components:priority
+quotes = edsnlp.components:quotes
+reason = edsnlp.components:reason
+rspeech = edsnlp.components:rspeech
+sections = edsnlp.components:sections
+sentences = edsnlp.components:sentences
+sofa = edsnlp.components:sofa
+solid_tumor = edsnlp.components:solid_tumor
+terminology = edsnlp.components:terminology
+tnm = edsnlp.components:tnm
+tobacco = edsnlp.components:tobacco
+umls = edsnlp.components:umls
+
+[spacy_languages]
+eds = edsnlp.language:EDSLanguage
+
+[spacy_misc]
+eds.candidate_span_qualifier_getter = edsnlp.pipelines.trainable.span_qualifier.factory:create_candidate_getter
+
+[spacy_scorers]
+eds.nested_ner_scorer.v1 = edsnlp.pipelines.trainable.nested_ner.nested_ner:make_nested_ner_scorer
+eds.span_qualifier_scorer.v1 = edsnlp.pipelines.trainable.span_qualifier.factory:create_scorer
