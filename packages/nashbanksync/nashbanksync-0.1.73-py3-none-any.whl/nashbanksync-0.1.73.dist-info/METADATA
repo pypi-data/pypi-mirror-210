@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: nashbanksync
+Version: 0.1.73
+Summary: Python library for connecting to the Nash Banks Framework
+Home-page: https://github.com/NashInc/NashSync.git
+Author: Dansol Obondo
+Author-email: dansol@nashafrica.co
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Nasheq Bank Sync Standardized A.P.I.s Python Integrations
+
+## Quick Guide
+Below are the steps on how to get the web app up and running
+
+1.	Install Dependencies:
+```bash
+    pip install requests
+    pip install django-compression-middleware
+    pip install djangorestframework
+```
+2.	Install Nash Sync ERP Library:
+```bash
+    pip install nashbanksync
+```
+3.	View get started documentation:
+```bash
+    https://nashbanksuite.readme.io/v1.2.0/docs
+```
+4.	Start Coding
