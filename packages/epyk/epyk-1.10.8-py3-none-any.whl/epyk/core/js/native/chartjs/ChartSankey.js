@@ -1,0 +1,1 @@
+function chartSankey(a,b){return{datasets:[{data:a}]};}
