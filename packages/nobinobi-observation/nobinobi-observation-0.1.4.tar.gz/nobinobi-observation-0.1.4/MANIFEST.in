@@ -1,0 +1,14 @@
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+include requirements.txt
+include requirements_dev.txt
+include requirements_test.txt
+recursive-include nobinobi_observation *.html *.png *.gif *js *.css *jpg *jpeg *svg *py *json
+recursive-include nobinobi_observation/static *
+recursive-include nobinobi_observation/templates *
+recursive-include nobinobi_observation/locale *
+recursive-include nobinobi_observation/fixtures *
+
