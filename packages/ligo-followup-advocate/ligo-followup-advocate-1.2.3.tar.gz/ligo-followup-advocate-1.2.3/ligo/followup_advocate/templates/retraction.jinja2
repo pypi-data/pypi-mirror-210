@@ -1,0 +1,9 @@
+{% include 'authors.jinja2' %}
+
+{% filter rewrap %}
+The trigger {{gracedb_id}} is no longer considered to be a candidate of interest.
+{% if earlywarning %}
+This candidate included at least one detection prior to the merge time but no significant detections that included the merger, which indicates this candidate is likely a noise transient.
+{% endif %}
+**ADD EXPLANATION AS NECESSARY FOR RETRACTION**
+{% endfilter %}

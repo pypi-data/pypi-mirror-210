@@ -1,0 +1,37 @@
+{% from 'macros.jinja2' import naturalfar, grbmission, grbmission_targeted, naturalotherexternalpipelines, propername %}
+{% if not update_alert %}{% include 'authors.jinja2' %}
+
+{% include 'initial_body.jinja2' %}
+{% endif %}
+{% filter rewrap %}
+A search performed by the RAVEN pipeline found a temporal coincidence between
+{{gracedb_id}} and a {% if snews %}SNEWS supernova{% elif grb %}{% if subthreshold %}sub-threshold {% endif %}{{grbmission(external_pipeline)}}{% endif %} {{propername(external_trigger)}} **CITE ORIGINAL GCN FOR THE EXTERNAL TRIGGER FROM https://gcn.gsfc.nasa.gov/gcn3_archive.html, e.g., (Bhalerao et al., GCN Circular XXXXX)**.
+The {% if snews %}neutrino{% elif grb %}GRB{% endif %} trigger time is {{latency}} seconds {{beforeafter}} the GW candidate event.
+{% if grb %}
+The estimated joint false alarm rate for the coincidence using just timing info is {{naturalfar(time_coinc_far)}}.
+{% if subthreshold_targeted %}The GRB candidate was found during a joint targeted search between the LIGO/Virgo/KAGRA collaboration and {{grbmission_targeted(external_pipeline)}}, and has a false alarm rate of {{naturalfar(far_grb)}}. {% endif %}
+{% if other_ext_pipelines %}RAVEN has also identified {% if other_ext_pipelines|length == 1 %}an additional detection{% elif other_ext_pipelines|length > 1%}additional detections{% endif %} from {{naturalotherexternalpipelines(other_ext_pipelines)}}.{% endif %}
+{% endif %}
+
+{% if combined_skymap %}
+{% if combined_skymaps|length == 1 %}A combined sky map is{% else %}Combined sky maps are{% endif %} also available:
+{% for skymap in combined_skymaps %}
+ * {{skymap.filename}}, an {% if skymap.alert_type in ['preliminary','initial'] %}initial{% elif skymap.alert_type == 'earlywarning' %}early warning{% else %}updated{% endif %} localization, distributed via GCN notice about {{skymap.latency|abs|naturaldelta}} {% if skymap.latency < 0 %}before {% else %}after {% endif %}the candidate event time.
+{% endfor %}
+
+For the {{combined_skymap}} sky map, the {{cl}}% credible region is {{combined_skymap_greedy_area|round|int}} deg2.
+{% endif %}
+{% if external_pipeline|lower == 'swift'%}
+The joint localization is dominated by the {{grbmission(external_pipeline)}} candidate, which was identified with right ascension, declination of {{'%0.3f' % ext_ra|float}}, {{'%0.3f' % ext_dec|float}}{% if ext_error %} and 90% containment error radius of {{'%0.3f' % ext_error|float}} deg{% endif %}.
+{% endif %}
+{% if combined_skymap and space_time_coinc_far is not none %}
+Considering the overlap of the individual sky maps, the estimated joint false alarm rate for the spatial and temporal coincidence is {{naturalfar(space_time_coinc_far)}}.
+{% elif combined_skymap and space_time_coinc_far is none %}
+The spatial and temporal coincidence is not yet available.
+{% endif %}
+
+{% if not update_alert %}
+{% include 'userguide_conclusion.jinja2'%}
+{% include 'numbered_pipeline_citations.jinja2' %}
+{% endif %}
+{% endfilter %}

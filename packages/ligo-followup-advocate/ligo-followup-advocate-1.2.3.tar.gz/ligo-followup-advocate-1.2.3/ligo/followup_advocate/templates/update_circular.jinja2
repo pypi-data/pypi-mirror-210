@@ -1,0 +1,29 @@
+{% from 'macros.jinja2' import citeskymap, citenumberedpipelines,
+                               naturalinstruments, renamegroup %}
+
+{% include 'authors.jinja2' %}
+
+{% filter rewrap %}
+We have conducted further analysis of the {{naturalinstruments(instruments)}} data around
+the time of the {{renamegroup(group)}} ({{(group)}}) candidate {{gracedb_id}}
+(GCN Circular ***CITE ORIGINAL GCN ID, e.g. 25012***). {% if skymaps|length != 0 and 'sky_localization' in update_types %}
+Parameter estimation has been performed using
+{{citeskymap(updated_skymap.pipeline, citation_index)}} and a new sky map, {{preferred_skymap}},
+distributed via GCN Notice, is available for retrieval from the
+GraceDB event page:
+
+{{ gracedb_service_url }}{{ gracedb_id }}
+{% else %}
+
+{% endif %}
+
+{% if 'p_astro' in update_types %}{% include 'p_astro.jinja2' %}{% endif %}
+{% if 'em_bright' in update_types %}{% include 'em_bright.jinja2' %}{% endif %}
+{% if skymaps|length != 0 and 'sky_localization' in update_types %}{%- include 'skymap_info.jinja2' -%}{% endif %}
+{% if 'raven' in update_types %}{% include 'RAVEN_circular.jinja2' %}{% endif %}
+{% include 'userguide_conclusion.jinja2' %}
+
+{% if (skymaps|length != 0 and 'sky_localization' in update_types) or ('em_bright' in update_types) %}
+{% include 'numbered_pipeline_citations.jinja2' %}
+{% endif %}
+{% endfilter %}
