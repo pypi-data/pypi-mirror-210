@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=/usr/local
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: gncpy
+Description: A C++ package for GNC routines that can be wrapped by python.
+Version: 0.2.1
+Libs: -L${libdir} -l
+Cflags: -I${includedir}
