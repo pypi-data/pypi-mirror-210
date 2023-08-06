@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: HanPud
+Version: 0.1.dev0
+Summary: Han Pud (ห่าน พูด): Thai super large generative model
+Home-page: https://github.com/wannaphong/HanPud
+Author: Wannaphong
+Author-email: wannaphong@yahoo.com
+License: Apache Software License 2.0
+Project-URL: Source, https://github.com/wannaphong/HanPud
+Project-URL: Bug Reports, https://github.com/wannaphong/HanPud/issues
+Keywords: Thai,NLP,natural language processing,text analytics,text processing,localization,computational linguistics,Thai language
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pythainlp (>=4.0.0)
+Requires-Dist: transformers
+Requires-Dist: sentencepiece
+
+# HanPud
+
+Han Pud (ห่าน พูด): Thai super large generative model
+
+## Install
+
+> pip install hanpud
