@@ -1,0 +1,14 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "ss_logger"
+author = "amitskidrow"
+author-email = "amitskidrow@gmail.com"
+home-page = "https://pypi.org/project/ss-logger/"
+description-file = "README.md"
+requires = ["snakecase"]
+
+[tool.flit.scripts]
+# If you want to create command line scripts, you can add them here
