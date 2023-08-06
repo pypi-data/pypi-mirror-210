@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: traceflows
+Version: 0.0.1
+Summary: traceflows
+Home-page: https://github.com/ameli/traceflows
+Download-URL: https://github.com/ameli/traceflows/archive/master.zip
+Author: Siavash Ameli
+Author-email: sameli@berkeley.edu
+Project-URL: Documentation, https://github.com/ameli/traceflows/blob/master/README.rst
+Project-URL: Source, https://github.com/ameli/traceflows
+Project-URL: Tracker, https://github.com/ameli/traceflows/issues
+Keywords: Python
+Platform: Linux
+Platform: OSX
+Platform: Windows
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=2.7
+Description-Content-Type: text/x-rst
+License-File: LICENSE.txt
+License-File: AUTHORS.txt
+Requires-Dist: numpy
+Requires-Dist: scipy
+Provides-Extra: test
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: codecov ; extra == 'test'
+
+Trace!
