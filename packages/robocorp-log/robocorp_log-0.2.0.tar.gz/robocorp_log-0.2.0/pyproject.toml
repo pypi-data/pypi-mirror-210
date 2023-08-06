@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "robocorp-log"
+version = "0.2.0"
+description = "Automatic trace logging for Python"
+authors = [
+    "Fabio Zadrozny <fabio@robocorp.com>",
+]
+readme = "README.md"
+packages = [{include = "robocorp/log", from = "src"}]
+include = ["**/_index.py", "**/_index_v2.py", "**/_index_v3.py"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Logging",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+tomli = { version = "^2.0.1", python = "<3.11" }
+
+[tool.poetry.group.dev.dependencies]
+robocorp-devutils = {path = "../devutils/", develop = true}
+
+[tool.mypy]
+mypy_path = "src:tests"
+
+[[tool.mypy.overrides]]
+module = "setuptools.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pytest_timeout.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pytest_timeout.*"
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
