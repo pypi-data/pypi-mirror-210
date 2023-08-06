@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: simple-wait
+Version: 1.0.8
+Summary: Simple wait
+Author-email: Ilya Petrash <ilya.petrash@inbox.ru>
+License: MIT License
+        
+        Copyright (c) 2023 Ilya Petrash
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/gil9red/simple-wait
+Project-URL: Bug Tracker, https://github.com/gil9red/simple-wait/issues
+Keywords: wait
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+# simple-wait
+Simple wait
+
+[![tests](https://github.com/gil9red/simple-wait/actions/workflows/run-tests.yml/badge.svg)](https://github.com/gil9red/simple-wait/actions/workflows/run-tests.yml)
+[![upload to pypi](https://github.com/gil9red/simple-wait/actions/workflows/python-publish.yml/badge.svg)](https://github.com/gil9red/simple-wait/actions/workflows/python-publish.yml)
+[![pypi](https://img.shields.io/pypi/v/simple-wait.svg)](https://pypi.org/project/simple-wait/)
+[![pypi python versions](https://img.shields.io/pypi/pyversions/simple-wait.svg)](https://pypi.org/project/simple-wait/)
+[![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://pypi.org/project/black/)
+[![License](https://img.shields.io/badge/license-MIT-black.svg)](https://opensource.org/licenses/MIT)
+
+## Example
+```python
+from datetime import datetime
+from simple_wait import wait
+
+
+print("Start wait")
+wait(seconds=5)
+print("Finish wait")
+
+while True:
+    print()
+    print("Current datetime:", datetime.now())
+    print()
+    wait(minutes=1, seconds=30)
+```
+
+```python
+import traceback
+from simple_wait import wait
+
+
+while True:
+    try:
+        # Process
+        ...
+        
+        wait(hours=8)
+
+    except:
+        print(traceback.format_exc())
+        wait(minutes=15)
+```
+
+## Installation
+You can install with:
+```
+pip install simple-wait
+```
+
+Install or upgrade:
+```
+pip install --upgrade simple-wait
+```
+
+Install or update from github:
+```
+pip install git+https://github.com/gil9red/simple-wait
+```
+
+## Description
+
+Parameters `wait` function:
+
+| Name                   | Type                 | Default                                        |
+|------------------------|----------------------|------------------------------------------------|
+| days                   | `int`                | `0`                                            |
+| seconds                | `int`                | `0`                                            |
+| microseconds           | `int`                | `0`                                            |
+| milliseconds           | `int`                | `0`                                            |
+| minutes                | `int`                | `0`                                            |
+| hours                  | `int`                | `0`                                            |
+| weeks                  | `int`                | `0`                                            |
+| progress_bar           | `Iterable[str]`      | `("&#124;", "/", "-", "\\")`                   |
+| delay_seconds          | `float`              | `1`                                            |
+| log_pattern_progress   | `str`                | `"[{progress_bar}] Time left to wait: {left}"` |
+| log_pattern_cancel     | `str`                | `"\nWaiting canceled\n"`                       |
+| log_pattern_clear_line | `str`                | `"\r" + " " * 100 + "\r"`                      |
+| log                    | `TextIOWrapper`      | `sys.stdout`                                   |
+| is_need_stop           | `Callable[[], bool]` | `lambda: False`                                |
