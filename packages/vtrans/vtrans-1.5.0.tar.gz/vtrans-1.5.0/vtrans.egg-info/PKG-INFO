@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: vtrans
+Version: 1.5.0
+Summary: This is a self-updating translator powered by Google Translate for free and unlimited usage.
+Home-page: https://github.com/megalosVigneswaran/vtrans/tree/main/vtrans
+Author: S.Vigneswaran
+Author-email: t896242@gmail.com
+License: MIT
+Keywords: translator,googletranslate,self-updating,googletrans
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: Microsoft :: Windows :: Windows 8.1
+Classifier: Operating System :: Microsoft :: Windows :: Windows 8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+License-File: LICENCE.txt
+
+""" THIS LIBRARY HEPLS TO TRANSLATE LANGAUGES, THE SPECIAL THING IN THIS LIBRARY IS IT CAN UPDATE IT LANGAUGES.
+
+    IT WORKS WITH THE BASE OF googletrans LIBRARY.BUT googletrans IS NOT UPDATABLE..
+
+    vtrans UPDATE THE 'LANGAUGES' IN constants.py in googletrans.
+    
+    WHEN THE GOOGLE UPDATE their LANGUAGES IN GOOGLE TRANSLATOR vtrans WILL AUTOMATICALLY UPDATE IT SELF.
+    
+    IT CHECK UPDATING IN EVERY IMPORT OF THIS LIBRARY IT MAKE IT LITTLE BIT SLOWER,
+    
+    BUT YOU CAN DISABLE AUTOUPDATE CHECKING BY THIS CODE '''vtrans.config(auto_updating = False)'''."""
+
+
+This is a translating library to translate langauges.
+
+It basicaly work with googletrans library.
+
+special thing in this lbrary is it cam update it self.
+
+but googletrans library can't update it self
+
+So it have more langauges.
+
+If google update their langauges in google translate it update it self.
+
+Change log
+==========
+
+1.5.0(27/05/2023)
+-------------------
+
+-First Release
