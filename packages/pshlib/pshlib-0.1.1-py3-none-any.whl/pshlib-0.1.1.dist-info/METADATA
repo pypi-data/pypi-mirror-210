@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: pshlib
+Version: 0.1.1
+Summary: Causal embedding of shell commands into python code.
+Home-page: https://gitlab.com/ewiger/pshlib
+Author: Yauhen Yakimovich
+Author-email: yauhen.yakimovich.mail@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+
+# pshlib
+
+Causal embedding of shell commands into python code.
+
+## Example
+
+You can break single long bash lines into nested python like multi-line statements:
+
+```python
+    res = psh(
+    'VAR=world',
+    """
+        echo This is
+            a multiline hello
+            $VAR!
+    """,
+    ).output
+    print(res)
+    excepted = 'This is a multiline hello world!\n'
+    assert excepted == res
+```
+
+## Installation
+
+with pip:
+
+    pip install pshlib
+
+with poetry:
+
+    poetry add git+https://gitlab.com:ewiger/pshlib.git
+
+## License
+
+Licensed under MIT. See LICENSE for details.
+
+
+## Publish
+
+    poetry publish --build
+
