@@ -1,0 +1,307 @@
+Metadata-Version: 2.1
+Name: mafese
+Version: 0.1.1
+Summary: MAFESE: Metaheuristic Algorithm for Feature Selection - An Open Source Python Library
+Home-page: https://github.com/thieu1995/mafese
+Author: Thieu
+Author-email: nguyenthieu2102@gmail.com
+License: GPLv3
+Project-URL: Documentation, https://mafese.readthedocs.io/
+Project-URL: Source Code, https://github.com/thieu1995/mafese
+Project-URL: Bug Tracker, https://github.com/thieu1995/mafese/issues
+Project-URL: Change Log, https://github.com/thieu1995/mafese/blob/master/ChangeLog.md
+Project-URL: Forum, https://t.me/+fRVCJGuGJg1mNDg1
+Keywords: engineering optimization problems,mathematical optimization,feature selection,classification problem,feature selector,dimensionality reduction,subset selection,wrapper methods,embedded methods,mutual information,correlation-based feature selection,recursive feature selection,principal component analysis,PCA,lasso regularization,ridge regularization,Genetic algorithm (GA),Particle swarm optimization (PSO),Ant colony optimization (ACO),Differential evolution (DE),Simulated annealing,Grey wolf optimizer (GWO),Whale Optimization Algorithm (WOA),confusion matrix,recall,precision,accuracy,K-Nearest Neighbors,random forest,support vector machine,pearson correlation coefficient (PCC),spearman correlation coefficient (SCC),relief,multi-objectives optimization problems,Stochastic optimization,Global optimization,Convergence analysis,Search space exploration,Local search,Computational intelligence,Robust optimization,Performance analysis,Intelligent optimization,Simulations
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: System :: Benchmark
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE
+
+
+<p align="center"><img style="height:300px;" src=".github/img/logo.png" alt="MAFESE" title="MAFESE"/></p>
+
+---
+
+
+[![GitHub release](https://img.shields.io/badge/release-0.1.1-yellow.svg)](https://github.com/thieu1995/mafese/releases)
+[![Wheel](https://img.shields.io/pypi/wheel/gensim.svg)](https://pypi.python.org/pypi/mafese) 
+[![PyPI version](https://badge.fury.io/py/mafese.svg)](https://badge.fury.io/py/mafese)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mafese.svg)
+![PyPI - Status](https://img.shields.io/pypi/status/mafese.svg)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/mafese.svg)
+[![Downloads](https://pepy.tech/badge/mafese)](https://pepy.tech/project/mafese)
+[![Tests & Publishes to PyPI](https://github.com/thieu1995/mafese/actions/workflows/publish-package.yaml/badge.svg)](https://github.com/thieu1995/mafese/actions/workflows/publish-package.yaml)
+![GitHub Release Date](https://img.shields.io/github/release-date/thieu1995/mafese.svg)
+[![Documentation Status](https://readthedocs.org/projects/mafese/badge/?version=latest)](https://mafese.readthedocs.io/en/latest/?badge=latest)
+[![Chat](https://img.shields.io/badge/Chat-on%20Telegram-blue)](https://t.me/+fRVCJGuGJg1mNDg1)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/thieu1995/mafese.svg)](http://isitmaintained.com/project/thieu1995/mafese "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/thieu1995/mafese.svg)](http://isitmaintained.com/project/thieu1995/mafese "Percentage of issues still open")
+![GitHub contributors](https://img.shields.io/github/contributors/thieu1995/mafese.svg)
+[![GitTutorial](https://img.shields.io/badge/PR-Welcome-%23FF8300.svg?)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
+[![DOI](https://zenodo.org/badge/545209353.svg)](https://doi.org/10.5281/zenodo.7969042)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+
+MAFESE (Metaheuristic Algorithms for FEature SElection) is the largest python library focused on feature selection 
+using meta-heuristic algorithms. 
+
+* **Free software:** GNU General Public License (GPL) V3 license
+* **Total Wrapper-based (Metaheuristic Algorithms)**: > 170 methods 
+* **Total FilterSelector-based (Statistical-based)**: > 6 methods
+* **Total classification dataset**: > 20 datasets
+* **Total estimator methods**: > 3 methods
+* **Total performance metrics (as fitness)**: > 10 metrics
+* **Documentation:** https://mafese.readthedocs.io/en/latest/
+* **Python versions:** 3.7.x, 3.8.x, 3.9.x, 3.10.x, 3.11.x
+* **Dependencies:** numpy, scipy, scikit-learn, pandas, matplotlib, mealpy, permetrics
+
+
+
+# Installation
+
+### Install with pip
+
+Install the [current PyPI release](https://pypi.python.org/pypi/mafese):
+```sh 
+$ pip install mafese==0.1.1
+```
+
+### Install directly from source code
+```sh 
+$ git clone https://github.com/thieu1995/mafese.git
+$ cd mafese
+$ python setup.py install
+```
+
+
+### Lib's structure
+
+```code 
+docs
+examples
+mafese
+    wrapper
+        recursive.py
+        sequential.py
+    filter.py
+    utils
+        correlation.py
+        encoder.py
+        estimator.py
+        validator.py
+    __init__.py
+    selector.py
+README.md
+setup.py
+```
+
+
+# Usage
+
+After installation, you can import MAFESE as any other Python module:
+
+```sh
+$ python
+>>> import mafese
+>>> mafese.__version__
+```
+
+Let's go through some examples.
+
+
+
+### Examples
+
+First, you need to load your dataset, or you can load own available datasets:
+
+```python 
+# Load available dataset from MAFESE
+from mafese import get_dataset
+
+# Try unknown data
+get_dataset("unknown")
+# Enter: 1
+
+data = get_dataset("Arrhythmia")
+```
+
+
+```python
+# Load your own dataset 
+import pandas as pd
+from mafese import Data
+
+# load X and y
+# NOTE mafese accepts numpy arrays only, hence the .values attribute
+dataset = pd.read_csv('examples/dataset.csv', index_col=0).values
+X, y = dataset[:, 0:-1], dataset[:, -1]
+data = Data(X, y)
+```
+
+Next, split dataset into train and test set
+
+```python 
+data.split_train_test(test_size=0.2, inplace=True)
+print(data.X_train[:2].shape)
+print(data.y_train[:2].shape)
+```
+
+
+Next, how to use Recursive wrapper-based method:
+
+```python
+from mafese.wrapper.recursive import RecursiveSelector
+
+# define mafese feature selection method
+feat_selector = RecursiveSelector(problem="classification", estimator="rf", n_features=5)
+
+# find all relevant features - 5 features should be selected
+feat_selector.fit(data.X_train, data.y_train)
+
+# check selected features - True (or 1) is selected, False (or 0) is not selected
+print(feat_selector.selected_feature_masks)
+print(feat_selector.selected_feature_solution)
+
+# check the index of selected features
+print(feat_selector.selected_feature_indexes)
+
+# call transform() on X to filter it down to selected features
+X_train_selected = feat_selector.transform(data.X_train)
+X_test_selected = feat_selector.transform(data.X_test)
+```
+
+
+Or, how to use Sequential (backward or forward) wrapper-based method:
+
+```python
+from mafese.wrapper.sequential import SequentialSelector
+
+# define mafese feature selection method
+feat_selector = SequentialSelector(problem="classification", estimator="knn", n_features=3, direction="forward")
+
+# find all relevant features - 5 features should be selected
+feat_selector.fit(data.X_train, data.y_train)
+
+# check selected features - True (or 1) is selected, False (or 0) is not selected
+print(feat_selector.selected_feature_masks)
+print(feat_selector.selected_feature_solution)
+
+# check the index of selected features
+print(feat_selector.selected_feature_indexes)
+
+# call transform() on X to filter it down to selected features
+X_train_selected = feat_selector.transform(data.X_train)
+X_test_selected = feat_selector.transform(data.X_test)
+```
+
+
+Or, how to use Filter-based feature selection with different correlation methods:
+
+```python
+from mafese.filter import FilterSelector
+
+# define mafese feature selection method
+feat_selector = FilterSelector(problem='classification', method='SPEARMAN', n_features=5)
+
+# find all relevant features - 5 features should be selected
+feat_selector.fit(data.X_train, data.y_train)
+
+# check selected features - True (or 1) is selected, False (or 0) is not selected
+print(feat_selector.selected_feature_masks)
+print(feat_selector.selected_feature_solution)
+
+# check the index of selected features
+print(feat_selector.selected_feature_indexes)
+
+# call transform() on X to filter it down to selected features
+X_train_selected = feat_selector.transform(data.X_train)
+X_test_selected = feat_selector.transform(data.X_test)
+```
+
+
+
+For more usage examples please look at [examples](/examples) folder.
+
+### Shortcut 
+To call the class
+
+```code 
+from mafese import Data, get_dataset
+from mafese import SequentialSelector, RecursiveSelector, FilterSelector
+```
+
+
+# Get helps (questions, problems)
+
+* Official source code repo: https://github.com/thieu1995/mafese
+* Official document: https://mafese.readthedocs.io/
+* Download releases: https://pypi.org/project/mafese/
+* Issue tracker: https://github.com/thieu1995/mafese/issues
+* Notable changes log: https://github.com/thieu1995/mafese/blob/master/ChangeLog.md
+* Examples with different meapy version: https://github.com/thieu1995/mafese/blob/master/examples.md
+
+* This project also related to our another projects which are "meta-heuristics", "neural-network", and "optimization" 
+  check it here
+    * https://github.com/thieu1995/mealpy
+    * https://github.com/thieu1995/metaheuristics
+    * https://github.com/thieu1995/opfunu
+    * https://github.com/thieu1995/enoppy
+    * https://github.com/thieu1995/permetrics
+    * https://github.com/aiir-team
+
+
+**Want to have an instant assistant? Join our telegram community at [link](https://t.me/+fRVCJGuGJg1mNDg1)**
+We share lots of information, questions, and answers there. You will get more support and knowledge there.
+
+
+
+# References 
+
+If you are using mafese in your project, we would appreciate citations:
+
+```code 
+@software{nguyen_van_thieu_2023_7969043,
+  author       = {Nguyen Van Thieu},
+  title        = {MAFESE: Metaheuristic Algorithm for Feature Selection - An Open Source Python Library},
+  month        = may,
+  year         = 2023,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.7969042},
+  url          = {https://github.com/thieu1995/mafese}
+}
+```
+
+
+
+```code 
+1. https://neptune.ai/blog/feature-selection-methods
+2. https://www.blog.trainindata.com/feature-selection-machine-learning-with-python/
+3. https://github.com/LBBSoft/FeatureSelect
+4. https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-2754-0
+5. https://github.com/scikit-learn-contrib/boruta_py
+```
+
