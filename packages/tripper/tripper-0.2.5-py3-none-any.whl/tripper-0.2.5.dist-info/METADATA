@@ -1,0 +1,127 @@
+Metadata-Version: 2.1
+Name: tripper
+Version: 0.2.5
+Summary: A triplestore wrapper for Python.
+Keywords: triplestore,ontology,RDF
+Author-email: SINTEF <TEAM4.0@sintef.no>
+Requires-Python: ~=3.7
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Environment :: Plugins
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Requires-Dist: typing-extensions ~=4.6; python_version<'3.8'
+Requires-Dist: mike ~=1.1 ; extra == "dev"
+Requires-Dist: mkdocs ~=1.4 ; extra == "dev"
+Requires-Dist: mkdocs-awesome-pages-plugin ~=2.9 ; extra == "dev"
+Requires-Dist: mkdocs-material ~=9.1 ; extra == "dev"
+Requires-Dist: mkdocstrings[python-legacy] ~=0.21.2 ; extra == "dev"
+Requires-Dist: pre-commit ~=2.21 ; extra == "dev"
+Requires-Dist: pylint ~=2.13 ; extra == "dev"
+Requires-Dist: pytest ~=7.3 ; extra == "dev"
+Requires-Dist: pytest-cov ~=4.0 ; extra == "dev"
+Requires-Dist: EMMOntoPy ~=0.5 ; extra == "dev"
+Requires-Dist: rdflib ~=6.3 ; extra == "dev"
+Requires-Dist: SPARQLWrapper ~=2.0 ; extra == "dev"
+Requires-Dist: DLite-Python >=0.3.19,<1 ; extra == "dev"
+Requires-Dist: mike ~=1.1 ; extra == "docs"
+Requires-Dist: mkdocs ~=1.4 ; extra == "docs"
+Requires-Dist: mkdocs-awesome-pages-plugin ~=2.9 ; extra == "docs"
+Requires-Dist: mkdocs-material ~=9.1 ; extra == "docs"
+Requires-Dist: mkdocstrings[python-legacy] ~=0.21.2 ; extra == "docs"
+Requires-Dist: EMMOntoPy ~=0.5 ; extra == "docs"
+Requires-Dist: rdflib ~=6.3 ; extra == "docs"
+Requires-Dist: SPARQLWrapper ~=2.0 ; extra == "docs"
+Requires-Dist: DLite-Python >=0.3.19,<1 ; extra == "docs"
+Requires-Dist: pre-commit ~=2.21 ; extra == "pre-commit"
+Requires-Dist: pylint ~=2.13 ; extra == "pre-commit"
+Requires-Dist: pytest ~=7.3 ; extra == "testing"
+Requires-Dist: pytest-cov ~=4.0 ; extra == "testing"
+Requires-Dist: EMMOntoPy ~=0.5 ; extra == "testing"
+Requires-Dist: rdflib ~=6.3 ; extra == "testing"
+Requires-Dist: SPARQLWrapper ~=2.0 ; extra == "testing"
+Requires-Dist: DLite-Python >=0.3.19,<1 ; extra == "testing"
+Project-URL: Changelog, https://github.com/EMMC-ASBL/tripper/blob/main/CHANGELOG.md
+Project-URL: Documentation, https://EMMC-ASBL.github.io/tripper
+Project-URL: Home, https://github.com/EMMC-ASBL/tripper
+Project-URL: Issue Tracker, https://github.com/EMMC-ASBL/tripper/issues
+Project-URL: Package, https://pypi.org/project/tripper
+Project-URL: Source, https://github.com/EMMC-ASBL/tripper
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: pre-commit
+Provides-Extra: testing
+
+Tripper
+=======
+_Triplestore wrapper for Python providing a simple and consistent interface to a range of triplestore backends - the best ride when handling any triplestore._
+
+
+[![PyPI](https://img.shields.io/pypi/v/tripper?logo=pypi)](https://pypi.org/project/tripper)
+[![Documentation](https://img.shields.io/badge/documentation-informational?logo=github)](https://emmc-asbl.github.io/tripper/latest/)
+[![CI tests](https://github.com/EMMC-ASBL/tripper/workflows/CI%20-%20Tests/badge.svg)](https://github.com/EMMC-ASBL/tripper/actions/workflows/ci_tests.yml?query=branch%3Amain)
+
+
+Basic concepts
+--------------
+Tripper provides a simple and consistent interface to a range of triplestore backends.
+It strives for simplicity and is modelled after [rdflib] (with a few simplifications).
+
+In Tripper:
+
+* All IRIs are represented by Python strings.
+  Example: `"http://emmo.info/emmo#Atom"`
+
+* Blank nodes are strings starting with "_:".
+  Example: `"_:bnode1"`
+
+* Literals are constructed with [`tripper.Literal`][Literal].
+  Example: `tripper.Literal(3.14, datatype=XSD.float)`
+
+To make it easy to work with IRIs, provide Tripper a set of pre-defined namespaces, like `XSD.float`.
+New namespaces can be defined with the [`tripper.Namespace`][Namespace] class.
+
+A triplestore wrapper is created with the [`tripper.Triplestore`][Triplestore] class.
+
+
+
+Documentation
+-------------
+* Getting started: See the [tutorial](docs/tutorial.md)
+* [Discovery of custom backends](docs/backend_discovery.md)
+* [Reference manual]
+
+
+Installation
+------------
+Tripper has by itself no dependencies outside the standard library, but the triplestore backends may have specific dependencies.
+
+
+The package can be installed from [PyPI] using `pip`:
+
+```shell
+pip install tripper
+```
+
+License and copyright
+---------------------
+All files in this repository are licensed under the [MIT license](LICENSE).
+If not stated otherwise in the top of the files, they have copyright &copy; 2022
+SINTEF.
+
+
+
+
+[rdflib]: https://rdflib.readthedocs.io/en/stable/
+[PyPI]: https://pypi.org/project/tripper
+[Reference manual]: https://emmc-asbl.github.io/tripper/latest/api_reference/triplestore/
+[Literal]: https://emmc-asbl.github.io/tripper/latest/api_reference/triplestore/#tripper.triplestore.Literal
+[Namespace]: https://emmc-asbl.github.io/tripper/latest/api_reference/triplestore/#tripper.triplestore.Namespace
+[Triplestore]: https://emmc-asbl.github.io/tripper/latest/api_reference/triplestore/#tripper.triplestore.Triplestore
+
