@@ -1,0 +1,72 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "stac_geoparquet"
+authors = [{name = "Tom Augspurger", email = "taugspurger@microsoft.com"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+requires-python = ">=3.8"
+dependencies = [
+    "pystac",
+    "geopandas",
+    "pandas",
+    "pyarrow",
+    "shapely",
+    "packaging",
+]
+
+[project.optional-dependencies]
+pgstac = [
+    "fsspec",
+    "pypgstac",
+    "psycopg[binary,pool]",
+    "tqdm",
+    "python-dateutil",
+]
+pc = [
+    "adlfs",
+    "pypgstac",
+    "psycopg[binary,pool]",
+    "tqdm",
+    "azure-data-tables",
+]
+test = [
+    "pytest",
+    "requests",
+    "pre-commit"
+]
+
+
+[project.urls]
+Home = "https://github.com/TomAugspurger/stac_geoparquet"
+
+[project.scripts]
+pc-geoparquet = "stac_geoparquet.cli:main"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+filterwarnings = [
+    "ignore:.*distutils Version.*:DeprecationWarning",
+]
+
+[tool.mypy]
+
+python_version = "3.10"
+
+[[tool.mypy.overrides]]
+module = [
+    "shapely.*",
+    "geopandas.*",
+    "pandas.*",
+    "fsspec.*",
+    "tqdm.*",
+    "pypgstac.*",
+    "pyarrow.*",
+    "rich.*",
+]
+
+ignore_missing_imports = true
