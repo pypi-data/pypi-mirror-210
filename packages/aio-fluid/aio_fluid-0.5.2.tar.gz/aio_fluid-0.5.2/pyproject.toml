@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "aio-fluid"
+version = "0.5.2"
+description = "Tools for backend python services"
+license = "BSD"
+authors = ["Luca <luca@quantmind.com>"]
+readme = "readme.md"
+packages = [
+    {include = "fluid"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: JavaScript",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Framework :: AsyncIO",
+    "Environment :: Web Environment",
+]
+
+[tool.poetry.urls]
+"Repository" = "https://github.com/quantmind/aio-fluid"
+"Issues" = "https://github.com/quantmind/aio-fluid/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4"
+aio-openapi = "^3.2.0"
+ujson = "^5.1.0"
+inflection = "^0.5.1"
+prometheus-async = "^22.1.0"
+aioconsole = "^0.6.1"
+python-slugify = {version = "^8.0.1", extras = ["unidecode"]}
+python-json-logger = "^2.0.2"
+colorlog = "^6.6.0"
+aiohttp_cors = "^0.7.0"
+aiobotocore = {version = "~2.4.2", extras=["boto3"]}
+s3fs = {version = "^2023.3.0"}
+aio-kong = "^3.3.0"
+uvloop = "^0.17.0"
+pycountry = "^22.3.5"
+redis = "^4.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+isort = "^5.9.3"
+black = "^23.3.0"
+flake8 = "^6.0.0"
+flake8-builtins = "^2.0.0"
+flake8-commas = "^2.0.0"
+pytest-cov = "^4.0.0"
+codecov = "^2.1.12"
+mypy = "^1.1.1"
+pytest-asyncio = "^0.21.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
