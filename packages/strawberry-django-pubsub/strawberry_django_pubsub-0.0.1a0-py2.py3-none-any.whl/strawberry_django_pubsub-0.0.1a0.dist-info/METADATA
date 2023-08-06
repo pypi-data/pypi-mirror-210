@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: strawberry-django-pubsub
+Version: 0.0.1a0
+Summary: Strawberry Django PubSub 
+Author-email: DK <dk@terminalkitten.com>
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.1
+Classifier: Framework :: Django :: 4.2
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: django
+Requires-Dist: strawberry-graphql[debug-server]
+Requires-Dist: black ; extra == "dev"
+Requires-Dist: ipython ; extra == "dev"
+Requires-Dist: flit ; extra == "dev"
+Requires-Dist: flake8 ; extra == "dev"
+Requires-Dist: pytest ; extra == "dev"
+Requires-Dist: pytest-django ; extra == "dev"
+Requires-Dist: isort ; extra == "dev"
+Requires-Dist: wheel ; extra == "dev"
+Requires-Dist: uvicorn[standard] ; extra == "dev"
+Requires-Dist: pdoc ; extra == "doc"
+Project-URL: Home, https://github.com/terminalkitten/strawberry-django-pubsub
+Provides-Extra: dev
+Provides-Extra: doc
+
+### Strawberry Django PubSub
+
