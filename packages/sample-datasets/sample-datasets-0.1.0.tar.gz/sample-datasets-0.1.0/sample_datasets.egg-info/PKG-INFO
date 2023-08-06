@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: sample-datasets
+Version: 0.1.0
+Summary: Sample datasets for Python dataframe libraries
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Description-Content-Type: text/markdown
+
+# Sample Datasets
+
+Provide sample datasets with the standard I/O interface for Python
+dataframes.
+
+## Installation
+
+```sh
+pip install sample-datasets
+```
+
+## Usage
+
+```python
+import pandas
+
+pandas.load_io_plugins()
+
+df = pandas.read_sample_dataset(name="geonames")
+```

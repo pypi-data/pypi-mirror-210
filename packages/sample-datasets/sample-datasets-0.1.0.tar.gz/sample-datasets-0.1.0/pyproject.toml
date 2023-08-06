@@ -1,0 +1,17 @@
+[project]
+name = "sample-datasets"
+version = "0.1.0"
+description = "Sample datasets for Python dataframe libraries"
+readme = "README.md"
+dependencies = [
+    "pyarrow"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.entry-points."dataframe.io"]
+sample_dataset = "sample_datasets:SampleDatasets"
+
+
