@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: text2story
+Version: 1.2.12
+Project-URL: Home, https://github.com/LIAAD/Text2StoryPackage
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: scipy
+Requires-Dist: numpy (<1.24)
+Requires-Dist: pandas (<2.0)
+Requires-Dist: torchaudio (<0.12)
+Requires-Dist: torchdata (<=0.3.0)
+Requires-Dist: torchtext (<=0.12)
+Requires-Dist: nltk
+Requires-Dist: datasets (<=2.10.1)
+Requires-Dist: overrides (==3.1.0)
+Requires-Dist: cached-path (==1.1.2)
+Requires-Dist: joblib
+Requires-Dist: requests (<2.28.0)
+Requires-Dist: allennlp (==2.9.3)
+Requires-Dist: allennlp-models (==2.9.3)
+Requires-Dist: spacy (==3.2.0)
+Requires-Dist: pyspark
+Requires-Dist: spark-nlp
+Requires-Dist: elementpath
+Requires-Dist: sklearn-crfsuite
+Requires-Dist: plantuml
+Requires-Dist: pdflatex
+Requires-Dist: pdf2image
+Requires-Dist: pytest (<=6.1.0)
+Requires-Dist: py-heideltime
+Requires-Dist: pyarrow (<10.0)
+Requires-Dist: gdown
+Requires-Dist: inflect (<6.0.0)
+Requires-Dist: google-auth (<2.18.0)
+
