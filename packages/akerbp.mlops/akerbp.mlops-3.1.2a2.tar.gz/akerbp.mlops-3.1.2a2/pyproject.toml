@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "akerbp.mlops"
+authors = [{name = "Alfonso M. Canterla", email = "alfonso.canterla@soprasteria.com"}]
+maintainers = [{name = "Christian N. Lehre", email = "christian.lehre@soprasteria.com"}]
+description = "MLOps framework"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "pytest>=6.1.1",
+    "pydantic>=1.7.3",
+    "PyYAML>=5.4.1",
+    "setuptools>50.3.0", # nodeenv a dependency of one of our dependencies is installing an old version of setuptools that snyk doesn't like
+]
+dynamic = ["version"]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://bitbucket.org/akerbp/akerbp.mlops/"
+
+[project.scripts]
+deploy_prediction_service = "akerbp.mlops.deployment.deploy_prediction_service:main"
+deploy_training_service = "akerbp.mlops.deployment.deploy_training_service:main"
+
+[project.optional-dependencies]
+dev = ["build", "mypy", "pre-commit", "black", "flake8", "types-PyYAML", "types-requests"]
+gc = ["fastapi", "uvicorn"]
+cdf = ["cognite-sdk[pandas]>=4.4.3,<6"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["mlops/deployment/bitbucket-pipelines.yml"]
+
+[tool.setuptools_scm]
+write_to = "src/akerbp/mlops/_version.py"
+write_to_template = 'version = "{version}"'
+local_scheme = "no-local-version"

@@ -1,0 +1,23 @@
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# VS
+.vscode/
+
+# virtual environment
+.venv
+
+# Build relics
+*.egg-info
+build/
+src/akerbp/mlops/_version.py
+
+# test relics
+mlops_mlopsdemo/
+
+# Artifacts for testing demo model
+model_artifact/dummy.joblib
+model_artifact/input_test.pq
