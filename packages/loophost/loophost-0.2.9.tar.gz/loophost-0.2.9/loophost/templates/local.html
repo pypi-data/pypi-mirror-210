@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block headline %}
+<h1>Configuration for "{{project}}"</h1>
+{% endblock%}
+
+{% block content %}
+{{ super() }}
+<main>
+
+  <div class="container px-5 mt-2 mb-5 font-monospace">
+
+      {% if project not in apps %}
+      We don't know where this app is running yet.<br /><br/>
+  {% endif %}
+      <form method="post" action="/config/{{project}}">
+        <b>OPTION A: It's using a Unix Socket (fast and great!)</b><br />
+        <i>Put the full path to the socket in the field below in the form "/tmp/myapp.soc"</i><br /><br/>
+
+        <b>OPTION B: It's on another Network Port (supports websockets!)</b><br />
+        <i>Put the address of the app in the field below in the form "http://127.0.0.1:8080"</i><br /><br/>
+
+        Application Port: <input type="text" name="application_port" value="{{config['apps'].get(project)}}" /> 
+        <input type="submit" name="add_application" value="{% if project in apps %}Update{% else %}Add{% endif %} this app" /><br />
+      </form>
+<br/>
+{% if project in apps %}
+<h2>Unbind '{{project}}'</h2>
+
+<p><a href="/unbind?project={{project}}">Unbind this project</a> (Note that this will obviously also disconnect any shared tunnels.)</p>
+{% endif %}
+
+      
+    </div>
+  </main>
+{% endblock %}
