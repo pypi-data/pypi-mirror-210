@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: quantumflow
+Version: 1.3.0
+Summary: "Cross compiler for gate based models of quantum computing"
+Home-page: https://github.com/gecrooks/quantumflow/
+Author: Gavin Crooks
+Author-email: gavincrooks@gmail.com
+License: Apache-2.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: English
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typing-extensions (>=4.1.1)
+Requires-Dist: numpy
+Requires-Dist: scipy (<1.10.0)
+Requires-Dist: sympy (>=1.6)
+Requires-Dist: networkx
+Requires-Dist: decorator (<5.0.0)
+Requires-Dist: opt-einsum
+Requires-Dist: pillow (!=9.1.0)
+Requires-Dist: matplotlib
+Requires-Dist: importlib-metadata ; python_version < "3.8"
+Provides-Extra: dev
+Requires-Dist: cirq (>=0.8.0) ; extra == 'dev'
+Requires-Dist: qiskit (>=0.24.0) ; extra == 'dev'
+Requires-Dist: ruamel.yaml ; extra == 'dev'
+Requires-Dist: pyquil (>=2.28.0) ; extra == 'dev'
+Requires-Dist: qutip ; extra == 'dev'
+Requires-Dist: amazon-braket-sdk ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: sphinxcontrib-bibtex ; extra == 'dev'
+Requires-Dist: guzzle-sphinx-theme ; extra == 'dev'
+Requires-Dist: setuptools-scm ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: setupext-janitor ; extra == 'dev'
+Requires-Dist: numpy (>=1.20) ; extra == 'dev'
+Requires-Dist: pytest (>=4.6) ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: mypy (>=0.931) ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: nbmake ; extra == 'dev'
+Requires-Dist: qsimcirq (>=0.10.2) ; (python_version < "3.11") and extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinxcontrib-bibtex ; extra == 'docs'
+Requires-Dist: guzzle-sphinx-theme ; extra == 'docs'
+Requires-Dist: setuptools-scm ; extra == 'docs'
+Provides-Extra: ext
+Requires-Dist: cirq (>=0.8.0) ; extra == 'ext'
+Requires-Dist: qiskit (>=0.24.0) ; extra == 'ext'
+Requires-Dist: ruamel.yaml ; extra == 'ext'
+Requires-Dist: pyquil (>=2.28.0) ; extra == 'ext'
+Requires-Dist: qsimcirq (>=0.10.2) ; extra == 'ext'
+Requires-Dist: qutip ; extra == 'ext'
+Requires-Dist: amazon-braket-sdk ; extra == 'ext'
+
+#  QuantumFlow: A Quantum Algorithms Development Toolkit
+
+A cross-compiler for gate based models of quantum computing
+
+![Build Status](https://github.com/gecrooks/quantumflow-dev/workflows/Build/badge.svg) [![Documentation Status](https://readthedocs.org/projects/quantumflow/badge/?version=latest)](https://quantumflow.readthedocs.io/en/latest/?badge=latest) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/gecrooks/quantumflow-dev.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gecrooks/quantumflow-dev/context:python) [![PyPi version](https://img.shields.io/pypi/v/quantumflow?color=brightgreen)](https://pypi.org/project/quantumflow/)
+
+
+* [Tutorial](https://github.com/gecrooks/quantumflow-dev/tree/master/tutorial)
+* [Source Code](https://github.com/gecrooks/quantumflow)
+* [Issue Tracker](https://github.com/gecrooks/quantumflow-dev/issues)
+* [API Documentation](https://quantumflow.readthedocs.io/)
+
+
+## Installation
+
+To install the latest stable release:
+```
+$ pip install quantumflow
+```
+
+In addition, install all of the external quantum libraries that QuantumFlow can interact with (such as cirq, qiskit, braket, ect.):
+```
+$ pip install quantumflow[ext]
+```
+
+
+To install the latest code from github ready for development:
+```
+$ git clone https://github.com/gecrooks/quantumflow.git
+$ cd quantumflow
+$ pip install -e .[dev]
+```
+
+
