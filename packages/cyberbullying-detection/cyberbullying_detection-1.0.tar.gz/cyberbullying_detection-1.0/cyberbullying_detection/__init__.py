@@ -1,0 +1,1 @@
+from .cyberbullying_detection import cyberbullying
