@@ -1,0 +1,101 @@
+{
+    "type": "message",
+    "attachments": [
+        {
+            "contentType": "application/vnd.microsoft.card.adaptive",
+            "contentUrl": null,
+            "content": {
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                "type": "AdaptiveCard",
+                "version": "1.5",
+                "body": [
+                    {
+                        "type": "Image",
+                        "url": "https://logodownload.org/wp-content/uploads/2016/09/elgin-logo-7.png",
+                        "horizontalAlignment": "Center",
+                        "size": "Large"
+                    },
+                    {
+                        "type": "TextBlock",
+                        "text": "Monitoramento - Dados Bi",
+                        "size": "ExtraLarge",
+                        "horizontalAlignment": "Left",
+                        "wrap": true,
+                        "fontType": "Default",
+                        "weight": "Bolder",
+                        "style": "heading",
+                        "color": "Accent"
+                    },
+                    {
+                        "type": "Container",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": "Atenção: A equipe de dados já esta atuando e verificando o motivo da falha.",
+                                "wrap": true,
+                                "horizontalAlignment": "Left",
+                                "weight": "Bolder"
+                            }
+                        ],
+                        "style": "attention"
+                    },
+                    {
+                        "type": "FactSet",
+                        "facts": [
+                            {
+                                "title": "Processo",
+                                "value": "%(nome_processo)s"
+                            },
+                            {
+                                "title": "Tipo Serviço",
+                                "value": "%(tipo_servico)s"
+                            },
+                            {
+                                "title": "Ambiente",
+                                "value": "%(ambiente)s"
+                            },
+                            {
+                                "title": "Data Referencia",
+                                "value": "%(data_ref)s"
+                            },
+                            {
+                                "title": "Status",
+                                "value": "%(status)s"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TextBlock",
+                        "wrap": true,
+                        "size": "Medium",
+                        "weight": "Bolder",
+                        "horizontalAlignment": "Left",
+                        "spacing": "Large",
+                        "text": "Detalhes do erro"
+                    },
+                    {
+                        "type": "TextBlock",
+                        "text": "%(exception)s",
+                        "wrap": true,
+                        "horizontalAlignment": "Left",
+                        "size": "Small"
+                    },
+                    {
+                        "type": "TextBlock",
+                        "text": "Clique no botão abaixo para acessar os dashboards de monitoramento.",
+                        "wrap": true,
+                        "separator": true,
+                        "spacing": "ExtraLarge"
+                    }
+                ],
+                "actions": [
+                    {
+                        "type": "Action.OpenUrl",
+                        "title": "Acessar Grafana",
+                        "url": "http://ec2-3-212-140-23.compute-1.amazonaws.com:3000/?orgId=1"
+                    }
+                ]
+            }
+        }
+    ]
+}
