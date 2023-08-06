@@ -1,0 +1,153 @@
+Metadata-Version: 2.1
+Name: lazy-graph
+Version: 0.3.6
+Summary: lazy graph framework
+Home-page: https://github.com/USTC-TNS/TAT/tree/TAT/lazy_graph
+Author: Hao Zhang
+Author-email: zh970205@mail.ustc.edu.cn
+License: GPLv3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+
+
+# lazy-graph
+
+lazy-graph is python package for lazy evaluation, with enhancement for updating values of upstream and copying the
+entire lazy graph.
+
+
+## Install
+
+Copy or link this folder directly. Or use `pip` to obtain the distribution `pip install lazy_graph`.
+
+
+## Documents
+
+
+### Simple example
+
+    from lazy import Root, Node
+    
+    
+    def add(a, b):
+        print(f"calculating {a} + {b}")
+        return a + b
+    
+    
+    print("create nodes")
+    a = Root(1)
+    b = Root(2)
+    c = Node(add, a, b)
+    print("get the value")
+    print(f"c is {c()}")
+
+    create nodes
+    get the value
+    calculating 1 + 2
+    c is 3
+
+
+### Update upstream
+
+    from lazy import Root, Node
+    
+    
+    def add(a, b):
+        print(f"calculating {a} + {b}")
+        return a + b
+    
+    
+    print("create nodes")
+    a = Root(1)
+    b = Root(2)
+    c = Node(add, a, b)
+    print("get the value")
+    print(f"c is {c()}")
+    print("get the value again")
+    print(f"c is {c()}")
+    print("update upstream")
+    a.reset(4)
+    print("get the new value")
+    print(f"c is {c()}")
+
+    create nodes
+    get the value
+    calculating 1 + 2
+    c is 3
+    get the value again
+    c is 3
+    update upstream
+    get the new value
+    calculating 4 + 2
+    c is 6
+
+
+### Normal argument or keyword argument are also available
+
+    from lazy import Root, Node
+    
+    
+    def add(a, b, c, d):
+        print(f"calculating {a} + {b} + {c} + {d}")
+        return a + b + c + d
+    
+    
+    print("create nodes")
+    a = Root(1)
+    c = Root(3)
+    z = Node(add, a, 2, c=c, d=4)
+    print("get the value")
+    print(f"c is {z()}")
+
+    create nodes
+    get the value
+    calculating 1 + 2 + 3 + 4
+    c is 10
+
+
+### Copy the lazy graph
+
+    from lazy import Root, Node, Copy
+    
+    
+    def add(a, b):
+        print(f"calculating {a} + {b}")
+        return a + b
+    
+    
+    print("create nodes")
+    a = Root(1)
+    b = Root(2)
+    c = Node(add, a, b)
+    print("get the value")
+    print(f"c is {c()}")
+    
+    print("copy lazy graph")
+    copy = Copy()
+    new_a = copy(a)
+    new_b = copy(b)
+    new_c = copy(c)
+    
+    print("get the new value")
+    print(f"new c is {new_c()}")
+    
+    print("reset value")
+    a.reset(4)
+    new_a.reset(8)
+    print("get the old value and new value")
+    print(f"c is {c()}, new c is {new_c()}")
+
+    create nodes
+    get the value
+    calculating 1 + 2
+    c is 3
+    copy lazy graph
+    get the new value
+    new c is 3
+    reset value
+    get the old value and new value
+    calculating 4 + 2
+    calculating 8 + 2
+    c is 6, new c is 10
+
