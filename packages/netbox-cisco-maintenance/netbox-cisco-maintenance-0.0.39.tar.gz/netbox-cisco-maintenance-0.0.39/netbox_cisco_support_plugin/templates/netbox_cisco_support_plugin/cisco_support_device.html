@@ -1,0 +1,60 @@
+{% load filters %}
+
+<div class="card">
+
+    <h5 class="card-header">Cisco Device Support Information</h5>
+
+    <div class="card-body">
+        
+        <table class="table table-hover panel-body attr-table">
+            <tbody>
+                {% if cisco_device_support %}
+                    <tr {{ cisco_device_support.sr_no_owner|coverage_class }}>
+                        <td style="width: 40%">Is associated with a Cisco ID</td>
+                        <td style="width: 40px"><i {{ cisco_device_support.sr_no_owner|boolian_class }}></i></td>
+                        <td>{{ cisco_device_support.api_status }}</td>
+                    </tr>
+                    <tr {{ cisco_device_support.is_covered|coverage_class }}>
+                        <td>Contract Status</td>
+                        <td><i {{ cisco_device_support.is_covered|boolian_class }}></i></td>
+                        <td>{{ cisco_device_support.coverage_status }}</td>
+                    </tr>
+                    <tr {{ cisco_device_support.is_covered|coverage_class }}>
+                        <td>Is under Cisco Support?</td>
+                        <td colspan="2"><i {{ cisco_device_support.is_covered|boolian_class }}></i></td>
+                    </tr>
+                    <tr {{ cisco_device_support.coverage_end_date|expiration_class }}>
+                        <td>End of Contract Coverage Date</td>
+                        <td colspan="2">{{ cisco_device_support.coverage_end_date }}</td>
+                    </tr>
+                    <tr {{ cisco_device_support.service_line_descr|coverage_class }}>
+                        <td>Service Contract Description</td>
+                        <td colspan="2">{{ cisco_device_support.service_line_descr }}</td>
+                    </tr>
+                    <tr {{ cisco_device_support.service_contract_number|coverage_class }}>
+                        <td>Service Contract Number</td>
+                        <td colspan="2">{{ cisco_device_support.service_contract_number }}</td>
+                    </tr>
+                    <tr {{ cisco_device_support.warranty_end_date|expiration_class }}>
+                        <td>End of Warranty Date</td>
+                        <td colspan="2">{{ cisco_device_support.warranty_end_date }}</td>
+                    </tr>
+                    <tr {{ cisco_device_support.warranty_type|coverage_class }}>
+                        <td>Warranty Type</td>
+                        <td colspan="2">{{ cisco_device_support.warranty_type }}</td>
+                    </tr>
+                {% else %}
+                    {% include "netbox_cisco_support_plugin/no_data_available.html" %}
+                {% endif %}
+            </tbody>
+        </table>
+
+        {% if cisco_device_support %}
+            <div class="text-muted">Last updated: {{ cisco_device_support.last_updated }}</div>
+        {% endif %}
+        
+    </div>
+
+</div>
+
+{% include "netbox_cisco_support_plugin/cisco_support_device_type.html" %}
