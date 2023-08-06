@@ -1,0 +1,64 @@
+tzlocal
+six
+more-itertools
+attrs!=21.1.0
+pyyaml
+pytz
+pytzdata
+requests>=2.18.0
+configparser<3.6.0,>=3.5.0
+pygments>=2.6.1
+python-dateutil
+sqlparse
+Jinja2
+
+[:python_version < "3.7"]
+typing
+
+[:sys_platform=="win32"]
+colorama
+
+[jupyter]
+qtconsole==4.7.7
+nbconvert
+nbformat
+jupyter
+traitlets<5.0.0,>=4.2
+IPython
+jupyter_contrib_nbextensions
+
+[test-pandas]
+openpyxl==2.6.4
+numpy<1.23
+pandas<2.0.0,>=0.17.1
+tables==3.7.0
+feather-format
+pyarrow
+
+[test-pandas:python_version < "3.8"]
+scikit-learn==0.23.2
+matplotlib==3.3.0
+
+[test-pandas:python_version >= "3.8"]
+scikit-learn==1.2.0
+matplotlib==3.6.2
+
+[test-spark2]
+pytest-spark==0.6.0
+
+[test-spark2:python_version < "3.8"]
+pyspark==2.4.4
+
+[test-spark3]
+pytest-spark==0.6.0
+
+[test-spark3:python_version >= "3.8"]
+pyspark==3.3.1
+
+[tests]
+coverage
+tox==3.12.1
+pytest==4.5.0
+pytest-cov==2.9.0
+mock
+wheel
