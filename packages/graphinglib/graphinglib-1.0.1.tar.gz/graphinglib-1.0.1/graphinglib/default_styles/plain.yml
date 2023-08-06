@@ -1,0 +1,125 @@
+Curve:
+  color: "k"
+  line_width: 1
+  line_style: "-"
+  cap_width: 3
+  errorbars_color: "same as curve"
+  errorbars_line_width: "same as curve"
+  cap_thickness: "same as curve"
+
+Scatter:
+  face_color: "k"
+  edge_color: "none"
+  marker_size: 30
+  marker_style: "o"
+  cap_width: 3
+  errorbars_color: "same as scatter"
+  errorbars_line_width: 1
+  cap_thickness: 1
+
+Histogram:
+  number_of_bins: 30
+  face_color: "silver"
+  edge_color: "k"
+  hist_type: "stepfilled"
+  alpha: 1.0
+  line_width: 2
+  normalize: True
+  show_pdf: None
+  show_params: True
+
+Hlines:
+  colors: "k"
+  line_styles: "-"
+
+Vlines:
+  colors: "k"
+  line_styles: "solid"
+
+Figure:
+  size: [6.4, 4.8]
+  boxed_legend: False
+  ticks_are_in: True
+  log_scale_x: False
+  log_scale_y: False
+
+FitFromPolynomial:
+  color: "k"
+  line_width: 1
+
+FitFromSine:
+  color: "k"
+  line_width: 1
+
+Point:
+  color: "k"
+  edge_color: "none"
+  marker_size: 30
+  marker_style: "o"
+  line_width: 1.5
+
+FitFromPolynomial:
+  color: "r"
+  line_width: 2
+  line_style: "-"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromExponential:
+  color: "r"
+  line_width: 2
+  line_style: "-"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromGaussian:
+  color: "r"
+  line_width: 2
+  line_style: "-"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromSine:
+  color: "r"
+  line_width: 2
+  line_style: "-"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromSquareRoot:
+  color: "r"
+  line_width: 2
+  line_style: "-"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromLog:
+  res_color: "r"
+  res_line_width: 2
+  res_line_style: "--"
+  color: "r"
+  line_width: 1
+  line_style: "-"
+
+FitFromFunction:
+  res_color: "r"
+  res_line_width: 2
+  res_line_style: "--"
+  color: "r"
+  line_width: 1
+  line_style: "-"
+
+Heatmap:
+  aspect_ratio: "equal"
+  origin_position: "upper"
+  color_map: "coolwarm"
+
+Text:
+  color: "k"
+  h_align: "center"
+  v_align: "baseline"

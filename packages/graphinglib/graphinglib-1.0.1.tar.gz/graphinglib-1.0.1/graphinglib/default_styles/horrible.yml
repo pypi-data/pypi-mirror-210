@@ -1,0 +1,130 @@
+Curve:
+  color: "purple"
+  line_width: 10
+  line_style: "-."
+  cap_width: 10
+  errorbars_color: "same as curve"
+  errorbars_line_width: "same as curve"
+  cap_thickness: "same as curve"
+
+Scatter:
+  face_color: "cyan"
+  edge_color: "red"
+  marker_size: 60
+  marker_style: "+"
+  cap_width: 10
+  errorbars_color: "same as scatter"
+  errorbars_line_width: 3
+  cap_thickness: 3
+
+Dashed:
+  color: "navy"
+  line_width: 1
+  line_style: "-."
+
+Histogram:
+  number_of_bins: 30
+  face_color: "silver"
+  edge_color: "k"
+  hist_type: "stepfilled"
+  alpha: 1.0
+  line_width: 2
+  normalize: True
+  show_pdf: None
+  show_params: True
+
+Hlines:
+  colors: "k"
+  line_styles: "-"
+
+Vlines:
+  colors: "k"
+  line_styles: "solid"
+
+Figure:
+  size: [10, 7]
+  boxed_legend: True
+  ticks_are_in: True
+  log_scale_x: False
+  log_scale_y: False
+
+FitFromPolynomial:
+  color: "orange"
+  line_width: 4
+
+FitFromSine:
+  color: "khaki"
+  line_width: 6
+
+Point:
+  color: "cyan"
+  edge_color: "red"
+  marker_size: 200
+  line_width: 1.5
+  marker_style: "D"
+
+FitFromPolynomial:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromExponential:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromGaussian:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromSine:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromSquareRoot:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromLog:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+FitFromFunction:
+  color: "khaki"
+  line_width: 5
+  line_style: "--"
+  res_color: "r"
+  res_line_width: 1
+  res_line_style: "--"
+
+Heatmap:
+  aspect_ratio: "equal"
+  origin_position: "lower"
+  color_map: "prism"
+
+Text:
+  color: "orange"
+  h_align: "right"
+  v_align: "top"
