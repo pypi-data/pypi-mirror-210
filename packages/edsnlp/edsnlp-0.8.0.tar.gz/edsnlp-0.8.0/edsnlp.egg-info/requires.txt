@@ -1,0 +1,55 @@
+decorator
+loguru
+pendulum>=2.1.2
+pydantic<2.0.0,>=1.8.2
+pysimstring>=1.2.1
+regex
+rich>=12.0.0
+scikit-learn>=1.0.0
+spacy<4.0.0,>=3.1
+thinc>=8.0.14
+tqdm
+umls-downloader>=0.1.1
+typing_extensions<4.6.0
+
+[:python_version < "3.8"]
+numpy<1.23.2,>=1.15.0
+pandas<2.0.0,>=1.1.0
+
+[:python_version >= "3.8"]
+numpy>=1.15.0
+pandas<2.0.0,>=1.4.0
+
+[dev]
+black<23.0.0,>=22.3.0
+fastapi
+flake8==3.9.2
+pyspark
+pytest<8.0.0,>=7.1.0
+pytest-cov<4.0.0,>=3.0.0
+pytest-html<4.0.0,>=3.1.1
+torch<1.13.0,>=1.0.0
+
+[dev:python_version < "3.8"]
+pre-commit>=2.0.0
+
+[dev:python_version <= "3.10"]
+koalas>=1.8.1
+
+[dev:python_version >= "3.8"]
+pre-commit>=2.21.0
+
+[docs]
+mike==1.1.2
+mkdocs-autorefs~=0.4.1
+mkdocs-bibtex==2.8.5
+mkdocs-charts-plugin==0.0.8
+mkdocs-img2fig-plugin==0.9.3
+mkdocs-material~=9.1.0
+mkdocs-section-index==0.3.4
+mkdocstrings~=0.21.2
+mkdocstrings-python~=0.10.1
+
+[setup]
+mlconjug3<3.9.0
+typer
