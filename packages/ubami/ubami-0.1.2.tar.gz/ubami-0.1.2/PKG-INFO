@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: ubami
+Version: 0.1.2
+Summary: List and find the latest Ubuntu AMIs from cloud-images.ubuntu.com.
+Author-email: Chris Coleman <chris@chriscoleman.uk>
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: click
+Requires-Dist: httpx
+
+# ubami
+
+A module and CLI for listing and filtering the latest Ubuntu AMIs from
+cloud-images.ubuntu.com.
+
+For when you'd rather not hard-code an Ubuntu AMI ID.
+
+## Installation
+
+```
+pip install ubami
+```
+
+## Usage
+
+```python
+# find the latest Jammy Jellyfish AMI for amd64+hvm:ebs-ssd in London
+ami_id = ubami.find(region='eu-west-2',
+                    version='22.04 LTS',
+                    arch='amd64',
+                    instance_type='hvm:ebs-ssd')[0]['ami_id']
+```
+
+```python
+# fetch a list of all the latest official Ubuntu AMIs
+ami_list = ubami.list()
+```
+
+```bash
+# first example as a shell command
+ubami --region=eu-west-2 --version='22.04 LTS' --arch=amd64 --instance-type=hvm:ebs-ssd | jq -r '.[0].ami_id'
+```
+
+```bash
+# second example as a shell command
+ubami
+```
+
