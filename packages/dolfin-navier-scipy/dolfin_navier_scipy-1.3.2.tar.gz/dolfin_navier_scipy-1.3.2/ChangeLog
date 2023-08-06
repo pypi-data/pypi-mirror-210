@@ -1,0 +1,519 @@
+CHANGES
+=======
+
+1.3.2
+-----
+
+* double cyl and time integration
+
+1.3.1
+-----
+
+* added basic semi-implicit euler scheme + some cleanup + check for data point filtering
+* documentation in the residual check
+* eliminating zeros in the sparse mats, function for stst res
+* computing residuals
+* linting and fix for stokes stst computation
+
+v1.3.0
+------
+
+* deprecated \`return\_y\_list\` in \`snu\`
+* defined format for the dict keys
+* can now have a custom v and t dependent rhs
+* now the minus of the custom convection is applied in \`snu\`
+* debug info
+* reading out the coors of the bccont
+* some improves
+* added missing meshes
+* pbr files to gitignore
+* next time pypi with the right markdown
+
+v1.2.2
+------
+
+* going pbr
+* mrgd
+* get\_bcinds to the function list
+* sync the vers number
+* mrgd
+* continuous drag/lift computation
+* back to dev mode
+* version 1.2.0 -- new feature: custom nonlinearity -- major bug fix in computation of N(v,w)
+* major bug
+* some more logging
+* added option for a custom nonlinearity
+* some logging too here
+* refined logging
+* started with logger
+* now data is only stored at dataoutputpnts
+* new pip version
+* added missing geometry files
+* can now have the convvec with two differenc vels
+* simu setup
+* started some doc
+* upds
+* v1.1.3
+* rmvd unneeded options
+* now data returned at data points
+* upd setuppy
+* unified naming in the rhs\`
+* added rtfd badge
+* catch exception and version bumb
+* fix isnan check
+* checking and flagging for blowups
+* upd req
+* now a setup file for rtfd #12
+* no more sphinx errors/warnings (except the mocking)
+* working on the docs #12
+* now no data saving by default
+* updated calls to solve\_nse
+* docu upd
+* lil rename
+* autodoc upd
+* linear closed loop -- check
+* lil option rename -- checking implicit controller
+* make it run for stokes\_flow (and) without boundary conditions
+* a function to include the linear controller/observer
+* we see 2nd order convergence -- ad #10
+* more time step schemes -- started with empirical conv checks; check #10
+* ++generic interface for steady-state solves
+* now support for a dynamic rhs that is integrated implicitly
+* implicit dynamic rhs in the time stepping
+* a semi implicit scheme for the controller
+* steady state with ML=2
+* pip v1.0.2
+* double cyl meshes
+* upd readme
+* upd README
+* testing
+* now cylinder bcs compatible
+* can now do rotating cylinders via robin pena
+* mgrd
+* option bc through rotating cylinder
+* print meshfile
+* tikz no optional
+* added printed info on the mesh -- fixes #13 (which was a problem in the input file)
+* can now return a list of outputs only
+* pip bump version
+* updated matplotlibtotikz <-- tikzplotlib
+* better formatting if pip
+* another example
+* timestep filter for the paraview output
+* an example simulation file that can be called from command line
+* fxd deprecated call to time.clock
+* added pypi badge
+* upd gitig
+* upd readme
+* upd license classifier
+* preparing for pip
+* 3d setup working
+* gitig
+* dns.problem\_setups for 3D flow
+* dnsps.gen\_bc\_3D\`
+* new tries
+* bigchannel mesh
+* added tpd schaefer turek
+* adding to odcoo
+* gen bc contrl -- now providing the measures to compute the robin input operator
+* ppin now defaults to None
+* try except
+* new function for simply expand vecs to dolfuncs
+* a few upds on the time dep trtmnt
+* adding fvtd
+* restruc wrt time dep diribcs -- unit tests pass
+* fixing the treatment of diri control -- see did.md
+* upd .gitig
+* saving options -- sync up with lqgbt
+* fixes
+* \`b\_mat\` instead of \`tb\_mat\`
+* I have a plan
+* no extra function to get the actuation -- can adapt \`hc\`
+* a dynamic rhs (like an observer) for the time stepping scheme
+* function for realizing heun/AB2 discretization of a linear dynamic observer -- concerns #9
+* rename fixes #8
+* residuals now as unit test
+* fixed the unit tests -- needa make res test an unit test
+* mrgd
+* gonna make an extra module for caching data
+* time slicing and residuals ok
+* still testing
+* also torque works fine with the res, cp #7
+* rotcyl working again
+* comp cd/cl via the residual -- fixes #7
+* residual check -- for uncontrolled boundaries -- see #8
+* expeul res -- check
+* for testing the residuals
+* back to right state
+* dbggng -- we make a unit test for that
+* debugging -- euler res looks good also for tdp bcs
+* various types of the residuals
+* no more implicit zeros
+* testing
+* cnab res and modes in time\_steps
+* new submodule for residuals
+* AB2 like working
+* forgotten breakpoint
+* works nice with nwtn its
+* visual check OK
+* CR no more working -- need a fix one day
+* issues with the plots
+* almost doener
+* cnab -- gonna integrate this
+* new meshes - some res check
+* lil restruc for MB and outflow correction
+* unifying the boundary integrals
+* info to zenodo json
+* badge to README
+* update zenodo json
+* zenodo json file
+* upd readme
+* upd README
+* readme upd and code.yml added
+* upd README.md
+* can now just return the final vel
+* mrgd
+* testing OK
+* new test -- rotating cylinder (steady state)
+* CR no more working -- is it the symmetric gradient
+* correction for the outflow for the symmetric tensor
+* still trying to get the torque
+* rmd double def of bcinds -- lift/drag now with babuska trick
+* todo no silent
+* exception for petsc -- not tested because no petsc available
+* new meshes
+* fix if newton initial value is provided in steady state
+* torque def
+* inip computation
+* pcrd newton also nicely working
+* sem-exp still looking good
+* sem-exp looks good
+* bug in \`get\_v\_conv\_conts\` -- now mini\_setup says OK too
+* schaefer turek say OK
+* its complicated how to use/comp the bcvals
+* tdp running - but not quite providing v/p
+* lil typo bug
+* steady state tests working
+* steady state like working
+* contrlld bcvals and rhs now in one function call
+* making the bcs v/p dependent
+* new inflow profiles -- fixed paraview output
+* towards tdp bcs -- respect it in cfv (and in the paraview plots)
+* thats the fix -- wrong innernodes for error computation
+* back to the long \`time\_dep\_nse\` test
+* time dep now running -- Picard not converging
+* now we really start adding the td bcs
+* fix the \`gen\_bccont\` and cleanup schaefer-turek
+* mrgd
+* reformat the filenames to the 3D cylinder
+* tests: schaefer/turek, time-dep: plain, expnonl, bcrob --- pass
+* time dep newton with segments -- works
+* it was in condensing the mats -- no bcinfo provided there
+* debugging
+* nonl fix on the fly
+* cmprng
+* tests for debugging/comparing
+* some fixes but newton converges too slowly
+* looks like the wiggles are fixed -- the bcs were missing ..
+* fixed the unrolling of bcinds for schaefer/turek
+* gonna fix sth in master
+* mrgd master here
+* dbgging
+* debugging
+* its about the bcvals -- in snu:1020
+* okay -- here we have a singularity warning
+* same test as in master;
+* added info that the LU is computed and recycled
+* recycling the LU
+* its about the time step size
+* test problems fixed to new call of \`get\_sysmats\` -- bcrob is broken -- gonna fix it
+* rmd deprecated argument
+* doc upd
+* explicit nonl like working
+* seems like fixed
+* goin on
+* debugging
+* change in \`condensevelmatsbybcs\` -- schaefer/turek still OK
+* on the tdp integration
+* new test: the Schaefer/Turek 2D-1 benchmark
+* mrgd
+* all tests pass
+* steady state tests pass
+* steadystate with control boundaries work -- now rerun the tests
+* stokes steady state like working
+* adding time dep diribcs features
+* mrgd
+* added \`inflowvel\` as input to \`problem\_setups.cyl\_fem\` just for consistency --- now the tests run
+* lift drag like working
+* upd README
+* upd README -- quicker results
+* upd README
+* unit test pass
+* mini\_setup working again
+* rm expmats script from master
+* some cleanup
+* moving dns/get\_exp\_nsmats to its branch
+* goin on
+* some cases for the rot cyl -- variable inflow velocity
+* added a general func
+* time dep working
+* time dep like working
+* steady state works with bcvals/bcinds
+* going on
+* [diribcs] replaced by inds/vals -- test still looks ok
+* fixed the test
+* lil rename
+* added a \`gen\_bccont\_setup\` (2d) to \`problem\_setups\`
+* upd
+* added \`cv\_mat\` to snu -- for output based feedback control
+* rtd pip requirements file
+* added setup.py
+
+v2018.1
+-------
+
+* upd README
+* upd README - rmd test in root directory
+* unittests pass
+* fix in solve\_nse -- since now picard returns a NONE
+* lil rename
+* this is a unit test..
+* some mvmnt of lilchecks -- some 2to3
+* deprecated tests folder
+* some py2 to py3
+* cleaned the test directory -- small checks mvd to lilchecks
+* going fenics 2018.01
+* dolfin 2018.1.dev -- dont set linear\_algebra\_backend anymore
+* some test upds, new func
+* array() <-- get\_local()
+* rmd f(0) to compute stokes sol as inival
+* catch if newton steps == 0 is wanted
+* need to fix cyl3D calls soon
+* make rhs\_con=None if Picard
+* steadystate breaks on nonconvergence -- verbose option -- paraviewoutput at selected ts only
+* upd
+* 2to3
+* lil fix
+* update the output plot routine
+* another if branch fix
+* a missing if
+* adapted 3d problem
+* fixed steady state picard and some py3 formatting strings
+* some 2to3
+* option for zero dirichlets
+* lil upds
+* catching an index error
+* modified formatting of the file names to avoid oversized strings and improved output
+* lil upds
+* sml chngs
+* 3d cyl time dep running -- though large-scale not implemented
+* testing for 3D -- \`cholmod.cholesky\` is OK , \`splu\` not
+* some updates for compatibility
+* added cylinder mesh and empty files to have the folder structure
+* newton per segment works -- bug fix
+* fixed issues with the format of the newton update norm
+* some py3 formatting
+* no more deprecation warning;
+* verbose option --- for clearer logs
+* twrds python3
+
+v1.2
+----
+
+* new option for dou.Timer : \`verbose\`
+* try/except for matplotlib2tikz import -- prevention from ImportErrors
+* now tikzonly option (no plot shown) in dou.plot\_prs\_outp
+* tikz now optional in dou.plot\_prs\_outp
+* mrgd
+* debug done --- shape functs not checked though
+* fenics tutorial still with the ooold boundary parts??
+* debugging arob
+* catching exceptions due to \`uBLAS\` or \`EIGEN\`, i.e. dolfin 1.5 and 2016++
+* one bug one new fenics fiz
+* bug in the definition of the dicts of velstrings
+* invinds no optional in \`dns.get\_convvec\`
+* also bcrob ready for fenics 1.7
+* undo ~~
+* upd rtd requirement file
+* upd rtd requirement file
+* upd to make \`read the docs\` work again
+* new dolfin -- debug for dou.load\_or\_comp
+* fit for new dolfin
+* new option in \`dou.load\_or\_comp\`: filestr is None => nothing is loaded or stored
+* export to sparse matrix now for fenics 1.5.0
+* outcommented prints
+* outcommented prints
+* some upds
+* bug in get\_exp\_nsmats
+* script for exporting the matrices
+* update the readme
+* restruc to make it readily runnable
+* update readme for a quickstart
+* added the Timer class
+* bug rmd conc. the solution dics -- load\_or\_comp now for a single output dict
+* rmd bug -- wrong steady state solutions were shipped
+* added p solutions to exported mats
+* arbitrary number of outputs now possible in load\_or\_comp for dicts
+* rmd mismatches in the code that occur when the boundary values are appended
+* more verbose name for the switch
+* more permissive interface to \`append\_bcs\_vec\`
+* now option to append the boundary conditions to computed velocities - bug in computation of the pressure observation matrix
+* now quadmats with NSE solution -- eigen value checks
+* small updates
+* added debug option to \`load\_or\_comp\`
+* put the import of lau where it belongs
+* lin\_alg\_utils only imported if they are there -- solvers may not work -- but FEM disc. does
+* steadystate and timedep for bcrob
+* bcrob works
+* expnonlinear -- check
+* time\_dep\_nse - check
+* looks like all is cool - two more tests then merge this branch to master
+* new tests
+* looks like working
+* now boundary control in problem\_setups.get\_sysmats -- need to check the intersection with the diriboundary..
+* get the control mats from problem\_setups get\_sysmats
+* looks like ok -- need to do a forward simulation
+* picture and nnz in amatrob look legit
+* going on
+* added the subdomains of control to cylfems -- if defined -- need see whether old tests alright
+* started with penarob
+* smartminex results
+* prob setup - no more automatic p pinning
+* clean up of problem setups -- no need for \`ddir\` and \`proutdir\`
+* started Re-free mats
+* done with p-comp
+* now solve\_nse returns pstring
+* in solve\_nse now fv, fp instead of bcconts and rhs
+* mini setup
+* now p from v introduced -- unit test pass
+* wanna compute also p in the simu
+* debug off; ;
+* explanations in the export
+* added uncondensed div matrix to stokes fems
+* reflipped the pressure
+* in steady state nse - return pressure on demand
+* added pressure mass matrix to stokesmatsc
+* for problems with outflow the pressure must not be pinned. Added variable \`ppin\` where needed
+* CR schemes in the prob defs and in the tests
+* fixed bug in steady state nse
+* cleared bug in treatment of the factored feedback
+* upd schemes for krylov branch
+* linearizations and nonl semexp put right
+* docu update
+* routine to check the linearization
+* test pass --- time dep linearizations
+* test routine simplified
+* sem exp works pretty well as local Picard linearization
+
+v1.1
+----
+
+* synctest
+* trying testing
+* looks right but convergence seems worse ... need a check
+* tests
+* test for comparison with right lin imple
+* works need to run tests
+* this commit will not work --- still putting the linearizations right
+* dou.extract\_output was buggy - probably because of recent restruc -- fixed
+* bug in snu.solve\_nse -- path to initial value was wrong
+* now p output mat exported
+* output for p measurements, p measurement mats in expmats
+* added warning in stokes navier utils
+* added logtofile routine
+* added meshes
+* redef test to easy define Nts
+* new tests
+* but now it does #lastcommit
+* newton doesn"t converge as fast as it should
+* fixed a bug concerning the linearization point in the newton scheme
+* no more saving of velocities if not needed - e.g. when treating the nonl. part explicitly
+* added option for krypy to snu.solve\_nse  --- tests pass
+* bug fixed regarding lin\_point - renamed a funtion in lau
+* added option to return the result of solve nse as list
+* added functionality
+* sphinx - i don;t get you
+* typos
+* new function for expanding scalar variables with control at boundary to dolfin func
+* now dts.condmatsbybcs returns bcinds and inner inds in a dict (on demand)
+* added routine for loading vs. comping/saving
+* chngs
+* some explanations to quad form code
+* revd diss
+* try drivcav
+* do we have N=0 grid??
+* export tested and fixed
+* added script for exp
+* added quad mats to exp routine
+* added example to solve with a quadraticterm, rewrote problem def to provide Re rather than nu
+* added conv as H kron(v,v) + unit test --- unit test pass
+* docu
+* docu
+* docu
+* docu
+* docu
+* Update README.md
+* docu
+* docu
+* docu
+* docu
+* docu
+* docu
+* add rtd pip req file
+* docu
+* docu ready for rtd
+* added routine for quick retrievement of stokes sys matrices
+* added routine to compute and export the systemmatrices of Navier-Stokes equations
+* lqgbt paper
+* added characteristic length and space depency of u to problem defininition
+* removed ddir now everything should go into dataprefix
+* monster bug removed
+* bischn docu
+* done implementing - now testing
+* outputput
+* added sparsedense vetmac to lau --- output extract in btu
+* solve\_nse now returns a dict of paths to the vel files -- linearization point can now be provided -- extract output moved to data\_out\_utils
+* removed bug from last commit
+* closed loop
+* now returning the testvector
+* now get dofs is right
+* mrgd
+* woe
+* redoing the comp of inner dofs and coordinates
+* mpi
+* and time dep NSE now without storing data from intermediate steps
+* steady state NSE now without storing data from intermediate steps
+* home
+* mpi
+* now loading previous time dep nwtn steps
+* nonuniform time meshes fixed
+* home
+* extraction of the table dofs vs. coordinates and indices of x and y components
+* all setup
+* \_\_init\_\_ upd
+* restruct and utils for distributed control added
+* mpi
+* homework
+* mrgd
+* paraview output niced
+* ignore the mesh folder
+* also cyl works -- paraview output still needs consideration
+* works, going for better output for paraview
+* started with time-dep NSE
+* cylinder wake works
+* cyl exa
+* works for drivencavity
+* cylinder example added, routines for solving the (steady state) NSE, and a main routine for making it run
+* docs
+* woe
+* added lic disclaimer
+* Create LICENSE.md
+* docs
+* mod of .gitig
+* added docs
+* docs weiter
+* write output yes/no added
+* paraviewoutput function call without dicts
+* added a module for example problems
+* definition as package
+* initial commit
