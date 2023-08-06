@@ -1,0 +1,49 @@
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "argus-api"
+description = "SDK for the Argus API"
+authors = ["mnemonic <opensource@mnemonic.no>"]
+version = "3.10.2"
+readme = "README_PYPI.md"
+homepage = "https://mnemonic.io"
+documentation = "https://argus-api.docs.mnemonic.no"
+license = "ISC"
+
+packages = [
+    { include = "argus_api" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+requests = "^2.25"
+# certifi dependency to make snyk happy.
+certifi=">=2022.12.7"
+importlib_metadata = "*"
+importlib-resources = "^5.4.0"
+requests-oauthlib = {version = "^1.3.1", optional = true}
+oauthlib = {version = "^3.2.1", optional = true}
+
+
+[tool.poetry.extras]
+oauth = ["requests-oauthlib"]
+
+[tool.poetry.dev-dependencies]
+furo = "*"
+requests-mock = "*"
+faker = "*"
+terminaltables = "*"
+black = "^22.1.0"
+pytest = "^6.2.2"
+commitizen = "^2.10.0"
+colorlog = "^5.0.1"
+# versions of furo that still support python 3.6 need sphinx <5:
+Sphinx = "<5"
+sphinxcontrib-confluencebuilder = "^1.5.0"
+
+[[tool.poetry.source]]
+name = "artifactory"
+url = "https://artifactory.mnemonic.no/artifactory/api/pypi/virt-pypi/simple/"
+default = true
