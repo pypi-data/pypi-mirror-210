@@ -1,0 +1,95 @@
+
+nav:
+  - Home: index.md
+  - Documentation:
+    - torchml.linear_model: api/linear_model.md
+    - torchml.naive_bayes: api/naive_bayes.md
+    - torchml.neighbors: api/neighbors.md
+    - torchml.discriminant_analysis: api/discriminant_analysis.md
+    - torchml.kernel_approximations: api/kernel_approximations.md
+  - Tutorials:
+    - Linear Models: tutorials/linear_model.md
+    - Naive Bayes: tutorials/gaussian_nb.md
+    - Nearest Neighbors: tutorials/neighbors.md
+    - Nearest Centroid: tutorials/nearest_centroid.md
+  - Changelog: changelog.md
+  - Getting Started: getting_started.md
+  - GitHub: https://github.com/learnables/torchml/
+
+docs_dir: ./docs
+site_name: torchml
+site_url: http://torchml.net
+site_author: 'Séb Arnold'
+google_analytics: ['UA-68693545-3', 'learnables.github.com']
+repo_name: 'learnables/torchml'
+repo_url: 'https://github.com/learnables/torchml'
+edit_uri: ''
+theme:
+  name: 'material'
+  logo: 'assets/images/torchml-icon.png'
+  favicon: 'assets/images/favicon.ico'
+  palette:
+    primary: 'white'
+    accent: 'orange'
+  font:
+      text: 'Source Sans Pro'
+      code: 'Ubuntu Mono'
+  features:
+    - header.autohide
+
+extra_javascript:
+    - https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js
+    - https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js
+
+extra_css:
+    - https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css
+    - 'assets/css/custom.css'
+
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/learnables'
+    - type: 'bug'
+      link: 'https://github.com/learnables/torchml/issues/new'
+
+plugins:
+  - search
+  - autorefs
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          setup_commands:
+              - import pytkdocs_tweaks
+              - pytkdocs_tweaks.main()
+          selection:
+              inherited_members: true
+          rendering:
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: true
+            show_category_heading: true
+            show_signature: true
+            show_signature_annotations: true
+            separate_signature: false
+            group_by_category: false
+            member_order: 'source'
+            show_bases: true
+            show_if_no_docstring: true
+            show_submodules: false
+            heading_level: 3
+
+markdown_extensions:
+  - mdx_math
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+  - codehilite:
+      guess_lang: true
+      linenums: true
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - markdown_katex:
+      no_inline_svg: True
+      insert_fonts_css: True
