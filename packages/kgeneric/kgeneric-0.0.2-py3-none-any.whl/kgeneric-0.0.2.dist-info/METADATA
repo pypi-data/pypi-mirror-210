@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: kgeneric
+Version: 0.0.2
+Summary: KLayout generic PDK
+Keywords: python
+Author-email: Skandan Chandrasekar <s39chand@uwaterloo.ca>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Dist: kfactory
+Requires-Dist: scipy
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: pytest ; extra == "dev"
+Requires-Dist: pytest-cov ; extra == "dev"
+Requires-Dist: pytest_regressions ; extra == "dev"
+Requires-Dist: jupytext ; extra == "docs"
+Requires-Dist: autodoc_pydantic ; extra == "docs"
+Requires-Dist: matplotlib ; extra == "docs"
+Requires-Dist: jupytext ; extra == "docs"
+Requires-Dist: jupyter-book==0.14.0 ; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints ; extra == "docs"
+Requires-Dist: sphinx-click ; extra == "docs"
+Requires-Dist: pytest ; extra == "tests"
+Requires-Dist: pytest-cov ; extra == "tests"
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: tests
+
+# KGeneric 0.0.2
+
+generic PDK for Kfactory
+
+## Installation
+
+`make install`
+
