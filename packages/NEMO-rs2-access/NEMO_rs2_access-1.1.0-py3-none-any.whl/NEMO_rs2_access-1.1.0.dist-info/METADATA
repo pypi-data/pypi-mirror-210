@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: NEMO-rs2-access
+Version: 1.1.0
+Summary: Install RS2 access plugin for NEMO
+Home-page: https://gitlab.com/nemo-community/atlantis-labs/nemo-rs2-access
+Author: Atlantis Labs LLC
+Author-email: atlantis@atlantislabs.io
+License: MIT
+Keywords: NEMO
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: django
+Provides-Extra: nemo
+Requires-Dist: NEMO (>=4.3.0) ; extra == 'nemo'
+Provides-Extra: nemo-ce
+Requires-Dist: NEMO-CE ; extra == 'nemo-ce'
+
+# NEMO RS2 Access plugin
+
+This plugin for NEMO allows to sync up area access with the RS2 Access system.
+
+# Installation
+
+1. `pip install NEMO-rs2-access`
+2. in `settings.py` add to `INSTALLED_APPS`:
+```python
+INSTALLED_APPS = [
+  '...',
+  'NEMO_rs2_access',
+  '...'
+]
+```
+3. add the RS2 access information:
+```python
+RS2_ACCESS = {
+  "url": "",
+  "timeout": 30, # timeout in seconds
+  "public_key": "",
+  "auth": {
+    "user_id": "",
+    "password": ""
+  }
+   # Uncomment to change the default CardHolder sync field 
+   # Choices are "CardholderId", "CardNumber", "CardId", or cardholder attribute like "UserColumns.UserText1"
+   # "user_sync_field": "CardNumber",
+   # Uncomment to use the sync field as an attribute of Cardholder (default is False, meaning it is an attribute of the Event)
+   # "cardholder_sync": False,
+   # Uncomment to change the default NEMO sync field, for example `details__employee_id`
+   # "nemo_user_sync_field": "badge_number",
+}
+
+```
+4. enable and start systemd tasks (examples in this [systemd folder](https://gitlab.com/nemo-community/atlantis-labs/nemo-rs2-access/-/tree/main/resources/systemd)):
+   * nemo_rs2_sync_readers (every hour or every day)
+   * nemo_rs2_sync_access (every minute)
+
+Notes:
+1. in Detailed administration -> Customization, a customization with key `rs2_event_begin_date` and date value for example `2023-05-18T19:30:16` can be set prior to the first run to grab data starting at that date.
+2. If not set, the system will start syncing from the beginning of the current day
+2. the systemd tasks can also be run manually from Detailed admin -> RS2 Access -> Reader -> select any reader (doesn't matter which one) and use the action dropdown to run the sync.
+
+## Usage
+1. Run the `sync reader` action via systemd or Detailed administration
+2. Edit the relevant readers and associate them with an Area and a type (Entrance or Exit)
+3. Set Badge numbers in NEMO users
+4. Run the `sync access` action via systemd or Detailed administration
+
+## Project selection rules
+Upon login, the first active project is selected since all that matters is that we have a placeholder.
+
+When updating the record on logout, the project is set using the following rules:
+ 1. If the user has only one active project, use it
+ 2. Check tool usage for this user since login time (non-remote)
+ 3. If there is no tool usage, use the default project (set in user preferences)
+ 4. If there is no default project, use the first active project
