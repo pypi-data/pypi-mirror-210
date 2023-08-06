@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: passgeneration
+Version: 0.0.2
+Summary: Password Generating Library. Fixed Name Version
+Home-page: https://github.com/Aroko001/PassGeneration-py
+Author: aroko900
+Author-email: aro0ko1@xmailer.be
+License: MIT
+Keywords: password generator,password
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# PassGeneration
+`PassGeneration` Generates A Password.
+
+## Installation
+```
+python -m pip install passgeneration
+```
+
+## Usage
+```
+passgeneration.generate(length=8, upper=True, lower=True, numbers=True, special=True)
+```
+
+## License
+
+This project is licensed under the MIT License.
