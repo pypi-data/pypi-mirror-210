@@ -1,0 +1,183 @@
+Metadata-Version: 2.1
+Name: gitlab-changelog-tool
+Version: 1.0.2
+Summary: Automatically generate changelogs from merge requests on GitLab.
+Home-page: https://github.com/danilopeixoto/gitlab-changelog-tool
+Download-URL: https://pypi.org/project/gitlab-changelog-tool
+Author: Danilo Peixoto Ferreira
+License: BSD-3-Clause
+Project-URL: Code, https://github.com/danilopeixoto/gitlab-changelog-tool
+Project-URL: Issue tracker, https://github.com/danilopeixoto/gitlab-changelog-tool/issues
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: click (>=8.1.0)
+Requires-Dist: jinja2 (>=3.1.0)
+Requires-Dist: semver (>=3.0.0)
+Requires-Dist: python-dateutil (>=2.8.0)
+Requires-Dist: python-gitlab (>=3.14.0)
+Provides-Extra: development
+Requires-Dist: setuptools (>=58.2.0) ; extra == 'development'
+Requires-Dist: wheel (>=0.37.0) ; extra == 'development'
+Requires-Dist: autopep8 (>=1.6.0) ; extra == 'development'
+Requires-Dist: isort (>=5.10.0) ; extra == 'development'
+Requires-Dist: mypy (>=0.9.0) ; extra == 'development'
+Requires-Dist: pylint (>=2.12.0) ; extra == 'development'
+Requires-Dist: pytest (>=6.2.0) ; extra == 'development'
+Requires-Dist: pytest-cov (>=3.0.0) ; extra == 'development'
+Requires-Dist: twine (>=3.7.0) ; extra == 'development'
+Requires-Dist: bump2version (>=1.0.0) ; extra == 'development'
+
+[![Releases](https://img.shields.io/github/v/release/danilopeixoto/gitlab-changelog-tool?color=blue)](https://github.com/danilopeixoto/gitlab-changelog-tool/releases)
+[![Issues](https://img.shields.io/github/issues/danilopeixoto/gitlab-changelog-tool?color=blue)](https://github.com/danilopeixoto/gitlab-changelog-tool/issues)
+[![Pull requests](https://img.shields.io/github/issues-pr/danilopeixoto/gitlab-changelog-tool?color=blue)](https://github.com/danilopeixoto/gitlab-changelog-tool/pulls)
+[![License](https://img.shields.io/pypi/l/gitlab-changelog-tool?color=blue)](LICENSE.md)
+
+# GitLab Changelog Tool
+
+Automatically generate changelogs from merge requests on GitLab.
+
+GitLab Changelog Tool automatically creates changelogs by analyzing merge requests that have been merged since the latest tag for a specific branch. It utilizes a customizable template to generate the changelogs.
+
+Template variables:
+
+- `tag_name`
+- `tag_url`
+- `tag_timestamp`
+- `features`
+- `improvements`
+- `bug_fixes`
+
+```
+# Changelog
+
+## [{{ tag_name }}]({{ tag_url }}) ({{ tag_timestamp.strftime('%Y-%m-%d') }})
+{% if features %}
+
+### New features
+
+{% for feature in features %}
+- {{ feature }}
+{% endfor %}
+{% endif %}
+{% if improvements %}
+
+### Improvements
+
+{% for improvement in improvements %}
+- {{ improvement }}
+{% endfor %}
+{% endif %}
+{% if bug_fixes %}
+
+### Bug fixes
+
+{% for bug_fix in bug_fixes %}
+- {{ bug_fix }}
+{% endfor %}
+{% endif %}
+```
+
+The tool determines the release version and notes by inspecting the titles and labels of the merge requests:
+
+Scoped labels:
+
+- `type::feature`
+- `type::improvement`
+- `type::bugfix`
+
+Basic labels:
+
+- `breakingchange`
+
+If no merge requests are available, a feature release is generated based on the project description.
+
+The versioning scheme follows the [Semantic Versioning (SemVer)](https://semver.org) specification.
+
+## Prerequisites
+
+* [Python (>=3.8.0)](https://www.python.org)
+
+## Installation
+
+### Production
+
+Install package:
+
+```console
+pip install gitlab-changelog-tool
+```
+
+### Development
+
+Install package:
+
+```console
+pip install -e .[development]
+```
+
+> **Note** Use the `-e, --editable` flag to install the package in development mode.
+
+> **Note** Set up a virtual environment for development.
+
+Sort imports:
+
+```console
+isort .
+```
+
+Format source code:
+
+```console
+autopep8 --recursive --in-place .
+```
+
+Check static typing:
+
+```console
+mypy .
+```
+
+Lint source code:
+
+```console
+pylint setup.py gitlab_changelog_tool tests/
+```
+
+Test package:
+
+```console
+pytest
+```
+
+Report test coverage:
+
+```console
+pytest --cov
+```
+
+> **Hint** See also the [`Makefile`](Makefile) for development.
+
+## Usage
+
+Generate changelog content:
+
+```console
+gitlab-changelog-tool --project-id <project-id> generate
+```
+
+The command-line application will also retrieve configuration from specific environment variables:
+
+- `CI_SERVER_URL`
+- `GITLAB_ACCESS_TOKEN`
+- `CI_PROJECT_ID`
+
+## Copyright and license
+
+Copyright (c) 2023, Danilo Peixoto Ferreira. All rights reserved.
+
+Project developed under [BSD-3-Clause License](LICENSE.md).
