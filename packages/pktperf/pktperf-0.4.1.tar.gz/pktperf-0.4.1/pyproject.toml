@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pktperf"
+version = "0.4.1"
+description = "pktgen scripts tool"
+authors = ["junka <wan.junjie@foxmail.com>"]
+license = "BSD"
+repository = "https://github.com/junka/pktperf"
+
+[tool.poetry.dependencies]
+python = "^3.5"
+
+[tool.poetry.dev-dependencies]
+
+
+[tool.poetry.scripts]
+pktperf = 'pktperf.pktperf:main'
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
