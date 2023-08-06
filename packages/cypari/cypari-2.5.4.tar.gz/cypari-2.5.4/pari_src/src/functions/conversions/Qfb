@@ -1,0 +1,9 @@
+Function: Qfb
+Section: conversions
+C-Name: Qfb0
+Prototype: GDGDG
+Help: Qfb(a,{b},{c}): binary quadratic form a*x^2+b*x*y+c*y^2.
+Doc: creates the binary quadratic form\sidx{binary quadratic form}
+ $ax^2+bxy+cy^2$. Negative definite forms are not implemented,
+ use their positive definite counterpart instead.
+ The syntax Qfb([a,b,c]) is also accepted.
