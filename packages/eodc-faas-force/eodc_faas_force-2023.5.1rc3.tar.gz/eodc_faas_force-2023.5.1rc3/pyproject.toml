@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "eodc-faas-force"
+version = "2023.5.1-rc.3"
+description = "Bindings for the FORCE processor exposed at EODC"
+authors = ["Lukas Weidenholzer <lukas.weidenholzer@eodc.eu>", "Sean Hoyal <sean.hoyal@eodc.eu>", "Valentina Hutter <valentina.hutter@eodc.eu>"]
+readme = "README.md"
+packages = [{include = "force_processor_bindings"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = "^1.10.7"
+requests = "^2.28.2"
+pyproj = "^3.5.0"
+argo-workflows = "6.3.9"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.2.1"
+pytest = "^7.2.2"
+ruff = "^0.0.259"
+ipykernel = "^6.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
