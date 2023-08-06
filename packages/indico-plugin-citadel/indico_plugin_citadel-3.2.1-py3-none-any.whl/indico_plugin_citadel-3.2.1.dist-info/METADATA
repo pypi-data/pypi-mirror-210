@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: indico-plugin-citadel
+Version: 3.2.1
+Summary: Indico search+livesync backend using Citadel+ElasticSearch
+Home-page: https://github.com/indico/indico-plugins
+Author: Indico Team
+Author-email: indico-team@cern.ch
+License: MIT
+Classifier: Environment :: Plugins
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: <3.11,>=3.9.0
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Requires-Dist: indico (>=3.2)
+Requires-Dist: indico-plugin-livesync (>=3.0.dev0)
+
+# Citadel Search Plugin
+
+The Citadel plugin integrates Indico with the [Citadel][citadel] microservice
+to provide advanced search functionality using an Elasticsearch backend.
+
+## Changelog
+
+### 3.2.1
+
+- Stop using deprecated URL utils from werkzeug
+
+### 3.2
+
+- Update translations
+
+### 3.1
+
+- Adapt to Indico 3.1 changes
+- Correctly handle remote groups whose capitalization changed at some point
+
+### 3.0
+
+- Initial release
+
+
+[citadel]: https://gitlab.cern.ch/webservices/cern-search/cern-search-rest-api
