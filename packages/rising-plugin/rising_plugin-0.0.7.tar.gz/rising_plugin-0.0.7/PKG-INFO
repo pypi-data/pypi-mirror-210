@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: rising_plugin
+Version: 0.0.7
+Summary: It is a plugin for Rising GPT
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Bug Tracker, https://github.com/pypa/sampleproject/issues
+Author-email: Thomas Richardson <thomasr37oss@gmail.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Requires-Dist: langchain>=0.0.148
+Requires-Dist: openai>=0.27.4
+Requires-Dist: pinecone-client>=2.2.1
+Description-Content-Type: text/markdown
+
+# RisingPlugin
+It is a plugin for the goal of this project is to develop a phone operating system that replaces the traditional UI of an Android-based smartphone with ChatGPT. The AI will manage control of all apps via plugins, which can be prompted by the user.
+
+Develop a langchain plugin that sends Android system notifications to the user. Should be able to use a langchain agent.
+Allow user to launch browser app on a specific webpage or to search an image , and others more. 
