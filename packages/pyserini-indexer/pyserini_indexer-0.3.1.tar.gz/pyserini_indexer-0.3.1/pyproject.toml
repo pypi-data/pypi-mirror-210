@@ -1,0 +1,36 @@
+[project]
+name = "pyserini-indexer"
+version = "0.3.1"
+description = "Helper application for building search indexes with pyserini"
+authors = [
+    { name = "michal", email = "michalwilk139@gmail.com" },
+]
+dependencies = [
+    "pyserini>=0.21.0",
+    "faiss-cpu>=1.7.4",
+    "torch>=2.0.1",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+
+[project.license]
+text = "MIT"
+
+[project.scripts]
+pyserini-indexer = "pyserini_indexer.__main__:main"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+excludes = [
+    "./**/.git",
+    "tests",
+]
+
+[tool.pdm.scripts]
+pyserini-indexer = "python pyserini_indexer"
+test = "python -m unittest"
