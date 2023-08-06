@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: aioworldline
+Version: 0.0.6
+Summary: Unofficial Worldline portal data retrieving client
+Home-page: https://github.com/kamikaze/aioworldline
+Author: Oleg Korsak
+Author-email: kamikaze.is.waiting.you@gmail.com
+License: gpl-3
+Project-URL: Documentation, https://github.com/kamikaze/aioworldline/wiki
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Python: >=3.11
+Description-Content-Type: text/x-rst; charset=UTF-8
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: aiohttp[speedups] (==3.8.4)
+Requires-Dist: pydantic (==1.10.8)
+Provides-Extra: testing
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+
+aioworldline
+============
+
+Unofficial Worldline portal data retrieving client
