@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: snake-opencv
+Version: 0.1.2
+Summary: Snake case opencv with type annotations
+Home-page: https://github.com/cospectrum/snake-opencv
+License: Apache-2.0
+Author: cospectrum
+Author-email: severinalexeyv@gmail.com
+Requires-Python: >=3.8.1,<4.0.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: opencv-python (>=4.0,<5.0)
+Requires-Dist: typing-extensions (>=4.5.0,<5.0.0)
+Project-URL: Repository, https://github.com/cospectrum/snake-opencv
+Description-Content-Type: text/markdown
+
+# Snake-OpenCV
+Snake case OpenCV with type annotations for Python.
+
+Note: still in early development
+
+## Install
+
+Stable version
+```sh
+pip install snake-opencv
+```
+
+Latest version from git
+```sh
+pip install git+https://github.com/cospectrum/snake-opencv.git
+```
+
+## Usage
+```py
+import snake_opencv as cv
+
+path = '...'
+image = cv.imread(path)
+assert image is not None
+gray_image = cv.cvt_color(image, cv.COLOR_BGR2GRAY)
+
+cv.imshow(window_name, gray_image) 
+```
+

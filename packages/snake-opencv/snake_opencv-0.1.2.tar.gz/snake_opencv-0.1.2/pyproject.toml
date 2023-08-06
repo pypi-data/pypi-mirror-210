@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "snake-opencv"
+version = "0.1.2"
+repository = "https://github.com/cospectrum/snake-opencv"
+description = "Snake case opencv with type annotations"
+license = "Apache-2.0"
+authors = ["cospectrum <severinalexeyv@gmail.com>"]
+readme = "README.md"
+packages = [{include = "snake_opencv"}]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+opencv-python = "^4.0"
+typing-extensions = "^4.5.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
+flake8 = "^6.0.0"
+pytest = "^7.2.0"
+pre-commit = "^3.3.1"
+pyright = "^1.1.306"
+
+[tool.mypy]
+ignore_missing_imports = true
+python_version = "3.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
