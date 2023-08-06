@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "pmemo"
+version = "0.2.0"
+description = "Pmemo with ChatGPT is a CUI memo app that enables direct terminal editing without full-screen mode. It integrates OpenAI's ChatGPT, allowing interactive inquiries via the ctrl + o shortcut."
+authors = ["Asugawara <asgasw@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pmemo"}]
+
+[tool.poetry.scripts]
+pm = "pmemo.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pygments = "^2.15.1"
+prompt-toolkit = "^3.0.38"
+rich = "^13.3.5"
+pydantic = "^1.10.7"
+openai = "^0.27.7"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+mypy = "^1.2.0"
+pytest = "^7.3.1"
+types-pygments = "^2.15.0.1"
+pre-commit = "^3.3.2"
+
+[tool.isort]
+profile = "black"
+
+[mypy]
+plugins = "pydantic.mypy"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
