@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: shttst
+Version: 0.1.0
+Summary: Shmart TTS tools.
+Author-email: Shmart <szprytnyd@gmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: librosa
+Requires-Dist: numpy
+Requires-Dist: torch
+Requires-Dist: torchaudio
+Requires-Dist: huggingface-hub
+Requires-Dist: nemo-toolkit[asr]
+Requires-Dist: audclas
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: yt-dlp
+Requires-Dist: faster-whisper
+
+# ShTTSt
+
+Shmart TTS tools - package with some extracted useful scripts for creation of datasets for training of TTS models.
+
+Examples of usage can be found in `sshtst.recipes`.
