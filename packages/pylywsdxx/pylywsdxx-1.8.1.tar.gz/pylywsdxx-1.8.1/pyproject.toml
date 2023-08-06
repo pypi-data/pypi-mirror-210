@@ -1,0 +1,35 @@
+# pyproject.toml
+
+# Hatchling  https://packaging.python.org/en/latest/key_projects/#hatch
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pylywsdxx"
+description = "A Python3 class to interrogate Xiaomi Mijia LYWSD* sensors."
+version = "1.8.1"  # latest/current distribution version
+# version = "1.7.22"  # latest test version
+dependencies = [
+    "bluepy3",
+]
+license = "MIT"
+authors = [
+  { name="Mausy5043" },
+]
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Home Automation"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Mausy5043/pylywsdxx"
+"Bug Tracker" = "https://github.com/Mausy5043/pylywsdxx/issues"
