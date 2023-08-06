@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: redast
+Version: 0.1.8
+Summary: UNKNOWN
+Home-page: https://github.com/rilshok/redast
+Author: Vladislav A. Proskurov
+Author-email: rilshok@pm.me
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pytest
+Requires-Dist: cloudpickle
+Requires-Dist: cryptography
+Requires-Dist: xxhash
+Requires-Dist: sqlitedict
+
+# REDAST - Remote Data Storage
+
+Redast provides a flexible interface for storing data in different types of storages.
+The organization of data storage is carried out according to the principle of a data lake.
+
+```bash
+pip install redast
+```
+
+[Documentation](https://rilshok.github.io/redast)
+
+
