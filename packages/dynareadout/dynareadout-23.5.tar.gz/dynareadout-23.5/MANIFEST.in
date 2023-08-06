@@ -1,0 +1,6 @@
+recursive-exclude lib/pybind11 *.py
+recursive-include lib/dynareadout/src *.*
+recursive-include lib/dynareadout/src/cpp *.*
+recursive-include lib/dynareadout/src/python *.*
+recursive-include lib/pybind11/include *.*
+include lib/pybind11/LICENSE
