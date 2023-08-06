@@ -1,0 +1,68 @@
+
+
+# ============================================================================
+# Config file for coverage pipeline
+# ==========================================[ Sections for the users ]========
+#
+# One of input_directory, input_pattern and input_samples must be provided
+# If input_directory provided, use it otherwise if input_pattern provided,
+# use it, otherwise use input_samples.
+# ============================================================================
+input_directory:
+input_readtag:
+input_pattern:
+
+##############################################################################
+#
+# :Parameters:
+#
+# :param circular: is your genome circular or not ?
+# :param double_threshold: double threshold for clustering. Keep 0.5 if you do
+#     not know. Otherwise, checkout the online documentation on
+#     sequana.readthedocs.io
+# :param genbank_file: optional genbank 
+# :param high_threshold:
+# :param low_threshold:
+# :param mixture_models: keep to 2.
+# :param reference_file: optional fasta file corresponding to you mapped data. Used for
+#     GC plot only
+# :param window: the W parameter of the running median. Keep as long as twice
+#     the deleted/depleted/duplicated you want to identify or to avoid. short
+#     genome will be set to genome length divided by 5 automatically. 
+# :param chunksize: for large genomes, split the data into chunks
+# :param binning: for large genomes, merge data into bins of this size. You will
+#     loose resolution: bins are merged and averaged indeed
+# :param cnv_clustering: further clustering to merge detected events whose
+#     distance is smaller than this parameter
+#
+sequana_coverage:
+    circular: True
+    window_size: 20001
+    binning: -1
+    cnv_clustering: -1
+    chunksize: 5000000
+    double_threshold: 0.5
+    gc_window_size: 201
+    annotation_file:
+    high_threshold: 4.
+    low_threshold: -4.
+    mixture_models: 2
+    reference_file:
+
+
+##############################################################################
+#
+#
+# - options: any multiqc options accepted. Note that if you use --comments, 
+#   it will be appended to the existing --comments added inside sequana. 
+#   By default, -p (create pictures) and -f (for overwritting) are used. 
+# - indir: The input multiqc (default is local).
+multiqc:
+    do: true
+    options: -p -f
+    input_directory: "."
+    modules: sequana_coverage    # falco is not set; the fastqc module works for falco
+    config_file:
+    resources:
+        mem: 8G
+
