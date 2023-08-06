@@ -1,0 +1,81 @@
+[tool.poetry]
+name = "kalm"
+version = "0.6.0"
+description = "Knowit Automation lifecycle management"
+authors = ["Jakob Holst <jakob.holst@knowit.dk>"]
+license = "MIT"
+homepage = "https://kalm.openknowit.com"
+repository = "https://github.com/miracle-as/openknowit_kalm.git"
+
+[tool.poetry.scripts]
+kalm = 'kalm:main'
+kalm_jenkins = 'kalm:jenkins'
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25"
+pytest = "^6.2"
+mypy = "^0.910"
+redis = "^4.5.3"
+pynetbox = "^6.6.2"
+wheel = "^0.34.2"
+hvac = "^1.1.0"
+netbox = "^0.0.2"
+python-jenkins = "^1.7.0"
+
+
+
+[project]
+name = "kalm"  
+version = "0.6.0" 
+description = "Knowit automation lifecycle management"
+readme = "README.md" # Optional
+requires-python = ">=3.7"
+license = {file = "LICENSE.txt"}
+keywords = ["kalm", "awx", "ansible", "automation"]  
+authors = [
+  {name = "Jakob Holst", email = "jho@miracle.dk" }
+]
+maintainers = [
+  {name = "Jakob Holst", email = "jho@miracle.dk" }
+]
+
+classifiers = [  # Optional
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+]
+
+dependencies = [ # Optional
+  "redis",
+  "pynetbox",
+  "wheel",
+  "hvac",
+  "netbox"
+]
+
+[project.optional-dependencies] # Optional
+dev = ["check-manifest"]
+test = ["coverage"]
+
+[project.urls]  # Optional
+"Homepage" = "https://github.com/JakobHolstDK/kalm"
+"Bug Reports" = "https://github.com/JakobHolstDK/kalm/issues"
+"Source" = "https://github.com/JakobHolstDK/kalm"
+
+[project.scripts]  # Optional
+kalm = "kalm:main"
+
+[tool.setuptools]
+package-data = {"kalm" = ["*.dat"]}
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
