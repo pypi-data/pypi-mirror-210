@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: matchmakereft
+Version: 1.1.1
+Summary: Automated matching of general models onto general effective field theories
+Home-page: https://ftae.ugr.es/matchmakereft/
+Author: Adrian Carmona, Achilleas Lazopoulos, Pablo Olgoso, Jose Santiago
+Author-email: adrian@ugr.es, lazopoulos@itp.phys.ethz.ch, pablolgoso@ugr.es, jsantiago@ugr.es
+License: GNU General Public License GPLv3
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: colorama
+Requires-Dist: requests
+Requires-Dist: setuptools
+Requires-Dist: tqdm (>=4.62.3)
+Requires-Dist: version-comparison
+Requires-Dist: yolk3k
+
+# MatchMaker
+
+Automated tree-level and one-loop matching of general models onto general effective field theories
+
+## Contributors
+
+- Adrián Carmona (University of Granada)
+- Achilleas Lazopoulos (ETH Zürich)
+- Pablo Olgoso (University of Granada)
+- Jose Santiago (University of Granada)
+
+## Installation
+
+Matchmakereft is available both on the PyPI Python Package Index (PyPI) https://pypi.org/project/matchmakereft/ as well as in the Anaconda Python distribution https://anaconda.org/matchmakers/matchmakereft
+
+## Troubleshooting
+
+We encourage users to check the troubleshooting section in the latest matchmakereft manual and the Gitlab issue tracker (https://gitlab.com/m4103/matchmaker-eft/-/issues)
+
+## License
+
+Matchmakereft is distributed under a GNU General Public License v3.0
+
+## Citation
+
+If you use matchmakereft please cite [SciPost Phys. 12 (2022) 6, 198] (https://scipost.org/10.21468/SciPostPhys.12.6.198) arXiv:2112.10787 (https://arxiv.org/abs/2112.10787)
+
