@@ -1,0 +1,68 @@
+import py_os;
+
+class Person {
+    has name;
+    has age = 0;
+    has has_genes = True;
+
+    def __startwith__() {
+        print("Person was created!")
+    };
+
+    def say_hello() {
+       return ("Hello, my name is " + self.name);
+    };
+
+    def add_age() {
+        self.age = self.age + 1;
+    };
+};
+
+class Rectangle {
+    has length;
+    has width;
+
+    def __startwith__() {};
+
+    def area() {
+        return self.length * self.width;
+    };
+
+    def perimeter() {
+        return 2 * self.length + 2 * self.width;
+    };
+
+};
+
+class Square inherits Rectangle {
+    has length = 20;
+
+    use Rectangle(length, length);
+
+    def __startwith__() {};
+};
+
+sq = Square();
+
+print("area of sq l=20 => ", sq.area());
+
+class Cube inherits Square {
+
+    # don't add the initializer if you aren't initializing anything!
+    # def __startwith__() {};
+
+    def surface_area() {
+        face_area = super().area();
+        return face_area * 6;
+    };
+
+    def volume() {
+        face_area = super().area();
+        return face_area * self.length;
+    };
+};
+
+c = Cube(3);
+
+print(c.surface_area());
+print(c.volume());
