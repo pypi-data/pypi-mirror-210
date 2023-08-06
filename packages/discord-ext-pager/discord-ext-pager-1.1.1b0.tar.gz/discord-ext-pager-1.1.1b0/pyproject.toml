@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "discord-ext-pager"
+description = "A view-based paginator library for discord.py 2.0"
+authors = [{ name = "thegamecracks" }]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+keywords = [
+    "discord",
+    "discord.py",
+    "paginator",
+    "view",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "discord.py>=2.0.0",
+    "typing-extensions>=4.5.0",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/thegamecracks/discord-ext-pager"
+
+[tool.setuptools.dynamic]
+version = { attr = "discord.ext.pager.__version__" }
