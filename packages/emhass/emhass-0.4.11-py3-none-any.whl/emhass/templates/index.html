@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <title>EMHASS: Energy Management Optimization for Home Assistant</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+    </head>
+    <body>
+        <center>
+            <h2 style="font-family: Helvetica;color: darkblue;">EMHASS: Energy Management Optimization for Home Assistant</h2>
+        </center>
+        <div class="center">
+            <div align="center" class="form">
+                <form action="" method="get">
+                    <h4 style="font-family: Helvetica;color: darkblue;">Use the buttons below to manually  launch different optimization tasks</h4>
+                    <button type="button" id="perfect-optimization" class="button button1" >Perfect Optimization</button>
+                    <button type="button" id="dayahead-optimization" class="button button2" >Day-ahead Optimization</button>
+                    <h4 style="font-family: Helvetica;color: darkblue;">Use the button below to publish the optimized variables at the current timestamp</h4>
+                    <button type="button" id="publish-data" class="button button1" >Publish Optimization Results</button>
+                    <h4 style="font-family: Helvetica;color: darkblue;">Use the buttons below to fit, predict and tune a machine learning model for testing</h4>
+                    <button type="button" id="forecast-model-fit" class="button button1" >ML forecast model fit</button>
+                    <button type="button" id="forecast-model-predict" class="button button2" >ML forecast model predict</button>
+                    <button type="button" id="forecast-model-tune" class="button button3" >ML forecast model tune</button>
+                    <!-- h4 style="font-family: Helvetica;color: darkblue;">Pass any needed data dictionary here</h4>
+                    <div class="input-group">
+                      <textarea id="runtimeparams" name="runtimeparams" rows="6" cols="65"></textarea>
+                    </div> -->
+                    <br>
+                </form>
+                <br><br>
+            </div>
+        </div>
+        {% for plot in injection_dict %}
+            <div align="center">
+                {{injection_dict[plot]}}
+            </div> 
+        {% endfor %}
+        <footer class="footer">
+            <center>
+                <p style="font-family: Helvetica;color: darkblue;">&copy; MIT License | Copyright (c) 2021-2023 David HERNANDEZ</p>
+            </center>
+        </footer>
+    </body>
+    <script>
+        document.getElementById('perfect-optimization').addEventListener('click', function() {
+            var url = "/action/perfect-optim"
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "POST",
+            "headers": {
+                'Content-Type':'application/json'
+            },
+            "dataType": 'json',
+            "data": '{}'
+            }
+            $.ajax(settings).done(function (response) {
+            });
+        });
+        document.getElementById('dayahead-optimization').addEventListener('click', function() {
+            var url = "/action/dayahead-optim"
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "POST",
+            "headers": {
+                'Content-Type':'application/json'
+            },
+            "dataType": 'json',
+            "data": '{}'
+            }
+            $.ajax(settings).done(function (response) {
+            });
+        });
+        document.getElementById('publish-data').addEventListener('click', function() {
+            var url = "/action/publish-data"
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "POST",
+            "headers": {
+                'Content-Type':'application/json'
+            },
+            "dataType": 'json',
+            "data": '{}'
+            }
+            $.ajax(settings).done(function (response) {
+            });
+        });
+        // document.getElementById('forecast-model-fit').addEventListener('click', function() {
+        //     var formData = $("runtimeparams").serialize();
+        //     // send ajax
+        //     $.ajax({
+        //         url: "/action/forecast-model-fit",
+        //         type : "POST",
+        //         contentType : "application/json;charset=UTF-8",
+        //         dataType : 'json',
+        //         data : formData,
+        //         success : function(result) {
+        //             console.log(result);
+        //         },
+        //         error: function(xhr, resp, text) {
+        //             console.log(xhr, resp, text);
+        //         }
+        //     })
+        // });
+        document.getElementById('forecast-model-fit').addEventListener('click', function() {
+            var url = "/action/forecast-model-fit"
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "POST",
+            "headers": {
+                'Content-Type':'application/json'
+            },
+            "dataType": 'json',
+            "data": '{}'
+            }
+            $.ajax(settings).done(function (response) {
+            });
+        });
+        document.getElementById('forecast-model-predict').addEventListener('click', function() {
+            var url = "/action/forecast-model-predict"
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "POST",
+            "headers": {
+                'Content-Type':'application/json'
+            },
+            "dataType": 'json',
+            "data": '{}'
+            }
+            $.ajax(settings).done(function (response) {
+            });
+        });
+        document.getElementById('forecast-model-tune').addEventListener('click', function() {
+            var url = "/action/forecast-model-tune"
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": url,
+            "method": "POST",
+            "headers": {
+                'Content-Type':'application/json'
+            },
+            "dataType": 'json',
+            "data": '{}'
+            }
+            $.ajax(settings).done(function (response) {
+            });
+        });
+    </script>
+</html>
