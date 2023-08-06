@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: mse-cli-core
+Version: 0.1a0
+Summary: Utils for MicroService Encryption Python CLIs
+Home-page: https://cosmian.com
+Author: Cosmian Tech
+Author-email: tech@cosmian.com
+License: MIT
+Project-URL: Documentation, https://docs.cosmian.com
+Project-URL: Source, https://github.com/Cosmian/mse-cli-core
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+Requires-Dist: cryptography (<41.0,>=40.0.2)
+Requires-Dist: docker (<7.0.0,>=6.0.1)
+Requires-Dist: intel-sgx-ra (==2.0a3)
+Requires-Dist: pydantic (<2.0.0,>=1.10.2)
+Requires-Dist: requests (<2.29.0,>=2.28.1)
+Requires-Dist: toml (<0.11.0,>=0.10.2)
+
+# MSE CLI Core
+
+Components used by both [mse-cli](https://github.com/Cosmian/mse-cli) and [mse-home-cli](https://github.com/Cosmian/mse-home-cli)
