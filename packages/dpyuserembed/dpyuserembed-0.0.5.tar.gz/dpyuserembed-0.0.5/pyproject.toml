@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpyuserembed"
+version = "0.0.5"
+authors = [
+  { name="Colton Milford", email="coltonmilford10@gmail.com" },
+]
+description = "A package to allow discord users to use embeds again"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
