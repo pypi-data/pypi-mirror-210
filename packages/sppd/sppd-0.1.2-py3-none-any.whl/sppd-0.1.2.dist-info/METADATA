@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: sppd
+Version: 0.1.2
+Summary: Spotify playlist downloader
+Project-URL: Homepage, https://github.com/emcy06236/sppd
+Project-URL: Bug Tracker, https://github.com/emcy06236/sppd/issues
+Author-email: emcy06236 <emcy06236@proton.me>
+License-Expression: GPL-3.0
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Requires-Dist: beautifulsoup4
+Requires-Dist: pytube
+Description-Content-Type: text/markdown
+
+# sppd - spotify playlist downloader
+## Windows
+```
+sppd [PLAYLIST]
+```
+## Anything else
+```
+python3 -m sppd [PLAYLIST]
+```
