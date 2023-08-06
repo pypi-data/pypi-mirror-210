@@ -1,0 +1,30 @@
+ErrorScreen {
+    align: center middle;
+}
+
+#dialog {
+    padding: 1 2;
+    width: 50%;
+    height: 50%;
+    border: thick $background 80%;
+    background: $surface;
+}
+
+ErrorScreen > Vertical > Label {
+    /*column-span: 1;*/
+    height: 1fr;
+    width: 1fr;
+    content-align: center middle;
+}
+
+#buttons {
+    margin-top: 1;
+    width: 1fr;
+    height: auto;
+    align: center middle;
+}
+
+ErrorScreen > Vertical > Horizontal > Button {
+    width: 20;
+    min-width: 20;
+}
