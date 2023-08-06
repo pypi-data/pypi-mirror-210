@@ -1,0 +1,13 @@
+[build-system]
+requires = [
+    "setuptools>=62",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = "-q --no-header"
+minversion = "6.2"
+testpaths = [
+    "tests",
+]
