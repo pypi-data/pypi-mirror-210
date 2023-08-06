@@ -1,0 +1,71 @@
+# Poetry
+
+[tool.poetry]
+name = "the-spymaster-util"
+version = "3.0.8"
+description = "Common utilities and infra for The Spymaster game."
+authors = ["Asaf Kali <akali93@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "the_spymaster_util" }]
+repository = "https://github.com/asaf-kali/the-spymaster-util"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pydantic = "^1.9"
+dynaconf = "^3.1"
+boto3 = "^1.24.6"
+ulid-py = "^1.1"
+requests = "^2.28"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
+coverage = { version = "^7.1.0", extras = ["toml"] }
+parameterized = "^0.8.1"
+
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.0.236"
+black = "^22.12.0"
+isort = "^5.11.4"
+mypy = "^0.991"
+pylint = "^2.15.10"
+types-requests = "^2.28.11.8"
+
+[tool.poetry.group.dev.dependencies]
+twine = "^4.0.2"
+pre-commit = "^3.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# Test
+
+[tool.pytest.ini_options]
+addopts = "-s --disable-pytest-warnings"
+
+[tool.coverage.run]
+source = ["the_spymaster_util"]
+
+# Lint
+
+[tool.ruff]
+line-length = 120
+select = ["B", "C", "E", "F", "W"]
+ignore = []
+exclude = ["local", ".deployment"]
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+skip = ["__init__.py", ".deployment/"]
+
+[tool.mypy]
+ignore_missing_imports = true
+exclude = ["local/", ".deployment/", "dist/", "build/"]
+
+[tool.pylint]
+max-line-length = 120
+disable = ["C0114", "C0115", "C0116", "R0903", "R0902", "R0913", "W0703", "W1203"]
+extension-pkg-allow-list = ["pydantic"]
