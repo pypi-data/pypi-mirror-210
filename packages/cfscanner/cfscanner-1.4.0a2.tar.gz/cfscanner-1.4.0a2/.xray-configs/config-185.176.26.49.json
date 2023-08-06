@@ -1,0 +1,55 @@
+{
+  "inbounds": [
+    {
+      "port": 45131,
+      "listen": "127.0.0.1",
+      "tag": "socks-inbound",
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": false,
+        "ip": "127.0.0.1"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.176.26.49",
+            "port": 443,
+            "users": [
+              {
+                "id": "201b62c5-0f84-5e61-a220-4911c0c221b4"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "headers": {
+            "Host": "scherebest.opensource.ga"
+          },
+          "path": "/api01"
+        },
+        "tlsSettings": {
+          "serverName": "eaaeb997-8c14-479b-8b52-3ee3f944fe72.opensource.ga",
+          "allowInsecure": false
+        }
+      }
+    }
+  ],
+  "other": {}
+}
