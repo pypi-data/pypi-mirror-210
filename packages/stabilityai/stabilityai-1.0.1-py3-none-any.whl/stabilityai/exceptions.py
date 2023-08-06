@@ -1,0 +1,2 @@
+class YouNeedToUseAContextManager(Exception):
+    pass
