@@ -1,0 +1,29 @@
+
+{{ vars.search_options.imports|generate_import }}
+from flask_babelex import lazy_gettext as _
+from . import facets
+
+
+class {{ vars.search_options| class_header }}:
+    """{{ vars.record.class|base_name }} search options."""
+
+    facets = {
+{% for dict in search_data %}
+{% for key, value in dict.items()%}
+    '{{ key }}': {{ value }},
+{% endfor %}
+{% endfor %}
+    }
+    sort_options = {
+        {% if vars.search_options_bases %}
+        **{{ vars.search_options_bases[0]|base_name }}.sort_options,
+        {% else %}
+        **InvenioSearchOptions.sort_options,
+        {% endif %}
+{% for dict in sort_definition %}
+{% for key, value in dict.items()%}
+    '{{ key }}': {{ value }},
+{% endfor %}
+{% endfor %}
+    }
+
