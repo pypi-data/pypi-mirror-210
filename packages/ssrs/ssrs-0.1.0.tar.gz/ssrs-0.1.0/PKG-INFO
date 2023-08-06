@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: ssrs
+Version: 0.1.0
+Summary: Simple Scripting for Rust enables you to create "scripts", written in rust and "interpret" them, by using a shebang line. It's basically a way to run quick-and-dirty programs without having to setup a new crate.
+Home-page: https://github.com/brunofauth/ssrs
+License: MIT
+Keywords: rust,scripting,shebang
+Author: Bruno Fauth
+Author-email: 149593@upf.br
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3
+Project-URL: Bug Tracker, https://github.com/brunofauth/ssrs/issues
+Project-URL: Repository, https://github.com/brunofauth/ssrs
+Description-Content-Type: text/markdown
+
+# Description
+
+This program enables you to run rust source files as scripts, from the command 
+line, by prefixing them with a shebang line. It's useful because sometimes you 
+just want to write a quick-and-dirty "script", without having to creaate a new 
+crate/package.
+
+
+# Usage
+
+```rust
+#! /usr/bin/ssrs
+
+// your rust code here
+fn main() {
+    println!("Hello World!");
+}
+```
+
+
