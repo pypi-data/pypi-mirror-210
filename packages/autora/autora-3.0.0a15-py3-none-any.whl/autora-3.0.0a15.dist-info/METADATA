@@ -1,0 +1,149 @@
+Metadata-Version: 2.1
+Name: autora
+Version: 3.0.0a15
+Summary: Autonomous Research Assistant (AutoRA) is a framework for automating steps of the empirical research process.
+Author-email: Sebastian Musslick <sebastian_musslick@brown.edu>, John Gerrard Holland <john_holland1@brown.edu>
+License: Copyright 2021, Brown University, Providence, RI.
+        
+                                All Rights Reserved
+        
+        Permission to use, copy, modify, and distribute this software and
+        its documentation for any purpose other than its incorporation into a
+        commercial product or service is hereby granted without fee, provided
+        that the above copyright notice appear in all copies and that both
+        that copyright notice and this permission notice appear in supporting
+        documentation, and that the name of Brown University not be used in
+        advertising or publicity pertaining to distribution of the software
+        without specific, written prior permission.
+        
+        BROWN UNIVERSITY DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+        INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR ANY
+        PARTICULAR PURPOSE.  IN NO EVENT SHALL BROWN UNIVERSITY BE LIABLE FOR
+        ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+        WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+        ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+        OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+Project-URL: homepage, http://www.empiricalresearch.ai/
+Project-URL: repository, https://github.com/AutoResearch/autora
+Project-URL: documentation, https://autoresearch.github.io/autora/
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: autora-core
+Requires-Dist: autora-workflow
+Provides-Extra: all
+Requires-Dist: autora[all-theorists] ; extra == 'all'
+Requires-Dist: autora[all-experimentalists] ; extra == 'all'
+Requires-Dist: autora[all-experiment-runners] ; extra == 'all'
+Requires-Dist: autora[synthetic-experiments] ; extra == 'all'
+Provides-Extra: all-experiment-runner-experimentation-managers
+Requires-Dist: autora[experiment-runner-experimentation-manager-firebase] ; extra == 'all-experiment-runner-experimentation-managers'
+Provides-Extra: all-experiment-runner-recruitment-managers
+Requires-Dist: autora[experiment-runner-recruitment-manager-prolific] ; extra == 'all-experiment-runner-recruitment-managers'
+Provides-Extra: all-experiment-runners
+Requires-Dist: autora[experiment-runner-firebase-prolific] ; extra == 'all-experiment-runners'
+Provides-Extra: all-experimentalists
+Requires-Dist: autora[experimentalist-inequality-sampler] ; extra == 'all-experimentalists'
+Requires-Dist: autora[experimentalist-novelty-sampler] ; extra == 'all-experimentalists'
+Requires-Dist: autora[experimentalist-sampler-nearest-value-sampler] ; extra == 'all-experimentalists'
+Requires-Dist: autora[experimentalist-sampler-model-disagreement-sampler] ; extra == 'all-experimentalists'
+Requires-Dist: autora[experimentalist-sampler-uncertainty-sampler] ; extra == 'all-experimentalists'
+Provides-Extra: all-theorists
+Requires-Dist: autora[theorist-darts] ; extra == 'all-theorists'
+Requires-Dist: autora[theorist-bms] ; extra == 'all-theorists'
+Requires-Dist: autora[theorist-bsr] ; extra == 'all-theorists'
+Provides-Extra: dev
+Requires-Dist: autora-core[dev] ; extra == 'dev'
+Provides-Extra: experiment-runner-experimentation-manager-firebase
+Requires-Dist: autora-experiment-runner-experimentation-manager-firebase ; extra == 'experiment-runner-experimentation-manager-firebase'
+Provides-Extra: experiment-runner-firebase-prolific
+Requires-Dist: autora-experiment-runner-firebase-prolific ; extra == 'experiment-runner-firebase-prolific'
+Provides-Extra: experiment-runner-recruitment-manager-prolific
+Requires-Dist: autora-experiment-runner-recruitment-manager-prolific ; extra == 'experiment-runner-recruitment-manager-prolific'
+Provides-Extra: experimentalist-novelty-sampler
+Requires-Dist: autora-experimentalist-novelty-sampler ; extra == 'experimentalist-novelty-sampler'
+Provides-Extra: experimentalist-sampler-model-disagreement-sampler
+Requires-Dist: autora-experimentalist-sampler-model-disagreement-sampler ; extra == 'experimentalist-sampler-model-disagreement-sampler'
+Provides-Extra: experimentalist-sampler-nearest-value-sampler
+Requires-Dist: autora-experimentalist-sampler-nearest-value-sampler ; extra == 'experimentalist-sampler-nearest-value-sampler'
+Provides-Extra: experimentalist-sampler-uncertainty-sampler
+Requires-Dist: autora-experimentalist-sampler-uncertainty-sampler ; extra == 'experimentalist-sampler-uncertainty-sampler'
+Provides-Extra: synthetic-experiments
+Requires-Dist: autora-synthetic-data ; extra == 'synthetic-experiments'
+Provides-Extra: theorist-bms
+Requires-Dist: autora-theorist-bms ; extra == 'theorist-bms'
+Provides-Extra: theorist-bsr
+Requires-Dist: autora-theorist-bsr ; extra == 'theorist-bsr'
+Provides-Extra: theorist-darts
+Requires-Dist: autora-theorist-darts ; extra == 'theorist-darts'
+
+# Automated Research Assistant
+
+<b>[AutoRA](https://pypi.org/project/autora/)</b> (<b>Auto</b>mated <b>R</b>esearch <b>A</b>ssistant) is an open-source framework for 
+automating multiple stages of the empirical research process, including model discovery, experimental design, data collection, and documentation for open science.
+
+![Autonomous Empirical Research Paradigm](img/overview.png)
+
+AutoRA implements the <b>Autonomous Empirical Research Paradigm</b>, which involves a dynamic interplay
+between two artificial agents. The first agent, a theorist, is primarily responsible for constructing 
+computational models by relying on existing data to link experimental conditions to dependent measures. 
+The second agent, an experimentalist, is tasked with designing follow-up
+experiments that can refine and validate the models generated by the theorist. Together, these agents
+implement an automated scientific discovery process. To enable closed-loop empirical research, AutoRA 
+interfaces with platforms for automated data collection, such as Prolific or Amazon Mechanical Turk, 
+which enable the efficient acquisition of behavioral data from human participants. Finally, AutoRA 
+is designed to support the automated documentation and dissemination of steps in the empirical research process.
+
+AutoRA was initially intended for accelerating research in the behavioral and brain sciences. 
+However, AutoRA is designed as a general framework that enables automation of the research processes in
+other empirical sciences, such as material science or physics.
+
+## Features
+
+AutoRA consists of different modules that can be used independently or in combination, such as:
+
+- <b>Automated theorists</b> that support the discovery of formal scientific models from data
+- <b>Automated experimentalists</b> that support the design of follow-up experiments
+- <b>Interfaces for automated data collection</b>, e.g., for behavioral experiments via Prolific or Amazon Mechanical Turk
+- <b>Workflow logic</b> for defining interactions between different components of the research process
+- <b>Interfaces for automated documentation</b> of the research process
+
+## Usages
+
+AutoRA can be used for a variety of research purposes in empirical sciences, such as psychology, 
+neuroscience, economics, physics, or material science. Usages include:
+
+- <b>Equation discovery</b> from empirical data
+- <b>Experimental design</b> for follow-up experiments
+- <b>Research documentation and dissemination</b>
+- <b>Closed-loop empirical research</b>
+- <b>Computational analyses of the scientific process</b> (metascience, computational philosophy of science)
+
+## Motivation
+
+Various empirical sciences are beset by a replication crisis, 
+which can be attributed to inadequately precise hypotheses, lack of transparency
+in research procedures, and insufficient rigor in testing findings. These limitations
+are the result of three primary bottlenecks—a lack of formal modeling, the
+demanding requirements of open science, and a shortage of resources to reproduce 
+individual studies. Empirical scientists face difficulties in formalizing their 
+theories, find it arduous to document their research activities, and often lack 
+time and funds to conduct follow-up experiments to test and revise their
+hypotheses. These limitations impede scientific progress and hinder
+the development of new knowledge. We seek to overcome these limitations by providing
+a tool for the generation, estimation, and empirical testing of scientific models. 
+It is our hope that AutoRA will help accelerate scientific discovery by overcoming
+these limitations and promoting greater transparency and rigor in empirical research.
+
+## Pointers
+
+- [AutoRA Pip Package](https://pypi.org/project/autora/)
+- [GitHub Repository](https://github.com/AutoResearch/autora)
+- [Autonomous Empirical Research Group](http://www.empiricalresearch.ai)
+
+## About
+
+This project is in active development by the [Autonomous Empirical Research Group](https://musslick.github.io/AER_website/Research.html), led by [Sebastian Musslick](https://smusslick.com), in collaboration with the [Center for Computation and Visualization at Brown University](https://ccv.brown.edu).
+
+The development of this package is supported by Schmidt Science Fellows, in partnership with the Rhodes Trust, as well as the Carney BRAINSTORM program at Brown University.
+
+
