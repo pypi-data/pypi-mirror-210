@@ -1,0 +1,153 @@
+Metadata-Version: 2.1
+Name: emd
+Version: 0.6.2
+Summary: Empirical Mode Decomposition
+Home-page: UNKNOWN
+Author: Andrew Quinn <a.quinn@bham.ac.uk>
+Author-email: a.quinn@bham.ac.uk
+License: UNKNOWN
+Keywords: EMD Spectrum Frequency Non-Linear Holospectrum Hilbert-Huang
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy (>=1.19.3)
+Requires-Dist: scipy
+Requires-Dist: sparse
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: pyyaml (>=5.1)
+Requires-Dist: joblib
+Requires-Dist: tabulate
+Requires-Dist: dcor
+Provides-Extra: dev
+Requires-Dist: setuptools (>=41.0.1) ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: pydata-sphinx-theme ; extra == 'doc'
+Requires-Dist: sphinx-gallery ; extra == 'doc'
+Requires-Dist: sphinx-copybutton ; extra == 'doc'
+Requires-Dist: sphinx-togglebutton ; extra == 'doc'
+Requires-Dist: sphinx-design ; extra == 'doc'
+Requires-Dist: myst-parser ; extra == 'doc'
+Requires-Dist: numpydoc ; extra == 'doc'
+Requires-Dist: ipywidgets ; extra == 'doc'
+Provides-Extra: full
+Requires-Dist: setuptools (>=41.0.1) ; extra == 'full'
+Requires-Dist: pytest ; extra == 'full'
+Requires-Dist: pytest-cov ; extra == 'full'
+Requires-Dist: coverage ; extra == 'full'
+Requires-Dist: flake8 ; extra == 'full'
+Requires-Dist: pydata-sphinx-theme ; extra == 'full'
+Requires-Dist: sphinx-gallery ; extra == 'full'
+Requires-Dist: sphinx-copybutton ; extra == 'full'
+Requires-Dist: sphinx-togglebutton ; extra == 'full'
+Requires-Dist: sphinx-design ; extra == 'full'
+Requires-Dist: myst-parser ; extra == 'full'
+Requires-Dist: numpydoc ; extra == 'full'
+Requires-Dist: ipywidgets ; extra == 'full'
+
+A python package for Empirical Mode Decomposition and related spectral analyses.
+
+Please note that this project is in active development for the moment - the API may change relatively quickly between releases!
+
+# Installation
+
+You can install the latest stable release from the PyPI repository
+
+```
+pip install emd
+```
+
+or clone and install the source code.
+
+```
+git clone https://gitlab.com/emd-dev/emd.git
+cd emd
+pip install .
+```
+
+Requirements are specified in requirements.txt. Main functionality only depends
+on numpy and scipy for computation and matplotlib for visualisation.
+
+# Quick Start
+
+Full documentation can be found at https://emd.readthedocs.org and development/issue tracking at gitlab.com/emd-dev/emd
+
+Import emd
+
+```python
+import emd
+```
+
+Define a simulated waveform containing a non-linear wave at 5Hz and a sinusoid at 1Hz.
+
+```python
+sample_rate = 1000
+seconds = 10
+num_samples = sample_rate*seconds
+
+import numpy as np
+time_vect = np.linspace(0, seconds, num_samples)
+
+freq = 5
+nonlinearity_deg = .25  # change extent of deformation from sinusoidal shape [-1 to 1]
+nonlinearity_phi = -np.pi/4  # change left-right skew of deformation [-pi to pi]
+x = emd.simulate.abreu2010(freq, nonlinearity_deg, nonlinearity_phi, sample_rate, seconds)
+x += np.cos(2*np.pi*1*time_vect)
+```
+
+Estimate IMFs
+
+```python
+imf = emd.sift.sift(x)
+```
+
+Compute instantaneous frequency, phase and amplitude using the Normalised Hilbert Transform Method.
+
+```python
+IP, IF, IA = emd.spectra.frequency_transform(imf, sample_rate, 'hilbert')
+```
+Compute Hilbert-Huang spectrum
+
+```python
+freq_range = (0, 10, 100)  # 0 to 10Hz in 100 steps
+f, hht = emd.spectra.hilberthuang(IF, IA, freq_range, sum_time=False)
+```
+```
+Make a summary plot
+
+```python
+import matplotlib.pyplot as plt
+plt.figure(figsize=(16, 8))
+plt.subplot(211, frameon=False)
+plt.plot(time_vect, x, 'k')
+plt.plot(time_vect, imf[:, 0]-4, 'r')
+plt.plot(time_vect, imf[:, 1]-8, 'g')
+plt.plot(time_vect, imf[:, 2]-12, 'b')
+plt.xlim(time_vect[0], time_vect[-1])
+plt.grid(True)
+plt.subplot(212)
+plt.pcolormesh(time_vect, f, hht, cmap='ocean_r')
+plt.ylabel('Frequency (Hz)')
+plt.xlabel('Time (secs)')
+plt.grid(True)
+plt.show()
+```
+
+
