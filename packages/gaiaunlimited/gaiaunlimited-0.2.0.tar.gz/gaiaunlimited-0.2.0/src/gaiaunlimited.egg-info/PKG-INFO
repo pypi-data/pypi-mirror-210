@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: gaiaunlimited
+Version: 0.2.0
+Summary: Tools for manipulating Gaia selection functions.
+Home-page: https://github.com/GaiaUnlimited/gaiaunlimited
+Author: GaiaUnlimited
+Maintainer: Alfred Castro-Ginard, Tristan Cantat-Gaudin
+Maintainer-email: acastro@strw.leidenuniv.nl, cantat@mpia-hd.mpg.de
+Project-URL: Bug Tracker, https://github.com/GaiaUnlimited/gaiaunlimited/issues
+Keywords: astronomy,Gaia,selection function,scanning law
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# gaiaunlimited
+
+[![pypi status](https://img.shields.io/pypi/v/dustapprox.svg)](https://pypi.org/project/dustapprox/)
+[![Documentation Status](https://readthedocs.org/projects/gaiaunlimited/badge/?version=latest)](https://gaiaunlimited.readthedocs.io/en/latest/?badge=latest)
+
+gaiaunlimited is a package for querying and constructing selection functions for the Gaia survey. It is developed by the GaiaUnlimited collaboration.
+
+The documentation for gaiaunlimited is hosted on [Read the docs](https://gaiaunlimited.readthedocs.io/en/latest).
+
+*The [GaiaUnlimited](https://gaia-unlimited.org/) project is funded by the European Union’s Horizon 2020 research and innovation program under grant agreement No 101004110.*
+
+## Features
+
+- Query Gaia scanning laws for when a given sky position is scanned.
+- Query Gaia survey selection functions for the probabilities that sources of given properties are included in the Gaia catalog.
+- Query ready-made Gaia DR3 subsample selection functions for
+	- the astrometry sample
+	- the RVS sample
+
+## Acknowledgements
+
+This work is part of the GaiaUnlimited project funded by the European Union’s
+Horizon 2020 research and innovation program under grant agreement No 101004110.
