@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block header_account_logged %}
+    {% block check_link_report %}
+        {% if c.userobj.sysadmin and h.check_link_show_header_link() %}
+            <li>
+                <a href="{{ h.url_for('check_link.report') }}" title="{{ _('Link availability') }}">
+                    <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                    <span class="text">{{ _('Link availability') }}</span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock check_link_report %}
+    {{ super() }}
+{% endblock header_account_logged %}
