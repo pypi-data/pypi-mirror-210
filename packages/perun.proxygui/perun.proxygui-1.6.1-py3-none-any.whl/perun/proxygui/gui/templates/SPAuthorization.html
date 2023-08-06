@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block contentwrapper %}
+    <div class="window {% if cfg.css_framework == 'MUNI' %}framework_muni{% else %}framework_bootstrap5 bg-light{% endif %}">
+        <div id="content">
+            <div class="wrap{% if not cfg.css_framework == 'MUNI' %} container{% endif %}">
+                {% block content %}
+                    <div class="content">
+                        <br/>
+                        <h3><span>{{ _("You are not authorized to access the service ") }}</span> {{ _("service") }}</h3>
+                        <h3><span>{{ _('We will now redirect you to a registration page, where you will apply for the access.') }}</span></h3>
+                        <h3><a href="{{ registration_url }}"><span>{{ _("Proceed to registration") }}</span></a></h3>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
