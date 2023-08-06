@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "heksher"
+version = "0.2.2"
+description = ""
+authors = ["Biocatch LTD <serverteam@biocatch.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/biocatchltd/heksher-py"
+packages = [
+    {include="heksher"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+orjson = ">=3.0.0"
+httpx = "*"
+mock = {version="^4.0.0", markers = "python_version < '3.8'"}
+ordered-set = "^4.0.0"
+pydantic = "^1.0.0"
+sortedcontainers = "^2.4.0"
+Deprecated = ">=1.2.13"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-asyncio = "*"
+flake8 = "^4.0.1"
+isort = "^5.9.1"
+mypy = "^0.950"
+types-mock = "^0.1.3"
+types-orjson = "^0.1.1"
+coverage = "^6.4.4"
+yellowbox = {version="^0.7.0", extras=["webserver"]}
+yellowbox-heksher = "^0.2.0"
+Sphinx = "^4.3.1"
+sphinx-rtd-theme = "^1.0.0"
+types-Deprecated = "^1.2.6"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
