@@ -1,0 +1,33 @@
+# Configuration file for sun.
+
+# sun.toml file is part of sun.
+
+# https://gitlab.com/dslackw/sun
+
+# sun is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+# Any change here you should restart the daemon:
+# $ sun restart
+
+[time]
+  # The interval between checks for updates (in minutes), default is 12 hours.
+  INTERVAL = 720
+  # Standby time icon notifier, default is 5 minutes.
+  STANDBY = 5
+
+[daemon]
+  # The default tool that controls the sun_daemon is the daemon tool.
+  START = "daemon -rB --pidfiles=~/.run --name=sun_daemon sun_daemon"
+  STOP = "daemon --pidfiles=~/.run --name=sun_daemon --stop"
+  RESTART = "daemon --pidfiles=~/.run --name=sun_daemon --restart"
+  # --running option returns 0 code if the daemon running and 1 if not running.
+  RUNNING = "daemon --pidfiles=~/.run --name=sun_daemon sun_daemon --running"

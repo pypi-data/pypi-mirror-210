@@ -1,0 +1,89 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# sun_daemon is a part of sun.
+
+# Copyright 2015-2023 Dimitris Zlatanidis <d.zlatanidis@gmail.com>
+# All rights reserved.
+
+# sun is a tray notification applet for informing about
+# package updates in Slackware.
+
+# https://gitlab.com/dslackw/sun
+
+# sun is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+"""
+ ____  _   _ _   _
+/ ___|| | | | \ | |
+\___ \| | | |  \| |
+ ___) | |_| | |\  |
+|____/ \___/|_| \_|
+"""
+
+import sys
+import shutil
+from pathlib import Path
+
+
+def autostart():
+    args: list = sys.argv
+    args.pop(0)
+
+    xdg_autostart_path: Path = Path('/etc/xdg/autostart')
+    enable_file: Path = Path(xdg_autostart_path, 'sun_daemon.desktop')
+    disable_file: Path = Path(xdg_autostart_path, 'sun_daemon.desktop.sample')
+
+    message: str = 'The sun_daemon autostart is'
+    message_enabled: str = f'{message} enabled.'
+    message_disabled: str = f'{message} disabled.'
+    message_already_enabled: str = f'{message} already enabled.'
+    message_already_disabled: str = f'{message} already disabled.'
+
+    if len(args) == 1 and args[0] == 'enable':
+
+        if disable_file.is_file():
+            shutil.move(disable_file, enable_file)
+            print(message_enabled)
+
+        elif enable_file.is_file():
+            print(message_already_enabled)
+
+    elif len(args) == 1 and args[0] == 'disable':
+
+        if enable_file.is_file():
+            shutil.move(enable_file, disable_file)
+            print(message_disabled)
+
+        elif disable_file.is_file():
+            print(message_already_disabled)
+
+    elif len(args) == 1 and args[0] == 'status':
+
+        if enable_file.is_file():
+            print(message_enabled)
+
+        elif disable_file.is_file():
+            print(message_disabled)
+
+    else:
+        print("SUN (Slackware Update Notifier) sun_daemon autostart.\n"
+              "\nUsage: sun_daemon [OPTIONS]\n"
+              "\nOptional arguments:\n"
+              "  enable      Enable autostart SUN daemon.\n"
+              "  disable     Disable autostart SUN daemon.\n"
+              "  status      View status for autostart SUN daemon.\n")
+
+
+if __name__ == '__main__':
+    autostart()
