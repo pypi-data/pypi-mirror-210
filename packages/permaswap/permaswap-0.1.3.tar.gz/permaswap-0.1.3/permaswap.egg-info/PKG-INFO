@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: permaswap
+Version: 0.1.3
+Summary: Python wrappers for permaswap
+Home-page: https://github.com/permaswap/permaswap.py
+Download-URL: https://github.com/permaswap/permaswap.py/archive/refs/tags/v0.1.3.tar.gz
+Author: haroldfinch2022
+Author-email: e2d8nnhp8@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# permaswap.py
+python sdk for permaswap
+
+# install
+
+```python
+pip install permaswap
+```
+
+# usage
+
+1. perpare everpay account
+
+```python
+import everpay
+api_server = 'https://api-dev.everpay.io'
+
+# eth account
+pk = ''
+signer = everpay.ETHSigner(pk)
+
+# or ar account
+#signer = everpay.ARSigner('arweave-keyfile-xxx.json')
+account = everpay.Account(api_server, signer)
+```
+
+2. init permaswap
+
+```python
+router_host = 'wss://router0-dev.permaswap.network/'
+swap = permaswap.Swap(router_host, account)
+```
+
+3. query order
+
+```python
+import permaswap
+# get_order('token_in', 'token_out', 'amount_in')
+# sell 1 tar for tusdc
+order = swap.get_order('tAR', 'tUSDC', 10**12)
+print(order)
+```
+
+4. place order
+
+```python
+result = swap.place_order(order)
+print(result)
+```
