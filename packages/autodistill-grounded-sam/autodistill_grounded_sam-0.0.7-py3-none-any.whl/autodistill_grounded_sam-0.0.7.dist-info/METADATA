@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: autodistill-grounded-sam
+Version: 0.0.7
+Summary: Automatically distill large foundational models into smaller, in-domain models for deployment
+Home-page: https://github.com/autodistill/autodistill
+Author: Roboflow
+Author-email: jacob@roboflow.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: torch
+Requires-Dist: autodistill
+Requires-Dist: numpy (>=1.20.0)
+Requires-Dist: supervision
+Requires-Dist: rf-groundingdino
+Requires-Dist: rf-segment-anything
+Provides-Extra: dev
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: black (==22.3.0) ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+
+Automatically distill large foundational models into smaller, in-domain models for deployment
