@@ -1,0 +1,298 @@
+description: >-
+
+  The file defines the command line arguments accepted by the bycon package.
+  While the `argDef` parameters contain the standard structure for the `argparse`
+  module, they are wrapped in an additional object structure for package-specific
+  information. Due to the `argparse` object structure it is assumed that the
+  `argDef` object only contains a single key (_i.e._ the parameter name).
+
+parameters:
+
+  - type: string
+    argDef:
+      testMode:
+        flags:
+          - -t
+          - --testMode 
+        help: test setting, i.e. returning some random documents
+
+  - type: integer
+    argDef:
+      testModeCount:
+        flags:
+          - --testModeCount
+        help: setting the number of documents reurned in test mode
+        default: 5
+
+  - type: string
+    argDef:
+      debugMode:
+        flags:
+          - --debugMode 
+        help: debug setting
+
+  - type: integer
+    argDef:
+      limit:
+        flags:
+          - -l
+          - --limit 
+        help: limit number of documents; a value of 0 sets to unlimited
+        default: 0
+
+  - type: string
+    argDef:
+      output:
+        flags:
+          - --output
+        help: >-
+          special output format; command line processing uses some predefined text as
+          standard, but options are e.g. json or pgxseg
+        default: text
+
+  - type: string
+    argDef:
+      groupBy:
+        flags:
+          - -g
+          - --groupBy
+        help: >-
+          group parameter e.g. for subset splitting
+        default: text
+
+  - type: string
+    argDef:
+      parse:
+        flags:
+          - -p
+          - --parse 
+        help: input value to be parsed
+
+  - type: string
+    argDef:
+      mode:
+        flags:
+          - -m
+          - --mode
+        help: mode, e.g. file type
+
+  - type: string
+    argDef:
+      key:
+        flags:
+          - -k
+          - --key 
+        help: some key or word
+
+  - type: string
+    argDef:
+      update:
+        flags:
+          - -u
+          - --update
+        help: update existing records
+
+      # file I/O
+  - type: string
+    argDef:
+      inputfile:
+        flags:
+          - -i
+          - --inputfile
+        help: a custom file to specify input data, usually tab-delimited with special header
+
+  - type: string
+    argDef:
+      outputfile:
+        flags:
+          - -o
+          - --outputfile
+        help: output file where supported (cmd line)
+
+  - type: integer
+    argDef:
+      randno:
+        flags:
+          - -r
+          - --randno
+        help: random number to limit processing, where supported
+        default: 0
+
+  - type: string
+    argDef:
+      source:
+        flags:
+          - -s
+          - --source
+        help: some source label, e.g. `callsets`
+
+  - type: string
+    argDef:
+      query:
+        flags:
+          - -q
+          - --query
+        help: complete query string, e.g. `{"biosamples":{"external_references.id":"geo:GSE7428"}}`
+
+      # standard Beacon query parameters 
+  - type: array
+    argDef:
+      datasetIds:
+        flags:
+          - -d
+          - --datasetIds
+        help: dataset ids
+        default: progenetix
+
+  - type: string
+    argDef:
+      requestEntityPathId:
+        flags:
+          - --requestEntityPathId
+        help: required data entry point, equal to the first REST path element in Beacon
+        default: biosamples
+
+  - type: string
+    argDef:
+      requestedSchema:
+        flags:
+          - --requestedSchema
+        help: requested schema, e.g. biosample
+
+  # filters
+  - type: array
+    argDef:
+      filters:
+        flags:
+          - --filters
+        help: prefixed filter values, comma concatenated
+
+  - type: string
+    argDef:
+      filterPrecision:
+        flags:
+          - --filterPrecision
+        help: "`either` start or `exact` (`exact being internal default`) for matching filter values"
+
+  # variants
+  - type: string
+    argDef:
+      assemblyId:
+        flags:
+          - --assemblyId
+        help: assembly id
+
+  - type: string
+    argDef:
+      referenceName:
+        flags:
+          - --referenceName
+        help: chromosome
+
+  - type: integer
+    argDef:
+      start:
+        flags:
+          - --start
+        help: genomic start position
+
+  - type: integer
+    argDef:
+      end:
+        flags:
+          - --end
+        help: genomic end position
+
+  - type: string
+    argDef:
+      variantType:
+        flags:
+          - --variantType
+        help: variant type, e.g. DUP
+
+  - type: string
+    argDef:
+      referenceBases:
+        flags:
+          - --referenceBases
+        help: reference bases
+
+  - type: string
+    argDef:
+      alternateBases:
+        flags:
+          - --alternateBases
+        help: alternate bases
+
+  - type: integer
+    argDef:
+      variantMinLength:
+        flags:
+          - --variantMinLength
+        help: variantMinLength
+
+  - type: integer
+    argDef:
+      variantMaxLength:
+        flags:
+          - --variantMaxLength
+        help: variantMaxLength
+
+  - type: string
+    argDef:
+      geneId:
+        flags:
+          - --geneId
+        help: gene id
+
+  - type: string
+    argDef:
+      cytoBands:
+        flags:
+          - --cytoBands
+        help: cytobands, e.g. 8q21q24.1
+
+  - type: string
+    argDef:
+      chroBases:
+        flags:
+          - --chroBases
+        help: only for the cytoband converter ... e.g. 8:0-120000000
+
+      # geographic ...
+  - type: string
+    argDef:
+      city:
+        flags:
+          - -c
+          - --city
+        help: only for the geolocations...
+
+  - type: number
+    argDef:
+      geoLatitude:
+        flags:
+          - --geoLatitude
+        help: only for the geolocations...
+
+  - type: number
+    argDef:
+      geoLongitude:
+        flags:
+          - --geoLongitude
+        help: only for the geolocations...
+
+  - type: integer
+    argDef:
+      geoDistance:
+        flags:
+          - --geoDistance
+        help: only for the geolocations...
+
+      # special ...
+  - type: array
+    argDef:
+      collationTypes:
+        flags:
+          - --collationtypes
+        help: selected collation types, e.g. "EFO"
