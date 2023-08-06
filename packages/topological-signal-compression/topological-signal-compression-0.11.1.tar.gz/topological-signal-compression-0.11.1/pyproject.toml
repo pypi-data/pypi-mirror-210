@@ -1,0 +1,61 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "topological-signal-compression"
+version = "0.11.1"
+authors = [{name="Gary Koplik", email="gary.koplik@geomdata.com"}]
+description = "Topological Signal Compression"
+readme = "README.md"
+license = {text = "GNU AGPL"}
+urls = {Documentation="https://geomdata.gitlab.io/topological-signal-compression/index.html", Source="https://gitlab.com/geomdata/topological-signal-compression" }
+
+dependencies = [
+    "numpy",
+    "gda-public"
+]
+
+[project.optional-dependencies]
+extras = [
+    "kymatio",
+    "matplotlib",
+    "pydub",
+    "pyts"
+]
+testing = [
+    "flake8-docstrings",
+    "Flake8-pyproject",
+    "pytest",
+    "pytest-cov",
+    "pytest-html",
+    "pytest-timeout",
+    "pytest-xdist"
+]
+docs = [
+    "nbsphinx",
+    "sphinx<6.0.0",
+    "sphinx-rtd-theme",
+    "toml"
+]
+
+[tool.setuptools]
+packages = ["tsc", "tsc.utils"]
+
+[tool.flake8]
+exclude = [
+    "*_test.py",
+    "docs",
+    "runners",
+    "sandbox",
+    "setup.py",
+]
+ignore = [
+    "D200",  # 1-line docstrings will be tolerated
+]
+max-line-length = 120
+show-source = true
+count = true
