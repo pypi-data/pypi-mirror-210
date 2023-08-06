@@ -1,0 +1,6 @@
+[asphalt.core.event_loop_policies]
+tokio = tokio:TokioLoopPolicy
+uvloop = uvloop:EventLoopPolicy
+
+[console_scripts]
+asphalt = asphalt.core.cli:main
