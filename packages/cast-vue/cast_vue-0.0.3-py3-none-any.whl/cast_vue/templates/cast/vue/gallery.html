@@ -1,0 +1,31 @@
+{% load wagtail_srcset_tags %}
+
+<div class="cast-gallery-container">
+  {% for image in value %}
+    {% srcset_image image max-120x80 as thumbnail %}
+    <img
+      id="gallery-image-{{ image.pk }}"
+      src="{{ thumbnail.url }}"
+      data-fullsrc="{{ image.file.url }}"
+      data-srcset="{{ thumbnail.srcset }}"
+      data-prev="{{ image.prev }}"
+      data-next="{{ image.next }}"
+    >
+  {% endfor %}
+</div>
+
+{% for image in value %}
+<!---
+<div id="img-{{image.pk}}" class="modal">
+  <a href="#-{{image.prev }}" class="prev">Prev</a>
+  <a href="#" class="close">&times;</a>
+  <img
+    src="{{ image.file.url }}"
+    width="{{ thumbnail.width }}"
+    height="{{ thumbnail.height }}"
+    srcset="{{ thumbnail.srcset }}"
+    />
+  <a href="#-{{ image.next }}" class="next">Next</a>
+</div>
+-->
+{% endfor %}

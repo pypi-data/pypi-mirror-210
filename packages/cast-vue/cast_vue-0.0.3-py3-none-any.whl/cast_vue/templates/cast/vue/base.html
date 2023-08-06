@@ -1,0 +1,38 @@
+{% load static %}
+{% load django_vite %}
+
+{% vite_hmr_client %}
+{% vite_asset 'js/cast_vue/main.ts' %}
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Cast Vue Template!</title>
+    <meta name="description" content="Description of Cast Vue Template">
+    <!-- Data for Vue.js -->
+    <!-- Used for blog api detail url and posts endpoint child_of=blog.pk -->
+    <script id="blog-pk" type="application/json">{{ blog.pk }}</script>
+    <!-- Used for pagination -->
+    <script id="pagination-page-size" type="application/json">{{ blog.pagination_page_size }}</script>
+    <!-- Used for vue router base url (blog url is the root of vue router)-->
+    <script id="base-url" type="application/json">"{{ blog.url }}"</script>
+    <!-- Where to fetch the posts-->
+    <script id="wagtail-api-pages-url" type="application/json">
+      "{{ request.scheme }}://{{ request.get_host }}{{ blog.wagtail_api_pages_url }}"
+    </script>
+    <!-- Where to fetch the facet counts -->
+    <script id="api-facet-counts-url" type="application/json">
+      "{{ request.scheme }}://{{ request.get_host }}{{ blog.facet_counts_api_url }}"
+    </script>
+    {% block head %}
+    {% endblock head %}
+  </head>
+  <body>
+    {% block main %}
+      <div id="app">
+      </div>
+    {% endblock main %}
+  </body>
+</html>
