@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "freeplay"
+version = "0.1.1"
+description = ""
+authors = ["FreePlay Engineering <engineering@freeplay.ai>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.7, <4"
+requests = ">=2.20.0,<3.0.0dev"
+dacite = "^1.8.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
