@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: ponder
+Version: 0.1.6
+Summary: Ponder - An extension to Modin that runs pandas and numpy in your database or data warehouse.
+Home-page: https://ponder.io
+Author: Ponder
+Author-email: support@ponder.io
+License: Other/Proprietary License
+Platform: UNKNOWN
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: snowflake-connector-python[pandas] (>3.0.2)
+Requires-Dist: boto3
+Requires-Dist: cloudpickle (==2.0.0)
+Requires-Dist: db-dtypes
+Requires-Dist: duckdb (==0.8.0)
+Requires-Dist: fsspec[http]
+Requires-Dist: google-cloud-bigquery
+Requires-Dist: matplotlib
+Requires-Dist: modin (>=0.21.0)
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pytest
+Requires-Dist: pytz
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: schedule
+
+Visit [app.ponder.io](https://app.ponder.io) to sign up
+
