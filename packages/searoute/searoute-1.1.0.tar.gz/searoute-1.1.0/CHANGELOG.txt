@@ -1,0 +1,48 @@
+Change Log
+==========
+
+1.0.2 (30/09/2022)
+------------------
+- First Release, published module
+
+
+1.0.3 (04/10/2022)
+------------------
+- changed the core of the calculation to osmnx library for better perfomance
+- making 1.0.2 obsolete
+- added duration measurement together with length in the LineString properties
+
+1.0.4 (04/10/2022)
+------------------
+- fix requirements of the module
+
+1.0.5 (04/10/2022)
+------------------
+- Adjusted network (.json) by connecting all LineStrings in order to return a route from any location to any location
+
+1.0.6 (05/10/2022)
+------------------
+- Improved network connectivity
+
+1.0.7 (13/10/2022)
+------------------
+- Improved network connectivity
+- Connection points were not adjusted
+
+1.0.8 (25/10/2022)
+------------------
+- Improved network connectivity
+- Added append_orig_dest parameter as input to append origin and destination points to the LineString
+- Updated README.md
+
+1.0.9 (04/01/2023)
+------------------
+- Improved network connectivity
+- Added restrictions parameter as input to control restrictiveness of connections due to different reasons
+- Updated README.md
+
+1.1.0 (23/05/2023)
+------------------
+- Improved network connectivity
+- Added new feature : closest port of load and port of discharge
+- Updated README.md
