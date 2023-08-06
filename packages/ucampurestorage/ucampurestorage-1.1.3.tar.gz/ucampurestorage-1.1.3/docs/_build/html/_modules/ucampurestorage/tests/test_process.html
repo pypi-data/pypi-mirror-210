@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ucampurestorage.tests.test_process &mdash; ucampurestorage 1.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ucampurestorage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ucampurestorage.lib.html">ucampurestorage.lib package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ucampurestorage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ucampurestorage.tests.test_process</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ucampurestorage.tests.test_process</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">patch</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.process</span> <span class="kn">import</span> <span class="n">Process</span>
+
+<span class="c1"># from pathlib import Path</span>
+
+
+<div class="viewcode-block" id="init_ps"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.init_ps">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">init_ps</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Process</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Process</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="test_process_hostname"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_hostname">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;return_vals&quot;</span><span class="p">,</span>
+    <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;cs2.internal.admin.cam.ac.uk&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;cs-test.google.com&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_hostname</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">return_vals</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">returnval</span> <span class="o">=</span> <span class="n">return_vals</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ps_run</span><span class="p">:</span>
+        <span class="n">ps_run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">returnval</span>
+        <span class="n">hostname</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">get_hostname</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">hostname</span> <span class="o">==</span> <span class="n">returnval</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="test_process_mountpoint_exists"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_mountpoint_exists">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;return_vals, expected&quot;</span><span class="p">,</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">True</span><span class="p">),</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">False</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_mountpoint_exists</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">return_vals</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">returnval</span> <span class="o">=</span> <span class="n">return_vals</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Path.is_dir&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dir_ext</span><span class="p">:</span>
+        <span class="n">dir_ext</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ps_run</span><span class="p">:</span>
+            <span class="n">ps_run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">returnval</span>
+            <span class="n">mt_exist</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">mountpoint_exists</span><span class="p">(</span><span class="s2">&quot;/t1&quot;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">mt_exist</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_get_fsdevice_from_mountpoint"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_get_fsdevice_from_mountpoint">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;return_vals, mtpt, mt_check, expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;/dev/mapper/vold11p1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;/t1&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;/dev/mapper/vold11p1&quot;</span><span class="p">),</span>
+        <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;/t2&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_get_fsdevice_from_mountpoint</span><span class="p">(</span>
+    <span class="n">init_ps</span><span class="p">,</span> <span class="n">return_vals</span><span class="p">,</span> <span class="n">mtpt</span><span class="p">,</span> <span class="n">mt_check</span><span class="p">,</span> <span class="n">expected</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">returnval</span> <span class="o">=</span> <span class="n">return_vals</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.mountpoint_exists&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mt_check</span><span class="p">:</span>
+        <span class="n">mt_check</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mt_check</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ps_run</span><span class="p">:</span>
+            <span class="n">ps_run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">returnval</span>
+            <span class="n">fsdev</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">get_fsdevice_from_mountpoint</span><span class="p">(</span><span class="n">mtpt</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">fsdev</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_get_mpath_from_mountpoint"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_get_mpath_from_mountpoint">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;return_val, expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;/dev/mapper/vold11p1&quot;</span><span class="p">,</span> <span class="s2">&quot;/dev/mapper/vold11&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;/dev/mapper/vold8p1&quot;</span><span class="p">,</span> <span class="s2">&quot;/dev/mapper/vold8&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_get_mpath_from_mountpoint</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">return_val</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">returnval</span> <span class="o">=</span> <span class="n">return_val</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span>
+        <span class="s2">&quot;ucampurestorage.lib.process.Process.get_fsdevice_from_mountpoint&quot;</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">ps_run</span><span class="p">:</span>
+        <span class="n">ps_run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">returnval</span>
+        <span class="n">fsdev</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">get_mpath_from_mountpoint</span><span class="p">(</span><span class="s2">&quot;/t1&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">fsdev</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_get_wwn_from_mpath"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_get_wwn_from_mpath">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span>
+<span class="k">def</span> <span class="nf">test_process_get_wwn_from_mpath</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="test_process_is_wwn_valid"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_is_wwn_valid">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;wwn, expected&quot;</span><span class="p">,</span>
+    <span class="p">[(</span><span class="s2">&quot;6000d31000e39400000000000000029d&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;6000d31000e394000000000&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_is_wwn_valid</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">wwn</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">valid_wwn</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">is_wwn_valid</span><span class="p">(</span><span class="n">wwn</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">valid_wwn</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_is_wwn_serial_valid"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_is_wwn_serial_valid">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;wwn, expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;6000d31000e39400000000000000029d&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;6000d31000e30000000&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;6000d31000e3940000000001&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_is_wwn_serial_valid</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">wwn</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">valid_wwn</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">is_wwn_serial_valid</span><span class="p">(</span><span class="n">wwn</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">valid_wwn</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_is_wwn_mounted"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_is_wwn_mounted">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;return_val, wwn_mpath, wwn_valid, expected&quot;</span><span class="p">,</span>
+    <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;/d12&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;/d12&quot;</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_is_wwn_mounted</span><span class="p">(</span>
+    <span class="n">init_ps</span><span class="p">,</span> <span class="n">wwn_mpath</span><span class="p">,</span> <span class="n">wwn_valid</span><span class="p">,</span> <span class="n">return_val</span><span class="p">,</span> <span class="n">expected</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.is_wwn_valid&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wwn_valid</span><span class="p">:</span>
+        <span class="n">wwn_valid</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">wwn_valid</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span>
+            <span class="s2">&quot;ucampurestorage.lib.process.Process.get_mpath_from_wwn&quot;</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">mpath_wwn</span><span class="p">:</span>
+            <span class="n">mpath_wwn</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">wwn_mpath</span>
+            <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+                <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">return_val</span>
+                <span class="n">is_mount</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">is_wwn_mounted</span><span class="p">(</span><span class="s2">&quot;6000d31000e39400000000000000029d&quot;</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="n">is_mount</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_get_index_in_list"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_get_index_in_list">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;feed_list, expected&quot;</span><span class="p">,</span> <span class="p">[([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="p">([],</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_get_index_in_list</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">feed_list</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">value_index</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">get_index_in_list</span><span class="p">(</span><span class="n">feed_list</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">value_index</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_generate_devicemapper_alias"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_generate_devicemapper_alias">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;return_val, expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;vold01</span><span class="se">\n</span><span class="s2">vold02&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;vold03&quot;</span><span class="p">),</span>
+        <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;vold01</span><span class="se">\n</span><span class="s2">vold03&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;vold02&quot;</span><span class="p">),</span>
+        <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="s2">&quot;vold01&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_generate_devicemapper_alias</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">return_val</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">return_val</span>
+        <span class="n">value_index</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">generate_devicemapper_alias</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">value_index</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_is_device_valid"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_is_device_valid">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;device, expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;/dev/mapper/vold05p1&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;/dev/mapper/vold05p2&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;/dev/mapper/pure&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_is_device_valid</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">value_index</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">is_device_valid</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">value_index</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_get_wwid_from_wwn"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_get_wwid_from_wwn">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span>
+<span class="k">def</span> <span class="nf">test_process_get_wwid_from_wwn</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="test_process_mount"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_mount">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;fs, rc, expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;/dp1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;/dp2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">False</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_mount</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">rc</span>
+        <span class="n">mount_rt</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="n">fs</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">mount_rt</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_unmount"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_unmount">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;fs, rc, expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;/dp1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;/dp2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">False</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_process_unmount</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">rc</span>
+        <span class="n">umount_rt</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">umount</span><span class="p">(</span><span class="n">fs</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">umount_rt</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_reload_multipathd"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_reload_multipathd">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;version, expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_process_reload_multipathd</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.get_release&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vers</span><span class="p">:</span>
+        <span class="n">vers</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+            <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">reload_rt</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">reload_multipathd</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="n">reload_rt</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_daemon_reload"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_daemon_reload">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;version, expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_process_daemon_reload</span><span class="p">(</span><span class="n">init_ps</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.get_release&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vers</span><span class="p">:</span>
+        <span class="n">vers</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+            <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">reload_rt</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">daemon_reload</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="n">reload_rt</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_process_get_multipath_raw_devices"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_get_multipath_raw_devices">[docs]</a><span class="k">def</span> <span class="nf">test_process_get_multipath_raw_devices</span><span class="p">(</span><span class="n">init_ps</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s2">&quot;ucampurestorage.lib.process.Process.run&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">run</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;sdj</span><span class="se">\n</span><span class="s2">sdg</span><span class="se">\n</span><span class="s2">sdi</span><span class="se">\n</span><span class="s2">sdk&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">reload_rt</span> <span class="o">=</span> <span class="n">init_ps</span><span class="o">.</span><span class="n">get_multipath_raw_devices</span><span class="p">(</span><span class="s2">&quot;5715765&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">reload_rt</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;sdj&quot;</span><span class="p">,</span> <span class="s2">&quot;sdg&quot;</span><span class="p">,</span> <span class="s2">&quot;sdi&quot;</span><span class="p">,</span> <span class="s2">&quot;sdk&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="test_process_rescan_scsibus"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_process.test_process_rescan_scsibus">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span>
+<span class="k">def</span> <span class="nf">test_process_rescan_scsibus</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ishan Mahajan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
