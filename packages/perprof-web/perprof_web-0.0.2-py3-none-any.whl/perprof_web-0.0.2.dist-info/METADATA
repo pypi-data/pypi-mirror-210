@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: perprof-web
+Version: 0.0.2
+Summary: Web interface for perprof-py
+Author-email: Abel Soares Siqueira <abel.s.siqueira@gmail.com>
+Project-URL: repository, https://github.com/abelsiqueira/perprof-web
+Project-URL: documentation, https://abelsiqueira.com/perprof-web/
+Keywords: benchmark,comparison,performance profile,flask
+Classifier: Programming Language :: Python
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: flask (<3,>=2)
+Requires-Dist: perprof-py (<2,>=1.1.4)
+Requires-Dist: matplotlib (<4,>=3)
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: ruff ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: mkdocs ; extra == 'docs'
+Requires-Dist: mkdocstrings[python] ; extra == 'docs'
+Requires-Dist: mkdocs-material ; extra == 'docs'
+Requires-Dist: mike ; extra == 'docs'
+Provides-Extra: publishing
+Requires-Dist: twine ; extra == 'publishing'
+
+# perprof-web
+
+<!--
+[![Tests](https://github.com/abelsiqueira/perprof-web/actions/workflows/tests.yml/badge.svg)](https://github.com/abelsiqueira/perprof-web/actions/workflows/tests.yml)
+[![Lint](https://github.com/abelsiqueira/perprof-web/actions/workflows/lint.yml/badge.svg)](https://github.com/abelsiqueira/perprof-web/actions/workflows/lint.yml)
+![PyPI](https://img.shields.io/pypi/v/perprof-web)
+[![](https://img.shields.io/badge/docs-latest-blue)](https://abelsiqueira.github.io/perprof-web/latest)
+[![](https://img.shields.io/badge/docs-dev-blue)](https://abelsiqueira.github.io/perprof-web/dev)
+-->
+
+Web interface for the [perprof-py](https://github.com/abelsiqueira/perprof-py) for creating performance profiles (as described by [Dolan and Moré](http://arxiv.org/abs/cs/0102001)).
+
+## Reference
+
+When using this software for publications, please cite the paper below, which
+describes this project:
+
+> Siqueira, A. S., Costa da Silva, R. G. and Santos, L.-R., (2016). Perprof-web: A Python Package for Performance Profile of Mathematical Optimization Software. Journal of Open Research Software. 4(1), p.e12. DOI: [10.5334/jors.81](http://doi.org/10.5334/jors.81).
+
+## Install
+
+Use `perprof-web` from Docker if you just want to use it.
+
+## How to use
+
+Run perprof-web using Docker with
+
+```bash
+docker run -p 5000:5000 abelsiqueira/perprof-web
+```
+
+## Getting Help
+
+If you didn't find something at the documentation, want to report a bug, or request a new feature, please open an [issue](https://github.com/abelsiqueira/perprof-web/issues).
