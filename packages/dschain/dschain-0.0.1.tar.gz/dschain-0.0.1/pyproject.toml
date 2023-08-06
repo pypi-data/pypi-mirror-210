@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "dschain"
+version = "0.0.1"
+description = "bring the power of LLMs inside your jupyter notebooks"
+authors = ["Aarshay Jain <aarshay@thismlguy.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">3.8.1,<4"
+langchain = "^0.0.177"
+
+[tool.poetry.group.dev.dependencies]
+
+[tool.poetry.group.docs.dependencies]
+
+[tool.poetry.group.examples.dependencies]
+
+[tool.poetry.group.gcp.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
