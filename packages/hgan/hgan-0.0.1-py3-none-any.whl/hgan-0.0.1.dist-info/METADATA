@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: hgan
+Version: 0.0.1
+Summary: A package to infer interpretable dynamics from images of a mechanical system.
+Author-email: Christine Allen-Blanchette <ca15@princeton.edu>, Vineet Bansal <vineetb@princeton.edu>
+Project-URL: Homepage, https://github.com/CAB-Lab-Princeton/hgan
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: scikit-image
+Requires-Dist: scikit-video
+Requires-Dist: numpy
+Requires-Dist: tensorflow
+Requires-Dist: torch
+Provides-Extra: dev
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: mock ; extra == 'dev'
+Requires-Dist: myst-parser ; extra == 'dev'
+Requires-Dist: numpydoc ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pytest (>=6) ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: recommonmark ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: sphinxcontrib-bibtex (<2.0.0) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+
+# hGAN: Interpretable dynamics from images of a mechanical system
+
+A work in progress ...
+
+## Documentation
+
+The latest version of hgan documentation is available [here](https://CAB-Lab-Princeton.github.io/hgan/).
