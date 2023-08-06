@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: nyx_space
+Version: 2.0.0a0
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Requires-Dist: pandas~=2.0.0
+Requires-Dist: plotly~=5.13.0
+Requires-Dist: pytest~=7.2.0
+Requires-Dist: pyarrow~=11.0.0
+Requires-Dist: scipy~=1.10.1
+Requires-Dist: python-slugify~=8.0.1
+License-File: LICENSE
+Summary: A high-fidelity space mission toolkit, with orbit propagation, estimation and some systems engineering
+Keywords: space,mission,design,orbit,estimation
+Home-Page: https://nyxspace.com
+Author: Christopher Rabotin <christopher.rabotin@gmail.com>
+Author-email: Christopher Rabotin <christopher.rabotin@gmail.com>
+License: AGPL-3.0-or-later
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source Code, https://gitlab.com/nyx-space/nyx
+
+# nyx
+[Nyx](https://nyxspace.com) is a high fidelity, fast, reliable and **[validated]([https://nyxspace.com/MathSpec/](https://nyxspace.com/nyxspace/MathSpec/))** astrodynamics toolkit library written in Rust and available in Python.
+
+The target audience is mission designers, astrodynamics engineers/hobbyists, and GNC engineers. The rationale for using Rust is to allow for very fast computations, guaranteed thread safety,
+and portability to all platforms supported by [Rust](https://forge.rust-lang.org/platform-support.html).
+
+[![nyx-space on crates.io][cratesio-image]][cratesio]
+[![nyx-space on docs.rs][docsrs-image]][docsrs]
+[![LoC](https://tokei.rs/b1/github/nyx-space/nyx?category=lines)](https://github.com/nyx-space/nyx).
+
+[cratesio-image]: https://img.shields.io/crates/v/nyx-space.svg
+[cratesio]: https://crates.io/crates/nyx-space
+[docsrs-image]: https://docs.rs/nyx-space/badge.svg
+[docsrs]: https://docs.rs/nyx-space/
+
+# License
+The [AGPLv3 LICENSE](https://nyxspace.com/license/) is enforced.
+
+# Features
+
+## Propagation
+- [x] Propagation with different Runge Kutta methods (validated in GMAT)
+- [x] Convenient and explicit definition of the dynamics for a simulation (cf. [tests/orbitaldyn.rs](tests/orbitaldyn.rs))
+- [x] Propagation to different stopping conditions
+- [x] Detect orbital events in other frames
+## Dynamical models
+- [x] Multibody dynamics using XB files
+- [x] Finite burns with fuel depletion (including low thrust / ion propulsion)
+- [x] Sub-Optimal Control of continuous thrust (e.g. Ruggerio, Petropoulos/Q-law)
+- [x] Solar radiation pressure modeling
+- [x] Basic drag models (cannonball)
+- [x] Spherical harmonics
+- [ ] Spacecraft attitude control and some useful optimal control algorithms
+## Orbit determination
+- [x] Statistical Orbit Determination: Classical and Extended Kalman Filter
+- [x] Orbit Determination with multibody dynamics
+- [x] Smoothing and iterations of CKFs
+- [ ] Square Root Information Filer (SRIF) (removed in version 1.0.0-alpha.1)
+- [x] An easy-to-use OD user interface
+- [x] Estimation with spherical harmonics enabled
+- [ ] Solar radiation pressure (SRP) parameter estimation ([#98](https://gitlab.com/chrisrabotin/nyx/issues/98))
+- [x] Covariance mapping and estimate frame transformations
+- [x] State noise compensation (SNC)
+- [ ] Dynamic model compensation (DMC) ([#86](https://gitlab.com/chrisrabotin/nyx/issues/86))
+- [x] High fidelity ground station placement
+## Celestial computations
+- [x] Orbital state manipulation
+- [x] Planetary and Solar eclipse and visibility computation
+- [x] Light-time corrections and aberrations
+- [x] Frame rotations
+
+# Who am I?
+An astrodynamics engineer with a heavy background in software. I currently work for Rocket Lab USA on the GNC of the Blue Ghost lunar lander. -- Find me on [LinkedIn](https://www.linkedin.com/in/chrisrabotin/).
+
