@@ -1,0 +1,63 @@
+---
+type: object
+additionalProperties: false
+required: [boards, chips, toolchains, architectures]
+
+properties:
+  boards:
+    type: array
+    items:
+      $ref: package://yambs/schemas/Board.yaml
+
+  chips:
+    type: object
+    additionalProperties: false
+    patternProperties:
+      "^[a-zA-Z0-9-_.]+$":
+        $ref: package://yambs/schemas/Chip.yaml
+
+  toolchains:
+    type: object
+    additionalProperties: false
+    patternProperties:
+      "^[a-zA-Z0-9-_.]+$":
+        $ref: package://yambs/schemas/Toolchain.yaml
+
+  architectures:
+    type: object
+    additionalProperties: false
+    patternProperties:
+      "^[a-zA-Z0-9-_.+]+$":
+        $ref: package://yambs/schemas/Architecture.yaml
+
+  src_root:
+    type: string
+    default: src
+
+  default_target:
+    type: string
+    default: all
+
+  ninja_out:
+    type: string
+    default: ninja
+
+  build_root:
+    type: string
+    default: build
+
+  cc:
+    type: string
+    default: gcc
+
+  common_cflags:
+    type: array
+    default: [-Wall, -g, -ffunction-sections]
+    items:
+      type: string
+
+  common_ldflags:
+    type: array
+    default: ["-Wl,--gc-sections"]
+    items:
+      type: string
