@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: remotivelabs-broker
+Version: 0.2.0b2
+Summary: RemotiveLabs Broker gRPC API
+Project-URL: Homepage, https://remotivelabs.com/
+Project-URL: Documentation, https://docs.remotivelabs.com/python/remotivelabs-broker/
+Project-URL: Issues, https://github.com/remotivelabs/remotivelabs-apis/issues
+Project-URL: Source, https://github.com/remotivelabs/remotivelabs-apis/tree/main/python/remotivelabs-broker
+Author-email: Support <support@remotivelabs.com>
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Manufacturing
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Communications
+Classifier: Topic :: Internet
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3.7
+Requires-Dist: grpc-interceptor~=0.14.1
+Requires-Dist: grpcio-tools~=1.44
+Requires-Dist: grpcio~=1.44
+Requires-Dist: requests~=2.21.0
+Description-Content-Type: text/markdown
+
+# RemotiveLabs Broker
+
+[![PyPI - Version](https://img.shields.io/pypi/v/remotivelabs-broker.svg)](https://pypi.org/project/remotivelabs-broker)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/remotivelabs-broker.svg)](https://pypi.org/project/remotivelabs-broker)
+
+- [Link to **Samples**](https://github.com/remotivelabs/remotivelabs-samples/tree/main/python).
+- [Link to **Documentation**](https://docs.remotivelabs.com/python/remotivelabs-broker/).
+
+-----
+
+**Table of Contents**
+
+- [Installation](#installation)
+- [Examples](#examples)
+- [License](#license)
+
+## Installation
+Install into your Python environment with _PIP_:
+
+    pip install remotivelabs-broker
+
+## Examples
+Examples using this library are found in the [Remotive Labs samples repository](https://github.com/remotivelabs/remotivelabs-samples).
+
+### Generate stubs
+This project has a script in the project file for generation. Generate stubs from proto files with:
+
+    hatch run generate_stubs
+
+Building the stubs is a requirement before build a python package of the project.
+
+## License
+
+`remotivelabs-broker` is distributed under the terms of the [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html) license.
+
