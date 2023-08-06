@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: pagure-messages
+Version: 1.0.0
+Summary: A schema package for messages sent by pagure
+Home-page: https://pagure.io/pagure
+Maintainer: Fedora Infrastructure Team
+Maintainer-email: infrastructure@lists.fedoraproject.org
+License: GPLv2+
+Keywords: fedora
+Platform: Fedora
+Platform: GNU/Linux
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+License-File: LICENSE
+Requires-Dist: fedora-messaging
+
+# pagure messages
+
+A schema package for [pagure](https://pagure.io/pagure).
+
+See the [detailed documentation](https://fedora-messaging.readthedocs.io/en/latest/messages.html) on packaging your schemas.
