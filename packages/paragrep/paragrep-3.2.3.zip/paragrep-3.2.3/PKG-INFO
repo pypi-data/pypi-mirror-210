@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: paragrep
+Version: 3.2.3
+Summary: Print paragraphs matching regular expressions
+Home-page: http://software.clapper.org/paragrep/
+Author: Brian M. Clapper
+Author-email: bmc@clapper.org
+License: BSD-style license
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Text Processing :: Filters
+Classifier: Topic :: Utilities
+License-File: LICENSE
+
+
+paragrep - Paragraph Grep utility
+
+**paragrep** is a paragraph grep utility. It searches for a series of regular
+expressions in a text file (or several text files) and prints out the
+paragraphs containing those expressions. Normally **paragrep** displays a
+paragraph if it contains any of the expressions; this behavior can be modified
+by using the `-a` option.
+
+By default, a paragraph is defined as a block of text delimited by an empty or
+blank line; this behavior can be altered with the `-p` option.
+
+If no files are specified on the command line, **paragrep** searches
+standard input.
+
+This is the third implementation of **paragrep**. The first implementation,
+in 1989, was in C. The second implementation, in 2003, was in perl. This is
+the latest and greatest.
+
+For help, run with `-h`.
+
+For detailed documentation, see <http://software.clapper.org/paragrep/>
+
+This software is released under a BSD license.
