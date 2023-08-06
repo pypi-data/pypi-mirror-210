@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: learnkeyhole
+Version: 0.1.0
+Summary: Use this package to train your keyhole and predict it rapidly and right
+Home-page: https://github.com/wu-xz21/learnkeyhole  #github地址或其他地址
+Author: WUXianzhi,ZhengQingzhi,WeiLang
+Author-email: wu-xz@outlook.com
+License: MIT
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: <=3.9,>=3.6
+License-File: LICENSE
+Requires-Dist: pandas (==1.5.3)
+Requires-Dist: numpy (==1.24.2)
+Requires-Dist: scipy (==1.10.0)
+Requires-Dist: matplotlib (==3.7.1)
+Requires-Dist: opencv-python (==4.1.2.30)
+Requires-Dist: torch (==1.7.1+cu110)
+Requires-Dist: torchvision (==0.8.2+cu110)
+Requires-Dist: tqdm (==4.64.1)
+Requires-Dist: pillow (==9.4.0)
+Requires-Dist: h5py (==3.8.0)
+Requires-Dist: PyQt5 (==5.15.7)
+
