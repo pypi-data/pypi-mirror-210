@@ -1,0 +1,76 @@
+[build-system]
+requires = [
+    "setuptools>=61",
+    "setuptools-scm[toml]>=6.2",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "surface-water-network"
+dynamic = ["version"]
+authors = [
+    {name = "Mike Taves", email = "mwtoews@gmail.com"},
+    {name = "Brioch Hemmings", email = "briochh@gmail.com"},
+]
+maintainers = [
+    {name = "Mike Taves", email = "mwtoews@gmail.com"},
+]
+description = "Surface water network"
+readme = "README.md"
+keywords = ["surface water", "groundwater", "MODFLOW", "flopy"]
+license = {text = "BSD 3-Clause"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Hydrology",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "geopandas >=0.9",
+    "packaging",
+    "pandas >=1.2",
+    "pyproj >=2.2",
+    "rtree",
+    "shapely",
+]
+
+[project.optional-dependencies]
+doc = [
+    "ipython",
+    "matplotlib",
+    "numpydoc",
+    "pydata-sphinx-theme",
+    "sphinx <6",
+    "sphinx-issues",
+]
+extra = [
+    "flopy",
+    "matplotlib",
+    "netcdf4",
+]
+lint = [
+    "cffconvert",
+    "flake8",
+]
+test = [
+    "pytest >=3.3",
+    "pytest-cov",
+    "pytest-xdist",
+]
+
+[project.urls]
+Documentation = "https://mwtoews.github.io/surface-water-network/"
+Source = "https://github.com/mwtoews/surface-water-network"
+
+[tool.setuptools.packages.find]
+include = [
+    "swn",
+    "swn.*",
+]
+
+[tool.setuptools_scm]
+write_to = "swn/_version.py"
