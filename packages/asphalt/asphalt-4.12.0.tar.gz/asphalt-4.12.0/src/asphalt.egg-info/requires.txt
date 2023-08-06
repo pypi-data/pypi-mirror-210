@@ -1,0 +1,28 @@
+ruamel.yaml>=0.15
+async-generator~=1.4
+asyncio_extras~=1.3
+async_timeout>=2.0
+click>=6.6
+
+[:python_version < "3.10"]
+importlib_metadata>=4.4
+typing_extensions
+
+[doc]
+Sphinx>=6.0
+sphinx_rtd_theme>=1.2.0
+sphinx-autodoc-typehints>=1.22
+
+[test]
+pytest>=3.9
+pytest-asyncio
+pytest-cov
+
+[test:python_version < "3.12" and platform_python_implementation == "CPython" and platform_system != "Windows"]
+uvloop
+
+[tokio]
+tokio
+
+[uvloop]
+uvloop>=0.4.10
