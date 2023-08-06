@@ -1,0 +1,600 @@
+Metadata-Version: 2.1
+Name: nighthawk
+Version: 0.1.0
+Summary: Nighthawk avian nocturnal flight call detector
+Project-URL: Bug Tracker, https://github.com/bmvandoren/nighthawk/issues
+Project-URL: Source Code, https://github.com/bmvandoren/nighthawk
+Author-email: Benjamin Van Doren <vandoren@cornell.edu>
+License: 
+        Attribution-NonCommercial 4.0 International
+        
+        Copyright (c) 2023 The Nighthawk Authors
+        
+        =======================================================================
+        
+        Creative Commons Corporation ("Creative Commons") is not a law firm and
+        does not provide legal services or legal advice. Distribution of
+        Creative Commons public licenses does not create a lawyer-client or
+        other relationship. Creative Commons makes its licenses and related
+        information available on an "as-is" basis. Creative Commons gives no
+        warranties regarding its licenses, any material licensed under their
+        terms and conditions, or any related information. Creative Commons
+        disclaims all liability for damages resulting from their use to the
+        fullest extent possible.
+        
+        Using Creative Commons Public Licenses
+        
+        Creative Commons public licenses provide a standard set of terms and
+        conditions that creators and other rights holders may use to share
+        original works of authorship and other material subject to copyright
+        and certain other rights specified in the public license below. The
+        following considerations are for informational purposes only, are not
+        exhaustive, and do not form part of our licenses.
+        
+             Considerations for licensors: Our public licenses are
+             intended for use by those authorized to give the public
+             permission to use material in ways otherwise restricted by
+             copyright and certain other rights. Our licenses are
+             irrevocable. Licensors should read and understand the terms
+             and conditions of the license they choose before applying it.
+             Licensors should also secure all rights necessary before
+             applying our licenses so that the public can reuse the
+             material as expected. Licensors should clearly mark any
+             material not subject to the license. This includes other CC-
+             licensed material, or material used under an exception or
+             limitation to copyright. More considerations for licensors:
+        	wiki.creativecommons.org/Considerations_for_licensors
+        
+             Considerations for the public: By using one of our public
+             licenses, a licensor grants the public permission to use the
+             licensed material under specified terms and conditions. If
+             the licensor's permission is not necessary for any reason--for
+             example, because of any applicable exception or limitation to
+             copyright--then that use is not regulated by the license. Our
+             licenses grant only permissions under copyright and certain
+             other rights that a licensor has authority to grant. Use of
+             the licensed material may still be restricted for other
+             reasons, including because others have copyright or other
+             rights in the material. A licensor may make special requests,
+             such as asking that all changes be marked or described.
+             Although not required by our licenses, you are encouraged to
+             respect those requests where reasonable. More_considerations
+             for the public: 
+        	wiki.creativecommons.org/Considerations_for_licensees
+        
+        =======================================================================
+        
+        Creative Commons Attribution-NonCommercial 4.0 International Public
+        License
+        
+        By exercising the Licensed Rights (defined below), You accept and agree
+        to be bound by the terms and conditions of this Creative Commons
+        Attribution-NonCommercial 4.0 International Public License ("Public
+        License"). To the extent this Public License may be interpreted as a
+        contract, You are granted the Licensed Rights in consideration of Your
+        acceptance of these terms and conditions, and the Licensor grants You
+        such rights in consideration of benefits the Licensor receives from
+        making the Licensed Material available under these terms and
+        conditions.
+        
+        Section 1 -- Definitions.
+        
+          a. Adapted Material means material subject to Copyright and Similar
+             Rights that is derived from or based upon the Licensed Material
+             and in which the Licensed Material is translated, altered,
+             arranged, transformed, or otherwise modified in a manner requiring
+             permission under the Copyright and Similar Rights held by the
+             Licensor. For purposes of this Public License, where the Licensed
+             Material is a musical work, performance, or sound recording,
+             Adapted Material is always produced where the Licensed Material is
+             synched in timed relation with a moving image.
+        
+          b. Adapter's License means the license You apply to Your Copyright
+             and Similar Rights in Your contributions to Adapted Material in
+             accordance with the terms and conditions of this Public License.
+        
+          c. Copyright and Similar Rights means copyright and/or similar rights
+             closely related to copyright including, without limitation,
+             performance, broadcast, sound recording, and Sui Generis Database
+             Rights, without regard to how the rights are labeled or
+             categorized. For purposes of this Public License, the rights
+             specified in Section 2(b)(1)-(2) are not Copyright and Similar
+             Rights.
+          d. Effective Technological Measures means those measures that, in the
+             absence of proper authority, may not be circumvented under laws
+             fulfilling obligations under Article 11 of the WIPO Copyright
+             Treaty adopted on December 20, 1996, and/or similar international
+             agreements.
+        
+          e. Exceptions and Limitations means fair use, fair dealing, and/or
+             any other exception or limitation to Copyright and Similar Rights
+             that applies to Your use of the Licensed Material.
+        
+          f. Licensed Material means the artistic or literary work, database,
+             or other material to which the Licensor applied this Public
+             License.
+        
+          g. Licensed Rights means the rights granted to You subject to the
+             terms and conditions of this Public License, which are limited to
+             all Copyright and Similar Rights that apply to Your use of the
+             Licensed Material and that the Licensor has authority to license.
+        
+          h. Licensor means the individual(s) or entity(ies) granting rights
+             under this Public License.
+        
+          i. NonCommercial means not primarily intended for or directed towards
+             commercial advantage or monetary compensation. For purposes of
+             this Public License, the exchange of the Licensed Material for
+             other material subject to Copyright and Similar Rights by digital
+             file-sharing or similar means is NonCommercial provided there is
+             no payment of monetary compensation in connection with the
+             exchange.
+        
+          j. Share means to provide material to the public by any means or
+             process that requires permission under the Licensed Rights, such
+             as reproduction, public display, public performance, distribution,
+             dissemination, communication, or importation, and to make material
+             available to the public including in ways that members of the
+             public may access the material from a place and at a time
+             individually chosen by them.
+        
+          k. Sui Generis Database Rights means rights other than copyright
+             resulting from Directive 96/9/EC of the European Parliament and of
+             the Council of 11 March 1996 on the legal protection of databases,
+             as amended and/or succeeded, as well as other essentially
+             equivalent rights anywhere in the world.
+        
+          l. You means the individual or entity exercising the Licensed Rights
+             under this Public License. Your has a corresponding meaning.
+        
+        Section 2 -- Scope.
+        
+          a. License grant.
+        
+               1. Subject to the terms and conditions of this Public License,
+                  the Licensor hereby grants You a worldwide, royalty-free,
+                  non-sublicensable, non-exclusive, irrevocable license to
+                  exercise the Licensed Rights in the Licensed Material to:
+        
+                    a. reproduce and Share the Licensed Material, in whole or
+                       in part, for NonCommercial purposes only; and
+        
+                    b. produce, reproduce, and Share Adapted Material for
+                       NonCommercial purposes only.
+        
+               2. Exceptions and Limitations. For the avoidance of doubt, where
+                  Exceptions and Limitations apply to Your use, this Public
+                  License does not apply, and You do not need to comply with
+                  its terms and conditions.
+        
+               3. Term. The term of this Public License is specified in Section
+                  6(a).
+        
+               4. Media and formats; technical modifications allowed. The
+                  Licensor authorizes You to exercise the Licensed Rights in
+                  all media and formats whether now known or hereafter created,
+                  and to make technical modifications necessary to do so. The
+                  Licensor waives and/or agrees not to assert any right or
+                  authority to forbid You from making technical modifications
+                  necessary to exercise the Licensed Rights, including
+                  technical modifications necessary to circumvent Effective
+                  Technological Measures. For purposes of this Public License,
+                  simply making modifications authorized by this Section 2(a)
+                  (4) never produces Adapted Material.
+        
+               5. Downstream recipients.
+        
+                    a. Offer from the Licensor -- Licensed Material. Every
+                       recipient of the Licensed Material automatically
+                       receives an offer from the Licensor to exercise the
+                       Licensed Rights under the terms and conditions of this
+                       Public License.
+        
+                    b. No downstream restrictions. You may not offer or impose
+                       any additional or different terms or conditions on, or
+                       apply any Effective Technological Measures to, the
+                       Licensed Material if doing so restricts exercise of the
+                       Licensed Rights by any recipient of the Licensed
+                       Material.
+        
+               6. No endorsement. Nothing in this Public License constitutes or
+                  may be construed as permission to assert or imply that You
+                  are, or that Your use of the Licensed Material is, connected
+                  with, or sponsored, endorsed, or granted official status by,
+                  the Licensor or others designated to receive attribution as
+                  provided in Section 3(a)(1)(A)(i).
+        
+          b. Other rights.
+        
+               1. Moral rights, such as the right of integrity, are not
+                  licensed under this Public License, nor are publicity,
+                  privacy, and/or other similar personality rights; however, to
+                  the extent possible, the Licensor waives and/or agrees not to
+                  assert any such rights held by the Licensor to the limited
+                  extent necessary to allow You to exercise the Licensed
+                  Rights, but not otherwise.
+        
+               2. Patent and trademark rights are not licensed under this
+                  Public License.
+        
+               3. To the extent possible, the Licensor waives any right to
+                  collect royalties from You for the exercise of the Licensed
+                  Rights, whether directly or through a collecting society
+                  under any voluntary or waivable statutory or compulsory
+                  licensing scheme. In all other cases the Licensor expressly
+                  reserves any right to collect such royalties, including when
+                  the Licensed Material is used other than for NonCommercial
+                  purposes.
+        
+        Section 3 -- License Conditions.
+        
+        Your exercise of the Licensed Rights is expressly made subject to the
+        following conditions.
+        
+          a. Attribution.
+        
+               1. If You Share the Licensed Material (including in modified
+                  form), You must:
+        
+                    a. retain the following if it is supplied by the Licensor
+                       with the Licensed Material:
+        
+                         i. identification of the creator(s) of the Licensed
+                            Material and any others designated to receive
+                            attribution, in any reasonable manner requested by
+                            the Licensor (including by pseudonym if
+                            designated);
+        
+                        ii. a copyright notice;
+        
+                       iii. a notice that refers to this Public License;
+        
+                        iv. a notice that refers to the disclaimer of
+                            warranties;
+        
+                         v. a URI or hyperlink to the Licensed Material to the
+                            extent reasonably practicable;
+        
+                    b. indicate if You modified the Licensed Material and
+                       retain an indication of any previous modifications; and
+        
+                    c. indicate the Licensed Material is licensed under this
+                       Public License, and include the text of, or the URI or
+                       hyperlink to, this Public License.
+        
+               2. You may satisfy the conditions in Section 3(a)(1) in any
+                  reasonable manner based on the medium, means, and context in
+                  which You Share the Licensed Material. For example, it may be
+                  reasonable to satisfy the conditions by providing a URI or
+                  hyperlink to a resource that includes the required
+                  information.
+        
+               3. If requested by the Licensor, You must remove any of the
+                  information required by Section 3(a)(1)(A) to the extent
+                  reasonably practicable.
+        
+               4. If You Share Adapted Material You produce, the Adapter's
+                  License You apply must not prevent recipients of the Adapted
+                  Material from complying with this Public License.
+        
+        Section 4 -- Sui Generis Database Rights.
+        
+        Where the Licensed Rights include Sui Generis Database Rights that
+        apply to Your use of the Licensed Material:
+        
+          a. for the avoidance of doubt, Section 2(a)(1) grants You the right
+             to extract, reuse, reproduce, and Share all or a substantial
+             portion of the contents of the database for NonCommercial purposes
+             only;
+        
+          b. if You include all or a substantial portion of the database
+             contents in a database in which You have Sui Generis Database
+             Rights, then the database in which You have Sui Generis Database
+             Rights (but not its individual contents) is Adapted Material; and
+        
+          c. You must comply with the conditions in Section 3(a) if You Share
+             all or a substantial portion of the contents of the database.
+        
+        For the avoidance of doubt, this Section 4 supplements and does not
+        replace Your obligations under this Public License where the Licensed
+        Rights include other Copyright and Similar Rights.
+        
+        Section 5 -- Disclaimer of Warranties and Limitation of Liability.
+        
+          a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
+             EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
+             AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF
+             ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,
+             IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,
+             WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+             PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,
+             ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT
+             KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT
+             ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.
+        
+          b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE
+             TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,
+             NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,
+             INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,
+             COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR
+             USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN
+             ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR
+             DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR
+             IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.
+        
+          c. The disclaimer of warranties and limitation of liability provided
+             above shall be interpreted in a manner that, to the extent
+             possible, most closely approximates an absolute disclaimer and
+             waiver of all liability.
+        
+        Section 6 -- Term and Termination.
+        
+          a. This Public License applies for the term of the Copyright and
+             Similar Rights licensed here. However, if You fail to comply with
+             this Public License, then Your rights under this Public License
+             terminate automatically.
+        
+          b. Where Your right to use the Licensed Material has terminated under
+             Section 6(a), it reinstates:
+        
+               1. automatically as of the date the violation is cured, provided
+                  it is cured within 30 days of Your discovery of the
+                  violation; or
+        
+               2. upon express reinstatement by the Licensor.
+        
+             For the avoidance of doubt, this Section 6(b) does not affect any
+             right the Licensor may have to seek remedies for Your violations
+             of this Public License.
+        
+          c. For the avoidance of doubt, the Licensor may also offer the
+             Licensed Material under separate terms or conditions or stop
+             distributing the Licensed Material at any time; however, doing so
+             will not terminate this Public License.
+        
+          d. Sections 1, 5, 6, 7, and 8 survive termination of this Public
+             License.
+        
+        Section 7 -- Other Terms and Conditions.
+        
+          a. The Licensor shall not be bound by any additional or different
+             terms or conditions communicated by You unless expressly agreed.
+        
+          b. Any arrangements, understandings, or agreements regarding the
+             Licensed Material not stated herein are separate from and
+             independent of the terms and conditions of this Public License.
+        
+        Section 8 -- Interpretation.
+        
+          a. For the avoidance of doubt, this Public License does not, and
+             shall not be interpreted to, reduce, limit, restrict, or impose
+             conditions on any use of the Licensed Material that could lawfully
+             be made without permission under this Public License.
+        
+          b. To the extent possible, if any provision of this Public License is
+             deemed unenforceable, it shall be automatically reformed to the
+             minimum extent necessary to make it enforceable. If the provision
+             cannot be reformed, it shall be severed from this Public License
+             without affecting the enforceability of the remaining terms and
+             conditions.
+        
+          c. No term or condition of this Public License will be waived and no
+             failure to comply consented to unless expressly agreed to by the
+             Licensor.
+        
+          d. Nothing in this Public License constitutes or may be interpreted
+             as a limitation upon, or waiver of, any privileges and immunities
+             that apply to the Licensor or You, including from the legal
+             processes of any jurisdiction or authority.
+        
+        =======================================================================
+        
+        Creative Commons is not a party to its public
+        licenses. Notwithstanding, Creative Commons may elect to apply one of
+        its public licenses to material it publishes and in those instances
+        will be considered the “Licensor.” The text of the Creative Commons
+        public licenses is dedicated to the public domain under the CC0 Public
+        Domain Dedication. Except for the limited purpose of indicating that
+        material is shared under a Creative Commons public license or as
+        otherwise permitted by the Creative Commons policies published at
+        creativecommons.org/policies, Creative Commons does not authorize the
+        use of the trademark "Creative Commons" or any other trademark or logo
+        of Creative Commons without its prior written consent including,
+        without limitation, in connection with any unauthorized modifications
+        to any of its public licenses or any other arrangements,
+        understandings, or agreements concerning use of licensed material. For
+        the avoidance of doubt, this paragraph does not form part of the
+        public licenses.
+        
+        Creative Commons may be contacted at creativecommons.org.
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: ~=3.10.0
+Requires-Dist: librosa~=0.10.0
+Requires-Dist: pandas
+Requires-Dist: pyyaml
+Requires-Dist: tensorflow-macos~=2.12.0; platform_system == 'Darwin' and platform_machine == 'arm64'
+Requires-Dist: tensorflow~=2.12.0; platform_system != 'Darwin' or platform_machine != 'arm64'
+Description-Content-Type: text/markdown
+
+Nighthawk
+=========
+
+## Overview
+
+Nighthawk is a machine learning model for acoustic monitoring of nocturnal bird migration. 
+
+Nighthawk is trained on recordings of nocturnal flight calls (NFCs) from the Americas, with the greatest coverage in eastern North America. It processes mono-channel audio files in .wav format and returns detections in a tabular format (.csv and .txt). Nighthawk currently includes training data from 82 species, 18 families, and 4 orders of birds that vocalize during nocturnal migration.
+
+Nighthawk runs in a Python environment. The underlying model was trained with [TensorFlow](tensorflow.org). 
+
+<!-- For details on Nighthawk training and performance, see the following [paper](https://doi.org/10.1101/541336): -->
+
+Van Doren, B. M., A. Farnsworth, K. Stone, D. M. Osterhaus, J. Drucker, and G. Van Horn. 2023. Nighthawk: acoustic monitoring of nocturnal bird migration in the Americas. 
+
+<!-- bioRxiv. doi:[10.1101/541336](https://doi.org/10.1101/541336). -->
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+
+## Installation
+
+We recommend installing and using Nighthawk in its own Python environment.
+If you're new to Python environments, we suggest installing either
+[Anaconda](https://www.anaconda.com/download) or
+[Miniconda](https://docs.conda.io/en/latest/miniconda.html) and using
+the [`conda`](https://docs.conda.io/projects/conda/en/stable/) program
+that comes with them to manage your environments. For help choosing
+between Anaconda and Miniconda, see
+[here](https://conda.io/projects/conda/en/stable/user-guide/install/download.html).
+
+The following instructions assume that you're using `conda` to manage
+your Python environments. If you're using anything else (such as `venv`,
+for example), you'll need to modify the instructions accordingly.
+
+On Windows, type the commands below in an Anaconda Prompt. Anaconda
+Prompt is a program that comes with Anaconda and Miniconda. It is a
+lot like the built-in Windows Command Prompt program, but it is
+customized for Anaconda and Miniconda. Once you've installed Anaconda
+or Miniconda, you can find the Anaconda Prompt program in your Windows
+Start menu or by typing "Anaconda Prompt" in the search field of the
+Windows taskbar. On macOS and Linux, type the commands below in a regular
+terminal.
+
+To install Nighthawk, first create a new Python environment named
+`nighthawk-0.1.0` that uses Python 3.10:
+
+    conda create -n nighthawk-0.1.0 python=3.10
+
+Then activate the environment:
+
+    conda activate nighthawk-0.1.0
+
+and install the Nighthawk Python package and its dependencies:
+
+    pip install nighthawk
+
+For more about `conda`, including additional `conda` commands, see its
+[documentation](https://docs.conda.io/projects/conda/en/stable/).
+
+### `tensorflow-metal` for Apple Silicon Macs
+
+On Apple computers with Apple silicon (e.g. M1 and M2)
+processors, installing the ``tensorflow-metal`` Python package
+into your Nighthawk Python environment with:
+
+    pip install tensorflow-metal
+
+can accelerate Nighthawk considerably. Unfortunately, however,
+version 0.8.0 of the ``tensorflow-metal`` package (the most recent
+version as of this writing) also appears to leak memory and cause
+Nighthawk to hang when processing large (e.g. full-night) audio files
+on our test machine, an M2 Mac mini with 8 GB of memory. For this
+reason the package is not installed with Nighthawk by default.
+Feel free to install it yourself, however, and test it for your
+particular situation.
+
+## Command Line Usage
+
+Once you've installed Nighthawk, the simplest way to run it is to invoke
+the `nighthawk` program from the command line. At an Anaconda Prompt
+(on Windows) or terminal (on macOS or Linux), first activate your
+Nighthawk environment with:
+
+    conda activate nighthawk-0.1.0
+
+Then, to run the `nighthawk` program on an audio file, say `my_file.wav`:
+
+    nighthawk my_file.wav
+
+`nighthawk` will output detections to the file `my_file.csv` in the
+same directory as the input.
+
+Adding the `--raven-output` flag will also export a `my_file.txt` file
+that can be read as a selection table by
+[Raven Pro](https://ravensoundsoftware.com/software/raven-pro/):
+
+    nighthawk my_file.wav --raven-output
+
+You can also specify more than one input file for `nighthawk` to process,
+and specify relative or absolute file paths as well as just file names.
+
+`nighthawk` has several command line arguments for configuring detection
+parameters and controlling output. For full `nighthawk` help, including a
+list of all command line arguments, run the command:
+
+    nighthawk --help
+  
+to produce the output:
+
+    usage: nighthawk [-h] [--hop-size HOP_SIZE] [--threshold THRESHOLD] [--merge-overlaps | --no-merge-overlaps]
+                    [--drop-uncertain | --no-drop-uncertain] [--csv-output | --no-csv-output]
+                    [--raven-output | --no-raven-output] [--output-dir OUTPUT_DIR_PATH]
+                    input_file_path [input_file_path ...]
+
+    positional arguments:
+    input_file_path       path of audio file on which to run the detector.
+
+    options:
+    -h, --help            show this help message and exit
+    --hop-size HOP_SIZE   the hop size as a percentage of the model input duration, a number in the range (0, 100].
+                            (default: 20)
+    --threshold THRESHOLD
+                            the detection threshold, a number in [0, 100]. (default: 80)
+    --merge-overlaps, --no-merge-overlaps
+                            merge overlapping detections. (default: True)
+    --drop-uncertain, --no-drop-uncertain
+                            apply postprocessing steps to drop less certain detections. (default: True)
+    --csv-output, --no-csv-output
+                            output detections to a CSV file. (default: True)
+    --raven-output, --no-raven-output
+                            output detections to a Raven selection table file. (default: False)
+    --output-dir OUTPUT_DIR_PATH
+                            directory in which to write output files. (default: input file directories)
+
+## Use with Vesper
+  
+You can also use Nighthawk from Vesper, for example if you would like to
+view and interact with spectrograms of its detections in Vesper clip albums.
+For more on this see the
+[Vesper documentation](https://vesper.readthedocs.io/en/latest/).
+
+## Improving Nighthawk by correcting mistakes
+
+See [this page](instructions/feedback/model_feedback.md) for instructions on how to review Nighthawk's results on your data and submit files to us to improve the model.
+
+## Licensing and Citation
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+
+Under this license, you are free to share and adapt this material, but you must provide appropriate attribution, and you may not use the material for commercial purposes.
+  
+To reference Nighthawk, please use the following citation:
+
+Van Doren, B. M., A. Farnsworth, K. Stone, D. M. Osterhaus, J. Drucker, and G. Van Horn. 2023. Nighthawk: acoustic monitoring of nocturnal bird migration in the Americas. 
+
+<!-- bioRxiv. doi:[10.1101/541336](https://doi.org/10.1101/541336). 
+
+BibTex:
+    
+    @article{vandorenNighthawkAcousticMonitoring2023,
+        title = {Nighthawk: acoustic monitoring of nocturnal bird migration in the Americas},
+        url = {https://www.biorxiv.org/content/10.1101/541336},
+        doi = {10.1101/541336},
+        journaltitle = {{bioRxiv}},
+        author = {Van Doren, Benjamin M and Farnsworth, Andrew and Stone, Kate and Osterhaus, Dylan M and Drucker, Jacob and Van Horn, Grant},
+        date = {2023},
+    }
+-->
+
+## Code of Conduct
+
+See our [code of conduct](CODE_OF_CONDUCT.md).
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) 
+
+## Contact and Collaborations
+
+Please contact Benjamin Van Doren (vandoren@cornell.edu) with questions about Nighthawk. We are always open to scientific collaborations.  
+
+<!-- ![Image of Zenodo DOI badge](https://zenodo.org/badge/DOI/DOIHERE) -->
