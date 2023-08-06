@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ncconvert"
+dynamic = ["version"]
+authors = [
+  { name="tsdat", email="tsdat@pnnl.gov" },
+]
+description = "Convert netCDF to other formats."
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["netCDF", "cdf", "nc"]
+license = {file = "LICENSE.md"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+  "xarray[io]",
+  "pandas[parquet]",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "coverage",
+  "build",
+  "black",
+  "ruff",
+  "isort",
+]
+
+cli = [
+  "typer>=0.9.0",
+  "tqdm",
+  "rich",
+]
+
+[project.scripts]
+ncconvert = "ncconvert.cli:app"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ncconvert = ["py.typed"]
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+write_to = "src/ncconvert/_version.py"
+
+[tool.setuptools.dynamic]
+version = {attr = "ncconvert._version.__version__"}
