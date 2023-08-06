@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: eia
+Version: 0.3.0
+Summary: Client for interacting with the EIA API
+Author: James Campbell
+License: MIT License
+        
+        Copyright (c) 2023 James Campbell
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/jcampbell/eia
+Project-URL: Bug Tracker, https://github.com/jcampbell/eia/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests (>=2.26.0)
+Requires-Dist: pandas (>=1.0)
+Requires-Dist: pydantic (>=1.7)
+Requires-Dist: ratelimit (>=2.2.1)
+
+# EIA
+
+The client exposes a simple interface to the EIA API.
+
+Huge thanks to the EIA for providing this API
+See https://www.eia.gov/opendata/documentation.php for detailed API documentation
+
+## Installation
+
+```bash
+pip install eia
+```
+
+## Examples
+
+Get information on the available "petroleum" datasets.
+
+```python
+client.dataset_info("petroleum")
+```
+
+Get information on operational and power data, including generation.
+```python
+# Series Info includes data series with specific data elements and facets
+operational = client.series_info("electricity/electric-power-operational-data")
+operational.data
+```
+
+See examples in the [example](example/example.ipynb) directory.
+
+Note: the client does not manage rate limits. See the [EIA API documentation](https://www.eia.gov/opendata/documentation.php) for more information on rate limits.
