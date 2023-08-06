@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "dimm_utils"
+version = "0.1.0"
+description = ""
+authors = ["Eric Juta <ericjuta@trisolaris.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.scripts]
+dimm_utils = "dimm_utils.core:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
