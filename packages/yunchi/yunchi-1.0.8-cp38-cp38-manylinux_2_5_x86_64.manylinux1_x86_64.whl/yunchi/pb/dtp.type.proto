@@ -1,0 +1,244 @@
+syntax = "proto3";
+
+package dwjk.dtp;
+
+/* API ID */
+enum DtpApiId
+{
+    APP_ID_UNDEFINED                        = 0;
+    APP_ID_PLACE_ORDER                      = 10002001;
+    APP_ID_CANCEL_ORDER                     = 10002002;
+    APP_ID_PLACE_BATCH                      = 10002003;
+    APP_ID_CANCEL_BATCH                     = 10002004;
+    APP_ID_PLACE_VOTE                       = 10002005;
+    APP_ID_PLACE_DECLARE                    = 10002006;
+	APP_ID_ALGORITHM_ORDER              	= 10002007;
+
+    APP_ID_CANCEL_RESPONSE                  = 11002002;
+    APP_ID_PLACE_BATCH_RESPONSE             = 11002003;
+    APP_ID_CANCEL_BATCH_RESPONSE            = 11002004;
+
+    APP_ID_REPORT_PLACED                    = 20001001;
+    APP_ID_REPORT_FILL                      = 20001002;
+    APP_ID_REPORT_CANCELLATION              = 20001003;
+    APP_ID_REPORT_VOTE                      = 20001004;
+    APP_ID_REPORT_DECLARE                   = 20001005;
+	APP_ID_REPORT_ALGORITHM               	= 20001006;
+
+    APP_ID_REQUEST_LOGIN                    = 10001001;
+    APP_ID_REQUEST_LOGOUT                   = 10001002;
+    APP_ID_RESPONSE_LOGIN                   = 11001001;
+    APP_ID_RESPONSE_LOGOUT                  = 11001002;
+
+    APP_ID_REQUEST_ORDER                    = 10003001;
+    APP_ID_REQUEST_FILL                     = 10003002;
+    APP_ID_REQUEST_CAPITAL                  = 10003003;
+    APP_ID_REQUEST_POSITION                 = 10003004;
+    APP_ID_REQUEST_CAPITAL_HK               = 10003005;
+    APP_ID_REQUEST_QUOTA                    = 10003006;
+    APP_ID_REQUEST_VOTE_INFO                = 10003007;
+    APP_ID_REQUEST_DECLARE_INFO             = 10003008;
+    APP_ID_REQUEST_BANK_SERVICE             = 10003009;
+    APP_ID_RESPONSE_ORDER                   = 11003001;
+    APP_ID_RESPONSE_FILL                    = 11003002;
+    APP_ID_RESPONSE_CAPITAL                 = 11003003;
+    APP_ID_RESPONSE_POSITION                = 11003004;
+    APP_ID_RESPONSE_CAPITAL_HK              = 11003005;
+    APP_ID_RESPONSE_QUOTA                   = 11003006;
+    APP_ID_RESPONSE_VOTE_INFO               = 11003007;
+    APP_ID_RESPONSE_DECLARE_INFO            = 11003008;
+    APP_ID_RESPONSE_BANK_SERVICE            = 11003009;
+
+    APP_ID_REQUEST_BOND_STORAGE             = 10004001;
+    APP_ID_REQUEST_PENDING_REPO             = 10004002;
+    APP_ID_REQUEST_SETTLEMENT_INFO          = 10004003;
+    APP_ID_RESPONSE_BOND_STORAGE            = 11004001;
+    APP_ID_RESPONSE_PENDING_REPO            = 11004002;
+    APP_ID_RESPONSE_SETTLEMENT_INFO         = 11004003;
+
+    APP_ID_REQUEST_RATION                   = 10005001;
+    APP_ID_RESPONSE_RATION                  = 11005001;
+
+    APP_ID_ALGORITHMIC_SEND_REPORT          = 20009001;
+}
+
+/* API响应状态码 */
+enum ResponseStatusCode
+{
+    RESPONSE_STATUS_CODE_UNDEFINED          = 0;
+    RESPONSE_CODE_OK                        = 200;  // 200:成功(服务器成功处理请求);
+    RESPONSE_CODE_BAD_REQUEST               = 400;  // 400:请求错误(请求参数有误,参考message)
+    RESPONSE_CODE_UNAUTHORIZED              = 401;  // 401:未授权(需要登录)
+    RESPONSE_CODE_FORBIDDEN                 = 403;  // 403:拒绝(违规, 柜台拒绝?)
+    RESPONSE_CODE_INTERNAL_ERROR            = 500;  // 500:服务器内部错误
+}
+
+/* 交易所 */
+enum Exchange
+{
+    EXCHANGE_UNDEFINED                      = 0;
+    EXCHANGE_SH_A                           = 1;    // 沪A
+    EXCHANGE_SZ_A                           = 2;    // 深A
+    EXCHANGE_HK                             = 3;    // 沪港通
+    EXCHANGE_SK                             = 4;    // 深港通
+}
+
+/* 委托竞价类型 */
+enum OrderType
+{
+    ORDER_TYPE_UNDEFINED                    = 0;
+    ORDER_TYPE_LIMIT                        = 1;    // 限价
+    ORDER_TYPE_MARKET                       = 2;    // 市价((沪市)最优五档即时成交剩余转限价/(深市)最优五档即时成交剩余撤单)
+    ORDER_TYPE_BEST_5_ONLY                  = 3;    // 最优五档即时成交剩余撤单(上海/深圳)
+    ORDER_TYPE_BEST_5_LIMIT                 = 4;    // 最优五档即时成交剩余转限价(上海)
+    ORDER_TYPE_YOU_BEST                     = 5;    // 对手方最优价格(最优一档)委托(深圳)
+    ORDER_TYPE_WE_BEST                      = 6;    // 本方最优价格(最优一档)委托(深圳)
+    ORDER_TYPE_MARKET_ONCE                  = 7;    // 即时成交剩余撤销委托(深圳)
+    ORDER_TYPE_MARKET_ALL                   = 8;    // 全额成交或撤销委托(深圳)
+}
+
+/* 委托交易限制(港股) */
+enum OrderLimit
+{
+    ORDER_LIMIT_NONE                        = 0;    //无限制
+    ORDER_LIMIT_BID                         = 1;    //竞价限价盘
+    ORDER_LIMIT_ENHANCE                     = 2;    //增强限价盘
+    ORDER_LIMIT_FRAGMENT                    = 3;    //零股卖出
+    ORDER_LIMIT_FIXED                       = 4;    //固定价格
+}
+
+/* 委托竞价方向(买卖类型) */
+enum OrderSide
+{
+    ORDER_SIDE_UNDEFINED                    = 0;
+    ORDER_SIDE_BUY                          = 1;    // 买入
+    ORDER_SIDE_SELL                         = 2;    // 卖出
+    ORDER_SIDE_IPO                          = 3;    // 新股申购
+    ORDER_SIDE_CREATION                     = 11;   // ETF申购
+    ORDER_SIDE_REDEMPTON                    = 12;   // ETF赎回
+    ORDER_SIDE_REVERSE_REPO                 = 21;   // 逆回购
+    ORDER_SIDE_REPO                         = 22;   // 正回购
+    ORDER_SIDE_PLEDGE_BOND_IN               = 23;   // 质押债券入库
+    ORDER_SIDE_PLEDGE_BOND_OUT              = 24;   // 质押债券出库
+    ORDER_SIDE_INTENT_BUY                   = 31;   // 意向买入
+    ORDER_SIDE_INTENT_SELL                  = 32;   // 意向卖出
+    ORDER_SIDE_LIMIT_BUY                    = 33;   // 定价买入
+    ORDER_SIDE_LIMIT_SELL                   = 34;   // 定价卖出
+    ORDER_SIDE_AFTER_LIMIT_BUY              = 35;   // 盘后定价买入
+    ORDER_SIDE_AFTER_LIMIT_SELL             = 36;   // 盘后定价卖出
+    ORDER_SIDE_FILL_BUY                     = 37;   // 成交买入
+    ORDER_SIDE_FILL_SELL                    = 38;   // 成交卖出
+    ORDER_SIDE_FINANCE_BUY                  = 41;	// 融资买入
+    ORDER_SIDE_COUPON_SELL                  = 42;	// 融券卖出
+    ORDER_SIDE_SELL_BOUND_REPAY             = 43;	// 卖券还款
+    ORDER_SIDE_SELL_BOUND_REPAY_INTEREST    = 44;	// 卖券还利息 
+    ORDER_SIDE_BUY_BOUND_REPAY              = 45;	// 买券还券
+    ORDER_SIDE_FINANCE_COVER                = 46;	// 融资平仓
+    ORDER_SIDE_COUPON_COVER                 = 47;	// 融券平仓
+    ORDER_SIDE_FINANCE_FORCE_COVER          = 48;	// 融资强平
+    ORDER_SIDE_COUPON_FORE_COVER            = 49;	// 融券强平
+}
+
+/*
+*  委托状态
+*  该状态只体现交易所委托状态
+*  柜台直接拒单时，不使用该状态，通过ReportHeader的code和message
+*/
+enum OrderStatus
+{
+    ORDER_STATUS_UNDEFINED                  = 0;
+    ORDER_STATUS_PLACING                    = 1;    // 正报: 交易所处理中(order_exchange_id已产生)
+    ORDER_STATUS_PLACED                     = 2;    // 已报: 交易所已挂单
+    ORDER_STATUS_PARTIAL_FILLED             = 3;    // 部分成交
+    ORDER_STATUS_FILLED                     = 4;    // 全部成交
+    ORDER_STATUS_CANCELLING                 = 5;    // 待撤
+    ORDER_STATUS_CANCELLED                  = 6;    // 已撤
+    ORDER_STATUS_PARTIAL_CANCELLING         = 7;    // 部分成交其余待撤
+    ORDER_STATUS_PARTIAL_CANCELLED          = 8;    // 部分成交其余已撤
+    ORDER_STATUS_FAILED                     = 9;    // 废单
+}
+
+/* 成交状态 */
+enum FillStatus
+{
+    FILL_STATUS_UNDEFINED                   = 0;
+    FILL_STATUS_FILLED                      = 1;    // 成交
+    FILL_STATUS_CANCELLED                   = 2;    // 撤单成功
+    FILL_STATUS_FAILED                      = 3;    // 废单
+}
+
+/* 委托查询限制 */
+enum QueryOrderCriteria
+{
+    QUERY_ONLY_ORDER                        = 0;    // 只查询委托（不包含撤单委托）
+    QUERY_ORDER_CAN_BE_CANCELLED            = 1;    // 只查可撤
+    QUERY_ONLY_CANCEL_ORDER                 = 2;    // 只查询撤单委托
+    QUERY_ORDER_ALL                         = 3;    // 查询全部类型
+}
+
+/* 申报业务类型 */
+enum BusinessType
+{
+    BUSINESS_TYPE_UNDEFINED                 = 0;
+    BUSINESS_TYPE_DIVIDEND                  = 1;    // 红利
+    BUSINESS_TYPE_ACQUISITION               = 2;    // 收购
+    BUSINESS_TYPE_PLACEMENT                 = 3;    // 配售
+    BUSINESS_TYPE_OFFERING                  = 4;    // 供股
+    BUSINESS_TYPE_DISCOUNT                  = 5;    // 折合
+}
+
+/* 申报业务类型 */
+enum DeclareType
+{
+    DECLARE_TYPE_UNDEFINED                  = 0;
+    DECLARE_TYPE_DECLARATION                = 1;    // 申报
+    DECLARE_TYPE_REVOCATION                 = 2;    // 撤销
+}
+
+/* 港股通额度状态 */
+enum QuotaStatus
+{
+    QUOTA_STATUS_UNDEFINED                  = 0;
+    QUOTA_STATUS_AVAILABLE                  = 1;    // 可用
+    QUOTA_STATUS_UNAVAILABLE                = 2;    // 不可用
+}
+
+/* 议案类型 */
+enum MotionType
+{
+    MOTION_TYPE_UNDEFINED                  = 0;
+    MOTION_TYPE_GENERAL                    = 1;    // 普通投票
+    MOTION_TYPE_ACCUMULATE                 = 2;    // 累积投票
+}
+
+enum BankServiceCode
+{
+    BANK_SERVICE_CODE_UNDEFINED            = 0;
+    BANK_SERVICE_CODE_BANK_OUT             = 1;    // 银行转证券
+    BANK_SERVICE_CODE_BANK_IN              = 2;    // 证券转银行
+}
+
+/* 算法类型 */
+enum AlgorithmType
+{
+    ALGORITHM_TYPE_UNDEFINED               = 0;
+    ALGORITHM_TYPE_VWAP                    = 1;    // 交易量加权平均价格策略
+    ALGORITHM_TYPE_TWAP                    = 2;    // 交易时间加权平均价格策略
+	ALGORITHM_TYPE_VP                      = 3;    // 跟量
+    ALGORITHM_TYPE_PINLINE                 = 4;    // 跟价
+	ALGORITHM_TYPE_FLOAT                   = 5;    // 盘口
+}
+
+/* 算法状态 */
+enum AlgorithmStatus
+{
+    ALGORITHM_STATUS_CHECKING              = 0;	   // 风控检查中
+    ALGORITHM_STATUS_APPROVING             = 1;    // 审批中
+    ALGORITHM_STATUS_REJECTED              = 2;    // 已驳回
+	ALGORITHM_STATUS_RUNNING               = 3;    // 运行中
+    ALGORITHM_STATUS_CANCELING             = 4;    // 撤销中
+	ALGORITHM_STATUS_FINISHED              = 5;    // 已完成
+	ALGORITHM_STATUS_STOPPED               = 6;    // 已停止
+	ALGORITHM_STATUS_FROCE_COMPLETED       = 7;    // 强制撤销
+	ALGORITHM_STATUS_CHECKFAILED           = 8;    // 风控驳回
+}

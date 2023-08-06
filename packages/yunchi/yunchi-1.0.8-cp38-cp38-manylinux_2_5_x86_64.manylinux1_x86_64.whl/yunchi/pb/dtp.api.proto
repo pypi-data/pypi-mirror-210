@@ -1,0 +1,838 @@
+syntax = "proto3";
+
+package dwjk.dtp;
+
+import "dtp.type.proto";
+
+
+//*********************************************
+// 请求响应标识
+//*********************************************
+
+/* API Request Header */
+message RequestHeader
+{
+    uint32 api_id                          = 1;    // API编号
+    string request_id                      = 2;    // 请求唯一标识UUID
+    string token                           = 3;    // 所有接口请求都需带上该标识,除了LoginRequest.
+    string user_id                         = 4;    // 用户编号
+    string account_no                      = 5;    // 账户号
+    string ip                              = 6;    // 下单用户的IP地址
+    string mac                             = 7;    // 下单用户的MAC地址
+    string harddisk                        = 8;    // 下单用户的磁盘序列号
+    string tag                             = 9;    // 自定义标签
+}
+
+/* API Response Header */
+message ResponseHeader
+{
+    uint32 api_id                          = 1;
+    string request_id                      = 2;    // 带回相应Request的request_id
+    ResponseStatusCode code                = 3;    // (TBD)Response的各种非法响应在实际调用中是否存在？
+    string message                         = 4;
+}
+
+/*
+*  API Report Header
+*  例: 违规
+*  ReportHeader.ResponseStatusCode = RESPONSE_CODE_FORBIDDEN
+*  ReportHeader.message = 违规信息
+*  例: 柜台拒绝
+*  ReportHeader.ResponseStatusCode = RESPONSE_CODE_FORBIDDEN
+*  ReportHeader.message = 无法连接柜台/碎股/验资验券?
+*/
+message ReportHeader
+{
+    uint32 api_id                          = 1;
+    ResponseStatusCode code                = 2;
+    string message                         = 3;
+    string request_id                      = 4;    // 委托确认回报的正报状态，批量委托和批量撤单的响应，撤单委托的响应 会返回请求的id
+    string user_id                         = 5;    // 用户编号
+    string account_no                      = 6;    // 账户号
+    string ip                              = 7;    // 下单用户的IP地址
+    string mac                             = 8;    // 下单用户的MAC地址
+    string harddisk                        = 9;    // 下单用户的磁盘序列号
+    string tag                             = 10;   // 自定义标签
+}
+
+
+//*********************************************
+// 账户相关API
+//*********************************************
+
+/*
+*  登录: 获取token
+*  调用时payload = RequestHeader + LoginAccountRequest
+*  MUST: RequestHeader.api_id = 10001001，token不用填
+*/
+message LoginAccountRequest
+{
+    string account_no                      = 1;    // 资金账号
+    string password                        = 2;    // 密码
+    string login_name                      = 3;	   // 登录名
+}
+
+/*
+*  调用时 payload = ResponseHeader + LoginAccountResponse
+*  MUST: ResponseHeader.api_id = 11001001
+*/
+message LoginAccountResponse
+{
+    string token                           = 1;
+}
+
+/*
+*  退出: token失效
+*  调用时 payload = RequestHeader + LogoutAccountRequest
+*  MUST: RequestHeader.api_id = 10001002
+*/
+message LogoutAccountRequest
+{
+    string account_no                      = 1;    // 资金账号
+}
+
+/*
+*  调用时 payload = ResponseHeader + LogoutAccountResponse
+*  MUST: ResponseHeader.api_id = 11001002
+*/
+message LogoutAccountResponse
+{
+}
+
+
+//*********************************************
+// 委托相关API
+//*********************************************
+
+/*
+*  提交单笔委托
+*  调用时 payload = RequestHeader + PlaceOrder
+*  MUST: RequestHeader.api_id = 10002001
+*  PlaceOrder的响应使用PlacedReport
+*/
+message PlaceOrder
+{
+    string account_no                      = 1;    // 资金账号
+    string order_original_id               = 2;    // 客户委托号
+    Exchange exchange                      = 3;    // 交易所
+    string code                            = 4;    // 证券代码
+    string price                           = 5;    // 价格留3位小数
+    uint32 quantity                        = 6;    // 委托数量
+    OrderSide order_side                   = 7;    // 委托方向
+    OrderType order_type                   = 8;    // 委托竞价类型
+    string contacts                        = 9;    // 联系人
+    string phone                           = 10;   // 电话
+    string convention_no                   = 11;   // 约定号
+    OrderLimit order_limit                 = 12;   // 委托交易限制
+}
+
+/*
+*  提交单笔撤单委托
+*  调用时 payload = RequestHeader + CancelOrder
+*  MUST: RequestHeader.api_id = 10002002
+*/
+message CancelOrder
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;    // 宽睿柜台、顶点两融柜台，必填。顶点普通柜台无值也可以
+    string order_exchange_id               = 3;    // 要撤的委托：交易所委托号
+    string code                            = 4;    // (TBD)非必需，宽睿文档要求必填，实测模拟柜台无值也可以，需实盘验证
+}
+
+/*
+*  消息：单笔撤单的响应
+*  调用时 payload = ReportHeader + CancelResponse
+*  MUST: ReportHeader.api_id = 11002002
+*/
+message CancelResponse
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;
+    string order_exchange_id               = 3;    // 要撤的委托：交易所委托号
+    string cancel_exchange_id              = 4;    // 撤单委托的单号
+}
+
+/*
+*  投票
+*  调用时 payload = RequestHeader + PlaceVote
+*  MUST: RequestHeader.api_id = 10002005
+*/
+message PlaceVote
+{
+    string account_no                      = 1;    // 资金账号
+    string order_original_id               = 2;    // 客户委托号
+    Exchange exchange                      = 3;    // 交易所
+    string code                            = 4;    // 证券代码
+    string placard_id                      = 5;    // 公告编号
+    string motion_id                       = 6;    // 议题编号
+    uint32 favour_count                    = 7;    // 赞成数量
+    uint32 opposition_count                = 8;    // 反对数量
+    uint32 abstention_count                = 9;    // 弃权数量
+}
+
+/*
+*  公司行为申报
+*  调用时 payload = RequestHeader + PlaceDeclare
+*  MUST: RequestHeader.api_id = 10002006
+*/
+message PlaceDeclare
+{
+    string account_no                      = 1;    // 资金账号
+    string order_original_id               = 2;    // 客户委托号
+    Exchange exchange                      = 3;    // 交易所
+    string code                            = 4;    // 证券代码
+    BusinessType business_type             = 5;    // 业务类型
+    DeclareType declare_type               = 6;    // 申报类型
+    uint32 count                           = 7;    // 数量
+}
+
+/*
+*  提交算法单委托
+*  调用时 payload = RequestHeader + AlgorithmOrder
+*  MUST: RequestHeader.api_id = 10002007
+*  AlgorithmOrder的响应使用AlgorithmReport
+*/
+message AlgorithmOrder
+{
+    string account_no                      = 1;    // 资金账号
+    string order_original_id               = 2;    // 客户委托号
+    Exchange exchange                      = 3;    // 交易所
+    string code                            = 4;    // 证券代码
+    AlgorithmType name                     = 5;	   // 算法名称
+	string price                           = 6;    // 基准价	
+	uint32 quantity                        = 7;    // 下单总量
+	uint32 start_time                      = 8;    // 有效开始时间
+	uint32 stop_time                       = 9;    // 有效结束时间
+	string part_rate                       = 10;   // 量比比例, 用户设定, 当MaxPartRate==100%, 表示没有限制
+    string amount                          = 11;   // 委托最小金额
+	OrderSide order_side                   = 12;   // 委托方向(买入或卖出)
+    OrderType order_type                   = 13;   // 委托竞价类型(限价或市价)
+}
+
+
+//*********************************************
+// 批量操作API
+//*********************************************
+
+/*
+*  提交批量委托
+*  调用时 payload = RequestHeader + PlaceBatchOrder
+*  MUST: RequestHeader.api_id = 10002003
+*/
+message PlaceBatchOrder
+{
+    string account_no                      = 1;    // 资金账号
+    bool all_failed                        = 2;    // 批量报单开关：有一笔委托错误，所有批量委托全部失败
+    repeated BatchOrderItem order_list     = 3;
+    message BatchOrderItem
+    {
+        Exchange exchange                  = 1;    // 交易所
+        string code                        = 2;    // 证券代码
+        OrderSide order_side               = 3;    // 委托方向，只支持买卖
+        string price                       = 4;    // 价格留3位小数
+        uint32 quantity                    = 5;    // 委托数量
+        OrderType order_type               = 6;    // 委托竞价类型
+        string order_original_id           = 7;    // 客户委托号
+        OrderLimit order_limit             = 12;   // 委托交易限制
+    }
+}
+
+/*
+*  消息：批量委托的响应
+*  调用时 payload = ReportHeader + PlaceBatchResponse
+*  MUST: ReportHeader.api_id = 11002003
+*/
+message PlaceBatchResponse
+{
+    string account_no                      = 1;    // 资金账号
+    uint32 total_count                     = 3;    // 委托总笔量
+    uint32 success_count                   = 4;    // 成功笔数
+    uint32 failed_count                    = 5;    // 失败笔数
+}
+
+/*
+*  提交批量撤销委托
+*  调用时 payload = RequestHeader + CancelBatchOrder
+*  MUST: RequestHeader.api_id = 10002004
+*/
+message CancelBatchOrder
+{
+    string account_no                      = 1;    // 资金账号
+    repeated string exchangeID             = 2;
+}
+
+/*
+*  消息：批量撤销委托的响应
+*  调用时 payload = ReportHeader + CancelBatchResponse
+*  MUST: ReportHeader.api_id = 11002004
+*/
+message CancelBatchResponse
+{
+    string account_no                      = 1;    // 资金账号
+    uint32 total_count                     = 2;    // 委托总笔量
+    uint32 success_count                   = 3;    // 成功笔数
+    uint32 failed_count                    = 4;    // 失败笔数
+}
+
+
+//*********************************************
+// 回报相关API
+//*********************************************
+
+/*
+*  消息：委托确认回报
+*  调用时 payload = ReportHeader + PlacedReport
+*  MUST: ReportHeader.api_id = 20001001
+*/
+message PlacedReport
+{
+    string order_exchange_id               = 1;    // 交易所委托号
+    string placed_time                     = 2;    // 交易所委托确认时间,单位毫秒,不存日期 ;顶点柜台返回的是 HH:MM:SS 格式，推断交易所返回的也是这个格式，所以改成字符串格式 yinwb
+    string freeze_amount                   = 3;    // 冻结金额(负数表示解冻)
+    OrderStatus status                     = 4;    // 委托状态: 申报结果
+    string order_original_id               = 5;    // 客户委托号
+    string account_no                      = 6;    // 资金账号
+    Exchange exchange                      = 7;    // 交易所
+    string code                            = 8;    // 证券代码
+    uint32 quantity                        = 9;    // 委托数量
+    OrderSide order_side                   = 10;   // 委托竞价方向
+    string price                           = 11;   // 价格留3位小数
+}
+
+/*
+*  消息：委托成交回报
+*  调用时 payload = ReportHeader + FillReport
+*  MUST: ReportHeader.api_id = 20001002
+*/
+message FillReport
+{
+    string fill_exchange_id                = 1;    // 交易所成交编号
+    string fill_time                       = 2;    // 成交的时间,单位毫秒,不存日期;顶点柜台返回的是 HH:MM:SS 格式，推断交易所返回的也是这个格式，所以改成字符串格式 yinwb
+    FillStatus fill_status                 = 3;    // 成交状态 0:未知 1:成交 2:撤单 3: 废单 4:确认 (TBD: 可能来自'撤销标志')
+                                                   // TBD: 成交状态中指的是什么，其中是否有撤单? 或者撤单成功会使用该回报?
+                                                   // *** 成交回报的状态只会有成交，所以这个状态可以删除
+    string fill_price                      = 4;    // 本次成交价格
+    uint32 fill_quantity                   = 5;    // 本次成交数量; fill_status为撤单时，此数值为撤单数量(TBD)
+    string fill_amount                     = 6;    // 本次成交金额
+    string clear_amount                    = 7;    // (TBD)本次清算资金(委托为卖出方向时表示本次成交新增的可用资金),顶点接口使用
+    uint32 total_fill_quantity             = 8;    // 该委托总成交数量(本笔成交处理后)
+    string total_fill_amount               = 9;    // 该委托总成交金额(本笔成交处理后)
+    uint32 total_cancelled_quantity        = 10;   // (TBD)该委托已撤单数量? 怀疑撤单成功会有该回报? ***撤单成功走撤单回报
+    string order_exchange_id               = 11;   // 交易所委托号
+    string order_original_id               = 12;   // 客户委托号
+    string account_no                      = 13;   // 资金账号
+    Exchange exchange                      = 14;
+    string code                            = 15;
+    string price                           = 16;   // (TBD)价格留3位小数，宽睿接口无此参数，建议取消
+    uint32 quantity                        = 17;   // (TBD)委托数量，宽睿接口无此参数，建议取消
+    OrderSide order_side                   = 18;   // 委托竞价方向
+    string total_clear_amount              = 19;   // 给委托总清算资金，宽睿接口使用。
+}
+
+/*
+*  消息：委托撤单确认回报
+*  调用时 payload = ReportHeader + CancellationReport
+*  MUST: ReportHeader.api_id = 20001003
+*/
+message CancellationReport
+{
+    string order_exchange_id               = 1;    // 要撤的委托：交易所委托号
+    string order_original_id               = 2;    // 要撤的委托：客户委托号
+    string account_no                      = 3;    // 资金账号
+    Exchange exchange                      = 4;
+    string code                            = 5;
+    uint32 quantity                        = 6;    // 委托数量
+    OrderSide order_side                   = 7;    // 委托竞价方向
+    OrderStatus status                     = 8;    // 委托状态 (TBD: 可能来自'撤销标志') ***撤单回报只会有已撤状态
+    uint32 total_fill_quantity             = 9;    // 该委托已成交数量
+    uint32 cancelled_quantity              = 10;   // 撤单数量(实际撤单数量)
+    string freeze_amount                   = 11;   // (TBD)冻结金额(负数表示解冻) ***买入撤单时会有释放的冻结金额，卖出撤单时为0
+}
+
+/*
+*  消息：投票确认回报
+*  调用时 payload = ReportHeader + VoteReport
+*  MUST: ReportHeader.api_id = 20001004
+*/
+message VoteReport
+{
+    string order_exchange_id               = 1;    // 交易所委托号
+    string placed_time                     = 2;    // 交易所委托确认时间,单位毫秒,不存日期 ;顶点柜台返回的是 HH:MM:SS 格式，推断交易所返回的也是这个格式，所以改成字符串格式 yinwb    
+    OrderStatus status                     = 3;    // 委托状态: 申报结果
+    string order_original_id               = 4;    // 客户委托号
+    string account_no                      = 5;    // 资金账号
+    Exchange exchange                      = 6;    // 交易所
+    string code                            = 7;    // 证券代码
+    string placard_id                      = 8;    // 公告编号
+    string motion_id                       = 9;    // 议题编号
+    uint32 favour_count                    = 10;   // 赞成数量
+    uint32 opposition_count                = 11;   // 反对数量
+    uint32 abstention_count                = 12;   // 弃权数量
+}
+
+/*
+*  消息：公司行为申报确认回报
+*  调用时 payload = ReportHeader + DeclareReport
+*  MUST: ReportHeader.api_id = 20001005
+*/
+message DeclareReport
+{
+    string order_exchange_id               = 1;    // 交易所委托号
+    string placed_time                     = 2;    // 交易所委托确认时间,单位毫秒,不存日期 ;顶点柜台返回的是 HH:MM:SS 格式，推断交易所返回的也是这个格式，所以改成字符串格式 yinwb    
+    OrderStatus status                     = 3;    // 委托状态: 申报结果
+    string order_original_id               = 4;    // 客户委托号
+    string account_no                      = 5;    // 资金账号
+    Exchange exchange                      = 6;    // 交易所
+    string code                            = 7;    // 证券代码
+    BusinessType business_type             = 8;    // 业务类型
+    DeclareType declare_type               = 9;    // 申报类型
+    uint32 count                           = 10;   // 数量
+}
+
+/*
+*  算法单回报
+*  调用时 payload = ReportHeader + AlgorithmReport
+*  MUST: ReportHeader.api_id = 20001006
+*/
+message AlgorithmReport
+{
+    string account_no                      = 1;    // 资金账号
+    string order_original_id               = 2;    // 客户委托号
+    Exchange exchange                      = 3;    // 交易所
+    string code                            = 4;    // 证券代码
+    AlgorithmType name                     = 5;	   // 算法名称
+	string price                           = 6;    // 基准价
+	uint32 quantity                        = 7;    // 下单总量
+	uint32 start_time                      = 8;    // 有效开始时间
+	uint32 stop_time                       = 9;    // 有效结束时间
+	string part_rate                       = 10;   // 量比比例, 用户设定, 当MaxPartRate==100%, 表示没有限制
+    string amount                          = 11;   // 委托最小金额
+	OrderSide order_side                   = 12;   // 委托方向(买入或卖出)
+    OrderType order_type                   = 13;   // 委托竞价类型(限价或市价)
+	uint32 fill_quantity				   = 14;   // 成交量
+	AlgorithmStatus status                 = 15;   // 算法单状态: 申报结果
+	string message						   = 16;   // 执行信息
+}
+
+
+//*********************************************
+// 业务查询相关API
+//*********************************************
+
+/*
+*  查询委托详情
+*  调用时 payload = RequestHeader + QueryOrdersRequest
+*  MUST: RequestHeader.api_id = 10003001
+*/
+message QueryOrdersRequest
+{
+    string account_no                      = 1;
+    string order_exchange_id               = 2;    // 空则查询全部
+    QueryOrderCriteria  query_criteria     = 3;    // 查询全部委托或只查可撤单委托
+    QueryPagination pagination             = 4;    // 查询结果分页标识
+    Exchange exchange                      = 5;
+    string code                            = 6;
+    string order_original_id               = 7;    // 空则查询全部
+    OrderSide order_side                   = 8;
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryOrdersResponse
+*  MUST: ResponseHeader.api_id = 11003001
+*/
+message QueryOrdersResponse
+{
+    repeated Order order_list              = 1;
+    QueryPagination pagination             = 2;
+    message Order
+    {
+        string order_exchange_id           = 1;    // 交易所委托号
+        string order_original_id           = 2;    // 客户委托号
+        Exchange exchange                  = 3;
+        string code                        = 4;
+        string name                        = 5;
+        string price                       = 6;    // 价格留3位小数
+        uint32 quantity                    = 7;    // 委托数量
+        OrderSide order_side               = 8;    // 委托竞价方向
+        OrderType order_type               = 9;    // 委托竞价类型
+        OrderStatus status                 = 10;
+        string order_time                  = 11;   // 交易所委托时间,单位毫秒,不存日期 ;顶点柜台返回的是 HH:MM:SS 格式，推断交易所返回的也是这个格式，所以改成字符串格式 yinwb
+        string account_no                  = 12;
+        string average_fill_price          = 13;   // 成交均价
+        uint32 total_fill_quantity         = 14;   // 该委托总成交数量
+        string total_fill_amount           = 15;   // 该委托总成交金额
+        string freeze_amount               = 16;   // 冻结金额(负数表示解冻)
+        string clear_amount                = 17;   // (TBD)清算资金 ***买入为负，卖出为正
+        uint32 total_cancelled_quantity    = 18;   // 该委托已撤单数量
+        string status_message              = 19;   // 委托状态的文字说明，包括废单原因
+    }
+}
+
+/*
+*  查询成交详情
+*  (TBD)顶点有两个接口: 查询客户分笔成交630006,查询客户实时成交630007 ***目前使用分笔成交
+*  调用时 payload = RequestHeader + QueryFillsRequest
+*  MUST: RequestHeader.api_id = 10003002
+*/
+message QueryFillsRequest
+{
+    string account_no                      = 1;
+    string order_exchange_id               = 2;    // 空则查询全部
+    QueryPagination pagination             = 3;    // 查询结果分页标识
+    Exchange exchange                      = 4;
+    string code                            = 5;
+    string order_original_id               = 6;    // 空则查询全部
+    OrderSide order_side                   = 7;
+    bool include_cancel_fill               = 8;    // fasle 不包括撤单成交
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryFillsResponse
+*  MUST: ResponseHeader.api_id = 11003002
+*/
+message QueryFillsResponse
+{
+    repeated Fill fill_list                = 1;
+    QueryPagination pagination             = 2;
+    message Fill
+    {
+        string fill_exchange_id            = 1;    // 交易所成交编号
+        string fill_time                   = 2;    // 成交的时间,单位毫秒,不存日期 ;顶点柜台返回的是 HH:MM:SS 格式，推断交易所返回的也是这个格式，所以改成字符串格式 yinwb
+        FillStatus fill_status             = 3;    // (TBD: 同上FillReport)成交状态 0:未知 1:成交 2:撤单 3: 废单 4:确认 (TBD: 可能来自'撤销标志') *** 只有撤单和成交两个状态
+        string fill_price                  = 4;    // 本次成交价格
+        int32 fill_quantity                = 5;    // 本次成交数量; fill_status为撤单时，此数值为撤单数量
+        string fill_amount                 = 6;    // 本次成交金额
+        string clear_amount                = 7;    // 本次清算资金(委托为卖出方向时表示本次成交新增的可用资金)
+        string order_exchange_id           = 8;    // 交易所委托号
+        string order_original_id           = 9;    // 客户委托号
+        Exchange exchange                  = 10;
+        string code                        = 11;
+        string name                        = 12;
+        OrderSide order_side               = 13;   // 委托竞价方向
+    }
+}
+
+/*
+*  查询资产
+*  调用时 payload = RequestHeader + QueryCapitalRequest
+*  MUST: RequestHeader.api_id = 10003003 / 10003005
+*/
+message QueryCapitalRequest
+{
+    string account_no                      = 1;
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryCapitalResponse
+*  MUST: ResponseHeader.api_id = 11003003 / 11003005
+*/
+message QueryCapitalResponse
+{
+    string account_no                      = 1;
+    string balance                         = 2;    // 账户余额
+    string available                       = 3;    // 可用资金
+    string freeze                          = 4;    // 冻结金额
+    string securities                      = 5;    // 证券市值
+    string total                           = 6;    // 总资产
+    string clear_amount                    = 7;    // 清算资金
+}
+
+/*
+*  查询持仓
+*  调用时 payload = RequestHeader + QueryPositionRequest
+*  MUST: RequestHeader.api_id = 10003004
+*/
+message QueryPositionRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;
+    string code                            = 3;    // 为空时查询全部
+    QueryPagination pagination             = 4;    // 查询结果分页标识
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryPositionResponse
+*  MUST: ResponseHeader.api_id = 11003004
+*/
+message QueryPositionResponse
+{
+    repeated PositionDetail position_list  = 1;
+    QueryPagination pagination             = 2;
+    message PositionDetail
+    {
+        Exchange exchange                  = 1;    // 交易所
+        string code                        = 2;    // 证券代码
+        string name                        = 3;    // 证券名称
+        int64 balance                      = 4;    // 剩余数量(今持仓量)
+        int64 available_quantity           = 5;    // 可用数量(可卖出数量)
+        int32 freeze_quantity              = 6;    // 冻结数量(可能是真正的冻结数量，例如：司法冻结等)
+        int64 buy_quantity                 = 7;    // 当日买入数量
+        int64 sell_quantity                = 8;    // 当日卖出数量
+        string market_value                = 9;    // 最新市值
+        string cost                        = 10;   // 持仓均价
+        int64 initial_quantity             = 11;   // 期初持有数量
+        int64 purchase_quantity            = 12;   // 可申购数量
+        int64 redemption_quantity          = 13;   // 可赎回数量
+    }
+}
+
+/*
+*  查询客户配售权益
+*  调用时 payload = RequestHeader + QueryRationRequest
+*  MUST: RequestHeader.api_id = 10005001
+*/
+message QueryRationRequest
+{
+    string account_no                      = 1;
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryRationResponse
+*  MUST: ResponseHeader.api_id = 11005001
+*/
+message QueryRationResponse
+{
+    repeated Ration ration_list            = 1;
+    message Ration 
+    {
+        string account_no                  = 1;
+        Exchange exchange                  = 2;
+        uint32 quantity                    = 3;    //权益数量
+        uint32 science_quantity            = 4;    //科创版权益数量
+    }
+}
+
+/*
+*  客户债券入库明细查询
+*  调用时 payload = RequestHeader + QueryBondStorageRequest
+*  MUST: RequestHeader.api_id = 10004001
+*/
+message QueryBondStorageRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;    // 交易所
+    QueryPagination pagination             = 3;    // 查询结果分页标识
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryBondStorageResponse
+*  MUST: ResponseHeader.api_id = 11004001
+*/
+message QueryBondStorageResponse
+{
+    repeated BondStorageDetail detail_list = 1;
+    QueryPagination pagination             = 2;
+    message BondStorageDetail
+    {
+        Exchange exchange                  = 1;    // 交易所
+        string code                        = 2;    // 证券代码
+        int64 storage_quantity             = 3;    // 入库数量
+    }
+}
+
+/*
+*  待购回明细查询
+*  调用时 payload = RequestHeader + QueryPendingRepoRequest
+*  MUST: RequestHeader.api_id = 10004002
+*/
+message QueryPendingRepoRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;    // 交易所
+    QueryPagination pagination             = 3;    // 查询结果分页标识
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryPendingRepoResponse
+*  MUST: ResponseHeader.api_id = 11004002
+*/
+message QueryPendingRepoResponse
+{
+    repeated PendingRepoDetail detail_list = 1;
+    QueryPagination pagination             = 2;
+    message PendingRepoDetail
+    {
+        string order_exchange_id           = 1;    // 委托号
+        Exchange exchange                  = 2;    // 交易所
+        string currency                    = 3;    // 币种
+        string code                        = 4;    // 证券代码
+        string name                        = 5;    // 证券名称
+        int64 transaction_type             = 6;    // 交易类别
+        string fill_date                   = 7;    // 成交日期
+        string fill_quantity               = 8;    // 成交数量
+        string fill_price                  = 9;    // 成交价格
+        string fill_amount                 = 10;   // 成交金额
+        string interest_amount             = 11;   // 利息金额
+    }
+}
+
+/*
+*  查询回购资金实际占用天数
+*  调用时 payload = RequestHeader + QueryRepoActualOccupationDayRequest
+*  MUST: RequestHeader.api_id = 10004003
+*/
+message QueryRepoActualOccupationDayRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;    // 交易所
+    string code                            = 3;    // 证券代码
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryRepoActualOccupationDayResponse
+*  MUST: ResponseHeader.api_id = 11004003
+*/
+message QueryRepoActualOccupationDayResponse
+{
+    repeated OccupationDay detal_list      = 1;
+    message OccupationDay
+    {
+        Exchange exchange                  = 1;    // 交易所
+        string code                        = 2;    // 证券代码
+        int64 actual_day                   = 3;    // 实际占用天数
+        int64 standard_day                 = 4;    // 标准天数
+    }
+}
+
+/*
+*  查询港股通额度
+*  调用时 payload = RequestHeader + QueryQuotaRequest
+*  MUST: RequestHeader.api_id = 10003006
+*/
+message QueryQuotaRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;    // 交易所
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryQuotaResponse
+*  MUST: ResponseHeader.api_id = 11003006
+*/
+message QueryQuotaResponse
+{
+    repeated Quota quota_list              = 1;
+    message Quota 
+    {
+        string account_no                  = 1;
+        Exchange exchange                  = 2;
+        string total_quota                 = 3;    //初始额度
+        string surplus_quota               = 4;    //剩余额度
+        QuotaStatus quota_status           = 5;    //额度状态
+    }
+}
+
+/*
+*  查询港股通投票信息
+*  调用时 payload = RequestHeader + QueryVoteInfoRequest
+*  MUST: RequestHeader.api_id = 10003007
+*/
+message QueryVoteInfoRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;
+    string code                            = 3;
+    QueryPagination pagination             = 4;    // 查询结果分页标识
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryVoteInfoResponse
+*  MUST: ResponseHeader.api_id = 11003007
+*/
+message QueryVoteInfoResponse
+{
+    repeated VoteInfo vote_info_list       = 1;
+    QueryPagination pagination             = 2;
+    message VoteInfo
+    {
+        string account_no                  = 1;    // 资金账号
+        Exchange exchange                  = 2;    // 交易所
+        string code                        = 3;    // 证券代码
+        string placard_id                  = 4;    // 公告编号
+        string motion_id                   = 5;    // 议题编号
+        string motion_name                 = 6;    // 议案名称
+        MotionType motion_type             = 7;    // 议案类型
+        bool abstention_allow              = 8;    // 允许弃权
+        string start_date                  = 9;    // 开始日期
+        string end_date                    = 10;   // 结束日期
+    }
+}
+
+/*
+*  查询港股通公司行为信息
+*  调用时 payload = RequestHeader + QueryDeclareInfoRequest
+*  MUST: RequestHeader.api_id = 10003008
+*/
+message QueryDeclareInfoRequest
+{
+    string account_no                      = 1;
+    Exchange exchange                      = 2;
+    string code                            = 3;
+    BusinessType business_type             = 4;    // 业务类型
+    QueryPagination pagination             = 5;    // 查询结果分页标识
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryDeclareInfoResponse
+*  MUST: ResponseHeader.api_id = 11003008
+*/
+message QueryDeclareInfoResponse
+{
+    repeated DeclareInfo declare_info_list = 1;
+    QueryPagination pagination             = 2;
+    message DeclareInfo
+    {
+        string account_no                  = 1;    // 资金账号
+        Exchange exchange                  = 2;    // 交易所
+        string code                        = 3;    // 证券代码
+        BusinessType business_type         = 4;    // 业务类型
+        string authority_code              = 5;    // 权益代码
+        string price                       = 6;    // 价格
+        string start_date                  = 7;    // 开始日期
+        string end_date                    = 8;    // 结束日期
+    }
+}
+
+/*
+*  查询银证业务申请
+*  调用时 payload = RequestHeader + QueryBankServiceRequest
+*  MUST: RequestHeader.api_id = 10003009
+*/
+message QueryBankServiceRequest
+{
+    string account_no                      = 1;
+}
+
+/*
+*  调用时 payload = ResponseHeader + QueryBankServiceResponse
+*  MUST: ResponseHeader.api_id = 11003009
+*/
+message QueryBankServiceResponse
+{
+    repeated BankServiceInfo info_list     = 1;
+    message BankServiceInfo
+    {
+        string request_no                  = 1;    // 申请号
+        string account_no                  = 2;    // 资金账号
+        string date                        = 3;    // 日期
+        string time                        = 4;    // 时间
+        bool result                        = 5;    // 处理结果
+        string message                     = 6;    // 结果说明
+        BankServiceCode service_code       = 7;    // 业务代码
+        string amount                      = 8;    // 发生金额
+        string currency                    = 9;    // 币种
+    }
+}
+
+/* 分页游标 */
+message QueryPagination
+{
+    string offset                          = 1;    // 起始位置
+    uint32 size                            = 2;    // 每页数据量
+}
+
+message AlgorithmicSend
+{
+    string client_id            =1;
+    string sub_original_id              =2;
+}
