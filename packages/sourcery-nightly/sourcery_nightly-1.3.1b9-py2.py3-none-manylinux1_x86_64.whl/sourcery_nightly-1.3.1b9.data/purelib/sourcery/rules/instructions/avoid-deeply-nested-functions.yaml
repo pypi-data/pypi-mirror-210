@@ -1,0 +1,44 @@
+version: '2'
+
+rules:
+- id: avoid-deeply-nested-functions
+  language: python
+  description: The function `${f}` has too high a nesting level and should be refactored.
+  tags:
+  - default
+  - ai-powered
+  explanation: |
+    This rule checks the maximum nesting level of a function.
+
+    Deeply-nested functions are generally considered bad programming practice due to their negative impact on code
+    readability, re-usability, and testability. They make code harder to understand, maintain, and debug. The tightly
+    coupled nature of nested functions limits their reuse in different contexts, hindering code modularity.
+    Additionally, testing becomes more complex as nested functions often rely heavily on their surrounding context,
+    making it challenging to write isolated unit tests.
+
+    **Use Caution**
+
+    Because we cannot provide a deterministic refactoring for this rule, the fix is provided using AI. As a result, the
+    behaviour of your code may be changed - please check carefully. Ideally, ensure you have written a unit test for
+    this function.
+  any:
+  - pattern: |
+      def ${f}(...) -> ...:
+        ...
+    condition: pattern.maximum_relative_depth() >= 4 and pattern.character_count() <= 1250
+  - pattern: |
+      async def ${f}(...) -> ...:
+        ...
+    condition: pattern.maximum_relative_depth() >= 4 and pattern.character_count() <= 1250
+  instruction:
+    instruction: |
+      Refactor the Python function `${f}` to reduce nesting.
+      Introduce guard clauses where appropriate.
+      Combine conditionals where appropriate.
+      Replace loops with comprehensions where appropriate.
+      Simplify conditional logic where appropriate.
+
+      Extract new functions if necessary.
+      Extracted functions must be private.
+    label: refactor `${f}` to reduce nesting
+    context_processor: document_by_range
