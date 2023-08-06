@@ -1,0 +1,83 @@
+[tool.poetry]
+name        = "poetry-plugin-taskipy"
+version     = "1.0.0"
+description = "Poetry plugin for taskipy"
+repository = "https://github.com/taskipy/poetry-plugin-taskipy"
+authors     = ["Taskipy Team"]
+license     = "MIT"
+readme      = "README.md"
+keywords    = ["tasks", "task runner", "development", "poetry", "plugin"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+packages    = [{ include = "poetry_plugin_taskipy" }]
+
+[tool.poetry.dependencies]
+python  = "^3.7"
+poetry  = "^1.4.2"
+taskipy = "^1.11.0"
+
+[tool.poetry.group.test.dependencies]
+pytest     = "^7.3.1"
+pytest-cov = "^4.0.0"
+
+[tool.poetry.group.lint.dependencies]
+black            = "^23.3.0"
+isort            = { version = "^5.12", python = "^3.8" }
+flake8           = { version = "^6", python = "^3.8.1" }
+flake8-pyproject = "^1.2.3"
+autoflake        = "^2.0.2"
+mypy             = "^1.2.0"
+
+[tool.taskipy.tasks]
+test = "pytest --cov={module_dir} --cov-report=term-missing {tests_dir}"
+lint = """
+task lint_format \
+&& task lint_analyze \
+&& task lint_types
+"""
+lint_format = """
+black {module_dir} {tests_dir} \
+&& isort {module_dir} {tests_dir} \
+&& autoflake --recursive --in-place --remove-all-unused-imports \
+    --remove-unused-variables {module_dir} {tests_dir}
+"""
+lint_analyze = "flake8 {module_dir} {tests_dir}"
+lint_types = "mypy {module_dir} {tests_dir}"
+
+pre_publish = "task test"
+publish = { cmd = "poetry publish --build", help = "publishes taskipy to PyPI as is. do not use directly" }
+post_publish = "task make_release_commit"
+
+make_release_commit = { cmd = "python ./.hooks/make_release_commit.py", help = "creates a tagged commit for the release. do not use directly" }
+
+publish_patch = { cmd = "poetry version patch && task publish", help = "publishes a patch version, that has only fixes but no new features (x.x.PATCH)" }
+
+publish_minor = { cmd = "poetry version minor && task publish", help = "publishes a minor version, which has new fetures (x.MINOR.x)" }
+
+[tool.taskipy.settings]
+use_vars = true
+
+[tool.taskipy.variables]
+module_dir = "poetry_plugin_taskipy"
+tests_dir  = "tests"
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+
+[tool.poetry.plugins."poetry.application.plugin"]
+taskipy = "poetry_plugin_taskipy.plugin:TaskipyPlugin"
+
+[build-system]
+requires      = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
