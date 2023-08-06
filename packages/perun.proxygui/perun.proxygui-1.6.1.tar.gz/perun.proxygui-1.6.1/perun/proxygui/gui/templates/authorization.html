@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block contentwrapper %}
+    <div class="window {% if cfg.css_framework == 'MUNI' %}framework_muni{% else %}framework_bootstrap5 bg-light{% endif %}">
+        <div id="content">
+            <div class="wrap{% if not cfg.css_framework == 'MUNI' %} container{% endif %}">
+                {% block content %}
+                    <div class="content">
+                        <br/>
+                        <h1><span>{{ _("Access forbidden") }}</span></h1>
+                        <br/>
+                        <p><span>{{ _("You don't meet the prerequisites for accessing the service: ") }}</span> {{ service }}</p>
+                        <p><span>{{ _('For more information about this service please visit this ') }}</span><a href="{{ registration_url }}"><span>{{ _("page") }}</span></a></p>
+                        <p><span>{{ _('If you think you should have an access contact service operator at ') }}</span>{{ email }}</p>
+                        <h3><span>{{ _("Problem with login to service: ") }}</span> {{ service }}</h3>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
