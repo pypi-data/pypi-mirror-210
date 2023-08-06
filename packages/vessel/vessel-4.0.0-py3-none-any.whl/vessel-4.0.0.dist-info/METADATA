@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: vessel
+Version: 4.0.0
+Summary: Manage dynamic data.
+Home-page: https://github.com/Exahilosys/vessel
+License: MIT
+Requires-Python: >=3.11
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinx-paramlinks ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+
+Keeping live API objects... well, alive ❤️
+
+Installation
+============
+
+.. code-block:: bash
+
+  pip3 install vessel
+
+Links
+-----
+
+- `Documentation <https://vessel.readthedocs.io>`_
