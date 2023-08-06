@@ -1,0 +1,17 @@
+[project]
+name = "covid19_model"
+version = "1.2"
+authors = [
+  { name="Samuel Mulzer", email="samuel.mulzer@icloud.com" },
+]
+description = "A package including several compartmental models, that are solved and visualized based on real data"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  'matplotlib >= 3.6.2',
+  'numpy >= 1.23.5'
+]
+
+[build-system]
+requires = ["setuptools", "numpy", "cython"]
+build-backend = "setuptools.build_meta"
