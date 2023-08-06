@@ -1,0 +1,680 @@
+# 高效碳基演示机体系模块
+gTixi适用于高效碳基芯片测试的函数库  
+由魏楠和李若铭开发  
+联系开发者：<lxwk1spectre@foxmail.com>  
+gitee项目：<https://gitee.com/lxwk1spectre/walartminstar>
+# 功能介绍
+该模块包含了树莓派，掌控板，未来版，未名系列演示机的通用演示架构。可以使用一套代码，兼容地运行在不同地设备上。
+# 使用说明
+## 安装gTixi库
+在命令行中输入 pip3 install gTixi
+## 使用硬件驱动
+可以用 from gTixi import * 来读取gTixi中的全部导入，也可以根据需要部分导入。可以参考下边的实例，调用模块里的部分功能。更详细的功能可以参考[文档](#文档)。
+```python
+from gTixi import *
+beam(1)#1s蜂鸣
+print(wa.name)#打印设备名称
+wa.i2c.write_byte_data(addr1,addr2,data)#在特定地址写入数据,如果设备支持i2c
+print(wa.DrawStdLines('ab\ncd\ned\ng'))#在屏幕上显示四行数据，并打印Svg
+```
+## 使用完整操作界面
+1. 首先在git这里下载完整的代码，<https://gitee.com/lxwk1spectre/walartminstar>。
+2. 文件夹中应包含gTixi文件夹，stardevice文件夹，pkg文件夹，main.py，simsum.ttf，LICENSE,README.md，以及完整的部署方案。
+3. 在main.py中编写自定义Mod，mod的具体写法参考[功能模块](#功能模块)。
+4. 修改devMenu变量的内容来自定义菜单结构，注意要讲自定义的mod放入菜单中才能运行。
+5. 将整个文件夹复制到需要运行的设备上执行([缩写对应表](#waname))。
+    - 如果是win或者smp，直接python main.py即可。如有必要，可以用打包工具做开机自启动之类的设置。
+    - 如果是bdz演示机，需要使用adb的方法刷入。推荐使用adbGUI软件。
+    - 对于zkb：
+        - 需要下载mpython的官方应用并安装，USB连接电脑，打开mpython连接设备。
+        - 点击掌控板文件，新建gTixi文件夹，勾选gTixi，点击下边的导入，然后选择gTIxi中的所有文件，点击同步。
+        - 点击根目录下任意文件，将目标目录回到根目录下，点击下边的导入，选择main.py，点击同步。即可运行。
+    - 对于wlb：
+        - 将在之后的版本里更新对wlb的支持。
+## 开发硬件驱动
+1. 如果用户需要开发第三方驱动，可以直接在写在main.py中，或者相同的文件夹里创建自己的mydrive.py文件，然后在main中import mydrive即可。
+    - 可以调用wa.name判断设备类型，wa.i2c调用i2c。
+    - 开发好驱动，可以写一个函数作为接口，在main.py中新建一个Mod，然后output驱动所输出的数据。
+2. 如果是gTixi的合作者，需要在gTixi包中加入新的驱动。
+    - 可以将驱动内容写入myDrivers，也可以独立创建驱动的文件。
+    - 需要引用同文件夹的文件的话，请使用相对导入的格式。具体例子如下，.代表模块当前文件夹。
+    ```python
+    #相对引用
+    from .alib import alib
+    from . import wadapter as wad
+    from .wadapter import wa
+    ```
+    - 驱动开发完成后，需要在__init__.py中注册驱动。
+        - 在__all__变量的list中添加一个名称。
+        - 在后边的代码里导入这个名称。
+        - 可以参考以下示例，导入整个模块，其中的一个函数，或者一个变量。
+        - 注册的时候，可以重新起名。
+        - 注册完成后，就可以在main.py中from gTixi import mydrive了
+    ```python
+    __all__ = ['newdrive','newfunc','newval']
+    from . import mydrvie as newdrive
+    from .mydrive import newfunc
+    from .mydrive import valueA
+    newval = valueA
+    ```
+# 文档
+## 基础类
+### alib
+- class
+- 本质上是一种高级字典，可以通过字典字符串进行初始化，也可以输出格式更加美观的字符串。可以用.来读取字典对象。
+### waText，waFile
+- module
+- 支持alib运行的基础类
+## 适配器
+### wad
+- module
+- 完整的适配器，会根据运行设备的不同，调用不同的代码来执行输入的判断，内容的输出，i2c，gpio等接口。围了兼容旧版程序，保留了直接调用完整的wadapter的接口，推荐用户直接使用wa和SvgScreen接口来访问wad里的内容。
+### wa
+- class
+- 通过判断设备类型，返回的适配当前设备的类。如果需要自己写驱动的话，需要尽量熟悉wa的使用。
+#### wa.name
+- str
+- 当前设备类型，具体对应如下表。
+
+    | name | 设备 | 
+    |---|---| 
+    |win|windows|
+    |smp|GT0树莓派|
+    |bdz|GT1未名手表式演示机|
+    |zkb|GT2掌控板|
+    |wlb|GT2未来板|  
+- 推荐使用如下几种方式来区分不同设备的代码 。 
+    ```python
+    if wa.name == 'smp': 
+        pass
+    if wa.name in ['smp','win','zkb']:
+        pass
+    ```
+#### wa.tag
+- list
+- 当前设备拥有的属性。
+    |tag|标识说明|
+    |---|---|
+    |web|网络操作界面的功能，开启后在浏览器里打开localhost:8081即可访问界面|
+    |board|用于判断是否为板载测试仪|
+    |pinmap|已经定义好了gpio的针脚映射，反相器逻辑门管脚连通性测试会依赖该功能|
+    |i2c|板载i2c|
+    |smbus|目前是树莓派和未名演示机使用的i2c|
+    |gpioboard|板载gpio|
+    |gpiorpi|树莓派的gpio|
+    |gpio4|未名演示机的gpio|
+- 设备属性的加入，会大大方便适配器的迭代与更新，在之后的版本中，会合并一部分tag，但是会始终保持向下兼容。
+#### wa.ctag(tag)
+用于判断某设备是否具有某个tag的函数
+- tag
+    - str
+- 返回 bool
+- 推荐使用如下方式来实现代码的选择性执行。
+    ```python
+    #如果存在web标识，则运行通讯服务器和网络服务器
+    if starMessager.shipei.ctag('web'):
+        wsServer.start()
+    if starMessager.shipei.ctag('web') and __name__ == "__main__":
+        httpServer.start()
+    ```
+#### wa.aenv
+- dict
+- 当前设备的详细参数，可以使用wad.strWaEnv查看格式化之后的设备详细参数。
+#### wa.Sleep(fDurs)
+- 系统休眠等待的函数，由于不同设备的sleep函数单位不同会导致程序运行混乱，这里根据不同设备进行了统一。
+- fDurs
+    - int
+    - 等待时间，单位为秒。
+#### wa.CheckKey()
+- 等待设备直到有按键传入。
+- 目前只有Smp会用到，上下左右摇杆分别对应UDLR。
+- 关于按键的相关函数会在[baseMod](#basemod类)类中详细说明。
+#### wa.i2c
+- 根据设备类型，统一了i2c的接口调用方式。
+- class
+    - wa.i2c.write_byte_data(addr,addr,data)
+    - wa.i2c.read_byte_data(addr,addr)
+    - wa.read_i2c_block_data(addr,addr)
+    - addr为对应的地址，标准设备的地址参照下表。
+    - data为需要写入的数据。
+    - 更详细地内容可以查阅i2c相关的内容，以及用户自定义设备的地址说明。
+
+    ```python
+    gTixi中的标准设备i2c地址列表
+    [comment|此体系中器件有统一i2c地址]
+    [0x20|PCF8574IO扩展（Pioneer600）]
+    [0x26|GTmcp的mcp23017]
+    [0x39|APDS9960光线颜色传感器]
+    [0x42|UPS HAT]
+    [0x48|PCF8591ADDA（Pioneer600）]
+    [0x53|LTR390紫外光光感]
+    [0x5a|MLX90614红外传感]
+    [0x68|DS3231时钟模块（Pioneer600）]
+    [0x76|BMP280温度压力传感（Pioneer600）]
+    [0x77|BME280温湿度压力传感器]
+    ```
+#### wa.DrawStdLines(input)
+- 在gTixi中，最基础的输出方式为输出四行文本，其中wa里的四行文本函数，适用于在像素显示屏上显示四行文本。
+- input
+    - str
+    - 输出文本的内容，用\n来分割不同的行，可以不满四行，也可以超过，但是超过四行的部分不会显示。
+### SvgScreen
+- class
+- 绘制svg图像的类。
+#### SvgScreen(size = (128,64))
+- 根据矢量图屏幕的大小，初始化类。
+#### SvgScreen.Generate()
+- 输出：str
+    - 根据目前的设置输出svg格式的字符串。
+#### SvgScreen.DispShow()
+- 与Generate()功能相同
+#### SvgScreen.DrawText(tPos,sTxt,c)
+- 在svg中写入文字的功能，字符的字号为矢量图屏幕高度的3/16。
+- tPos
+    - tuple(float(x),float(y))
+    - 文字的位置的,以左上角为锚点（默认的svg是以左下角为锚点，这里已经根据字号修正了，左上角更符合使用习惯），范围为0-1的浮点数。
+- sTxt
+    - str
+    - 文字的内容。
+- c
+    - 文字的颜色，不设置的情况下，默认第一行文字为#ee0的黄色，另外三行文字为#0ee的蓝色。
+#### SvgScreen.DrawStdLines(input)
+- 在gTixi中，最基础的输出方式为输出四行文本，该函数可以直接输出四行文本的Svg。
+- input
+    - str
+    - 输出文本的内容，用\n来分割不同的行。
+- 输出：str
+    - 根据四行文本生成的svg脚本。
+## 功能模块
+用于与用户交互的类，包括基础的baseMod类，用于循环测试的loopMod类，以及用于菜单的menu类。用户可以在main.py中继承这些类，然后自定义模块。
+### menu类
+用于管理操作界面菜单的类，用户不需要详细了解这个类的工作模式，只需要在main.py中根据需要进行初始化即可。
+#### menu(sm,iniData,select=([],0))
+- sm
+    - starMessager
+    - 用于在异步模块之间传递信息的类，详见信使。
+- iniData
+    - dict
+    - 菜单结构，本质是一个多级嵌套的字典，下边是其中一个例子。字典的每一个key都会作为菜单选项（注意由于掌控板里key排序是乱的，所以需要加上数字辅助排序），而根据value的类型不同，也会有不同的效果。理论上支持无限级的菜单，推荐照顾用户体验，使用合理的菜单高度和深度。
+        - value仍然是字典，那么则进入下一级菜单。
+        - value属于[baseMod](#basemod类),则进入对的扩展模块中。
+        - value为0，则返回上一级菜单。
+    - 操作模式
+        - 两键操作，A键向下，B键进入对应key所代表的value。
+        - 4键操作，↑↓控制光标向上或者向下，→为进入key代表的value，←为返回上一级菜单
+    - 关于select的两个变量sub=[],pointer=0控制菜单指针位置的规则。
+        - sub为[]时代表当前位置在主菜单，下边的例子中，主菜单的内容为1.器件分析，2.系统信息，3.加法器,4.模拟,5.退出,分别对应pointer的0-4。按↑↓按钮会修改pointer的值。
+        - 当我们进入某个子菜单时，比如pointer为3的4.模拟，sub的list会被添加一个元素1，变为[3]，然后pointer变为0，指向1.光照。我们再进入光照时，sub会变为[3,0],而pointer依然会被重置为0。
+        - 在触发返回时，sub的列表里的最后一个值会被删掉，比如我们在光照子菜单下按下←返回，sub就会变成[3],而pointer会被修正为当前sub的列表里的最后一个元素的值，也就是3，通过这样的规则，确保从4.模拟中返回时，pointer仍然指向4.模拟。
+    ```python
+    devMenu = {
+        "1.器件分析":{
+            "1.加法器":baseMod,
+            "2.反相器":baseMod,
+            "3.SRAM":baseMod,
+            "4.返回":0
+        },
+        "2.系统信息":{
+            "1.基本信息":sysInfo,
+            "2.运行帧率":FrameTest,
+            "3.返回":0
+        },
+        "3.加法器":{
+            "1.单次加法":Adder,
+            "2.100次加法":AdderDisplay,
+            "3.100次快速":AdderTest,
+            "4.返回":0        
+        },
+        "4.模拟":{
+            "1.光照":{
+                "1.单次光照":LTRLight,
+                "2.异步光照":LTRAsync,
+                "3.返回":0
+            },
+            "2.BME230":BME230,
+            "3.红外":IR,
+            "4.钢琴":piano,
+            "5.蜂鸣器":Beam,
+            "6.返回":0
+        },
+        "5.退出":offStatus
+    }
+    ```
+    - 初始化菜单模块,只需要在main.py里输入如下代码，然后运行即可,windows环境下，可以访问localhost:8081进入控制界面。关于[offStatus](#offstatus类)。
+    ```python
+    devMenu = {
+        "1.测试模块":baseMod,
+        "2.退出":offStatus
+    }
+    from gTixi import *
+    starMessager.workModule = menu(starMessager,devMenu)
+    starMessager.workModule.show()
+    if starMessager.shipei.name != 'zkb':
+        wsServer.start()
+    if starMessager.shipei.name != 'zkb' and __name__ == "__main__":
+        httpServer.start()    
+    ```
+### baseMod类
+最基础的模块类，用户自定义的类继承了基础类之后，可以重载其中的部分函数，来实现自定义的功能。
+#### baseMod(menuInfo)
+- 生成模块的时候，需要一个记录信使和菜单坐标的变量（用于从模块退出时，保持菜单在进入时的位置），这里用户不需要详细了解，只要在继承baseMod的时候按如下格式继承即可，menu类会帮我们处理模块初始化的问题。
+```python
+class newMod(baseMod):
+    def __init__(self,mi):
+        baseMod.__init__(self,mi)
+```
+-menuInfo的定义如下，特殊情况下，用户可以修改select的内容，来控制返回的位置。具体规则详见[menu的初始化](#menusminidataselect0)
+```python
+menuInfo = {"sm":self.msgr,"initData":self.data,"select":(self.submenu,self.pointer)}
+```
+#### baseMod.dev
+- str
+- 代表了当前设备类型，关于设备类型详见[wa.name](#waname)
+#### baseMod.msgr
+- starMessager
+- 信使，具体使用方法见[信使](#starmessager)
+#### baseMode.path
+- str
+- 保存文件的默认文件夹，默认为main.py所在的上一级或者上上一级的Sandbox或者DAKu/testdata，用户可以通过改变path变量自行设定
+#### baseMod.show()
+- 显示模块当前的运行状态的函数，包括像素显示屏和刷新网页控制端的内容。
+#### baseMod.start()
+- 默认等于baseMod.show()用于函数初次调用时的动作，用户可以重载成其他内容。
+#### baseMod.backToMenu()
+- 回到主菜单的函数，这里会根据初始化模块的menuInfo来确定回去之后菜单的位置。
+#### baseMod.ouput(str)
+- 将四行文本显示在屏幕上。
+- str
+    - str
+    - 以\n分隔的四行文本。
+#### baseMod.InputKey(key)
+- 根据输入的key值判断模块应当如何工作。默认是按下任意键都会退回主菜单，用户需要重载InputKey函数来实现自己需要的功能。
+- key
+    - str
+    - 不同设备有不同的key传入，可以参考下表。
+
+    |按键|key值|按键|key值|按键|key值|
+    |:---:|:---:|:---:|:---:|:---:|:---:|
+    |网页按钮A|A|pioneer摇杆上|U|掌控板触摸键P|P|
+    |网页按钮B|B|pioneer摇杆下|D|掌控板触摸键Y|Y|
+    |网页按钮↑|U|pioneer摇杆左|L|掌控板触摸键T|T|
+    |网页按钮↓|D|pioneer摇杆右|R|掌控板触摸键H|H|
+    |网页按钮←|L|掌控板未来版A键|A|掌控板触摸键O|O|
+    |网页按钮→|R|掌控板未来版B键|B|掌控板触摸键N|N|
+    - 推荐使用如下的语法来重载InputKey。  
+    ```python
+    def InputKey(self,key):
+        if not key:
+            return
+        self.msgr.msg=""
+        if key in "UuH":
+            self.movePointer(-1)
+        elif key in "DdTAP":
+            self.movePointer(1)
+        elif key in "ROBN":
+            if self.enterSub():
+                return
+        elif key in "LY":
+            self.exitSub()
+        self.show()    
+    ```
+#### baseMod.saveCSV(slist,backstr)
+- 将列表保存为csv文件，需要安装pandas库,保存路径参考[path](#basemodepath).
+- slist
+  - list
+  - 被保存的序列
+- backstr
+  - str
+  - 保存的文件名后缀，被保存的文件名默认为'YYYYMMDD-HHMMSS'+backstr,推荐以.csv结尾方便后续数据处理。
+#### baseMod.saveTXT(textstr,backstr)
+- 将字符串保存为txt文件,保存路径参考[path](#basemodepath).
+- textstr
+  - str
+  - 被保存的字符串
+- backstr
+  - str
+  - 保存的文件名后缀，被保存的文件名默认为'YYYYMMDD-HHMMSS'+backstr,推荐以.txt等文本文件的扩展名结尾。
+#### 基于baseMod自定义模块的实例
+以下例子为一个蜂鸣器的模块。首先继承baseMod中的所有内容，这样就可以直接调用backToMenu等函数。然后重载show和InputKey.其中show函数根据设备类型，判断屏幕显示的内容，然后InputKey函数，控制是触发蜂鸣器，还是退出模块。[beam函数介绍](#beamdur05)
+```python
+#蜂鸣器
+class Beam(baseMod):
+    def __init__(self,mi):
+        baseMod.__init__(self,mi)
+    def show(self):
+        sf = "蜂鸣器\n"
+        if self.dev in ["zkb","smp"]:
+            sf += "↑A 蜂鸣\n←B 退出"
+        else:
+            sf += "设备不支持！\n←B 退出"
+        self.output(sf)
+    def InputKey(self,key):
+        if not key:
+            return
+        if key in "UAPH":
+            beam()
+            self.show()
+        elif key in "LBNY":
+            self.backToMenu()
+```
+
+### offStatus类
+继承baseMod实现的最简单的自定义模块，在这里直接集成到了标准库中。功能为显示黑屏，然后按任意键返回菜单，可以作为一种伪关机使用。
+### loopMod类
+将最常用的一种模块封装为一个类。进入模块后，loopUnit函数中的内容会被不断执行，按下↑或者A会暂停/继续，按下←或者B会退出。
+#### loopMod.loopUnit()
+由于高度封装，用户一般只需要重载这一个函数即可实现一个相对复杂的异步控制的功能。
+#### 基于loopMod自定义模块的实例
+由于高度封装，loopMod只需要重载loopUnit，如果没有其他内容，init函数这里也可以省略不写(bme的例子)。（[lightSensor](#lightsensor), [bme280](#bme280)）
+```python
+#异步光照采集器的界面
+class LTRAsync(loopMod):
+    def __init__(self,mi):
+        loopMod.__init__(self,mi)
+    def loopUnit(self):
+        self.output(lightSensor())
+
+#bme传感器
+class BME230(loopMod):
+    def loopUnit(self):
+        self.output(bme280())
+```
+### loopPro类
+高级的循环测试模块，模块分为工作状态和待机状态。进入模块时为待机状态，待机状态下，按A(↑)进入工作状态，按B(←)退出。工作状态下会进行给定的循环测试，一般为特定次数一组的测试，在工作状态下，按A(↑)可以对测试进行暂停/继续，按B(←)则结束测试给出测试结果并进入待机状态。
+#### loopPro.isRunning=False
+- bool
+- True则为工作状态，False则为待机状态。
+#### loopPro.pause=False
+- bool
+- True则工作状态暂停，False则不暂停。
+#### loopPro.stop=False
+- bool
+- True则工作状态收到停止命令，会在做好后处理之后进入待机状态，False则继续运行工作状态。
+#### loopPro.loop()
+- function
+- 核心的循环函数，需要适当调用pause和stop来实现测试,一般都要重载这部分内容。具体重载方式可以参考下列代码。
+```python
+#100次加法器的循环函数
+    def loop(self,_=None):
+        #########111#########
+        rightConut = 0
+        total = 100
+        import time
+        #以上是循环开始前的内容
+        for i in range(total):
+            #################222###################
+            if not self.stop:
+                while self.pause and not self.stop:
+                    time.sleep(0.5)
+            ###这部分是需要插入到循环控件中的语句#####
+                result, judge = self.testOnce()
+                self.output(result)
+                if judge:
+                    rightConut += 1                
+                if self.mod == 'display':
+                    time.sleep(1)
+            #################333###################
+            else:
+                total = i
+                self.stop = False
+                self.pause = False
+                break
+            #########收到stop指令之后的处理##########
+        self.output("正确率：\n{}/{}".format(rightConut,total))
+```
+#### loopPro的示例
+```python
+#反相器=保存文件
+class Inver(loopPro):
+    def __init__(self,mi):
+        loopPro.__init__(self,mi)
+        ###重载初始化时包含了loopPro父类的相关内容###
+        self.save = True
+        if self.dev in ['zkb','wlb','bdz']:
+            self.save = False
+    def loop(self,_=None):
+        import time
+        total = 0
+        right = 0
+        if self.save:
+            saveFile = []
+            idx = 1
+        #反相器测试为不限定次数的永久测试，直到发出停止命令
+        while True:
+            if not self.stop:
+                while self.pause and not self.stop:
+                    time.sleep(0.5)
+                    ###pause和stop控制测试的暂停继续和停止
+                result,right,total,io = inverter(right=right,all=total)
+                if self.save:
+                    sIn,sOK = io
+                    saveFile.append(dict(index=idx,sIn=' '+sIn,sOk=sOK))
+                    idx+=1
+                    if len(saveFile)>=5e4:
+                        self.saveCSV(saveFile,'-invTest.csv')
+                        saveFile.clear()
+                    ###调用save函数，保存测试数据
+                self.output(result)
+            else:
+                self.stop = False
+                self.pause = False
+                if self.save and len(saveFile):
+                    self.saveCSV(saveFile,'gateTest.csv')
+                    saveFile.clear()
+                    ###停止命令的后处理，如果停止了，仍然保存当前测试的数据
+                break
+        self.output("正确率：\n{:.3g}%".format(float(right/total*100)))
+        ###测试完成输出测试结果，回到待机状态。
+```
+## 服务
+这部分包含异步监听模块（starMessager）与网络服务模块（httpServer，wsServer）。一般不需要额外设置。
+### starMessager
+星尘协议体系中的信使，用来在不同的异步模块中传递内容。
+#### starMessager.stat
+#### starMessager.msg
+#### starMessager.wsStat
+#### starMessager.wsMsg
+- str
+- 与异步模块交互的几个状态变量，当stat不再是waiting时，相关的异步模块就会执行对应的指令。
+#### starMessager.shipei
+- wad.shipei
+- 值为wad.wa，适配器根据设备返回的类，具体用法见[适配器wa](#wa)。
+#### starMessager.starServer()
+- 现在修改为import gTixi之后，不会自动启动按键监控的进程，需要手动打开以节省资源
+#### starMessager.workModule
+- baseMod
+- 当前正在工作的模块，gTixi控制系统通过修改workModule的值来实现不同模块之间的切换。
+### httpServer
+### wsServer
+- threading.Thread
+- 分别为网站服务器（bottle架构）和websockets通讯服务器的线程实例。根据需要，要执行如下代码即可。
+- 其中网页界面的访问地址为localhost:8081,websockets的绑定地址为localhost:8525，需要检查这两个端口是否被占用，以及防火墙是否会拦截这两个端口的出入。
+```python
+from gTixi import *
+wsServer.start()
+httpServer.start()
+```
+### webConf
+配置网络服务器和websockets服务器的入口
+- class：webConfig
+#### webConf.wsPort = '8525'
+- str
+- websockets服务器绑定的端口，默认值8525
+#### webConf.httpPort = '8081'
+- str
+- bottle绑定的端口，默认值8081
+#### webConf.webPath = './stardevice'
+- str
+- 网页界面的根目录
+#### webConf.bdzPath = '/sdcard/qpython/projects3/WalArtMinS/stardevice/'
+- str
+- bdz中网页界面的绝对路径，由于bdz相对路径会出错，这里需要列出绝对路径
+可以按照如下示例配置网络界面的相关参数
+```python
+from gTixi import *
+webConf.httpPort = '8082'
+webConf.webPath = 'e:/websitepath'
+webConf.wsPort = '9595'
+wsServer.start()
+httpServer.start()
+```
+## 驱动
+这部分包含了gTixi标准硬件的驱动，并提供了简易的接口
+### bme280()
+温湿度压强传感器
+- 返回:str
+- 输出样例：'Bme280测试\n25℃ 40%  \n101.13kPa↑暂停\n  ←退出 '
+### getIR()
+红外检测器
+- 返回:str
+- 输出样例：'{0:02x} {1:02x} {2:02x} {3:02x}'.format(*data)
+### lightSensor()
+光线传感器
+- 返回：str
+- 输出样例：'LTR390测试:\nUV:343, 11 lux\nLight: 33\n↑继续 ←退出'
+### beam(dur=0.5)
+蜂鸣器，运行会产生dur秒的蜂鸣。
+- dur
+    - int
+    - 蜂鸣时间，单位秒。
+### led(r=False,g=False,b=False)
+LED灯的控制器，目前兼容smp，bdz，zkb。
+- r:bool,g:bool,b:bool
+    - 控制对应颜色的灯，True开启，False关闭。
+### adder74283(qin)
+加法器测试
+- qin
+    - tuple(a:int,b:int,cin:int)
+    - 可以手动给加法器出题，分别是加数a(0-15)，被加数b(0-15)，进位(0-1)。
+    - 留空的话则为系统自动用随机数给加法器出题。
+- 返回：tuple(sf:str,qin:tuple(a:int,b:int,cin:int),rout:int)
+- sf字符串样例：'74283加法器测试\n入：1+11+1  \n出：13 ↑暂停\n   OK ←退出 '
+    - 推荐使用 sf,_,_ = adder74283() 的语法仅接收字符串的输出
+    - 也可以用如下的方法判断加法器是否运行正确
+    ```python
+    from gTixi import *
+    sf,qin,rout = adder74183()
+    if qin[0] + qin[1] + qin[2] == rout:
+        print("True")
+    else:
+        print("False")
+    ```
+### pins15(isBeeps=False)
+管脚连通性测试
+- isBeeps
+    - bool
+    - True:检测到联通会发出蜂鸣。
+- 返回：str,lr
+    - str:str
+        - 用于显示在屏幕上的字符串。
+    - lr:list
+        - 连通的管脚编号。
+### logicTest()
+逻辑门测试，根据IO特性，判断接入的逻辑门为反相器，与非门，异或门，或者D锁存器。
+- 返回：str:str,sIn:str,sOut:str
+    - str为显示在屏幕上的字符串
+    - sIn，sOut为逻辑门的输入输出，分别为四位的字符串。
+### inverter(right=0,all=0)
+反相器单次测试,16个针脚，排除GND等不能用的一般一次测试6个反相器。
+- right:int
+    - 本次测试开始前的正确的数量。
+- all:int
+    - 本次测试开始前的总测试数量。
+- 返回：tuple(str:str,right,all)
+    - right:int,all:int
+        - 本次测试后的正确数量和总数。
+    - str，显示在屏幕上的文本。
+### invqe()
+6*100次一组的反相器测试。
+- 返回：gc:list(6)
+    - 6个0-1之间的浮点数，分别为6个反相器测试100次的正确率。
+### adda(v)
+数模转换器
+- v:int
+    - 输入电压
+- 返回：sf:str
+    - 包含了adda的响应频率，输入值和输出值
+### gpiopin(p0,p1)
+gpio调试工具，可以用于掌控版和未来板
+- p0:bool,p1:bool
+    - p0针脚和p1针脚的输出，True为高电平，False为低电平
+- 返回：sf:str
+    - 用于显示在显示屏上的字符串
+# 版本迭代
+## 1.2.0
+- 230511
+    - 加入了对m5stack(mwu)的支持
+    - 修改了类的继承语法，使之支持3.4以及之前的版本
+    - 修复了1.1.1版本中网页界面websockets无法使用的问题
+## 1.1.1
+- 230319
+    - 加入MAINFEST.in文件，处理非py文件的打包
+## 1.1.0
+- 230319
+    - 将smp的字体文件，webUI的网页文件压缩，一起内置如gTixi中，整个包大小控制在了1M以内。
+    - 禁止了httpserver和websocketsServer的自启动，现在在import gTixi时不会启动任何服务，仅在需要的时候开启。
+    - 去掉了大量print的提示，使得gTixi使用起来更加纯净。
+## 1.0.1
+- 230328
+    - 禁止了zkb，wlb的按键响应服务的自动加载，需要运行starMessager.startServer()才会自动运行。
+## 1.0.0
+- 230307
+    - 经过了与maop的开发联动，进一步验证了gTixi的稳定性
+    - 完整界面的git里，加入了介绍部署方案的SOP文档。
+    - 本次版本没有代码上的修改
+## 0.1.2
+- 230111
+    - 解决了多个网络界面同时开启时的同步问题
+    - 解决了树莓派因为没插ssd1306版而导致的卡死问题
+## 0.1.1
+- 230110
+    - 修复了未来板闪屏的问题
+## 0.1.0
+- 230109
+    - 完成了未来板的驱动编写，未来板设备正式并入gTixi
+    - 重构了部分代码，shipei类添加了tag属性
+    - 第一个完整版本发布
+## 0.0.9
+- 针对掌控板的硬件通讯进行了一系列的更新
+    - 在连接了外设后，支持外设的功能会优先显示外设的测试结果，如果检测不到外设，则使用掌控板自带的硬件
+    - i2c
+        - 加法器测试
+        - 光照传感器
+        - 温度压强湿度传感器
+    - smbus
+        - 蜂鸣器
+    - gpio
+        - led灯控制
+        - gpio针脚调试（新增模块[gpiopin](#gpiopinp0p1)）
+## 0.0.8.1
+- 221212
+- Mod中添加了loopPro的基础操作模式，详见[loopPro](#looppro类).
+- 添加了一系列硬件驱动：
+    - 反相器测试
+    - 管脚连通性测试
+    - 逻辑门测试
+    - ADDA驱动
+    - LED灯
+- 更新了README.md
+## 0.0.7
+- 221208
+- 修复了websockets在反复刷新网页时会出现的假死状态
+## 0.0.6
+- 221208
+- 增加了自定义网站参数的内容，用户可以自定义网络界面的访问端口以及网站地址了。详见[webConf](#webconf)。
+## 0.0.5
+- 221206
+- 修订readme.md
+## 0.0.4
+- 221205
+- 将目前硬件的驱动也并入gTixi中，包括加法器，蜂鸣器，红外，bme，光线传感器。
+- 修改loopMod的逻辑，修正在暂停状态下不能停止的bug。
+## 0.0.3 
+- 221203
+- 相对稳定的初始测试版本，使用相对import引入，使架构更加科学。
+## 0.0.2
+- 221202
+- 去除了部分alib的内容改为字典或者临时类，避免了zkb的无限重启的问题。
+## 0.0.1
+- 221202
+- 初始版本发布。
