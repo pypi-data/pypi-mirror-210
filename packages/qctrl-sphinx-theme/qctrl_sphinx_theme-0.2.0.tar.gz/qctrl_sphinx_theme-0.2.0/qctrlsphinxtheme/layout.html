@@ -1,0 +1,76 @@
+{%- extends 'sphinx_rtd_theme/layout.html' -%}
+
+{%- set site_name = 'Q-CTRL Documentation' -%}
+{%- set description = 'Module, class, and method reference for the ' ~ project -%}
+{%- set url = pathto('/' ~ pagename ~ '.html', 1) -%}
+{%- set image = pathto('_static/img/social/image.jpg', 1) -%}
+{%- set twitter = '@qctrlHQ' -%}
+
+{%- set html_title_suffix = ' | References | ' ~ site_name -%}
+{%- set html_title = project ~ html_title_suffix -%}
+{%- if pagename != 'index' -%}
+  {%- set html_title = title -%}
+  {%- for parent in parents | reverse -%}
+    {%- set html_title = html_title ~ ' | ' ~ parent.title -%}
+  {%- endfor -%}
+  {%- set html_title = html_title ~ ' | ' ~ project ~ html_title_suffix -%}
+{%- endif -%}
+
+{% block htmltitle %}
+  <title>{{- html_title -}}</title>
+{% endblock %}
+
+{% block linktags %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  <meta name="description" content="{{- description -}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="{{- twitter -}}">
+  <meta name="twitter:creator" content="{{- twitter -}}">
+  <meta name="twitter:title" content="{{- html_title -}}">
+  <meta name="twitter:description" content="{{- description -}}">
+  <meta name="twitter:image" content="{{- image -}}">
+  <meta name="twitter:image:alt" content="{{- description -}}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{- site_name -}}">
+  <meta property="og:title" content="{{- html_title -}}">
+  <meta property="og:description" content="{{- description -}}">
+  <meta property="og:url" content="{{- url -}}">
+  <meta property="og:image" content="{{- image -}}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{- description -}}">
+  <meta property="og:locale" content="en_US">
+  <link rel="icon" href="{{- pathto('_static/favicon.ico', 1) -}}">
+  <link rel="icon" type="image/svg+xml" href="{{- pathto('_static/img/q-ctrl-icon.svg', 1) -}}">
+  <link rel="apple-touch-icon" href="{{- pathto('_static/img/q-ctrl-icon-180.png', 1) -}}">
+  <link rel="manifest" href="{{- pathto('_static/manifest.webmanifest', 1) -}}">
+  <link rel="stylesheet" href="{{- pathto('_static/css/qctrlsphinxtheme.css', 1) -}}">
+{% endblock %}
+
+{%- block sidebartitle %}
+  <a href="{{- pathto(master_doc) -}}">
+    <img src="{{- pathto('_static/img/q-ctrl-logo.svg', 1) -}}" alt="{{- project -}}" width="184" height="45">
+  </a>
+  {% include 'searchbox.html' %}
+{% endblock %}
+
+{%- block mobile_nav %}
+  <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+  <a href="{{- pathto(master_doc) -}}">
+    <img src="{{- pathto('_static/img/q-ctrl-logo.svg', 1) -}}" alt="{{- project -}}" width="184" height="45">
+  </a>
+{%- endblock %}
+
+{% block document %}
+  <article class="DocSearch-content">
+    {{ super() }}
+  </article>
+{% endblock %}
+
+{% block footer %}
+  <script src="{{- pathto('_static/js/qctrlsphinxtheme.js', 1) -}}"></script>
+{% endblock %}
