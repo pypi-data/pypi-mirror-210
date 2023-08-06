@@ -1,0 +1,1264 @@
+directive @cost(complexity: Int, multipliers: [String!], useMultipliers: Boolean) on FIELD | FIELD_DEFINITION
+
+"""
+SoftWare Heritage persistent Identifier
+"""
+scalar SWHID
+
+"""
+ISO-8601 encoded date string
+"""
+scalar DateTime
+
+"""
+Object with an id
+"""
+interface Node {
+  """
+  Id of the object. This is for caching purpose and
+  should not be used outside the GraphQL API
+  """
+  id: ID!
+}
+
+"""
+SWH merkle node object with a SWHID
+"""
+interface SWHNode {
+  """
+  SWHID of the object
+  """
+  swhid: SWHID!
+}
+
+"""
+Information about pagination
+"""
+type PageInfo {
+  """
+  Cursor to request the next page in the connection
+  """
+  endCursor: String
+
+  """
+  Are there more pages in the connection?
+  """
+  hasNextPage: Boolean!
+}
+
+"""
+Possible ways to order a list
+"""
+enum ListOrder {
+  ASC
+  DESC
+}
+
+"""
+Binary string with multiple encodings
+"""
+type BinaryString {
+  """
+  Utf-8 encoded value, any non Unicode character will be replaced
+  """
+  text: String!
+
+  """
+  base64 encoded value
+  """
+  base64: String!
+}
+
+"""
+Connection to origins
+"""
+type OriginConnection {
+  """
+  List of origin edges
+  """
+  edges: [OriginEdge]
+
+  """
+  List of origin objects
+  """
+  nodes: [Origin]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of origin objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in origin connection
+"""
+type OriginEdge {
+  # Cursor in this edge is removed for the time being
+  # see https://forge.softwareheritage.org/D8911 for details
+
+  # """
+  # Cursor to request the next page after the item
+  # """
+  # cursor: String!
+
+  """
+  Origin object
+  """
+  node: Origin
+}
+
+"""
+A software origin object
+"""
+type Origin implements Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  Origin URL
+  """
+  url: String!
+
+  """
+  Connection to all the visit objects for the origin
+  """
+  visits(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int!
+
+    """
+    Returns the page after this cursor
+    """
+    after: String
+
+    """
+    Sort order on visitId; ascending by default
+    """
+    sort: ListOrder = ASC    # FIXME: Change this to VisitSortOrder type to support orderby specific/multiple columns
+  ): VisitConnection! @cost(complexity: 1, multipliers: ["first"])
+
+  """
+  Latest visit object for the origin
+  """
+  latestVisit(
+    """
+    Return the latest visit with the given visit type
+    """
+    visitType: String
+
+    """
+    Return the latest visit with any of the given statuses
+    """
+    allowedStatuses: [VisitStatusState]
+
+    """
+    If True, the latest visit with a snapshot will be returned
+    """
+    requireSnapshot: Boolean
+  ): Visit @cost(complexity: 1)
+
+  """
+  Connection to all the snapshots for the origin
+  """
+  snapshots(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int!
+
+    """
+    Returns the page after this cursor
+    """
+    after: String
+  ): SnapshotConnection @cost(complexity: 2, multipliers: ["first"])  # This costs more because of local (graphql level) pagination
+
+  """
+  Latest snapshot for the Origin
+  """
+  latestSnapshot: Snapshot @cost(complexity: 1)
+}
+
+"""
+Connection to origin visits
+"""
+type VisitConnection {
+  """
+  List of visit edges
+  """
+  edges: [VisitEdge]
+
+  """
+  List of visit objects
+  """
+  nodes: [Visit]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of visit objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in origin visit connection
+"""
+type VisitEdge {
+  # Cursor in this edge is removed for the time being
+  # see https://forge.softwareheritage.org/D8911 for details
+
+  # """
+  # Cursor to request the next page after the item
+  # """
+  # cursor: String!
+
+  """
+  Visit object
+  """
+  node: Visit
+}
+
+"""
+Possible visit status states
+"""
+enum VisitStatusState {
+  created
+  ongoing
+  partial
+  full
+  not_found
+  failed
+}
+
+"""
+An origin visit object
+"""
+type Visit implements Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  Visit number for the origin
+  """
+  visitId: Int
+
+  """
+  Visit date ISO-8601 encoded
+  """
+  date: DateTime!
+
+  """
+  Type of the origin visited. Eg: git/hg/svn/tar/deb
+  """
+  type: String
+
+  """
+  Connection to all the status objects for the visit
+  """
+  statuses(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int
+
+    """
+    Returns the page after this cursor
+    """
+    after: String
+
+    """
+    Sort order on status date; ascending by default
+    """
+    sort: ListOrder = ASC
+  ): VisitStatusConnection @cost(complexity: 3)  # here first is optional, hence adding a higher value for cost
+
+  """
+  Latest status object for the Visit
+  """
+  latestStatus(
+    """
+    Filter by status state
+    """
+    allowedStatuses: [VisitStatusState]
+
+    """
+    Filter by the availability of a snapshot in the status
+    """
+    requireSnapshot: Boolean
+  ): VisitStatus @cost(complexity: 1)
+}
+
+"""
+Connection to visit status
+"""
+type VisitStatusConnection {
+  """
+  List of visit status edges
+  """
+  edges: [VisitStatusEdge]
+
+  """
+  List of visit status objects
+  """
+  nodes: [VisitStatus]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of visit status objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in visit status connection
+"""
+type VisitStatusEdge {
+  # Cursor in this edge is removed for the time being
+  # see https://forge.softwareheritage.org/D8911 for details
+
+  # """
+  # Cursor to request the next page after the item
+  # """
+  # cursor: String!
+
+  """
+  Visit status object
+  """
+  node: VisitStatus
+}
+
+"""
+A visit status object
+"""
+type VisitStatus {
+  """
+  Status string of the visit (either full, partial or ongoing)
+  """
+  status: VisitStatusState!
+
+  """
+  ISO-8601 encoded date string
+  """
+  date: DateTime!
+
+  """
+  Snapshot object
+  """
+  snapshot: Snapshot @cost(complexity: 1)
+
+  """
+  Type of the origin visited. Eg: git/hg/svn/tar/deb
+  """
+  type: String
+}
+
+"""
+Connection to snapshots
+"""
+type SnapshotConnection {
+  """
+  List of snapshot edges
+  """
+  edges: [SnapshotEdge]
+
+  """
+  List of snapshot objects
+  """
+  nodes: [Snapshot]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of snapshot objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in snapshot connection
+"""
+type SnapshotEdge {
+  """
+  Cursor to request the next page after the item
+  """
+  cursor: String!
+
+  """
+  Snapshot object
+  """
+  node: Snapshot
+}
+
+"""
+A snapshot object
+"""
+type Snapshot implements SWHNode & Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  SWHID of the snapshot object
+  """
+  swhid: SWHID!
+
+  """
+  Connection to all the snapshot branches
+  """
+  branches(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int!
+
+    """
+    Returns the page after this cursor
+    """
+    after: String
+
+    """
+    Filter by branch types
+    """
+    types: [BranchType]  # Filter by original branch type (not the final target type)
+
+    """
+    Return branches whose name contains the given substring
+    """
+    nameInclude: String
+
+    """
+    Do not return branches whose name contains the given prefix
+    """
+    nameExcludePrefix: String
+  ): BranchConnection @cost(complexity: 2, multipliers: ["first"]) # This costs more because of local (graphql level) pagination
+}
+
+"""
+Connection to snapshot branches
+"""
+type BranchConnection {
+  """
+  List of branch edges
+  """
+  edges: [BranchConnectionEdge]
+
+  """
+  List of branch objects
+  """
+  nodes: [Branch]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of branch objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in snapshot branch connection
+"""
+type BranchConnectionEdge {
+  # Cursor in this edge is removed for the time being
+  # see https://forge.softwareheritage.org/D8911 for details
+
+  # """
+  # Cursor to request the next page after the item
+  # """
+  # cursor: String!
+
+  """
+  Branch object
+  """
+  node: Branch
+}
+
+"""
+A user object
+"""
+type Person {
+  """
+  User's email address
+  """
+  email: BinaryString
+
+  """
+  User's name
+  """
+  name: BinaryString
+
+  """
+  User's full name
+  """
+  fullname: BinaryString
+}
+
+"""
+Possible branch types
+"""
+enum BranchType {
+  revision
+  release
+  alias
+  content
+  directory
+  snapshot
+}
+
+"""
+A snapshot branch object
+"""
+type Branch {
+  """
+  Branch name
+  """
+  name: BinaryString
+
+  """
+  Branch type
+  """
+  type: BranchType
+
+  """
+  Branch target object
+  """
+  target: BranchTarget @cost(complexity: 1)  # This has a cost because of possible alias chains
+}
+
+"""
+Possible branch target nodes
+"""
+union BranchTargetNode = Revision | Release | Content | Directory | Snapshot
+
+"""
+Possible branch target types
+"""
+enum BranchTargetType {
+  revision
+  release
+  content
+  directory
+  snapshot
+}
+
+"""
+A branch target object
+"""
+type BranchTarget {
+  """
+  Branch target node type
+  This will be different from the BranchType for an alias branch
+  """
+  type: BranchTargetType
+
+  """
+  The chain of alias branch names from the requested branch to the final target.
+  This is empty for most references, and typically has a single item for `HEAD`.
+  """
+  resolveChain: [BinaryString]
+
+  """
+  Branch target node SWHID
+  """
+  swhid: SWHID
+
+  """
+  Branch target node
+  """
+  node: BranchTargetNode @cost(complexity: 1)
+}
+
+"""
+Connection to revisions
+"""
+type RevisionConnection {
+  """
+  List of revision edges
+  """
+  edges: [RevisionEdge]
+
+  """
+  List of revision objects
+  """
+  nodes: [Revision]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of revision objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in revision connection
+"""
+type RevisionEdge {
+  """
+  Cursor to request the next page after the item
+  """
+  cursor: String!
+
+  """
+  Revision object
+  """
+  node: Revision
+}
+
+"""
+Object with Date values
+"""
+type Date {
+  """
+  ISO-8601 encoded date string.
+  """
+  date: DateTime
+
+  """
+  UTC offset
+  """
+  offset: BinaryString
+}
+
+"""
+A revision object
+"""
+type Revision implements SWHNode & Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  SWHID of the revision object
+  """
+  swhid: SWHID!
+
+  """
+  Message associated to the revision
+  """
+  message: BinaryString
+
+  """
+  Revision authors
+  """
+  author: [Person]
+
+  """
+  Revision committers
+  """
+  committer: [Person]
+
+  """
+  Commit date
+  """
+  committerDate: Date
+
+  """
+  Revision date
+  """
+  date: Date
+
+  """
+  Type of the revision, eg: git/hg
+  """
+  type: String
+
+  """
+  The unique directory object that revision points to
+  """
+  directory: Directory @cost(complexity: 1)
+
+  """
+  Connection to all the parents of the revision
+  """
+  parents(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int
+
+    """
+    Returns the page after this cursor
+    """
+    after: String
+  ): RevisionConnection @cost(complexity: 3) # here first is not mandatory, hence adding a higher value for cost
+
+  """
+  Connection to all the revisions heading to this one
+  aka the commit log
+  """
+  revisionLog(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int!
+
+    """
+    Returns the page after the cursor
+    """
+    after: String
+  ): RevisionConnection @cost(complexity: 2, multipliers: ["first"]) # This costs more because of local (graphql level) pagination
+}
+
+"""
+A release object
+"""
+type Release implements SWHNode & Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  SWHID of the release object
+  """
+  swhid: SWHID!
+
+  """
+  The name of the release
+  """
+  name: BinaryString
+
+  """
+  The message associated to the release
+  """
+  message: BinaryString
+
+  """
+  Release author
+  """
+  author: [Person]
+
+  """
+  Release date
+  """
+  date: Date
+
+  """
+  Release target object
+  """
+  target: ReleaseTarget
+}
+
+"""
+Possible release target nodes
+"""
+union ReleaseTargetNode = Release | Revision | Directory | Content
+
+"""
+Possible release target types
+"""
+enum ReleaseTargetType {
+  release
+  revision
+  content
+  directory
+}
+
+"""
+A release target object
+"""
+type ReleaseTarget {
+  """
+  Release target node type
+  """
+  type: ReleaseTargetType!
+
+  """
+  Release target node SWHID
+  """
+  swhid: SWHID
+
+  """
+  Release target node
+  """
+  node: ReleaseTargetNode @cost(complexity: 1)
+}
+
+"""
+Connection to directory entries
+"""
+type DirectoryEntryConnection {
+  """
+  List of directory entry edges
+  """
+  edges: [DirectoryEntryEdge]
+
+  """
+  List of directory entry objects
+  """
+  nodes: [DirectoryEntry]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of directory entry objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in directory entry connection
+"""
+type DirectoryEntryEdge {
+  """
+  Cursor to request the next page after the item
+  """
+  cursor: String!
+
+  """
+  Directory entry object
+  """
+  node: DirectoryEntry
+}
+
+"""
+A directory entry object
+"""
+type DirectoryEntry {
+  """
+  The directory entry name
+  """
+  name: BinaryString
+
+  """
+  Directory entry target object
+  """
+  target: DirectoryEntryTarget @cost(complexity: 1)
+}
+
+"""
+Possible directory entry target nodes
+"""
+union DirectoryEntryTargetNode = Directory | Content | Revision
+
+"""
+Possible directory entry target types
+"""
+enum DirectoryEntryTargetType {
+  directory
+  content
+  revision
+}
+
+"""
+A directory entry target object
+"""
+type DirectoryEntryTarget {
+  """
+  Directory entry target node type
+  """
+  type: DirectoryEntryTargetType!
+
+  """
+  Directory entry target node SWHID
+  """
+  swhid: SWHID
+
+  """
+  Directory entry target node
+  """
+  node: DirectoryEntryTargetNode @cost(complexity: 1)
+}
+
+"""
+A directory object
+"""
+type Directory implements SWHNode & Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  SWHID of the directory object
+  """
+  swhid: SWHID!
+
+  """
+  Connection to the directory entries
+  """
+  entries(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int
+
+    """
+    Returns the page after this cursor
+    """
+    after: String
+
+    """
+    Filter by entry name
+    """
+    nameInclude: String
+  ): DirectoryEntryConnection @cost(complexity: 2, multipliers: ["first"]) # pagination is local, hence adding a higher value for cost
+}
+
+"""
+An object with different content hashes
+"""
+type ContentHashes {
+  blake2s256: String
+  sha1: String
+  sha1_git: String
+  sha256: String
+}
+
+"""
+Object with different content data representations
+"""
+type ContentData {
+  """
+  URL to download the file data
+  """
+  url: String
+}
+
+type ContentMimeType {
+  """
+  Detected content encoding
+  """
+  encoding: String
+
+  """
+  Detected MIME type of the content
+  """
+  mimetype: String
+}
+
+type ContentLanguage {
+  """
+  Detected programming language if any
+  """
+  lang: String
+}
+
+type ContentLicense {
+  """
+  Array of strings containing the detected license names
+  """
+  licenses: [String]
+}
+
+"""
+A content object
+"""
+type Content implements SWHNode & Node {
+  """
+  Unique identifier
+  """
+  id: ID!
+
+  """
+  SWHID of the content object
+  """
+  swhid: SWHID!
+
+  """
+  Hashes for the content
+  """
+  hashes: ContentHashes
+
+  """
+  Length of the content in bytes
+  """
+  length: Int
+
+  """
+  Content status, visible or hidden
+  """
+  status: String
+
+  """
+  File content
+  """
+  data: ContentData
+
+  """
+  Information about the content MIME type
+  """
+  mimeType: ContentMimeType
+
+  """
+  Information about the programming language used in the content
+  """
+  language: ContentLanguage
+
+  """
+  Information about the license of the content
+  """
+  license: ContentLicense
+}
+
+"""
+Possible resolveSWHID return nodes
+"""
+union ResolveSWHIDResult =  Revision | Release | Content | Directory | Snapshot
+
+"""
+Connection to OriginSearchResults
+"""
+type OriginSearchResultConnection {
+  """
+  List of SearchOriginResult edges
+  """
+  edges: [OriginSearchResultEdge]
+
+  """
+  List of SearchOriginResult objects
+  """
+  nodes: [OriginSearchResult]
+
+  """
+  Information for pagination
+  """
+  pageInfo: PageInfo!
+
+  """
+  Total number of SearchOriginResult objects in the connection
+  """
+  totalCount: Int
+}
+
+"""
+Edge in OriginSearchResult connection
+"""
+type OriginSearchResultEdge {
+  # FIXME, add an item cursor here
+
+  """
+  SearchOriginResult object
+  """
+  node: OriginSearchResult
+}
+
+"""
+An OriginSearchResult object
+"""
+type OriginSearchResult {
+  # FXIME, add more information from the search
+
+  """
+  Result node type
+  """
+  type: String!  # This will always be origin
+
+  """
+  Result node URL
+  """
+  url: String!
+
+  """
+  Result origin node
+  """
+  node: Origin
+}
+
+"""
+The query root of the GraphQL interface.
+"""
+type Query {
+  """
+  Get an origin with its url
+  """
+  origin(
+    """
+    URL of the Origin
+    """
+    url: String!
+  ): Origin @cost(complexity: 1)
+
+  """
+  Get a Connection to all the origins
+  """
+  origins(
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int!
+
+    """
+    Returns the page after the cursor
+    """
+    after: String
+
+    """
+    Filter origins with a URL pattern
+    """
+    urlPattern: String
+  ): OriginConnection @cost(complexity: 1, multipliers: ["first"])
+
+  """
+  Get the visit object with an origin URL and a visit id
+  """
+  visit(
+    """
+    URL of the origin
+    """
+    originUrl: String!
+
+    """
+    Visit id to get
+    """
+    visitId: Int!
+  ): Visit @cost(complexity: 1)
+
+  """
+  Get the snapshot with a SWHID
+  """
+  snapshot(
+    """
+    SWHID of the snapshot object
+    """
+    swhid: SWHID!
+  ): Snapshot @cost(complexity: 1)
+
+  """
+  Get the revision with a SWHID
+  """
+  revision(
+    """
+    SWHID of the revision object
+    """
+    swhid: SWHID!
+  ): Revision @cost(complexity: 1)
+
+  """
+  Get the release with a SWHID
+  """
+  release(
+    """
+    SWHID of the release object
+    """
+    swhid: SWHID!
+  ): Release @cost(complexity: 1)
+
+  """
+  Get the directory with a SWHID
+  """
+  directory(
+    """
+    SWHID of the directory object
+    """
+    swhid: SWHID!
+  ): Directory @cost(complexity: 1)
+
+  """
+  Get a directory entry with directory SWHID and a path
+  """
+  directoryEntry(
+    """
+    SWHID of the directory object
+    """
+    directorySWHID: SWHID!
+
+    """
+    Relative path to the requested object
+    """
+    path: String!
+  ): DirectoryEntry @cost(complexity: 2)  # This costs more because path can be any level deep
+
+  """
+  Get a list of contents for the given SWHID
+  """
+  contentsBySWHID (
+    """
+    SWHID to look for
+    """
+    swhid: SWHID!
+  ): [Content] @cost(complexity: 1)
+
+  """
+  Get contents with hashes
+  At least one of the four hashes must be provided
+  """
+  contentsByHashes(
+    sha1: String
+
+    sha256: String
+
+    sha1_git: String
+
+    blake2s256: String
+  ): [Content]  @cost(complexity: 1)
+
+  """
+  Get a content that match all the given hashes.
+  All the four hashes must be provided
+  This entrypoint can be used to uniquely identify
+  a content in the event of hash collisions
+  """
+  contentByHashes(
+    sha1: String!
+
+    sha256: String!
+
+    sha1_git: String!
+
+    blake2s256: String!
+  ): Content @cost(complexity: 1)
+
+  """
+  Resolve the given SWHID to an object
+  """
+  resolveSWHID(
+    """
+    SWHID to look for
+    """
+    swhid: SWHID!
+  ): [ResolveSWHIDResult] @cost(complexity: 1)
+
+  """
+  Search in SWH origins
+  """
+  originSearch(
+    """
+    String to search for
+    """
+    query: String!
+
+    """
+    Returns the first _n_ elements from the list
+    """
+    first: Int!
+
+    """
+    Returns the page after the cursor
+    """
+    after: String
+  ): OriginSearchResultConnection! @cost(complexity: 1, multipliers: ["first"])
+}
