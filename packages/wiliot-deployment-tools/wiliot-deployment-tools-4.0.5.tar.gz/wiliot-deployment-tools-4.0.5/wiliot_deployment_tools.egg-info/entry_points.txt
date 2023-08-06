@@ -1,0 +1,5 @@
+[console_scripts]
+wlt-config = wiliot_deployment_tools.automatic_configuration_tool.configuration_tool_cli:main_cli
+wlt-firmware = wiliot_deployment_tools.firmware_update.firmware_update_cli:main_cli
+wlt-log = wiliot_deployment_tools.log_viewer.log_viewer_cli:main_cli
+wlt-power-mgmt = wiliot_deployment_tools.power_mgmt.power_mgmt_cli:main_cli
