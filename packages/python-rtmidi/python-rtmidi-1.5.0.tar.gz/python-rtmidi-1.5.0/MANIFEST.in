@@ -1,0 +1,21 @@
+include Makefile
+include *.md
+include requirements-dev.txt
+include src/_rtmidi.cpp
+include src/_rtmidi.pyx
+include src/rtmidi/RtMidi.cpp
+include src/rtmidi/RtMidi.h
+include tox.ini
+
+exclude .gitignore
+exclude .gitmodules
+
+graft examples
+graft tests
+
+prune .github
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.md *.rst *.inc conf.py Makefile make.bat
