@@ -1,0 +1,876 @@
+model: upac96
+features:
+  adc2mv: false
+  dac_sweep: true
+  ext_dac: true
+  pedestals: true
+  threshold_scan: false
+  tia_dac: false
+  timing_calibration: false
+  naludaq_rs: false
+params:
+  num_chips: 6  # Number of chips, to be replaced with the actual chips
+  chanmask: 0xFF00
+  channels: 96
+  chanshift: 8
+  clock_file: Si5341-RevD-UDC_78_125SlowClk_78_125IntermediateClk_312_5FastClk-Registers.txt
+  connections:
+    - serial
+    - d2xx
+    - d3xx
+  si5341_address: 0xEE
+  default_baud:
+    115200: 678
+  default_baudrate: 115200
+  default_clock: 50000000.0
+  default_divider: 434
+  default_trigger_value: 0
+  ext_dac:
+    chip: dac7578
+    max_mv: 1250
+    max_counts: 3930
+    min_counts: 0
+    channels:
+      0,16,32,48,64,80: 2000
+    address_mapping:
+      0,16,32,48,64,80: 0x48
+    channel_mapping:
+      0: 7
+      16: 2
+      32: 5
+      48: 0
+      64: 4
+      80: 6
+  trigger:
+    max_val: 4095
+    min_val: 0
+    default: false
+  num_trigger_channels: 8
+  expected_scalmon: 2500
+  headers: 0
+  last_window_fix_amount: 47
+  lastbits: 0
+  numregs: 32
+  pedestals_blocks: 64
+  peripherals:
+    readout_pcb_temp:
+      addr: 0b0011_000
+    power_pcb_temp:
+      addr: 0b0011_001
+    udc1_1v2:
+      addr: 0b1001_101
+      chan: 1
+    udc1_2v5:
+      addr: 0b1001_101
+      chan: 2
+    udc2_1v2:
+      addr: 0b1001_100
+      chan: 1
+    udc2_2v5:
+      addr: 0b1001_100
+      chan: 2
+    fpga_1v0:
+      addr: 0b1001_100
+      chan: 4
+    fpga_1v8:
+      addr: 0b1001_100
+      chan: 3
+    fpga_io_2v5:
+      addr: 0b1001_101
+      chan: 4
+    fpga_io_3v3:
+      addr: 0b1001_101
+      chan: 3
+  possible_bauds:
+    115200: 678
+    1000000: 78
+    2000000: 39
+  resolution: 10
+  samples: 64
+  samplingrate: 9.2
+  stop_word: FACECAFE
+  register_stop_word: FACE
+  strobe_values_correction: True  # Shift the strobe values on certain boards with swapped internal routing.
+  strobe_correction_keys:
+    - digsync_le
+    - digsync_te
+    - wrstrb1_le
+    - wrstrb1_te
+    - wrstrb2_le
+    - wrstrb2_te
+    - wrsync1_le
+    - wrsync1_te
+    - wrsync2_le
+    - wrsync2_te
+  wait: AE000001
+  wbias: 750
+  windmask: 0x00FF
+  windows: 64
+registers:
+  control_registers:
+    identifier:
+      address: 0x00
+      bitposition: 0
+      bitwidth: 16
+      description: 'Unique board identifier'
+      readwrite: rw
+      value: 0x03E8
+    version:
+      address: 0x01
+      bitposition: 0
+      bitwidth: 16
+      description: 'Current firmware version'
+      readwrite: rw
+      value: 0x0000
+    regclr:
+      address: 0x04
+      bitposition: 0
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    sysrst:
+      address: 0x04
+      bitposition: 1
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    eventtrig:
+      address: 0x04
+      bitposition: 2
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    arm:
+      address: 0x04
+      bitposition: 3
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    abort:
+      address: 0x04
+      bitposition: 4
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    continuousmode:
+      address: 0x04
+      bitposition: 5
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    reread_data: #udc reread
+      address: 0x04
+      bitposition: 6
+      bitwidth: 1
+      description: 'Ask the FPGA to send whatever event is in the output buffer'
+      readwrite: rw
+      value: 0
+    digrst:
+      address: 0x04
+      bitposition: 7
+      bitwidth: 1
+      description:
+      readwrite: rw
+      value: 0
+    pwr_udc1_en:
+      address: 0x04
+      bitposition: 8
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    pwr_udc2_en:
+      address: 0x04
+      bitposition: 9
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    usb_fifo_disable:
+      address: 0x04
+      bitposition: 10
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    uart_fifo_disable:
+      address: 0x04
+      bitposition: 11
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    trigger_select:
+      address: 0x04
+      bitposition: 12
+      bitwidth: 2
+      description: ''
+      readwrite: rw
+      value: 0
+    trigger_monitor_disable:
+      address: 0x04
+      bitposition: 14
+      bitwidth: 1
+      description: 'Disable the trigger monitor signal, needs to be disabled during pedestals capture.'
+      readwrite: rw
+      value: 0
+    coincidence_trigger_select:
+      address: 0x04
+      bitposition: 15
+      bitwidth: 1
+      description: Controls whether the coincidence trigger signal is routed through the debug_trigger_out pin
+      readwrite: rw
+      value: 0
+    udc_rxout_enable:
+      address: 0x05
+      bitposition: 0
+      bitwidth: 6
+      description: ''
+      readwrite: rw
+      value: 0x3F
+    udc_rx_negative_polarity:
+      address: 0x05
+      bitposition: 8
+      bitwidth: 6
+      description: ''
+      readwrite: rw
+      value: 0x37
+    udc_txin_enable:
+      address: 0x06
+      bitposition: 0
+      bitwidth: 6
+      description: ''
+      readwrite: rw
+      value: 0x3F
+    udc_tx_negative_polarity:
+      address: 0x06
+      bitposition: 8
+      bitwidth: 6
+      description: ''
+      readwrite: rw
+      value: 0x27
+    udc_select:
+      address: 0x0D
+      bitposition: 0
+      bitwidth: 3
+      description: ''
+      readwrite: rw
+      value: 0
+    udc_trigger_mask:
+      address: 0x0D
+      bitposition: 8
+      bitwidth: 6
+      description: 'Select which chips are used for the trigger, 1 = use chip, 0 = ignore chip, bit 0 = chip 0, bit 5 = chip 5'
+      readwrite: rw
+      value: 0x3F
+    system_clock_locked:
+      address: 0x24
+      bitposition: 0
+      bitwidth: 1
+      description: 'Read-Only status register'
+      readwrite: r
+      value: 0
+    usb_clock_locked:
+      address: 0x24
+      bitposition: 1
+      bitwidth: 1
+      description: 'Read-Only status register'
+      readwrite: r
+      value: 0
+    udc_tx_idle_locked:
+      address: 0x25
+      bitposition: 0
+      bitwidth: 6
+      description: 'Read-Only status register'
+      readwrite: r
+      value: 0
+    udc_rxout_locked:
+      address: 0x26
+      bitposition: 0
+      bitwidth: 6
+      description: 'Read-Only status register'
+      readwrite: r
+      value: 0
+    sdata_in_phase:
+      address: 0x0E
+      bitposition: 0
+      bitwidth: 6
+      description: 'Sets the phase relation of the FPGA SERDES input data to the SERDES clock: 0=>0 degrees: 1=>180 degrees'
+      readwrite: rw
+      value: 0x1
+    sdata_out_phase:
+      address: 0x0E
+      bitposition: 6
+      bitwidth: 6
+      description: 'Sets the phase relation of the FPGA SERDES output data to the SERDES clock: 0=>0 degrees: 1=>180 degrees'
+      readwrite: rw
+      value: 0x0
+  digital_registers:
+    scalmon:
+      address: 0x08
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: r
+      value: 0
+    scalmon2:
+      address: 0x0B
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: r
+      value: 0
+    start_window_addr:
+      address: 0x0F
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: r
+      value: 0
+    high_addr:
+      address: 0x40
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: r
+      value: 0
+    writeaftertrig:
+      address: 0x83
+      bitposition: 0
+      bitwidth: 12
+      description: 'Clock cycles to continue writing after trigger, translates to windows to write after trig event.'
+      readwrite: rw
+      value: 0
+    convert_reset_wait:
+      address: 0x84
+      bitposition: 0
+      bitwidth: 8
+      description: ''
+      readwrite: rw
+      value: 1
+    enable_testpattern:
+      address: 0x88
+      bitposition: 0
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    chip_id:
+      address: 0x89
+      bitposition: 0
+      bitwidth: 12
+      description: 'Identifier for the chip. Lowest 6-bits will be the identifier in the packet header, for multichip systems.'
+      readwrite: rw
+      value: 0
+    regclr:
+      address: 0x8A
+      bitposition: 0
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 0
+    loadwait:
+      address: 0x8B
+      bitposition: 0
+      bitwidth: 7
+      description: ''
+      readwrite: rw
+      value: 0
+    pclkwidth:
+      address: 0x8C
+      bitposition: 0
+      bitwidth: 7
+      description: ''
+      readwrite: rw
+      value: 2
+    miscreg:
+      address: 0x8D
+      bitposition: 4
+      bitwidth: 2
+      description: ''
+      readwrite: rw
+      value: 0
+    waitread:
+      address: 0x8E
+      bitposition: 0
+      bitwidth: 4
+      description: ''
+      readwrite: rw
+      value: 0xF
+    waitaddr:
+      address: 0x8F
+      bitposition: 0
+      bitwidth: 4
+      description: ''
+      readwrite: rw
+      value: 0xF
+    triggerchannelmask_lo:
+      address: 0x90
+      bitposition: 0
+      bitwidth: 8
+      description: ''
+      readwrite: rw
+      value: 0
+    writedelay:
+      address: 0x91
+      bitposition: 0
+      bitwidth: 4
+      description: ''
+      readwrite: rw
+      value: 0
+    triggerchannelmask_hi:
+      address: 0x92
+      bitposition: 0
+      bitwidth: 8
+      description: ''
+      readwrite: rw
+      value: 0
+    txspeed:
+      address: 0x94
+      bitposition: 0
+      bitwidth: 2
+      description: ''
+      readwrite: rw
+      value: 0
+    excludechannelmask_lo:
+      address: 0x96
+      bitposition: 0
+      bitwidth: 8
+      description: ''
+      readwrite: rw
+      value: 0
+    excludechannelmask_hi:
+      address: 0x97
+      bitposition: 0
+      bitwidth: 8
+      description: ''
+      readwrite: rw
+      value: 0
+    done_timeout_n:
+      address: 0xA0
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: rw
+      value: 0
+    chansel_sram:
+      address: 0xA1
+      bitposition: 0
+      bitwidth: 4
+      description: ''
+      readwrite: rw
+      value: 0
+    writemask_l:
+      address: 0xA2
+      bitposition: 0
+      bitwidth: 9
+      description: 'Enable channel specific behavior an the right side'
+      readwrite: rw
+      value: 0x1FF
+    writemask_r:
+      address: 0xA3
+      bitposition: 0
+      bitwidth: 9
+      description: 'Enable channel specific behavior an the right side'
+      readwrite: rw
+      value: 0x1FF
+  analog_registers:
+    vadjp:
+      address: 0x00
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0
+    vlimp:
+      address: 0x01
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0xFFF
+    vlimn:
+      address: 0x02
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0
+    vadjn:
+      address: 0x03
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x6A0
+    wrstrb1_le:
+      address: 0x04
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x028
+    wrstrb1_te:
+      address: 0x05
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x064
+    wrsync1_le:
+      address: 0x06
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x000
+    wrsync1_te:
+      address: 0x07
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x032
+    wrstrb2_le:
+      address: 0x08
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x067
+    wrstrb2_te:
+      address: 0x09
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x024
+    wrsync2_le:
+      address: 0x0A
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x040
+    wrsync2_te:
+      address: 0x0B
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x072
+    digsync_le:
+      address: 0x0C
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x002
+    digsync_te:
+      address: 0x0D
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x041
+    qbias:
+      address: 0x0E
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x800
+    sgn:
+      address: 0x0F
+      bitposition: 0
+      bitwidth: 8
+      description: ''
+      readwrite: w
+      value: 0
+    sspin:
+      address: 0x0F
+      bitposition: 8
+      bitwidth: 2
+      description: ''
+      readwrite: w
+      value: 0
+    vadjn_sw:
+      address: 0x0F
+      bitposition: 10
+      bitwidth: 1
+      description: ''
+      readwrite: w
+      value: 0
+    sstscrsel:
+      address: 0x0F
+      bitposition: 11
+      bitwidth: 1
+      description: ''
+      readwrite: w
+      value: 0
+    reg1:
+      address: 0x10
+      bitposition: 0
+      bitwidth: 12
+      description: |
+        This is a special overloaded register that require you to read the manual!
+        A strange register, corresponding to two different physical registers. To write to them separately,
+        you need to set the most significant bit of "writemask_l" and "writemask_r", depending on whether
+        you want to talk to the left version of this register or the right version.
+      readwrite: w
+      value: 0x02D  # Don't you dare touch unless you check the Excel spreadsheet!
+    # montiming_sel_1:
+    #   address: 0x10
+    #   bitposition: 0
+    #   bitwidth: 3
+    #   description: ''
+    #   readwrite: w
+    #   value: 0x101
+    # montiming_sel_2:
+    #   address: 0x10
+    #   bitposition: 3
+    #   bitwidth: 3
+    #   description: ''
+    #   readwrite: w
+    #   value: 0x101
+    # txsel:
+    #   address: 0x10
+    #   bitposition: 7
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 0
+    # gccsel:
+    #   address: 0x10
+    #   bitposition: 8
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 1
+    # div_by_5:
+    #   address: 0x10
+    #   bitposition: 9
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 0
+    # montiming_sel_w:
+    #   address: 0x10
+    #   bitposition: 10
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 0
+    # montiming_sel_1_r:
+    #   address: 0x10
+    #   bitposition: 0
+    #   bitwidth: 3
+    #   description: ''
+    #   readwrite: w
+    #   value: 0x101
+    # montiming_sel_2_r:
+    #   address: 0x10
+    #   bitposition: 3
+    #   bitwidth: 3
+    #   description: ''
+    #   readwrite: w
+    #   value: 0x101
+    # dig_sync_e_sel_r:
+    #   address: 0x10
+    #   bitposition: 7
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 0
+    # montimingsel_e_r:
+    #   address: 0x10
+    #   bitposition: 8
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 1
+    # montiming_sel_e_nw_r:
+    #   address: 0x10
+    #   bitposition: 9
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 0
+    # dig_sync_w_sel_r:
+    #   address: 0x10
+    #   bitposition: 10
+    #   bitwidth: 1
+    #   description: ''
+    #   readwrite: w
+    #   value: 0
+    cmpbias1:
+      address: 0x11
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x3E8
+    cmpbias2:
+      address: 0x12
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x000
+    isel:
+      address: 0x13
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x000
+    scvbias:
+      address: 0x14
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x622
+    scvstab:
+      address: 0x15
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x555
+    trgthresh:
+      address: 0x16
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x640
+    comparator:
+      address: 0x17
+      bitposition: 0
+      bitwidth: 8
+      description: |
+        Comparator mode, sets the comparator mode for ch0..7 or 8..15.
+        Need to set dig_reg writemask_l and writemask_r to write the different sides.
+      readwrite: w
+      value: 0x00
+    ramp7_4:
+      address: 0x17
+      bitposition: 8
+      bitwidth: 4
+      description: ''
+      readwrite: w
+      value: 0x0
+    ramp3_0:
+      address: 0x18
+      bitposition: 0
+      bitwidth: 4
+      description: ''
+      readwrite: w
+      value: 0x0
+    transfer:
+      address: 0x18
+      bitposition: 4
+      bitwidth: 8
+      description: ''
+      readwrite: w
+      value: 0xFF
+    unknown:
+      address: 0x19
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x000
+    wbias:
+      address: 0x1A
+      bitposition: 0
+      bitwidth: 12
+      description: ''
+      readwrite: w
+      value: 0x7D0
+
+  i2c_registers:
+    i2c_en:
+      address: 0x0F
+      bitposition: 14
+      bitwidth: 1
+      description: ''
+      readwrite: rw
+      value: 1
+    i2c_words:
+      address: 0x0F
+      bitposition: 8
+      bitwidth: 4
+      description: 'number of words to send in the i2c command.'
+      readwrite: rw
+      value: 0
+    i2c_addr:
+      address: 0x0F
+      bitposition: 0
+      bitwidth: 8
+      description: 'i2c address for the commands in the string builder'
+      readwrite: rw
+      value: 0
+    i2c_data0:
+      address: 0x10
+      bitposition: 0
+      bitwidth: 16
+      description: 'Data storage used by the i2c string builder, for both rx and tx data'
+      readwrite: rw
+      value: 0
+    i2c_data1:
+      address: 0x11
+      bitposition: 0
+      bitwidth: 16
+      description: 'Data storage used by the i2c string builder, for both rx and tx data'
+      readwrite: rw
+      value: 0
+    i2c_data2:
+      address: 0x12
+      bitposition: 0
+      bitwidth: 16
+      description: 'Data storage used by the i2c string builder, for both rx and tx data'
+      readwrite: rw
+      value: 0
+    i2c_data3:
+      address: 0x13
+      bitposition: 0
+      bitwidth: 16
+      description: 'Data storage used by the i2c string builder, for both rx and tx data'
+      readwrite: rw
+      value: 0
+    response0:
+      address: 0x20
+      bitposition: 0
+      bitwidth: 16
+      description: ''
+      readwrite: r
+      value: 0
+    response1:
+      address: 0x21
+      bitposition: 0
+      bitwidth: 16
+      description: ''
+      readwrite: r
+      value: 0
+    response2:
+      address: 0x22
+      bitposition: 0
+      bitwidth: 16
+      description: ''
+      readwrite: r
+      value: 0
+    response3:
+      address: 0x23
+      bitposition: 0
+      bitwidth: 16
+      description: ''
+      readwrite: r
+      value: 0
