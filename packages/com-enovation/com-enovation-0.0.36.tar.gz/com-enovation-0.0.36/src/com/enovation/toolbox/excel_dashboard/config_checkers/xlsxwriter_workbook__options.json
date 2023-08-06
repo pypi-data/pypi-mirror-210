@@ -1,0 +1,60 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/workbook/options",
+  "description": "Optional workbook parameters.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "constant_memory": {
+      "description": "Reduces the amount of data stored in memory so that large files can be written efficiently",
+      "type": "boolean"
+    },
+    "tmpdir": {
+      "description": "XlsxWriter stores workbook data in temporary files prior to assembling the final XLSX file. The temporary files are created in the system’s temp directory. If the default temporary directory isn’t accessible to your application, or doesn’t contain enough space, you can specify an alternative location using the tmpdir option",
+      "type": "string"
+    },
+    "in_memory": {
+      "description": "To avoid the use of temporary files in the assembly of the final XLSX file, for example on servers that don’t allow temp files, set the in_memory constructor option to True",
+      "type": "boolean"
+    },
+    "strings_to_numbers": {
+      "description": "Enable the worksheet.write() method to convert strings to numbers, where possible, using float() in order to avoid an Excel warning about 'Numbers Stored as Text'. The default is False.",
+      "type": "boolean"
+    },
+    "strings_to_formulas": {
+      "description": "Enable the worksheet.write() method to convert strings to formulas. The default is True.",
+      "type": "boolean"
+    },
+    "strings_to_urls": {
+      "description": "Enable the worksheet.write() method to convert strings to urls. The default is True.",
+      "type": "boolean"
+    },
+    "use_future_functions": {
+      "description": "Enable the use of newer Excel 'future' functions without having to prefix them with with _xlfn. The default is False.",
+      "type": "boolean"
+    },
+    "max_url_length": {
+      "description": "Set the maximum length for hyperlinks in worksheets. The default is 2079 and the minimum is 255. Versions of Excel prior to Excel 2015 limited hyperlink links and anchor/locations to 255 characters each. Versions after that support urls up to 2079 characters. XlsxWriter versions >= 1.2.3 support the new longer limit by default. However, a lower or user defined limit can be set via the max_url_length option.",
+      "type": "integer"
+    },
+    "nan_inf_to_errors": {
+      "description": "Enable the worksheet.write() and write_number() methods to convert nan, inf and -inf to Excel errors. Excel doesn’t handle NAN/INF as numbers so as a workaround they are mapped to formulas that yield the error codes #NUM! and #DIV/0!. The default is False.",
+      "type": "boolean"
+    },
+    "default_date_format":  {
+      "description": "This option is used to specify a default date format string for use with the worksheet.write_datetime() method when an explicit format isn’t given. eg. 'default_date_format': 'dd/mm/yy'.",
+      "type": "string"
+    },
+    "remove_timezone":  {
+      "description": "Excel doesn’t support timezones in datetimes/times so there isn’t any fail-safe way that XlsxWriter can map a Python timezone aware datetime into an Excel datetime in functions such as write_datetime(). As such the user should convert and remove the timezones in some way that makes sense according to their requirements. Alternatively the remove_timezone option can be used to strip the timezone from datetime values. The default is False.",
+      "type": "boolean"
+    },
+    "use_zip64":  {
+      "description": "Use ZIP64 extensions when writing the xlsx file zip container to allow files greater than 4 GB. This is the same as calling use_zip64() after creating the Workbook object. This constructor option is just syntactic sugar to make the use of the option more explicit.",
+      "type": "boolean"
+    },
+    "date_1904":  {
+      "description": "Excel for Windows uses a default epoch of 1900 and Excel for Mac uses an epoch of 1904. However, Excel on either platform will convert automatically between one system and the other. XlsxWriter stores dates in the 1900 format by default. If you wish to change this you can use the date_1904 workbook option. This option is mainly for enhanced compatibility with Excel and in general isn’t required very often.",
+      "type": "boolean"
+    }
+  }
+}

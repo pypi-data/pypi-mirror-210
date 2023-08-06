@@ -1,0 +1,235 @@
+{
+  "$id": "https://enovation.com/excel_dashboard/table",
+  "description": "The table to be printed, composed of (i) conditional formattings and (ii) options when calling the function worksheet.add_table.",
+
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["options"],
+
+  "properties": {
+
+    "options": {
+      "description": "to specify the table options when calling the function worksheet.add_table. See website for further details https://xlsxwriter.readthedocs.io/working_with_tables.html",
+      "$ref": "https://enovation.com/xlsxwriter/worksheet/add_table/options"
+    },
+
+    "conditional_formattings": {
+      "description": "An array of conditional formattings to be applied",
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/conditional_format"}
+    }
+  },
+  "$defs": {
+    "conditional_format": {
+
+      "type": "object",
+      "description": "Similar definition as the default conditional format, except that addresses should be columns only... such as A:@C",
+      "additionalProperties": false,
+
+      "properties": {
+
+        "range": {
+          "type": "string",
+          "description": "to specify the range: A, A:A, @A, @A:@A",
+          "pattern": "^(?:\\@?[A-Z]+|\\@?[A-Z]+:\\@?[A-Z]+)$"
+        },
+
+        "options": {
+
+          "type": "object",
+          "description": "The options when calling the function worksheet.conditional_format. These options are validated using the json schema dict_json_schema__function_conditional_format__parameter_options. See website for further details: https://xlsxwriter.readthedocs.io/working_with_conditional_formats.html",
+
+          "minProperties": 1,
+
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "most common conditional formatting types. Other types exist, but are not yet implemented: time_period, average, duplicate, unique, top, bottom, blanks, no_blanks, errors, no_errors, 2_color_scale, 3_color_scale, data_bar, icon_set",
+              "enum": [
+                "cell",
+                "date",
+                "text",
+                "formula"
+              ]
+            },
+            "format": {
+              "description": "to specify the format that will be applied to the cell when the conditional formatting criterion is met",
+              "$ref": "/xlsxwriter/workbook/add_format/properties"
+            },
+            "stop_if_true": {
+              "type": "boolean",
+              "description": "to set the 'stop if true' feature of a conditional formatting rule when more than one rule is applied to a cell or a range of cells. When this parameter is set then subsequent rules are not evaluated if the current rule is true:"
+            },
+            "multi_range": {
+              "type": "string",
+              "description": "The multi_range option is used to extend a conditional format over non-contiguous ranges: A, A:A, @A, @A:@A in a Table. It is possible to apply the conditional format to different cell ranges in a worksheet using multiple calls to conditional_format(). However, as a minor optimization it is also possible in Excel to apply the same conditional format to different non-contiguous cell ranges. This is replicated in conditional_format() using the multi_range option. The range must contain the primary range for the conditional format and any others separated by spaces.",
+              "pattern": "^(?:\\@?[A-Z]+|\\@?[A-Z]+:\\@?[A-Z]+)(?:\\s+\\@?[A-Z]+|\\s+\\@?[A-Z]+:\\@?[A-Z]+)*$"
+            }
+          },
+          "oneOf": [
+            {"$ref": "#/$defs/cell"},
+            {"$ref": "#/$defs/cell - between"},
+            {"$ref": "#/$defs/date"},
+            {"$ref": "#/$defs/date - between"},
+            {"$ref": "#/$defs/text"},
+            {"$ref": "#/$defs/formula"}
+          ]
+        }
+      }
+    },
+
+    "cell": {
+      "required": ["type", "criteria", "value"],
+      "properties": {
+        "type": {"const": "cell"},
+        "criteria": {
+          "enum": ["equal to", "not equal to", "greater than", "less than", "greater than or equal to",
+            "less than or equal to"
+          ]
+        },
+        "value": {},
+        "format": {},
+        "stop_if_true": {},
+        "multi_range": {}
+      },
+      "additionalProperties": false
+    },
+    "cell - between": {
+      "required": [
+        "type",
+        "criteria",
+        "minimum",
+        "maximum"
+      ],
+      "properties": {
+        "type": {
+          "const": "cell"
+        },
+        "criteria": {
+          "enum": [
+            "between",
+            "not between"
+          ]
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "format": {},
+        "stop_if_true": {},
+        "multi_range": {}
+      },
+      "additionalProperties": false
+    },
+    "date": {
+      "required": [
+        "type",
+        "criteria",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "const": "date"
+        },
+        "criteria": {
+          "enum": [
+            "equal to",
+            "not equal to",
+            "greater than",
+            "less than",
+            "greater than or equal to",
+            "less than or equal to"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "format": "date"
+        },
+        "format": {},
+        "stop_if_true": {},
+        "multi_range": {}
+      },
+      "additionalProperties": false
+    },
+    "date - between": {
+      "required": [
+        "type",
+        "criteria",
+        "minimum",
+        "maximum"
+      ],
+      "properties": {
+        "type": {
+          "const": "date"
+        },
+        "criteria": {
+          "enum": [
+            "between",
+            "not between"
+          ]
+        },
+        "minimum": {
+          "type": "string",
+          "format": "date"
+        },
+        "maximum": {
+          "type": "string",
+          "format": "date"
+        },
+        "format": {},
+        "stop_if_true": {},
+        "multi_range": {}
+      },
+      "additionalProperties": false
+    },
+    "text": {
+      "required": [
+        "type",
+        "criteria",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "criteria": {
+          "enum": [
+            "containing",
+            "not containing",
+            "begins with",
+            "ends with"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "format": {},
+        "stop_if_true": {},
+        "multi_range": {}
+      },
+      "additionalProperties": false
+    },
+    "formula": {
+      "required": [
+        "type",
+        "criteria"
+      ],
+      "properties": {
+        "type": {
+          "const": "formula"
+        },
+        "criteria": {
+          "type": "string"
+        },
+        "format": {},
+        "stop_if_true": {},
+        "multi_range": {}
+      },
+      "additionalProperties": false
+    }
+
+  }
+}

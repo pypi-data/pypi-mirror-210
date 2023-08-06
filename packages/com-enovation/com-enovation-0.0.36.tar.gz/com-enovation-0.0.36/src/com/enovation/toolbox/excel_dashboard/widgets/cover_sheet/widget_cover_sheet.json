@@ -1,0 +1,14 @@
+{
+  "$id": "https://enovation.com/excel_dashboard/cover_sheet",
+  "description": "The json schema for the configuration node of a widget 'cover sheet'.",
+  "type": "object",
+  "required": [
+    "narrative"
+  ],
+  "properties": {
+    "narrative": {
+      "description": "The narrative to be displayed...",
+      "type": "string"
+    }
+  }
+}

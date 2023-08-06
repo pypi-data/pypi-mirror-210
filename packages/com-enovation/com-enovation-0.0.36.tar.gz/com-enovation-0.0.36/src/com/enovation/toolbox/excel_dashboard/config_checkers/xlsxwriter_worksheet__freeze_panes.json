@@ -1,0 +1,29 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/worksheet/freeze_panes/parameters",
+  "description": "To create worksheet panes and mark them as frozen.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["row", "col"],
+  "properties": {
+    "row": {
+      "description": "The cell row (zero indexed).",
+      "type": "integer",
+      "min": 0
+    },
+    "col": {
+      "description": "The cell column (zero indexed).",
+      "type": "integer",
+      "min": 0
+    },
+    "top_row": {
+      "description": "Topmost visible row in scrolling region of pane.",
+      "type": "integer",
+      "min": 0
+    },
+    "left_col": {
+      "description": "Leftmost visible row in scrolling region of pane.",
+      "type": "integer",
+      "min": 0
+    }
+  }
+}

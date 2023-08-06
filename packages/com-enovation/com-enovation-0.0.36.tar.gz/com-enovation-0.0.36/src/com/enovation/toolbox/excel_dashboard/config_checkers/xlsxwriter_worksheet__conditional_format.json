@@ -1,0 +1,21 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/worksheet/conditional_format",
+
+  "type": "object",
+  "description": "The range and the options when calling the function worksheet.conditional_format.",
+  "additionalProperties": false,
+
+  "properties": {
+
+    "range": {
+      "type": "string",
+      "description": "to specify the range",
+      "pattern": "^(?:\\@?[A-Z]+\\@?\\d+|\\@?[A-Z]+\\@?\\d+:\\@?[A-Z]+\\@?\\d+)$"
+    },
+
+    "options": {
+      "description": "to specify the options",
+      "$ref": "/xlsxwriter/worksheet/conditional_format/options"
+    }
+  }
+}

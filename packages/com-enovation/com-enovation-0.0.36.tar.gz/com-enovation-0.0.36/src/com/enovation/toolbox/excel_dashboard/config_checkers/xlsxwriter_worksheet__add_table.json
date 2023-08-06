@@ -1,0 +1,87 @@
+{
+    "$id": "https://enovation.com/xlsxwriter/worksheet/add_table/options",
+
+    "type": "object",
+    "description": "The options when calling the function worksheet.add_table. See website for further details https://xlsxwriter.readthedocs.io/working_with_tables.html",
+    "additionalProperties": false,
+    "properties": {
+        "autofilter": {
+            "type": "boolean",
+            "description": "to turn on or off the autofilter in the header row. It is on by default"
+        },
+        "header_row": {
+            "type": "boolean",
+            "description": "to turn on or off the header row in the table. It is on by default"
+        },
+        "banded_columns": {
+            "type": "boolean",
+            "description": "to create columns of alternating color in the table. It is on by default"
+        },
+        "banded_rows": {
+            "type": "boolean",
+            "description": "to create rows of alternating color in the table. It is on by default"
+        },
+        "first_column": {
+            "type": "boolean",
+            "description": "to highlight the first column of the table. The type of highlighting will depend on the style of the table. It may be bold text or a different color. It is off by default"
+        },
+        "last_column": {
+            "type": "boolean",
+            "description": "to highlight the last column of the table. The type of highlighting will depend on the style of the table. It may be bold text or a different color. It is off by default"
+        },
+        "style": {
+            "type": "string",
+            "description": "to set the style of the table. Standard Excel table format names should be used (with matching capitalization)"
+        },
+        "total_row": {
+            "type": "boolean",
+            "description": "to turn on the total row in the last row of a table. It is distinguished from the other rows by a different formatting and also with dropdown SUBTOTAL functions. By default, FALSE."
+        },
+        "name": {
+            "type": "string",
+            "description": "default tables are named Table1, Table2, etc. The name parameter can be used to set the name of the table",
+            "pattern": "^[a-zA-Z0-9_]+$"
+        },
+
+        "columns": {
+            "type": "array",
+            "description": "to set properties for columns within the table",
+            "items": {
+                "type": "object",
+                "description": "to set properties for one column within the table",
+                "additionalProperties": false,
+                "properties": {
+                    "header": {
+                        "type": "string",
+                        "description": "the column header"
+                    },
+                    "header_format": {
+                        "description": "the format for the column header",
+                        "$ref": "/xlsxwriter/workbook/add_format/properties"
+                    },
+                    "formula": {
+                        "type": "string",
+                        "description": "column formulas applied using the column formula property"
+                    },
+                    "total_string": {
+                        "type": "string",
+                        "description": "total captions are specified via the columns property and the total_string sub properties"
+                    },
+                    "total_function": {
+                        "type": "string",
+                        "enum": ["average", "count_nums", "count", "max", "min", "std_dev", "sum", "var"],
+                        "description": "total functions are specified via the columns property and the total_function sub properties total_function is a string among: average, count_nums, count, max, min, std_dev, sum, var"
+                    },
+                    "total_value": {
+                        "type": "number",
+                        "description": "to set a calculated value for the total_function using the total_value sub property. Only necessary when creating workbooks for applications that cannot calculate the value of formulas automatically. This is similar to setting the value optional property in write_formula()"
+                    },
+                    "format": {
+                        "description": "the format for the column",
+                        "$ref": "/xlsxwriter/workbook/add_format/properties"
+                    }
+                }
+            }
+        }
+    }
+}
