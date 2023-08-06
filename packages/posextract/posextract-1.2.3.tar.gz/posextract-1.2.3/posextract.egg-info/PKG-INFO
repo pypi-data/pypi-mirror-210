@@ -1,0 +1,140 @@
+Metadata-Version: 2.1
+Name: posextract
+Version: 1.2.3
+Summary: Grammatical information extraction methods designed for the analysis of historical and contemporary textual corpora.
+Author-email: Steph Buongiorno <steph.buon@gmail.com>, Alexander Cerpa <acerpa@smu.edu>
+License: MIT License
+        
+        Copyright (c) 2021 Steph Buongiorno and Alexander Cerpa
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, https://github.com/stephbuon/posextract
+Project-URL: repository, https://github.com/stephbuon/posextract
+Project-URL: documentation, https://github.com/stephbuon/posextract
+Keywords: triples,svo,action,agency
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE
+
+# posextract
+posextract offers grammatical information extraction methods designed for the analysis of historical and contemporary textual corpora. It traverses the syntactic dependency relations between parts-of-speech and returns sequences of words that share a grammatical relationship. See [our article]() for more. You can also [download posextract for pypi with pip](https://pypi.org/project/posextract/). 
+
+## Usage
+
+- `extract_triples` to extract subject-verb-object (SVO) and subject-verb-adjective complement (SVA) triples
+- `extract_adj_noun_pairs` to extract adjective-noun pairs
+- `extract_subj_verb_pairs` to extract subject-verb pairs
+
+Required Paramters: 
+
+- `input` can be the name of a csv file or an input string
+- `output` name of the output file
+
+Optional Paramters: 
+- `--data_column` specify the column to extract triples from.
+- `--id_column` specify a unique ID field if csv file is given.
+- `--file-delimiter` specify comma, pipe, or tab. Default is comma. 
+- `--post-combine-adj` combine triples (adjective predicate with object) 
+- `--add-auxiliary` extract future and past tense triples. 
+- `--prep-phrase` extract the . Default set to false. 
+- `--no-compound-noun` Extract just the subject or object (e.g. "Indian Government" is extracted as just "Government").
+- `--lemma` specify whether to lemmatize parts-of-speech. Default is non-lemmatized. 
+- `--verbose` print
+
+### Examples
+
+#### Interactive: 
+
+Extract grammatical triples.
+
+```
+from posextract import grammatical_triples
+
+triples = grammatical_triples.extract(['Landlords may exercise oppression.', 'The soldiers were ill.'])
+
+for triple in triples:
+    print(triple)
+
+# Output: Landlords exercise oppression, soldiers were ill
+```
+
+Extract grammatical triples using different options from default: 
+
+```
+from posextract.util import TripleExtractorOptions
+
+triples = grammatical_triples.extract(sent, TripleExtractorOptions(prep_phrase = True))
+```
+
+Or extract adjectives and the nouns they modify. 
+
+```
+from posextract import adj_noun_pairs
+
+adj_noun = adj_noun_pairs.extract()
+```
+
+Or extract subjects and their verbs. 
+
+```
+from posextract import subj_verb_pairs
+
+subj_verb = subj_verb_pairs.extract()
+```
+
+#### Over CLI: 
+
+posextract can extract grammatical triples from text: 
+
+```
+python -m posextract.extract_triples "Landlords may exercise oppression." output.csv
+
+# Output: Landlords exercise oppression
+```
+
+posextract can extract SVO/SVA relationships separately or it can combine the adjective as part of a SVO triple:
+
+```
+python -m posextract.extract_triples "The soldiers were terminally ill." output.csv --post-combine-adj
+
+# Output: soldiers were terminally, soldiers were ill 
+```
+
+```
+python -m posextract.extract_triples "The soldiers were terminally ill." output.csv --post-combine-adj
+
+# Output: soldiers were terminally ill
+```
+
+If provided a .csv file: 
+
+```
+python -m posextract.extract_triples --data_column sentence --id_column sentence_id input.csv output.csv
+```
+
+## For More Information...
+... see our Wiki: 
+- [About Our Evaluation Data](https://github.com/stephbuon/posextract/wiki/Evaluation-Data-Sets)
+- [About the Syntactic Dependency Parser](https://github.com/stephbuon/posextract/wiki/Our-Application-of-spaCy-NLP)
+- [How to Use posextract on Databricks](https://github.com/stephbuon/posextract/wiki/Using-posextract-on-Databricks)
