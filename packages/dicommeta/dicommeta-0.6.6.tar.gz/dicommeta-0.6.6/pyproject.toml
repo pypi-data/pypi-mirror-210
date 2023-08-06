@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "dicommeta"
+version = "0.6.6"
+description = "Dicom Metadata structures"
+authors = ["Kevin Long <longke@pennmedicine.upenn.edu>",]
+maintainers = ["Kevin Long <longke@pennmedicine.upenn.edu>",]
+repository = "https://dev.azure.com/longke/Radiology/_git/DicomMeta"
+readme = "README.md"
+include = ["CHANGELOG.md"]
+packages = [
+    { include = "dicommeta", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+attrs = "^23.1.0"
+python-dateutil = "^2.8.2"
+
+[tool.poetry.group.dev.dependencies]
+commitizen = "^3.2.2"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
