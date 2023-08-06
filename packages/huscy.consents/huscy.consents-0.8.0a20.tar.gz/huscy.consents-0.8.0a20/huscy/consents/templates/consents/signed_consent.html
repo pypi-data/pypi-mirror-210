@@ -1,0 +1,140 @@
+{% extends "consents/base.html" %}
+
+{% load dict_extras %}
+{% load jsignature_filters %}
+{% load static %}
+
+
+{% block title %} - signed consent{% endblock %}
+
+
+{% block extra_css %}
+@page {
+    margin: 0;
+    size: A4;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #eeeeee;
+}
+
+header div {
+    height: 3.2cm;
+    padding: 5mm 5mm 12mm 5mm;
+}
+
+main {
+    margin: 12mm 15mm;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main .header {
+    text-align: center;
+}
+
+main .textfragments {
+    margin-top: 1.5cm;
+}
+
+main .signature {
+    margin-top: 1cm;
+}
+
+footer {
+    bottom: 10px;
+    left: 10px;
+    position: fixed;
+}
+
+
+{% endblock %}
+
+
+{% block body %}
+<header>
+    <div>
+        <img src="{% static 'consents/img/logo.svg' %}">
+    </div>
+</header>
+
+<main>
+    <div class="header">
+        <h1>{{ consent.name }}</h1>
+    </div>
+
+    <table class="ui very basic collapsing celled table">
+        <tbody>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <div class="content">Name</div>
+                    </h4>
+                </td>
+                <td>
+                    {{ form.cleaned_data.first_name }} {{ form.cleaned_data.last_name }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <div class="content">Adresse</div>
+                    </h4>
+                </td>
+                <td>
+                    {{ form.cleaned_data.postal_code }} {{ form.cleaned_data.city }}, {{ form.cleaned_data.street }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <div class="content">Kontaktdaten</div>
+                    </h4>
+                </td>
+                <td>
+                    {{ form.cleaned_data.phone_number }}<br>
+                    {{ form.cleaned_data.email }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4 class="ui image header">
+                        <div class="content">Geburtstag:</div>
+                    </h4>
+                </td>
+                <td>
+                    {{ form.cleaned_data.date_of_birth }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="textfragments">
+        {% for text_fragment in consent.text_fragments %}
+        {% with index=forloop.counter0|stringformat:"s" %}
+        {% with key="textfragment"|add:index template_name="consents/text_fragments/"|add:text_fragment.type|add:".html" %}
+        {% include template_name with value=custom_data|get_value_from_dict:key %}
+        {% endwith %}
+        {% endwith %}
+        {% endfor %}
+    </div>
+
+    <div class="signature">
+        <div>
+            Ort, Datum: Leipzig, {% now "DATE_FORMAT" %}
+        </div>
+        <div>
+            Unterschrift:
+            <img src="{{ form.cleaned_data.signature|signature_base64 }}"><br>
+        <div>
+    </div>
+</main>
+
+<footer>
+    Version: {{ consent.version }}
+</footer>
+{% endblock body %}
