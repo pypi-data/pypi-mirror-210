@@ -1,0 +1,97 @@
+Metadata-Version: 2.1
+Name: ignord
+Version: 0.1.4
+Summary: ignord is a Python CLI application that generates git ignore files for a specific language with support for over 250 languages.
+Home-page: https://github.com/grafuls/ignord
+Author: Gonzalo Rafuls
+Author-email: grafuls@gmail.com
+License: LGPL-3.0-only
+Project-URL: Documentation, https://ignord.readthedocs.io/
+Project-URL: Changelog, https://ignord.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/grafuls/ignord/issues
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.7
+License-File: LICENSE
+License-File: AUTHORS.rst
+
+========
+Overview
+========
+
+
+
+`ignord` is a Python CLI application that generates git ignore files for a specific language with support for over 250 languages.
+
+* Free software: GNU Lesser General Public License v3 (LGPLv3)
+
+Installation
+============
+
+::
+
+    pip install ignord
+
+You can also install the in-development version with::
+
+    pip install https://github.com/grafuls/ignord/archive/main.zip
+
+
+Documentation
+=============
+
+https://ignord.readthedocs.io/
+
+
+Development
+===========
+
+To run all the tests run::
+
+    tox
+
+Note, to combine the coverage data from all the tox environments run:
+
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
+
+    - - Windows
+      - ::
+
+            set PYTEST_ADDOPTS=--cov-append
+            tox
+
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox
+
+
+Changelog
+=========
+
+0.1.2 (2023-05-24)
+------------------
+
+* Renamed to ignord.
+
+0.0.0 (2023-05-23)
+------------------
+
+* First release on PyPI.
