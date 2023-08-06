@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: abm-initialization-collection
+Version: 0.5.0
+Summary: Collection of tasks for initializing abm simulations.
+License: BSD-3-Clause
+Author: Jessica S. Yu
+Author-email: jesyu@uw.edu
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: aicsimageio (>=4.9.4,<5.0.0)
+Requires-Dist: hexalattice (>=1.2.1,<2.0.0)
+Requires-Dist: matplotlib (>=3.7.0,<4.0.0)
+Requires-Dist: numpy (>=1.24.2,<2.0.0)
+Requires-Dist: pandas (>=1.5.3,<2.0.0)
+Requires-Dist: prefect (>=2.8.2,<3.0.0)
+Requires-Dist: scikit-image (>=0.19.3,<0.20.0)
+Requires-Dist: scipy (>=1.9.3,<2.0.0)
+Description-Content-Type: text/markdown
+
+[![Build Status](https://github.com/allen-cell-animated/abm-initialization-collection/workflows/build/badge.svg)](https://github.com/allen-cell-animated/abm-initialization-collection/actions?query=workflow%3Abuild)
+[![Codecov](https://img.shields.io/codecov/c/gh/allen-cell-animated/abm-initialization-collection?token=JQK4B1DD7R)](https://codecov.io/gh/allen-cell-animated/abm-initialization-collection)
+[![Lint Status](https://github.com/allen-cell-animated/abm-initialization-collection/workflows/lint/badge.svg)](https://github.com/allen-cell-animated/abm-initialization-collection/actions?query=workflow%3Alint)
+[![Documentation](https://github.com/allen-cell-animated/abm-initialization-collection/workflows/documentation/badge.svg)](https://allen-cell-animated.github.io/abm-initialization-collection/)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
