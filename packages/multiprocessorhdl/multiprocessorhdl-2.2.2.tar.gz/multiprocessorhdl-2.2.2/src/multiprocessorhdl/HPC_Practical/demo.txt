@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*
+Windows:
+gcc -fopenmp demo.cpp -o demo.exe -lstdc++
+g++ -fopenmp demo.cpp -o demo.exe
+
+demo.exe
+
+Ubuntu: 
+gcc -fopenmp demo.cpp -o demo.exe -lstdc++ 
+or
+gcc -o demo.exe -fopenmp demo.c
+or
+g++ -fopenmp demo.cpp -o demo.exe
+
+./demo.exe
+*/
+
+ pip install multiprocessorhdl --default-timeout=100
+
