@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: anilibria-utils
+Version: 0.2.0
+Summary: download torrents from www.anilibria.tv
+Home-page: https://github.com/Kolcha/anilibria-utils
+Author: Nick Korotysh
+Author-email: kolchaprogrammer@list.ru
+License: MIT
+Keywords: anime,torrent-downloader
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: lxml
+Requires-Dist: requests
+
+simple Python package to download torrent files from https://www.anilibria.tv/
+
+```bash
+python -m anilibria 'https://www.anilibria.tv/release/steins-gate-zero.html'
+```
+
+pass `--help` for possible options:
+
+```bash
+python -m anilibria --help
+```
+
+or use it in your own script:
+
+```python
+import anilibria
+
+ts = anilibria.download_torrents('https://www.anilibria.tv/release/steins-gate-zero.html')
+for name, data in ts:
+    with open(name, "wb") as f:
+        f.write(data)
+```
