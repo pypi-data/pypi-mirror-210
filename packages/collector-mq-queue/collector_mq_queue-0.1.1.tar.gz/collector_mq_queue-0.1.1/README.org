@@ -1,0 +1,16 @@
+#+TITLE: RabbitMQ data manager
+
+Provee una clase para enviar/leer datos utilizando una cola AMQP de
+rabbitMQ.
+
+Primero instalar *poetry*
+
+#+begin_src bash
+pip install poetry
+#+end_src
+
+Luego instalar el módulo, debería instalar las dependencias.
+#+begin_src bash
+poetry build
+poetry install
+#+end_src

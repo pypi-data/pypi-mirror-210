@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: collector-mq-queue
+Version: 0.1.1
+Summary: Collector data to rabbitmq
+License: GPLv3
+Author: David Pineda
+Author-email: dahalpi@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: aio-pika (>=9.0.5,<10.0.0)
+Requires-Dist: networktools
+Requires-Dist: pika
+Requires-Dist: rich (>=13.3.4,<14.0.0)
+Requires-Dist: tasktools
+Requires-Dist: tomli
+Requires-Dist: typer (>=0.7.0,<0.8.0)
+Requires-Dist: ujson (>=5.7.0,<6.0.0)
+Requires-Dist: watchdog
+Description-Content-Type: text/plain
+
+#+TITLE: RabbitMQ data manager
+
+Provee una clase para enviar/leer datos utilizando una cola AMQP de
+rabbitMQ.
+
+Primero instalar *poetry*
+
+#+begin_src bash
+pip install poetry
+#+end_src
+
+Luego instalar el módulo, debería instalar las dependencias.
+#+begin_src bash
+poetry build
+poetry install
+#+end_src
+

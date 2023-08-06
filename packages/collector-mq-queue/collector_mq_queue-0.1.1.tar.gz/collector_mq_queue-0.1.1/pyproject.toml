@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "collector-mq-queue"
+version = "0.1.1"
+description = "Collector data to rabbitmq"
+authors = ["David Pineda <dahalpi@gmail.com>"]
+license = "GPLv3"
+readme = "README.org"
+packages = [{include = "collector_mq_queue"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+ujson = "^5.7.0"
+aio-pika = "^9.0.5"
+networktools = "*"
+tasktools = "*"
+tomli = "*"
+watchdog = "*"
+pika = "*"
+typer = "^0.7.0"
+rich = "^13.3.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+amqp_collector = 'collector_mq_queue.main:app'
