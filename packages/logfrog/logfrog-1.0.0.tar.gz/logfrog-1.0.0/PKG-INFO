@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: logfrog
+Version: 1.0.0
+Summary: A simple and efficient logging package in python with async support
+Home-page: https://github.com/fuushyn/logfrog
+Author: Lakshya Gupta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+# FrogLog
+
+FrogLog is an efficient, thread-safe logging library in Python. This nimble logger, designed with simplicity, offers non-blocking, asynchronous logging, making it perfect for applications that prioritize performance.
+
+## Features
+
+- **Asynchronous Logging:** Dispatch logs to a separate thread, freeing your application from waiting on IO operations.
+- **Log Levels:** Differentiate the importance of messages with `INFO`, `DEBUG`, `WARNING`, `ERROR`, and `CRITICAL` levels.
+- **Function Logging:** Automatically log function calls, tracking names, arguments, and return values.
+- **Stack Tracing:** Log the current stack trace, invaluable for debugging and understanding complex code execution paths.
+
+## Usage
+
+```python
+from froglog import FrogLog
+
+logger = FrogLog(filename="app.log")
+
+# Dispatch logs
+logger.info("Info message")
+logger.debug("Debug message")
+logger.warning("Warning message")
+logger.error("Error message")
+logger.critical("Critical message")
+
+# Log function calls
+@logger.log_function
+def test_function(a, b):
+    return a + b
+
+test_function(2, 3)
+
+# Log current stack
+logger.log_stack()
+
+# Gracefully stop the logger
+logger.stop()
+```
+## Contributing
+Thanks for making it this far! Here are some pointers to get you started - 
+
+### Feature Suggestions
+
+- **Configurable Log Formats:** Allow users to customize the format of the log output, such as including the file name and line number, or changing the timestamp format.
+
+- **Remote Logging:** Add support for logging to remote systems, such as logging servers or cloud storage.
+
+- **Performance Metrics:** Log system performance metrics like memory and CPU usage.
+
+- **Integration with Monitoring Tools:** Provide easy integration with popular monitoring and alerting tools.
+
+- **Log Rotation:** Implement automatic log rotation to prevent logs from consuming too much disk space.
+
+- **Filtering and Searching:** Provide capabilities to filter and search logs based on certain criteria, such as log level, timestamp, or content.
+
+Thank you for your interest in FrogLog. We look forward to your contributions!
