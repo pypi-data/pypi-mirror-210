@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: nxs-analysis-tools
+Version: 0.0.11
+Summary: Reduce and transform nexus format (.nxs) scattering data.
+Author-email: "Steven J. Gomez Alvarado" <stevenjgomez@ucsb.edu>
+License: MIT License
+        
+        Copyright (c) 2022 Soren Bear
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Download, https://pypi.org/project/nxs-analysis-tools/
+Project-URL: Bug Tracker, https://github.com/stevenjgomez/nxs-analysis-tools/issues
+Project-URL: Documentation, https://nxs-analysis-tools.readthedocs.io/en/stable/
+Project-URL: Source Code, https://github.com/stevenjgomez/nxs-analysis-tools
+Keywords: diffraction,xrd,nexusformat,nexus,nxs,scattering
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE
+
+# nxs-analysis-tools
+
+## Overview
+
+nxs-analysis-tools provides a suite of tools for slicing (2D) cutting (1D) and transforming (e.g., symmetrizing, interpolating, deltaPDF) nexus format (.nxs) scattering data.
+
+
+View the documentation [here](https://nxs-analysis-tools.readthedocs.io/en/stable/).
+
+## Installation
+
+Install nxs-analysis-tools with ``pip``:
+
+```{code-block} console
+pip install nxs_analysis_tools
+```
+For a manual install get this package:
+
+```{code-block} console
+
+    wget https://github.com/stevenjgomez/nxs_analysis_tools/archive/master.zip
+    unzip master.zip
+    rm master.zip
+    cd nxs_analysis_tools-master
+```
+
+## License
+
+This project is licensed under the MIT License.
