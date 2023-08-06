@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: textbook_nvim
+Version: 0.5.0
+Summary: Main python package for the textbook.nvim plugin.
+Author-email: Juan Lara <julara@unal.edu.co>
+Requires-Python: >3.8
+Requires-Dist: pydantic
+Requires-Dist: pynvim
+Requires-Dist: rich
+Requires-Dist: click
+Requires-Dist: jupytext
+Requires-Dist: flatlatex
+Requires-Dist: flit ; extra == "dev"
+Requires-Dist: black ; extra == "dev"
+Provides-Extra: dev
