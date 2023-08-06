@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: autora-experimentalist-sampler-nearest-value-sampler
+Version: 1.0.0b0
+Summary: A sampler which returns the nearest values between the input samples and the allowed values, without replacement.
+Author-email: "Built by Sebastian Musslick, restructured by Chad Williams" <sebastian_musslick@brown.edu>
+License: MIT license
+Project-URL: homepage, http://www.empiricalresearch.ai
+Project-URL: repository, https://github.com/AutoResearch/autora-experimentalist-sampler-nearest-value-sampler
+Project-URL: documentation, https://autoresearch.github.io/autora/
+Requires-Python: <4,>=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+
+# AutoRA Model Disagreement Sampler
+
+A sampler which returns the nearest values between the input samples and the allowed values, without replacement.
+
+# Example Code
+
+```
+from autora.experimentalist.sampler.nearest_value_sampler import nearest_values_sampler
+import numpy as np
+
+#Meta-Setup
+X_allowed = np.linspace(-3, 6, 10)
+X = np.random.choice(X_allowed,10)
+n = 5
+
+#Sampler
+X_new = nearest_values_sampler(X, X_allowed, n)
+```
