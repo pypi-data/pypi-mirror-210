@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: sphinx_json_schema_spec
+Version: 2023.5.3
+Summary: Sphinx support for the JSON Schema specifications
+Project-URL: Documentation, https://sphinx-json-schema-spec.readthedocs.io/
+Project-URL: Homepage, https://github.com/python-jsonschema/sphinx-json-schema-spec
+Project-URL: Issues, https://github.com/python-jsonschema/sphinx-json-schema-spec/issues/
+Project-URL: Funding, https://github.com/sponsors/Julian
+Project-URL: Source, https://github.com/python-jsonschema/sphinx-json-schema-spec
+Author: Julian Berman
+Author-email: Julian+sphinx-json-schema-spec@GrayVines.com
+License: MIT
+License-File: COPYING
+Keywords: data validation,json,json schema,jsonschema,sphinx
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: File Formats :: JSON :: JSON Schema
+Requires-Python: >=3.8
+Requires-Dist: lxml
+Requires-Dist: sphinx>=5.1.1
+Description-Content-Type: text/x-rst
+
+===========================
+``sphinx-json-schema-spec``
+===========================
+
+|PyPI| |Pythons| |CI|
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/sphinx-json-schema-spec.svg
+  :alt: PyPI version
+  :target: https://pypi.org/project/sphinx-json-schema-spec/
+
+.. |Pythons| image:: https://img.shields.io/pypi/pyversions/sphinx-json-schema-spec.svg
+  :alt: Supported Python versions
+  :target: https://pypi.org/project/sphinx-json-schema-spec/
+
+.. |CI| image:: https://github.com/python-jsonschema/sphinx-json-schema-spec/workflows/CI/badge.svg
+  :alt: Build status
+  :target: https://github.com/python-jsonschema/sphinx-json-schema-spec/actions?query=workflow%3ACI
+
+
+A Sphinx extension providing a role which allows linking to sections within the `JSON Schema specifications <https://json-schema.org/>`_.
+
+It is intended for use by implementations of JSON Schema (in Python or otherwise) who may wish to interlink to the specification in their own documentation.
