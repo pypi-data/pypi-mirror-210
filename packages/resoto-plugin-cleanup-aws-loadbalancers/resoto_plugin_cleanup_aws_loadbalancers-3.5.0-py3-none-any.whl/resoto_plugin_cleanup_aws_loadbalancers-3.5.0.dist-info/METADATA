@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: resoto-plugin-cleanup-aws-loadbalancers
+Version: 3.5.0
+Summary: AWS Loadbalancers Cleaner Plugin
+Home-page: https://github.com/someengineering/resoto/tree/main/plugins/cleanup_aws_loadbalancers
+License: Apache 2.0
+Keywords: cloud security
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Topic :: Security
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: resotolib (==3.5.0)
+Requires-Dist: resoto-plugin-aws (==3.5.0)
+
+# resoto-plugin-cleanup-aws-loadbalancers
+AWS Loadbalancers Cleanup Plugin for Resoto
+
+This plugin cleans up AWS ALB/ELB load balancers with no instances attached to them.
+
+## Usage
+
+```
+plugin_cleanup_aws_loadbalancers:
+  # Enable plugin?
+  enabled: false
+  # Minimum age of unused load balancers to cleanup
+  min_age: '7 days'
+```
+
+The default load balancer age is 7 days. Meaning if a load balancer is more than 7 days old and does not have any instances/backends attached it will be flagged for cleanup.
+
+Optionally change the age cutoff value using the `min_age` option.
+
+Example of valid age units:
+
+```
+weeks
+days
+hours
+minutes
+```
+
+Each of them can be abbreviated down to one letter. E.g. `7d`, `24h`, `60m`, etc. A space in between the numeric and the unit is optional, meaning `7d` and `7 days` are equivalent.
