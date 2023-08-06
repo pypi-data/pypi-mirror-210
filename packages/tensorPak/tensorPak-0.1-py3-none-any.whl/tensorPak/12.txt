@@ -1,0 +1,195 @@
+// Merge Sort, Bubble Sort
+
+#include <bits/stdc++.h>
+#include <omp.h>
+#include <chrono>
+
+using namespace std;
+using namespace std::chrono;
+
+void print(vector<int> &arr){
+	int N = arr.size();
+	for(int i = 0; i < N; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+}
+
+// Merge two sorted subarrays into a single sorted array
+void merge(vector<int> &arr, int left, int mid, int right){
+    int i = left, j = mid+1, k = 0;
+    vector<int> temp(right-left+1); // Temporary array to store merged values
+    while(i <= mid && j <= right){
+        temp[k++] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++]; // Select the smaller element and advance the corresponding index
+    }
+    while(i <= mid)     temp[k++] = arr[i++]; // Copy remaining elements from the first subarray, if any
+    while(j <= right)   temp[k++] = arr[j++]; // Copy remaining elements from the second subarray, if any
+
+    // Copy the merged elements back to the original array
+    for(int i = 0; i < right-left+1; i++)
+        arr[left+i] = temp[i];
+}
+
+
+// Perform sequential merge sort on a given range of the array
+void serial_merge_sort(vector<int> &arr, int left, int right){
+    if(left >= right)
+        return; // Base case: If the range contains only one element or is empty, return
+
+    int mid = left+(right-left)/2; // Calculate the mid index of the range
+
+    // Recursively divide the range into two halves and perform merge sort on each half
+    serial_merge_sort(arr, left, mid);
+    serial_merge_sort(arr, mid+1, right);
+
+    // Merge the two sorted halves
+    merge(arr, left, mid, right);
+}
+
+
+// Perform parallel merge sort on a given range of the array
+void parallel_merge_sort(vector<int> &arr, int left, int right){
+    if(left >= right)
+        return; // Base case: If the range contains only one element or is empty, return
+
+    int mid = left+(right-left)/2; // Calculate the mid index of the range
+
+    #pragma omp parallel sections
+    {
+        #pragma omp section
+        parallel_merge_sort(arr, left, mid); // Recursively perform parallel merge sort on the left half
+
+        #pragma omp section
+        parallel_merge_sort(arr, mid+1, right); // Recursively perform parallel merge sort on the right half
+    }
+
+    merge(arr, left, mid, right); // Merge the two sorted halves
+}
+
+
+// Perform serial bubble sort on the given array
+void serial_bubble_sort(vector<int> &arr, int N){
+    for(int i = 0; i < N; i++){
+        for(int j = 0; j < N; j++){
+            if(i == j)
+                continue; // Skip self-comparisons
+
+            if(arr[i] > arr[j]){
+                swap(arr[i], arr[j]); // Swap elements if out of order
+            }		
+        }	
+    }
+}
+
+
+// Perform parallel bubble sort on the given array
+void parallel_bubble_sort(vector<int> &arr, int N){
+    #pragma omp for
+    for(int i = 0; i < N; i++){
+        for(int j = 0; j < N; j++){
+            if(i == j)
+                continue; // Skip self-comparisons
+
+            #pragma omp critical
+            {
+                if(arr[i] > arr[j]){
+                    swap(arr[i], arr[j]); // Swap elements if out of order
+                }		
+            }
+        }	
+    }
+}
+
+
+
+int main(){
+	
+    // Generate random array and measure time
+
+    srand(time(0)); // Seed the random number generator with current time
+    auto start = high_resolution_clock::now(); // Start the timer
+    auto stop = high_resolution_clock::now(); // Stop the timer
+    auto duration = duration_cast<nanoseconds>(stop - start); // Calculate the duration
+
+    int N = rand() % 10 + 1; // Generate a random size for the array (between 1 and 10)
+    cin >> N;
+    vector<int> arr(N); // Create a vector to store the random array
+    cout << "Original Array: ";
+    for(int i = 0; i < N; i++){
+        arr[i] = rand() % 1000; // Generate a random number between 0 and 999 for each element
+        cout << arr[i] << " ";	
+    }
+    cout << endl;
+
+	cout << "\n\n Merge Sort ---------------\n\n";
+	// ----------------------------------------------------------
+
+	// S e r i a l        M e r g e 	
+
+	start = high_resolution_clock::now();
+	serial_merge_sort(arr, 0, N-1);
+	
+
+	cout << "Serial Merge Sort : ";
+	for(int i = 0; i < N; i++){
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+	stop = high_resolution_clock::now();
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Serial Time : " << duration.count() << endl;
+
+	// P a r a l l e l       M e r g e 	
+
+	start = high_resolution_clock::now();
+	cout << "Parallel Merge Sort : ";
+	parallel_merge_sort(arr, 0, N-1);
+
+	for(int i = 0; i < N; i++){
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+	stop = high_resolution_clock::now();
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Parallel Time : " << duration.count() << endl;
+
+
+	// ------------------------------------------------------------
+	cout << "\n\n\n Bubble Sort ---------------\n\n";
+	cout << "New shuffled array : ";
+	for(int i = 0; i < N; i++){
+		arr[i] = rand()%1000;
+		cout << arr[i] << " ";	
+	}
+	cout << "\n\n";
+
+	// S e r i a l        B u b b l e	
+
+	start = high_resolution_clock::now();
+	cout << "Serial Bubble Sort : ";
+	serial_bubble_sort(arr, N);
+	reverse(arr.begin(), arr.end());
+	for(int i = 0; i < N; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Serial Time : " << duration.count() << endl;
+
+	// P a r a l l e l       B u b b l e 	
+
+	
+	start = high_resolution_clock::now();
+	cout << "Parallel Bubble Sort : ";
+	parallel_bubble_sort(arr, N);
+	reverse(arr.begin(), arr.end());
+	stop = high_resolution_clock::now();
+	for(int i = 0; i < N; i++)
+		cout << arr[i] << " ";
+	cout << endl;
+
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Parallel Time : " << duration.count() << endl;
+	
+	return 0;
+}
