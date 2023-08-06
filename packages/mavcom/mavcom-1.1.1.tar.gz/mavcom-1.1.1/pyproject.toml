@@ -1,0 +1,31 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mavcom"
+version = "1.1.1"
+description = "A python package that creates a simplified programming interface for controlling Mavlink-capable flight controllers"
+readme = "README.md"
+authors = [{ name = "Mavscient", email = "mavscient@xee4c.33mail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["mavlink", "drone", "drones", "pymavlink", "dronekit"]
+dependencies = [
+    "pymavlink",
+    "pyserial",
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = ["black", "pip-tools", "pytest"]
+
+[project.urls]
+Homepage = "https://github.com/Mavscient/Mavcom"
+
+[project.scripts]
+realpython = "reader.__main__:main"
