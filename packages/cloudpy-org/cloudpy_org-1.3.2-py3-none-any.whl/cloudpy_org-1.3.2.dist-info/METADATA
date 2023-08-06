@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: cloudpy-org
+Version: 1.3.2
+Summary: Cloud data pipeline organization and automation library. Includes AWS framework manager API.
+Home-page: https://www.cloudpy.org/
+Author: cloudpy.org
+Author-email: admin@cloudpy.org
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: pandasql
+Requires-Dist: boto3
+Requires-Dist: awswrangler
+Requires-Dist: tqdm
+Requires-Dist: numpy
+Requires-Dist: cryptography
+Requires-Dist: s3fs
+
+A library to programmatically create, interact, encrypt and automate your data pipelines making it simple to scale to the most popular cloud plattforms.
+
+
