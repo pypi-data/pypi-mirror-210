@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: promptops
+Version: 0.1.2
+Summary: Your CLI assistant. Ask questions, get shell commands.
+Home-page: https://promptops.com/
+Author: CtrlStack inc.
+Project-URL: Documentation, https://docs.promptops.com/cli
+Project-URL: Changelog, https://docs.promptops.com/en/stable/changelog.html
+Project-URL: Live demo, https://promptops.com/
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: colorama (~=0.4.6)
+Requires-Dist: urllib3 (<2,>=1.26)
+Requires-Dist: requests (~=2.29.0)
+Requires-Dist: websockets (~=11.0.2)
+Requires-Dist: detect-secrets (~=1.4.0)
+Requires-Dist: prompt-toolkit (~=3.0.38)
+Requires-Dist: numpy (~=1.24.3)
+Requires-Dist: pyperclip (~=1.8.2)
+Requires-Dist: psutil (~=5.9.5)
+Requires-Dist: boto3 (~=1.26.131)
+Requires-Dist: kubernetes (~=26.1.0)
+Requires-Dist: setuptools
+Requires-Dist: pip
+
