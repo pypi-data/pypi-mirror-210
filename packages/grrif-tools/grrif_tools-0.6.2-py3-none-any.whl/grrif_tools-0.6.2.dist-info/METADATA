@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: grrif-tools
+Version: 0.6.2
+Summary: An unofficial set of tools for Cool Cats™.
+Home-page: https://github.com/fetzu/grrif-tools
+Download-URL: https://github.com/fetzu/grrif-tools/releases/latest
+Author: Julien 'fetzu' Bono
+License: MIT License
+        
+        Copyright (c) 2023 Julien 'fetzu' Bono
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/fetzu/grrif-tools
+Project-URL: Bug Tracker, https://github.com/fetzu/grrif-tools/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Requests (==2.30.0)
+Requires-Dist: beautifulsoup4 (==4.11.1)
+Requires-Dist: titlecase (==2.4)
+
+# GRRIF Tools
+
+A set of tools for Cool Cats™. Allows you to archive GRRIF's play history to a SQLite database (or text files), compute/display some stats (top 10/25/100 artists and tracks), ~~and scrobble it to last.fm~~ (upcoming).
+
+```
+usage: grrif_tools [-h] {archive,stats,scrobble} ...
+
+A set of tools for Cool Cats™. Allows you to archive GRRIF's play history and scrobble it to last.fm (upcoming).
+
+positional arguments:
+  {archive,stats,scrobble}
+    archive             Archive GRRIF's play history.
+    stats               Get some stats out of the database.
+    scrobble            Scrobble to Last.fm.
+
+options:
+  -h, --help            show this help message and exit
+  ```
+  
+  **NOTE:** This package is unofficial and meant mostly as a playground to experiment with some new things (argparse, python packaging, etc...). Please do not DDoS GRRIF's website !
