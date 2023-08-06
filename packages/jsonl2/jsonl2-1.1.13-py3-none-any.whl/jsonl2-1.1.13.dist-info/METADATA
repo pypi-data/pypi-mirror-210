@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: jsonl2
+Version: 1.1.13
+Summary: Json line library
+Author-email: Pedro Mayorga <ppmayorga80@gmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: smart-open
+Requires-Dist: tqdm
+
+# Json Line library
+
+this is a library aiming to handle json line files.
+
+## What is a Json line file (*.jsonl)
+A json line file is a text file where each line is a single json document.
+
+The advantages to have a jsonl file are:
+1. fast reading, we don't need to wait to read the entire file to know data 
+2. skip lines very fast without parsing json documents
+3. we can read a jsonl file in parallel
+
+# Installation
+``pip install jsonl``
+
+# Usage
+```python
+from jsonl import Jsonl
+#read whole file
+data0 = [x for x in Jsonl("/path/to/file")]
+#alternative to read 
+data1 = list(Jsonl("/path/to/file"))
+
+#read 100 rows after row 20
+data2 = [x for x in Jsonl("/path/to/file", offset=20, limit=100)]
+
+#write objects
+data3=[{"name":"Newton"}, {"name":"Galileo"}]
+Jsonl("/path/to/file","w").write(data3)
+```
+
+If the file is located in the cloud, 
+you only need to configure your environment
+`Jsonl` class will handle it for aws, gcp, etc.
+
+`Jsonl` can handle `.zip` or `.gz` files automatically
+you only need to specify the right extension in the path
+
+#Author
+Pedro Mayorga.
