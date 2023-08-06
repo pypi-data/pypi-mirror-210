@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "datavision-beeyard-sdk"
+version = "12.2.0"
+description = "BeeYard Python SDK"
+authors = ["DataVision <support@datavision.software>"]
+license = "MIT"
+homepage = "https://docs.beeyard.services/docs/reference/sdk/python/"
+keywords = ["python", "sdk", "beeyard"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+attrs = "^21.2.0"
+httpx = "^0.24.1"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+Pillow = "^8.3.2"
+flake8 = "^3.9.2"
+ipykernel = "^6.5.1"
+torch = "^1.11.0"
+torchvision = "^0.12.0"
+matplotlib = "^3.5.0"
+pandas = "^1.3.4"
+tqdm = "^4.62.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
