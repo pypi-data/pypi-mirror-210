@@ -1,0 +1,160 @@
+Metadata-Version: 2.1
+Name: directory-client-core
+Version: 7.2.2
+Summary: Python common code for Directory API clients.
+Home-page: https://github.com/uktrade/directory-client-core
+Author: Department for International Trade
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: requests (<3.0.0,>=2.21.0)
+Requires-Dist: monotonic (<3.0,>=1.2)
+Requires-Dist: sigauth (<=5.2.0,>=4.0.1)
+Requires-Dist: django (<=4.2,>=3.2.18)
+Requires-Dist: w3lib (<2.0.0,>=1.19.0)
+Provides-Extra: test
+Requires-Dist: flake8 (==5.0.4) ; extra == 'test'
+Requires-Dist: freezegun (==1.0.0) ; extra == 'test'
+Requires-Dist: pytest-django (==4.1.0) ; extra == 'test'
+Requires-Dist: pytest-sugar (==0.9.5) ; extra == 'test'
+Requires-Dist: pytest (==5.4.0) ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-codecov ; extra == 'test'
+Requires-Dist: GitPython ; extra == 'test'
+Requires-Dist: requests-mock (==1.8.0) ; extra == 'test'
+Requires-Dist: setuptools (<39.0.0,>=38.6.0) ; extra == 'test'
+Requires-Dist: twine ; extra == 'test'
+Requires-Dist: wheel (<1.0.0,>=0.31.0) ; extra == 'test'
+
+# directory-client-core
+
+[![code-climate-image]][code-climate]
+[![circle-ci-image]][circle-ci]
+[![codecov-image]][codecov]
+[![pypi-image]][pypi]
+[![semver-image]][semver]
+
+**Directory Client Core.**
+
+Common code for the Directory API clients.
+---
+
+## Requirements
+
+## Installation
+
+```shell
+pip install directory-client-core
+```
+
+## Usage
+
+```python
+from directory_client_core.base import AbstractAPIClient
+
+
+class MyAPIClient(AbstractAPIClient):
+
+    version = 1  # passed as a header in all requests
+
+    def get_something(self):
+        return self.get(...)
+
+    def create_sometime(self):
+        return self.post(...)
+
+
+client = MyAPIClient(
+    base_url='https://example.com/',
+    api_key='test',
+    sender_id='test-sender-id',
+    timeout=2,
+)
+
+response = client.get_something()
+```
+
+### Caching
+
+The decorator `directory_client_core.helpers.fallback` can be used to cache the responses from the remote server, allowing the cached content to be later used if the remote server does not return the up to date live content (maybe it times out, maybe the server is down). This decorator also saves etag response headers to later expose them in requests and respect 304 (Not modified) response and serve already cached contents.
+
+```
+# settings.py
+DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = 60 * 60 * 24 * 30  # 30 days
+
+# client.py
+
+from django.core.cache import caches
+
+from directory_client_core import helpers
+from directory_client_core.base import AbstractAPIClient
+
+
+class APIClient(AbstractAPIClient):
+    version = 1
+
+    @helpers.fallback(cache=caches['fallback'])
+    def get(self, *args, **kwargs):
+        return super().get(*args, **kwargs)
+
+    def retrieve(self):
+        return self.get(url='/some/path/')
+```
+
+The `fallback` creates log entries when cache events occur. To reduce noise `DIRECTORY_CLIENT_CORE_CACHE_LOG_THROTTLING_SECONDS` can be set in settings. This will result in a log event being created only once every period of time. By default this means seeing "cache hit for url x" (for a given url) is shown once every 24 hours.
+
+## Development
+
+    $ git clone https://github.com/uktrade/directory-client-core
+    $ cd directory-client-core
+    $ make test_requirements
+
+## Publish to PyPI
+
+The package should be published to PyPI on merge to master. If you need to do it locally then get the credentials from rattic and add the environment variables to your host machine:
+
+| Setting                     |
+| --------------------------- |
+| DIRECTORY_PYPI_USERNAME     |
+| DIRECTORY_PYPI_PASSWORD     |
+
+
+Then run the following command:
+
+    make publish
+
+
+[code-climate-image]: https://codeclimate.com/github/uktrade/directory-client-core/badges/issue_count.svg
+[code-climate]: https://codeclimate.com/github/uktrade/directory-client-core
+
+[circle-ci-image]: https://circleci.com/gh/uktrade/directory-client-core/tree/master.svg?style=svg
+[circle-ci]: https://circleci.com/gh/uktrade/directory-client-core/tree/master
+
+[codecov-image]: https://codecov.io/gh/uktrade/directory-client-core/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/uktrade/directory-client-core
+
+[pypi-image]: https://badge.fury.io/py/directory-client-core.svg
+[pypi]: https://badge.fury.io/py/directory-client-core
+
+[semver-image]: https://img.shields.io/badge/Versioning%20strategy-SemVer-5FBB1C.svg
+[semver]: https://semver.org
+
+
+
