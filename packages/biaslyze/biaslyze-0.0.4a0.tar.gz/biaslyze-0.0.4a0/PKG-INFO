@@ -1,0 +1,96 @@
+Metadata-Version: 2.1
+Name: biaslyze
+Version: 0.0.4a0
+Summary: The NLP Bias Identification Toolkit
+Home-page: https://biaslyze.org
+License: BSD-3-Clause
+Keywords: NLP,bias,ethics,fairness
+Author: Tobias Sterbak & Stina Lohmüller
+Author-email: hello@biaslyze.org
+Maintainer: Tobias Sterbak
+Maintainer-email: hello@tobiassterbak.com
+Requires-Python: >=3.10,<3.11
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: bertopic (==0.13.0)
+Requires-Dist: bokeh (>=3.1.0,<4.0.0)
+Requires-Dist: eli5 (>=0.13.0,<0.14.0)
+Requires-Dist: jupyterlab (>=3.5.2,<4.0.0)
+Requires-Dist: loguru (>=0.6.0,<0.7.0)
+Requires-Dist: matplotlib (>=3.7.1,<4.0.0)
+Requires-Dist: numpy (==1.23.2)
+Requires-Dist: pandas (>=1.5.3,<2.0.0)
+Requires-Dist: scikit-learn (>=1.2.0,<2.0.0)
+Requires-Dist: scipy (==1.8.0)
+Requires-Dist: spacy (>=3.5.0,<4.0.0)
+Requires-Dist: transformers (>=4.26.1,<5.0.0)
+Requires-Dist: umap-learn (>=0.5.3,<0.6.0)
+Project-URL: Repository, https://github.com/biaslyze-dev/biaslyze/issues
+Description-Content-Type: text/markdown
+
+# biaslyze
+The NLP Bias Identification Toolkit
+
+
+## Usage example
+
+```python
+from biaslyze.bias_detectors import CounterfactualBiasDetector
+
+bias_detector = CounterfactualBiasDetector()
+
+# detect bias in the model based on the given texts
+# here, clf is a scikit-learn text classification pipeline trained for a binary classification task
+detection_res = bias_detector.process(
+    texts=texts,
+    predict_func=clf.predict_proba
+)
+
+# see a summary of the detection
+detection_res.report()
+
+# visualize the counterfactual scores
+detection_res.visualize_counterfactual_scores(concept="religion", top_n=10)
+```
+
+Example output:
+![](resources/hatespeech_dl_scores_religion.png)
+
+
+## Development setup
+
+- First you need to install poetry to manage your python environment: https://python-poetry.org/docs/#installation
+- Run `make install` to install the dependencies and get the spacy basemodels.
+- Now you can use `biaslyze` in your jupyter notebooks.
+
+
+### Adding concepts and keywords
+
+You can add concepts and new keywords for existing concepts by editing [concepts.py](https://github.com/biaslyze-dev/biaslyze/blob/keyword-based-targeted-lime/biaslyze/concepts.py).
+
+## Preview/build the documentation with mkdocs
+
+To preview the documentation run `make doc-preview`. This will launch a preview of the documentation on `http://127.0.0.1:8000/`.
+To build the documentation html run `make doc`.
+
+
+## Run the automated tests
+
+`make test`
+
+
+## Style guide
+
+We are using isort and black: `make style`
+For linting we are running ruff: `make lint`
+
+## Contributing
+
+Follow the google style guide for python: https://google.github.io/styleguide/pyguide.html
+
+This project uses black, isort and ruff to enforce style. Apply it by running `make style` and `make lint`.
+
+
