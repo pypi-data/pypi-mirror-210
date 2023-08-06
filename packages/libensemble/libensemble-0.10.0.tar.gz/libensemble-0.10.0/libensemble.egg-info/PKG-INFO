@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: libensemble
+Version: 0.10.0
+Summary: Library to coordinate the concurrent evaluation of dynamic ensembles of calculations
+Home-page: https://github.com/Libensemble/libensemble
+Author: Jeffrey Larson, Stephen Hudson, Stefan M. Wild, David Bindel and John-Luke Navarro
+Author-email: libensemble@lists.mcs.anl.gov
+License: BSD 3-clause
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: extras
+Provides-Extra: docs
+License-File: LICENSE
+
+libEnsemble is a Python toolkit for coordinating workflows of asynchronous
+and dynamic ensembles of calculations.
+
+libEnsemble can help users take advantage of massively parallel resources to
+solve design, decision, and inference problems and expand the class of
+problems that can benefit from increased parallelism.
+
