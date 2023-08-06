@@ -1,0 +1,1 @@
+function code(c,d,b){var a="editor_"+c.id;if(typeof window[a]==='undefined'){window[a]=CodeMirror.fromTextArea(c,b);}window[a].setValue(d);Object.keys(b).forEach(function(c){window[a].setOption(c,b[c]);});}
