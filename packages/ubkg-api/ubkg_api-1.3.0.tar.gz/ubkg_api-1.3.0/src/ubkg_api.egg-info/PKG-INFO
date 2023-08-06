@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: ubkg-api
+Version: 1.3.0
+Summary: A REST API in front of the Unified Biomedical Knowlegde Graph
+Author-email: HuBMAP Consortium <api-developers@hubmapconsortium.org>
+Project-URL: Homepage, https://github.com/x-atlas-consortia/ubkg-api
+Project-URL: Bug Tracker, https://github.com/x-atlas-consortia/ubkg-api/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Unified Biomedical Knowledge Graph
+
+## UBKG-API
+
+The components of the UBKG include:
+- The **source framework** that extracts ontology information from the UMLS to create a set of CSV files (**UMLS CSVs**)
+- The **generation framework** that appends to the UMLS CSVs assertion data from other ontologies to create a set of **ontology CSVs**.
+- A neo4j **ontology knowledge graph** populated from the ontology CSVS.
+- An **API server** that provides RESTful endpoints to query the ontology knowledge graph.
+
+This repository contains the source for the API.
+
+# SmartAPI documentation
+
+The specification for the UBKG API can be found [here](https://smart-api.info/ui/96e5b5c0b0efeef5b93ea98ac2794837/).
+
+# Developer Information
+
+## Build and publish to PyPI
+
+```
+python -m build
+python3 -m twine upload dist/*
+```
+
+## Requirements
+Python 3.9 or newer
