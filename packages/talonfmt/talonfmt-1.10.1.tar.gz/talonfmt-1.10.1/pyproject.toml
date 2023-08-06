@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=45"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "talonfmt"
+version = "1.10.1"
+description = "A code formatter for Talon files"
+license = { file = 'LICENSE' }
+authors = [{ name = "Wen Kokke", email = "wenkokke@users.noreply.github.com" }]
+readme = "README.md"
+keywords = ["talon", "formatter"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Compilers",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.7.1,<3.12"
+dependencies = [
+  "click >=8.1.3,<9",
+  "dataclasses_json >=0.5.7,<0.6",
+  "doc_printer >=0.13.1,<0.16",
+  "editorconfig >=0.12.3,<0.13",
+  "tree_sitter_talon >=1007.3.2.0,<3!2",
+  "singledispatchmethod >=1.0,<2; python_version <'3.8'",
+  "astunparse >=1.6.3,<2; python_version <'3.9'",
+]
+
+[project.optional-dependencies]
+mypy = ["types_setuptools"]
+test = [
+  "bumpver",
+  "mypy >=1.1.1,<2",
+  "pytest >=7.1.2,<8",
+  "pytest_golden >=0.2.2,<0.3",
+  "pytest_benchmark >=3.4.1,<5.0.0"
+]
+
+[project.scripts]
+talonfmt = "talonfmt.cli:cli"
+
+[tool.bumpver]
+current_version = "1.10.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "Bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"src/talonfmt/__init__.py" = ['__version__: str = "{version}"']
+
+[tool.mypy]
+python_version = 3.9
+strict = true
+implicit_reexport = false
+ignore_missing_imports = true
+disallow_untyped_decorators = false
+warn_unused_ignores = false
+
+[tool.pytest.ini_options]
+enable_assertion_pass_hook = true
+filterwarnings = ["ignore::DeprecationWarning:.*:"]
+addopts = "--ignore=tests/data"
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py37, py38, py39, py310, py311
+isolated_build = true
+
+[testenv]
+extras =
+  test
+commands =
+  {envpython} -m bumpver update --patch --dry --no-fetch
+  {envpython} -m pytest tests --benchmark-disable -x
+"""

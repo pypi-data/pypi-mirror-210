@@ -1,0 +1,21 @@
+click<9,>=8.1.3
+dataclasses_json<0.6,>=0.5.7
+doc_printer<0.16,>=0.13.1
+editorconfig<0.13,>=0.12.3
+tree_sitter_talon<3!2,>=1007.3.2.0
+
+[:python_version < "3.8"]
+singledispatchmethod<2,>=1.0
+
+[:python_version < "3.9"]
+astunparse<2,>=1.6.3
+
+[mypy]
+types_setuptools
+
+[test]
+bumpver
+mypy<2,>=1.1.1
+pytest<8,>=7.1.2
+pytest_golden<0.3,>=0.2.2
+pytest_benchmark<5.0.0,>=3.4.1
