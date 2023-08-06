@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "remarkabletools-mx-smartsend"
+version = "1.0.0"
+authors = [
+  { name="Remarkable Tools" },
+]
+license = "MIT"
+description = "⚡ MultiversX SmartSend Python SDK: Library for interacting with Smart Send contracts on MultiversX blockchain"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/RemarkableTools/Mx.PY.SDK.SmartSend"
+"Bug Tracker" = "https://github.com/RemarkableTools/Mx.PY.SDK.SmartSend/issues"
