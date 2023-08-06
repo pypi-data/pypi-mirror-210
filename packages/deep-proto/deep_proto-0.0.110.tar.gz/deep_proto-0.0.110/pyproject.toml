@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "deep-proto"
+description = "DEEP Python Protobuf"
+readme = "../../README.md"
+license = "AGPL-3.0-only"
+requires-python = ">3.7"
+authors = [
+    { name = "Intergral GmbH", email = "support@intergral.com" },
+    { name = "Ben Donnelly", email = "b.w.donnelly1@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Typing :: Typed",
+]
+dependencies = []
+version = "0.0.110"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "deepproto",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["deepproto"]
