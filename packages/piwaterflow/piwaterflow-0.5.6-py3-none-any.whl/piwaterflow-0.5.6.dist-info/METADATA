@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: piwaterflow
+Version: 0.5.6
+Summary: Raspberry Pi Waterflow resilient system
+Home-page: https://github.com/Phornee/piwaterflow
+Author: Ismael Raya
+Author-email: phornee@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Home Automation
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: log-mgr (>=0.0.2)
+Requires-Dist: config-yml (>=0.3.0)
+Requires-Dist: RPi.GPIO (>=0.7.0)
+Requires-Dist: fake-rpigpio (>=0.1.1)
+Requires-Dist: influxdb-wrapper (>=0.0.3)
+
+# PiWaterflow
+This is a resilient watering system, executed in a Raspberry Pi to control irrigation valves using relays.
+It's intended to be executed periodically (i.e. cron every 5 minutes).
+- Requirements:
+  - Raspberry Pi (any model)
+  - Relays to control the valves
+  - Optional control relay to enable alternative power inverter
+- It supports 2 watering programs every day.
+  - Programs can be forced at any time.
+- Valves can be manually triggered.
+- Programs, forced programs and manual Valves can be manually stopped.
+- Metrics can be emitted to influxdb to register actions (programs and valves).
+- This package fits with piwwwaterflow, so that it can be controlled via HTTP page.
+
+TODO:
+- Abort watering if humidity is above threshold (90% default). Send email warning
+
