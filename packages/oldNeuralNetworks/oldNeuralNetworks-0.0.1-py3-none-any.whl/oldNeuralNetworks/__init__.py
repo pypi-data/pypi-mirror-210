@@ -1,0 +1,1 @@
+from oldNeuralNetworks.oldNeuralNetworks import ARTNeuralNetwork
