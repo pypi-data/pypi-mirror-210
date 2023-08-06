@@ -1,0 +1,45 @@
+query UserByUsername($username: String!) {
+	userByUsername(username: $username) {
+		id
+		username
+        bio
+        image
+        url
+        followerCount
+        followCount
+        isFollowedByCurrentUser
+        isFollowingCurrentUser
+        isBlockedByCurrentUser
+        isBlockingCurrentUser
+        fullName 
+		firstName
+		lastName
+		locale
+		isVerified
+		displayName
+        hasPrivacyRole
+        userSubscriptionType
+        roles {
+            id
+            name
+            key
+            tagline
+        }
+        presenceStatus {            
+            isOnline
+            lastSeen
+        }
+        publicRepls(showUnnamed: true) {
+            items {
+                id
+                title
+                url
+            }
+        }
+        socials {
+            id
+            url
+            type
+        }
+	}
+}
