@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: sts-libs
+Version: 0.0.3.dev1
+Project-URL: Repository, https://gitlab.com/rh-kernel-stqe/sts/
+Author: Jakub Krysl
+Author-email: Bruno Goncalves <bgoncalv@redhat.com>, Filip Suba <fsuba@redhat.com>, Martin Hoyer <mhoyer@redhat.com>
+Maintainer-email: Martin Hoyer <mhoyer@redhat.com>, Filip Suba <fsuba@redhat.com>, Bruno Goncalves <bgoncalv@redhat.com>
+License-Expression: GPL-3.0-or-later
+License-File: LICENSE
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.8
+Requires-Dist: configobj>=5.0.8
+Requires-Dist: netifaces2>=0.0.15
+Provides-Extra: stable
+Requires-Dist: configobj==5.0.8; extra == 'stable'
+Requires-Dist: netifaces2==0.0.15; extra == 'stable'
+Requires-Dist: six==1.16.0; extra == 'stable'
+Requires-Dist: typing-extensions==4.1.1; extra == 'stable'
+Description-Content-Type: text/markdown
+
+# sts-libs
+
+Libs for testing storage drivers and userspace utilities on rpm-based operating systems.
+
+## What is this?
+The goal is to be able to rapidly write new tests with ease.
+
+It started as an incompatible fork of [libsan](https://gitlab.com/rh-kernel-stqe/python-libsan)
+and [stqe](https://gitlab.com/rh-kernel-stqe/python-libsan) with many changes. Most notably:
+ - Python 3.8+ only.
+ - Minimum dependencies.
+ - With [tmt](https://github.com/teemtee/tmt)-compatibility in mind.
+ - One repository for both libs and tests.
+
+## Who is this for?
+Fedora, CentOS, RHEL testers.
+
+## How do I contribute?
+See [contributing](https://gitlab.com/rh-kernel-stqe/sts/docs/contributing.md) doc.
