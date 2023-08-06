@@ -1,0 +1,128 @@
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = [
+  "flit_core<4,>=3.2",
+]
+
+[project]
+name = "xsget"
+readme = "README.md"
+license = {file = "LICENSE.md"}
+authors = [{name = "Kian-Meng, Ang", email = "kianmeng@cpan.org"}]
+requires-python = ">=3.7"
+dependencies = [
+  "aiofiles",
+  "aiohttp",
+  "bs4",
+  "cssselect",
+  "lxml",
+  "natsort",
+  "playwright",
+  "regex",
+  "tomlkit",
+  "user_agent",
+  "watchdog",
+]
+dynamic = [
+  "description",
+  "version",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: Chinese (Traditional)",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python",
+    "Topic :: Text Processing :: Filters",
+    "Topic :: Text Processing :: General",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Text Processing",
+]
+[project.optional-dependencies]
+dev = [
+  "black",
+  "isort",
+  "line-profiler",
+  "pre-commit",
+  "tox-pyenv",
+  "tox<4",
+]
+doc = [
+  "myst_parser",
+  "sphinx",
+  "sphinx-autodoc-typehints",
+  "sphinx_autobuild",
+  "sphinx_copybutton",
+]
+test = [
+  "aioresponses",
+  "playwright",
+  "pytest",
+  "pytest-asyncio",
+  "pytest-console-scripts",
+  "pytest-cov",
+  "pytest-mock",
+  "pytest-playwright",
+  "pytest-randomly",
+  "pytest-xdist",
+  "types-aiofiles",
+]
+
+[project.urls]
+Issues = "https://github.com/kianmeng/xsget/issues"
+Source = "https://github.com/kianmeng/xsget"
+
+[project.scripts]
+xsget = "xsget.xsget:cli"
+xstxt = "xsget.xstxt:cli"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-vv -s -q -x"
+asyncio_mode = "auto"
+script_launch_mode = "subprocess"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py3{7,8,9,10,11}
+
+[testenv]
+description = testing against {basepython}
+deps = .[test]
+commands = pytest --numprocesses auto --hide-run-results
+
+[testenv:cover]
+description = generate code coverage report in html
+basepython = python3.11
+deps = .[test]
+commands = pytest --numprocesses auto --cov=xsget --ctov-report term-missing --cov-report html {toxinidir}/tests
+
+[testenv:doc]
+description = generate sphinx documentation in html
+basepython = python3.11
+deps = .[doc]
+commands = sphinx-build {toxinidir}/docs/source/ {toxinidir}/docs/_build/html
+
+[testenv:gettext]
+description = update pot/po/mo files
+basepython = python3.11
+allowlist_externals =
+    pygettext3
+    msgmerge
+    msgfmt
+commands =
+    pygettext3 -d xstxt -o {toxinidir}/locales/xstxt.pot {toxinidir}/xsget/
+    msgmerge --update {toxinidir}/locales/en/LC_MESSAGES/xstxt.po {toxinidir}/locales/xstxt.pot
+    msgmerge --update {toxinidir}/locales/zh/LC_MESSAGES/xstxt.po {toxinidir}/locales/xstxt.pot
+    msgfmt -o {toxinidir}/locales/en/LC_MESSAGES/xstxt.mo {toxinidir}/locales/en/LC_MESSAGES/xstxt.po
+    msgfmt -o {toxinidir}/locales/zh/LC_MESSAGES/xstxt.mo {toxinidir}/locales/zh/LC_MESSAGES/xstxt.po
+"""
