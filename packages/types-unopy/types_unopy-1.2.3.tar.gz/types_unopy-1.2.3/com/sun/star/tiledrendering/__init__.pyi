@@ -1,0 +1,1 @@
+from .x_tiled_renderable import XTiledRenderable as XTiledRenderable
