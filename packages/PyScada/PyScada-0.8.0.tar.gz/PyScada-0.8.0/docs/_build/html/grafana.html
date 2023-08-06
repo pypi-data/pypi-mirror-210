@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Use Grafana &#8212; PyScada 0.8.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Device Protocol IDs" href="device_protocol.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="device_protocol.html" title="Device Protocol IDs"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Use Grafana</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="use-grafana">
+<h1>Use Grafana<a class="headerlink" href="#use-grafana" title="Permalink to this heading">¶</a></h1>
+<section id="mysql">
+<h2>Mysql<a class="headerlink" href="#mysql" title="Permalink to this heading">¶</a></h2>
+<p>Add user and give SELECT rights :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;GRANT SELECT ON PyScada_db.* TO &#39;Grafana-user&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;Grafana-user-password&#39;;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="nginx">
+<h2>Nginx<a class="headerlink" href="#nginx" title="Permalink to this heading">¶</a></h2>
+<p>Add in <cite>/etc/nginx/nginx.conf</cite> after <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">include</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">grafana</span><span class="o">-</span><span class="n">access</span><span class="o">.</span><span class="n">conf</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Create <cite>/etc/nginx/grafana-access.conf</cite> with :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stream</span> <span class="p">{</span>
+  <span class="c1"># MySQL server</span>
+  <span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span>     <span class="mi">3305</span><span class="p">;</span>
+    <span class="n">proxy_pass</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3306</span><span class="p">;</span>
+    <span class="n">proxy_timeout</span> <span class="mi">60</span><span class="n">s</span><span class="p">;</span>
+    <span class="n">proxy_connect_timeout</span> <span class="mi">30</span><span class="n">s</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Restart Nginx :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</pre></div>
+</div>
+</section>
+<section id="grafana">
+<h2>Grafana<a class="headerlink" href="#grafana" title="Permalink to this heading">¶</a></h2>
+<p>Add MySQL datasource :</p>
+<ul class="simple">
+<li><p>Host :</p>
+<ul>
+<li><p>Local : <cite>/run/mysqld/mysqld.sock</cite></p></li>
+<li><p>Remote : SERVER_WITH_NGINX_IP:3305</p></li>
+</ul>
+</li>
+<li><p>Database : <code class="docutils literal notranslate"><span class="pre">PyScada_db</span></code></p></li>
+<li><p>User : <code class="docutils literal notranslate"><span class="pre">Grafana-user</span></code></p></li>
+<li><p>Password : <code class="docutils literal notranslate"><span class="pre">Grafana-user-password</span></code></p></li>
+</ul>
+<p>Create a dashboard:</p>
+<ul class="simple">
+<li><p>Or import the <a class="reference external" href="https://github.com/pyscada/PyScada/blob/master/extras/Grafana-test-dashboard.json">example dashboard</a>.</p></li>
+<li><p>Or for example, add theses variables : set <code class="docutils literal notranslate"><span class="pre">refresh</span> <span class="pre">on</span> <span class="pre">dashboard</span> <span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-value</span></code> and <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">option</span></code> :</p>
+<ul>
+<li><p>Add mysql datasource variable (type Datasource).</p></li>
+<li><p>Add variables with type query using <code class="docutils literal notranslate"><span class="pre">$Datasource</span></code> :</p>
+<ul>
+<li><p>Protocols : <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">protocol</span> <span class="pre">AS</span> <span class="pre">__text,</span> <span class="pre">id</span> <span class="pre">AS</span> <span class="pre">__value</span> <span class="pre">FROM</span> <span class="pre">pyscada_deviceprotocol</span></code></p></li>
+<li><p>Devices : <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">d.short_name</span> <span class="pre">AS</span> <span class="pre">__text,</span> <span class="pre">d.id</span> <span class="pre">AS</span> <span class="pre">__value</span> <span class="pre">FROM</span> <span class="pre">pyscada_device</span> <span class="pre">d</span> <span class="pre">WHERE</span> <span class="pre">d.protocol_id</span> <span class="pre">IN</span> <span class="pre">(${Protocols})</span> <span class="pre">AND</span> <span class="pre">d.active</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+<li><p>Units : <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">u.unit</span> <span class="pre">AS</span> <span class="pre">__text,</span> <span class="pre">u.id</span> <span class="pre">AS</span> <span class="pre">__value</span> <span class="pre">FROM</span> <span class="pre">pyscada_unit</span> <span class="pre">u</span></code></p></li>
+<li><p>Variables : <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">v.name</span> <span class="pre">AS</span> <span class="pre">__text,</span> <span class="pre">v.id</span> <span class="pre">AS</span> <span class="pre">__value</span> <span class="pre">FROM</span> <span class="pre">pyscada_variable</span> <span class="pre">v</span> <span class="pre">WHERE</span> <span class="pre">v.device_id</span> <span class="pre">IN</span> <span class="pre">(${Devices})</span> <span class="pre">AND</span> <span class="pre">v.unit_id</span> <span class="pre">IN</span> <span class="pre">(${Units})</span> <span class="pre">AND</span> <span class="pre">v.active</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+<li><p>Time group (type Interval) : <code class="docutils literal notranslate"><span class="pre">1s,10s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d,1M</span></code></p></li>
+<li><p>Null as (type custom) : <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">NULL,</span> <span class="pre">previous</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Example query :</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SELECT
+  $__timeGroupAlias(r.date_saved,$time_group),
+  avg(IFNULL(r.value_float64, 0.0) + IFNULL(r.value_int64, 0.0) + IFNULL(r.value_int32, 0.0) + IFNULL(r.value_int16, 0.0) + IFNULL(r.value_boolean, 0.0)),
+  v.name AS metric
+FROM pyscada_recordeddata as r
+JOIN pyscada_variable v ON r.variable_id = v.id
+WHERE
+  $__timeFilter(r.date_saved) AND
+  r.variable_id IN (${Variables})
+GROUP BY time, metric
+ORDER BY $__timeGroup(r.date_saved,$time_group,$null_as)
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="embed-in-pyscada-hmi">
+<h2>Embed in pyscada HMI<a class="headerlink" href="#embed-in-pyscada-hmi" title="Permalink to this heading">¶</a></h2>
+<p>Edit Grafana config file:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/grafana/grafana.ini
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Find and set :</dt><dd><ul class="simple">
+<li><p>allow_embedding = true</p></li>
+<li><p>For localhost grafana : root_url = <a class="reference external" href="http://localhost:3000/grafana/">http://localhost:3000/grafana/</a></p></li>
+</ul>
+</dd>
+</dl>
+<p>For localhost grafana add in <cite>/etc/nginx/sites-enabled/pyscada.conf</cite> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">location</span> <span class="o">/</span><span class="n">grafana</span><span class="o">/</span> <span class="p">{</span>
+  <span class="n">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3000</span><span class="o">/</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Restart Grafana server:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>grafana-server.service
+</pre></div>
+</div>
+<p>Create a custom html panel with the code from a dashboard or a panel from sharing options in grafana</p>
+</section>
+<section id="other">
+<h2>Other<a class="headerlink" href="#other" title="Permalink to this heading">¶</a></h2>
+<p>use ssl : <a class="reference external" href="http://www.turbogeek.co.uk/2020/09/30/grafana-how-to-configure-ssl-https-in-grafana/">http://www.turbogeek.co.uk/2020/09/30/grafana-how-to-configure-ssl-https-in-grafana/</a></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Use Grafana</a><ul>
+<li><a class="reference internal" href="#mysql">Mysql</a></li>
+<li><a class="reference internal" href="#nginx">Nginx</a></li>
+<li><a class="reference internal" href="#grafana">Grafana</a></li>
+<li><a class="reference internal" href="#embed-in-pyscada-hmi">Embed in pyscada HMI</a></li>
+<li><a class="reference internal" href="#other">Other</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="device_protocol.html"
+                          title="previous chapter">Device Protocol IDs</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/grafana.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="device_protocol.html" title="Device Protocol IDs"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Use Grafana</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Martin Schröder.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

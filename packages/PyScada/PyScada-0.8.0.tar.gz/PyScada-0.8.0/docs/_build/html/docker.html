@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Docker &#8212; PyScada 0.8.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Docker</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This Version of PyScada is BETA software and may have serious bugs which may cause damage to your computer,
+automation hardware and data. It is not intended for use in production systems! You use this Software on your own risk!</p>
+</div>
+<section id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">¶</a></h1>
+<p>This guide covers the basic setup of PyScada with <a class="reference external" href="https://www.docker.com/">Docker</a> and <a class="reference external" href="https://docs.docker.com/compose/">Docker Compose</a>.</p>
+<section id="download-the-necessary-files">
+<h2>Download the necessary files<a class="headerlink" href="#download-the-necessary-files" title="Permalink to this heading">¶</a></h2>
+<p>First of all download the docker config files for building your images.</p>
+<p>Using Git.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">PyScada</span><span class="o">/</span><span class="n">docker</span>
+</pre></div>
+</div>
+<p>Using wget.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">qO</span><span class="o">-</span> <span class="o">-</span><span class="n">O</span> <span class="n">tmp</span><span class="o">.</span><span class="n">zip</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">refs</span><span class="o">/</span><span class="n">heads</span><span class="o">/</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span> <span class="o">&amp;&amp;</span> <span class="n">unzip</span> <span class="n">tmp</span><span class="o">.</span><span class="n">zip</span> <span class="o">&amp;&amp;</span> <span class="n">rm</span> <span class="n">tmp</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">cd</span> <span class="n">PyScada</span><span class="o">-</span><span class="n">master</span><span class="o">/</span><span class="n">docker</span>
+</pre></div>
+</div>
+</section>
+<section id="generating-ssl-certificates">
+<h2>Generating SSL Certificates<a class="headerlink" href="#generating-ssl-certificates" title="Permalink to this heading">¶</a></h2>
+<p>Generate ssl certificates for using ssl.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">nginx</span><span class="o">/</span><span class="n">ssl</span>
+<span class="n">cd</span> <span class="n">nginx</span><span class="o">/</span><span class="n">ssl</span>
+<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">days</span> <span class="mi">1780</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">2048</span> <span class="o">-</span><span class="n">keyout</span> <span class="o">./</span><span class="n">pyscada_server</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="o">./</span><span class="n">pyscada_server</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+</section>
+<section id="build-and-run-the-image">
+<h2>Build and Run the Image<a class="headerlink" href="#build-and-run-the-image" title="Permalink to this heading">¶</a></h2>
+<p>Build the PyScada Docker Image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">build</span>
+</pre></div>
+</div>
+<p>After the Images have been successfully build we need to initialize the Database and Create a superuser.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">run</span> <span class="n">pyscada</span> <span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">pyscada_init</span>
+<span class="n">sudo</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">run</span> <span class="n">pyscada</span> <span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+<p>The last step is to start the Container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<p>If you have an error or a command is stuck, run :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">down</span>
+<span class="n">sudo</span> <span class="n">docker</span> <span class="n">system</span> <span class="n">prune</span> <span class="o">--</span><span class="n">force</span> <span class="o">--</span><span class="n">volumes</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Docker</a><ul>
+<li><a class="reference internal" href="#download-the-necessary-files">Download the necessary files</a></li>
+<li><a class="reference internal" href="#generating-ssl-certificates">Generating SSL Certificates</a></li>
+<li><a class="reference internal" href="#build-and-run-the-image">Build and Run the Image</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/docker.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Docker</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Martin Schröder.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

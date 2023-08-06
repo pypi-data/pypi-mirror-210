@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Command-line &#8212; PyScada 0.8.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using the Front-End" href="frontend.html" />
+    <link rel="prev" title="Update from old versions" href="update.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="frontend.html" title="Using the Front-End"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="update.html" title="Update from old versions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Command-line</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="command-line">
+<h1>Command-line<a class="headerlink" href="#command-line" title="Permalink to this heading">¶</a></h1>
+<section id="restart-the-pyscada-daemons">
+<h2>Restart the PyScada Daemons<a class="headerlink" href="#restart-the-pyscada-daemons" title="Permalink to this heading">¶</a></h2>
+<p>systemd:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>pyscada
+</pre></div>
+</div>
+</section>
+<section id="restart-gunicorn">
+<h2>Restart Gunicorn<a class="headerlink" href="#restart-gunicorn" title="Permalink to this heading">¶</a></h2>
+<p>systemd:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>gunicorn.service
+</pre></div>
+</div>
+</section>
+<section id="restart-nginx">
+<h2>Restart NGINX<a class="headerlink" href="#restart-nginx" title="Permalink to this heading">¶</a></h2>
+<p>systemd:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</pre></div>
+</div>
+</section>
+<section id="get-installed-pyscada-version">
+<h2>Get Installed PyScada Version<a class="headerlink" href="#get-installed-pyscada-version" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www/pyscada/PyScadaServer
+sudo<span class="w"> </span>-u<span class="w"> </span>pyscada<span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>shell
+import<span class="w"> </span>pyscada
+pyscada.core.__version__
+exit<span class="o">()</span>
+</pre></div>
+</div>
+</section>
+<section id="export-recorded-data-tables">
+<h2>Export Recorded Data Tables<a class="headerlink" href="#export-recorded-data-tables" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-u<span class="w"> </span>pyscada<span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>PyScadaExportData<span class="w"> </span><span class="c1"># last 24 houres</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>pyscada<span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>PyScadaExportData<span class="w"> </span>--start_time<span class="w"> </span><span class="s2">&quot;01-03-2015 00:00:00&quot;</span><span class="w"> </span><span class="c1"># from 01. of March 2015 until now</span>
+<span class="c1"># from 01. of March until now, with the given filename</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>pyscada<span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>PyScadaExportData<span class="w"> </span>--start_time<span class="w"> </span><span class="s2">&quot;01-Mar-2015 00:00:00&quot;</span><span class="w"> </span>--filename<span class="w"> </span><span class="s2">&quot;filename.h5&quot;</span>
+<span class="c1"># from 01. of March until 10. of March, with the given filename</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>pyscada<span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>PyScadaExportData<span class="w"> </span>--start_time<span class="w"> </span><span class="s2">&quot;01-03-2015 00:00:00&quot;</span><span class="w"> </span>--filename<span class="w"> </span><span class="s2">&quot;filename.h5&quot;</span><span class="w"> </span>--stop_time<span class="w"> </span><span class="s2">&quot;10-03-2015 00:00:00&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Command-line</a><ul>
+<li><a class="reference internal" href="#restart-the-pyscada-daemons">Restart the PyScada Daemons</a></li>
+<li><a class="reference internal" href="#restart-gunicorn">Restart Gunicorn</a></li>
+<li><a class="reference internal" href="#restart-nginx">Restart NGINX</a></li>
+<li><a class="reference internal" href="#get-installed-pyscada-version">Get Installed PyScada Version</a></li>
+<li><a class="reference internal" href="#export-recorded-data-tables">Export Recorded Data Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="update.html"
+                          title="previous chapter">Update from old versions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="frontend.html"
+                          title="next chapter">Using the Front-End</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/command-line.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="frontend.html" title="Using the Front-End"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="update.html" title="Update from old versions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Command-line</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Martin Schröder.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

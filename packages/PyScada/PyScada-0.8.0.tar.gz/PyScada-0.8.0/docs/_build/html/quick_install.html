@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation &#8212; PyScada 0.8.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Update from old versions" href="update.html" />
+    <link rel="prev" title="Welcome to PyScada’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="update.html" title="Update from old versions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PyScada’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This Version of PyScada is BETA software and may have serious bugs which may cause damage to your computer,
+automation hardware and data. It is not intended for use in production systems! You use this Software on your own risk!</p>
+</div>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<p>This installation guide covers the installation of PyScada for <a class="reference external" href="https://www.debian.org/">Debian 10/11</a> ,
+<a class="reference external" href="https://www.raspberrypi.com/software/">Raspberry Pi OS</a> based Linux systems
+using <a class="reference external" href="https://mariadb.com/">MariaDB</a> as Database,
+<a class="reference external" href="http://gunicorn.org/">Gunicorn</a> as WSGI HTTP Server and <a class="reference external" href="http://nginx.org/">nginx</a> as HTTP Server.</p>
+<section id="scripts-available">
+<h2>Scripts available<a class="headerlink" href="#scripts-available" title="Permalink to this heading">¶</a></h2>
+<p>The script <code class="docutils literal notranslate"><span class="pre">install.sh</span></code> let you choose between 2 installation type : system or docker and create a log file of the installation.</p>
+<p>Then it call the script <code class="docutils literal notranslate"><span class="pre">install_system.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">install_docker.sh</span></code> depending on your choice.</p>
+</section>
+<section id="automatic-installation-on-debian-and-derivatives">
+<h2>Automatic installation on Debian and derivatives<a class="headerlink" href="#automatic-installation-on-debian-and-derivatives" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Choose a method to download PyScada :</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>by cloning the repository :</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pyscada/PyScada.git
+<span class="nb">cd</span><span class="w"> </span>PyScada
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>by downloading the zip file and extracting it :</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wget
+wget<span class="w"> </span>https://github.com/pyscada/PyScada/archive/refs/heads/master.zip<span class="w"> </span>-O<span class="w"> </span>PyScada-master.zip
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>unzip
+unzip<span class="w"> </span>./PyScada-master.zip
+rm<span class="w"> </span>./PyScada-master.zip
+<span class="nb">cd</span><span class="w"> </span>PyScada-master
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Install PyScada</p></li>
+</ol>
+<blockquote>
+<div><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For a new installation, make sure to answer “no” to the question “Update only”.</p>
+</div>
+<p>You will have to choose :</p>
+<ul class="simple">
+<li><p>if you want to install PyScada on the system or in a docker container.</p></li>
+<li><p>if the system date is correct (system install only)</p></li>
+<li><p>if you want to use a proxy (system install only)</p></li>
+<li><p>if you want to install channels and redis to speed up communications inter pyscada processes (system install only)</p></li>
+<li><p>if you want to update only, if not :</p>
+<ul>
+<li><p>the DB name, user and password</p></li>
+<li><p>admin name and mail to send error logs (need further django email configuration in settings.py)</p></li>
+<li><p>the first pyscada user credentials</p></li>
+<li><p>if you want that pyscada plugins are automatically added in INSTALLED_APPS</p></li>
+</ul>
+</li>
+</ul>
+<p>Run :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>./install.sh
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">¶</a></h2>
+<p>If you already installed PyScada using docker, you need to delete the <code class="docutils literal notranslate"><span class="pre">db_data</span></code> docker volume using :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>docker_dbdata
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#scripts-available">Scripts available</a></li>
+<li><a class="reference internal" href="#automatic-installation-on-debian-and-derivatives">Automatic installation on Debian and derivatives</a></li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to PyScada’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="update.html"
+                          title="next chapter">Update from old versions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/quick_install.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="update.html" title="Update from old versions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PyScada’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Martin Schröder.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

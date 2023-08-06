@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation &#8212; PyScada 0.8.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This Version of PyScada is BETA software and may have serious bugs which may cause damage to your computer,
+automation hardware and data. It is not intended for use in production systems! You use this Software on your own risk!</p>
+</div>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<p>This installation guide covers the installation of PyScada for <a class="reference external" href="https://www.debian.org/">Debian 10/11</a> ,
+<a class="reference external" href="https://www.raspberrypi.com/software/">Raspberry Pi OS</a>, <a class="reference external" href="https://www.fedoraproject.org/">Fedora 22/23</a> based Linux systems
+using <a class="reference external" href="https://www.mysql.com/">MySQL</a> / <a class="reference external" href="https://mariadb.com/">MariaDB</a> or <a class="reference external" href="https://www.sqlite.org/">SQLite</a> as Database,
+<a class="reference external" href="http://gunicorn.org/">Gunicorn</a> as WSGI HTTP Server and <a class="reference external" href="http://nginx.org/">nginx</a> as HTTP Server.</p>
+<section id="automatic-installation-using-a-script">
+<h2>Automatic installation using a script<a class="headerlink" href="#automatic-installation-using-a-script" title="Permalink to this heading">¶</a></h2>
+<p>On the Raspberry Pi with internet connection run :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">clavay</span><span class="o">/</span><span class="n">PyScada</span><span class="o">-</span><span class="n">Laborem</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extras</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">O</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">x</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<dl class="js function">
+<dt class="sig sig-object js" id="toggle_timeline">
+<span class="sig-name descname"><span class="n"><span class="pre">toggle_timeline</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#toggle_timeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle timeline</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscada.models.Device.__str__">
+<span class="sig-prename descclassname"><span class="pre">pyscada.models.Device.</span></span><span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyscada.models.Device.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<section id="debian-9-raspbian">
+<h3>Debian 9, Raspbian<a class="headerlink" href="#debian-9-raspbian" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">i</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">y</span> <span class="n">upgrade</span>
+<span class="c1"># if you use MariaDB/MySQL as Database system (recommend)</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">mariadb</span><span class="o">-</span><span class="n">server</span> <span class="n">python3</span><span class="o">-</span><span class="n">mysqldb</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span> <span class="n">libhdf5</span><span class="o">-</span><span class="mi">103</span> <span class="n">libhdf5</span><span class="o">-</span><span class="n">dev</span> <span class="n">python3</span><span class="o">-</span><span class="n">dev</span> <span class="n">nginx</span>
+
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">gunicorn</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">pyserial</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">docutils</span>
+</pre></div>
+</div>
+</section>
+<section id="macos">
+<h3>macOS<a class="headerlink" href="#macos" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>MySQL Server &lt;https://www.mysql.de/&gt;</cite></p></li>
+<li><p>HDF5 TODO</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>brew install python
+export PATH=$PATH:/usr/local/mysql/bin
+pip install MySQL-python
+</pre></div>
+</div>
+</section>
+<section id="all">
+<h3>all<a class="headerlink" href="#all" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">i</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># for VISA Protocol</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">pyvisa</span> <span class="n">pyvisa</span><span class="o">-</span><span class="n">py</span>
+<span class="c1"># for 1Wire Protocol</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">owfs</span> <span class="c1">#</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">pyownet</span>
+<span class="c1"># for smbus Protocol, install libffi-dev first!</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">smbus</span><span class="o">-</span><span class="n">cffi</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="add-a-new-system-user-for-pyscada-optional-recommend">
+<h2>Add a new system-user for Pyscada (optional, recommend)<a class="headerlink" href="#add-a-new-system-user-for-pyscada-optional-recommend" title="Permalink to this heading">¶</a></h2>
+<p>Add a dedicated user for the pyscada server instance and add a directory for <cite>static</cite>/<cite>media</cite> files.</p>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">i</span>
+<span class="n">useradd</span> <span class="o">-</span><span class="n">r</span> <span class="n">pyscada</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">http</span>
+<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">pyscada</span><span class="p">:</span><span class="n">pyscada</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pyscada</span>
+<span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">pyscada</span><span class="p">:</span><span class="n">pyscada</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pyscada</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>macOS<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo -i
+dscl . -create /Users/pyscada IsHidden 1
+dscl . -create /Users/pyscada NFSHomeDirectory /Users/pyscada
+LastID=`dscl . -list /Users UniqueID | awk &#39;{print $2}&#39; | sort -n | tail -1`
+NextID=$((LastID + 1))
+dscl . create /Users/pyscada UniqueID $NextID
+dscl . create /Users/pyscada PrimaryGroupID 20
+mkdir -p /var/www/pyscada/http
+chown -R pyscada:staff /var/www/pyscada/
+</pre></div>
+</div>
+</section>
+</section>
+<section id="create-a-mysql-database">
+<h2>Create a MySql Database<a class="headerlink" href="#create-a-mysql-database" title="Permalink to this heading">¶</a></h2>
+<p>Create the Database and grand the nessesery permission. Replace <cite>PyScada_db</cite>, <cite>PyScada-user</cite> and <cite>PyScada-user-password</cite> as you like.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CREATE DATABASE PyScada_db CHARACTER SET utf8;GRANT ALL PRIVILEGES ON PyScada_db.* TO &#39;PyScada-user&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;PyScada-user-password&#39;;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-new-django-project">
+<h2>Create a new Django Project<a class="headerlink" href="#create-a-new-django-project" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linux/OSX</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">PyScadaServer</span>
+</pre></div>
+</div>
+<p>see <a class="reference internal" href="django_settings.html"><span class="doc">Django Settings</span></a> for all necessary adjustments to the django settings.py and urls.py.</p>
+</section>
+<section id="initialize-database-and-copy-static-files">
+<h2>Initialize Database And Copy Static Files<a class="headerlink" href="#initialize-database-and-copy-static-files" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScadaServer</span> <span class="c1"># linux</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">python3</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">python3</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">collectstatic</span>
+
+<span class="c1"># load fixtures with default configuration for chart lin colors and units</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">python3</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">loaddata</span> <span class="n">color</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">python3</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">loaddata</span> <span class="n">units</span>
+
+<span class="c1"># initialize the background service system of pyscada</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">python3</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">pyscada_daemon</span> <span class="n">init</span>
+</pre></div>
+</div>
+</section>
+<section id="add-a-admin-user-to-your-django-project">
+<h2>Add a Admin User To Your Django Project<a class="headerlink" href="#add-a-admin-user-to-your-django-project" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScadaServer</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">pyscada</span> <span class="n">python3</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+</section>
+<section id="setup-the-webserver-nginx-gunicorn">
+<h2>Setup the Webserver (nginx, gunicorn)<a class="headerlink" href="#setup-the-webserver-nginx-gunicorn" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># debian</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extras</span><span class="o">/</span><span class="n">nginx_sample</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">pyscada</span><span class="o">.</span><span class="n">conf</span>
+
+<span class="c1"># Fedora</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extras</span><span class="o">/</span><span class="n">nginx_sample</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">pyscada</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>after editing, enable the configuration and restart nginx, optionally remove the default configuration</p>
+</section>
+<section id="to-use-ssl-https-recommend">
+<h2>to use ssl (https, recommend)<a class="headerlink" href="#to-use-ssl-https-recommend" title="Permalink to this heading">¶</a></h2>
+<p>generate ssl certificates.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># for Debian, Ubuntu, Raspian</span>
+<span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">ssl</span>
+<span class="c1"># the certificate will be valid for 5 Years,</span>
+<span class="n">sudo</span> <span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">days</span> <span class="mi">1780</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">2048</span> <span class="o">-</span><span class="n">keyout</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">pyscada_server</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">pyscada_server</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># debian</span>
+<span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">pyscada</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span>
+<span class="n">sudo</span> <span class="n">rm</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">default</span>
+</pre></div>
+</div>
+<p>now it’s time to [re]start nginx.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># systemd (Debian 8, Fedora, Ubuntu &gt; XX.XX)</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">nginx</span><span class="o">.</span><span class="n">service</span> <span class="c1"># enable autostart on boot</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">nginx</span>
+
+<span class="c1"># SysV-Init (Debian 7, Ubuntu &lt;= XX.XX, [Debian 8])</span>
+<span class="n">sudo</span> <span class="n">service</span> <span class="n">nginx</span> <span class="n">restart</span>
+</pre></div>
+</div>
+<p>for Fedora you have to allow nginx to serve the static and media folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chcon</span> <span class="o">-</span><span class="n">Rt</span> <span class="n">httpd_sys_content_t</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">http</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>add gunicorn and pyscada unit files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># systemd</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extras</span><span class="o">/</span><span class="n">service</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">socket</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">socket</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extras</span><span class="o">/</span><span class="n">service</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">service</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">service</span>
+<span class="n">sudo</span> <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScada</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">extras</span><span class="o">/</span><span class="n">service</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">pyscada_daemon</span><span class="o">.</span><span class="n">service</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">pyscada</span><span class="o">.</span><span class="n">service</span>
+
+<span class="c1"># in some installations gunicorn is not at /usr/local/bin/gunicorn but at /usr/bin/gunicorn</span>
+<span class="c1"># in this case you have to change the pat in the file /etc/systemd/system/gunicorn.service accordingly</span>
+
+<span class="c1"># enable the services for autostart</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">gunicorn</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">gunicorn</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">pyscada</span>
+</pre></div>
+</div>
+</section>
+<section id="start-pyscada">
+<h2>Start PyScada<a class="headerlink" href="#start-pyscada" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">pyscada</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#automatic-installation-using-a-script">Automatic installation using a script</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li><a class="reference internal" href="#toggle_timeline"><code class="docutils literal notranslate"><span class="pre">toggle_timeline()</span></code></a></li>
+<li><a class="reference internal" href="#pyscada.models.Device.__str__"><code class="docutils literal notranslate"><span class="pre">__str__()</span></code></a></li>
+<li><a class="reference internal" href="#debian-9-raspbian">Debian 9, Raspbian</a></li>
+<li><a class="reference internal" href="#macos">macOS</a></li>
+<li><a class="reference internal" href="#all">all</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#add-a-new-system-user-for-pyscada-optional-recommend">Add a new system-user for Pyscada (optional, recommend)</a><ul>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#id1">macOS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-a-mysql-database">Create a MySql Database</a></li>
+<li><a class="reference internal" href="#create-a-new-django-project">Create a new Django Project</a></li>
+<li><a class="reference internal" href="#initialize-database-and-copy-static-files">Initialize Database And Copy Static Files</a></li>
+<li><a class="reference internal" href="#add-a-admin-user-to-your-django-project">Add a Admin User To Your Django Project</a></li>
+<li><a class="reference internal" href="#setup-the-webserver-nginx-gunicorn">Setup the Webserver (nginx, gunicorn)</a></li>
+<li><a class="reference internal" href="#to-use-ssl-https-recommend">to use ssl (https, recommend)</a></li>
+<li><a class="reference internal" href="#start-pyscada">Start PyScada</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Installation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Martin Schröder.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>

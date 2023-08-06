@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Django Settings &#8212; PyScada 0.8.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Django Settings</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="django-settings">
+<h1>Django Settings<a class="headerlink" href="#django-settings" title="Permalink to this heading">¶</a></h1>
+<section id="urls-py">
+<h2>urls.py<a class="headerlink" href="#urls-py" title="Permalink to this heading">¶</a></h2>
+<p>Open the urls configuration file and add the necessary rewrite rule to the django URL dispatcher.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScadaServer</span><span class="o">/</span><span class="n">PyScadaServer</span><span class="o">/</span><span class="n">urls</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">include</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;pyscada.hmi.urls&#39;</span><span class="p">)),</span>
+<span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="settings-py">
+<h2>settings.py<a class="headerlink" href="#settings-py" title="Permalink to this heading">¶</a></h2>
+<p>Open the django settings file and make the following modifications. See also the <a class="reference external" href="https://docs.djangoproject.com/en/1.8/ref/settings/">django documentation</a> for more Information.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">pyscada</span><span class="o">/</span><span class="n">PyScadaServer</span><span class="o">/</span><span class="n">PyScadaServer</span><span class="o">/</span><span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>First deactivate the debugging, if debugging is active django will keep all SQL queries in the ram, the data-acquisition
+runs a massive amount of queries so your system will run fast out of memory. Keep in mind to restart gunicorn and the
+pysada daemons after you change the debugging state.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Add the host/domain of your machine, in this case every url that point to a ip of the machine is allowed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Add PyScada and the PyScada sub-apps to the installed apps list of Django.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;pyscada&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.modbus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.phant&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.visa&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.hmi&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.systemstat&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.export&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.onewire&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pyscada.smbus&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>To use the MySQL Database, fill in the database, the user and password as selected in the <em>create Database section</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span>   <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span>     <span class="s1">&#39;PyScada_db&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span>     <span class="s1">&#39;PyScada-user&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;PyScada-user-password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;init_command&#39;</span><span class="p">:</span> <span class="s2">&quot;SET sql_mode=&#39;STRICT_TRANS_TABLES&#39;&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Set the static file and media dir as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+
+<span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/var/www/pyscada/http/static/&#39;</span>
+
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/&#39;</span>
+
+<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/var/www/pyscada/http/media/&#39;</span>
+</pre></div>
+</div>
+<p>Add all PyScada specific settings, keep in mind to set the file right file encoding in the <cite>settings.py</cite> file header (see also <a class="reference external" href="https://www.python.org/dev/peps/pep-0263/">https://www.python.org/dev/peps/pep-0263/</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: &lt;encoding name&gt; -*-</span>
+</pre></div>
+</div>
+<p>Append to the end of the <cite>settings.py</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># PyScada settings</span>
+<span class="c1"># https://github.com/trombastic/PyScada</span>
+
+<span class="c1"># email settings</span>
+<span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;example@host.com&#39;</span>
+<span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s1">&#39;mail.host.com&#39;</span>
+<span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="mi">587</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s1">&#39;pyscada@host.com&#39;</span>
+<span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">EMAIL_USE_SSL</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
+<span class="n">EMAIL_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;PREFIX&#39;</span> <span class="c1"># Mail subject will be &quot;PREFIX subjecttext&quot;</span>
+
+<span class="c1"># meta information&#39;s about the plant site</span>
+<span class="n">PYSCADA_META</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;A SHORT NAME&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span><span class="p">:</span><span class="s1">&#39;A SHORT DESCRIPTION&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># export properties</span>
+<span class="c1">#</span>
+<span class="n">PYSCADA_EXPORT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;file_prefix&#39;</span><span class="p">:</span><span class="s1">&#39;PREFIX_&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;output_folder&#39;</span><span class="p">:</span><span class="s1">&#39;~/measurement_data_dumps&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># View Options</span>
+<span class="c1">#</span>
+<span class="n">LINK_TARGET</span> <span class="o">=</span> <span class="s1">&#39;_blank&#39;</span> <span class="c1"># &#39;_blank&#39; for new tab or &#39;_self&#39; for opening it in the same window</span>
+
+<span class="n">LOGGING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;disable_existing_loggers&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;formatters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;standard&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;format&#39;</span> <span class="p">:</span> <span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] </span><span class="si">%(levelname)s</span><span class="s2"> [</span><span class="si">%(name)s</span><span class="s2">:</span><span class="si">%(lineno)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;datefmt&#39;</span> <span class="p">:</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%b/%Y %H:%M:%S&quot;</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;logging.FileHandler&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">BASE_DIR</span> <span class="o">+</span> <span class="s1">&#39;/pyscada_debug.log&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;formatter&#39;</span><span class="p">:</span> <span class="s1">&#39;standard&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;loggers&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;django&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;propagate&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;pyscada&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;propagate&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Django Settings</a><ul>
+<li><a class="reference internal" href="#urls-py">urls.py</a></li>
+<li><a class="reference internal" href="#settings-py">settings.py</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/django_settings.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyScada 0.8.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Django Settings</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Martin Schröder.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+    </div>
+  </body>
+</html>
