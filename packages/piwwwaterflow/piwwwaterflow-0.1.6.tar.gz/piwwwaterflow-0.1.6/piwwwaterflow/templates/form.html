@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PiWaterflow irrigation system</title>
+<link rel="stylesheet" type="text/css" href="static/css/view.css" media="all">
+<link rel="icon" type="image/png" sizes="32x32" href="static/img/icon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="static/img/icon-256.png">
+</head>
+<body id="main_body" style="background-color: #444444; color: #DFDFDF;" >
+	<div id="form_container" align="center">
+		<div class="mainheader">
+			<!--<img src="static/img/icon-256.png" alt="Icon" width="90em" height="90em">-->
+			<img src="static/img/piwaterflow.svg" alt="Icon" width="90em" height="90em">
+			<label id = 'version'> PiWaterflow loading... </label>
+		</div>
+		<form id="waterflow_form" style=" margin-block-end: 0em;" method="POST" action="">
+			<div class="form_description" style="margin-bottom: -;margin-bottom: 0px; margin-top: 0px;">
+				<label id = 'status'>Status: Retrieving status...</label>
+			</div>
+
+			<table class="table" id="tablacontroles"  style="width:100%">
+				<tr>
+					<td>
+						<table id="programsandforce" style="width:100%;height:100%; border-bottom:1px dotted #ccc;">
+							<tr>
+								<td>
+									<table class="table" id="programstable" style="height:100%;" cellpadding="0" cellspacing="5">
+										<tr border="0px" id="headers">
+											<th width="10%"></th>
+											<th width="30%">
+												<label class="programheader">Start time </label>
+											</th>
+											<th width="30%">
+												<label class="programheader" id="valve1trigger" onclick="forceValve(this,0)">Valve 1</label>
+											</th>
+											<th width="30%">
+												<label class="programheader" id="valve2trigger" onclick="forceValve(this,1)">Valve 2</label>
+											</th >
+											<th width="5%">
+												<label class="programheader" >Enabled</label>
+											</th>
+										</tr>
+										<tr border="0px" id="prog1row">
+											<td>
+												<label class="programheader" id="program1trigger" onclick="forceProgram(this,0)">Prog 1</label>
+											</td>
+											<td>
+												<input type="time" class="timeclass copperround" id="time1" name="time1" required>
+											</td>
+											<td>
+												<input id="valve11" name="valve11" class="number copperround" type="number"  min="0" max="10">
+											</td>
+											<td>
+												<input id="valve12" name="valve12" class="number copperround" type="number" min="0" max="10">
+											</td>
+											<td>
+												<input type="checkbox" id="prog1enabled" name="prog1enabled" value="True" class="checkstyle">
+											</td>
+										</tr>
+										<tr border="0px" id="prog2row">
+											<td>
+												<label class="programheader" id="program2trigger" onclick="forceProgram(this,1)">Prog 2</label>
+											</td>
+											<td>
+												<input type="time" class="timeclass copperround" id="time2" name="time2" required>
+											</td>
+											<td>
+												<input id="valve21" name="valve21" class="number copperround"  type="number" min="0" max="10">
+											</td>
+											<td>
+												<input id="valve22" name="valve22" class="number copperround"  type="number" min="0" max="10">
+											</td>
+											<td>
+												<input type="checkbox" id="prog2enabled" name="prog2enabled" value="True" class="checkstyle">
+											</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<input id="saveForm" class="button_text" type="button" name="submit" onclick="save(this)" value="Save Changes" />
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr style="height:10%;">
+					<td>
+						<input id="stop" class="button_text" type="button" name="stop" value="Stop" onclick="stopWaterflow(this)" />
+					</td>
+				</tr>
+			</table>
+		</form>	
+	</div>
+	<div>
+		<textarea id="log" rows="12"  style = "width:100%; height:20vh; font-size: 0.27em;" readonly>Retrieving log...</textarea>
+	</div>
+	<div>
+		<iframe id="grafana_iframe" src="http://pi02:3000/d-solo/m_AskAmgk/jardin?orgId=2&showCategory=Override+2&from=now-24h&to=now&theme=dark&panelId=2" width="100%" height="50%" frameborder="0"></iframe>
+	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="static/js/code.js"></script>
+	</body>
+</html>

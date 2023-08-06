@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: piwwwaterflow
+Version: 0.1.6
+Summary: Raspberry Pi Waterflow resilient system
+Home-page: https://github.com/Phornee/piwwwaterflow
+Author: Ismael Raya
+Author-email: phornee@gmail.com
+License: UNKNOWN
+Description: # piwwwaterflow
+        Flask/Gunicorn Webservice for piwaterflow system
+        
+        + 1.1.0
+          + Avoid service caching by adding timestamp to URL
+        + 1.1.1
+          + Point to new grafana 
+        + 1.2.2
+          + New waterflow config & LAN influxdb
+        + 1.2.3
+          + Black header & config fix
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Home Automation
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
