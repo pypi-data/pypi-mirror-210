@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: ddsp
+Version: 3.7.0
+Summary: Differentiable Digital Signal Processing 
+Home-page: http://github.com/magenta/ddsp
+Author: Google Inc.
+Author-email: no-reply@google.com
+License: Apache 2.0
+Keywords: audio dsp signalprocessing machinelearning music
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+License-File: LICENSE
+Requires-Dist: absl-py
+Requires-Dist: cloudml-hypertune (<=0.1.0.dev6)
+Requires-Dist: crepe (<=0.0.12)
+Requires-Dist: dill (<=0.3.4)
+Requires-Dist: future
+Requires-Dist: gin-config (>=0.3.0)
+Requires-Dist: google-cloud-storage
+Requires-Dist: hmmlearn (<=0.2.7)
+Requires-Dist: librosa (<=0.10)
+Requires-Dist: pydub (<=0.25.1)
+Requires-Dist: protobuf (<=3.20)
+Requires-Dist: mir-eval (<=0.7)
+Requires-Dist: note-seq (<0.0.4)
+Requires-Dist: numpy (<1.24)
+Requires-Dist: scipy (<=1.10.1)
+Requires-Dist: six
+Requires-Dist: tensorflow (<=2.11)
+Requires-Dist: tensorflowjs (<3.19)
+Requires-Dist: tensorflow-probability (<=0.19)
+Requires-Dist: tensorflow-datasets (<=4.9)
+Requires-Dist: tflite-support (<=0.1)
+Provides-Extra: data_preparation
+Requires-Dist: apache-beam ; extra == 'data_preparation'
+Requires-Dist: pyparsing (<=2.4.7) ; extra == 'data_preparation'
+Provides-Extra: gcp
+Requires-Dist: gevent ; extra == 'gcp'
+Requires-Dist: google-api-python-client ; extra == 'gcp'
+Requires-Dist: google-compute-engine ; extra == 'gcp'
+Requires-Dist: oauth2client ; extra == 'gcp'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pylint (!=2.5.0) ; extra == 'test'
+
