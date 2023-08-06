@@ -1,0 +1,256 @@
+LICENSE
+MANIFEST.in
+README.md
+changes.md
+pyproject.toml
+setup.cfg
+doc/SUNCALmanual.pdf
+doc/API Examples/Curve Fit - Contact Resistance.ipynb
+doc/API Examples/Curve Fit - Fit Models.ipynb
+doc/API Examples/Curve Fit - Risk - Drifting Pressure Gage.ipynb
+doc/API Examples/IVdata.csv
+doc/API Examples/PFA_vs_TUR.png
+doc/API Examples/PFA_vs_itp.png
+doc/API Examples/Reverse Uncertainty - Gage Ball Calibration.ipynb
+doc/API Examples/Risk - Ball Bearing.ipynb
+doc/API Examples/Risk - Deaver Methods.ipynb
+doc/API Examples/Risk - Risk Curves.ipynb
+doc/API Examples/Risk - Uncertainty - RC Time Constant.ipynb
+doc/API Examples/Uncertainty - Coaxial Transmission Properties.ipynb
+doc/API Examples/Uncertainty - Complex Voltage Reflection Coefficient NIST1900.E15.ipynb
+doc/API Examples/Uncertainty - End Gauge GUM.H1.ipynb
+doc/API Examples/Uncertainty - Inductance Nagaoka.ipynb
+doc/API Examples/Uncertainty - Instrumentation Amplifier.ipynb
+doc/API Examples/Uncertainty - Magnitude and Phase GUM-S2.ipynb
+doc/API Examples/Uncertainty - Resistance GUM.H2.ipynb
+doc/API Examples/Uncertainty - Series Parallel Resistors.ipynb
+doc/API Examples/Uncertainty - StefanBoltzmann Constant NIST UM.10.ipynb
+doc/API Examples/Uncertainty - StepAttenuator NIST1900.E11.ipynb
+doc/API Examples/Uncertainty - Thermal Expansion NIST1900.E13.ipynb
+doc/API Examples/Uncertainty - Viscometer NIST1900.E3.ipynb
+doc/API Examples/inst_amp.png
+doc/API Manual/1 - API User Manual - Getting Started.ipynb
+doc/API Manual/2 - API User Manual - Uncertainty Propagation.ipynb
+doc/API Manual/3 - API User Manual - Reverse Uncertainty.ipynb
+doc/API Manual/4 - API User Manual - Curve Fit Uncertainty.ipynb
+doc/API Manual/5 - API User Manual - Calibration Intervals.ipynb
+doc/API Manual/6 - API User Manual - Guardbanding and False Accept Risk.ipynb
+doc/API Manual/7 - API User Manual - Reproducibility and Analysis of Variance.ipynb
+doc/Examples/ex_RCrisk.yaml
+doc/Examples/ex_XRF.yaml
+doc/Examples/ex_contactresistance.yaml
+doc/Examples/ex_drift_risk.yaml
+doc/Examples/ex_electricalcircuitproblem.yaml
+doc/Examples/ex_endgauge.yaml
+doc/Examples/ex_expansion.yaml
+doc/Examples/ex_gageball_reversesweep.yaml
+doc/Examples/ex_intervalA3.yaml
+doc/Examples/ex_intervalS2.yaml
+doc/Examples/ex_intervalvar.yaml
+doc/Examples/ex_magphase.yaml
+doc/Examples/ex_pitot.yaml
+doc/Examples/ex_reactance.yaml
+doc/Examples/ex_stepatten.yaml
+doc/Examples/ex_temperature_coeff.yaml
+doc/Examples/ex_viscometer.yaml
+doc/Examples/ex_voltageanova.yaml
+doc/Examples/Data/432A-TCR.csv
+doc/Examples/Data/IVdata.csv
+doc/Examples/Data/contactresistance.txt
+doc/Examples/Data/daily_resistance.csv
+doc/Examples/Data/expdata.txt
+doc/Examples/Data/flicker.dat
+doc/Examples/Data/lava.dat
+doc/Examples/Data/logdata.txt
+doc/Examples/Data/logistic.txt
+doc/Examples/Data/pressure.txt
+doc/Examples/Data/resistance.dat
+doc/Manual/biblio.bib
+doc/Manual/biblio.csl
+doc/Manual/buildman.sh
+doc/Manual/header.tex
+doc/Manual/manual.css
+doc/Manual/manual.md
+doc/Manual/figs/Figure_2_1.PNG
+doc/Manual/figs/Figure_2_10.PNG
+doc/Manual/figs/Figure_2_11.PNG
+doc/Manual/figs/Figure_2_12.PNG
+doc/Manual/figs/Figure_2_13.PNG
+doc/Manual/figs/Figure_2_14.PNG
+doc/Manual/figs/Figure_2_15.PNG
+doc/Manual/figs/Figure_2_16.PNG
+doc/Manual/figs/Figure_2_17.PNG
+doc/Manual/figs/Figure_2_18.PNG
+doc/Manual/figs/Figure_2_2.PNG
+doc/Manual/figs/Figure_2_3.PNG
+doc/Manual/figs/Figure_2_4.png
+doc/Manual/figs/Figure_2_5.PNG
+doc/Manual/figs/Figure_2_6.PNG
+doc/Manual/figs/Figure_2_7.PNG
+doc/Manual/figs/Figure_2_8.PNG
+doc/Manual/figs/Figure_2_9.PNG
+doc/Manual/figs/Figure_3_1.PNG
+doc/Manual/figs/Figure_6_1.PNG
+doc/Manual/figs/Figure_6_10.PNG
+doc/Manual/figs/Figure_6_11.PNG
+doc/Manual/figs/Figure_6_2.PNG
+doc/Manual/figs/Figure_6_3.PNG
+doc/Manual/figs/Figure_6_4.PNG
+doc/Manual/figs/Figure_6_5.PNG
+doc/Manual/figs/Figure_6_6.PNG
+doc/Manual/figs/Figure_6_7.PNG
+doc/Manual/figs/Figure_6_8.PNG
+doc/Manual/figs/Figure_6_9.PNG
+suncal/__init__.py
+suncal/__main__.py
+suncal/startui.py
+suncal/version.py
+suncal.egg-info/PKG-INFO
+suncal.egg-info/SOURCES.txt
+suncal.egg-info/dependency_links.txt
+suncal.egg-info/entry_points.txt
+suncal.egg-info/requires.txt
+suncal.egg-info/top_level.txt
+suncal.egg-info/zip-safe
+suncal/common/__init__.py
+suncal/common/distributions.py
+suncal/common/matrix.py
+suncal/common/multivariate_t.py
+suncal/common/plotting.py
+suncal/common/report.py
+suncal/common/reporter.py
+suncal/common/ttable.py
+suncal/common/unitmgr.py
+suncal/common/uparser.py
+suncal/common/style/__init__.py
+suncal/common/style/css.py
+suncal/common/style/latexchars.py
+suncal/curvefit/__init__.py
+suncal/curvefit/curvefit.py
+suncal/curvefit/curvefit_model.py
+suncal/curvefit/uncertarray.py
+suncal/curvefit/report/__init__.py
+suncal/curvefit/report/curvefit.py
+suncal/curvefit/results/__init__.py
+suncal/curvefit/results/curvefit.py
+suncal/datasets/__init__.py
+suncal/datasets/dataset.py
+suncal/datasets/dataset_model.py
+suncal/datasets/report/__init__.py
+suncal/datasets/report/dataset.py
+suncal/distexplore/__init__.py
+suncal/distexplore/dist_explore.py
+suncal/distexplore/report/__init__.py
+suncal/distexplore/report/dist_explore.py
+suncal/gui/__init__.py
+suncal/gui/colormap.py
+suncal/gui/configmgr.py
+suncal/gui/gen_licenses.py
+suncal/gui/gui_common.py
+suncal/gui/gui_main.py
+suncal/gui/gui_widgets.py
+suncal/gui/icons.py
+suncal/gui/licenses.py
+suncal/gui/logo.py
+suncal/gui/page_about.py
+suncal/gui/page_csvload.py
+suncal/gui/page_curvefit.py
+suncal/gui/page_dataimport.py
+suncal/gui/page_dataset.py
+suncal/gui/page_distribution.py
+suncal/gui/page_interval.py
+suncal/gui/page_reverse.py
+suncal/gui/page_risk.py
+suncal/gui/page_sweep.py
+suncal/gui/page_ttable.py
+suncal/gui/page_uncert.py
+suncal/gui/page_uncert_input.py
+suncal/gui/page_uncert_output.py
+suncal/gui/page_units.py
+suncal/gui/page_wizard.py
+suncal/intervals/__init__.py
+suncal/intervals/binoms2.py
+suncal/intervals/fit.py
+suncal/intervals/s2models.py
+suncal/intervals/testa3.py
+suncal/intervals/variables.py
+suncal/intervals/report/__init__.py
+suncal/intervals/report/attributes.py
+suncal/intervals/report/variables.py
+suncal/project/__init__.py
+suncal/project/component.py
+suncal/project/proj_curvefit.py
+suncal/project/proj_dataset.py
+suncal/project/proj_explore.py
+suncal/project/proj_interval.py
+suncal/project/proj_reverse.py
+suncal/project/proj_revsweep.py
+suncal/project/proj_risk.py
+suncal/project/proj_sweep.py
+suncal/project/proj_uncert.py
+suncal/project/proj_wizard.py
+suncal/project/project.py
+suncal/reverse/__init__.py
+suncal/reverse/reverse.py
+suncal/reverse/report/__init__.py
+suncal/reverse/report/reverse.py
+suncal/risk/__init__.py
+suncal/risk/deaver.py
+suncal/risk/risk.py
+suncal/risk/risk_model.py
+suncal/risk/risk_sweep.py
+suncal/risk/report/__init__.py
+suncal/risk/report/risk.py
+suncal/sweep/__init__.py
+suncal/sweep/revsweeper.py
+suncal/sweep/sweeper.py
+suncal/sweep/report/__init__.py
+suncal/sweep/report/revsweep.py
+suncal/sweep/report/sweep.py
+suncal/sweep/results/__init__.py
+suncal/sweep/results/sweep.py
+suncal/uncertainty/__init__.py
+suncal/uncertainty/model.py
+suncal/uncertainty/model_cplx.py
+suncal/uncertainty/variables.py
+suncal/uncertainty/report/__init__.py
+suncal/uncertainty/report/cplx.py
+suncal/uncertainty/report/gum.py
+suncal/uncertainty/report/monte.py
+suncal/uncertainty/report/uncertainty.py
+suncal/uncertainty/report/units.py
+suncal/uncertainty/results/__init__.py
+suncal/uncertainty/results/gum.py
+suncal/uncertainty/results/monte.py
+suncal/uncertainty/results/uncertainty.py
+suncal/uncertcalc/__init__.py
+suncal/uncertcalc/uncertcalc.py
+test/ex_endgauge.yaml
+test/ex_endgauge_units.yaml
+test/ex_expansion.yaml
+test/ex_magphase.yaml
+test/ex_stepatten.yaml
+test/ex_viscometer.yaml
+test/ex_xrf.yaml
+test/project.yaml
+test/test1.yaml
+test/test_GUMH2.csv
+test/test_cli.py
+test/test_config.py
+test/test_cplx.py
+test/test_curvefit.py
+test/test_dataset.py
+test/test_dists.py
+test/test_examples.py
+test/test_interval.py
+test/test_olducalc.py
+test/test_parser.py
+test/test_project.py
+test/test_report.py
+test/test_reverse.py
+test/test_risk.py
+test/test_ttable.py
+test/test_uncertainty.py
+test/test_units.py
+test/mcmc/K350_trace1000.txt
+test/mcmc/xrd.csv
