@@ -1,0 +1,13 @@
+wrighter==0.1.2
+stdl>=0.4.4
+jsonschema==4.17.3
+jsonpath-ng==1.5.3
+playwright>=1.29.0
+
+[dev]
+black
+pytest
+flake8
+
+[test]
+pytest
