@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "seismic-classifier"
+version = "0.2.8"
+description = "trace by trace seismic classification"
+authors = ["Jean-Philippe Mercier <jp.mercier@esgsolutions.com>"]
+readme = "README.md"
+packages = [{include = "seismic_classifier"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+ipython = "^8.13.2"
+numpy = "^1.24.3"
+useis = "^1.0.2"
+ipdb = "^0.13.13"
+gdown = "^4.7.1"
+torch = "^2.0.1"
+torchvision = "^0.15.2"
+torchaudio = "^2.0.2"
+pickled-carrots = "^0.1.1"
+quilt = "^2.9.15"
+quilt3 = "^5.3.1"
+faust = "^1.10.4"
+aiohttp = "^3.8.4"
+multiprocess = "^0.70.14"
+
+[tool.poetry.scripts]
+classification_server = 'seismic_classifier.api.rest.server:start'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
