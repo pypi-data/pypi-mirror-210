@@ -1,0 +1,8 @@
+{%- if pagename != "search" %}
+<form class="d-flex" role="search" action="{{ pathto('search') }}" method="get">
+  <div class="input-group">
+    <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-light" type="submit">Search</button>
+  </div>
+</form>
+{%- endif %}

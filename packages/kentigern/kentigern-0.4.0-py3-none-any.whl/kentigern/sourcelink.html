@@ -1,0 +1,8 @@
+{%- if show_source and has_source and sourcename %}
+<div id="sourcelink navbar-nav mr-auto hidden-sm">
+  <a href="{{ pathto('_sources/' + sourcename, true)|e }}"
+     class="nav-link"
+     rel="nofollow"><i class="bi bi-file-binary-fill"></i>{{ _('Source') }}</a>
+</div>
+{%- endif %}
+

@@ -1,0 +1,21 @@
+{% if versions %}
+<ul class="navbar-nav">
+  <li class="nav-item dropdown">
+    <div class="btn-group">
+      <a class="nav-link dropdown-toggle version-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	Version: {{ current_version.name | default("current") }}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+	<li><h6 class="dropdown-header">Releases</h6></li>
+	{%- for version in versions.tags %}
+	<li><a class="dropdown-item version-link" href="{{ version.url }}">{{ version.name }}</a></li>
+	{%- endfor %}
+	<li><h6 class="dropdown-header">Development previews</h6></li>
+	{%- for version in versions.branches %}
+	<li><a class="dropdown-item version-link" href="{{ version.url }}">{{ version.name }}</a></li>
+	{%- endfor %}
+      </ul>
+    </div>
+  </li>
+</ul>
+{% endif %}

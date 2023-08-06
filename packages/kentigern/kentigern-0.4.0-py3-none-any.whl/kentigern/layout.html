@@ -1,0 +1,79 @@
+{% extends "basic/layout.html" %}
+
+{%- block doctype -%}
+<!DOCTYPE html>
+{%- endblock %}
+
+{%- block extrahead %}
+<meta charset='utf-8'>
+
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- CSS only -->
+<!-- <link rel="stylesheet" -->
+<!--       href="{{ pathto('_static/kentigern-modern.css', 1) }}"> -->
+<!-- <link rel="stylesheet" -->
+<!--       href='//fonts.googleapis.com/css?family=Lato:300,500%'/> -->
+<script src="{{ pathto('_static/darkmode.js', 1) }}"></script>
+<script src="{{ pathto('_static/dist/main.js', 1) }}"></script>
+<!-- <script src="{{ pathto('_static/node_modules/@popperjs/core/dist/umd/popper.min.js', 1) }}"></script> -->
+<!-- <script src="{{ pathto('_static/node_modules/bootstrap/dist/js/bootstrap.min.js', 1) }}"></script> -->
+{% endblock %}
+
+
+{# Silence the sidebars, relbars #}
+{% block header %}{% endblock %}
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
+{% block sidebarsourcelink %}{% endblock %}
+
+
+
+{% block body_tag %}
+  <body data-spy="scroll" data-target="#localtoc" data-offset="100">
+{%- endblock %}
+
+{%- block content %}
+
+{% include "navbar.html" %}
+
+<div class="container-fluid" id="docs-container">
+  
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-2 order-3 order-xl-1 toc-left">
+      {%- block sidebarleft %}
+      <!-- {% include "searchbox.html" %} -->
+      {% include "sidebar-left.html" %}
+      {% endblock %}
+    </div>
+
+    <div class="col-md-6 col-lg-2 order-2 order-xl-3 toc-right">
+      {%- block sidebar1 %}
+      {% include "sidebar-right.html" %}
+      {% endblock %}
+    </div>
+    
+    <div class="col-md-12 col-lg-8 content order-1 order-xl-2 col-xl-6 pt-3">
+
+      {% include "bannerversion.html" %}
+      {% include "breadcrumbs.html" %}
+      
+      {% block body %}
+      
+      {% endblock %}
+    </div>
+
+  </div>
+  
+  {%- endblock %}
+
+{%- block footer %}
+  {% include "footer.html" %}
+    <script>
+    $(document).ready(function(){
+	$("#localtoc a").addClass("nav-link")
+	$('body').scrollspy({ target: '#localtoc' })
+    });
+  </script>
+{%- endblock %}
