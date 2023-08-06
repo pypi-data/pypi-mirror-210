@@ -1,0 +1,14 @@
+[console_scripts]
+managesf-api = managesf.app:main
+managesf-configuration = managesf.controllers.api.v2.configurations:cli
+managesf-keycloak = managesf.cmds.keycloak:cli
+managesf-resources = managesf.cmds.resources:cli
+
+[managesf.service]
+SFGerrit = managesf.services.gerrit:SoftwareFactoryGerrit
+
+[managesf.v2.resources]
+manageSF = managesf.api.v2.resources.services.manageSF:SFResourcesManager
+
+[oslo.policy.policies]
+managesf = managesf.policies:list_rules

@@ -1,0 +1,586 @@
+CHANGES
+=======
+
+0.32.1
+------
+
+* Prevent SQLAlchemy to use 2.X version
+
+0.32.0
+------
+
+* Since Gerrit 3.3 'Non-Interactive Users' is not a default group'
+
+0.31.0
+------
+
+* Fix preferred\_username claim condition for default zuul tenant admin rule
+* Add managesf-keycloak CLI command
+* More cauth removal
+
+0.29.0
+------
+
+* Remove outdated code
+
+0.28.0
+------
+
+* Bump spec to 0.28.0
+* zuul config: add tenant-scoped default authorization rule
+* Zuul config: define and inject a default authorization rule on every tenant, remove gerrit groups-based authorization rules
+* tox-py36 label update to zuul-worker-ubi8
+
+0.27.6
+------
+
+* Resources: Support Zuul's admin-rules
+
+0.27.5
+------
+
+
+0.27.4
+------
+
+* Replace gitweb base\_url by gitiles
+* Remove deprecated RepoXplorer class and tests
+* Resources: convert gerrit ACLs into Zuul admin rules
+* gerrit: Add support for gerrit 3.4
+* Add required fields for pypi upload
+
+0.27.2
+------
+
+* Add upload-pypi job, update nodeset
+
+0.27.1
+------
+
+* gerrit: fix keycloak scheme external id
+* hound: add pagure and gitlab connection support
+
+0.26.0
+------
+
+* gerrit: prevent UnboundLocalError
+* gerrit user: specify auth scheme for pynotedb
+* configuration: repoxplorer handle the repoxplorer/branches
+
+0.25.0
+------
+
+* yamlbacked model: remove issue-tracker field
+* gerrit: use notedb to manage externalId and rename deleted group
+
+0.24.0
+------
+
+* resources: fatal: unrecognized argument: -q
+* User update: unquote arguments passed in the query path
+* gerrit: ensure email is decoded before updating user accounts
+* Prepare managesf for keycloak support
+* configurations: add zuul/skip option
+* Add test for extra config options in resources acls
+* configurations: refactor get\_resources usage and detect failure
+* resources: ignore unicode errors in head commit print
+* Switching Fedora runc nodeset to pod
+* Remove Storyboard-related code
+
+0.23.0
+------
+
+* configurations: adds a --extra-launcher argument for nodepool
+* Remove python2 support
+* nodepool: add per host launcher configuration
+* configurations: only keep nodepool file when merging configuration
+
+0.22.0
+------
+
+* Switch to system python3
+* Import pipeline configuration
+* Add nodepool managesf endpoint
+* Use local CA for python request
+* SCLize managesf
+* Add sfauth to managesf for the time python-sfmanager is moved to scl
+* Fix python3 compatibility
+* Remove some uneeded base services classes
+* Remove more code related to pagination and rest proxy
+* Policies cleaning
+* Remove managesf/controllers/utils.py
+* Remove Jobs controller
+* Remove Nodes controller
+* Remove resources v1 endpoint
+* Remove useless code in resources API v2
+* Clean up useless code
+* resources: fallback to commit^1 when prev commit doesn't exists
+
+0.21.0
+------
+
+* resources: changes resources [remote]-validate to support commit range
+* Simplify yamlbackend \_update\_git\_clone
+* configurations: remove the git clone depth argument
+* resources:  changes resources apply to support commit range
+* config endpoint: add cauth groups config output
+* Add gerrithub support
+* Add Hound configurator to managesf/configuration
+* configurations/zuul: Fix missings repos associated to wrong connection
+* Remove version pinning from requirements
+* Fix repoxplorer configurator fails if not group defined
+* resources: Authorize dict value to fallback on int and bool
+* configuration/repoxplorer: add support of the skip option
+* Add options attribute to resources project object
+* Remove paramiko<2 cap and python-ecdsa requirements
+
+0.20.0
+------
+
+* configurations: force tenant url to use the v2 endpoint
+* Fix W605 warning
+
+0.19.0
+------
+
+* resources: configurations repoxplorer - simply resources fetching
+* resources: get adds connections data from the config file if exists
+* resources-cli: do not load managesf config for remote-validate
+* Remove Resources SQL backend
+* Managesf remove some dead code related to Jenkins (again)
+* Remove API V1 resources endpoint
+* Managesf: Add resources CLI to replace resources.sh
+* Fix issue where we expect to have the group resources
+
+0.18.1
+------
+
+* configurations: fix issue with tenant project hosted locally
+* resources/projects: do not set a default tenant name to 'local'
+* managesf/configuration: zuul tenant\_resources cache do proper get to avoid keyerror
+* managesf/configurations: repoxplorer get connections from conf
+* Add allowed-triggers/reporters at tenant level
+* configurations/repoxplorer: prevent failure if default cnx does not exists in resources cnx
+
+0.18.0
+------
+
+* managesf/resources: add extra validation for the private attribute
+* managesf/configuration: handle the private attribute
+* managesf/configuration/repoxplorer: Fix in case tenant does not have default-connection
+* managesf/configurations: Add repoxplorer endpoint
+* managesf/resources: connections remove prevent\_update for CRD
+* managesf/configurations: zuul - handle local config repo
+* configuration: add default tenant\_name option to resources
+* gerrit: fix update preferred account
+* bind: add logging statement to the controller
+* managesf/configurations: test with a flat tenant file w/o sources
+* managesf/configuration: Only add missing repos by config-url
+* managesf/configurations: Add zuul/ignore option support to sr
+* managesf/configuration: Fix wrong zuul-tenant-options parameter name
+* configuration: use different cache directory when run manually
+* gerrit: fix missing idp\_sync user update() argument
+* managesf/configurations: zuul fallback to local tenant default-connection
+* managesf/resources: validate resources type
+* managesf/configuration: zuul - add not associated repos to zuul conf
+* managesf/configurations: tenant's projects resources default to tenant = tenant\_name
+* resources: Add connection options for github type (app-name, label)
+* managesf/configurations endpoint: Fix condition
+* resources: add default-connection to tenant object
+* configurations: add initial controller and cli
+* Fix storyboard resources callback to fully support dict type source-repositories
+* Fix err 500 when a group member is not found
+* resources: Make a resources get return default values
+* resources: Add transform\_for\_get method to BaseResource
+* resources: make source-repositories list of dicts compatible
+* resources: Add is\_deps\_soft() method to tell if deps contrainst is strong
+* resources: Multiple additions to support tenant model
+* authorize: do not fail when gerrit is not enabled
+* Switch mysql connector lib to https://github.com/PyMySQL/PyMySQL/
+* Clean backup/restore managesf entry points API v1/v2
+* resources: Add a new Tenant object
+* resources: Add addPatchSet key as key that expect a group
+* Add missing storyboardclient dependency
+* gerrit: remove pysflib GerritUtils client
+* gerrit: adds new client for gerrit-2.14
+* gerrit: remove support for cookie authentication
+* gerrit: support direct password config
+
+0.17.0
+------
+
+* API v2: add REST API proxy controller, zuul
+* managesf API v2: resources - adapt missing tests from v1 to v2
+* resources engine: do not auto refresh acl when a group is updated
+
+0.16.0
+------
+
+* Switch to python-paramiko instead of python2-paramiko
+* Add additionnal check on gerrit acl
+* Increase gunicorn worker timeout to 1800 seconds
+
+0.15.0
+------
+
+* Plug policy engine on v2 API
+* Add a MemoryYAMLBackend and ability to direct validate data
+* Faster loading/dumping of data in yaml resources backend
+* managers: do not abord on skip
+* API v2: Resources endpoint
+* Add a SQL cache to YAMLBackend
+* Builds/buildsets/Jobs: optimizations and fixes
+* use sphinx\_rtd\_theme
+
+0.14.0
+------
+
+* Increase default timeout for gunicorn managesf
+* REST API: Add a 'hash' entry at the top of the resources tree
+* Fix resources backend ACL syntax check (deny key)
+* Add API v2 documentation as swagger definition file
+* Add proper testing of SQL-based services
+
+0.13.1
+------
+
+* Add "desc" option to GET calls, refactor and optimize SQL calls
+
+0.13.0
+------
+
+* API v2: Jobs API, zuul service
+* API v2: Move manager loading to a dedicated module
+* API v2: builds, buildset endpoints
+* htpasswd: properly encode password
+* gerrit: stop using /api/ endpoint
+* Add base mechanics for API v2
+* Create a stub for API v2
+* Quote project name when setting default branch
+* Switch managesf to gunicorn
+* Use subprocess to call ssh cmd instead of paramiko
+
+0.12.0
+------
+
+* Set managesf storyboard driver new project name len limit
+* support Disk Image Builder commands in node image API
+* resources/storyboard: make the code more resilient to project c/u issues
+* Set the pep8 target to be executed with a python2.7 base env
+* resources: Set default-branch value as empty string by default
+* resources: Add Git repo branches support
+* gerrit: let subprocess change cwd
+* resources: Group update - remove members before adding members
+* resources - ACL validation: new check on group value
+* resources engine: log exceptions
+* Update gitreview file
+* Remove redmine support
+* package: add doc
+* mangesf/storyboard: Add validation constraint for max len of project and project group
+
+0.11.0
+------
+
+* managesf: use uwsgi instead of pecan bundled server
+* Add RPM spec file for managesf
+* Nodes API: image update
+* resources: Add review-dashboard parameter
+* cleaning: remove the tests and pages endpoints
+* cleaning: remove project and membership endpoints
+* storyboard: add project name validation
+* cleaning: Remove the standalone group endpoint
+* resources: apply use a given commit to clone and compute diff
+* Various fixes
+* storyboard: improve hooks message
+* Storyboard integration with the resources engine
+* storyboard: fix hook regexp
+* Nodes (Nodepool) REST API
+* Add issue-tracker-url and rename commit-hook in issue-tracker
+* resources: repos: skip install\_git\_review\_file for update op
+* storyboard: add hooks manager
+* hooks: simplify the controller
+* resources: Make the Gerrit acl validation stronger
+* Fix ContextualVersionConflict tox errors
+* Fix unicode warning
+* Fix BaseException.message has been deprecated warning
+* Fix nested deprecation warning
+* resources: Set all resources name as non mandatory
+* resource: The resource ID is now the resource name by default
+* yamlbkd: simplify exception
+* Jobs API
+* resources: secure callback calls
+* storyboard: fix new import path for exceptions
+* Add automatic doc generator for managesf/resources
+* Add managesf-api standalone runner
+* Remove remaining artifacts of the old sshconfig endpoint
+* setup.py: use pbr
+* backup: simplify backup/restore controller
+* storyboard: create token on user update
+* Deactivate old user service handle
+* Resource GIT style : Provide endpoint to get missing resources
+* Managesf: resources - add a direct apply mode for PUT
+* Project resources GIT style
+* Change service user name to be compliant with gerrit constraints
+* Fix crash if a tracker is not present
+* policy: only register default on first init
+* Add policy coverage for REST endpoints
+* Add idp\_sync column to SF\_USERS table
+* Silence UnavailableActionError exception
+* tests: fix nosetests usage
+* Platform-wide policy engine
+* doc: fixs invalid option
+* Cap paramiko<2
+* gerrit: add charset=utf8 to db\_uri
+* Add templates in package
+* Use correct cauth\_id
+* gerrit service's user.get must return an id
+* Make sure group creation code manages well the pysflib return code
+* Allow membership endpoint usage to add groups to project groups
+* Add Gerrit/Redmine group services unittests
+* Add the standalone group endpoint
+* Add storyboard service
+* gerrit: fix user update without username
+* Deny access to refs/meta/config for private groups
+* Improve Unicode management for users
+* Remove membership management for project/create endpoint
+* Replace session management with a context manager
+* Refactored the root controller
+* Remove replication and sshconfig REST endpoint
+* Use managesf backend to list users
+* update users
+* Add a mapping table between SF users and service users
+* Removed the duplicate coverage
+* Multiple fix on ManageSF backup endpoint
+* Explicitly close db connections
+* Change \_reload\_cache to limit requests amount
+* Add a user backend in manageSF
+* Specify backup directory in config file
+* Redmine: Replace slash character to a underscore
+* Handle encoded project names in the REST api
+* Add mysql-specific options in DB
+* Allow custom configuration to be place in replication.config
+* Fix wrong format string
+* Add pages controller
+* Remove obsolete gerrit controller
+* Refactor test initialization code into plugins
+* Add readonly project option
+* Various little fixes related to deletion of users on services
+* Add user deletion in gerrit backend
+* Make the introspection endpoint return the real services, not a hardcoded list
+* Delete user in services by email or by username
+* Introduce the config REST API
+* move gerrit replication code to gerrit service plugin
+* Improve the git subprocess calls
+* Push the local copy of the branch upstream
+* use latest pecan version
+* Try to connect to gerrit directly with admin credentials by default, or go through SF if credentials are not available
+* Skip gracefully if a project already exists in a service at project creation
+* Fix the cloning branches to the gerrit repository
+* Fix the string format
+* Added the option to add all the branches to the gerrit repo
+* Remove CLI from managesf server
+* Fix patchset argument being the wrong type in redmine hooks
+* Move htpassword logic outside of web controller
+* Redmine hooks
+* Add hooks REST API endpoint
+* Add generic interface for default hooks in service plugins
+* Add services' users management API: gerrit
+* Add services' users management API + coverage for redmine
+* Add lodgeit service plugin
+* Fix some corner cases in gerrit label ACLs
+* fix docs/source/sfmanager.rst regarding the membership sub-command
+* Document plugin creation and configuration
+* Add nodepool service plugin
+* Add etherpad service plugin
+* Add a jenkins service plugin
+* Fix user never considered admin of a project by get project REST call
+* Project create fails early if git upstream not reachable
+* Plugging in the plugins
+* Clean up imports for plugins
+* backup in service plugins
+* Gerrit Service Plugin
+* Service plugin: redmine (WIP)
+
+0.10.0
+------
+
+* Fix "provide tests" option of managesf
+* Included code coverage for manageSF
+* Fix default test node when adding template tests to project
+* Bump to 0.10.0
+
+0.9.1
+-----
+
+* Fix the file open attributes
+* Skip iterating over groups if they don't exist
+* Changed the host of the gerrit server
+* Converted the return value of the REST API to json
+* The class GerritRepo was incorrectly called
+* Make the username manditory when updating user in CLI
+* Cleaned up the error messages sent from the REST API
+
+0.9.0
+-----
+
+* Updated the documentation of manageSF CLI
+* Fix sfmanager to return authentication page when wrong auth
+* Fix flake8
+* Bump to 0.9.0
+
+0.8.0
+-----
+
+* Remove CLI deprecated commands
+* Changed the return value of the membership CLI
+* Fix the new membership CLI
+* Bump to 0.8.0
+
+0.7.0
+-----
+
+* Bump to 0.7.0
+* Adds debug and fix backup controller
+* Fix in the gerrit CLI commands
+* Fix the argument for init tests
+* Fix sfmanager to output backup content on stdout
+* Introducing init test in Software Factory
+* Add a (much needed) CHANGELOG
+
+0.6.0
+-----
+
+* bump version prior to tagging
+* Refactored the ManageSF CLI
+
+0.5.0
+-----
+
+* Prepare v0.5.0 release
+* Only Administrators should be allowed to create new projects
+* set WebOb requirement to v1.5.0a1
+* Add sshconfig REST API
+* Pin requirements to the latest working versions
+* Fix test incompatibility with current WebOb library (1.5.0a1)
+* Change RCIP git repos
+* Pin WebOb to fix Exception handling error
+* Fix bug in sfmanager
+
+0.4.0
+-----
+
+* Bump version prior to tagging 0.4.0
+* Use pysflib to fetch auth cookie
+* Introspection REST API endpoint
+* Update replication documentation
+
+0.3.2
+-----
+
+* bump to v0.3.2
+* Add managesf documentation
+* Fix managesf replication list/get-all subcommands
+* Add missing requirements
+
+0.3.1
+-----
+
+* bump to 0.3.1
+
+0.3.0
+-----
+
+* Prepare lib for pypi
+* Add CLI command for managing Gerrit API password
+* Add htpasswd controller
+* Fetch auth cookie from browser cookie jar if available
+* Improve logging and CLI output
+* Set behavior on user subcommands consistent (pwd)
+
+0.2.0
+-----
+
+* Version Update
+* fix missing content-type header
+* add some info when user creation/update fails
+* Add support for user management in CLI
+* Return public info upon successful localdb user auth
+* Add the possibility to disable SSL verification (good for tests)
+* Add localuser db for authentication
+
+0.1.1
+-----
+
+* minor change to test gating conf
+* update version prior to tagging
+* Fix path !
+* Fix group format that request a tab a separator
+
+0.1
+---
+
+* Set gerrit project ACL to allow public readable gitweb
+* Adds unit testing
+* adds a console script entrypoint for sfmanager
+* ManageSF commit
+* Move pysflib to an external dependency
+* get members of a given group in gerrit with pysflib
+* Add upstream-ssh-key option
+* Refactored the CLI of managesf
+* Add project membership UI in the dashboard
+* Trigger a ssh-keyscan for the target host for gerrit replication
+* Fix default layout.yaml for zuul
+* managesf: use URLs instead of hostnames
+* Fix import of requests
+* Confirm project delete in dashboard
+* Fix requirement install (session argument) + others
+* Improve dashboard cache
+* Add a basic dashboard
+* Fix broken managesf replication controller test
+* managesf-cli: use host as auth-server if not specified
+* managesf-cli: add authentication checks and ask password from stdin
+* Add the force option for project deletion on Gerrit
+* Fix managesf unitests really long to run
+* Enabling checker in backup restore tests
+* Disable TestManageSFAppReplicationController.test\_get blocking gate bug
+* Managesf uses pysflib.sfgerrit.GerritUtils
+* Provide pysflib with RedmineUtils
+* Adding gate pipeline to SF
+* Add unittest for managesf utils.py
+* Move fake config for test\_redmine managesf
+* Add unittest for managesf backup.py
+* Add global manageSF tests using test\_app
+* Add unittests for managesf's redmine module
+* Managesf unitest gerrit controller
+* Base patch for managesf tests
+* Add an option in managesf to add/remove user from project
+* Fix run\_tests.sh for SF
+* Add functional test for Github oauth login
+* Provisioner and checker tools
+* backup/restore software factory through managesf
+* Fix publics URLs and small other stuff
+* Gerrit project replication via managesf
+* Re-set ProxyPreserveHost to On
+* Avoiding the need for public IP for managesf
+* Bug fix - admin should be able to delete any project regardless of whoever owns it. Managesf's redmine interface was not permitting admin user to delete a project created by other users. This patch fixes that bug
+* This fixes the problem where redmine UI is not loaded completely
+* Add topmenu for SF
+* Single sign-on and sign-off for the softwarefactory services
+* Add log level to managesf server
+* Removes SF\_PREFIX and introduces SF\_SUFFIX which adds support to extend the domain names
+* Assign core group user the Redmine Developer role
+* Bootstrap config repo
+* Added 'Approved' label and a submit\_filter mandating 2 +2s for 'Code-Review' label
+* Fixed bug because of which a project with open issues is not deleted
+* 5630 pre-register users from LDAP to Redmine
+* redmine private projects implementation
+* enable redmine for functional tests
+* Deploy managesf role/node
+* Remove the old managesf and rename the new one
+* Add a import-pr.py for import PR from Github
+* Add ability to create a project with an history
+* Add flake8 tests
+* Kick Jenkins JJB starter
+* Fix group creation with wrong name
+* Add the option to create the config repo (jjb)
+* Add setup.py for manage sf tool
