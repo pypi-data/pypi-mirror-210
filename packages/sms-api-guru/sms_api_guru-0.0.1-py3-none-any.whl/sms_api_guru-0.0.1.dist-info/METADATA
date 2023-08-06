@@ -1,0 +1,110 @@
+Metadata-Version: 2.1
+Name: sms_api_guru
+Version: 0.0.1
+Summary: Python library that helps you send SMS using SMS API Guru API
+Author-email: SMS API Guru <admin@smsapiguru.com>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: api,api-client,simple-sms,sms,sms-api,sms-verification,text-message,user-verification
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.6
+Requires-Dist: requests
+Description-Content-Type: text/markdown
+
+# SMS API Guru python client
+
+[![PyPI](https://img.shields.io/pypi/v/sms_api_guru.svg)](https://pypi.python.org/pypi/sms_api_guru)
+[![PyPI](https://img.shields.io/pypi/pyversions/sms_api_guru.svg)](https://pypi.python.org/pypi/sms_api_guru)
+
+### Supported Python Versions
+
+This library supports the following Python implementations:
+
+* Python 3.6
+* Python 3.7
+* Python 3.8
+* Python 3.9
+* Python 3.10
+* Python 3.11
+
+## Installation
+`pip install sms_api_guru`
+
+## Sending an SMS
+
+To send an SMS, you have to create an API key using the [SMS API Guru dashboard](https://smsapiguru.com/api). When you register an account, you automatically get an API key with one free SMS which you can send anywhere.
+
+### Just send a message
+
+```python
+import sms_api_guru as api
+api.set_key("YOUR_API_KEY")
+
+api.send_sms("+381611231234", "Dummy message text...")
+```
+
+### Handle send message request result
+
+```python
+result = api.send_sms("+381611231234", "Dummy message text...")
+if(result.ok):
+  print(result.price)
+else:
+  print(result.message)
+```
+
+### Example result object of the successfully sent message
+
+```json
+{
+    "ok": true,
+    "message": "Message sent successfully",
+    "price": 0.05
+}
+```
+
+### Example result object of the unsuccessfully sent message
+
+```json
+{
+    "ok": false,
+    "message": "API key not found"
+}
+```
+
+## Verifying a phone number
+
+You can also use our service to easily verify a phone number, without storing data about the phones that you are about to verify, because we can do it for you.
+
+### Example usage
+
+```python
+# User has sent his phone number for verification
+result_sms = api.send_verification_code("+11234567890", service_name, seconds)
+
+# Show him the code submission form
+# We will handle the verification code ourselves
+
+# The user has submitted the code
+result_code = api.verify_code("+11234567890", user_entered_code)
+# if `result_code.valid` is True, then the phone number is verified. 
+```
+
+#### Verification options
+
+`service_name` is what the user will see in the verification message, e. g. `"Your verification code for Guest is: CODE"`
+
+`seconds` is how many seconds the code is valid. Default is 10 minutes. Maximum is one day. 
+
+## Getting help
+
+If you need help installing or using the library, please check the [FAQ](https://smsapiguru.com) first, and contact us at [support@smsapiguru.com](mailto://support@smsapiguru.com) if you don't find an answer to your question.
+
+If you've found a bug in the API, package or would like new features added, you are also free to contact us!
