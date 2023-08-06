@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="imio.webspellchecker">
+   <records interface="imio.webspellchecker.browser.controlpanel.IWebspellcheckerControlPanelSchema" prefix="imio.webspellchecker.browser.controlpanel.IWebspellcheckerControlPanelSchema">
+    <value key="enable_grammar">True</value>
+    <value key="enabled">True</value>
+    <value key="hide_branding">True</value>
+    <value key="js_bundle_url">https://wsc.imio-app.be/wscservice/wscbundle/wscbundle.js</value>
+    <value key="service_host">wsc.imio-app.be</value>
+    <value key="service_path">/wscservice/api/scripts/ssrv.cgi</value>
+    <value key="service_port">443</value>
+    <value key="service_protocol">https</value>
+    <value key="theme">gray</value>
+  </records>
+</registry>

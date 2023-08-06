@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="imio.webspellchecker">
+    <include package="Products.CMFCore" file="permissions.zcml" />
+
+    <browser:resourceDirectory
+      name="imio.webspellchecker"
+      directory="static"
+      />
+
+    <browser:page
+      name="wscinit.js"
+      for="*"
+      class=".webspellchecker.WebspellcheckerInitJS"
+      permission="zope.Public"
+      />
+
+    <browser:page
+      name="webspellchecker-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class="imio.webspellchecker.browser.controlpanel.WebspellcheckerSettings"
+      permission="cmf.ManagePortal"
+      layer="imio.webspellchecker.interfaces.IImioWebspellcheckerLayer"
+      />
+
+</configure>
