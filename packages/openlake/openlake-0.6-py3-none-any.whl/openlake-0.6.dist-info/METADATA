@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: openlake
+Version: 0.6
+Summary: Public dataset feed.
+Project-URL: Source, https://github.com/formlio/openlake/
+Project-URL: Documentation, https://openlake.readthedocs.io/
+Project-URL: Issues, https://github.com/formlio/openlake/issues/
+Maintainer-email: ForML Development Team <info@forml.io>
+License: Apache License 2.0
+License-File: LICENSE
+License-File: NOTICE
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: System :: Distributed Computing
+Requires-Python: >=3
+Requires-Dist: forml[sql]
+Requires-Dist: openschema
+Requires-Dist: pandas[parquet]
+Requires-Dist: sqlalchemy
+Provides-Extra: all
+Requires-Dist: openlake[kaggle,sklearn]; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: flake8-bugbear; extra == 'dev'
+Requires-Dist: flake8-colors; extra == 'dev'
+Requires-Dist: flake8-typing-imports; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: pip-tools; extra == 'dev'
+Requires-Dist: pre-commit; extra == 'dev'
+Requires-Dist: pycln; extra == 'dev'
+Requires-Dist: pylint; extra == 'dev'
+Requires-Dist: pytest-cov; extra == 'dev'
+Requires-Dist: pytest-xdist; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == 'docs'
+Requires-Dist: sphinx-copybutton; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme; extra == 'docs'
+Requires-Dist: sphinxcontrib-details-directive; extra == 'docs'
+Requires-Dist: sphinxcontrib-napoleon; extra == 'docs'
+Requires-Dist: sphinxcontrib-spelling; extra == 'docs'
+Provides-Extra: kaggle
+Requires-Dist: kaggle; extra == 'kaggle'
+Provides-Extra: sklearn
+Requires-Dist: scikit-learn; extra == 'sklearn'
+Description-Content-Type: text/markdown
+
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+
+Openlake
+========
+
+[![GitHub Build](https://img.shields.io/github/actions/workflow/status/formlio/openlake/ci.yml?branch=main)](https://github.com/formlio/openlake/actions/)
+
+[![Documentation Status](https://readthedocs.org/projects/openlake/badge/?version=latest)](https://openlake.readthedocs.io/en/latest/)
+[![License](https://img.shields.io/pypi/l/openlake)](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+![Python Version](https://img.shields.io/pypi/pyversions/openlake)
+[![PyPI Version](https://img.shields.io/pypi/v/openlake)](https://pypi.org/project/openlake/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/openlake)](https://pypi.org/project/openlake/)
+
+
+Openlake is a provider of public datasets listed in the
+[Openschema catalog](https://openschema.readthedocs.io/en/latest/) implementing the
+[ForML Feed API](https://docs.forml.io/en/latest/feed.html).
+
+Resources
+---------
+
+* [Documentation](https://openlake.readthedocs.io/en/latest/)
+* [Source Code](https://github.com/formlio/openlake/)
+* [Issue Tracker](https://github.com/formlio/openlake/issues/)
+* [PyPI Repository](https://pypi.org/project/openlake/)
