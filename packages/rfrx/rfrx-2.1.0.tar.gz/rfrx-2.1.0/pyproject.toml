@@ -1,0 +1,45 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.isort]
+profile = "black"
+
+[tool.poetry]
+authors = ["Guilhem Saurel <guilhem.saurel@laas.fr>"]
+description = "Receive RF frames from SBUS and Pro-Tronik PTR-6A v2"
+homepage = "https://github.com/nim65s/rfrx"
+license = "BSD-2-Clause"
+name = "rfrx"
+readme = "README.md"
+version = "2.1.0"
+
+[tool.poetry.dependencies]
+pyserial = "^3.5"
+python = "^3.7"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+coverage = "^7.2.6"
+ipython = "^7"
+isort = "^5.11"
+pre-commit = "^2"
+ruff = "^0.0.270"
+
+[tool.poetry.scripts]
+protronik = "rfrx:ProTronikReader"
+sbus = "rfrx:SbusReader"
+
+[tool.poetry.urls]
+changelog = "https://github.com/nim65s/rfrx/blob/main/CHANGELOG.md"
+
+[tool.ruff]
+extend-ignore = ["D203", "D213"]
+extend-select = ["A", "B", "C", "COM", "D", "DJ", "EM", "EXE", "G", "N", "PTH", "RET", "RUF", "UP", "W", "YTT"]
+target-version = "py37"
+
+[tool.tomlsort]
+all = true
