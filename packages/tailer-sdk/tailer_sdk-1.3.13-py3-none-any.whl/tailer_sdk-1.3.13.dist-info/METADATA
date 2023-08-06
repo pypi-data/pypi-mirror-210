@@ -1,0 +1,147 @@
+Metadata-Version: 2.1
+Name: tailer-sdk
+Version: 1.3.13
+Summary: Tailer SDK Python Package
+Home-page: https://www.fashiondata.io/
+Author: Fashiondata Team
+Author-email: contact@fashiondata.io
+License: GPLv3
+Keywords: pip,fashiondata
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests (>=2.22.0)
+Requires-Dist: firebase (==3.0.1)
+Requires-Dist: pycryptodome (>=1.6.0)
+Requires-Dist: python-jwt
+Requires-Dist: gcloud
+Requires-Dist: sseclient
+Requires-Dist: networkx
+Requires-Dist: requests-toolbelt (==0.10.1)
+Requires-Dist: google.auth
+Requires-Dist: semver (>=2.10.2)
+Requires-Dist: Jinja2 (>=2.11.2)
+Requires-Dist: google-cloud-bigquery (>=1.25.0)
+Requires-Dist: google-cloud-firestore (>=1.8.1)
+Requires-Dist: pkg-info (>=0.1.2)
+Requires-Dist: chardet (>=3.0.4)
+Requires-Dist: matplotlib
+
+# Tailer SDK
+
+## Changelog
+
+### Release 1.3.13 : 2023-05-25
+
+* TTT : fix Markdown documentation processing
+
+### Release 1.3.12 : 2023-xx-yy
+
+* TTT : fix a potential bug when using GBQ query jobs start and end datetime
+* Setup : forced request-toolbelt version
+
+### Release 1.3.11 : 2023-xx-yy
+
+* TTT : added Mermaid Graph for tasks dependencies
+* TTT : refactoring of TTT DAG generation
+* All : standard way of processing Markdown documentation
+
+### Release 1.3.10 : 2023-02-28
+
+* TTT : fixed criticity upon expectation failure.
+* TTT : added time partioning type to DDL file. You can use the "bq_table_timepartitioning_type" set to "HOUR", "DAY", "MONTH" or "YEAR". If not present, default is "DAY".
+* Dependencies : forced firebase Python package to 3.0.1
+
+### Release 1.3.9 : 2022-11-24
+
+* TTS : support for context in SQL query.
+* Global : enhanced SDK return codes
+
+### Release 1.3.8 : 2022-10-05
+
+* TTT : bugfix, error when applying context on a SQL file containing the variable name "TEMPLATE_CURRENT_DATE".
+
+### Release 1.3.7 : 2022-07-28
+
+* TTT : added new criticality level -> stop.
+* Context : removed error messages related to protected variables (FD_*).
+* Context : a configuration cannot be deployed if a placeholder cannot be replaced through the context application., except protected variables => FD_*
+* TTT : fixed default timeout on lock. Now set to 15 seconds.
+
+### Release 1.3.6 : 2022-05-13
+
+* TTS : added new criticality level -> break
+
+### Release 1.3.5 : 2022-03-21
+
+* TTS : added support for new version (v3) of Table To Storage configuration.
+* TTT : added SQL query details in run infos for "expection" task type.
+* TTT : fixed an issue with how expectations failures are handled.
+* TTT : added case management to avoid ducplicate due to PubSub re-delivering messages
+* TTT : better handling of SQL execution date
+* Context : added new template for context : {{FD_CONTEXT}}. This template will insert the Context ID.
+* Context : context will always be applied, disregarding the version number.
+ 
+### Release 1.3.4 : 2021-12-14
+
+* TTT : fixed labels name error using task ids.
+
+### Release 1.3.3 : 2021-11-29
+
+* TTT : new task type : expectation
+* TTT : SQL and EXPECTATION tasks support context variables replacement
+* TTT : Lock manager optimizations
+
+### Release 1.3.2 : 2021-11-08
+
+* Bugfix : fixed an issue when running tailer with param : --context NO_CONTEXT
+* API To Storage : added Protocol Buffers definition support.
+
+### Release 1.3.1 : 2021-10-04
+
+* TTT : added criticality attribute to tasks.
+* Changed 'tailer auth get-token' output formatting for easy parsing.
+### Release 1.3.0 : 2021-07-20
+
+* Added support for new configuration template : API To Storage
+* Fixed unknown command line args fot TTT.
+### Release 1.2.8 : 2021-07-12
+
+* TTT : fixed a bug when processing a single task DAG.
+### Release 1.2.7 : 2021-07-01
+
+* Added a new command for user reset password : tailer auth reset-password
+
+### Release 1.2.6 : 2021-06-10
+
+* Bugfix : fixed issue in TTT for dynamic SQL 
+
+### Release 1.2.5 : 2021-06-03
+
+* Added Context tagging in all configuration type
+* TTT : --no-launch flag will work on TTT deploy as well.
+
+### Release 1.2.4 : 2021-05-17
+
+* Bugfix : fixed issue in TTT generation regarding Lock manager.
+
+### Release 1.2.3 : 2021-05-10
+
+* Bugfix : fixed issue leading to re-parsing the configuration once modified.
+* TTT : added Redis support for Lock Manager. Redis will be default.
+
+### Release 1.2.2 : 2021-03-30
+
+* Bugfix : TTT => fixed a random issue when contacting ETCD instance.
+* Added command : tailer auth get-token. Use sed to extract token : tailer auth get-token | sed -n 's/.*user_token\=//p'
+* Table To Storage : user can launch the DAG upon deployment.
+
+### Release 1.2.1 : 2021-02-22
+ 
+* Added support for configuration type : xml-conversion
+
+### Release 1.2.0 : 2021-02-22
+
+* First release : moved code from Jarvis SDK
+ 
