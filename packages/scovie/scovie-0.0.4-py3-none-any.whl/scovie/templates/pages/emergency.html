@@ -1,0 +1,36 @@
+{% include 'components/header.html' %}
+<div id="emergency" class="d-flex align-items-center" style="height: 80vh; width: 100%;">
+    <div class="container text-center text-white">
+      <h1 id="emergency-title">{{ emergency_title }}</h1>
+      <h3 id="emergency-subtitle">{{ emergency_subtitle }}</h3>
+    </div>
+</div>
+<audio id="emergencyAlarm" autoplay loop>
+    <source src="/static/musics/emergency.mp3" type="audio/mpeg">
+</audio>
+<script>
+    // Style depending on screen size
+    if (window.innerWidth >= 3000) {
+        // Digital Signage
+        document.getElementById("emergency-title").classList.add("display-1");
+        document.getElementById("emergency-subtitle").classList.add("display-2");
+    } else if (window.innerWidth <= 1000) {
+        // Mobile
+        document.getElementById("emergency-title").classList.add("display-1");
+        document.getElementById("emergency-subtitle").classList.add("display-2");
+    } else {
+        // Desktop
+        document.getElementById("emergency-title").classList.add("display-1");
+        document.getElementById("emergency-subtitle").classList.add("display-2");
+    }
+    // Play alarm
+    document.addEventListener('DOMContentLoaded', function() {
+        var audioElement = document.getElementById("emergencyAlarm");
+        audioElement.volume = 1;
+        audioElement.play();
+
+        document.addEventListener("click", function() {
+            audioElement.play();
+        });
+    });
+</script>

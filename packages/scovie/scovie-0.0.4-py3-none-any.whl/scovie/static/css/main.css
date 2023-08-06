@@ -1,0 +1,13 @@
+/* Style for desktop+signage */
+@media (min-width: 1000px) {
+    body {
+        overflow: hidden;
+    }
+}
+
+/* Style for mobile */
+@media (max-width: 1000px) {
+    body {
+        overflow: visible;
+    }
+}
