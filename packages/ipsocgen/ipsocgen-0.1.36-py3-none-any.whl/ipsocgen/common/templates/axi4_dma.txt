@@ -1,0 +1,31 @@
+
+  s_axil_mosi_t axil_mosi_{{ tmpl.name }};
+  s_axil_miso_t axil_miso_{{ tmpl.name }};
+
+  axil_to_axi u_axil_to_axi_{{ tmpl.name }} (
+    .axi_mosi_i       (slaves_axi_mosi[{{ tmpl.slv_id }}]),
+    .axi_miso_o       (slaves_axi_miso[{{ tmpl.slv_id }}]),
+    .axil_mosi_o      (axil_mosi_{{ tmpl.name }}),
+    .axil_miso_i      (axil_miso_{{ tmpl.name }})
+  );
+
+  //
+  // {{ tmpl.desc }}
+  //
+  dma_axi_wrapper #(
+    .DMA_ID_VAL       ({{ tmpl.mst_id }})
+  ) u_{{ tmpl.name }} (
+    .clk              ({{ tmpl.clk }}),
+    .rst              ({{ tmpl.rst }}),
+    // CSR DMA I/F
+    .dma_csr_mosi_i   (axil_mosi_{{ tmpl.name }}),
+    .dma_csr_miso_o   (axil_miso_{{ tmpl.name }}),
+    // Master DMA I/F
+    .dma_m_mosi_o     (masters_axi_mosi[{{ tmpl.mst_id }}]),
+    .dma_m_miso_i     (masters_axi_miso[{{ tmpl.mst_id }}]),
+    // Triggers - IRQs
+    .dma_done_o       ({{ tmpl.irq_dma_done }}),
+    .dma_error_o      ({{ tmpl.irq_dma_error }})
+  );
+
+

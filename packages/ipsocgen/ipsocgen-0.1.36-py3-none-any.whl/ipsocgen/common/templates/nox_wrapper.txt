@@ -1,0 +1,16 @@
+
+  //
+  // RISC-V RV32I - NoX CPU
+  //
+  nox_wrapper u_{{ tmpl.name }} (
+    .clk              ({{ tmpl.clk }}),
+    .rst              ({{ tmpl.rst }}),
+    .irq_i            ({{ tmpl.irq_vector }}),
+    .start_fetch_i    (1'b1),
+    .start_addr_i     ({{ tmpl.boot_addr }}),
+    .instr_axi_mosi_o (masters_axi_mosi[{{ tmpl.mosi_instr }}]),
+    .instr_axi_miso_i (masters_axi_miso[{{ tmpl.miso_instr }}]),
+    .lsu_axi_mosi_o   (masters_axi_mosi[{{ tmpl.mosi_lsu }}]),
+    .lsu_axi_miso_i   (masters_axi_miso[{{ tmpl.miso_lsu }}])
+  );
+

@@ -1,0 +1,30 @@
+/**
+ * File              : {{ tmpl.name }}.sv
+ * License           : MIT license <Check LICENSE>
+ * Author            : IPSoCGen
+ * Date              : {{ tmpl.date }}
+ * Description       : {{ tmpl.desc }}
+ * -------------------------------------------
+ * -- Design AUTO-GENERATED using IPSoC Gen --
+ * -------------------------------------------
+ **/
+module {{ tmpl.name }}
+  {%- if tmpl.type == 'mpsoc' %}
+  import amba_axi_pkg::*;
+  import ravenoc_pkg::*;
+  import eth_pkg::*;
+  {%- else %}
+  import amba_axi_pkg::*;
+  import eth_pkg::*;
+  {%- endif %}
+(
+  {% for io in tmpl.io_list -%}
+  {% if loop.last%}
+  {{- io -}}
+  {% else %}
+  {{- io }},
+  {% endif %}
+  {%- endfor %}
+);
+
+

@@ -1,0 +1,18 @@
+name:
+  type: string
+desc:
+  type: string
+type:
+  type: string
+  allowed: ['cpu_nox', 'cpu_vex', 'acc_dma', 'acc_custom_master']
+if:
+  type: string
+  required: False
+  allowed: ['nox_instr_bus', 'nox_lsu_bus', 'vex_instr_bus', 'vex_lsu_bus', 'dma_master']
+  #oneof:
+    #- type: string
+      #regex: '[cpu]'
+      #required: True
+    #- type: string
+      #regex: '[acc_dma]'
+      #required: False

@@ -1,0 +1,48 @@
+
+  s_axil_mosi_t axil_mosi_eth_{{ tmpl.name }};
+  s_axil_miso_t axil_miso_eth_{{ tmpl.name }};
+
+  axil_to_axi u_axil_to_axi_eth_{{ tmpl.name }} (
+    .axi_mosi_i       (slaves_axi_mosi[{{ tmpl.csr_slv_id }}]),
+    .axi_miso_o       (slaves_axi_miso[{{ tmpl.csr_slv_id }}]),
+    .axil_mosi_o      (axil_mosi_eth_{{ tmpl.name }}),
+    .axil_miso_i      (axil_miso_eth_{{ tmpl.name }})
+  );
+
+  // Ethernet: 1000BASE-T RGMII
+  assign phy_rx.phy_rx_clk = phy_rx_clk;
+  assign phy_rx.phy_rxd    = phy_rxd;
+  assign phy_rx.phy_rx_ctl = phy_rx_ctl;
+  assign phy_rx.phy_int_n  = phy_int_n;
+  assign phy_rx.phy_pme_n  = phy_pme_n;
+
+  assign phy_tx_clk   = phy_tx.phy_tx_clk;
+  assign phy_txd      = phy_tx.phy_txd;
+  assign phy_tx_ctl   = phy_tx.phy_tx_ctl;
+  assign phy_reset_n  = phy_tx.phy_reset_n;
+
+  //
+  // {{ tmpl.desc }}
+  //
+  ethernet_wrapper u_{{ tmpl.name }} (
+    .clk_src            ({{ tmpl.clk_ext }}),
+    .clk_axi            ({{ tmpl.clk }}), // Clk of the AXI bus
+    .rst_axi            ({{ tmpl.rst }}), // Active-High
+    // Ethernet Control and Status Registers
+    .eth_csr_mosi_i     (axil_mosi_eth_{{ tmpl.name }}),
+    .eth_csr_miso_o     (axil_miso_eth_{{ tmpl.name }}),
+    // Ethernet inFIFO I/F
+    .eth_infifo_mosi_i  (slaves_axi_mosi[{{ tmpl.inf_slv_id }}]),
+    .eth_infifo_miso_o  (slaves_axi_miso[{{ tmpl.inf_slv_id }}]),
+    // Ethernet outFIFO I/F
+    .eth_outfifo_mosi_i (slaves_axi_mosi[{{ tmpl.out_slv_id }}]),
+    .eth_outfifo_miso_o (slaves_axi_miso[{{ tmpl.out_slv_id }}]),
+    // Ethernet: 1000BASE-T RGMII
+    .phy_tx             (phy_tx),
+    .phy_rx             (phy_rx),
+    // IRQs
+    .pkt_recv_o         ({{ tmpl.pkt_recv_irq }}),
+    .pkt_sent_o         ({{ tmpl.pkt_sent_irq }}),
+    .pkt_recv_full_o    ({{ tmpl.pkt_recv_full_irq }})
+  );
+

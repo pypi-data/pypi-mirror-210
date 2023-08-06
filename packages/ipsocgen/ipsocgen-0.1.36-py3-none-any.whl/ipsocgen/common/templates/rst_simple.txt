@@ -1,0 +1,8 @@
+
+  {% if tmpl.rst_type == 'direct' %}
+  {% if tmpl.rst_in_type == 'act_l' %}
+  assign {{ tmpl.rst_int }} = ~{{ tmpl.io_in_rst }};
+  {% else %}
+  assign {{ tmpl.rst_int }} = {{ tmpl.io_in_rst }};
+  {% endif %}
+  {% endif %}

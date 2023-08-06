@@ -1,0 +1,11 @@
+
+  //
+  // {{ tmpl.desc }}
+  //
+  axi_custom_master_acc u_{{ tmpl.name }} (
+    .clk              ({{ tmpl.clk }}),
+    .rst              ({{ tmpl.rst }}),
+    .axi_mosi         (masters_axi_mosi[{{ tmpl.slv_id }}]),
+    .axi_miso         (masters_axi_miso[{{ tmpl.slv_id }}])
+  );
+

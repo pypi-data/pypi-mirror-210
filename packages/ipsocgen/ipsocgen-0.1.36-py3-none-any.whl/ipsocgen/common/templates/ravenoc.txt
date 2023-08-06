@@ -1,0 +1,34 @@
+{% if tmpl.noc_type == 'slave' %}
+  //
+  // {{ tmpl.desc }}
+  //
+  assign noc_axi_mosi_o = slaves_axi_mosi[{{ tmpl.slv_id }}];
+  assign slaves_axi_miso[{{ tmpl.slv_id }}] = noc_axi_miso_i;
+{% else %}
+  always_comb begin
+    ravenoc_mosi    = slaves_axi_mosi;
+    slaves_axi_miso = ravenoc_miso;
+
+    // NoC only accepts INCR type of burst
+    for (int i=0;i<`NUM_TILES;i++) begin
+      ravenoc_mosi[i].arburst = AXI_INCR;
+      ravenoc_mosi[i].awburst = AXI_INCR;
+    end
+  end
+
+  ravenoc #(
+    .AXI_CDC_REQ      ('0)
+  ) u_{{ tmpl.name }} (
+    .clk_axi          ({ `NUM_TILES { {{ tmpl.clk }} }}),
+    .clk_noc          ({{ tmpl.clk }}),
+    .arst_axi         ({ `NUM_TILES { {{ tmpl.rst }} }}),
+    .arst_noc         ({{ tmpl.rst }}),
+    // NI interfaces
+    .axi_mosi_if      (ravenoc_mosi),
+    .axi_miso_if      (ravenoc_miso),
+    // IRQs
+    .irqs             (irqs_ravenoc),
+    // Used only in tb to bypass cdc module
+    .bypass_cdc       ('0)
+  );
+{% endif %}
