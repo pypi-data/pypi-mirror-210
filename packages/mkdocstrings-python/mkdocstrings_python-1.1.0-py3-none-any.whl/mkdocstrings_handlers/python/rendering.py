@@ -1,0 +1,263 @@
+"""This module implements rendering utilities."""
+
+from __future__ import annotations
+
+import enum
+import re
+import sys
+from functools import lru_cache
+from typing import TYPE_CHECKING, Any, Callable, Match, Pattern, Sequence
+
+from jinja2 import pass_context
+from markupsafe import Markup
+from mkdocstrings.loggers import get_logger
+
+if TYPE_CHECKING:
+    from griffe.dataclasses import Alias, Function, Object
+    from jinja2.runtime import Context
+    from mkdocstrings.handlers.base import CollectorItem
+
+logger = get_logger(__name__)
+
+
+class Order(enum.Enum):
+    """Enumeration for the possible members ordering."""
+
+    alphabetical = "alphabetical"
+    source = "source"
+
+
+def _sort_key_alphabetical(item: CollectorItem) -> Any:
+    # chr(sys.maxunicode) is a string that contains the final unicode
+    # character, so if 'name' isn't found on the object, the item will go to
+    # the end of the list.
+    return item.name or chr(sys.maxunicode)
+
+
+def _sort_key_source(item: CollectorItem) -> Any:
+    # if 'lineno' is none, the item will go to the start of the list.
+    return item.lineno if item.lineno is not None else -1
+
+
+order_map = {
+    Order.alphabetical: _sort_key_alphabetical,
+    Order.source: _sort_key_source,
+}
+
+
+def do_format_code(code: str, line_length: int) -> str:
+    """Format code using Black.
+
+    Parameters:
+        code: The code to format.
+        line_length: The line length to give to Black.
+
+    Returns:
+        The same code, formatted.
+    """
+    code = code.strip()
+    if len(code) < line_length:
+        return code
+    formatter = _get_black_formatter()
+    return formatter(code, line_length)
+
+
+def _format_signature(name: Markup, signature: str, line_length: int) -> str:
+    name = str(name).strip()  # type: ignore[assignment]
+    signature = signature.strip()
+    if len(name + signature) < line_length:
+        return name + signature
+
+    # Black cannot format names with dots, so we replace
+    # the whole name with a string of equal length
+    name_length = len(name)
+    formatter = _get_black_formatter()
+    formatable = f"def {'x' * name_length}{signature}: pass"
+    formatted = formatter(formatable, line_length)
+
+    # We put back the original name
+    # and remove starting `def ` and trailing `: pass`
+    return name + formatted[4:-5].strip()[name_length:-1]
+
+
+@pass_context
+def do_format_signature(
+    context: Context,
+    callable_path: Markup,
+    function: Function,
+    line_length: int,
+    *,
+    crossrefs: bool = False,  # noqa: ARG001
+) -> str:
+    """Format a signature using Black.
+
+    Parameters:
+        callable_path: The path of the callable we render the signature of.
+        line_length: The line length to give to Black.
+        crossrefs: Whether to cross-reference types in the signature.
+
+    Returns:
+        The same code, formatted.
+    """
+    env = context.environment
+    template = env.get_template("signature.html")
+    signature = template.render(context.parent, function=function)
+    signature = _format_signature(callable_path, signature, line_length)
+    signature = str(env.filters["highlight"](signature, language="python", inline=False))
+    return signature
+
+
+def do_order_members(
+    members: Sequence[Object | Alias],
+    order: Order,
+    members_list: list[str] | None,
+) -> Sequence[Object | Alias]:
+    """Order members given an ordering method.
+
+    Parameters:
+        members: The members to order.
+        order: The ordering method.
+        members_list: An optional member list (manual ordering).
+
+    Returns:
+        The same members, ordered.
+    """
+    if members_list:
+        sorted_members = []
+        members_dict = {member.name: member for member in members}
+        for name in members_list:
+            if name in members_dict:
+                sorted_members.append(members_dict[name])
+        return sorted_members
+    return sorted(members, key=order_map[order])
+
+
+def do_crossref(path: str, *, brief: bool = True) -> Markup:
+    """Filter to create cross-references.
+
+    Parameters:
+        path: The path to link to.
+        brief: Show only the last part of the path, add full path as hover.
+
+    Returns:
+        Markup text.
+    """
+    full_path = path
+    if brief:
+        path = full_path.split(".")[-1]
+    return Markup("<span data-autorefs-optional-hover={full_path}>{path}</span>").format(full_path=full_path, path=path)
+
+
+def do_multi_crossref(text: str, *, code: bool = True) -> Markup:
+    """Filter to create cross-references.
+
+    Parameters:
+        text: The text to scan.
+        code: Whether to wrap the result in a code tag.
+
+    Returns:
+        Markup text.
+    """
+    group_number = 0
+    variables = {}
+
+    def repl(match: Match) -> str:
+        nonlocal group_number
+        group_number += 1
+        path = match.group()
+        path_var = f"path{group_number}"
+        variables[path_var] = path
+        return f"<span data-autorefs-optional-hover={{{path_var}}}>{{{path_var}}}</span>"
+
+    text = re.sub(r"([\w.]+)", repl, text)
+    if code:
+        text = f"<code>{text}</code>"
+    return Markup(text).format(**variables)
+
+
+def _keep_object(name: str, filters: Sequence[tuple[Pattern, bool]]) -> bool:
+    keep = None
+    rules = set()
+    for regex, exclude in filters:
+        rules.add(exclude)
+        if regex.search(name):
+            keep = not exclude
+    if keep is None:
+        if rules == {False}:
+            # only included stuff, no match = reject
+            return False
+        # only excluded stuff, or included and excluded stuff, no match = keep
+        return True
+    return keep
+
+
+def do_filter_objects(
+    objects_dictionary: dict[str, Object | Alias],
+    *,
+    filters: Sequence[tuple[Pattern, bool]] | None = None,
+    members_list: list[str] | None = None,
+    keep_no_docstrings: bool = True,
+) -> list[Object | Alias]:
+    """Filter a dictionary of objects based on their docstrings.
+
+    Parameters:
+        objects_dictionary: The dictionary of objects.
+        filters: Filters to apply, based on members' names.
+            Each element is a tuple: a pattern, and a boolean indicating whether
+            to reject the object if the pattern matches.
+        members_list: An optional, explicit list of members to keep.
+            When given and empty, return an empty list.
+            When given and not empty, ignore filters and docstrings presence/absence.
+        keep_no_docstrings: Whether to keep objects with no/empty docstrings (recursive check).
+
+    Returns:
+        A list of objects.
+    """
+    # no members
+    if members_list is False or members_list == []:
+        return []
+
+    objects = list(objects_dictionary.values())
+
+    # all members
+    if members_list is True:
+        return objects
+
+    # list of members
+    if members_list is not None:
+        return [obj for obj in objects if obj.name in set(members_list)]
+
+    # none, use filters and docstrings
+    if filters:
+        objects = [obj for obj in objects if _keep_object(obj.name, filters)]
+    if keep_no_docstrings:
+        return objects
+    return [obj for obj in objects if obj.has_docstrings]
+
+
+@lru_cache(maxsize=1)
+def _get_black_formatter() -> Callable[[str, int], str]:
+    try:
+        from black import Mode, format_str
+    except ModuleNotFoundError:
+        logger.info("Formatting signatures requires Black to be installed.")
+        return lambda text, _: text
+
+    def formatter(code: str, line_length: int) -> str:
+        mode = Mode(line_length=line_length)
+        return format_str(code, mode=mode)
+
+    return formatter
+
+
+def do_get_template(obj: Object) -> str:
+    """Get the template name used to render an object.
+
+    Parameters:
+        obj: A Griffe object.
+
+    Returns:
+        A template name.
+    """
+    extra_data = getattr(obj, "extra", {}).get("mkdocstrings", {})
+    return extra_data.get("template", "") or f"{obj.kind.value}.html"
