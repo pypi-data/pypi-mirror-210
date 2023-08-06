@@ -1,0 +1,148 @@
+Metadata-Version: 2.1
+Name: napari-imagej
+Version: 0.1.0
+Summary: ImageJ functionality from napari
+Author-email: ImageJ2 developers <ctrueden@wisc.edu>
+License: BSD-2-Clause
+Project-URL: homepage, https://github.com/imagej/napari-imagej
+Project-URL: documentation, https://github.com/imagej/napari-imagej#README.md
+Project-URL: source, https://github.com/imagej/napari-imagej
+Project-URL: download, https://pypi.org/project/napari-imagej/
+Project-URL: tracker, https://github.com/imagej/napari-imagej/issues
+Keywords: java,imagej,imagej2,fiji,napari
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Framework :: napari
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries :: Java Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: <=3.11.0,>=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: confuse
+Requires-Dist: imglyb (>=2.1.0)
+Requires-Dist: jpype1 (>=1.4.1)
+Requires-Dist: labeling (>=0.1.12)
+Requires-Dist: magicgui (>=0.5.1)
+Requires-Dist: napari (>=0.4.17)
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyimagej (>=1.4.1)
+Requires-Dist: scyjava (>=1.8.1)
+Requires-Dist: qtconsole (!=5.4.2)
+Requires-Dist: typing-extensions (!=4.6.0)
+Provides-Extra: dev
+Requires-Dist: autopep8 ; extra == 'dev'
+Requires-Dist: black (>=23.1.0) ; extra == 'dev'
+Requires-Dist: build ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: flake8-pyproject ; extra == 'dev'
+Requires-Dist: flake8-typing-imports ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: myst-parser ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pyqt5 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-env ; extra == 'dev'
+Requires-Dist: pytest-qt ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: sphinx-copybutton ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+Requires-Dist: qtpy ; extra == 'dev'
+Requires-Dist: validate-pyproject[all] ; extra == 'dev'
+
+# napari-imagej
+
+### A [napari] plugin for access to [ImageJ2]
+
+[![License](https://img.shields.io/pypi/l/napari-imagej.svg?color=green)](https://github.com/imagej/napari-imagej/raw/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/napari-imagej.svg?color=green)](https://pypi.org/project/napari-imagej)
+[![Python Version](https://img.shields.io/pypi/pyversions/napari-imagej.svg?color=green)](https://python.org)
+[![tests](https://github.com/imagej/napari-imagej/workflows/tests/badge.svg)](https://github.com/imagej/napari-imagej/actions)
+[![codecov](https://codecov.io/gh/imagej/napari-imagej/branch/main/graph/badge.svg)](https://codecov.io/gh/imagej/napari-imagej)
+[![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/napari-imagej)](https://napari-hub.org/plugins/napari-imagej)
+
+**napari-imagej** aims to provide access to all [ImageJ2] functionality through the [napari] graphical user interface. It builds on the foundation of [PyImageJ], a project allowing ImageJ2 access from Python.
+
+**With napari-imagej, you can access:**
+
+1. The napari-imagej widget, providing *headless access* to:
+   * [ImageJ2 Commands] - 100+ image processing algorithms
+   * [ImageJ Ops] - 500+ *functional* image processing algorithms
+   * [SciJava Scripts] - migrated from Fiji or ImageJ2, or written yourself!
+2. The ImageJ user interface, providing access to *the entire ImageJ ecosystem* within napari.
+
+See the [project roadmap](https://github.com/orgs/imagej/projects/2) for future directions.
+
+## Getting Started
+
+Learn more about the project [here](https://napari-imagej.readthedocs.io/en/0.1.0/), or jump straight to [installation](https://napari-imagej.readthedocs.io/en/0.1.0/Install.html)!
+
+## Usage
+
+* [Image Processing with ImageJ Ops](https://napari-imagej.readthedocs.io/en/0.1.0/examples/ops.html)
+* [Puncta Segmentation with SciJava Scripts](https://napari-imagej.readthedocs.io/en/0.1.0/examples/scripting.html)
+
+## Troubleshooting
+
+The [FAQ](https://napari-imagej.readthedocs.io/en/0.1.0/Troubleshooting.html) outlines solutions to many common issues.
+
+For more obscure issues, feel free to reach out on [forum.image.sc](https://forum.image.sc).
+
+If you've found a bug, please [file an issue]!
+
+## Contributing
+
+We welcome any and all contributions made onto the napari-imagej repository.
+
+Development discussion occurs on the [Image.sc Zulip chat](https://imagesc.zulipchat.com/#narrow/stream/328100-scyjava).
+
+For technical details involved with contributing, please see [here](https://napari-imagej.readthedocs.io/en/0.1.0/Development.html)
+
+## License
+
+Distributed under the terms of the [BSD-2] license,
+"napari-imagej" is free and open source software.
+
+
+[Apache Software License 2.0]: https://www.apache.org/licenses/LICENSE-2.0
+[black]: https://github.com/psf/black
+[BSD-2]: https://opensource.org/licenses/BSD-2-Clause
+[Cookiecutter]: https://github.com/audreyr/cookiecutter
+[cookiecutter-napari-plugin]: https://github.com/napari/cookiecutter-napari-plugin
+[conda]: https://docs.conda.io/
+[conda-forge]: https://conda-forge.org/
+[file an issue]: https://github.com/imagej/napari-imagej/issues
+[flake8]: https://flake8.pycqa.org/
+[GNU GPL v3.0]: https://www.gnu.org/licenses/gpl-3.0.txt
+[GNU LGPL v3.0]: https://www.gnu.org/licenses/lgpl-3.0.txt
+[ImageJ2]: https://imagej.net/software/imagej2
+[ImageJ2 Commands]: https://github.com/imagej/imagej-plugins-commands
+[ImageJ Ops]: https://imagej.net/libs/imagej-ops
+[install mamba]: https://mamba.readthedocs.io/en/latest/installation.html
+[isort]: https://pycqa.github.io/isort/
+[mamba]: https://mamba.readthedocs.io/
+[MIT]: https://opensource.org/licenses/MIT
+[Mozilla Public License 2.0]: https://www.mozilla.org/media/MPL/2.0/index.txt
+[napari]: https://github.com/napari/napari
+[napari hub]: https://www.napari-hub.org/
+[npe2]: https://github.com/napari/npe2
+[pip]: https://pypi.org/project/pip/
+[pull request]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
+[PyImageJ]: https://github.com/imagej/pyimagej
+[PyPI]: https://pypi.org/
+[SciJava Scripts]: https://imagej.net/scripting
+[tox]: https://tox.readthedocs.io/
