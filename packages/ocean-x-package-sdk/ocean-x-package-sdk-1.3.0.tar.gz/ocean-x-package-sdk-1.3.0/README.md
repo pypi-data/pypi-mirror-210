@@ -1,0 +1,80 @@
+
+# Getting Started with OceanX Bridge Platform APIs
+
+## Introduction
+
+OceanX Bridge Platform APIs
+
+## Install the Package
+
+The package is compatible with Python versions `3 >=3.7, <= 3.11`.
+Install the package from PyPi using the following pip command:
+
+```python
+pip install ocean-x-package-sdk==1.3.0
+```
+
+You can also view the package at:
+https://pypi.python.org/pypi/ocean-x-package-sdk/1.3.0
+
+## Initialize the API Client
+
+**_Note:_** Documentation for the client can be found [here.](doc/client.md)
+
+The following parameters are configurable for the API Client:
+
+| Parameter | Type | Description |
+|  --- | --- | --- |
+| `brand_id` | `string` | This key is the brand's abbreviation. (example - "TS")<br>*Default*: `'TS'` |
+| `environment` | Environment | The API environment. <br> **Default: `Environment.STAGING`** |
+| `http_client_instance` | `HttpClient` | The Http Client passed from the sdk user for making requests |
+| `override_http_client_configuration` | `bool` | The value which determines to override properties of the passed Http Client from the sdk user |
+| `http_call_back` | `HttpCallBack` | The callback value that is invoked before and after an HTTP call is made to an endpoint |
+| `timeout` | `float` | The value to use for connection timeout. <br> **Default: 60** |
+| `max_retries` | `int` | The number of times to retry an endpoint call if it fails. <br> **Default: 0** |
+| `backoff_factor` | `float` | A backoff factor to apply between attempts after the second try. <br> **Default: 2** |
+| `retry_statuses` | `Array of int` | The http statuses on which retry is to be done. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
+| `retry_methods` | `Array of string` | The http methods on which retry is to be done. <br> **Default: ['GET', 'PUT']** |
+| `access_token` | `string` | The OAuth 2.0 Access Token to use for API requests. |
+
+The API client can be initialized as follows:
+
+```python
+from oceanxbridgeplatformapis.oceanxbridgeplatformapis_client import OceanxbridgeplatformapisClient
+from oceanxbridgeplatformapis.configuration import Environment
+
+client = OceanxbridgeplatformapisClient(
+    brand_id='TS',
+    access_token='AccessToken'
+)
+```
+
+## Environments
+
+The SDK can be configured to use a different environment for making API calls. Available environments are:
+
+### Fields
+
+| Name | Description |
+|  --- | --- |
+| Testing | Testing environment used for internal testing. |
+| Staging | **Default** Staging environment used for internal and external testing. |
+| Production | Production environment used for customer transactions only. |
+
+## Authorization
+
+This API uses `OAuth 2 Bearer token`.
+
+## List of APIs
+
+* [Shipments](doc/controllers/shipments.md)
+* [Inventory](doc/controllers/inventory.md)
+* [Products](doc/controllers/products.md)
+* [Webhooks](doc/controllers/webhooks.md)
+
+## Classes Documentation
+
+* [Utility Classes](doc/utility-classes.md)
+* [HttpResponse](doc/http-response.md)
+* [HttpRequest](doc/http-request.md)
+
