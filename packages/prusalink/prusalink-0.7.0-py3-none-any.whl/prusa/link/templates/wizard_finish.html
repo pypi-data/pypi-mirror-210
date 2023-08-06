@@ -1,0 +1,138 @@
+{# vim:set softtabstop=2: -#}
+{% set title = 'Wizard' -%}
+{#% set refresh = 15 %#}
+{% include "_header.html" %}
+{% set active="finish" %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <h1>Local Settings Summary</h1>
+        {% set printer = wizard.daemon.prusa_link.printer %}
+        {% set cfg = wizard.daemon.cfg %}
+    </div>
+  </div>
+
+    <!-- Local Settings Row -->
+    <div class="row">
+
+        <!-- Credentials -->
+        <div class="col">
+          <h3>Credentials</h3>
+          <ul>
+            <li>Username: <span class="white">{{ wizard.username }}</span></li>
+          </ul>
+        </div>
+        <!-- Credentials End -->
+
+        <!-- Network -->
+        {% if printer.network_info %}
+            <div class="col">
+              <h3>Network</h3>
+              <ul>
+                  <li>Hostname: <span class="white">{{ printer.network_info.hostname }}</span></li>
+
+                  {% if printer.network_info.wifi_ssid %}
+                    <li>WiFi SSID: <span class="white">{{ printer.network_info.wifi_ssid }}</span></li>
+                  {% endif %}
+
+                  {% if printer.network_info.wifi_ipv4 %}
+                    <li>WiFi IPv4: <span class="white">{{ printer.network_info.wifi_ipv4 }}</span></li>
+                  {% endif %}
+
+                  {% if printer.network_info.wifi_ipv6 %}
+                    <li>WiFi IPv6: <span class="white">{{ printer.network_info.wifi_ipv6 }}</span></li>
+                  {% endif %}
+
+                  {% if printer.network_info.wifi_mac %}
+                    <li>WiFi MAC: <span class="white">{{ printer.network_info.wifi_mac }}</span></li>
+                  {% endif %}
+
+                  {% if printer.network_info.lan_ipv4 %}
+                    <li>LAN IPv4: <span class="white">{{ printer.network_info.lan_ipv4 }}</span></li>
+                  {% endif %}
+
+                  {% if printer.network_info.lan_ipv6 %}
+                    <li>LAN IPv6: <span class="white">{{ printer.network_info.lan_ipv6 }}</span></li>
+                  {% endif %}
+
+                  {% if printer.network_info.lan_mac %}
+                    <li>LAN MAC: <span class="white">{{ printer.network_info.lan_mac }}</span></li>
+                  {% endif %}
+
+              </ul>
+            </div>
+        {% endif %}
+        <!-- Network End -->
+
+        <!-- Printer -->
+        <div class="col">
+          <h3>Printer</h3>
+          <ul>
+              {% if wizard.printer_name %}
+                <li>Name: <span class="white">{{ wizard.printer_name }}</span></li>
+              {% endif %}
+              {% if wizard.printer_location %}
+                <li>Location: <span class="white">{{ wizard.printer_location }}</span></li>
+              {% endif %}
+            <li>Type: <span class="white">{{ printer.type | printer_type }}</span></li>
+            <li>Port: <span class="white">{{ cfg.printer.port }}</span></li>
+            <li>Baudrate: <span class="white">{{ cfg.printer.baudrate }}</span></li>
+              {% if wizard.serial_number %}
+                <li>SN: <span class="white">{{ wizard.serial_number }}</span></li>
+              {% else %}
+                <li>SN could not be obtained from the FW!</li>
+              {% endif %}
+            <li>Firmware: <span class="white">{{ printer.firmware }}</span></li>
+          </ul>
+        </div>
+        <!-- Printer End -->
+    </div>
+    <!-- Local Settings Row End -->
+
+    <!-- Connect Row -->
+    <div class="row">
+        <div class="col">
+            <h1>Prusa Connect</h1>
+            {% if wizard.restored_connect %}
+                <div>Your Prusa Connect settings was restored from configuration file</div>
+            {% else %}
+            <div>Prusa Connect is a web service that gives you a complete overview of all your 3D printers at all times.</br>
+                 PrusaLink with Prusa Connect right <b>now</b>, using the button below.</div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Connect Row End -->
+
+      <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="/wizard/finish-register-skip" id="skip"></form>
+            <form method="post" action="/wizard/finish-register" id="form" target="_blank">
+                <div class="container navigation">
+                  <div class="row">
+                      <div class="col">
+                        <a href="/wizard/printer" class="btn btn-back btn-outline-light full-width"><img src="../img/arrow-left.svg" height="16" /> BACK | Printer info</a>
+                      </div>
+                      <div class="col-sm-auto">
+                        <button form="skip" onclick="document.getElementById('skip').submit();" type="submit" class="btn btn-back btn-outline-light full-width">Save printer | NEXT <img src="../img/arrow-right.svg" height="16" /></button>
+                          {% if not wizard.restored_connect %}
+                            <button onclick="finish()" type="button" class="btn btn-outline-light full-width">Save printer and link with Connect | NEXT <img src="../img/arrow-right.svg" height="16" /></button>
+                          {% endif %}
+                      </div>
+                  </div>
+                </div>
+            </form>
+        </div>
+      </div>
+
+    </div>{# /container #}
+
+    <script>
+        function finish() {
+            setTimeout(() => {window.location.href = '/';}, 500);
+            document.getElementById('form').submit();
+        }
+    </script>
+
+    {% include "_wizard.html" %}
+    {% include "_footer.html" %}

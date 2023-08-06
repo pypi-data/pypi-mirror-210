@@ -1,0 +1,155 @@
+{# vim:set softtabstop=2: -#}
+{% set title = 'Home' -%}
+{#% set refresh = 15 %#}
+{% include "_header.html" %}
+
+    <div class="container">
+        <h1 class="align-center">Prusa Link Debug Info Page</h1>
+
+        <h2 class="align-center">Ports</h2>
+        <ul>
+            {% for port in prusa_link.model.serial_adapter.ports %}
+                <li>{{ port }}</li>
+            {% endfor %}
+        </ul>
+
+        {% if prusa_link.model.serial_adapter.using_port %}
+            <h3 class="align-center">Using port</h3>
+            {{ prusa_link.model.serial_adapter.using_port }}
+        {% endif %}
+
+        <h2 class="align-center">Printer</h2>
+        <ul>
+            <li>Name: <span class="white">{{ app.settings.printer.name }}</span></li>
+            <li>Location: <span class="white">{{ app.settings.printer.location }}</span></li>
+            <li>Type: <span class="white">{{ printer.type | printer_type }}</span></li>
+            <li>Port: <span class="white">{{ app.cfg.printer.port }}</span></li>
+            <li>Baudrate: <span class="white">{{ app.cfg.printer.baudrate }}</span></li>
+            <li>SN: <span class="white">{{ printer.sn }}</span></li>
+            <li>Firmware: <span class="white">{{ printer.firmware }}</span></li>
+            <li>Nozzle: <span class="white">{{ printer.nozzle_diameter }}</span></li>
+            <li>SD Ready: <span class="white">{{ prusa_link.sd_ready }}</span></li>
+        </ul>
+
+        <h2 class="align-center">Prusa Link</h2>
+        <ul>
+            <li>Version: <span class="white">{{ version }}</span></li>
+            <li>SDK Version: <span class="white">{{ sdk_version }}</span></li>
+            <li>Running: <span class="white">{{ prusa_link.running }}</span></li>
+            <li>SDK State: <span class="white">{{ printer.state }}</span></li>
+            <li>State history:</li>
+            <ul>
+            {%- for state in prusa_link.model.state_manager.state_history | reverse %}
+            <li><span class="white">{{ state }}</span></li>
+            {%- endfor %}
+            <br>
+            </ul>
+            <li>Errors state:</li>
+            <ul>
+            {%- for key, (state, msg) in errors.items() %}
+            <li>{{ key }}: <span class="white">{{ msg if state == False else state }}</span></li>
+            {%- endfor %}
+            </ul>
+        </ul>
+
+        {% if prusa_link.model.job.job_state.name != "IDLE" %}
+        <h2 class="align-center">Job info</h2>
+            <li>Job ID:
+                <span class="white">{{ prusa_link.model.job.job_id }}</span>
+            </li>
+            <li>Job State:
+                <span class="white">{{ prusa_link.model.job.job_state }}</span>
+            </li>
+            <li>Job started by command with ID:
+                <span class="white">{{ prusa_link.model.job.job_start_cmd_id }}</span>
+            </li>
+            <li>Printing file:
+                <span class="white">{{ prusa_link.model.job.selected_file_path }}</span>
+            </li>
+            <li>Is path incomplete:
+                <span class="white">{{ prusa_link.model.job.path_incomplete }}</span>
+            </li>
+            <li>Last modified at:
+                <span class="white">{{ prusa_link.model.job.selected_file_m_timestamp }}</span>
+            </li>
+            <li>Size:
+                <span class="white">{{ prusa_link.model.job.selected_file_size }}</span>
+            </li>
+            <li>From SD card:
+                <span class="white">{{ prusa_link.model.job.from_sd }}</span>
+            </li>
+            <li>File contains inbuilt print stats:
+                <span class="white">{{ prusa_link.model.job.inbuilt_reporting }}</span>
+            </li>
+            <li>Byte position:
+                <span class="white">{{ prusa_link.model.job.printing_file_byte }}/{{ prusa_link.model.job.printing_file_size }}</span>
+            </li>
+        {% endif %}
+
+        <h2 class="align-center">Network</h2>
+        {% if printer %}
+        <ul>
+            {%- for key, val in printer.network_info.items() %}
+            <li>{{ key }}: <span class="white">{{ val }}</span></li>
+            {%- endfor %}
+            <li>Api-Key: <span class="white">{{ printer.api_key }}</span></li>
+        </ul>
+        {% endif %}
+
+
+        <h2 class="align-center">Connect</h2>
+        <ul>
+            <li>Server: <span class="white">{{ printer.server }}</span></li>
+            <li>Fingerprint: <span class="white">{{ printer.fingerprint }}</span></li>
+            <li>Token: <span class="white">{{ printer.token }}</span></li>
+        {% if prusa_link %}
+            <li>Telemetry</li>
+            <ul>
+                {%- for key, val in prusa_link.model.latest_telemetry %}
+                <li>{{ key }}: <span class="white">{{ val }}</span></li>
+                {%- endfor %}
+            </ul>
+        {% endif %}
+        </ul>
+
+
+        {% if transfer %}
+        <h2 class="align-center">Transfer</h2>
+        <ul>
+            <li>Type: <span class="white">{{ transfer.type.value }}</span></li>
+            <li>Path: <span class="white">{{ transfer.path }}</span></li>
+            <li>URL: <span class="white">{{ transfer.url }}</span></li>
+            <li>To select: <span class="white">{{ transfer.to_select }}</span></li>
+            <li>To print: <span class="white">{{ transfer.to_print }}</span></li>
+            <li>Size: <span class="white">{{ transfer.size }}</span></li>
+            <li>Transferred: <span class="white">{{ transfer.transferred }}</span></li>
+            <li>Progress: <span class="white">{{ transfer.progress }}</span></li>
+            <li>Start time: <span class="white">{{ transfer.start_ts|int }}</span></li>
+            <li>Stop time: <span class="white">{{ transfer.start_ts|int }}</span></li>
+            <li>Remaining time: <span class="white">{{ transfer.time_remaining() }}</span></li>
+          </ul>
+        {% endif %}
+
+
+        {% if upload %}
+        <h2 class="align-center">Upload</h2>
+        <ul>
+            <li>In progress: <span class="white">{{ upload }}</span></li>
+        </ul>
+        {% endif %}
+
+
+        <h2 class="align-center">Files</h2>
+        {% if printer %}
+        <pre>
+            {{ printer.get_info()["files"]|pprint }}
+        </pre>
+        {% endif %}
+    </div>
+
+  </div>
+
+  <footer class="footer mt-auto py-3">
+      <div class="container">
+
+{% include "_footer.html" %}

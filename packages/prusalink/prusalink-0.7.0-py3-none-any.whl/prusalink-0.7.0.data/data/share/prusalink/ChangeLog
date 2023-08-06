@@ -1,0 +1,390 @@
+# ChangeLog
+
+0.7.0 (2023-05-19)
+    * Fixed printer sends info about api key change to Connect after change
+    * Added the network error beep setting to the web API
+    * Support renaming gcodes directory (cfg and API)
+    * Added a multi-instace auto config and starter utility
+    * Disable error beeps during prints
+    * Static Web update
+        - Using v1 endpoints for job and transfer
+        - Creating and Deleting folders
+        - Translation update
+        - Network error chime control
+        - Default storage names
+        - Upgrade procedure rework
+
+0.7.0rc3 (2023-03-09)
+    * Added v1 endpoints for flat filesystem structure, old struct is moved to
+      files_legacy file
+    * Added api/v1/update/<env> GET endpoint
+    * Printer name and location are added to register url as query parameters,
+      if available
+    * Static Web update
+        - Apply UI/UX refactoring
+        - Add support for max-age cache control
+        - Add control of last-modified header for snapshots
+        - Add drop zone to files storage
+        - Remove manual camera connection dialog
+        - Migrate to files api v1
+        - PrusaLink update
+    * Added Force header to api/v1/files/<storage>/<path> DELETE endpoint for
+      deletion of non-empty folder
+    * Changed Print-After-Upload header value check for PUT
+    * Added endpoint to start printing file
+    * Removed the original picamera driver
+    * Raspberry Pi Camera support utilizing libcamera directly
+    * Hardware encoding support. (Pi Zero W manages FullHD snapshots without issues)
+    * Fix "unicam" appearing when a Raspberry Pi camera is connected
+    * Fix not following the configured resolution
+    * Added api/v1/status endpoint
+    * Added new endpoint for updating prusalink python package
+    * Added api/v1/transfer endpoint
+
+0.7.0rc2 (2022-12-09)
+    * Support thermal model errors (FW 3.12)
+    * USB Camera
+    * SD Card fixes
+    * Fix MBL data for MK2.5(S)
+    * Wizard refactoring
+    * Static web update
+        - Cameras
+        - File sorting
+        - Stop dialog fixed
+        - Connect status
+    * API Settings moved from Wizard to Settings
+    * Raspberry Pi Camera support
+    * Added cache control headers for cameras snap endpoints
+    * Fixed PUT upload when folders within the path does not exist
+    * Cameras! Support for:
+        - V4L2 cameras (webcams - MJPEG and YUYV formats supported)
+        - picamera2 (libcamera stack) (slow)
+        - Changing the resolution
+        - Camera auto-detection
+        - Triggering on layer change (PrusaSlicer sliced files only!)
+    * Fix files with uppercase extensions not showing up locally
+    * Support "hotend fan" = "extruder fan"
+    * Re-send the complete telemetry every five minutes
+    * Fix stats missing for prints of gcodes without M73
+    * Fix pause being able to double print time reported
+    * Fixed error when trying to get space info of SD Card
+
+
+0.7.0rc1 (2022-09-13)
+    * Work around a bug: printer in serial print mode while wizard is shown
+    * READY state changed to IDLE, PREPARED state changed to READY
+    * New status display
+       - notifies about setup wizard,
+       - shows upload progress
+       - shows the name of a file being printed
+       - notifies about errors
+       - shows an idle screen with the IP address after 30min
+       - add idle screen and show transfers during print pauses
+
+    * Name and location of printer value validation
+    * Fix negative timeout being possible in serial read
+    * Additional Connect (un)registration support
+    * File and Directory name validation refactoring
+    * Fixed transfer and print in ATTENTION error
+    * New Connect API support
+    * Fix PrusaLink IP not getting reset from printer on shutdown
+    * Fix the serial_number step in wizard
+    * Fix unicode characters in file names breaking lcd printer
+    * Make RESET_PRINTER clear the command queue and have priority that way
+    * Made the app stop itself faster
+    * Use M400 instead of G4 for printer queue syncing
+    * Reworked validation of correct S/N write
+    * Modified username length and password length and format validation
+    * Use "Sync|->:" and "Sync->|:" to signify which way is the current transfer going
+    * Add DNS service discovery compatible with PrusaSlicer
+    * Support file upload cancels from PrusaSlicer
+    * Static web update:
+       - Fix big log files displaying
+       - Decrease display log file size limit to 1M
+       - Change temperature controls widget number format to display integers
+       - Add stop/resume print button
+       - Add protection from steppers disabling when printing
+       - Fix sidebar width
+       - Replace PNG icons with SVG
+       - Fix router, telemetry graph dinmensions and page layout
+       - Update error handling to avoid duplicates of popups
+       - Add support for file extensions provided by printer profiles from API
+       - Fix display names of origins
+       - New application design
+       - New field to rename project file uploaded by URL
+       - New widget displaying used/free size (not-connected to printer yet)
+       - New Rename and Copy actions (hidden)
+       - New tool to unify icons colors
+       - Updated free space logic
+       - Fixed storage tabs behavior
+       - Avoid unnecessary requests to BE for file metadata
+       - Hardcode storages list to printers
+       - Removed page `Temperatures`
+       - Fix formatting of percentages
+       - Project preview is now not dependent on `/api/job` endpoint
+       - Confirm dialog after uploade via drag zone
+       - Nozzle diameter
+       - Offline mode
+       - Connect Like icons
+       - Translaction fallbacks
+
+     * Differentiate between FW and ID errors in the wizard, update texts
+     * Fixed download ref, added total storage space info
+     * Added storage space info to api/printer
+     * Added function for save file with custom name
+     * Add dynamic download throttling when printing
+     * Added caching for thumbnail images
+     * Send printer info on printer reset / info invalidation event
+     * Fixed error handling for PrusaLink Web
+     * Reset print stats after a print ends
+     * Fix print fail from a unchecked print buffer underflow
+     * Report mesh bed levelling data
+     * Use the print mode to report the right print stats row to connect
+     * Make sure fan errors send reason, improve their behavior a little
+     * Fix SD Card module race conditions
+     * Make it possible to hide certain loggers from interesting log
+     * Filter telemetry, send only what's "significantly" changed
+     * Fixed maximum temperature check for nozzle and heatbed
+     * Api-Key is implicitly None, can be set in wizard or using endpoint
+     * Start PrusaLink even without a connection to the printer
+     * Start sending telemetry slowly after a period of inactivity
+     * Files can be printed without selecting first, fixed job printTime info in api/job
+     * Don't wait for a printer to boot when running through the EINSY pins
+     * Added api/v1/info endpoint
+     * Add printer statistics tracking
+     * Add time to filament change tracking
+     * Add sheet settings tracking
+     * Return a better reason when print of a non existent file is requested
+     * Make printer settings reflect the actual printer type
+     * Fixed doubled gcode extensions when custom name is used
+     * Added nozzle diameter info to api/v1/info
+     * TLS is changed from int to bool
+     * Added endpoint for capture an image from a camera
+     * Fixed check for negative temperatures of nozzle and bed
+     * Add a special SD menu to set the printer to READY from the LCD
+     * Add boot partition config copy script (for RPis)
+     * Added endpoint api/v1/storage with storage info
+     * Round auto guessed preheat temps to the nearest five
+     * Remove any irrelevant telemetry right on state change
+     * Added endpoint api/v1/<storage>/<path>
+     * Add automatic serial port scan
+     * Use USB S/N if available (fixes MK2.5 SN issues)
+     * Added endpoint with a list of available ports
+     * Added capabilities flag to api/version
+     * Added min extrusion temp to api/v1/info endpoint, fixed value
+     * Added optional ro parameter to api/files and api/v1/{storage}/{path} endpoints
+     * Added link_state parameter to api/printer endpoint
+     * Fixed item updater allowing invalidation of a disabled item
+     * Fixed upload PUT Print-After-Upload if already printing error
+     * Added api/v1/<storage>/<path> delete endpoint
+     * Fixed a semicolon in a filename being printed breaking everything
+     * Fixed a bronken RESET_PRINTER for raspis connected through USB
+     * API key option removed from wizard
+     * Added endpoint for deletion of API key
+
+0.6.0 (2021-12-17)
+    * Added endpoint for control of extruder
+    * Added endpoint for heatbed temperature control
+    * Static web update
+      - Add debug outputs to investigate project picture collision
+      - Removed unnecessary colon after hostname in Dashboard
+      - Switched from data.link to data.printer for settings end point
+      - Add advanced upload widget
+      - Printer Control Page
+      - Add target temperatures to the left sidebar
+      - Add possibility to send control values by Enter key press
+      - Add serial number setting
+      - Prevent api polling when previous requests were not handled
+      - Prevent error messages flood in case of a connection problem
+      - Optimize application loop
+      - Add serial, CONNECT and communication state to the left side bar
+    * Added size and date attributes to api/logs GET endpoint
+    * Removed m_time file attribute
+    * Added restriction for forbidden characters in uploaded file name
+    * Added download and basic upload info to link-info page
+    * Added and implemented JSON file with HW limits
+    * Added api/printer/printhead GET endpoint
+    * Changed variable firmware_version to firmware
+    * Added LOAD/UNLOAD filament commands
+    * Added disable_steppers command to api/printer/printhead
+    * Implementation of farm_mode into api/settings endpoints
+    * New Upload errors
+      - check Content-Length header
+      - check if file is uploaded complete
+      - check storage free space first
+      - errors refactoring
+      - simple html errors
+    * Changed args to kwargs for high level commands
+    * HTTP Request handling improvement
+    * own Serial class implementation (speed improvement)
+    * Changed args to kwargs for execute_gcode command
+    * log thread stack on interesting events
+    * move job_id into the EEPROM
+    * make STOP_PRINT wait for any of the READY, STOPPED or FINISHED states
+    * Implementation of new Transfer object from SDK
+    * Make a centralised wizard activation condition
+    * Download finished callback implementation
+    * Fix SD initialising always as PRESENT even when ABSENT
+
+0.5.1 (2021-07-16)
+    * Implementation of print after upload endpoint
+    * Minimal suported firmware is 3.10.0
+    * Sort files directory first, newest first
+    * Faster checking and processing when uploading gcode
+    * Static web update
+      - Upload gcode fixes
+      - File browser is available when printer printes
+      - Files are sort by printers API
+      - Printed file widget rework
+      - Fixed progress bar behaviour when printing is finished
+      - Fixed error handling for periodic requests
+      - Page heading is sticky now
+      - Telemetry sidebar is sticky now
+      - Added frontend version to the Settings page
+      - Fixed 'undefined' error pop up heading in some cases
+      - Log viewer
+      - Login and password can be changed in settings
+      - All not available project properties are hidden
+      - Toaster messages are now sticky to window bottom
+      - Fixed printing time estimations missmatching
+      - Printer name and location can be changed in settings
+      - Files with size above 100MB won't be loaded into textarea
+    * React to thermal runaway by going into the error state
+    * Use daemon type WSGI threads
+    * Removed temporary gcode copy for printing
+    * Support the new M20 attributes and their order
+    * Fix progress equal to -1 not being supported
+    * Fixed upload from local web
+    * SEND_INFO hostname fixed
+    * Fix SD Card file selection
+    * Log HTTP requests and errors over Python Logger
+    * Improve FW error message support
+    * Work around print head returning to the print after Stop print
+    * Added endpoint for download file from url
+    * Password in plain text form is not stored in memory
+    * Added endpoint for gettting info about the file currently being downloaded
+    * Added endpoint for abort current download process
+    * Require user attention after each print, even failed ones (if enabled)
+    * Added checked and finished flags to api/printer
+    * Added states structure to api/connection endpoint
+    * Added Connect configuration info to api/connection endpoint
+    * Added connection.py with api/connection GET, POST endpoints
+    * Added api/settings GET endpoint
+    * Added m_timestamp to SDCard files properties
+    * Added api/settings POST endpoint, fix settings.py name
+    * Fixed /api/printer flags
+    * Implementation of gcode download endpoint
+    * Added api/logs endpoint
+    * Added api/logs/<log_file> endpoint
+    * Added wizard/serial endpoints and page for setup S/N of the printer
+    * Updated metadata for selected file
+    * Require two "Not SD printing" to work around a SD printing bug
+    * Added username and password change functionality to api/settings POST, fixed ChangeLog
+    * Fixed SD Card metadata read
+    * Go into the ERROR state when the printer stops responding for aprox. one minute
+    * Added endpoint for regenerate api-key
+    * Added api/settings/sn endpoint for setup S/N of the printer
+    * Wizard is locked after successful configuration
+    * Added endpoint for control of printhead movement
+    * Added endpoint GET api/settings/sn
+
+0.4.0 (2021-04-13)
+    * getting IP refactoring
+    * fix firmware version reading
+    * working download gcode endpoint
+    * command argument for profiling application
+    * connection over VPN fix
+    * Added additional network info
+
+0.3.0 (2021-03-30)
+
+    * Fixed broken command resends
+    * Fixed state changed handler
+    * Added new endpoint /api/connections with JSON response
+    * Skipped pidfile when process is not alive
+    * Added new endpoint /api/printer with JSON response
+    * Fixed complaint in wizard about `api-key` when `username` was too short
+    * Fix printer.sn being unset in the wizard by waiting for it
+    * Fixed some telemetry being sent basically at random
+    * Enabled the RESET_PRINTER command
+    * Fixed printer resetting multiple times when it gets reset mid-print
+    * Fixed accidentally hogging CPU when displaying LCD messages
+    * Set log levels by module name in config or as command arguments
+    * Report whether the current job is from the SD or not
+    * Support long file names in the upcoming 3.10 release (file explorer only)
+    * Added new endpoint /api/files with JSON response
+    * Added new endpoint /api/job with JSON response
+    * Added support for the new C parameter in M155
+    * Modification of /api/connection, files, printer and job endpoints
+    * All files in data_dir (user's home by default)
+    * Parse print info from the file name (for SD files)
+    * Introduce ErrorState(s) from SDK
+    * Modify `LCDPrinter` to show IP and status based on SDK error states
+    * Support the nem M27 P
+    * Fix not being able to print from root of SD when in a folder in LCD menu
+    * Send 0% when a new print start is observed
+    * Fix no progress being sent when SD print has no stats in its gcode
+    * Support fan errors. Send reason for ATTENTION state in state change data
+    * Support showing the IP address in the support menu using "M552 P<IP>"
+    * /link-info debug page
+    * SN is obtained always through the FW and isn't stored in a file anymore
+    * Ensure M20 won't be sent during print. Ever
+    * Start faster when already printing from SD
+    * Don't store password in plaintext but use digest
+    * Stop Wizard on printer errors.
+    * Support the new STOPPED state
+    * Use X-Api-Key or HTTP Digest for /api endpoints
+    * hostname in /api/version
+    * Fix /api/endpoints
+    * Fix /api/files and /api/job endpoints
+    * Nicer messages for Wlan errors; LCDPrinter now accesses the model for IP
+    * Statics generated from submodule
+    * Support pausing, resuming and stopping of serial prints from the LCD
+    * Implementation of metadata into /api/files endpoint
+    * Process all commands in a single thread -> racing avoided
+    * Uploading from local web
+    * Prusa Link version in INFO event
+    * G-code preview and download endpoints
+    * Thread names via prctl - can be show in htop
+    * Shutdown fix
+    * Report build number alongside firmware version
+    * Added api commands for pause, stop and resume print job
+    * If-Modified-Since and If-None-Match headers support for /api/files
+    * Additional version info
+    * Files in hidden folder are ignored
+    * Report file names of SD prints better
+    * Added endpoint for start print
+    * LCD message modification (GO: <IP>)
+    * Fix connection errors causing the printer to report being in ERROR state
+    * Add the possibility to log at debug level around interesting events
+    * Distinguish wifi from lan
+    * Implementation of select/print file functions from local web
+    * File resource endpoint
+    * working `start / stop / pause / resume` job
+    * job info refactoring
+    * endpoint for deleting file
+    * fix job get / set
+
+0.2.0 (2020-12-14)
+
+    * JOB_INFO fix
+    * Service must be start using daemon script prusa-link
+    * Implicit config path is /etc/Prusa-Link/prusa-link.ini
+    * Implicit settings path is {HOME}/prusa_printer_settings.ini
+    * Wizard - part II
+    * Api-Key in INFO event
+    * Wizard redesign
+
+
+0.1.3 (2020-12-01)
+
+    * Report at least a file name for SD prints
+    * Wizard - part I
+    * Fix command handling and re-undo fw double-ok workarounds
+      (FW commit gd167b3bd or newer is required)
+
+0.1.2 (2020-11-23)
+
+    * New FW (3.9.2.3566) required
+    * local web service on http://IP-address:8080
+    * file upload from Prusa Slicer (use `PrusaSlicer` Api-Key)

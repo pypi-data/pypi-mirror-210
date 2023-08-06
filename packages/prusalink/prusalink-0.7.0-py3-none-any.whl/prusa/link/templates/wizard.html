@@ -1,0 +1,181 @@
+{# vim:set softtabstop=2: -#}
+{% set title = 'Wizard' -%}
+{#% set refresh = 15 %#}
+{% include "_header.html" %}
+{% set active="welcome" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="align-center">Welcome to PrusaLink configuration Wizard</h1>
+            {% if wizard.daemon.prusa_link and not wizard.daemon.prusa_link.model.serial_adapter.using_port %}
+                <div class="img-center">
+                    <img src="img/printers/rpi_mk3.svg" height="200px"/>
+                </div>
+                <h3>Unfortunately, we can’t detect your printer on any serial port, or the printer is booting.</h3>
+                <p>Please make sure the RPi port is set to ON and your printer is idle, showing the status screen. You can also try going over your connections one more time.</p>
+                <p>PrusaLink takes some time to properly initialize. Try waiting a few seconds and refresh the page. If the problem still persists, power cycle your printer / PrusaLink and try again.</p>
+
+                <p>If everything fails, let us know on <a href="https://forum.prusaprinters.org/forum/prusa-connect-prusalink/">the forum</a> or contact support at info@prusa3d.com</p>
+
+                <div onclick="showPortsSection()" id="ports_section_show">Show more info...</div>
+                <div id="ports_section">
+                        {% if wizard.daemon.prusa_link.model.serial_adapter.ports %}
+                            <h3>Below, you can find a list of detected ports and their status.</h3>
+                            <p class="align-center" id="ports"></p>
+                            <script>
+                                function showPortsSection() {
+                                  var ports_section = document.getElementById("ports_section");
+                                  var textShow = document.getElementById("ports_section_show");
+
+                                  if (ports_section.style.display === "inline") {
+                                    textShow.innerHTML = "Show more info...";
+                                    ports_section.style.display = "none";
+                                  } else {
+                                    textShow.innerHTML = "Hide more info";
+                                    ports_section.style.display = "inline";
+                                  }
+                                }
+
+                                let is_selected = false
+                                function getPortHtml(portData) {
+                                    let symbol = "⌛";
+                                    let status = "WAITING";
+
+                                    if (portData.checked) {
+                                        if (portData.selected) {
+                                            status = "selected";
+                                            symbol = "〈";
+                                            is_selected = true
+                                        } else if (portData.usable) {
+                                            status = "usable";
+                                            symbol = "✓";
+                                        } else {
+                                            symbol = "✘";
+                                            status = "NOT USABLE";
+                                        }
+                                    }
+
+                                    const rpi = portData.is_rpi_port ? "[RPi]" : ""
+                                    return `<li>${portData.path}: ${rpi} ${status} ... ${symbol}</li>`
+                                }
+
+                                function setPortsHtml(dataFromAPI) {
+                                    document.getElementById("ports").innerHTML =
+                                        `<ul style="list-style-type:none;">${dataFromAPI.ports.map(getPortHtml)}</ul>`
+
+                                    if (is_selected) {
+                                        window.location.reload(1);
+                                    }
+                                }
+
+                                const doUpdate = () => {
+                                    fetch('/api/ports')
+                                        .then((response) => response.json())
+                                        .then(setPortsHtml)
+                                        .catch((err) => console.error(err))
+                                        .finally(() => setTimeout(doUpdate, 1000));
+                                };
+                                doUpdate();
+                            </script>
+                        {% else %}
+                            <h3>Unfortunately we can't detect any active serial port.</h3>
+                            <script>
+                                setTimeout(function(){
+                                    window.location.reload(1);
+                                    }, 1000);
+                            </script>
+                        {% endif %}
+                    </div>
+
+                <a href="/wizard" class="btn btn-outline-light align-center" style="width: 200px;margin: 2em auto;display: block;">Refresh</a>
+
+            {% elif not wizard.daemon.prusa_link or not wizard.daemon.prusa_link.printer %}
+
+            <h3>We have encountered problems talking to your printer</h3>
+            <p>Please make sure the RPi port is set to ON and your printer is idle, showing the status screen.
+                You can also try going over your connections one more time.</p>
+
+            <p>PrusaLink takes some time to properly initialize. Try waiting a few seconds and refresh the page. If the problem still persists, power cycle your printer / PrusaLink and try again.</p>
+
+            <p>If everything fails, let us know on <a href="https://forum.prusaprinters.org/forum/prusa-connect-prusalink/">the forum</a>
+                or contact support at info@prusa3d.com</p>
+
+            {# TODO: some prusa-link log to see what's happen. #}
+
+            <a href="/wizard" class="btn btn-outline-light align-center" style="width: 200px;margin: 2em auto;display: block;">Refresh</a>
+            {# TODO: do some javascript call to check the printer, and then refresh is automaticaly #}
+
+            {% else %}
+
+            {% set printer = wizard.daemon.prusa_link.printer %}
+
+            <div class="img-center">
+                <img src="img/printers/{{ printer.type if printer.type else 'unknown_printer' }}.svg" height="200" width="200" />
+            </div>
+
+            <h2 class="align-center">
+                {% if not printer.type_string %}
+                    {{ "Printer not recognized." }}
+                {% else %}
+                    Original Prusa i3 {{ printer.type_string }}
+                {% endif %}
+            </h2>
+
+            <div class="container navigation">
+                <div class="row">
+                {% if not conditions.ID %}
+                    <div class="col" style="text-align: center;">Unfortunately your printer is not supported or running old firmware. To download the latest firmware, visit <a href="https://help.prusa3d.com/">help.prusa3d.com.</a><br /><br />
+                        Only Original Prusa MK3, MK3S and MK3S+ printers are supported. If you think this is a bug, consider
+                        starting a new thread on <a href="https://forum.prusaprinters.org/forum/prusa-connect-prusalink/">forum.prusaprinters.org</a>
+                        or contacting support at info@prusa3d.com
+                    </div>
+                {% elif not conditions.FW %}
+                    <div class="col" style="text-align: center;">Firmware is not up-to-date, please update it!<br /><br />
+                        You can download the latest stable firmware at <a href="https://prusa3d.com/drivers" target="_blank">Drivers, Firmware and Manuals</a> download page.<br />
+                        Follow the instructions in this <a href="https://help.prusa3d.com/en/guide/upgrading-the-firmware-original-prusa-i3_24720" target="_blank">guide</a>.<br /><br />
+                        After upgrading, run this wizard again.
+                    </div>
+                {% elif not conditions.SN %}
+                    <div class="col"><b>Great!</b> You can continue to set Serial Number</div>
+                    <div class="col-xs-auto">
+                        <a href="/wizard/serial" class="btn btn-outline-light">Serial Number | NEXT <img src="img/arrow-right.svg" height="16" /></a>
+                    </div>
+                {% else %}
+                    <div class="col"><b>Great!</b> You can continue to set up your credentials, <b>or</b> you can restore printer settings from your <i>prusa_printer_settings.ini</i> file</div>
+                    <br/>
+                    <div class="col-xs-auto">
+
+
+                    </div>
+
+            <div class="container navigation">
+              <div class="row">
+                  <div class="col">
+                    <a id="restore_btn" href="/wizard/restore" class="btn btn-outline-light full-width" onmouseover="changeIconImage('img/reset-icon-black.svg')" onmouseout="changeIconImage('img/reset-icon-white.svg')">Restore settings <img id="restore_icon" height="25" src="img/reset-icon-white.svg">
+                    </a>
+                  </div>
+                  <div class="col-sm-auto">
+                    <a href="/wizard/credentials" class="btn btn-outline-light full-width">Setup credentials | NEXT <img src="img/arrow-right.svg" height="16" /></a>
+                  </div>
+              </div>
+            </div>
+
+                {% endif %}
+                </div>
+            </div>
+
+
+            {% endif %}
+        </div>{# /col-md-12 so end of content #}
+    </div>{# /row #}
+</div>{# /container #}
+
+<script>
+     function changeIconImage(img) {
+    document.getElementById('restore_icon').style.content = `url(${img})`;
+  }
+</script>
+
+{% include "_wizard.html" %}
+{% include "_footer.html" %}
