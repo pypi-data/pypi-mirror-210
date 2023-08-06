@@ -1,0 +1,9 @@
+# environment.yml: Mandatory dependencies only.
+channels:
+- conda-forge
+- nodefaults
+dependencies:
+- scipy
+- xarray
+- numpy
+- pandas
