@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: lndb
+Version: 0.45a1
+Summary: LaminDB setup.
+Author-email: Lamin Labs <laminlabs@gmail.com>
+Description-Content-Type: text/markdown
+Requires-Dist: lnhub_rest==0.9.4
+Requires-Dist: laminci>=0.3.0
+Requires-Dist: lnschema_core>=0.28.0
+Requires-Dist: lamin_logger>=0.2.3
+Requires-Dist: pytest_alembic==0.9.1
+Requires-Dist: cloudpathlib
+Requires-Dist: sqlmodel>=0.0.8
+Requires-Dist: psycopg2-binary
+Requires-Dist: appdirs
+Requires-Dist: python-dotenv
+Requires-Dist: erdiagram
+Requires-Dist: alembic
+Requires-Dist: natsort
+Requires-Dist: pandas
+Requires-Dist: python-dateutil
+Requires-Dist: universal_pathlib
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: nox ; extra == "dev"
+Requires-Dist: lamindb[bionty,lamin1]>=0.39rc1 ; extra == "test"
+Requires-Dist: pytest>=6.0 ; extra == "test"
+Requires-Dist: pytest-cov ; extra == "test"
+Requires-Dist: nbproject-test>=0.4.3 ; extra == "test"
+Requires-Dist: nbproject ; extra == "test"
+Project-URL: Home, https://github.com/laminlabs/lndb
+Provides-Extra: dev
+Provides-Extra: test
+
+# lndb: Setup LaminDB
+
+- Stable user docs: [lamin.ai/docs/setup/](https://lamin.ai/docs/setup/)
+- Latest developer docs: [netlify](https://lndb-htry.netlify.app/docs/lndb/)
+
