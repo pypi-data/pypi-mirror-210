@@ -1,0 +1,11 @@
+SELECT DISTINCT ?wiki_id ?twitter
+WHERE
+{    
+    ?wiki_id wdt:P31 wd:Q5;
+             wdt:P2002 ?twitter.
+    {
+    PLACEHOLDER
+    }
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "sv". }
+}
