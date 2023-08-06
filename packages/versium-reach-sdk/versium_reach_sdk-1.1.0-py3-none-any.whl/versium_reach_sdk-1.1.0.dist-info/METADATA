@@ -1,0 +1,136 @@
+Metadata-Version: 2.1
+Name: versium-reach-sdk
+Version: 1.1.0
+Summary: Python SDK for querying Versium Reach APIs
+Home-page: https://github.com/VersiumAnalytics/reach-api-python-sdk
+Author: Versium Analytics, Inc.
+Author-email: "Versium Analytics, Inc." <opensource@versium.com>
+License: Copyright 2022 Versium Analytics, Inc.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        * Redistributions of source code must retain the above copyright notice, this
+          list of conditions and the following disclaimer.
+        
+        * Redistributions in binary form must reproduce the above copyright notice,
+          this list of conditions and the following disclaimer in the documentation
+          and/or other materials provided with the distribution.
+        
+        * Neither the name of the copyright holder nor the names of its
+          contributors may be used to endorse or promote products derived from
+          this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Project-URL: Homepage, https://api-documentation.versium.com/
+Project-URL: Documentation, https://api-documentation.versium.com/reference/welcome
+Project-URL: Repository, https://github.com/VersiumAnalytics/reach-api-python-sdk
+Project-URL: API Trial Account, https://app.versium.com/create-developer-account
+Keywords: Versium,MarTech,API,SDK,Data Enrichment,Data Appends,Marketing,B2B,B2C,Audience,Identity Graph
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: ~=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: aiohttp (>=3.8.0)
+
+# Versium Reach API Software Development Kit (SDK)
+A simplified Python interface for appending data using [Versium Reach APIs](https://api-documentation.versium.com/docs/start-building-with-versium)
+
+## Installation
+It's recommended that you first create a virtual Python environment before installing using tools such as virtualenv or 
+conda. This is to prevent you from installing the package directly onto your system's base Python installation. Once
+you have created and activated your virtual environment, proceed with one of the steps below.
+
+## PyPI
+```bash
+pip install versium-reach-sdk
+```
+## Install from Source
+1) Clone or download the codebase from the [GitHub Page](https://github.com/VersiumAnalytics/reach-api-python-sdk)
+2) CD into the newly downloaded or cloned folder
+```bash
+cd reach-path-python-sdk
+```
+3) Now install the package with pip
+```bash
+pip install .
+```
+
+## Usage
+
+1) Import ReachClient into your program
+```python
+from reach import ReachClient
+```
+2) Pass your [API Key](https://app.versium.com/account/manage-api-keys) to the ReachClient constructor.
+```python
+client = ReachClient('api-key-012345678')
+```
+3) Run the `append` method of your `ReachClient` object with the API name, input records, desired outputs (if applicable),
+and any extra config parameters you wish to pass.
+```python
+records = [{"first": "John", 
+            "last": "Smith",
+            "address": "123 Main St.",
+            "city": "New York",
+            "state": "NY"}]
+
+results = client.append(api_name="contact",
+                        input_records=records,
+                        outputs=["phone", "email"],
+                        config_params={"match_type": "indiv"})
+```
+
+## Returned Results
+Results are returned as a list of QueryResult objects, which contain the following attributes:
+
+- **body** : 
+        The parsed body of the response from the Versium Reach API.
+
+
+- **success** :
+        Indicates whether the request returned with a successful status code.
+
+
+- **match_found** :
+        Indicates whether a match was found for the queried record
+
+
+- **http_status** :
+        The http status code for the response.
+
+
+- **reason**:
+        Explanation of the http status code (e.g. 200 => "OK", 404 => "Not Found", 401 => "Unauthorized", etc.)
+
+
+- **headers**:
+        The headers of the response.
+
+
+- **body_raw**:
+        The body of the response as raw bytes
+
+
+- **request_error**:
+        If the client errored out during a request, this stores the error object
+
+
+- **error_msg**:
+        Stores additional info about query errors.
+
+# Things to keep in mind
+- The default rate limit for Reach APIs is 20 queries per second
+- You must have a provisioned API key for this function to work. If you are unsure where to find your API key, 
+look at our [API key documentation](https://api-documentation.versium.com/docs/find-your-api-key)
