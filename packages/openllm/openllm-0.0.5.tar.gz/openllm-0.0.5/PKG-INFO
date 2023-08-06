@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: openllm
+Version: 0.0.5
+Summary: OpenLLM: REST/gRPC API server for running any open Large-Language Model - StableLM, Llama, Alpaca, Dolly, Flan-T5, Custom
+Project-URL: Documentation, https://github.com/llmsys/openllm#readme
+Project-URL: Issues, https://github.com/llmsys/openllm/issues
+Project-URL: Source, https://github.com/llmsys/openllm
+Author-email: Aaron Pham <aarnphm@bentoml.com>, BentoML Team <contact@bentoml.com>
+License-Expression: Apache-2.0
+License-File: LICENSE
+Keywords: AI,Alpaca,BentoML,Generative AI,LLMOps,Large Language Model,MLOps,Model Deployment,Model Serving,PyTorch,Stable Diffusion,StableLM,Transformers
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.8
+Requires-Dist: bentoml
+Requires-Dist: black[jupyter]==23.3.0
+Requires-Dist: filetype
+Requires-Dist: grpcio
+Requires-Dist: grpcio-health-checking
+Requires-Dist: grpcio-reflection
+Requires-Dist: inflection
+Requires-Dist: opentelemetry-instrumentation-grpc==0.35b0
+Requires-Dist: orjson
+Requires-Dist: pillow
+Requires-Dist: protobuf
+Requires-Dist: pydantic
+Requires-Dist: transformers[accelerate,onnx,onnxruntime,tokenizers,torch]>=4.29.0
+Description-Content-Type: text/markdown
+
+<div align="center">
+    <h1 align="center">OpenLLM</h1>
+    <br>
+    <strong>REST/gRPC API server for running any Open Large-Language Model - StableLM, Llama, Alpaca, Dolly, Flan-T5, and more<br></strong>
+    <i>Powered by BentoML 🍱 + HuggingFace 🤗</i>
+    <br>
+</div>
