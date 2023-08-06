@@ -1,0 +1,22 @@
+
+<!---使用示例:
+# 加载标签
+load post_extras
+
+使用示例：
+last_update 5
+
+-->
+
+
+<div class="last_update">
+  <h2 class="text-gray-800 text-lg font-medium mb-2">Last Update</h2>
+    <ul class="list-disc pl-4">
+{%for item in page_obj%}
+
+<li class="mb-2">
+    <a href="{% url 'detail_view' item.pk %}" class="">{{item|truncatechars:32}}</a>
+</li>
+{%endfor%}
+</ul>
+</div>

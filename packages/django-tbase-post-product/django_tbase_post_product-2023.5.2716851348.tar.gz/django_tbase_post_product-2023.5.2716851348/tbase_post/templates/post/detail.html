@@ -1,0 +1,157 @@
+{% extends 'blog/post.html' %}
+{% comment %} 加载区 {% endcomment %}
+{% load static %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load martortags %}
+{% load post_extras %}
+{% load solo_tags %}
+
+
+{% comment %} 加载区 结束 {% endcomment %}
+
+
+ {% block tailwind_css %}
+<style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+
+
+    pre {
+width: 100%;
+    overflow: auto;
+    margin: 20px 0;
+    border: 1px solid #d7dfe7;
+    padding: 20px;
+    background: #f5eded;
+}
+h1 {
+    font-size: 1.8em;
+    padding: 20px 0;
+}
+h2 {
+    font-size: 1.6em;
+    padding: 20px 0;
+}
+h3 {
+    font-size: 1.4em;
+    padding: 20px 0;
+}
+p {
+    margin: 5px 0;
+}
+#article-warp li {
+    padding-left: 20px;
+}
+
+  </style>
+{% endblock %}
+
+{% block title %}<title>{{detail.title}} : {{title}}</title>{% endblock %}
+
+
+{% block head %}
+{% tag_names object.tags.all 4 as tag%}
+<meta name="description" content="{{detail.content|truncatechars:128}}">
+<meta name="keywords" content="{{detail.product_name}},{{ tag.names_text}}">
+<!-- <meta name="author" content="Terry"> -->
+
+{% endblock %}
+
+{% block top_header %} {% endblock %}
+
+{% block top_nav %}
+
+{% endblock %}
+
+{% block body_class_expand %}detail{% endblock %}
+
+{% block text_header %}
+{% endblock %}
+
+{% block article_img %}
+{%if detail.article_img%}
+<div class="flex items-center justify-center bg-gray-100">
+ <p class="hover:opacity-75">
+     <img alt="{{detail.product_name}}" src="{{detail.article_img}}">
+ </p>
+</div>
+{%endif%}
+{% endblock %}
+
+{% block article %}
+
+
+ <p class="text-blue-700 text-sm font-bold uppercase pb-4">{{detail.product_name}}</p> 
+
+<h1 class="text-3xl font-bold pb-3">{{detail.title}}</h1>
+                    {% comment %} <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">Lorem Ipsum Dolor Sit Amet Dolor Sit Amet</a> {% endcomment %}
+                    <p href="#" class="text-sm pb-8">
+                        {% comment %} By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>,  {% endcomment %}
+                        Published on {{detail.created_on}}
+                    </p>
+
+    <div class="pb-3">
+        {% comment %} {{detail.content}} {% endcomment %}
+
+        <!--主体正文-->
+        {{ detail.content|safe_markdown }}
+        <!--主体正文结束-->
+
+
+        <!--亚马逊推广链接-->
+        {% get_solo 'tbase_post.AmazonSettings' as amazon %}
+        {% amazon_link object.product_id detail.product_name amazon.store_id %}
+        <!--亚马逊推广链接结束-->
+
+        <!--标签-->
+        {% tags object.tags.all%}
+        <!--标签结束-->
+
+    </div>
+
+<!--相关内容-->
+<div class="w-full flex pt-6">
+<div class="w-1/2 bg-white text-left p-6">
+{% related_post_by_tags object.tags 10 object.pk %}
+</div>
+<div class="w-1/2 bg-white text-left p-6">
+{% last_update 10 %}
+    </div>
+</div>
+<!--相关内容结束-->
+
+{% endblock %}
+
+
+<!--上一页下一页链接区域-->
+
+{% block article_previous_next %}
+
+                {% if detail.get_previous_by_created_on  %}
+                <a href="{% url 'detail_view' detail.get_previous_by_created_on.pk %}" class="w-1/2 bg-white shadow hover:shadow-md text-left p-6">
+                    <p class="text-lg text-blue-800 font-bold flex items-center"><i class="fas fa-arrow-left pr-1"></i> Previous</p>
+                    <p class="pt-2">{{detail.get_previous_by_created_on.title}}</p>
+                </a>
+
+    {%endif%}
+                {% if detail.get_next_by_created_on  %}
+                <a href="{% url 'detail_view' detail.get_next_by_created_on.pk %}" class="w-1/2 bg-white shadow hover:shadow-md text-right p-6">
+                    <p class="text-lg text-blue-800 font-bold flex items-center justify-end">Next <i class="fas fa-arrow-right pl-1"></i></p>
+                    <p class="pt-2">{{detail.get_next_by_created_on.title}}</p>
+                </a>
+
+            {%endif%}
+{% endblock %}
+<!--上一页下一页链接区域 结束-->
+
+
+
+<!--作者信息-->
+{% block article_author %}
+
+{% endblock %}
+<!--作者信息 结束-->
+
