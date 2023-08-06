@@ -1,0 +1,56 @@
+Metadata-Version: 1.1
+Name: paotung
+Version: 0.0.1
+Summary: Who is Paotung
+Home-page: https://github.com/Patcharaporn2093
+Author: Patcharaporn
+Author-email: patcharaporn.online63@gmail.com
+License: MIT
+Download-URL: https://github.com/Patcharaporn2093
+Description: แพ็คเกจนี้เป็นแพ็คเกจ python ที่แสดงข้อมูลเกี่ยวกับแมวตัวนึง”
+        =============================================================
+        
+        PyPi: https://pypi.org/project/paotung/
+        
+        สวัสดี นี่คือแพ็คเกจที่แสดงข้อมูลเกี่ยวกับแมวตัวนึง
+        
+        วิธีติดตั้ง
+        ~~~~~~~~~~~
+        
+        เปิด CMD / Terminal
+        
+        .. code:: python
+        
+           pip install paotung
+        
+        วิธีใช้งานแพ็คเพจนี้
+        ~~~~~~~~~~~~~~~~~~~~
+        
+        -  เปิด IDLE ขึ้นมาแล้วพิมพ์…
+        
+        .. code:: python
+        
+           from paotung import Paotung
+        
+           paotung = Paotung() # ประกาศชื่อคลาส
+           paotung.show_name() # โชว์ชื่อ
+           paotung.show_web() # โชว์เว็บ
+           paotung.about() # โชว์เกี่ยวกับเป๋าตุง
+           paotung.show_art() # โชว์ภาพศิลปะ
+        
+        พัฒนาโดย: FB: https://www.facebook.com/patcharaporn.saguan
+        
+Keywords: Paotung,ASCII ART,Cat
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
