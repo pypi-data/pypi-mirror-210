@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "dare-datasets"
+version = "0.1.0"
+description = ""
+authors = ["MikeXydas <mikexydas@gmail.com>"]
+readme = "README.md"
+packages = [{include = "dare_datasets"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+gdown = "^4.7.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
