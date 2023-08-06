@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: rivian-python-client
+Version: 0.2.2
+Summary: Rivian API Client (Unofficial)
+License: MIT
+Author: Brian Retterer
+Author-email: bretterer@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: aiohttp (>=3.0.0)
+Requires-Dist: yarl (>=1.6.0)
+Description-Content-Type: text/markdown
+
+# Python: Rivian API Client
+
+Currently a Work In Progress
+
+## Dependencies
+
+[Poetry](https://python-poetry.org/docs/)
+
+```
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+## Setup
+
+Install project dependencies into the poetry virtual environment.
+
+```
+poetry install
+```
+
+## Run Tests
+
+```
+poetry run pytest
+```
+
