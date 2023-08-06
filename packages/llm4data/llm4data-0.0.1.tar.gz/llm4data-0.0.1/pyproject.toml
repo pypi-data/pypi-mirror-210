@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "llm4data"
+version = "0.0.1"
+description = "LLM4Data is a Python library designed to facilitate the application of large language models (LLMs) and artificial intelligence for data and knowledge discovery."
+authors = ["Aivin V. Solatorio <avsolatorio@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.0.1"
+numpy = "^1.24.3"
+sqlalchemy = "^2.0.15"
+openai-tools = "0.0.0.1.dev3"
+tomli = "^2.0.1"
+langchain = "^0.0.178"
+psycopg2-binary = "^2.9.6"
+python-dotenv = "^1.0.0"
+tiktoken = "^0.4.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.1.0"
+pytest-dotenv = "^0.5.2"
+
+
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.0.270"
+black = "^23.3.0"
+
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1.3.0"
+pandas-stubs = "^2.0.1.230501"
+types-tqdm = "^4.65.0.1"
+sqlalchemy-stubs = "^0.4"
+
+
+[tool.poetry.group.dev]
+optional = true
+
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+setuptools = "^67.8.0"
+
+
+[tool.poetry_bumpversion.file."llm4data/__init__.py"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
