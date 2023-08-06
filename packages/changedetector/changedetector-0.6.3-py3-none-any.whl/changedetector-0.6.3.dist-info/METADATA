@@ -1,0 +1,123 @@
+Metadata-Version: 2.1
+Name: changedetector
+Version: 0.6.3
+Summary: A basic change detector for the Python, Ruby and C++.
+Project-URL: Bug Tracker, https://github.com/luxluth/changedetector/issues
+Project-URL: Homepage, https://github.com/luxluth/changedetector
+Author-email: Lux Luth <luxusluth@gmail.com>
+License-Expression: MIT
+License-File: LICENCE
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Utilities
+Requires-Python: >=3.7
+Requires-Dist: certifi==2023.5.7; python_version >= '3.6'
+Requires-Dist: charset-normalizer==3.1.0
+Requires-Dist: click==8.1.3; python_version >= '3.7'
+Requires-Dist: colorama==0.4.6
+Requires-Dist: idna==3.4; python_version >= '3.5'
+Requires-Dist: inquirerpy==0.3.4
+Requires-Dist: markdown-it-py==2.2.0; python_version >= '3.7'
+Requires-Dist: mdurl==0.1.2; python_version >= '3.7'
+Requires-Dist: pfzy==0.3.4; python_version >= '3.7' and python_version < '4.0'
+Requires-Dist: prompt-toolkit==3.0.38; python_full_version >= '3.7.0'
+Requires-Dist: pyfiglet==0.8.post1
+Requires-Dist: pygments==2.15.1; python_version >= '3.7'
+Requires-Dist: requests==2.31.0
+Requires-Dist: rich==13.3.5
+Requires-Dist: shellingham==1.5.0.post1
+Requires-Dist: tomli==2.0.1
+Requires-Dist: typer[all]==0.9.0
+Requires-Dist: typing-extensions==4.6.0; python_version >= '3.7'
+Requires-Dist: typing==3.7.4.3
+Requires-Dist: urllib3==2.0.2
+Requires-Dist: watchdog==3.0.0
+Requires-Dist: wcwidth==0.2.6
+Description-Content-Type: text/markdown
+
+<div align="center">
+
+# changedetector
+
+[![PyPI - Version](https://img.shields.io/pypi/v/changedetector.svg?style=for-the-badge&logo=pypi)](https://pypi.org/project/changedetector)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/changedetector.svg?style=for-the-badge&logo=pypi)](https://pypi.org/project/changedetector)
+
+</div>
+
+## Installation
+
+```sh
+pip install changedetector
+```
+
+Change detector is a tool that can be used to detect changes in your code-base.
+It works with a simple command
+
+```sh
+detectchange watch --verbose
+```
+
+## Upcomming Features
+
+- [x] Make a config file `.detectchange` -> a toml file **(partial)**
+- [x] Read Makefile
+- [ ] Add support for more languages
+
+### Config file
+
+```toml
+mode="wrs"
+lang="c"
+file="./src/main.c"
+verbose=false
+
+[c]
+cc="gcc"
+cflags="-Wall -Wextra -Werror"
+output="./bin/main"
+```
+
+| **commands** | **type** | **required** |           **description**          |
+|:------------:|:--------:|:------------:|:----------------------------------:|
+|     mode     |    `str`   |      yes     | Mode for detectchange - `wrs` or `wro` |
+|     lang     |    `str`   |      yes     | File to excecute language          |
+|     file     |    `str`   |      yes     | File to watch                      |
+|    verbose   |   `bool`   |      no      | verbose                            |
+
+#### C, Cpp Config
+
+For C and Cpp you need to add a `[c]` section to the config file
+
+```toml
+[c]
+cc="gcc"
+cflags="-Wall -Wextra -Werror"
+output="./bin/main"
+```
+
+| **commands** | **type** | **required** | **description** |
+|:------------:|:--------:|:------------:|:---------------:|
+|      cc      |    `str`   |      yes     | The compiler    |
+|    cflags    |    `str`   |      no      | Compiler flags  |
+|    output    |    `str`   |      no      | Output file     |
+
+It detects changes in your working directory. And executes the scripts chosen
+when the script is executed.
+
+It can be used to detect changes in python, ruby, Cpp  and C files.
+
+---
+
+License : MIT
