@@ -1,0 +1,10 @@
+from setuptools import setup
+
+setup(name="kerasAndMatplotlib",
+      version="0.1",
+      description="Keras is an open-source deep learning framework written in Python. It provides a high-level interface for building and training neural networks. Keras was developed with a focus on simplicity and ease of use, allowing researchers and developers to quickly prototype and build deep learning models.",
+      long_description="Keras is an open-source deep learning framework written in Python. It provides a high-level interface for building and training neural networks. Keras was developed with a focus on simplicity and ease of use, allowing researchers and developers to quickly prototype and build deep learning models.Keras is an open-source deep learning framework written in Python. It provides a high-level interface for building and training neural networks. Keras was developed with a focus on simplicity and ease of use, allowing researchers and developers to quickly prototype and build deep learning models.Keras is an open-source deep learning framework written in Python. It provides a high-level interface for building and training neural networks. Keras was developed with a focus on simplicity and ease of use, allowing researchers and developers to quickly prototype and build deep learning models.Keras is an open-source deep learning framework written in Python. It provides a high-level interface for building and training neural networks. Keras was developed with a focus on simplicity and ease of use, allowing researchers and developers to quickly prototype and build deep learning models.Keras is an open-source deep learning framework written in Python. It provides a high-level interface for building and training neural networks. Keras was developed with a focus on simplicity and ease of use, allowing researchers and developers to quickly prototype and build deep learning models.",
+      author="MrBeast",
+      packages=['kerass'],
+      install_requires=[]
+      ) 
