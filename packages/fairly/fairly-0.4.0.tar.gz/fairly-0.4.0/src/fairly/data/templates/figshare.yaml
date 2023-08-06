@@ -1,0 +1,132 @@
+metadata:
+
+    title: ""
+        # Title of the dataset.
+        #
+        # Required.
+
+    description: ""
+        # Description of the dataset.
+
+    keywords: []
+        # List of keywords associated with the dataset.
+        #
+        # Example:
+        #
+        # ["Keyword 1", "Keyword 2"]
+
+    references: []
+        # List of links associated with the dataset.
+        #
+        # Example:
+        #
+        # ["http://link1", "http://link2", "http://link3"]
+
+    categories: []
+        # List of category names associated with the dataset.
+        #
+        # Example:
+        # ["Agricultural Land Planning", "Biochemistry"]
+
+    authors: []
+        # List of authors to be associated with the dataset.
+        #
+        # The list can contain items with the following attributes:
+        # - name
+        # - surname
+        # - fullname
+        # - email
+        # - orcid_id
+        # - figshare_id
+        #
+        # If an id is supplied, it will take priority and everything else will
+        # be ignored.
+
+    custom_fields: {}
+        # List of key, values pairs to be associated with the dataset.
+        #
+        # Example:
+        #
+        # {"Format": "GeoTIFF", "Location": "Amsterdam"}
+
+    type: ""
+        # Controlled vocabulary:
+        #
+        # - book
+        # - conference contribution
+        # - dataset
+        # - figure
+        # - journal contribution
+        # - media
+        # - online resource
+        # - poster
+        # - preprint
+        # - presentation
+        # - software
+        # - thesis
+
+    access_type: ""
+        # Access type of the dataset
+        #
+        # Controlled vocabulary:
+        #
+        # - open
+        # - embargoed
+        # - restricted
+        # - closed
+
+    funding: ""
+        # Grant number or funding authority.
+
+    funding_list: []
+        # Funding creation / update items
+        #
+        # - id (integer): ID as returned by the Funding Search endpoint
+        # - title (string): The title of the new user created funding
+
+    license: ""
+        # License for the dataset.
+        #
+        # Example:
+        #
+        # "MIT"
+
+    online_date: ""
+        # Online posted date
+
+    publication_date: ""
+        # Date when the dataset was published by the publisher
+
+    acceptance_date: ""
+        # Date when the dataset was accepted for publication by the publisher
+
+    embargo_date: ""
+        # Date when the embargo expires and the article gets published.
+        #
+        # '0' value will set up permanent embargo.
+        #
+        # Example:
+        #
+        # 2018-05-22T04:04:04
+
+    embargo_type: ""
+        # Embargo can be enabled at the article or the file level.
+        #
+        # Controlled Vocabulary:
+        #
+        # - article
+        # - file
+        #
+        # Example:
+        #
+        # "file"
+
+    embargo_title: ""
+        # Title for embargo
+        #
+        # Example:
+        #
+        # "File(s) under embargo"
+
+    embargo_reason: ""
+        # Reason for setting embargo
