@@ -1,0 +1,166 @@
+#discord_bot_token_accordion {
+    padding-left: 30px;
+}
+
+#oobabot-status-heading {
+    padding-top: 6px;
+}
+
+#oobabot-save-token {
+    flex: none;
+    min-width: 50px;
+}
+
+#oobabot-tab-config input:disabled {
+    background-color: var(--button-secondary-border-color)
+}
+
+textarea:disabled {
+    background-color: var(--button-secondary-border-color)
+}
+
+#oobabot-tab-config .prose #oobabot-invite-link pre {
+    display: inline;
+    color: orange;
+    text-decoration: underline;
+}
+
+#oobabot-refresh-character-menu {
+    flex: none;
+    min-width: 50px;
+}
+
+#oobabot-tab-config .prose * {
+    font-size: 16px;
+}
+
+#oobabot-tab-config .prose h1 {
+    padding-top: 10px;
+    font-size: 24px;
+}
+
+#oobabot-tab-config .prose h2 {
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+#oobabot-tab-config .oobabot_instructions code {
+    font-size: 18px;
+}
+
+#oobabot-tab-config .oobabot_instructions h1 code {
+    font-size: 24px;
+}
+
+#oobabot-tab-config .oobabot-output {
+    background-color: #0C0C0C;
+    color: #CCCCCC;
+    font-family: Consolas, Lucida Console, monospace;
+    padding: 20px;
+    border-radius: var(--block-radius);
+    min-height: 1160px;
+    width: 100%;
+}
+
+#oobabot-tab-config .prose * {
+    color: unset;
+}
+
+#oobabot-tab-config .prose * .oobabot-red {
+    color: #C50F1F;
+}
+
+#oobabot-tab-config .prose * .oobabot-yellow {
+    color: #C19C00;
+}
+
+#oobabot-tab-config .prose * .oobabot-cyan {
+    color: #3A96DD;
+}
+
+#oobabot-tab-config .prose * .oobabot-white {
+    color: #CCCCCC;
+}
+
+.ace_editor {
+    margin: auto;
+    width: 100%;
+}
+
+.ace_editor,
+.ace_editor * {
+    font-family: Consolas, "Lucida Console", monospace !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+.scrollmargin {
+    height: 80px;
+    text-align: center;
+}
+
+footer {
+    display: none !important;
+}
+
+#oobabot-advanced-save-settings {
+    flex: none;
+    margin: auto;
+}
+
+#oobabot-advanced-save-result {
+    text-align: right;
+    overflow: hidden;
+    display: inline-block;
+    height: 60px;
+    padding: 20px 0;
+}
+
+
+body.dark #oobabot-tab-advanced .prose pre * {
+    font-size: 16px;
+}
+
+#oobabot-tab-config .prose * {
+    color: unset;
+}
+
+#oobabot-tab-advanced .gradio-container-3-32-0 .prose * {
+    font-size: 16px;
+    color: #CCCCCC;
+}
+
+#oobabot-tab-advanced .prose h1 {
+    padding-top: 10px;
+    font-size: 24px;
+}
+
+#oobabot-tab-advanced .prose h2 {
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+#oobabot-tab-advanced .oobabot_instructions code {
+    font-size: 18px;
+}
+
+#oobabot-tab-advanced .oobabot_instructions h1 code {
+    font-size: 24px;
+}
+
+#oobabot-tab-advanced .oobabot-output {
+    background-color: #0C0C0C;
+    color: #CCCCCC;
+    font-family: Consolas, Lucida Console, monospace;
+    padding: 20px;
+    border-radius: var(--block-radius);
+    min-height: 1160px;
+    width: 100%;
+}
+
+#oobabot-tab-advanced pre .ace_cursor,
+:before,
+:after {
+    border-left-width: 3px;
+}

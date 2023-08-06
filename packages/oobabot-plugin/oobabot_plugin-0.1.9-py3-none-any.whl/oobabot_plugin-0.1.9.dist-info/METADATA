@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: oobabot-plugin
+Version: 0.1.9
+Summary: A Discord bot plugin to oobabooga's text-generation-webui, based on oobabot.
+Home-page: https://github.com/chrisrude/oobabot-plugin
+License: MIT
+Author: Christopher Rude
+Author-email: chris@rudesoftware.net
+Requires-Python: >=3.8.1,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: gradio (>=3.31.0,<4.0.0)
+Requires-Dist: oobabot (>=0.1.9,<0.2.0)
+Project-URL: Repository, https://github.com/chrisrude/oobabot-plugin
+Description-Content-Type: text/markdown
+
+# Oobabot-plugin
+
+[**`oobabot`**](https://github.com/chrisrude/oobabot) is a Discord bot which talks to a Large Language Model AIs (like LLaMA, llama.cpp, etc...), running on [oobabooga's text-generation-webui](https://github.com/oobabooga/text-generation-webui).
+
+This is a plugin which allows **`oobabot`** to run from within the text-generation-webui server, and offer a web interface to the bot.
+
+[![python lint and test with poetry](https://github.com/chrisrude/oobabot-plugin/actions/workflows/python-package.yml/badge.svg)](https://github.com/chrisrude/oobabot/actions/workflows/python-package.yml)
+
+## Installation
+
+1. [Install oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui#installation), and get a model running on it.
+1. from a command prompt, activate the same conda environment you used to install text-generation-webui, and install the plugin from PyPi:
+
+    ```bash
+    conda activate textgen
+    pip install oobabot-plugin
+    ```
+
+1. Then just run this to create the `oobabot` plugin directory (`./extensions/oobabot`) and install the plugin's hook (`script.py`) into the Oobabooga server:
+
+    ```bash
+    oobabot-plugin install
+    ```
+
+1. Finally. restart the Oobabooga enabling the both the oobabot plugin and the API plugin.  E.g.:
+
+    ```bash
+    python server.py --extensions api oobabot
+    ```
+
+    Hopeful success!  You should now see a new "oobabot" plugin under the "interface mode" tab.
+
+### Preview
+
+![image](./docs/oobabot-plugin.png)
+
+### Motivation
+
+There are a number of Discord bots which can talk to a Large Language Model AI, but many take a lot of setup.  I think this technology is amazing, and I want to make it easy for anyone to experience it by running their own bot, which they can own and customize to their own needs.
+
+If you have any issues, suggestions, or comments, please [file an issue in github](https://github.com/chrisrude/oobabot-plugin/issues.)  Have fun!
+
