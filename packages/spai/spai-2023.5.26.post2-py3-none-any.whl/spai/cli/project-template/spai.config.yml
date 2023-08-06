@@ -1,0 +1,21 @@
+project: getting-started
+# optional, use folder name by default if not specified
+
+scripts:
+  - name: downloader # will run second
+    command: python scripts/downloader/main.py
+    run_every: 10
+    run_on_start: false
+  - name: ndvi # will run second, even if downloader takes longer
+    run_every: 10
+    run_on_start: false
+notebooks:
+  - name: analytics
+    run_every: 10
+    run_on_start: false
+apis:
+  - name: analytics
+  - name: xyz
+uis:
+  - name: map
+    command: streamlit run uis/map/main.py --server.address localhost
