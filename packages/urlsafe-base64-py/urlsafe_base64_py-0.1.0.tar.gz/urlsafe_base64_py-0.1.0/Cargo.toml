@@ -1,0 +1,13 @@
+[package]
+name = "urlsafe-base64-py"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "urlsafe_base64_py"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.18.3"
+base64 = "0.21"
