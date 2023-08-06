@@ -1,0 +1,8 @@
+[console_scripts]
+laue.combine_mtzs = laue_dials.command_line.combine_mtzs:run
+laue.initial_solution = laue_dials.command_line.initial_solution:run
+laue.integrate = laue_dials.command_line.integrate:run
+laue.optimize_indexing = laue_dials.command_line.optimize_indexing:run
+laue.predict = laue_dials.command_line.predict:run
+laue.refine = laue_dials.command_line.refine:run
+laue.sequence_to_stills = laue_dials.command_line.sequence_to_stills:run
