@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: jaz
+Version: 0.1.0
+Summary: Render jinja templates from the CLI
+Author: Panos Mavrogiorgos
+Author-email: pmav99@gmail.com
+Requires-Python: >=3.9
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: ansible
+Requires-Dist: ansible (>=7.0) ; extra == "ansible"
+Requires-Dist: jinja2 (>=3.0)
+Requires-Dist: typer[all] (>=0.9)
+Description-Content-Type: text/markdown
+
+## jaz: Render jinja templates from the Command Line
+
+### Installation
+
+``` bash
+pipx install 'jaz[ansible]'
+```
+
