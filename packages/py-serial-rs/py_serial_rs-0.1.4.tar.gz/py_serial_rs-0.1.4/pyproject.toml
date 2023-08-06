@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=0.14,<0.15"]
+build-backend = "maturin"
+
+[project]
+name = "py_serial_rs"
+requires-python = ">=3.8"
+description = "Read and write data over the serial ports"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+readme = "Readme.rst"
+authors = [
+  {email = "mail.jhahn@googlemail.com"},
+  {name = "Jürgen Hahn"}
+]
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+
+[tool.black]
+target_version = ['py38']
+
+
+[project.urls]
+"Source Code" = "https://github.com/jrhahn/py_serial_rs"
+Issues = "https://github.com/jrhahn/py_serial_rs/issues"
+Documentation = "https://py-serial-rs.readthedocs.io/en/latest/"
+
