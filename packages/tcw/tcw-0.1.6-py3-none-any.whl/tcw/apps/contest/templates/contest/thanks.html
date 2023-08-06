@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h4 class="text-center">Thanks!</h4>
+    <div class="card text-center">
+        <div class="card-body">
+            Name <b>{{ name }}</b> has been entered into contest "{{ contest }}"
+        </div>
+        <div class="card-footer small">
+            The contest owner is responsible for contacting you if you win.
+        </div>
+    </div>
+{% endblock %}

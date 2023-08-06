@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4 class="text-center mb-4">A New Contest!</h4>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <fieldset>
+            <div class="form-floating mb-2">
+            {{ form.title(class_='form-control', id='title', maxlength=128) }}
+            {{ form.title.label(for='title') }}
+            </div>
+            <div class="form-floating mb-2">
+            {{ form.instructions(class_='form-control', id='instructions', rows=6) }}
+            {{ form.instructions.label(for='instructions') }}
+            <div class="form-text mb-3">Provide the user with clear instructions about what information is needed to sign up. For instance - an email address, a forum handle or username.</div>
+            </div>
+            <div class="form-floating mb-2">
+            {{ form.email(class_='form-control', id='email', maxlength=128) }}
+            {{ form.email.label(for='email') }}
+            </div>
+            <div class="form-floating mb-2">
+            {{ form.maximum(class_='form-control', id='maximum', min=1, max=500) }}
+            {{ form.maximum.label(for='maximum') }}
+            </div>
+            <div class="form-floating mb-2">
+            {{ form.winners(class_='form-control', id='winners', min=1, max=50) }}
+            {{ form.winners.label(for='winners') }}
+            </div>
+            <div class="form-floating mb-2">
+            {{ form.hours(class_='form-control', id='hours') }}
+            {{ form.hours.label(for='hours') }}
+            </div>
+            <div class="form-floating mb-2">
+            {{ form.recaptcha(class_='form-control') }}
+            </div>
+        </fieldset>
+        <div class="form-text my-4">By signing up to own this contest, you agree to receive one winner notification email from this site. We won't send any additional emails, and we'll never share your email with anyone else. See our Privacy terms for more information.</div>
+        {{ form.submit(class_='form-control btn btn-primary') }}
+    </form>
+
+{% endblock %}
