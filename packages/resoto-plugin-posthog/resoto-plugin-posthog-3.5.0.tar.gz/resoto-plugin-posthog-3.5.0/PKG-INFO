@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: resoto-plugin-posthog
+Version: 3.5.0
+Summary: Resoto Posthog Collector Plugin
+Home-page: https://github.com/someengineering/resoto/tree/main/plugins/posthog
+License: Apache 2.0
+Keywords: cloud security
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Topic :: Security
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+
+# resoto-plugin-posthog
+Posthog Collector Plugin for Resoto
+
+This collector plugin is used to collect data from Posthog. It is used internally at Some Engineering to create metrics about resoto installations and usage.
+
+To export the number of running installations add the following config to `resoto.metrics`
+```
+resotometrics:
+  [...]
+  metrics:
+    running_installations:
+      # Metric help text
+      help: 'Number of running installations'
+      # Aggregation search to run
+      search: 'aggregate(/ancestors.cloud.reported.name as cloud: sum(count) as running_installations): is(posthog_event) and name=model.info'
+      # Type of metric (gauge or counter)
+      type: 'gauge'
+```
