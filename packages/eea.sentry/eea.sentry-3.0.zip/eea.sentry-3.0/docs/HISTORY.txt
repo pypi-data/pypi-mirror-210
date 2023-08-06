@@ -1,0 +1,74 @@
+Changelog
+=========
+
+3.0 - (2023-05-05)
+---------------------------
+* Refactor: Drop eea.cache dependency in favor of plone.memoize
+  [avoinea]
+
+2.4 - (2022-01-13)
+---------------------------
+* Bug fix: AttributeError PARENTS
+  [avoinea]
+
+2.3 - (2021-10-11)
+---------------------------
+* Bug fix: KeyError HTTP_USER_AGENT
+  [avoinea]
+* Bug fix: FilesystemResourceDirectory object has no attribute getId
+  [avoinea]
+
+2.2 - (2021-10-03)
+---------------------------
+* Fix python version in setup.py
+  [avoinea]
+
+2.1 - (2021-09-28)
+---------------------------
+* add upgrade step for the new javascript
+  [valipod]
+
+2.0 - (2021-09-28)
+---------------------------
+* Change: major version bump for the new sentry SDK
+
+1.5 - (2021-09-24)
+---------------------------
+* Change: Migrate to the new sentry SDK
+  [valipod]
+
+1.4 - (2019-12-02)
+---------------------------
+* Bug fix: Fix JS integration
+  [avoinea refs #110157]
+
+1.3 - (2019-11-15)
+--------------------------
+* Feature: Python3 support
+  [alecghica, iulianpetcheshi, avoinea refs #110155]
+
+1.2 - (2019-07-30)
+--------------------------
+* maintain backwards compatibility with non-plone systems when checking
+  for anonymous
+  [valipod refs #102005]
+
+1.0 - (2019-06-01)
+------------------
+* Upgrade step: Within "Plone > Site setup > Add-ons"
+  install/reinstall eea.sentry
+  [avoinea refs #104872]
+* Feature: Add JS integration
+  [avoinea refs #104872]
+
+0.2 - (2019-05-16)
+------------------
+* Feature: Setup Sentry logger via environment variables
+  [avoinea refs #104872]
+
+0.1 - (2019-05-16)
+------------------
+* Feature: Add custom raven processors to cleanup Zope REQUEST
+  [avoinea refs #104872]
+* Upgrade step: Within "Plone > Site setup > Add-ons" install eea.sentry
+  [avoinea refs #104872]
