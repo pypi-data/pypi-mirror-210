@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+    "build>=0.10.0",
+    "setuptools>=61.0",
+    "twine",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "copul"
+version = "0.0.4"
+authors = [
+  { name="Marcus Rockel", email="marcus.rockel@finance.uni-freiburg.de" },
+  { name="Eva Lütkebohmert-Holtz", email="eva.luetkebohmert@finance.uni-freiburg.de" },
+  { name="Jonathan Ansari", email="jonathan.ansari@plus.ac.at" },
+]
+description = "Risk analysis with copulas."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "interval",
+    "matplotlib>=3.6.0",
+    "numpy>=1.21.0",
+    "pandas>=1.4.4",
+    "pillow>=9.4.0",
+    "scipy>=1.8.0",
+    "sympy",
+    "sympy_plot_backends>=1.6.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Corrram/copulas_in_systemic_risk"
+
+[tool]
+
+[tool.black]
+line-length = 100
+
+[tool.setuptools.package-data]
+copul = ["docs/*"]
