@@ -1,0 +1,163 @@
+Metadata-Version: 2.1
+Name: py-graphql-client
+Version: 0.1.2
+Summary: A dead-simple GraphQL client that supports subscriptions over websockets
+Home-page: https://github.com/ecthiender/py-graphql-client
+Author: Anon Ray
+Author-email: rayanon004@gmail.com
+License: BSD3
+Keywords: graphql,websocket,subscriptions,graphql-client
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Environment :: Other Environment
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# py-graphql-client
+Dead-simple to use GraphQL client over websocket. Using the
+[apollo-transport-ws](https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md)
+protocol.
+
+## Install
+
+```bash
+pip install py-graphql-client
+```
+
+## Examples
+
+### Setup subscriptions super easily
+
+```python
+from graphql_client import GraphQLClient
+
+query = """
+  subscription {
+    notifications {
+      id
+      title
+      content
+    }
+  }
+"""
+
+with GraphQLClient('ws://localhost:8080/graphql') as client:
+
+  sub_id = client.subscribe(query, callback=callback)
+  # do other stuff
+  # ...
+  # later stop the subscription
+  client.stop_subscribe(sub_id)
+
+def callback(_id, data):
+  print("got new data..")
+  print(f"msg id: {_id}. data: {data}")
+```
+
+### Variables can be passed
+
+```python
+from graphql_client import GraphQLClient
+
+query = """
+    subscription ($limit: Int!) {
+      notifications (order_by: {created: "desc"}, limit: $limit) {
+        id
+        title
+        content
+      }
+    }
+  """
+
+with GraphQLClient('ws://localhost:8080/graphql') as client:
+  sub_id = client.subscribe(query, variables={'limit': 10}, callback=callback)
+  # ...
+
+def callback(_id, data):
+  print("got new data..")
+  print(f"msg id: {_id}. data: {data}")
+
+```
+
+### Headers can be passed too
+
+```python
+from graphql_client import GraphQLClient
+
+query = """
+    subscription ($limit: Int!) {
+      notifications (order_by: {created: "desc"}, limit: $limit) {
+        id
+        title
+        content
+      }
+    }
+  """
+
+with GraphQLClient('ws://localhost:8080/graphql') as client:
+  sub_id = client.subscribe(query,
+                            variables={'limit': 10},
+                            headers={'Authorization': 'Bearer xxxx'},
+                            callback=callback)
+  ...
+  client.stop_subscribe(sub_id)
+
+def callback(_id, data):
+  print("got new data..")
+  print(f"msg id: {_id}. data: {data}")
+```
+
+### Normal queries and mutations work too
+
+```python
+from graphql_client import GraphQLClient
+
+query = """
+  query ($limit: Int!) {
+    notifications (order_by: {created: "desc"}, limit: $limit) {
+      id
+      title
+      content
+    }
+  }
+"""
+
+with GraphQLClient('ws://localhost:8080/graphql') as client:
+    res = client.query(query, variables={'limit': 10}, headers={'Authorization': 'Bearer xxxx'})
+    print(res)
+```
+
+### Without the context manager API
+
+```python
+from graphql_client import GraphQLClient
+
+query = """
+  query ($limit: Int!) {
+    notifications (order_by: {created: "desc"}, limit: $limit) {
+      id
+      title
+      content
+    }
+  }
+"""
+
+client = GraphQLClient('ws://localhost:8080/graphql')
+res = client.query(query, variables={'limit': 10}, headers={'Authorization': 'Bearer xxxx'})
+print(res)
+client.close()
+```
+
+
+## TODO
+- support http as well
+- should use asyncio websocket library?
