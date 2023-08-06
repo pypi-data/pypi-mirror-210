@@ -1,0 +1,137 @@
+Metadata-Version: 2.1
+Name: django-erp-framework
+Version: 1.5.0
+Summary: A light-weight effective Django based framework to create diverse business applications
+Home-page: https://github.com/RamezIssac/django-erp-framework
+Author: Ramez Issac
+Author-email: ramez@rasystems.io
+Project-URL: Travis CI, https://travis-ci.org/ra-systems/RA/
+Project-URL: Documentation, https://django-erp-framework.readthedocs.io/en/latest/
+Project-URL: Source, https://github.com/ra-systems/RA
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.1
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+
+.. image:: https://img.shields.io/pypi/v/django-erp-framework.svg
+    :target: https://pypi.org/project/django-erp-framework
+
+.. image:: https://img.shields.io/pypi/pyversions/django-erp-framework.svg
+    :target: https://pypi.org/project/django-erp-framework
+
+.. image:: https://img.shields.io/readthedocs/django-erp-framework
+    :target: https://django-erp-framework.readthedocs.io/
+
+.. image:: https://img.shields.io/codecov/c/github/ra-systems/django-erp-framework
+    :target: https://codecov.io/gh/ra-systems/django-erp-framework
+
+
+
+
+
+Django ERP Framework
+====================
+
+A light-weight, effective, Django based framework to create various business applications, resource planing and management systems.
+
+Offers a ready made platform where you can start to create data entry pages and attach various reports to them.
+
+Features
+--------
+
+* A Reporting Engine that can generate grouped reports and/or time series and/or crosstab from any model in your apps.
+* Charting capabilities to represent the data in the reports.
+* Widget system to create dashboards and display bits of the reports results and/or its charts on any page you want.
+* Customizable and easily extensible.
+* Django Jazzmin admin theme integration ready to use.
+* Python 3.8 / 3.9 / 3.10 , Django 3.2 +
+
+
+
+Installation
+------------
+
+.. code-block:: console
+
+    $ pip install django-erp-framework
+        OR
+    $ pip install -e git+https://github.com/RamezIssac/django-erp-framework.git#egg=django-erp-framework@develop
+
+
+Check out the `getting started <https://django-erp-framework.readthedocs.io/en/latest/getting_started/index.html>`_  on Read The Docs.
+
+
+Demo
+----
+
+You can checkout a demo application `here <https://my-shop.django-erp-framework.com>`_.
+
+Code is available on `Github <https://github.com/RamezIssac/my-shop>`_.
+
+.. image:: https://github.com/RamezIssac/django-erp-framework/blob/develop/docs/source/_static/widgets.png?raw=true
+    :alt: Homepage
+    :align: center
+
+
+Documentation
+-------------
+
+Available on `Read The Docs <https://django-erp-framework.readthedocs.io/en/latest/>`_
+
+Please Proceed to the tutorial `Create a sales application Part 1 <https://django-erp-framework.readthedocs.io/en/latest/getting_started/index.html>`_
+
+
+Reporting Engine
+----------------
+
+The reporting engine of this framework is released as a separate package `django-slick-reporting <https://pypi.org/project/django-slick-reporting/>`_.
+
+
+Testing and contribution
+------------------------
+
+To run the test suite, first, create and activate a virtual environment. Then
+clone the repo, install the test requirements and run the tests::
+
+    # 1. Clone and install requirements
+    $ git clone git+git@github.com:ra-systems/django-erp-framework.git
+    $ cd tests
+    $ pip install -e ..
+    $ pip install -r requirements.txt
+
+    # 2. Set the test database connection details in the environment
+    $ export DATABASE_NAME=<database name>
+    $ export DATABASE_USER=<database user>
+    $ export DATABASE_PASSWORD=<database password if any>
+
+    # 3. Run the tests
+    $ ./runtests.py
+    # And for Coverage report
+    $ coverage run --include=../* runtests.py [-k]
+    $ coverage html
+    
+
+For more information on contributing, we honor `Django's guidelines <https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/>`_.
+
