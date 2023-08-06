@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: pretty-python
+Version: 0.1.0
+Summary: A Python library for pretty printing Python data structures
+Home-page: https://github.com/JavaScriptDude/pretty_python
+License: MIT
+Author: IPython Team
+Requires-Python: >=3.7.9,<4.0.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: POSIX :: SunOS/Solaris
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Project-URL: Repository, https://github.com/JavaScriptDude/pretty_python
+Description-Content-Type: text/markdown
+
+# pretty_python
+
+Standard Python Shim for IPython pretty library
+
+See [lib.pretty Docs](https://ipython.readthedocs.io/en/stable/api/generated/IPython.lib.pretty.html#) for full api.
+
+Only differnce to use this is to import as follows:
+```
+from pretty_python import pretty, pprint
+
+d = dict(Foo=[1,2,3], Bar={'a':1, 'b':2, 'c':3})
+
+print(f"my dict: {pretty(d)}")
+
+# -or-
+
+pprint(d)
+```
+
+If running within IPython / Jupyter Notebook, it will load the builtin pretty library, otherwise it will load this fork which removes IPython dependency
