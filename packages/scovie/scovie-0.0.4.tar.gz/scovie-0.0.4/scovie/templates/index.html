@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="fr-FR">
+
+<head>
+    <title>Scovie - {{ enterprise_name }}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script>
+        var screenModes = {{ screen_modes|safe }};
+        var mobileScreenModes = {{ mobile_screen_modes|safe }};
+        var currentScreenMode = screenModes.indexOf('{{ screen_mode }}');
+
+        // Check if the screen is mobile
+        if (window.innerWidth <= 1000) {
+          currentScreenMode = mobileScreenModes.indexOf('{{ screen_mode }}');
+          // If get the screen mode from the URL is not a mobile screen mode, redirect to the first mobile screen mode
+          if (currentScreenMode == -1) {
+            window.location.href = '?screen_mode=' + mobileScreenModes[0];
+          }
+        } else {
+          setInterval(function() {
+            // Add the fade-out class to the body
+            document.body.classList.add('fade-out');
+        
+            // Wait for the animation to complete
+            setTimeout(function() {
+              currentScreenMode = (currentScreenMode + 1) % screenModes.length;
+              window.location.href = '?screen_mode=' + screenModes[currentScreenMode];
+            }, 1000);
+          }, 15000);
+        }
+      </script>
+      <style>
+        .fade-out {
+          opacity: 0;
+          transition: opacity 1s;
+        }
+      </style>      
+</head>
+<body class="bg-black">
+    {% if screen_mode == 'all' %}
+        {% include 'pages/all.html' %}
+    {% elif screen_mode == 'caroussel' %}
+        {% include 'pages/caroussel.html' %}
+    {% elif screen_mode == 'informations' %}
+        {% include 'pages/informations.html' %}
+    {% elif screen_mode == 'emergency' %}
+            {% include 'pages/emergency.html' %}
+    {% elif screen_mode == 'valentine' %}
+        {% include 'events/valentine.html' %}
+    {% elif screen_mode == 'carnival' %}
+        {% include 'events/carnival.html' %}
+    {% endif %}
+</body>
+</html>
