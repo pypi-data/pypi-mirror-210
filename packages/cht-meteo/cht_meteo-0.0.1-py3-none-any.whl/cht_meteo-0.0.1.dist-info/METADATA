@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: cht-meteo
+Version: 0.0.1
+Author-email: Maarten van Ormondt <maarten.vanormondt@deltares.nl>, Julian Hofer <Julian.Hofer@deltares.nl>, Sarwan Peiter <Sarwan.Peiter@deltares.nl>
+License: MIT
+Project-URL: Source, https://github.com/Deltares/cht_meteo
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Hydrology
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: geopandas
+Requires-Dist: siphon
+Requires-Dist: xarray
+Requires-Dist: shapely
+Requires-Dist: pyproj
+Requires-Dist: netCDF4
+Requires-Dist: metpy
+Requires-Dist: pyyaml
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+
+# Coastal Hazards Toolkit - Meteo
