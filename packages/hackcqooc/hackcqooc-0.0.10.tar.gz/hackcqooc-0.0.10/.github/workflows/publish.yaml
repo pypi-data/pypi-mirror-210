@@ -1,0 +1,34 @@
+name: PyPI publish CI
+
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rye
+        uses: sbarrios93/rye-rust-action@v0.1.0
+        id: rye-installer
+
+      - name: "Installs dependencies"
+        run: |
+          rye sync
+
+      - name: "Build"
+        run: |
+          rye build
+
+      - name: "Upload"
+        run: |
+          rye run publish
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PIPY }}
