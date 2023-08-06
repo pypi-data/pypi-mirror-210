@@ -1,0 +1,98 @@
+[build-system]
+requires = [
+    "wheel",
+    "cython==0.29.30",
+    "setuptools>=61.0.0",
+    "setuptools-scm[toml]>=6.2",
+    "numpy==1.23.2; python_version>='3.11'",
+    "numpy==1.21.3; python_version=='3.10'",
+    "numpy==1.19.3; python_version=='3.9'",
+    "numpy==1.19.0; python_version=='3.8'",
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "pyhtnorm"
+authors = [
+    {name = "Zolisa Bleki", email = "zolisa.bleki@gmail.com"}
+]
+description = "Fast Simulation of Hyperplane-Truncated Multivatiate Normal Distributions" 
+readme = "README.md"
+dynamic = ["version"]
+license = {text = "BSD 3-Clause License"}
+requires-python = ">=3.8"
+dependencies = ["numpy >= 1.19.0"]
+keywords = [
+    'statistical sampling',
+    'multivariate gaussian distribution',
+    'hyperplane truncated multivariate normal',
+    'structured precision multivariate normal',
+    'sampling distribution',
+    'posterior sampling'
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: C",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: MacOS :: MacOS X",
+    "Typing :: Typed",
+]
+
+[project.urls]
+source = "https://github.com/zoj613/htnorm"
+tracker = "https://github.com/zoj613/htnorm/issues"
+
+
+[tool.setuptools]
+packages = ["pyhtnorm"]
+
+[tool.setuptools.exclude-package-data]
+pyhtnorm = ["*.pyx"]
+
+[tool.setuptools.data-files]
+third_party_licenses = ["third_party_licenses/*"]  # must add this here so it can be included in the wheel distribution.
+
+[tool.setuptools_scm]
+write_to = "pyhtnorm/_version.py"
+
+[tool.coverage.run]
+plugins = ["Cython.Coverage"]
+
+
+[tool.cibuildwheel]
+skip = ["pp3*", "*-musllinux*"]
+test-command = [
+    "cd ~",
+    """python -c '\
+    from pyhtnorm import hyperplane_truncated_mvnorm;\
+    import numpy as np;\
+    rng = np.random.default_rng();\
+    k1, k2 = 1000, 1;\
+    temp = rng.random((k1, k1));\
+    cov = temp @ temp.T;\
+    G = np.ones((k2, k1));\
+    r = np.zeros(k2);\
+    mean = rng.random(k1);\
+    o = hyperplane_truncated_mvnorm(mean, cov, G, r, random_state=rng);\
+    print(o.sum());\
+    hyperplane_truncated_mvnorm(mean, cov, G, r, out=o);'
+    """,
+]
+
+[tool.cibuildwheel.linux]
+before-all = "yum -y install lapack-devel openblas-devel"
+archs = ["auto64"]
+
+[tool.cibuildwheel.macos]
+before-all = "brew install openblas lapack"
+archs = ["auto64"]
+
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = "apk add openblas-dev lapack-dev"  # musllinux image uses apk instead of yum for package managament
