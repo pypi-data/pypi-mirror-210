@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: resoto-plugin-scarf
+Version: 3.5.0
+Summary: Resoto Scarf Collector Plugin
+Home-page: https://github.com/someengineering/resoto/tree/main/plugins/scarf
+License: Apache 2.0
+Keywords: cloud security
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Topic :: Security
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+
+# Resoto 💜 Scarf
+Scarf Collector Plugin for Resoto
+
+This collector plugin is used to collect data from Scarf. It is used internally at Some Engineering to create metrics about image downloads.
+
+To export the number of image pulls add the following config to `resoto.metrics`
+```
+resotometrics:
+  [...]
+  metrics:
+    scarf_downloads_total:
+      # Metric help text
+      help: 'Scarf downloads'
+      # Aggregation search to run
+      search: 'aggregate(/ancestors.cloud.reported.name as cloud, /ancestors.account.reported.name as organization, name as repository: sum(pull_count) as scarf_downloads_total): is(scarf_package)'
+      # Type of metric (gauge or counter)
+      type: 'counter'
+```
