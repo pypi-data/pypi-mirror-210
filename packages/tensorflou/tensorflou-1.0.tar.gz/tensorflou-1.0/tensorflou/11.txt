@@ -1,0 +1,174 @@
+#include<bits/stdc++.h>
+#include<omp.h>
+using namespace std;
+
+void serial_dfs(int src, int v, vector<vector<int>> adj, vector<bool> &visited, vector<int> &dfs)
+{
+	stack<int> s;
+	s.push(src);
+	
+	while(!s.empty())
+	{
+		int node = s.top();
+		s.pop();
+		
+		if(!visited[node])
+		{
+			visited[node] = true;
+			dfs.push_back(node);
+			
+			for(int i=0; i<v; i++){
+				if(adj[node][i] && !visited[i])
+				{
+					s.push(i);
+				}
+			}
+		}
+	}
+}
+
+void parallel_dfs(int src, int v, vector<vector<int>> adj, vector<bool> &visited, vector<int> &dfs)
+{
+	stack<int> s;
+	s.push(src);
+	
+    	#pragma omp parallel
+    	{
+        	while(!s.empty()) 
+        	{
+			int node = s.top();
+                	s.pop();
+
+                	if (!visited[node]) 
+                	{
+                  		#pragma omp critical
+                    		{
+                        		visited[node] = true;
+                       			dfs.push_back(node); 
+                    		}	
+                  		for(int i=0; i<v; i++)
+                    		{
+                    			if(adj[node][i] && !visited[i])
+                    				s.push(i);
+                    		}
+                    	}
+            	}
+        }
+}
+
+void serial_bfs(int src, int v, vector<vector<int>> adj, vector<bool> &visited, vector<int> &bfs)
+{
+	queue<int> q;
+	q.push(src);
+	
+	while(!q.empty())
+	{
+		int node = q.front();
+		q.pop();
+		
+		if(!visited[node])
+		{
+			visited[node] = true;
+			bfs.push_back(node);
+			
+			for(int i=0; i<v; i++){
+				if(adj[node][i] && !visited[i])
+				{
+					q.push(i);
+				}
+			}
+		}
+	}
+}
+
+void parallel_bfs(int src, int v, vector<vector<int>> adj, vector<bool> &visited, vector<int> &bfs)
+{
+	queue<int> q;
+	q.push(src);
+	
+    	#pragma omp parallel
+    	{
+        	while(!q.empty()) 
+        	{
+			int node = q.front();
+                	q.pop();
+
+                	if (!visited[node]) 
+                	{
+                  		#pragma omp critical
+                    		{
+                        		visited[node] = true;
+                       			bfs.push_back(node); 
+                    		}
+                    			
+                  		for(int i=0; i<v; i++)
+                    		{
+                    			if(adj[node][i] && !visited[i])
+                    				q.push(i);
+                    		}
+                    	}
+            	}
+        }
+}
+
+int main()
+{
+	int v;
+	cout<<"\n Enter the number of vertices : ";
+	cin>>v;
+	vector<vector<int>> adj(v, vector<int>(v, 0));
+	
+	//randomly initializing adjacency matrix
+	for(int i=0; i<v; i++){
+		for(int j=0; j<v; j++)
+			if(i!=j)
+				adj[i][j] = rand()%2;
+	}
+	
+	for(int i=0; i<v; i++)
+	{
+		cout<<endl;
+		for(int j=0; j<v; j++)
+			cout<<adj[i][j]<<" ";
+	}
+	cout<<"\n Enter the source vertex : ";
+	int src; cin>>src;
+	
+	double start, end;
+	vector<int> bfs1, bfs2, dfs1, dfs2;
+	vector<bool> vis1(v, false), vis2(v, false), vis3(v, false), vis4(v, false);
+	
+	cout<<"\n**************** SERIAL BFS *****************\n";
+	start = omp_get_wtime();
+	serial_bfs(src, v, adj, vis1, bfs1);
+	end = omp_get_wtime();
+	for(int i=0; i<bfs1.size(); i++)
+		cout<<bfs1[i]<<" ";
+	cout<<"\n Time taken = "<<end-start<<" seconds.\n";
+	
+	cout<<"\n**************** PARALLEL BFS *****************\n";
+	start = omp_get_wtime();
+	parallel_bfs(src, v, adj, vis2, bfs2);
+	end = omp_get_wtime();
+	for(int i=0; i<bfs2.size(); i++)
+		cout<<bfs2[i]<<" ";
+	cout<<"\n Time taken = "<<end-start<<" seconds.\n";
+	
+	cout<<"\n**************** SERIAL DFS *****************\n";
+	start = omp_get_wtime();
+	serial_dfs(src, v, adj, vis3, dfs1);
+	end = omp_get_wtime();
+	for(int i=0; i<dfs1.size(); i++)
+		cout<<dfs1[i]<<" ";
+	cout<<"\n Time taken = "<<end-start<<" seconds.\n";
+	
+	cout<<"\n**************** PARALLEL DFS *****************\n";
+	start = omp_get_wtime();
+	parallel_dfs(src, v, adj, vis4, dfs2);
+	end = omp_get_wtime();
+	for(int i=0; i<dfs2.size(); i++)
+		cout<<dfs2[i]<<" ";
+	cout<<"\n Time taken = "<<end-start<<" seconds.\n";
+	
+	return 0;
+}

@@ -1,0 +1,81 @@
+// Logistic Regression
+/*
+In this code, the logisticRegression function performs the logistic regression algorithm using the provided data X and target values y. The sigmoid function calculates the sigmoid of a given input. The main function generates random data, initializes the theta vector, and then performs the logistic regression sequentially and in parallel using OpenMP. The running time for both versions is measured using the std::chrono library.
+*/
+
+
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <chrono>
+#include <omp.h>
+
+// Function to calculate the sigmoid
+double sigmoid(double x) {
+    return 1.0 / (1.0 + exp(-x));
+}
+
+// Function to perform logistic regression
+void logisticRegression(const std::vector<double>& X, const std::vector<int>& y,
+                        double alpha, int maxIterations, std::vector<double>& theta) {
+    int m = X.size();
+    int n = theta.size();
+
+    std::vector<double> gradient(n, 0.0);
+
+    for (int iteration = 0; iteration < maxIterations; ++iteration) {
+        // Calculate gradient
+        for (int i = 0; i < m; ++i) {
+            double h = sigmoid(theta[0]);
+            for (int j = 1; j < n; ++j) {
+                h += theta[j] * X[i * n + j];
+            }
+            double error = h - y[i];
+            gradient[0] += error;
+            for (int j = 1; j < n; ++j) {
+                gradient[j] += error * X[i * n + j];
+            }
+        }
+
+        // Update theta
+        for (int j = 0; j < n; ++j) {
+            theta[j] -= alpha * gradient[j] / m;
+        }
+
+        // Reset gradient
+        std::fill(gradient.begin(), gradient.end(), 0.0);
+    }
+}
+
+int main() {
+    const int numSamples = 1000000;
+    const int numFeatures = 10;
+    const double learningRate = 0.01;
+    const int maxIterations = 1000;
+
+    // Generate random data
+    std::vector<double> X(numSamples * numFeatures, 0.0);
+    std::vector<int> y(numSamples, 0);
+
+    // Initialize theta
+    std::vector<double> theta(numFeatures, 0.0);
+
+    // Perform sequential logistic regression and measure time
+    auto startSeq = std::chrono::high_resolution_clock::now();
+    logisticRegression(X, y, learningRate, maxIterations, theta);
+    auto endSeq = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> durationSeq = endSeq - startSeq;
+    std::cout << "Sequential Time: " << durationSeq.count() << " seconds" << std::endl;
+
+    // Perform parallel logistic regression and measure time
+    auto startPar = std::chrono::high_resolution_clock::now();
+    #pragma omp parallel
+    {
+        logisticRegression(X, y, learningRate, maxIterations, theta);
+    }
+    auto endPar = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> durationPar = endPar - startPar;
+    std::cout << "Parallel Time: " << durationPar.count() << " seconds" << std::endl;
+
+    return 0;
+}
