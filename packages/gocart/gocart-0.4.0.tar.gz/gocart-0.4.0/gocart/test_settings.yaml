@@ -1,0 +1,71 @@
+version: 1
+
+lvk:
+    parse_mock_events: True
+    parse_real_events: True
+    download_dir: ~/lvk_events
+    # CONVERT MAPS TO AITOFF PLOTS?
+    aitoff:
+        convert: True
+        # PLOT CONTOUR 33 DEG FROM SUN AND 20 DEG FROM MOON
+        sun_moon_contour: True
+        sun_moon: False
+        galactic_plane: True
+    # CONVERT MAP TO ASCII FILE - ONE ROW PER HEALPIX PIXEL
+    ascii_map:
+        convert: True
+        # THE SIZE OF HEALPIX PIXELS TO RESOLVE SKY TO. NSIDE = 64 IS ~0.84 deg2 PER PIXEL.
+        nside: 16
+    # WRITE ORIGINAL JSON ALERTS TO FILE?
+    json: True
+
+    # UP FRONT FILTERING OF ALERTS. ONLY IF AN ALERT PASSES 1 OR MORE OF THESE FILTERS WILL THE ALERT (AND ASSOCIATED ASSETS) GET WRITTEN TO FILE
+    # AN ALERT MUST PASS ALL INDIVIDUAL CRITERIA WITHIN A FILTER TO PASS
+    filters:
+        - name: general
+          alert_types: [initial, update, retraction]
+          ns_lower: 0.9
+          far_upper: 1.6e-08
+          dist_upper: 500
+          area90_upper: 2000
+        - name: high significance
+          alert_types: [initial, update, retraction]
+          ns_lower: 0.99
+          far_upper: 1.6e-10
+          dist_upper: 250
+          hasns_lower: 0.9
+          hasremnant_lower: 0.5
+
+
+gcn-kafka:
+    client_id: XXXX
+    client_secret: XXXX
+
+logging settings:
+    formatters:
+        file_style:
+            format: '* %(asctime)s - %(name)s - %(levelname)s (%(pathname)s > %(funcName)s > %(lineno)d) - %(message)s  '
+            datefmt: '%Y/%m/%d %H:%M:%S'
+        console_style:
+            format: '* %(asctime)s - %(levelname)s: %(pathname)s:%(funcName)s:%(lineno)d > %(message)s'
+            datefmt: '%H:%M:%S'
+        html_style:
+            format: '<div id="row" class="%(levelname)s"><span class="date">%(asctime)s</span>   <span class="label">file:</span><span class="filename">%(filename)s</span>   <span class="label">method:</span><span class="funcName">%(funcName)s</span>   <span class="label">line#:</span><span class="lineno">%(lineno)d</span> <span class="pathname">%(pathname)s</span>  <div class="right"><span class="message">%(message)s</span><span class="levelname">%(levelname)s</span></div></div>'
+            datefmt: '%Y-%m-%d <span class= "time">%H:%M <span class= "seconds">%Ss</span></span>'
+    handlers:
+        console:
+            class: logging.StreamHandler
+            level: DEBUG
+            formatter: console_style
+            stream: ext://sys.stdout
+        file:
+            class: logging.handlers.GroupWriteRotatingFileHandler
+            level: WARNING
+            formatter: file_style
+            filename: ~/.config/gocart/gocart.log
+            mode: w+
+            maxBytes: 102400
+            backupCount: 1
+    root:
+        level: WARNING
+        handlers: [file,console]
