@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: robotframework-jsonquery
+Version: 0.0.1a0
+Summary: Robot Framework library for parsing json files
+License: MIT
+Author: tom bsc
+Author-email: etombsc@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: jmespath (<2)
+Requires-Dist: jsonpath_ng (<2)
+Requires-Dist: pytest (>=7.3.1,<8.0.0)
+Requires-Dist: robotframework
+Description-Content-Type: text/markdown
+
+# robotframework-jsonquery [![tests](https://github.com/otemek/robotframework-jsonquery/actions/workflows/robotlib.yml/badge.svg?branch=master)](https://github.com/otemek/robotframework-jsonquery/actions/workflows/robotlib.yml)
+Simple wrapper for libraries used to query json files with different query language implementations
+- jsonpath-ng.ext (extended version with e.g. filters)
+- jsonpath-ng
+- jmespath
+
+Example:
+```Robot Framework
+*** Settings ***
+Library    JsonQuery    jsonpath-ng.ext
+
+*** Test Cases ***
+Read and query json file
+    ${file}    Read Json File    sample.json
+    Query Json    ${file}    friends[?(@.id>1)]    #jsonpath-ng.ext syntax
+
+```
+
+```Robot Framework
+*** Settings ***
+Library    JsonQuery    jmespath
+
+*** Test Cases ***
+Read and query json file
+    ${file}    Read Json File    sample.json
+    Query Json    ${file}    friends[?id>`1`]    #jmespath syntax
+
+```
+
