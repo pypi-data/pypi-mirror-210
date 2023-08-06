@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: bovine-pubsub
+Version: 0.2.1
+Summary: A Quart Redis thing to handle pubsub tasks in particular the event source
+Home-page: https://codeberg.org/bovine/bovine
+License: MIT
+Author: Helge
+Author-email: helge.krueger@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: quart-redis (>=2.0.0,<3.0.0)
+Project-URL: Repository, https://codeberg.org/bovine/bovine
+Description-Content-Type: text/markdown
+
+# bovine_pubsub
+
+Requires redis. Usage see `examples/basic_app.py`.
+
