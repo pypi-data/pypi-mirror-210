@@ -1,0 +1,168 @@
+Metadata-Version: 2.1
+Name: pytubemusic
+Version: 0.1.2
+Summary: A cli that may or may not download albums from a certain website
+License: MIT License
+        
+        Copyright (c) 2023 James Finnie-Ansley
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+Project-URL: repository, https://github.com/James-Ansley/pytubemusic
+Classifier: Development Status :: 1 - Planning
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: backoff (~=2.2.1)
+Requires-Dist: cowexcept (~=1.3.0)
+Requires-Dist: jsonschema (~=4.17.3)
+Requires-Dist: pipe-utils (~=0.3.0)
+Requires-Dist: pydub (~=0.25.1)
+Requires-Dist: python-cowsay (~=1.0.2)
+Requires-Dist: pytube (>=15.0.0)
+Requires-Dist: typer (~=0.7.0)
+
+# PyTubeMusic
+
+A cli that may or may not download albums from a certain website.
+
+## Install
+
+```
+pip install pytubemusic
+```
+
+**Requires [ffmpeg](https://ffmpeg.org/) to be installed on your machine.**
+
+### Installation Note
+
+PyTubeMusic uses the [PyTube](https://github.com/pytube/pytube) library. This
+can occasionally break. However, patches are usually quickly released as new
+versions or as pull requests. Try upgrading to the latest version of PyTube if
+downloading fails.
+
+> Note, to pip install from a pull request do:
+> ```text
+>  pip install git+https://github.com/pytube/pytube.git@refs/pull/<PR_NUM>/head
+> ```
+> Where `<PR_NUM>` is the number of the pull request.
+
+## Usage
+
+PyTubeMusic can download tracks in three formats:
+
+- Tracks (Single files)
+- Albums (A single video that is split up into individual tracks on an album)
+- Playlists (Videos in a playlist that are downloaded as tracks on an album)
+
+Each type of track needs a different configuration file that includes metadata.
+These are described below.
+
+Note: the term "timestamp" refers to a string of the form: "H?:M:S.f?" – for
+example: "23:55.75", "1:12:00", "5:03", "17:00.5"
+
+### Tracks
+
+> A single video downloaded as a track
+
+Track toml files have the following format:
+
+```toml
+url = "..."  # URL to video
+
+cover_url = "..."  # Track cover jpg URL (optional – uses thumbnail by default)
+
+start = "..."  # start timestamp (optional)
+end = "..."  # end timestamp (optional)
+
+[metadata]
+title = "..."  # Track Name (required)
+# Any other FFMPEG MP3 metadata tags
+```
+
+### Albums
+
+> A single video that is split into separate tracks on an album
+
+Albums require a `track_data` list that defines track-specific data.
+`track_data` is a list of tables that includes:
+
+- `start` a start time stamp defining when the track starts in the video
+- `end` an optional end time stamp – if not provided the start of the next track
+  will be used of the end of the video in the case of the last track
+- `metadata` a table of track-specific metadata – the `title` tag is required.
+  Track specific metadata overwrites album metadata. Track numbers are
+  automatically filled but can be manually added.
+
+```toml
+# album_data.toml
+url = "..."  # URL here
+
+cover_url = "..."  # Track cover jpg URL (optional – uses thumbnail by default)
+
+track_data = [
+    { start = "...", metadata = { title = "..." } },
+    { start = "...", end = "...", metadata = { title = "..." } },
+]
+
+[metadata]
+album = "..."  # Album name (required)
+# Any other FFMPEG MP3 metadata tags
+```
+
+### Playlists
+
+> A playlist of album tracks
+
+For playlists, `track_data` is optional. If provided it must be provided for all
+tracks in the playlist. It has the same format as album `track_data`. If not
+provided, the title of each video will be used for each track title.
+
+```toml
+url = "..."  # URL to playlist
+
+cover_url = "..."  # Track cover jpg URL (optional – uses thumbnails by default)
+
+# Optional track data
+track_data = []
+
+[metadata]
+album = "..."  # Album name (required)
+# Any other FFMPEG MP3 metadata tags
+```
+
+### CLI
+
+A `pytubemusic` command will be exposed.
+
+This has three commands: `album`, `track`, `playlist`.
+Each command corresponds to one of the file types mentioned above.
+
+The commands all take the path to a config TOML file and an optional `-o`
+or `--out` option pointing to a directory to write the resulting tracks too.
+(Note: albums and playlists are put into their own subdirectory with the album
+name under the out directory).
+
+For example:
+
+```
+pytubemusic album myConfig.toml -o exports
+```
