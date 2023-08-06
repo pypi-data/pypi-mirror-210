@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: easyfinemap
+Version: 0.3.2
+Summary: user-friendly pipeline for GWAS fine-mapping.
+Home-page: https://github.com/Jianhua-Wang/easy_finemap
+License: MIT
+Author: Jianhua Wang
+Author-email: jianhua.mert@gmail.com
+Requires-Python: >=3.8,<3.12
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: dev
+Provides-Extra: doc
+Provides-Extra: test
+Requires-Dist: black (>=22.3.0) ; extra == "test"
+Requires-Dist: bump2version (>=1.0.1,<2.0.0) ; extra == "dev"
+Requires-Dist: flake8 (>=3.9.2,<4.0.0) ; extra == "test"
+Requires-Dist: flake8-docstrings (>=1.6.0,<2.0.0) ; extra == "test"
+Requires-Dist: isort (>=5.8.0,<6.0.0) ; extra == "test"
+Requires-Dist: jupyter (>=1.0.0,<2.0.0) ; extra == "dev"
+Requires-Dist: mkdocs (>=1.4.2,<2.0.0) ; extra == "doc"
+Requires-Dist: mkdocs-autorefs (>=0.4.1,<0.5.0) ; extra == "doc"
+Requires-Dist: mkdocs-include-markdown-plugin (>=4.0.3,<5.0.0) ; extra == "doc"
+Requires-Dist: mkdocs-material (>=8.5.11,<9.0.0) ; extra == "doc"
+Requires-Dist: mkdocs-material-extensions (>=1.1.1,<2.0.0)
+Requires-Dist: mkdocstrings[python] (>=0.19.1,<0.20.0) ; extra == "doc"
+Requires-Dist: mypy (>=0.990,<0.991) ; extra == "test"
+Requires-Dist: pandas (>=1.5.2,<2.0.0)
+Requires-Dist: pip (>=20.3.1,<21.0.0) ; extra == "dev"
+Requires-Dist: pre-commit (>=2.12.0,<3.0.0) ; extra == "dev"
+Requires-Dist: pytest (>=6.2.4,<7.0.0) ; extra == "test"
+Requires-Dist: pytest-cov (>=2.12.0,<3.0.0) ; extra == "test"
+Requires-Dist: rich (>=13.3.1,<14.0.0)
+Requires-Dist: rpy2 (>=3.5.10,<4.0.0)
+Requires-Dist: smunger (==0.0.23)
+Requires-Dist: toml (>=0.10.2,<0.11.0) ; extra == "dev"
+Requires-Dist: tox (>=3.20.1,<4.0.0) ; extra == "dev"
+Requires-Dist: twine (>=3.3.0,<4.0.0) ; extra == "dev"
+Requires-Dist: typer (>=0.7.0,<0.8.0)
+Requires-Dist: virtualenv (>=20.2.2,<21.0.0) ; extra == "dev"
+Description-Content-Type: text/markdown
+
+# easyfinemap
+
+
+[![pypi](https://img.shields.io/pypi/v/easyfinemap.svg)](https://pypi.org/project/easyfinemap/)
+[![python](https://img.shields.io/pypi/pyversions/easyfinemap.svg)](https://pypi.org/project/easyfinemap/)
+[![Build Status](https://github.com/Jianhua-Wang/easyfinemap/actions/workflows/dev.yml/badge.svg)](https://github.com/Jianhua-Wang/easyfinemap/actions/workflows/dev.yml)
+[![codecov](https://codecov.io/gh/Jianhua-Wang/easyfinemap/branch/main/graphs/badge.svg)](https://codecov.io/github/Jianhua-Wang/easyfinemap)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI download month](https://img.shields.io/pypi/dm/easyfinemap.svg)](https://pypi.org/project/easyfinemap/)
+[![Build Status](https://github.com/Jianhua-Wang/easyfinemap/actions/workflows/python-package-conda.yml/badge.svg)](https://github.com/Jianhua-Wang/easyfinemap/actions/workflows/python-package-conda.yml)
+
+
+user-friendly pipeline for GWAS fine-mapping
+
+
+* Documentation: <https://Jianhua-Wang.github.io/easyfinemap>
+* GitHub: <https://github.com/Jianhua-Wang/easyfinemap>
+* PyPI: <https://pypi.org/project/easyfinemap/>
+* Free software: MIT
+
+
+## Features
+* Prepare LD reference for fine-mapping
+* Standardize input summary statistics
+* Identify independent loci by distance, LD clumping, or conditional analysis
+* Fine-mapping with or without LD reference
+
+## Finemapping approaches
+* LD-free
+    * aBF
+* LD-based
+    * FINEMAP
+    * CAVIARBF
+    * PAINTOR
