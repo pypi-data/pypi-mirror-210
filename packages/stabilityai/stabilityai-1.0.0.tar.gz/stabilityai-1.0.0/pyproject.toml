@@ -1,0 +1,50 @@
+# pyproject.toml
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata
+# https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml
+
+[build-system]
+requires = ["setuptools", "setuptools-scm", "build"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "stabilityai"
+description = "*Unofficial* client for the Stability REST API"
+authors = [
+	{name = "Estelle Poulin", email = "dev@inspiredby.es"},
+]
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["stabilityai", "bot"]
+license = {text = "GPLv3"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version", "dependencies"]
+
+
+[project.urls]
+homepage = "https://github.com/estheruary/stabilityai"
+repository = "https://github.com/estheruary/stabilityai"
+changelog = "https://github.com/estheruary/stabilityai/-/blob/main/CHANGELOG.md"
+
+
+[tool.setuptools]
+packages = ["stabilityai"]
+
+
+[tool.setuptools.dynamic]
+version = {attr = "stabilityai.__version__"}
+dependencies = {file = ["requirements.txt"]}
+
+
+[tool.black]
+line-length = 100
+
+
+[tool.isort]
+profile = "black"
+
+
+[tool.vulture]
+ignore_names = ["self", "cls"]
