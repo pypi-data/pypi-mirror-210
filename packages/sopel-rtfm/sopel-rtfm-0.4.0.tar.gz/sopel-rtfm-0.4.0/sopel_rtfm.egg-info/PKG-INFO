@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: sopel-rtfm
+Version: 0.4.0
+Summary: A plugin to suggest documentation links when someone asks a basic question.
+Home-page: https://github.com/sopel-irc/sopel-rtfm
+Author: dgw
+Author-email: dgw@technobabbl.es
+License: Eiffel Forum License, version 2
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: Eiffel Forum License (EFL)
+Classifier: License :: OSI Approved :: Eiffel Forum License
+Classifier: Topic :: Communications :: Chat :: Internet Relay Chat
+Description-Content-Type: text/markdown
+License-File: COPYING
+
+# sopel-rtfm
+
+A plugin to suggest documentation links when someone asks a basic question.
+
+## Functions
+
+`sopel-rtfm` provides one command:
+
+* `.rtfm` — searches the configured Sphinx object inventory for the best
+  match, and outputs a link to its documentation.
+
+## Configuration
+
+Two settings exist, one of which is required:
+
+```ini
+[rtfm]
+# Required: URL of the objects.inv file you want `.rtfm` to search
+inventory = https://docs.project.site/objects.inv
+# Optional, but useful if automatically determining the base URL doesn't work
+link_base = https://docs.project.site/
+```
+
+## Requirements
+
+This plugin is built for Sopel 7.0+, but targets Python 3.6+ only (no py2.7).
+
+In addition, it needs the `sphobjinv` module from PyPI.
+
+Optionally, you can install `sphobjinv[speedup]` for faster searches; this may
+or may not work depending on whether your installation of Python includes the
+necessary dependencies for building C extensions.
+
+
+0.4.0
+=====
+
+Added:
+* `.docs` command alias, for when `.rtfm` feels harsh (#2)
+
+
+0.3.0
+=====
+
+Added:
+* Proper help output for `.rtfm` command (#1)
+
+Changed:
+* Prioritize "bigger" object types when sorting results
+* Simplify retrieving output URL
+
+
+0.2.0
+=====
+
+Added:
+* Caching behavior: The configured Sphinx inventory is fetched at startup, and
+  re-fetched automatically every 24 hours
+* Bot admins can force an update with the new `.rtfmupdate` command
+
+
+0.1.1
+=====
+
+Changed:
+* Empty/missing query now outputs the docs' base URL instead of an error
+
+Fixed:
+* `rtfm_base` was left in `bot.memory` after `shutdown()`
+
+
+0.1.0
+=====
+
+Initial release.

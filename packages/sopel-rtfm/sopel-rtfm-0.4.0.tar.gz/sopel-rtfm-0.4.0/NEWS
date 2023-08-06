@@ -1,0 +1,41 @@
+0.4.0
+=====
+
+Added:
+* `.docs` command alias, for when `.rtfm` feels harsh (#2)
+
+
+0.3.0
+=====
+
+Added:
+* Proper help output for `.rtfm` command (#1)
+
+Changed:
+* Prioritize "bigger" object types when sorting results
+* Simplify retrieving output URL
+
+
+0.2.0
+=====
+
+Added:
+* Caching behavior: The configured Sphinx inventory is fetched at startup, and
+  re-fetched automatically every 24 hours
+* Bot admins can force an update with the new `.rtfmupdate` command
+
+
+0.1.1
+=====
+
+Changed:
+* Empty/missing query now outputs the docs' base URL instead of an error
+
+Fixed:
+* `rtfm_base` was left in `bot.memory` after `shutdown()`
+
+
+0.1.0
+=====
+
+Initial release.
