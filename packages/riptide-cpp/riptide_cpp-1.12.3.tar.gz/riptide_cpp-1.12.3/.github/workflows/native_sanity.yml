@@ -1,0 +1,94 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Native Sanity Checks
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  native-build:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash -l {0}
+        working-directory: ./
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: [3.8, 3.9, "3.10"]
+        numpy-version: [1.23, 1.24]
+        build-config: ["Debug", "Release"]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          # Set fetch-depth to 0 so all history is retrieved; this is needed so we get the git tags
+          # which we use for setting the package version (via setuptools-scm).
+          fetch-depth: 0
+      - name: Setup Miniconda
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: "conda_build"
+          python-version: ${{ matrix.python-version }}
+          auto-update-conda: true
+          channels: conda-forge
+          channel-priority: flexible
+          show-channel-urls: true
+      - name: Configure Conda
+        run: |
+          conda config --set unsatisfiable_hints_check_depth 0 # setting unsatisfiable_hints=False is broken
+      - name: Initializing Conda environment
+        run: |
+          python dev_tools/gen_requirements.py --out native_reqs.txt native
+          python dev_tools/gen_requirements.py --out runtime_reqs.txt runtime
+          python dev_tools/gen_requirements.py --out tests_reqs.txt tests
+          conda create -q -y -n conda_build python=${{ matrix.python-version }}  numpy=${{ matrix.numpy-version }} --file native_reqs.txt --file runtime_reqs.txt --file tests_reqs.txt
+      - name: Configure Linux
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          echo "CONFIG_SUBDIR=." >> $GITHUB_ENV
+      - name: Configure Windows
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          echo "CONFIG_SUBDIR=${{ matrix.build-config }}" >> $GITHUB_ENV
+      - name: Setup CMake configuration
+        run: |
+          cmake -S . -B build "-DCMAKE_BUILD_TYPE=${{ matrix.build-config }}" "-DCMAKE_CONFIGURATION_TYPES=${{ matrix.build-config }}" "-DRIPTIDE_PYTHON_VER=${{ matrix.python-version }}" "-DCMAKE_VERBOSE_MAKEFILE=TRUE"
+      - name: Build via CMake
+        run: |
+          cmake --build build -j --config ${{ matrix.build-config }}
+      - name: Run the riptide tests
+        run: |
+          build/test/riptide_test/${{ env.CONFIG_SUBDIR }}/riptide_test
+      - name: Run the riptide benchmarks
+        if: ${{ matrix.build-config == 'Release' }}
+        run: |
+          build/bench/riptide_bench/riptide_bench/${{ env.CONFIG_SUBDIR }}/riptide_bench
+      - name: Setup Python environment
+        run: |
+          # Set up to use the build riptide_cpp
+          echo "PYTHONPATH=$(pwd)/build/src/${{ env.CONFIG_SUBDIR }}" >> $GITHUB_ENV
+      - name: Verify riptide_cpp module
+        run: |
+          python -c "import riptide_cpp; print(riptide_cpp.__version__); print(riptide_cpp.__file__)"
+      - name: Install riptable
+        run: |
+          # Get just the latest riptable package
+          pip install -v --no-deps riptable
+          python -c "import riptable; print(riptable.__version__); print(riptable.__file__)"
+      - name: Run the riptide Python tests
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          build/test/riptide_python_test/${{ env.CONFIG_SUBDIR }}/riptide_python_test
+      - name: Run the Windows riptide Python tests
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          ctest --test-dir build -C ${{ matrix.build-config }} -R test_riptide_cpp_python

@@ -1,0 +1,1 @@
+add_subdirectory(riptide_bench/riptide_bench)

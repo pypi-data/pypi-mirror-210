@@ -1,0 +1,14 @@
+# Based on https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings
+
+* text=auto
+
+*.cpp text
+*.c text
+*.h text
+*.hpp text
+*.rc text eol=crlf
+
+*.sln text eol=crlf
+*.py text
+
+.gitmodules text
