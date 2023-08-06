@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: pymodaq-plugins-piezoconcept
+Version: 1.0.0
+Summary: Set of PyMoDAQ plugins for Actuators from Piezoconcept (Tested on the Bio200 XY stage. Include a version of the controller firmware emulating functions from PhysikInstrumente)
+Home-page: https://github.com/PyMoDAQ/pymodaq_plugins_piezoconcept
+Author: Sébastien Weber
+Author-email: sebastien.weber@cemes.fr
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Human Machine Interfaces
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: User Interfaces
+License-File: LICENSE
+
+pymodaq_plugins_piezoconcept (PiezoConcept Stages)
+##################################################
+
+.. image:: https://img.shields.io/pypi/v/pymodaq_plugins_piezoconcept.svg
+   :target: https://pypi.org/project/pymodaq_plugins_piezoconcept/
+   :alt: Latest Version
+
+.. image:: https://readthedocs.org/projects/pymodaq/badge/?version=latest
+   :target: https://pymodaq.readthedocs.io/en/stable/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://github.com/PyMoDAQ/pymodaq_plugins_piezoconcept/workflows/Upload%20Python%20Package/badge.svg
+    :target: https://github.com/PyMoDAQ/pymodaq_plugins_piezoconcept
+
+PyMoDAQ plugin for actuators from Piezoconcept (Tested on the Bio2.100 XY stage). Include a version of the
+controller firmware emulating functions from PhysikInstrumente
+
+
+Authors
+=======
+
+* Sebastien J. Weber
+
+Instruments
+===========
+Below is the list of instruments included in this plugin
+
+Actuators
++++++++++
+
+* **PiezoConcept** : piezoconcept stages (tested on BIO2.100) using the usual serial commands
+* **PiezoConceptPI**: Special firmware to emulate functions form the GCS2 library from Physik Instrumente
