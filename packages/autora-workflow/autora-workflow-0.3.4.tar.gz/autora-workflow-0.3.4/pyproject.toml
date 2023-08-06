@@ -1,0 +1,43 @@
+[project]
+name = "autora-workflow"
+description = "Workflow tools for the Autonomous Research Assistant (AutoRA) package."
+authors = [
+    { name = "John Gerrard Holland", email = "john_holland1@brown.edu" }
+]
+dynamic = ["version"]
+
+readme = "docs/index.md"
+license = { text = "MIT License" }
+
+dependencies = [
+    "autora-core",
+    "typer[all]",
+    "dill",
+]
+
+[project.optional-dependencies]
+dev = [
+    "autora-core[dev]",
+    "autora-workflow[docs]",
+]
+docs = [
+    "mkdocs-include-markdown-plugin",
+]
+cylc = [
+    "cylc-flow",
+    "cylc-uiserver"
+]
+
+[project.urls]
+homepage = "http://www.empiricalresearch.ai/"
+repository = "https://github.com/AutoResearch/autora-workflow"
+documentation = "https://hollandjg.github.io/autora-workflow/"
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[tool.isort]
+profile = "black"

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+INHERIT: mkdocs/base.yml  # use the shared AutoRA configuration by default
+
+site_name: AutoRA Workflow
+
+nav:
+- Introduction: 'index.md'
+- Interactive:
+    - 'interactive/basic-usage.ipynb'
+    - 'interactive/passing-static-parameters.ipynb'
+    - "interactive/accessing-state-dependent-properties.ipynb"
+    - "interactive/using-alternative-planners-and-executors.ipynb"
+    - "interactive/saving-and-loading-dill.ipynb"
+- Command line:
+    - "Basic Usage": "cli/basic-usage/README.ipynb"
+    - "Using Cylc": "cli/with-cylc/README.md"
+

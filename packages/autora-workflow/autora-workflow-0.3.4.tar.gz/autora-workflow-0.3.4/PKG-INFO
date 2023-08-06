@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: autora-workflow
+Version: 0.3.4
+Summary: Workflow tools for the Autonomous Research Assistant (AutoRA) package.
+Author-email: John Gerrard Holland <john_holland1@brown.edu>
+License: MIT License
+Project-URL: homepage, http://www.empiricalresearch.ai/
+Project-URL: repository, https://github.com/AutoResearch/autora-workflow
+Project-URL: documentation, https://hollandjg.github.io/autora-workflow/
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: cylc
+License-File: LICENSE.md
+
+# AutoRA Workflow
+
+Workflow management tools for AutoRA.
+
+## Quickstart Guide
+
+You will need:
+
+- `python` 3.8 or greater: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+Workflow is a part of the `autora` package:
+
+```shell
+pip install -U "autora" --pre
+```
+
+!!! success
+    It is recommended to use a `python` environment manager like `virtualenv`.
+
+Check your installation by running:
+```shell
+python -m autora.workflow --help
+```
