@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: numerical-luizmugnaini
+Version: 0.0.1
+Summary: Mini numerical methods package
+Home-page: https://github.com/luizmugnaini/numerical
+Author: Luiz G Mugnaini Anselmo
+Author-email: luizmugnaini@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+
+# Numerical Methods Class
+
+## How to use the package:
+
+First you need to clone this repository with:
+```console
+$ git clone https://github.com/luizmugnaini/numerical && cd numerical/
+```
+In order to correctly setup the environment, we shall use Poetry:
+```console
+$ # pacman -S python-poetry
+$ poetry install
+```
+Now you are good to go!
