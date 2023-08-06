@@ -1,0 +1,6 @@
+include *.md
+include requirements.txt
+include LICENSE
+recursive-include redast *.py
+recursive-include redast *.pyi
+recursive-include redast *.typed
