@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: aggregate
+Version: 0.12.0
+Summary: Tools for creating and working with aggregate probability distributions.
+Author: Stephen J. Mildenhall
+Author-email: steve@convexrisk.com
+Maintainer: Stephen J. Mildenhall
+Maintainer-email: steve@convexrisk.com
+License: BSD
+Project-URL: Documentation, https://aggregate.readthedocs.io/en/latest/
+Project-URL: Source Code, https://github.com/mynl/aggregate
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Office/Business :: Financial
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Education
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Education
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+
+aggregate
+===========
+
+Purpose
+-------
+
+``aggregate`` solves insurance, risk management, and actuarial problems using realistic models that reflect underlying frequency and severity.
+It delivers the speed and accuracy of parametric distributions to situations that usually require simulation, making it as easy to work with an aggregate (compound) probability distribution as the lognormal.
+``aggregate`` includes an expressive language called DecL to describe aggregate distributions and is implemented in Python under an open source BSD-license.
+
+
+Documentation
+-------------
+
+https://aggregate.readthedocs.io/
+
+
+Where to get it
+---------------
+
+https://github.com/mynl/aggregate
+
+
+Installation
+------------
+
+::
+
+  pip install aggregate
+
+
+Dependencies
+------------
+
+See requirements.txt.
+
+License
+-------
+
+BSD 3 licence
+
+Contributing to aggregate
+-------------------------
+
+All contributions, bug reports, bug fixes, documentation improvements,
+enhancements and ideas are welcome.
+
