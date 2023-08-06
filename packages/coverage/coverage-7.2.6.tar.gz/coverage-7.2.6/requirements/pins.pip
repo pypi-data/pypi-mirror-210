@@ -1,0 +1,14 @@
+# Licensed under the Apache License: http://www.apache.org/licenses/LICENSE-2.0
+# For details: https://github.com/nedbat/coveragepy/blob/master/NOTICE.txt
+
+# Version pins, for use as a constraints file.
+
+# docutils has been going through some turmoil.  Different packages require it,
+# but have different pins.  This seems to satisfy them all:
+#docutils>=0.17,<0.18
+
+# Setuptools became stricter about version number syntax. But it shouldn't be
+# checking the Python version like that, should it?
+# https://github.com/pypa/packaging/issues/678
+# https://github.com/nedbat/coveragepy/issues/1556
+#setuptools<66.0.0
