@@ -1,0 +1,3 @@
+from error_suggester import ErrorSuggester
+
+ErrorSuggester('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').enable_auto_suggestions()
