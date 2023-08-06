@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: rzpipe
+Version: 0.5.1
+Summary: Pipe interface for rizin
+Home-page: https://rizin.re
+Author: rizinorg
+Author-email: info@rizin.re
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Assemblers
+Classifier: Topic :: Software Development :: Debuggers
+Classifier: Topic :: Software Development :: Disassemblers
+Description-Content-Type: text/markdown
+
+# rzpipe for Python
+
+Interact with rizin using the `#!pipe` command or in standalone scripts
+that communicate with local or remote rizin via pipe, tcp or http.
+
+## Installation
+
+```sh
+$ pip install rzpipe
+```
+
+or
+
+```sh
+$ pip3 install rzpipe
+```
+
+## Usage example:
+
+```python
+import rzpipe
+
+pipe = rzpipe.open("/bin/ls")
+pipe.cmd('aa')
+print(pipe.cmd("afl"))
+print(pipe.cmdj("aflj"))            # parses the JSON and returns a dict (note the lowercase j)
+print(pipe.cmdJ("ij").core.format)  # parses the JSON and returns a namedtuple (note the uppercase J)
+pipe.quit()
+```
+
+
