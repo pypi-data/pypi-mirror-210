@@ -1,0 +1,29 @@
+# TODO: this yml needs to be updated to use the most recent config structure,
+# see tests/data/test_config_file.json
+
+# Catalog properties
+catalog_name: "DataLad Catalog Config Test"
+
+# Styling
+logo_path: "" # absolute path of logo
+link_color: "#fba304" # hex color code
+link_hover_color: "#af7714" # hex color code
+
+# Dealing with multiple sources of metadata
+property_sources: #
+  dataset:
+    authors:
+      rule: merge
+      source: any
+    description:
+      rule: merge
+      source: any
+    keywords:
+      rule: merge
+      source: any
+    additional_display:
+      rule: merge
+      source: any
+    top_display:
+      rule: merge
+      source: any

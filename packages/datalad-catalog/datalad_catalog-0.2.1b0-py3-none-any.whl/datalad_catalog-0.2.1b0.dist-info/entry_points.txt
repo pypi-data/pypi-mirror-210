@@ -1,0 +1,14 @@
+[datalad.extensions]
+catalog = datalad_catalog:command_suite
+
+[datalad.metadata.extractors]
+datacite_gin = datalad_catalog.extractors.datacite_gin:DataciteGINDatasetExtractor
+
+[datalad.metadata.translators]
+bids_dataset_translator = datalad_catalog.translators.bids_dataset_translator:BIDSDatasetTranslator
+datacite_gin_translator = datalad_catalog.translators.datacite_gin_translator:DataciteGINTranslator
+metalad_core_translator = datalad_catalog.translators.metalad_core_translator:MetaladCoreTranslator
+metalad_studyminimeta_translator = datalad_catalog.translators.metalad_studyminimeta_translator:MetaladStudyminimetaTranslator
+
+[datalad.tests]
+catalog = datalad_catalog
