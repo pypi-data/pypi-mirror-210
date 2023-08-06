@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: async-dramatiq
+Version: 0.1.4
+Summary: Dramatiq with Asyncio support and some other goodies
+Home-page: https://github.com/motherofcoconuts/async-dramatiq
+License: MIT
+Author: Ryan Houlihan
+Author-email: ryan@rhoulihan.com
+Requires-Python: >=3.8.1,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: apscheduler
+Requires-Dist: dramatiq[rabbitmq,redis,watch]
+Project-URL: Bug Tracker, https://github.com/motherofcoconuts/async-dramatiq/issues
+Description-Content-Type: text/markdown
+
+# async-dramatiq
+Dramatiq with async support
+
