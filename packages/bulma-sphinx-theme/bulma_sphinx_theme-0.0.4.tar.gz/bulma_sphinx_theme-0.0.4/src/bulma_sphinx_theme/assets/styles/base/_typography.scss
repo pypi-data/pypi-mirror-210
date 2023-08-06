@@ -1,0 +1,97 @@
+@use "sass:math";
+
+html,
+body {
+  height: 100%;
+  background-color: var(--bst-color-background);
+  color: var(--bst-color-text-base);
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: var(--font-stack);
+}
+
+code,
+pre {
+  font-family: var(--font-stack--monospace);
+}
+
+pre {
+  background-color: unset;
+  color: var(--bst-color-text-base);
+}
+
+.centered {
+  text-align: center;
+}
+
+// Header Styles
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-weight: inherit;
+}
+
+h1 {
+  font-size: $size-1;
+  line-height: 110%;
+  margin: math.div($size-1, 1.5) 0 math.div($size-1, 2.5) 0;
+}
+
+h2 {
+  font-size: $size-2;
+  line-height: 110%;
+  margin: math.div($size-2, 1.5) 0 math.div($size-2, 2.5) 0;
+}
+
+h3 {
+  font-size: $size-3;
+  line-height: 110%;
+  margin: math.div($size-3, 1.5) 0 math.div($size-3, 2.5) 0;
+}
+
+h4 {
+  font-size: $size-4;
+  line-height: 110%;
+  margin: math.div($size-4, 1.5) 0 math.div($size-4, 2.5) 0;
+}
+
+h5 {
+  font-size: $size-5;
+  line-height: 110%;
+  margin: math.div($size-5, 1.5) 0 math.div($size-5, 2.5) 0;
+}
+
+h6 {
+  font-size: $size-6;
+  line-height: 110%;
+  margin: math.div($size-6, 1.5) 0 math.div($size-6, 2.5) 0;
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.columns {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 0;
+
+  /* the columns:last-child fix body height have a small gap to screen bottom */
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+strong {
+  color: var(--bst-color-text-base);
+}
