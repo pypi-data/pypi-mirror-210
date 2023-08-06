@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "etl-jobs"
+version = "0.1.8"
+description = ""
+authors = ["Brian L <bclipp770@gmail.com>"]
+readme = "README.md"
+packages = [{include = "etl_jobs"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.30.0"
+polars = "^0.17.14"
+deltalake = "^0.9.0"
+pyspark = "^3.4.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+flake8 = "^6.0.0"
+pre-commit = "^3.3.1"
+pylint = "^2.17.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
