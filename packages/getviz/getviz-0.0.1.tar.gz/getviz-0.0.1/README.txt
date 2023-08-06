@@ -1,0 +1,1 @@
+VizPy is a powerful Python library designed to streamline the process of creating visually stunning and informative data visualizations. Whether you're a data scientist, analyst, or a curious explorer, VizPy offers an intuitive and efficient way to showcase your data.
