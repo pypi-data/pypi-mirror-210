@@ -1,0 +1,10 @@
+
+[testing]
+pytest
+pytest-cov
+
+[testing:os_name == "nt"]
+tzdata
+
+[testing:python_version < "3.9"]
+backports.zoneinfo
