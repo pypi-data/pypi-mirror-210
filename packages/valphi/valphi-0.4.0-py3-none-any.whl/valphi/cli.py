@@ -1,0 +1,242 @@
+import dataclasses
+import webbrowser
+from enum import Enum
+from pathlib import Path
+from typing import List, Optional, Dict
+
+import typer
+from dumbo_utils.console import console
+from dumbo_utils.url import compress_object_for_url
+from dumbo_utils.validation import validate
+from rich.table import Table
+
+from valphi.controllers import Controller
+from valphi.networks import NetworkTopology, ArgumentationGraph, MaxSAT, NetworkInterface
+
+
+@dataclasses.dataclass(frozen=True)
+class AppOptions:
+    controller: Optional[Controller] = dataclasses.field(default=None)
+    debug: bool = dataclasses.field(default=False)
+
+
+class ShowSolutionOption(str, Enum):
+    IF_WITNESS = "if-witness"
+    ALWAYS = "always"
+    NEVER = "never"
+
+
+app_options = AppOptions()
+app = typer.Typer()
+
+
+def is_debug_on():
+    return app_options.debug
+
+
+def run_app():
+    try:
+        app()
+    except Exception as e:
+        if is_debug_on():
+            raise e
+        else:
+            console.print(f"[red bold]Error:[/red bold] {e}")
+
+
+@app.callback()
+def main(
+        val_phi_filename: Optional[Path] = typer.Option(
+            None,
+            "--val-phi",
+            "-v",
+            help=f"File containing the ValPhi function (default to {Controller.default_val_phi()})",
+        ),
+        network_filename: Path = typer.Option(
+            ...,
+            "--network-topology",
+            "-t",
+            help="File containing the network topology",
+        ),
+        filenames: List[Path] = typer.Option(
+            [],
+            "--filename",
+            "-f",
+            help="One or more files to parse",
+        ),
+        weight_constraints: Optional[int] = typer.Option(
+            None,
+            help="Use weight constraints instead of ad-hoc propagator. "
+                 "It also requires a multiplier to approximate real numbers."
+        ),
+        ordered: bool = typer.Option(False, help="Add ordered encoding for eval/3"),
+        debug: bool = typer.Option(False, "--debug", help="Show stacktrace and debug info"),
+):
+    """
+    Neural Network evaluation under fuzzy semantics.
+
+    Use --help after a command for the list of arguments and options of that command.
+    """
+    global app_options
+
+    validate('network_filename', network_filename.exists() and network_filename.is_file(), equals=True,
+             help_msg=f"File {network_filename} does not exists")
+    for filename in filenames:
+        validate('filenames', filename.exists() and filename.is_file(), equals=True,
+                 help_msg=f"File {filename} does not exists")
+
+    val_phi = Controller.default_val_phi()
+    if val_phi_filename is not None:
+        validate('val_phi_filename', val_phi_filename.exists() and val_phi_filename.is_file(), equals=True,
+                 help_msg=f"File {val_phi_filename} does not exists")
+        with open(val_phi_filename) as f:
+            val_phi = [float(x) for x in f.readlines() if x]
+
+    lines = []
+    for filename in filenames:
+        with open(filename) as f:
+            lines += f.readlines()
+
+    with open(network_filename) as f:
+        network_filename_lines = f.readlines()
+        network = NetworkInterface.parse(network_filename_lines)
+
+    if type(network) is MaxSAT:
+        validate("val_phi cannot be changed for MaxSAT", val_phi_filename is None, equals=True)
+        val_phi = network.val_phi
+
+    controller = Controller(
+        network=network,
+        val_phi=val_phi,
+        raw_code='\n'.join(lines),
+        use_wc=weight_constraints,
+        use_ordered_encoding=ordered,
+    )
+
+    app_options = AppOptions(
+        controller=controller,
+        debug=debug,
+    )
+
+
+def network_values_to_table(values: Dict, *, title: str = "") -> Table:
+    network = app_options.controller.network
+    table = Table(title=title)
+    if type(network) is NetworkTopology:
+        table.add_column("Node")
+        max_nodes = 0
+        for layer_index, _ in enumerate(range(network.number_of_layers()), start=1):
+            table.add_column(f"Layer {layer_index}")
+            nodes = network.number_of_nodes(layer=layer_index)
+            max_nodes = max(nodes, max_nodes)
+
+        for node_index, _ in enumerate(range(max_nodes), start=1):
+            table.add_row(
+                str(node_index),
+                *(str(values[(layer_index, node_index)] / app_options.controller.max_value)
+                  if node_index <= network.number_of_nodes(layer_index) else None
+                  for layer_index, _ in enumerate(range(network.number_of_layers()), start=1))
+            )
+    elif type(network) is ArgumentationGraph:
+        table.add_column("Node")
+        table.add_column("Truth degree")
+        for node, _ in enumerate(network.arguments, start=1):
+            table.add_row(
+                str(node),
+                str(values[f"{network.term(node)}"]),
+            )
+    elif type(network) is MaxSAT:
+        table.add_column("# of satisfied clauses / Atom / Clause")
+        table.add_column("Value")
+        for node in values.keys():
+            if node.startswith("even"):
+                continue
+            value = values[node]
+            if node != "sat":
+                value = "false" if value == 0 else "true"
+            table.add_row(
+                str(node),
+                str(value),
+            )
+    return table
+
+
+@app.command(name="solve")
+def command_solve(
+        number_of_solutions: int = typer.Option(
+            0,
+            "--number-of-solutions",
+            "-s",
+            help="Maximum number of solutions to compute (0 for unbounded)",
+        ),
+        show_in_asp_chef: bool = typer.Option(
+            default=False,
+            help="Open solutions with ASP Chef",
+        ),
+) -> None:
+    """
+    Run the program and print solutions.
+    """
+    validate('number_of_solutions', number_of_solutions, min_value=0)
+
+    with console.status("Running..."):
+        res = app_options.controller.find_solutions(number_of_solutions)
+    if not res:
+        console.print('NO SOLUTIONS')
+    for index, values in enumerate(res, start=1):
+        console.print(network_values_to_table(values, title=f"Solution {index}"))
+    if show_in_asp_chef:
+        url = "https://asp-chef.alviano.net/open#"
+        # url = "http://localhost:5188/open#"
+        graph = app_options.controller.network.network_facts.filter(when=lambda atom: atom.predicate_name == "attack").as_facts
+        models = []
+        for values in res:
+            models.append(graph)
+            models.append('\n'.join(f"eval({node},{','.join(value.split('/'))})." for node, value in values.items()))
+            models.append('§')
+        url += compress_object_for_url({"input": '\n'.join(models[:-1])}, suffix="")
+        url += ";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%21"
+        webbrowser.open(url, new=0, autoraise=True)
+
+
+@app.command(name="query")
+def command_query(
+        query: Optional[str] = typer.Argument(
+            None,
+            help=f"A string representing the query as an alternative to --query-filename",
+        ),
+        query_filename: Optional[Path] = typer.Option(
+            None,
+            "--query-filename",
+            "-q",
+            help=f"File containing the query (as an alternative to providing the query from the command line)",
+        ),
+        show_solution: ShowSolutionOption = typer.Option(
+            ShowSolutionOption.IF_WITNESS,
+            "--show-solution",
+            "-s",
+            case_sensitive=False,
+            help="Enforce or inhibit the printing of the computed solution",
+        ),
+) -> None:
+    """
+    Answer the provided query.
+    """
+    validate("query", query is None and query_filename is None, equals=False, help_msg="No query was given")
+    validate("query", query is not None and query_filename is not None, equals=False,
+             help_msg="Option --query-filename cannot be used if the query is given from the command line")
+
+    if query_filename is not None:
+        validate("query_filename", query_filename.exists() and query_filename.is_file(), equals=True,
+                 help_msg=f"File {query_filename} does not exists")
+        with open(query_filename) as f:
+            query = ''.join(x.strip() for x in f.readlines())
+
+    with console.status("Running..."):
+        res = app_options.controller.answer_query(query=query)
+    title = f"{str(res.true).upper()}: typical individuals of the left concept are assigned {res.left_concept_value}" \
+        if res.consistent_knowledge_base else f"TRUE: the knowledge base is inconsistent!"
+    console.print(title)
+    if show_solution == ShowSolutionOption.ALWAYS or (show_solution == ShowSolutionOption.IF_WITNESS and res.witness):
+        console.print(network_values_to_table(res.assignment))
+
