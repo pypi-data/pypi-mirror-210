@@ -1,0 +1,538 @@
+{
+  "version": "0.1.0",
+  "name": "invoker_network_market",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "marketSettings",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "updateconfig",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "marketSettings",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "modelRegistryFee",
+          "type": "u64"
+        },
+        {
+          "name": "modelInferenceFee",
+          "type": "u8"
+        },
+        {
+          "name": "modelUpdataFee",
+          "type": "u64"
+        },
+        {
+          "name": "marketSettingsBump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "addmodel",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "marketSettings",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "marketOwner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "model",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "marketSettingsBump",
+          "type": "u8"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "price",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMint",
+          "type": "publicKey"
+        }
+      ],
+      "returns": "u128"
+    },
+    {
+      "name": "updatemodel",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "marketSettings",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "marketOwner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "model",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "marketSettingsBump",
+          "type": "u8"
+        },
+        {
+          "name": "modelId",
+          "type": "u128"
+        },
+        {
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "price",
+          "type": "u64"
+        },
+        {
+          "name": "tokenMint",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "closemodel",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "model",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "modelId",
+          "type": "u128"
+        }
+      ]
+    },
+    {
+      "name": "escrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userHistory",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "model",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mintOfTokenBeingSent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userDepositTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowWallet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "modelId",
+          "type": "u128"
+        },
+        {
+          "name": "input",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "closeescrow",
+      "accounts": [
+        {
+          "name": "marketSettings",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mintOfTokenBeingSent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTakerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ownerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "marketOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "model",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "escrowAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowWallet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "modelId",
+          "type": "u128"
+        },
+        {
+          "name": "inferenceCount",
+          "type": "u128"
+        }
+      ]
+    },
+    {
+      "name": "descrow",
+      "accounts": [
+        {
+          "name": "marketSettings",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "invoker",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mintOfTokenBeingSent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "invokerTakerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ownerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "marketOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "model",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "escrowAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowWallet",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "modelId",
+          "type": "u128"
+        },
+        {
+          "name": "inferenceCount",
+          "type": "u128"
+        },
+        {
+          "name": "output",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "InvokerModel",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "tokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "inferenceCount",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserHistory",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "counter",
+            "type": "u8"
+          },
+          {
+            "name": "items",
+            "type": {
+              "array": [
+                {
+                  "defined": "UserHistoryItem"
+                },
+                10
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "EscrowAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "requester",
+            "type": "publicKey"
+          },
+          {
+            "name": "input",
+            "type": "string"
+          },
+          {
+            "name": "output",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MarketSettings",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "modelId",
+            "type": "u128"
+          },
+          {
+            "name": "initAlready",
+            "type": "bool"
+          },
+          {
+            "name": "modelRegistryFeeAmount",
+            "type": "u64"
+          },
+          {
+            "name": "modelInferenceFeePercentage",
+            "type": "u8"
+          },
+          {
+            "name": "modelUpdateFeeAmount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "UserHistoryItem",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "modelId",
+            "type": "u128"
+          },
+          {
+            "name": "inferenceCount",
+            "type": "u128"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "MarketAlreadyInit",
+      "msg": "Market is already init."
+    },
+    {
+      "code": 6001,
+      "name": "MarketFeeTransferError",
+      "msg": "Market fee transfer error."
+    }
+  ],
+  "metadata": {
+    "address": "DuFRDDveCAEPmSDXf7yoHnzoS8AAD1PLwX6sayGvcy2n"
+  }
+}
