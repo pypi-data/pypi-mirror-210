@@ -1,0 +1,135 @@
+Metadata-Version: 2.1
+Name: optool
+Version: 0.3.0
+Summary: Optimization tools
+Author: Andreas Ritter
+Author-email: anritter@idsc.mavt.ethz.ch
+License: MIT
+Project-URL: Source, https://gitlab.com/ocsept/optool
+Project-URL: Documentation, https://gitlab.com/ocsept/documentation
+Project-URL: API, https://ocsept.gitlab.io/optool
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+License-File: LICENSE.txt
+Requires-Dist: casadi
+Requires-Dist: humanize
+Requires-Dist: inflection
+Requires-Dist: loguru
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pint (~=0.20.1)
+Requires-Dist: pint-pandas
+Requires-Dist: pydantic
+Provides-Extra: testing
+Requires-Dist: setuptools ; extra == 'testing'
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+
+[![PyPI-Server](https://img.shields.io/pypi/v/optool.svg)](https://pypi.org/project/optool/)
+[![Built Status](https://gitlab.com/ocsept/optool/badges/master/pipeline.svg)](https://gitlab.com/ocsept/optool/)
+[![Coverage](https://gitlab.com/ocsept/optool/badges/master/coverage.svg)](https://gitlab.com/ocsept/optool/)
+[![ReadTheDocs](https://readthedocs.org/projects/optool/badge/?version=latest)](https://ocsept.gitlab.io/optool)
+
+# OPTOOL - Optimization tools
+
+Generally usable utilities related to optimization problems.
+
+## Installation
+
+`optool` can be installed from PyPI:
+
+```shell
+python -m pip install optool
+```
+
+## Content
+
+The source code is structured in a number of packages and modules, each of which serves a different purpose.
+
+### Packages
+
+- The package [fields](src/optool/fields) contains implementations for Pydantic-compatible field types.
+- The package [optimization](src/optool/optimization) provides a convenient interface to numerical solvers for
+  optimization problems.
+- The package [serialization](src/optool/serialization) implements JSON-to-object converters and vice versa that can be
+  used by Pydantic.
+
+### Modules
+
+- The module [conversions](src/optool/conversions.py) offers various convenient function for converting data.
+- The module [languages](src/optool/languages.py) offers tools for i18n and L10n.
+- The module [logging](src/optool/logging.py) implements logging features.
+- The module [math](src/optool/math.py) implements math operations.
+- The module [orthography](src/optool/orthography.py) contains utilities for converting text.
+- The module [parallel](src/optool/parallel.py) adds functionalities to run optimizations in parallel.
+- The module [uom](src/optool/uom.py) offers functionalities related to physical units of measurements.
+- The module [util](src/optool/util.py) provides general purpose classes.
+
+## Dependencies
+
+The following libraries are necessary to run the program code.
+
+- [casadi](https://web.casadi.org) allows to build efficient optimal control software with minimal effort.
+- [humanize](https://python-humanize.readthedocs.io/en/latest/) provides various common string-related utilities like
+  turning a number into a fuzzy human-readable duration (e.g. *3 minutes ago*).
+- [inflection](https://inflection.readthedocs.io/en/latest/) provides functions for string transformation such as to
+  singularize and pluralize English words, to transform strings from camel case to underscored string, etc.
+- [loguru](https://pypi.org/project/loguru/) intends to make Python logging less painful by adding a bunch of useful
+  functionalities that solve caveats of the standard loggers.
+- [numpy](https://numpy.org) is the fundamental package for scientific computing with Python.
+- [pandas](https://pandas.pydata.org) provides fast, powerful, flexible and easy to use features for data analysis and
+  manipulation.
+- [pint](https://pint.readthedocs.io/en/stable/) allows to define, operate and manipulate physical quantities. It allows
+  arithmetic operations between them and conversions from and to different units.
+- [pint-pandas](https://pint.readthedocs.io/en/0.18/pint-pandas.html) provides an extension to Pandas, which allows
+  Pandas to recognize the quantities and store them in Pandas data frames and series.
+- [pydantic](https://docs.pydantic.dev) provides extensive data validation features and serialization capabilities using
+  Python type hints.
+- [pytz](https://pythonhosted.org/pytz/) allows accurate and cross-platform timezone calculations.
+
+### Development dependencies
+
+The following additional libraries are necessary for development, which are however automatically installed when the
+corresponding [tox] commands are used. Hence, [tox] is the only Python package stringently necessary.
+
+- [autodoc-pydantic](https://pypi.org/project/autodoc-pydantic/) allows to integrate pydantic models in the Sphinx
+  documentation.
+- [babel](https://babel.pocoo.org/en/latest/index.html) simplifies internationalizing and localizing
+- [docformatter](https://github.com/PyCQA/docformatter) formats the docstrings.
+- [flake8](https://pypi.org/project/flake8/) offers tools to enforce code style guides.
+- [isort](https://pypi.org/project/isort/) provides a command line utility, Python library and plugins for various
+  editors to quickly sort all imports of a project.
+- [mypy](https://mypy.readthedocs.io/en/stable/config_file.html) offers static type checking.
+- [myst-parser\[linkify\]](https://myst-parser.readthedocs.io/en/latest/) is a Sphinx and Docutils extension to parse
+  MyST, a rich and extensible flavour of Markdown.
+- [pydata-sphinx-theme](https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html) is a clean, Bootstrap-based
+  Sphinx theme.
+- [pytest-cov](https://pypi.org/project/pytest-cov/) provides a plugin to Pytest for measuring code coverage.
+- [pytest](https://pypi.org/project/pytest/) provides a framework that makes it easy to write small tests, yet scales to
+  support complex functional testing for applications and libraries.
+- [setuptools](https://pypi.org/project/setuptools/) provides tools to easily download, build, install, upgrade, and
+  uninstall Python packages.
+- [sphinx-autodoc-typehints](https://pypi.org/project/sphinx-autodoc-typehints/) allows to use Python type annotations
+  for documenting acceptable argument types and return value types of functions.
+- [sphinx-copybutton](https://pypi.org/project/sphinx-copybutton/) adds a copy button to each code cell of the Sphinx
+  documentation.
+- [sphinx-jsonschema](https://pypi.org/project/sphinx-jsonschema/) is a Sphinx extension to display JSON Schema.
+- [sphinx-pydantic](https://pypi.org/project/sphinx-pydantic/) allows to generate Sphinx documentation from Pydantic
+  objects.
+- [sphinx-togglebutton](https://pypi.org/project/sphinx-togglebutton/) is a Sphinx extension that allows to add a toggle
+  button to sections of the documentation.
+- [sphinx-toggleprompt](https://pypi.org/project/sphinx-toggleprompt/) adds a python prompt toggle to each code cell of
+  the Sphinx documentation.
+- [sphinx](https://pypi.org/project/Sphinx/) offers functionalities to easily create intelligent and beautiful
+  documentation for Python projects.
+- [toml](https://pypi.org/project/toml/) provides features to parse and create Tom’s obvious, minimal language (TOML)
+  files typically used for project configurations.
+- [tox] automates and standardizes testing in Python by offering a generic virtualenv management and test CLI. It allows
+  to run predefined test procedures on various environments on personal computers as well as on CI servers.
+- [types-pytz](https://pypi.org/project/types-pytz/) is the type stub package for the pytz package.
+- [yapf](https://pypi.org/project/yapf/) formats Python source code files.
+
+[tox]: https://tox.readthedocs.io/en/stable/
