@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: qaoa_quimb
+Version: 0.0.1
+Summary: A QAOA implementation in Quimb.
+Project-URL: Homepage, https://github.com/juliendrapeau/qaoa-quimb
+Author-email: Julien Drapeau <julien.drapeau@usherbrooke.ca>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# QAOA-QUIMB
+
+This librairy implements an optimized version of the Quantum Approximate Optimization Algorithm (QAOA) and various extensions with Quimb.
+
+## Installation
+
+To install with pip:
+
+```
+pip install qaoa_quimb
+```
+
+## References
+
+Gray, J. (2018). quimb: a python library for quantum information and many-body calculations. Journal of Open Source Software, 3(29), 819. doi:10.21105/joss.00819.
