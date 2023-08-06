@@ -1,0 +1,27 @@
+# pyproject.toml
+
+[build-system]
+requires      = ["setuptools>=67.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-unitconverter"
+version = "1.0.0"
+description = "Make conversions between various units"
+readme = "README.md"
+authors = [{ name = "Erikas Mackevičius", email = "mackevicius.erikas1@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["converter", "units"]
+dependencies = []
+requires-python = ">=3.11.0"
+
+[project.optional-dependencies]
+dev = ["pytest", "pip-tools"]
+
+[project.urls]
+Homepage = "https://erimac2.github.io/UnitConverter/"
