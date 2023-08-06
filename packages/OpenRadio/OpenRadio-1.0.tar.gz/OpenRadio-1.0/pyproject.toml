@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "OpenRadio"
+version = "1.0"
+description = "An open-source, touch-focused radio application that is written in Python. The Gui was built using Gtk3. And it is Modular AF."
+authors = [
+            {name = "1337Misom"},
+          ]
+
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE.txt"}
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Intended Audience :: End Users/Desktop"
+]
+dependencies = [
+    "requests",
+    "PyGObject",
+    "toml",
+    "python-vlc",
+    "pyradios",
+    "requests_file"
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/1337Misom/OpenRadio"
+
+[project.gui-scripts]
+openradio = "OpenRadio:start"
