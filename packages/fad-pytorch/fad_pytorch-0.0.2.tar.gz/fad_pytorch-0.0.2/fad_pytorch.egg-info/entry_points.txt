@@ -1,0 +1,7 @@
+[console_scripts]
+fad_embed = fad_pytorch.fad_embed:main
+fad_gen = fad_pytorch.fad_gen:main
+fad_score = fad_pytorch.fad_score:main
+
+[nbdev]
+fad_pytorch = fad_pytorch._modidx:d
