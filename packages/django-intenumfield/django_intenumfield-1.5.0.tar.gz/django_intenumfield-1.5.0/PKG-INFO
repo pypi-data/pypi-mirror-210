@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: django-intenumfield
+Version: 1.5.0
+Summary: An IntEnumField for Django
+Home-page: https://github.com/HearthSim/django-intenumfield
+License: MIT
+Keywords: django,intenum
+Author: Jerome Leclanche
+Author-email: jerome@leclan.ch
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: django (>=2.2)
+Project-URL: Repository, https://github.com/HearthSim/django-intenumfield
+Description-Content-Type: text/markdown
+
+# Django IntEnumField
+
+[![Build Status](https://api.travis-ci.org/HearthSim/django-intenumfield.svg?branch=master)](https://travis-ci.org/HearthSim/django-intenumfield)
+
+An IntEnumField for Django.
+
+## Features
+
+* Store your multiple-choice options as a smallint (2 bytes) instead of varchar
+* Reuse existing IntEnums as choice values
+* Integrates well with Django's admin app (display and filter)
+
+## Requirements
+
+* Python 3.6+
+* Django 2.2+
+
+## Usage
+
+```py
+from enum import IntEnum
+from django.db import models
+from django_intenum import IntEnumField
+
+
+class Status(IntEnum):
+	UNKNOWN = 0
+	IN_PROGRESS = 1
+	COMPLETED = 2
+	ERROR = 3
+
+
+class Job(models.Model):
+	status = IntEnumField(enum=Status)
+```
+
+## License
+
+This project is licensed under the MIT license. The full license text is
+available in the LICENSE file.
+
