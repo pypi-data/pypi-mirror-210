@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "interval-tools"
+version = "0.11.1"
+description = "Utility functions and classes used in applications of Interval Design."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  {name = "Yao Lv", email = "yao.lv@interval.im"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11"
+]
+
+dependencies = [
+    "orjson>=3"
+]
+
+[project.optional-dependencies]
+objectid = [
+    "pymongo>=4"
+]
+
+[project.urls]
+Homepage = "https://github.com/interval-design/python-tools"
