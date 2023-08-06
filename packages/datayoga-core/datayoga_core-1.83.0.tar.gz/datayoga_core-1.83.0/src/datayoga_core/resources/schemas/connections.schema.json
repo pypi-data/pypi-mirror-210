@@ -1,0 +1,35 @@
+{
+  "title": "Connections",
+  "description": "Connection catalog",
+  "type": ["object", "null"],
+  "patternProperties": {
+    ".": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "DB type",
+          "type": "string",
+          "enum": ["cassandra", "mysql", "postgresql", "redis", "sqlserver"]
+        },
+        "driver": {
+          "description": "Explicit driver to use, if not using default",
+          "type": "string"
+        },
+        "connect_args": {
+          "description": "Additional arguments to use when connecting to the DB",
+          "type": "object"
+        },
+        "query_args": {
+          "description": "Additional query string arguments to use when connecting to the DB",
+          "type": "object"
+        },
+        "debug": {
+          "title": "Debug mode",
+          "description": "Echo all SQL commands to stdout",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}

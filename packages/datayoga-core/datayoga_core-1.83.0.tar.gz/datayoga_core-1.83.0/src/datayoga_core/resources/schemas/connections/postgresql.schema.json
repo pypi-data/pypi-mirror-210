@@ -1,0 +1,44 @@
+{
+  "properties": {
+    "host": { "description": "DB host", "type": "string" },
+    "port": {
+      "description": "DB port",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "database": { "description": "DB name", "type": "string" },
+    "user": { "description": "DB user", "type": "string" },
+    "password": { "description": "DB password", "type": "string" },
+    "connect_args": {
+      "description": "Additional arguments to use when connecting to the DB",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "query_args": {
+      "description": "Additional query string arguments to use when connecting to the DB",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": ["type", "host", "database", "user"],
+  "examples": [
+    {
+      "hr": {
+        "type": "postgresql",
+        "host": "localhost",
+        "port": 5432,
+        "database": "postgres",
+        "user": "postgres",
+        "password": "postgres",
+        "connect_args": { "connect_timeout": 10 },
+        "query_args": {
+          "sslmode": "verify-ca",
+          "sslrootcert": "/opt/ssl/ca.crt",
+          "sslcert": "/opt/ssl/client.crt",
+          "sslkey": "/opt/ssl/client.key"
+        }
+      }
+    }
+  ]
+}
