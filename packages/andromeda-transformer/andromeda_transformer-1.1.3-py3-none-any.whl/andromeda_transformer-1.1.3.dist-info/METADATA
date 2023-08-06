@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: andromeda-transformer
+Version: 1.1.3
+Summary: andromeda - Pytorch
+Home-page: https://github.com/kyegomez/Andromeda
+Author: Kye Gomez
+Author-email: kye@apac.ai
+License: MIT
+Keywords: artificial intelligence,attention mechanism,transformers
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch (>=1.6)
+Requires-Dist: einops (>=0.6.1)
+Requires-Dist: datasets
+Requires-Dist: accelerate
+Requires-Dist: transformers
+Requires-Dist: optimus-prime-transformers
+Requires-Dist: lion-pytorch
+
