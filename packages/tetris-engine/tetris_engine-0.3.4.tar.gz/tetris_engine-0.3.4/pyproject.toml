@@ -1,0 +1,9 @@
+[project]
+name = "tetris_engine"
+version = "0.3.4"
+description = "A tetris engine written in rust"
+readme = "README.md"
+
+
+[build-system]
+requires = ["setuptools", "wheel", "setuptools-rust"]

@@ -1,0 +1,79 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  release:
+    types: [created]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build_rust_lib:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Rust Library Build
+      run: cargo build --lib --verbose
+    - name: Rust Library tests
+      run: cargo test --lib --verbose
+
+#  build_rust_bin:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#    - uses: actions/checkout@v3
+#    - name: Rust Binary Build
+#      run: cargo build --bin rust_tetris --verbose
+#
+#  release_rust_bin:
+#    needs: build_rust_bin
+#    name: release ${{ matrix.target }}
+#    runs-on: ubuntu-latest
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        include:
+#          - target: x86_64-pc-windows-gnu
+#            archive: zip
+#          - target: x86_64-unknown-linux-musl
+#            archive: tar.gz tar.xz
+#          - target: x86_64-apple-darwin
+#            archive: zip
+#    steps:
+#    - uses: actions/checkout@v3
+#    - name: Compile and release
+#      uses: rust-build/rust-build.action@v1.3.2
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+##        PYO3_CROSS_PYTHON_VERSION: "3.8"
+#      with:
+#        RUSTTARGET: ${{ matrix.target }}
+#        ARCHIVE_TYPES: ${{ matrix.archive }}
+
+  build_python:
+    needs: build_rust_lib
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies and Build Python Package
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python setup.py build --verbose
+    - name: Test with pytest
+      run: |
+        if [ -f requirements-test.txt ]; then pip install -r requirements-test.txt; fi
+        python setup.py install --verbose
+        pytest
