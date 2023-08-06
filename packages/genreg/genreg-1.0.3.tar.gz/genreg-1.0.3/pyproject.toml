@@ -1,0 +1,24 @@
+[project]
+name = "genreg"
+version = "1.0.3"
+authors = [
+    { name = "András Aszódi", email="andras.aszodi@vbcf.ac.at" },
+]
+description = "Genomic region package for learning purposes"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+[project.urls]
+"Homepage" = "https://training.vbcf.ac.at/training/pylang.php"
+
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
