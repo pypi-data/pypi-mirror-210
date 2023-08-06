@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: rico
+Version: 0.0.6
+Summary: Rich content to HTML as easy as Doc([df, plot]).
+Author-Email: Evgeny Ivanov <ivanov.evgeny.n@gmail.com>
+License: MIT
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Markup
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Classifier: Topic :: Text Processing :: Markup :: Markdown
+Project-URL: Source, https://github.com/e10v/rico
+Requires-Python: >=3.10
+Provides-Extra: altair
+Provides-Extra: markdown
+Provides-Extra: pyplot
+Provides-Extra: seaborn
+Provides-Extra: complete
+Requires-Dist: altair>=4.2; extra == "altair"
+Requires-Dist: vl-convert-python>=0.8; extra == "altair"
+Requires-Dist: markdown>=3.3; extra == "markdown"
+Requires-Dist: matplotlib>=3.5; extra == "pyplot"
+Requires-Dist: seaborn>=0.12; extra == "seaborn"
+Requires-Dist: rico[altair,markdown,pyplot,seaborn]; extra == "complete"
+Description-Content-Type: text/markdown
+
+# rico
+Rich content to HTML as easy as Doc([df, plot]).
+
+<br>
+
+[![CI](https://github.com/e10v/rico/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/e10v/rico/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/github/e10v/rico/coverage.svg?branch=main)](https://codecov.io/gh/e10v/rico)
+[![License](https://img.shields.io/github/license/e10v/rico)](https://github.com/e10v/rico/blob/main/LICENSE)
+[![Version](https://img.shields.io/pypi/v/rico.svg)](https://pypi.org/project/rico/)
+[![Package Status](https://img.shields.io/pypi/status/rico.svg)](https://pypi.org/project/rico/)
+[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/rico.svg)](https://pypi.python.org/pypi/rico/)
