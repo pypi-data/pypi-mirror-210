@@ -1,0 +1,3 @@
+class YandexMarketService:
+    # https://yandex.ru/dev/market/vendor/doc/dg/concepts/about.html
+    ...
