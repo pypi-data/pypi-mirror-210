@@ -1,0 +1,163 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "django-rest-registration"
+authors = [
+  {name = "Andrzej Pragacz", email = "apragacz@o2.pl"},
+]
+description = "User registration REST API, based on django-rest-framework"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.5"
+dependencies = [
+	"Django>=2.0",
+	"djangorestframework>=3.3",
+]
+classifiers = [
+	"Development Status :: 4 - Beta",
+	"Environment :: Web Environment",
+	"Framework :: Django",
+	"Framework :: Django :: 2.0",
+	"Framework :: Django :: 3.0",
+	"Framework :: Django :: 4.0",
+	"Intended Audience :: Developers",
+	"License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+	"Programming Language :: Python",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3 :: Only",
+	"Topic :: Internet",
+	"Topic :: Internet :: WWW/HTTP",
+]
+keywords = [
+	"django",
+	"rest",
+	"api",
+	"auth",
+	"rest-framework",
+	"registration",
+	"register",
+	"login",
+	"reset-password",
+	"register-email",
+	"change-email",
+	"sign-up",
+	"sign-in",
+]
+
+[project.urls]
+homepage = "https://github.com/apragacz/django-rest-registration"
+"Bug Tracker" = "https://github.com/apragacz/django-rest-registration/issues"
+"Documentation" = "https://django-rest-registration.readthedocs.io/"
+"Source Code" = "https://github.com/apragacz/django-rest-registration"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "rest_registration._version.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["rest_registration*"]
+namespaces = false
+
+[tool.flake8]
+max-line-length = 88
+exclude = [
+    "migrations",
+    "examples",
+    "build",
+    ".venv",
+    ".tox",
+]
+
+[tool.isort]
+line_length = 88
+skip = ["migrations", "examples", ".venv", ".tox"]
+known_third_party = "django_dynamic_fixture"
+known_first_party = "rest_registration"
+multi_line_output = 3
+
+[tool.mypy]
+plugins = [
+	"mypy_django_plugin.main",
+	"mypy_drf_plugin.main",
+]
+
+[tool.django-stubs]
+django_settings_module = "tests.default_settings"
+
+[tool.pylint.main]
+ignore = ["migrations", "examples", "build", ".venv", ".tox"]
+
+[tool.pylint.basic]
+const-rgx = "([a-z_][a-z0-9_]{3,30}|[A-Z_][A-Z0-9_]{3,30})"
+good-names = ["i", "j", "k", "db"]
+
+[tool.pylint.design]
+max-parents = 10
+max-args = 6
+min-public-methods = 0
+
+[tool.pylint."messages control"]
+disable = [
+	"missing-docstring",
+	"missing-function-docstring",
+	"unused-argument",
+	"unused-import",
+	"line-too-long",
+	"ungrouped-imports",
+	"fixme",
+	"consider-using-f-string",
+]
+
+[tool.pylint.reports]
+ignore-docstrings = true
+score = false
+
+[tools.pylint.similarities]
+min-similarity-lines = 5
+ignore-imports = true
+
+[tool.pylint.typecheck]
+generated-members = [
+	"objects",
+	"from_queryset",
+	"__setattr__",
+	"DoesNotExist",
+	"Meta",
+	"_meta",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+DJANGO_SETTINGS_MODULE = "tests.default_settings"
+django_find_project = false
+addopts = "--doctest-modules"
+testpaths = [
+	"tests",
+	"rest_registration",
+]
+
+[tool.coverage.run]
+branch = true
+source = [
+	"rest_registration",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+	"pragma: no cover",
+	"def __repr__",
+	"raise AssertionError",
+	"raise NotImplementedError",
+	"if __name__ == .__main__.:",
+	"if TYPE_CHECKING:",
+]
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"
