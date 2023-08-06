@@ -1,0 +1,15 @@
+project: project-template
+
+scripts:
+  - name: downloader
+  - name: main
+notebooks:
+  - name: analytics
+apis:
+  - name: analytics
+    # env: .env
+    # requirements: requirements.txt
+    # port: 8010
+  - name: xyz
+uis:
+  - name: map
