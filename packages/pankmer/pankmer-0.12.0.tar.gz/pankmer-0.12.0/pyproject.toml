@@ -1,0 +1,44 @@
+[build-system]
+requires = ["maturin>=0.14,<0.15"]
+build-backend = "maturin"
+
+[project]
+name = "pankmer"
+version = "0.12.0" # Don't forget to match with Cargo.toml and docs/source/conf.py
+authors = [
+  { name="Anthony Aylward", email="aaylward@salk.edu" },
+  { name="Semar Petrus" },
+  { name="Allen Mamerto" },
+  { name="Nolan Hartwick" },
+]
+description = "Generate a PanGenome given a set of genomes"
+readme = "README.md"
+requires-python = ">=3.8,<3.11"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: BSD License",
+]
+dependencies = [
+    "biopython",
+    "gff2bed",
+    "newick",
+    "pyfaidx",
+    "scipy",
+    "seaborn",
+    "urllib3",
+    "upsetplot"
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/salk-tm/pankmer"
+"Documentation" = "https://salk-tm.gitlab.io/pankmer"
+
+[project.scripts]
+pankmer = "pankmer.pankmer:main"
+
+[tool.setuptools]
+package-dir = {pankmer="src/pankmer"}
