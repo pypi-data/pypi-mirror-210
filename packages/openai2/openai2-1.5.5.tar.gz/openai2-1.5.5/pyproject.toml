@@ -1,0 +1,19 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "openai2"
+version = "1.5.5"
+description = "根据openai官方接口‘openai’改造的‘openai2’，比官方接口更好用一点。"
+dependencies = ["openai >=0.27.0"]
+keywords = ["openai2", "openai"]
+
+readme = "README.md"
+authors = [{name = "许灿标", email = "lcctoor@outlook.com"}]
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: Apache Software License"]
+requires-python = ">=3.7"
+
+[project.urls]
+HomePage = "https://github.com/lcctoor/lccpy/tree/main/packages/openai2#readme"
