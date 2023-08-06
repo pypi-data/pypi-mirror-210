@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=65.5", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Subsearch"
+description = "Download subtitles for movies and shows, automatically with one easy mouse click."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT license"}
+keywords = ["subsearch", "subscene", "opensubtitles", "yifysubtitles", "download", "subtitles", "movies", "shows", "automatically", "scrape"]
+authors = [
+  {email = "vagabondHustler.github@gmail.com"},
+  {name = "vagabondHustler"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Utilities",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop"
+]
+dependencies = ["selectolax==0.3.13", "cloudscraper==1.2.71", "num2words==0.5.12", "packaging==23.1", "requests==2.31.0"]
+dynamic = ["version"]
+
+[project.urls]
+repository = "https://github.com/vagabondHustler/subsearch"
+
+[project.scripts]
+subsearch = "subsearch:main"
+
+[tool.setuptools]
+platforms = ["win32"]
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["subsearch*"]
+exclude = ["examples*", "tools*", "subsearch.test*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "subsearch.data.__version__"}
+
+[project.optional-dependencies]
+optional = ["black==23.3.0", "isort==5.12.0", "twine==4.0.2", "build==0.10.0", "cx_Freeze==6.15.0", "mypy==1.3.0", "pipreqs==0.4.13"]
+dev = ["pytest==7.3.1", "pytest-cov==4.1.0", "tox==4.5.1"]
+
+
+[tool.pytest.ini_options]
+filterwarnings =[
+    'ignore::DeprecationWarning'
+]
+log_cli = true
+log_cli_level = 'DEBUG'
+addopts = "--cov=src/subsearch"
+testpaths = [
+    "tests",
+]
+
+[tool.black]
+line-length = 125
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+mypy_path = "src"
+ignore_missing_imports = true
+warn_no_return = false
+check_untyped_defs = true
