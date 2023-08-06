@@ -1,0 +1,2 @@
+
+from .ssg import Generator

@@ -1,0 +1,122 @@
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+#                              SSG.py
+#                      The Elegant Static Site Generator
+# mardix.github.io/ssg
+#
+# ssg
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# Site: Global site context
+# Variables under [site] will be available in the page as ie: {{ site.name }}
+site:
+
+  # base_url: **REQUIRED - Site base url, the canonical url to build
+  base_url: /
+
+  # static_url: **REQUIRE - Site static. If static files are placed somewhere else, you can put the path there
+  static_url: ./_static/
+
+  # Site name
+  name: "MySiteName.com"
+
+  # The site url
+  url: 
+
+  # Google Analytics code
+  google_analytics:
+
+  # Site Favicon
+  favicon:
+
+  # Global meta tags. They can be overwritten by page meta tags
+  meta:
+    keywords:
+    language: en-us
+    rating: General
+    robots: index, follow
+
+
+  # Social
+  social:
+    facebook:
+    twitter:
+    github:
+
+# ------------------------------------------------------------------------------
+# Site environment: environment data will be merged with the global site settings
+# ie: 'env.prod.base_url' will use the prod base_url
+# At build: 'ssg build --env prod', or serve 'ssg serve --env prod'
+env: 
+  prod:
+    base_url: /
+    static_url: /_static/
+
+# ------------------------------------------------------------------------------
+# Configuration when serving
+serve:
+  port: 8000
+  livereload: True
+  openwindow: True
+  env: 
+  make_sitemap: True
+  make_rss: True
+  make_robots: True
+  compress_html: False  
+
+# ------------------------------------------------------------------------------
+# Build configuration, could be the final product
+build:
+  # env: The site_env to build. Leave blank to have the option in the command line
+  env: prod
+  make_sitemap: True
+  make_rss: True
+  make_robots: True
+  compress_html: True 
+
+# ------------------------------------------------------------------------------
+# Global settings
+globals:
+  # layout: **REQUIRED - The default site layout
+  layout: "layouts/default.html"
+
+comands:
+  - cp ./static/CNAME ./build
+  
+# ------------------------------------------------------------------------------
+# Assets bundling
+assets_bundles:
+  page_css_bundle:
+    - vendor/normalize.css
+    - vendor/kolibri.css
+    - css/main.css
+  page_js_bundle:
+    - js/main.js
+
+datasources:
+  - name: blog_post
+    disabled: True
+    cached: true
+    saved: true
+    request:
+      url:
+      method:
+      headers:
+      data:
+      resolve_path:
+  - name: starwars_planets
+    cached: true
+    saved: true
+    request:
+      url: https://swapi.dev/api/planets
+      method: GET
+      resolve_path: results
+
+# ------------------------------------------------------------------------------
+# Advanced options
+#
+# base_dir:  # the base directory relative to ssg.yml. It contains pages, etc...
+# build_dir: _build # the build directory relative to ssg.yml 

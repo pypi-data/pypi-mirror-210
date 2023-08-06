@@ -1,0 +1,56 @@
+---
+title: Welcome to my site
+---
+
+<SSG:TEMPLATE>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <img src="{{ get_static_url_for('images/kolibri.png') }}">
+                <h1 class="title">SSG.<small>py</small></h1>
+                <p class="description">The elegant static site generator<br>
+                    <i><small>Currently {{ __info__.version }}</small></i>
+                </p>
+                <a class="button" target="_blank" href="https://mardix.github.com/migos" title="Getting Started">Documentation</a>
+        
+            </div>
+        </header>
+
+        <section class="container">
+            <h3 class="title">Simple and Elegant</h3>
+            <p><strong>Migos</strong> is an elegant static site generator built in Python. 
+            It doesn't lock you in any framework way, instead it lets you have it your way. 
+            Create pages in HTML or Markdown; write HTML, JS & CSS in a single file component; 
+            build your pages; deploy to your host; Migos keeps it simple and elegant!
+            </p>
+     
+ 
+            <a href="{{ get_url_for('about')}}">{{ get_page_meta("about.title") }}</a> - 
+            <a href="{{ get_url_for('contact')}}">{{ get_page_meta("contact.title") }}</a> - 
+            <a href="{{ get_url_for('advanced')}}">{{ get_page_meta("advanced.title") }}</a> - 
+            <a href="{{ get_url_for('info')}}">{{ get_page_meta("info.title") }}</a> - 
+            <a href="{{ get_url_for('sub')}}">{{ get_page_meta("sub.title") }}</a> - 
+            <a href="{{ get_url_for('redirectme')}}">{{ get_page_meta("redirectme.title") }}</a> - 
+
+        </section>
+    </div>
+</SSG:TEMPLATE>
+
+
+<SSG:SCRIPT>
+    console.log('Hello SSG!');
+</SSG:SCRIPT>
+
+<SSG:STYLE>
+
+.main-title {
+    text-align: center
+}
+</SSG:STYLE>
+
+
+
+
+
+
+
