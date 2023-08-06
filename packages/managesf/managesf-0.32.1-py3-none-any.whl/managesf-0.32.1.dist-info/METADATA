@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: managesf
+Version: 0.32.1
+Summary: Software Factory REST API
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pbr
+Requires-Dist: pecan
+Requires-Dist: WebOb
+Requires-Dist: requests
+Requires-Dist: basicauth (==0.4.1)
+Requires-Dist: sqlalchemy (<=2.0.0)
+Requires-Dist: urllib3
+Requires-Dist: sphinx
+Requires-Dist: PyYAML
+Requires-Dist: stevedore
+Requires-Dist: PyMySQL
+Requires-Dist: six
+Requires-Dist: oslo.policy
+Requires-Dist: deepdiff (==3.3.0)
+Requires-Dist: GitPython
+Requires-Dist: webtest
+Requires-Dist: pynotedb
+
+# managesf
+
+This is a REST-based utility to manage projects, users and other tasks in
+SoftwareFactory(http://softwarefactory.enovance.com).
+It consists of two parts: a server with a REST API interface and a command line
+interface (CLI).
+
+## Documentation
+
+More information is included in the documentation(docs/intro.rst).
+
+## Installation
+
+### CLI sfmanager
+
+Run the following commands if you only want to install the commandline tool:
+
+ pip install -r requirements.txt
+ python setup.py
+
+### REST API server
+
+Update config.py and execute the following commands if you want to run managesf in a development setup::
+
+ virtualenv venv
+ . venv/bin/activate
+ pip install -r requirements.txt
+ pecan serve config.py
+
+To run it in production please refer to the Pecan documentation:
+
+* Refer to pecan [doc](http://pecan.readthedocs.org/en/latest/deployment.html#deployment)
+
