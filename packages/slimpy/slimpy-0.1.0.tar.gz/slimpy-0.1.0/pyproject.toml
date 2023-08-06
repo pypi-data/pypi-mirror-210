@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "slimpy"
+version = "0.1.0"
+authors = [
+  { name="Jibril", email="erikfortran@gmail.com" },
+]
+description = "Custom String Slicing and Matching in Python"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["slicing", "matching", "mismatch"]
+license = {file = "LICENSE"}
+
+[project.urls]
+"Homepage" = "https://github.com/max-efort/slimpy"
