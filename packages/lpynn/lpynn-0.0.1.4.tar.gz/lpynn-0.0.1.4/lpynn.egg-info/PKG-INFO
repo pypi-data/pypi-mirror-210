@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: lpynn
+Version: 0.0.1.4
+Summary: A basic neural networks python package
+Home-page: https://github.com/Shaikh-Ubaid/lpython_packages
+Author: Ubaid Shaikh
+Author-email: shaikhubaid769@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# lpynn
+
+This is a basic neural network package consisting of a single perceptron node. It can do binary classification.
+## Usage
+
+**Example:**
+```python
+from lpynn.perceptron import init_perceptron, print_perceptron, normalize_input_vectors, Perceptron, train_dataset
+from lpython import i32, f64
+
+def main0():
+    p: Perceptron = Perceptron(0, [0.0], 0.0, 0, 0.0, 0.0, 0)
+    init_perceptron(p, 2, 0.05, 10000, 90.0)
+    print_perceptron(p)
+    print("=================================")
+
+    input_vectors: list[list[f64]] = [[-1.0, -1.0], [-1.0, 1.0], [1.0, -1.0], [1.0, 1.0]]
+    outputs: list[i32] = [1, 1, 1, -1]
+
+    normalize_input_vectors(input_vectors)
+    train_dataset(p, input_vectors, outputs)
+    print_perceptron(p)
+
+main0()
+```
