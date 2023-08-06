@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clementine"
+dynamic = ["version"]
+description = "🍊 A sweet little Python package"
+authors = [{name = "Suzen Fylke", email = "codesue@users.noreply.github.com"}]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+]
+requires-python = ">=3.7"
+
+[project.optional-dependencies]
+blossom = ["bokeh", "gradio"]
+fruit = ["matplotlib", "numpy", "pandas", "scikit-learn", "torch"]
+leaves = ["mkdocs"]
+rind = ["build", "twine"]
+seeds = ["isort", "pytest", "pre-commit", "ruff", "yapf"]
+sprout = ["notebook"]
+tree = ["clementine[blossom,fruit,leaves,rind,seeds,sprout]"]
+
+[project.urls]
+repository = "https://github.com/codesue/clementine"
+
+[project.scripts]
+clementine = "clementine.cli:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "clementine.__version__"}
+
+[tool.yapf]
+based_on_style = "pep8"
+indent_width = 2

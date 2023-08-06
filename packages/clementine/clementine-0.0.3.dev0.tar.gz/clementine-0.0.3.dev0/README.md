@@ -1,0 +1,51 @@
+# clementine: a sweet little Python package
+
+[![GitHub][github_badge]][github_link]
+[![PyPI][pypi_badge]][pypi_link]
+
+[github_badge]: https://badgen.net/badge/icon/GitHub?icon=github&color=black&label
+[github_link]: https://github.com/codesue/clementine
+
+[pypi_badge]: https://badgen.net/pypi/v/clementine?icon=pypi&color=black&label
+[pypi_link]: https://pypi.org/project/clementine
+
+## Installation
+
+Installing with pip:
+
+```sh
+pip install clementine
+```
+
+
+Installing from source:
+
+```sh
+git clone https://github.com/codesue/clementine.git
+cd clementine
+pip install -e .
+```
+
+Linting and formatting:
+
+```sh
+pip install -e ".[seeds]"
+pre-commit run --all-files
+```
+
+Building the docs:
+
+```sh
+cd docs
+mkdocs build
+```
+
+Distributing:
+
+```sh
+pip install -e ".[rind]"
+python -m build
+twine check dist/*
+twine upload -r testpypi dist/*
+twine upload dist/*
+```
