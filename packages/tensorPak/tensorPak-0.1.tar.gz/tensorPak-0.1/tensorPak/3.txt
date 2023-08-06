@@ -1,0 +1,86 @@
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("letter-recognition.data", sep=",")
+
+df.head()
+
+df.columns = names = ['letter_class', 'x-box', 'y-box', 'width', 'heigh', 'onpix', 'x-bar', 'y-bar', 'x2bar', 'y2bar', 'xybar', 'x2ybar', 'xy2bar', 'x-edge', 'x-edgvy', 'y-edge', 'y-edgevx']
+
+df.head()
+
+df.shape
+
+X = df.iloc[:, 1:].values
+Y = df.iloc[:, 0].values
+
+# Encoding and Scaling
+
+from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
+
+label_encoder = LabelEncoder()
+Y = label_encoder.fit_transform(Y)
+
+onehot_encoder = OneHotEncoder(categories='auto')
+Y = onehot_encoder.fit_transform(Y.reshape(-1, 1)).toarray()
+
+
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=24)
+
+# Neural Network
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+
+model = Sequential()
+
+model.add(Dense(64, activation='relu', input_shape=(16,)))
+model.add(Dropout(0.2))
+model.add(Dense(32, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(26, activation='softmax'))
+
+model.summary()
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+model.fit(X_train, Y_train, epochs=25, batch_size=32, validation_data=(X_test, Y_test))
+
+score = model.evaluate(X_test, Y_test)
+print(f'Test loss : {score[0]}')
+print(f'Test Accuracy : {score[1]*100} %')
+
+# Prediction
+
+new_input = [[4,9,6,6,2,9,5,3,1,8,1,8,2,7,2,8]]
+
+new_input = scaler.transform(new_input)
+
+prediction = model.predict(new_input)
+
+print(chr(ord('A') + np.argmax(prediction)))
+
+# Visualization
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+
+Y_pred = model.predict(X_test)
+Y_pred = np.argmax(Y_pred, axis=1)
+Y_true = np.argmax(Y_test, axis=1)
+
+cm = confusion_matrix(Y_true, Y_pred)
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d')
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted Values')
+plt.ylabel('True Values')
+plt.show()
+

@@ -1,0 +1,93 @@
+// QuickSort
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+#include <omp.h>
+
+// Function to partition the array
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    
+    for (int j = low; j < high; ++j) {
+        if (arr[j] <= pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    
+    std::swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+// Sequential Quicksort
+void quicksortSequential(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivotIndex = partition(arr, low, high);
+        quicksortSequential(arr, low, pivotIndex - 1);
+        quicksortSequential(arr, pivotIndex + 1, high);
+    }
+}
+
+// Parallel Quicksort
+void quicksortParallel(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivotIndex = partition(arr, low, high);
+        
+        #pragma omp parallel sections
+        {
+            #pragma omp section
+            {
+                quicksortParallel(arr, low, pivotIndex - 1);
+            }
+            
+            #pragma omp section
+            {
+                quicksortParallel(arr, pivotIndex + 1, high);
+            }
+        }
+    }
+}
+
+int main() {
+    // Number of elements in the array
+    const int size = 1000000;
+    
+    // Create a random array
+    std::vector<int> arr(size);
+    srand(static_cast<unsigned>(time(0)));
+    std::generate(arr.begin(), arr.end(), []() { return rand() % 1000; });
+    
+    // Create a copy of the array for parallel quicksort
+    std::vector<int> arrParallel = arr;
+    
+    // Measure sequential quicksort execution time
+    double startTime = omp_get_wtime();
+    quicksortSequential(arr, 0, size - 1);
+    double endTime = omp_get_wtime();
+    double sequentialTime = endTime - startTime;
+    
+    // Measure parallel quicksort execution time
+    startTime = omp_get_wtime();
+    quicksortParallel(arrParallel, 0, size - 1);
+    endTime = omp_get_wtime();
+    double parallelTime = endTime - startTime;
+    
+    // Check if the arrays are sorted correctly
+    bool isSortedSequential = std::is_sorted(arr.begin(), arr.end());
+    bool isSortedParallel = std::is_sorted(arrParallel.begin(), arrParallel.end());
+    
+    // Print the results
+    std::cout << "Sequential Quicksort: " << sequentialTime << " seconds." << std::endl;
+    std::cout << "Parallel Quicksort: " << parallelTime << " seconds." << std::endl;
+    
+    if (isSortedSequential && isSortedParallel)
+        std::cout << "Both arrays are sorted correctly." << std::endl;
+    else
+        std::cout << "Sorting error occurred." << std::endl;
+    
+    return 0;
+}

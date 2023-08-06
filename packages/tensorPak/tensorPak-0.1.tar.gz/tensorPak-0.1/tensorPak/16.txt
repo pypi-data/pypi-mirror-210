@@ -1,0 +1,122 @@
+// KNN
+
+#include <bits/stdc++.h>
+#include <omp.h>
+using namespace std;
+
+struct Point{
+	int val;	 
+	double x, y;	 
+	double distance; 
+};
+
+
+bool comparison(Point a, Point b){
+	return (a.distance < b.distance);
+}
+
+int classifyAPoint(Point arr[], int n, int k, Point p){
+	
+	for (int i = 0; i < n; i++){
+		arr[i].distance = sqrt((arr[i].x - p.x) * (arr[i].x - p.x) + (arr[i].y - p.y) * (arr[i].y - p.y));
+	}
+	
+	sort(arr, arr+n, comparison);
+	
+	int freq1 = 0;	 
+	int freq2 = 0;	
+	for (int i = 0; i < k; i++){
+		if (arr[i].val == 0){
+		
+			freq1++;
+		}
+		else if (arr[i].val == 1){
+		
+			freq2++;
+		}
+	}
+
+	return (freq1 > freq2 ? 0 : 1);
+}
+
+int classifyAPointParallel(Point arr[], int n, int k, Point p){
+	#pragma omp parallel
+	for (int i = 0; i < n; i++){
+		arr[i].distance = sqrt((arr[i].x - p.x) * (arr[i].x - p.x) + (arr[i].y - p.y) * (arr[i].y - p.y));
+	}
+	
+	sort(arr, arr+n, comparison);
+	
+	int freq1 = 0;	 
+	int freq2 = 0;	
+	for (int i = 0; i < k; i++){
+		if (arr[i].val == 0){
+		#pragma omp critical
+			freq1++;
+		}
+		else if (arr[i].val == 1){
+		#pragma omp critical
+			freq2++;
+		}
+	}
+
+	return (freq1 > freq2 ? 0 : 1);
+}
+
+
+int main(){
+	cout << "Enter number of points: ";
+	
+	int n;
+	cin >> n; 
+	Point arr[n];
+	for(int i=0;i<n;i++){
+		cin >> arr[i].x;
+		cin >> arr[i].y;
+		cin >> arr[i].val; 
+	}
+	Point p;
+	cout << "Enter x and y co-ordinate of point P: ";
+	cin >> p.x >> p.y;
+	
+	int k;
+	cout << "Enter value of k: ";
+	cin >> k;
+	double start=0, end =0, dur = 0;
+	cout << "For serial KNN: " << endl;
+	start = omp_get_wtime();
+	cout << "The value classified to unknown point i.e. the point belongs to group: " << classifyAPoint(arr, n, k, p) << endl;
+	end = omp_get_wtime();
+	dur = end - start;
+	cout << "Time duration: " << dur << endl;
+	
+	cout << "For parallel KNN: " << endl;
+	start = omp_get_wtime();
+	cout << "The value classified to unknown point i.e. the point belongs to group: " << classifyAPointParallel(arr, n, k, p) << endl;
+	end = omp_get_wtime();
+	dur = end - start;
+	cout << "Time duration: " << dur << endl;
+
+	/*
+	Sample Input
+	1 12 0
+	2 5 0
+	5 3 1
+	3 2 1
+	3 6 0
+	1.5 9 1
+	7 2 1
+	6 1 1
+	3.8 3 1
+	3 10 0
+	5.6 4 1
+	4 2 1
+	3.5 8 0
+	2 11 0
+	2 5 1
+	2 9 0
+	1 7 0
+	*/
+	
+	return 0;
+}
