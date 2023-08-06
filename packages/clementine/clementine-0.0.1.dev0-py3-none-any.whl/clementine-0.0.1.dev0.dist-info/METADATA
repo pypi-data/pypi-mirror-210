@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: clementine
+Version: 0.0.1.dev0
+Summary: A peachy little Python package
+Author-email: Suzen Fylke <codesue@users.noreply.github.com>
+Project-URL: repository, https://github.com/codesue/peach
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: ml
+Requires-Dist: matplotlib ; extra == 'ml'
+Requires-Dist: numpy ; extra == 'ml'
+Requires-Dist: pandas ; extra == 'ml'
+Requires-Dist: scikit-learn ; extra == 'ml'
+Requires-Dist: torch ; extra == 'ml'
+
+# peach: a peachy little Python package
+
+[![GitHub][github_badge]][github_link]
+<!-- TODO (codesue): [![PyPI][pypi_badge]][pypi_link] -->
+
+[github_badge]: https://badgen.net/badge/icon/GitHub?icon=github&color=black&label
+[github_link]: https://github.com/codesue/clementine
+
+[pypi_badge]: https://badgen.net/pypi/v/clementine?icon=pypi&color=black&label
+[pypi_link]: https://pypi.org/project/clementine
+
+## Installation
+
+<!-- TODO (codesue)
+Installing with pip:
+
+```sh
+pip install clementine
+```
+-->
+
+Installing from source:
+
+```sh
+git clone https://github.com/codesue/clementine.git
+cd clementine
+pip install -e .
+```
