@@ -1,0 +1,142 @@
+// Reductions
+
+#include <bits/stdc++.h>
+#include <omp.h>
+#include <chrono>
+
+using namespace std;
+using namespace std::chrono;
+
+// Sequential and parallel maximum finding
+
+void sequential_max(vector<int> &arr, int N){
+    int max_val = arr[0]; // Initialize the maximum value with the first element
+    for(int i = 1; i < N; i++){
+        max_val = max(max_val, arr[i]); // Update the maximum value if a larger value is found
+    }
+    cout << "\n\n Sequential Max : " << max_val << endl; // Print the maximum value
+}
+
+void parallel_max(vector<int> &arr, int N){
+    int max_val = arr[0]; // Initialize the maximum value with the first element
+    #pragma omp parallel for reduction(max:max_val)
+    for(int i = 1; i < N; i++){
+        max_val = max(max_val, arr[i]); // Update the maximum value if a larger value is found
+    }
+    cout << "\n\n Parallel Max : " << max_val << endl; // Print the maximum value
+}
+
+
+// --------------------------------------------------------------------
+
+// Sequential and parallel minimum finding
+
+void sequential_min(vector<int> &arr, int N){
+    int min_val = arr[0]; // Initialize the minimum value with the first element
+    for(int i = 1; i < N; i++){
+        min_val = min(min_val, arr[i]); // Update the minimum value if a smaller value is found
+    }
+
+    cout << "\n\n Sequential Min : " << min_val << endl; // Print the minimum value
+}
+
+void parallel_min(vector<int> &arr, int N){
+    int min_val = arr[0]; // Initialize the minimum value with the first element
+
+    #pragma omp parallel for reduction(min:min_val)
+    for(int i = 1; i < N; i++){
+        min_val = min(min_val, arr[i]); // Update the minimum value if a smaller value is found
+    }
+
+    cout << "\n\n Parallel Min : " << min_val << endl; // Print the minimum value
+}
+
+
+// ---------------------------------------------------------------------------
+
+// Sequential and parallel average calculation
+
+void sequential_average(vector<int> &arr, int N){
+    double average = arr[0]; // Initialize the average with the first element
+    for(int i = 1; i < N; i++){
+        average += arr[i]; // Add each element to the sum
+    }
+
+    average /= N; // Divide the sum by the number of elements to calculate the average
+
+    cout << "\n\n Sequential Average : " << average << endl; // Print the average
+}
+
+void parallel_average(vector<int> &arr, int N){
+    double average = arr[0]; // Initialize the average with the first element
+
+    #pragma omp parallel for reduction(+: average)
+    for(int i = 1; i < N; i++){
+        average += arr[i]; // Add each element to the sum
+    }
+
+    average /= N; // Divide the sum by the number of elements to calculate the average
+
+    cout << "\n\nParallel Average : " << average << endl; // Print the average
+}
+
+
+int main(){
+
+	srand(time(0));
+	
+	int N = rand()%1000 + 10;
+	vector<int> arr(N);
+	for(int i = 0; i < N; i++){
+		arr[i] = rand()%1000;
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+
+	// Max
+
+	auto start = high_resolution_clock::now();
+	sequential_max(arr, N);
+	auto stop = high_resolution_clock::now();	
+	auto duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Time : " << duration.count() << " Seconds "<< endl;
+
+	start = high_resolution_clock::now();
+	parallel_max(arr, N);
+	stop = high_resolution_clock::now();	
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Time : " << duration.count() << " Seconds "<< endl;
+
+	// Min
+
+	parallel_min(arr, N);
+	stop = high_resolution_clock::now();	
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Time : " << duration.count() << " Seconds "<< endl;
+
+	sequential_min(arr, N);
+	stop = high_resolution_clock::now();	
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Time : " << duration.count() << " Seconds "<< endl;
+
+
+
+	// Average
+
+
+	start = high_resolution_clock::now();
+	sequential_average(arr, N);
+	stop = high_resolution_clock::now();	
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Time : " << duration.count() << " Seconds "<< endl;
+
+	start = high_resolution_clock::now();
+	parallel_average(arr, N);
+	stop = high_resolution_clock::now();	
+	duration = duration_cast<nanoseconds>(stop-start);
+	cout << "Time : " << duration.count() << " Seconds "<< endl;
+
+
+
+
+}
