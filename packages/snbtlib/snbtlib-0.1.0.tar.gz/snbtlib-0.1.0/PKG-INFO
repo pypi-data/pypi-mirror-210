@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: snbtlib
+Version: 0.1.0
+Summary: a formatter for snbt from minecraft
+Home-page: 
+Author: Tryanks
+Author-email: tryanks@outlook.com
+License: MIT License
+Keywords: minecraft
+Platform: any
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Snbtlib
+[![PyPI version](https://badge.fury.io/py/snbtlib.svg)](https://badge.fury.io/py/snbtlib)
+
+## Installation
+```
+pip install snbtlib
+```
+
+## Usage
+```python
+import snbtlib
+from pathlib import Path
+
+# Reading Text to JSON
+json = snbtlib.loads(Path('quest.snbt').read_text(encoding='utf-8'))
+
+# Dumping JSON to Text
+text = snbtlib.dumps(json)
+Path('quest.snbt').write_text(text, encoding='utf-8')
+```
