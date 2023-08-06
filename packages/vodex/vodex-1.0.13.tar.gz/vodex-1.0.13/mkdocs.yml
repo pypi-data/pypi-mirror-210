@@ -1,0 +1,95 @@
+site_name: VoDEx Docs
+copyright: Copyright &copy; 2022 - 2023 Anna Nadtochiy
+repo_url: https://github.com/LemonJust/vodex
+repo_name: LemonJust/vodex
+theme:
+  name: material
+  favicon: img/icons8_layers.ico
+  # logo: assets/vodex_white_logo_transparent.png
+  icon:
+    logo: material/home
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    # Back-to-top button
+    - navigation.top
+    - navigation.instant
+    - toc.follow
+    - toc.integrate
+    # search
+    - search.suggest
+    - search.highlight
+    # footer
+    - navigation.footer
+    - content.code.copy
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+      primary: blue grey
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: black
+
+plugins:
+  - mkdocstrings
+  - search
+  - glightbox
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # for image alignmnet
+  - attr_list
+  - md_in_html
+  - tables
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/LemonJust
+      name: LemonJust on GitHub
+
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/anna-nadtochiy/
+      name: LemonJust (Anna Nadtochiy) on LinkedIn
+
+nav:
+  - Home: index.md
+  - Installation: install.md
+  - Quick Start:
+      - qstart/index.md
+      - Create Experiment: qstart/new_experiment.md
+      - Load Experiment: qstart/load_experiment.md
+      - Load Volumes: qstart/load_volumes.md
+  - API:
+      - api/index.md
+      - Core: api/core.md
+      - Annotation : api/annotation.md
+      - Dbmethods: api/dbmethods.md
+      - Loaders: api/loaders.md
+      - Experiment: api/experiment.md
+  - Examples: examples.md
+  - Database: db.md
+  - Contributions: contribute.md
+  - Data: data.md
+  - napari_vodex:
+      - napari/index.md
+      - Usage: napari/how-to.md
