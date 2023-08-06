@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: pycliwrapper
+Version: 1.0
+Summary: Wrap any CLI tool to Python like syntax
+Home-page: UNKNOWN
+Author: Jordi Deu-Pons
+License: Apache License 2.0
+Keywords: cli,wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Description-Content-Type: text/markdown
+
+# Generic Python CLI Wrapper
+
+Wrap any CLI tool to Python like syntax.
+
+## Usage example
+
+```
+from pycliwrapper import CliWrapper
+apt_cache = CliWrapper("apt-cache", parser=lambda stdout: stdout.splitlines())
+
+# Equivalent to run: "apt-cache search bash" 
+res = ~apt_cache.search.bash
+print(res)
+```
+
