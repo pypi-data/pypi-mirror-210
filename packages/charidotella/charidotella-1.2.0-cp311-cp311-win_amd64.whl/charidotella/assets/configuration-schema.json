@@ -1,0 +1,639 @@
+{
+    "additionalProperties": false,
+    "properties": {
+        "attachments": {
+            "additionalProperties": {
+                "items": {
+                    "properties": {
+                        "source": {
+                            "type": "string"
+                        },
+                        "target": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "type": "object"
+        },
+        "directory": {
+            "type": "string"
+        },
+        "filters": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "icon": {
+                                "type": "string"
+                            },
+                            "suffix": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "enum": ["default"],
+                                "type": "string"
+                            }
+                        },
+                        "required": ["type", "icon", "suffix"],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "icon": {
+                                "type": "string"
+                            },
+                            "suffix": {
+                                "type": "string"
+                            },
+                            "threshold": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "type": {
+                                "enum": ["arbiter_saturation"],
+                                "type": "string"
+                            }
+                        },
+                        "required": ["type", "icon", "suffix", "threshold"],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "icon": {
+                                "type": "string"
+                            },
+                            "ratio": {
+                                "minimum": 0,
+                                "type": "number"
+                            },
+                            "suffix": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "enum": ["hot_pixels"],
+                                "type": "string"
+                            }
+                        },
+                        "required": ["type", "icon", "suffix", "ratio"],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "icon": {
+                                "type": "string"
+                            },
+                            "refractory": {
+                                "type": ["string", "number"]
+                            },
+                            "suffix": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "enum": ["refractory"],
+                                "type": "string"
+                            }
+                        },
+                        "required": ["type", "icon", "suffix", "refractory"],
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "icon": {
+                                "type": "string"
+                            },
+                            "method": {
+                                "enum": [
+                                    "flip_left_right",
+                                    "flip_top_bottom",
+                                    "rotate_90",
+                                    "rotate_180",
+                                    "rotate_270",
+                                    "transpose",
+                                    "transverse"
+                                ],
+                                "type": "string"
+                            },
+                            "suffix": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "enum": ["transpose"],
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "type": "object"
+        },
+        "filters-generators": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "parameters": {
+                        "additionalProperties": {
+                            "type": "array"
+                        },
+                        "type": "object"
+                    },
+                    "template": {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["name"],
+                        "type": "object"
+                    }
+                },
+                "required": ["parameters", "template"],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "jobs": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "begin": {
+                        "type": ["string", "integer"]
+                    },
+                    "end": {
+                        "type": ["string", "integer"]
+                    },
+                    "filters": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "minItems": 1,
+                        "type": "array"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "tasks": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["name", "begin", "end", "filters"],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "jobs-generators": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "parameters": {
+                        "additionalProperties": {
+                            "type": "array"
+                        },
+                        "type": "object"
+                    },
+                    "template": {
+                        "type": "object"
+                    }
+                },
+                "required": ["parameters", "template"],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "sources": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "type": "object"
+        },
+        "tasks": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "alpha": {
+                                "exclusiveMinimum": 0,
+                                "maximum": 1,
+                                "type": "number"
+                            },
+                            "background_color": {
+                                "type": "string"
+                            },
+                            "colormap": {
+                                "type": "string"
+                            },
+                            "cycle": {
+                                "type": ["string", "integer"]
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "png_compression_level": {
+                                "maximum": 9,
+                                "minimum": 0,
+                                "type": "integer"
+                            },
+                            "scale": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "type": {
+                                "enum": ["colourtime"],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "icon",
+                            "colormap",
+                            "alpha",
+                            "png_compression_level",
+                            "background_color",
+                            "scale"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "axis_color": {
+                                "type": "string"
+                            },
+                            "height": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "long_tau": {
+                                "type": ["string", "integer"]
+                            },
+                            "long_tau_color": {
+                                "type": "string"
+                            },
+                            "main_grid_color": {
+                                "type": "string"
+                            },
+                            "secondary_grid_color": {
+                                "type": "string"
+                            },
+                            "short_tau": {
+                                "type": ["string", "integer"]
+                            },
+                            "short_tau_color": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "enum": ["event_rate"],
+                                "type": "string"
+                            },
+                            "width": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "icon",
+                            "long_tau",
+                            "short_tau",
+                            "long_tau_color",
+                            "short_tau_color",
+                            "axis_color",
+                            "main_grid_color",
+                            "secondary_grid_color",
+                            "width",
+                            "height"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "cumulative_ratio": {
+                                "maximum": 1,
+                                "minimum": 0,
+                                "type": "number"
+                            },
+                            "ffmpeg": {
+                                "type": "string"
+                            },
+                            "frametime": {
+                                "type": ["string", "integer"]
+                            },
+                            "h264_crf": {
+                                "maximum": 51,
+                                "minimum": 0,
+                                "type": "integer"
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "idle_color": {
+                                "type": "string"
+                            },
+                            "lambda_max": {
+                                "minimum": 0,
+                                "type": "number"
+                            },
+                            "off_color": {
+                                "type": "string"
+                            },
+                            "on_color": {
+                                "type": "string"
+                            },
+                            "scale": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "style": {
+                                "enum": [
+                                    "exponential",
+                                    "linear",
+                                    "window",
+                                    "cumulative",
+                                    "cumulative-shared"
+                                ],
+                                "type": "string"
+                            },
+                            "tau": {
+                                "type": ["string", "integer"]
+                            },
+                            "timecode": {
+                                "type": "boolean"
+                            },
+                            "type": {
+                                "enum": ["video"],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "icon",
+                            "frametime",
+                            "tau",
+                            "style",
+                            "on_color",
+                            "off_color",
+                            "idle_color",
+                            "cumulative_ratio",
+                            "timecode",
+                            "h264_crf",
+                            "scale",
+                            "ffmpeg"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "frequencies": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "gamma": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "maximum": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "minimum": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "mode": {
+                                "enum": ["on", "off", "all", "abs"],
+                                "type": "string"
+                            },
+                            "region-of-interest": {
+                                "items": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                },
+                                "maxItems": 4,
+                                "minItems": 4,
+                                "type": "array"
+                            },
+                            "tau": {
+                                "type": ["string", "integer"]
+                            },
+                            "times": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "type": {
+                                "enum": ["spectrogram"],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "icon",
+                            "tau",
+                            "mode",
+                            "maximum",
+                            "frequencies",
+                            "times",
+                            "gamma"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "amplitude-gamma": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "discard": {
+                                "exclusiveMaximum": 1,
+                                "minimum": 0,
+                                "type": "number"
+                            },
+                            "ffmpeg": {
+                                "type": "string"
+                            },
+                            "frametime": {
+                                "type": ["string", "integer"]
+                            },
+                            "frequencies": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "frequency-gamma": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "h264_crf": {
+                                "maximum": 51,
+                                "minimum": 0,
+                                "type": "integer"
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "maximum": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "minimum": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "mode": {
+                                "enum": ["on", "off", "all", "abs"],
+                                "type": "string"
+                            },
+                            "scale": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "tau": {
+                                "type": ["string", "integer"]
+                            },
+                            "timecode": {
+                                "type": "boolean"
+                            },
+                            "type": {
+                                "enum": ["spatiospectrogram"],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "icon",
+                            "frametime",
+                            "scale",
+                            "tau",
+                            "mode",
+                            "minimum",
+                            "maximum",
+                            "frequencies",
+                            "frequency-gamma",
+                            "amplitude-gamma",
+                            "discard",
+                            "timecode"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "cumulative_ratio": {
+                                "maximum": 1,
+                                "minimum": 0,
+                                "type": "number"
+                            },
+                            "ffmpeg": {
+                                "type": "string"
+                            },
+                            "forward_duration": {
+                                "type": ["string", "integer"]
+                            },
+                            "icon": {
+                                "type": "string"
+                            },
+                            "idle_color": {
+                                "type": "string"
+                            },
+                            "lambda_max": {
+                                "minimum": 0,
+                                "type": "number"
+                            },
+                            "off_color": {
+                                "type": "string"
+                            },
+                            "on_color": {
+                                "type": "string"
+                            },
+                            "scale": {
+                                "exclusiveMinimum": 0,
+                                "type": "integer"
+                            },
+                            "style": {
+                                "enum": [
+                                    "exponential",
+                                    "linear",
+                                    "window",
+                                    "cumulative",
+                                    "cumulative-shared"
+                                ],
+                                "type": "string"
+                            },
+                            "tau_to_frametime_ratio": {
+                                "exclusiveMinimum": 0,
+                                "type": "number"
+                            },
+                            "timecode": {
+                                "type": "boolean"
+                            },
+                            "type": {
+                                "enum": ["wiggle"],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "icon",
+                            "forward_duration",
+                            "tau_to_frametime_ratio",
+                            "style",
+                            "on_color",
+                            "off_color",
+                            "idle_color",
+                            "cumulative_ratio",
+                            "ffmpeg",
+                            "scale"
+                        ],
+                        "type": "object"
+                    }
+                ]
+            },
+            "type": "object"
+        },
+        "tasks-generators": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "parameters": {
+                        "additionalProperties": {
+                            "type": "array"
+                        },
+                        "type": "object"
+                    },
+                    "template": {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["name"],
+                        "type": "object"
+                    }
+                },
+                "required": ["parameters", "template"],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    },
+    "required": ["directory", "sources"],
+    "type": "object"
+}
