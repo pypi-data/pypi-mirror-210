@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: Pydule
+Version: 3.3.5
+Summary: Access ChatGPT,Track Location,Play Songs,Create Qrcode,Copy Text,Translate a Sentence to Other Language and more..
+Author: D.Tamil Mutharasan
+Keywords: python,PyDule,Module,Pydule,pydule,matrix,qrcode,youtube,weather,list,tuple,set,dictionary,clear,color,pick_color,open,app,search,play,mp3,song,restart,system,shutdown,date,time,text_to_speech,text,speech
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.10.7
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4
+Requires-Dist: pyttsx3
+Requires-Dist: pywhatkit
+Requires-Dist: pyglet
+Requires-Dist: datetime
+Requires-Dist: requests
+Requires-Dist: psutil
+Requires-Dist: AppOpener
+Requires-Dist: deep-translator
+Requires-Dist: qrcode
+Requires-Dist: numpy
+Requires-Dist: pyperclip
+Requires-Dist: soundfile
+Requires-Dist: soundcard
+Requires-Dist: pyautogui
+Requires-Dist: pyaudio
+Requires-Dist: wave
+Requires-Dist: opencv-python
+Requires-Dist: openai
+Requires-Dist: phonenumbers
+Requires-Dist: SpeechRecognition
+Requires-Dist: Pillow
+Requires-Dist: pyinstaller
+Requires-Dist: pyfiglet
+
+# Pydule-TM
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)                 
+[![Python 3.6](https://img.shields.io/badge/python-3.10.7-blue.svg)](https://www.python.org/downloads/release/python-3107/)   
+
+## Functionality of Pydule
+
+- Get Battery Percentage
+- Access ChatGPT
+- Get Any Website HTML
+- Encrypt and Decrypt a String
+- Record Screen,Internal Audio and Microphone
+- Seperate String
+- Insert Elements in Tuple & String
+- Generate Qrcode
+- Copy Text
+- Language Translation
+- Edit JSON Files
+- Replace Letters in String
+- Check Weather of any City
+- Open any File
+- Play Songs
+- Get Hex of any Color
+- Convert Text to Speech
+- Convert Speech to Text
+- Restart and Shutdown Your System
+- Search on Browser
+- +40 more Functions
+
+## Usage
+
+- Make sure you have Python installed in your system.
+- Run Following command in the CMD.
+ ```
+  pip install Pydule
+  ```
+## Example
+
+ ```
+# test.py
+import Pydule as py
+
+# to Find the Remaining Battery Percentage
+battery=py.aboutbattery('percentage')
+print(battery)
+
+# to Search 
+py.search('Youtube')
+
+# to Get Any Website HTML
+html=py.GetWebHTML('URL')
+print(html)
+
+# to Create Qrcode
+text,filename='Hello World','Hello.png'
+py.cqrcode(text,filename)
+
+# to get the Location of the Selected File
+path=py.askfile()
+print(path)
+
+# to Get all Available Functions
+py.functions() 
+
+# to Open Calculator
+py.openapp('calculator')
+
+# to Copy Text
+py.copy('Hello World')
+
+# to play mp3
+py.playmusic('PATH')
+
+# to Access ChatGPT
+from Pydule import AI
+print(AI.ChatGPT('Hi There','Your API Key'))
+
+# to Track the Location
+print(py.TrackLocation('Your Phone Number')) #Example +911234567890
+  ```
