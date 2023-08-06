@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: interfacy-cli
+Version: 0.0.1
+Author-email: Žiga Ivanšek <ziga.ivansek@gmail.com>
+Project-URL: Repository, https://github.com/zigai/obj-inspect
+Keywords: interfacy,cli,command-line,argparse,cli-generator,cli-builder,cli-framework
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Provides-Extra: full
+Provides-Extra: test
+Provides-Extra: dev
+License-File: LICENSE
+
+# Interfacy CLI
+[![PyPI version](https://badge.fury.io/py/interfacy-cli.svg)](https://badge.fury.io/py/interfacy-cli)
+![Supported versions](https://img.shields.io/badge/python-3.10+-blue.svg)
+[![Downloads](https://static.pepy.tech/badge/interfacy-cli)](https://pepy.tech/project/interfacy-cli)
+[![license](https://img.shields.io/github/license/zigai/interfacy-cli.svg)](https://github.com/zigai/interfacy-cli/blob/main/LICENSE)
+
+Generate CLIs from Python functions or classes 
+# Installation
+#### From PyPi
+```
+pip install interfacy-cli
+```
+#### From source
+```
+pip install git+https://github.com/zigai/interfacy-cli.git
+```
+# License
+[MIT License](https://github.com/zigai/interfacy-cli/blob/master/LICENSE)
