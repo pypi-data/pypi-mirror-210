@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clementine"
+version = "0.0.2-dev"
+description = "🍊 A sweet little Python package"
+authors = [{name = "Suzen Fylke", email = "codesue@users.noreply.github.com"}]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+]
+requires-python = ">=3.7"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+ml = ["matplotlib", "numpy", "pandas", "scikit-learn", "torch"]
+packaging = ["build", "twine"]
+
+[project.urls]
+repository = "https://github.com/codesue/clementine"
+
+[project.scripts]
+clementine = "clementine.cli:main"
