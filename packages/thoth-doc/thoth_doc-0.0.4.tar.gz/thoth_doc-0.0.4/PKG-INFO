@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: thoth_doc
+Version: 0.0.4
+Summary: Dependency-free, lightweight docstring parser
+Project-URL: Homepage, https://github.com/mariownyou/thoth-doc
+Project-URL: Bug Tracker, https://github.com/mariownyou/thoth-doc/issues
+Author-email: Lev <smj510black@gmail.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Documentation
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# Thoth doc: Dependency-free, lightweight docstring parser
+![Thoth image](Thoth.svg.png)
+
+
+## Installation
+```bash
+pip install thoth-doc
+```
+
+## Usage
+```python
+# code.py
+
+def foo(bar: int, baz: str = "qux") -> None:
+    """This is a docstring"""
+    pass
+
+
+class Foo:
+    """This is a class docstring"""
+
+    def bar(self, bar: int, baz: str = "qux") -> None:
+        """This is a method docstring"""
+        pass
+```
+
+
+```python
+from thoth_doc import get_docstring
+
+docstring = get_docstring("code.py", "foo")  # find docstring of foo in code.py
+print(docstring)  # "This is a docstring"
+
+docstring = get_docstring("code.py", "Foo")  # find docstring of Foo class in code.py
+docstring = get_docstring("code.py", "Foo.bar")  # find docstring of Foo.bar method in code.py
+```
+
+
+## License
+[MIT License](LICENSE)
