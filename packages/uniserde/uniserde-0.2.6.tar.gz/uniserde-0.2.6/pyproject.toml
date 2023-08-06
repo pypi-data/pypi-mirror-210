@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "uniserde"
+version = "0.2.6"
+description = "Convention based, effortless serialization and deserialization"
+authors = ["Jakob Pinterits <jakob.pinterits@gmail.com>"]
+license = "MIT"
+repository = "https://gitlab.com/Vivern/uniserde"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+python-dateutil = "^2.8.2"
+pymongo = "^4.3.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+black = "^22.3.0"
+isort = "^5.10.1"
+pre-commit = "^2.19.0"
+mongo-schema = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+
+[tool.isort]
+profile = "black"
