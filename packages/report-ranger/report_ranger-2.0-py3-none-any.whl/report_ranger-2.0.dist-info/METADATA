@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: report-ranger
+Version: 2.0
+Summary: Create a report using markdown files.
+Author: Matthew Strahan
+Author-email: matt@volkis.com.au
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: argparse
+Requires-Dist: cerberus
+Requires-Dist: jinja2
+Requires-Dist: kaleido (==0.2.1)
+Requires-Dist: mistune
+Requires-Dist: num2words
+Requires-Dist: numpy
+Requires-Dist: openpyxl
+Requires-Dist: pandas
+Requires-Dist: plotly
+Requires-Dist: pyyaml
+Requires-Dist: tabulate
+Requires-Dist: watchdog
