@@ -1,0 +1,26 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "hl7conv2"
+requires-python = ">=3.7"
+version = "0.1.2"
+repository = "https://github.com/IlyaKalosha/hl7conv2"
+keywords = ["hl7", "convert", "JSON"]
+readme = "README.md"
+description = "Converts hl7 and json formats in both ways"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/IlyaKalosha/hl7conv2"
+"Change Log" = "https://github.com/IlyaKalosha/hl7conv2/releases"
+"Issues" = "https://github.com/IlyaKalosha/hl7conv2/issues"
+
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
