@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "itslive"
+homepage = "https://github.com/nasa-jpl/itslive-vortex"
+version = "0.1.7"
+description = "Python client for ITSLIVE gralcier velocity data"
+authors = ["Luis Lopez <luis.lopez@nsidc.org>"]
+license = "GNUL V3"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+zarr = ">=2.11"
+s3fs = ">=2022.3"
+xarray = ">=2022.3"
+Shapely = ">=1.8"
+pyproj = ">=3.3"
+matplotlib = "~=3.6"
+rich-click = ">=1.5"
+plotext=">=0"
+tabulate = ">=0.9.0"
+pandas = "1.5.1"
+requests = "^2.28.1"
+
+[tool.poetry.dev-dependencies]
+black = ">=22.3.0"
+pylint = "^2.15.5"
+pytest = ">=7.1.2"
+pytest-watch = ">=4.2.0"
+isort = ">=5.10.1"
+flake8 = ">=4.0.1"
+autoflake8 = ">=0.3.2"
+mkdocs = ">=1.3.0"
+mkdocs-material = ">=7.1,<9.0"
+mkdocstrings = ">=0.18.1"
+pymdown-extensions = ">=9.2"
+jupyterlab = ">=3.3"
+scalene = ">=1.5.14"
+responses = ">=0.22.0"
+mypy = "^0.991"
+
+
+[tool.poetry.scripts]
+itslive-export = "itslive.cli.export:export"
+itslive-plot = "itslive.cli.plot:plot"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
