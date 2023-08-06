@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "zeph1rr-fastapi-utils"
+version = "0.1.0"
+description = "Package for unificate functions in fastapi"
+authors = ["Zeph1rr <grianton535@gmail.com>"]
+readme = "README.md"
+packages = [{include = "zeph1rr_fastapi_utils"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^1.10.8"
+fastapi = "^0.95.2"
+passlib = "^1.7.4"
+bcrypt = "^4.0.1"
+python-jose = "^3.3.0"
+loguru = "^0.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
