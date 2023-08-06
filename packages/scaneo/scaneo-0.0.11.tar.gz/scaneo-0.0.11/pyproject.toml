@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "scaneo"
+version = "0.0.11"
+description = ""
+authors = ["Juan Sensio <it@earthpulse.es>"]
+readme = "README.md"
+packages = [{include = "scaneo"}]
+
+[tool.poetry.scripts]
+scaneo = "scaneo.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
