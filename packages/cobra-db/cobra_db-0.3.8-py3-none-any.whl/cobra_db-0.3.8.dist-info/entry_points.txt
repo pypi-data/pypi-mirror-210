@@ -1,0 +1,5 @@
+[console_scripts]
+cobra_group=cobra_db.scripts.stage_2:cli
+cobra_ingest=cobra_db.scripts.stage_1_ingest_images:cli
+cobra_pseudonymize=cobra_db.scripts.pseudonymize_image_metadata:main
+
