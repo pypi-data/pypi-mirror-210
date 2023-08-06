@@ -1,0 +1,2 @@
+class AwsResponseError(Exception):
+    pass
