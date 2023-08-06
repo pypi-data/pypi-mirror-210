@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: stqe
+Version: 0.2.2
+Summary: Python modules to manage SAN devices
+Project-URL: Repository, https://gitlab.com/rh-kernel-stqe/python-stqe
+Author: Jakub Krysl
+Author-email: Bruno Goncalves <bgoncalv@redhat.com>
+Maintainer-email: Bruno Goncalves <bgoncalv@redhat.com>, Martin Hoyer <mhoyer@redhat.com>, Filip Suba <fsuba@redhat.com>
+License-Expression: GPL-3.0-or-later
+License-File: LICENSE
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.6
+Requires-Dist: fmf>=1.1.0
+Requires-Dist: libsan>=0.5.3
+Provides-Extra: stable
+Requires-Dist: attrs==22.2.0; extra == 'stable'
+Requires-Dist: certifi==2022.12.7; extra == 'stable'
+Requires-Dist: charset-normalizer==3.0.1; extra == 'stable'
+Requires-Dist: configobj==5.0.8; extra == 'stable'
+Requires-Dist: filelock==3.9.0; extra == 'stable'
+Requires-Dist: fmf==1.2.1; extra == 'stable'
+Requires-Dist: idna==3.4; extra == 'stable'
+Requires-Dist: jsonschema==4.17.3; extra == 'stable'
+Requires-Dist: libsan==0.5.3; extra == 'stable'
+Requires-Dist: marshmallow==3.19.0; extra == 'stable'
+Requires-Dist: netapp-ontap==9.12.1.0; extra == 'stable'
+Requires-Dist: netifaces2==0.0.15; extra == 'stable'
+Requires-Dist: packaging==23.0; extra == 'stable'
+Requires-Dist: pyrsistent==0.19.3; extra == 'stable'
+Requires-Dist: requests-toolbelt==0.10.1; extra == 'stable'
+Requires-Dist: requests==2.28.2; extra == 'stable'
+Requires-Dist: ruamel-yaml-clib==0.2.7; extra == 'stable'
+Requires-Dist: ruamel-yaml==0.17.21; extra == 'stable'
+Requires-Dist: six==1.16.0; extra == 'stable'
+Requires-Dist: typing-extensions==4.5.0; extra == 'stable'
+Requires-Dist: urllib3==1.26.14; extra == 'stable'
+Description-Content-Type: text/markdown
+
+# stqe
+
+Kernel-QE Storage test suite
+
+### Dependencies
+* Python >= 3.6
+* pip >= 20.3
+
+### Installation
+Using virtualenv:  
+`python3 -m pip install virtualenv`
+`python3 -m venv stqe-venv && source stqe-venv/bin/activate`  
+`python3 -m pip install -U pip wheel`  
+`python3 -m pip install stqe`
+
+(optional) edit /etc/san_top.conf example
+
+#### How to Uninstall
+`python3 -m pip uninstall stqe`
+
+#### Basic cli usage
+`stqe-test --help`

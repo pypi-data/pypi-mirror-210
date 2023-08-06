@@ -1,0 +1,111 @@
+[build-system]
+requires = ["hatchling", "hatch-requirements-txt"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stqe"
+description = "Python modules to manage SAN devices"
+readme = "README.md"
+requires-python = ">=3.6"
+dynamic = ["version", "optional-dependencies"]
+authors = [
+  { name = "Bruno Goncalves", email = "bgoncalv@redhat.com" },
+  { name = "Jakub Krysl"}
+]
+maintainers = [
+  { name = "Bruno Goncalves", email = "bgoncalv@redhat.com" },
+  { name = "Martin Hoyer", email = "mhoyer@redhat.com" },
+  { name = "Filip Suba", email = "fsuba@redhat.com" }
+]
+license = "GPL-3.0-or-later"
+license-files = { paths = ["LICENSE"]}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Software Development :: Testing",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX :: Linux",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+
+dependencies = [
+  "libsan >=0.5.3",
+  "fmf >=1.1.0",
+]
+
+[project.urls]
+Repository = "https://gitlab.com/rh-kernel-stqe/python-stqe"
+
+[project.scripts]
+stqe-test = "stqe.stqe_test:main"
+stqe-tool = "stqe.stqe_tool:main"
+
+[tool.hatch.metadata.hooks.requirements_txt.optional-dependencies]
+stable = ["requirements-stable.txt"]
+
+[tool.black]
+line-length = 120
+target-version = ["py311", "py310", "py39", "py38", "py37", "py36"]
+
+[tool.ruff]
+line-length = 120
+src = ["stqe"]
+target-version = "py37"
+select = [
+  "B",    # flake8-bugbear
+  "C4",   # flake8-comprehensions
+  "E",    # pycodestyle
+  "F",    # pyflakes
+  "W",    # pycodestyle
+  "RUF",  # ruff
+  "I",    # isort
+  "N",    # pep8-naming
+  "UP",   # pyupgrade
+  "YTT",  # flake8-2020
+  "ISC",  # flake8-implicit-str-concat
+  "INP",  # flake8-no-pep420
+  "PIE",  # flake8-pie
+  "PT",   # flake8-pytest-style
+  "RET",  # flake8-return
+  "SIM",  # flake8-simplify
+  "ARG",  # flake8-unused-arguments
+  "PGH",  # pygrep-hooks
+  "PL",   # pylint
+  "TRY",  # tryceratops
+]
+ignore = [
+  "RET504",  # Unnecessary variable assignment before `return`
+  "RET505",  # unnecessary `{branch}` after `return` statement
+  "SIM105",  # use `contextlib.suppress({exception})`
+  "PLR1722", # use sys.exit()
+  "PLR2004", # magic value
+  "PLW0602", # using global but no assignment is done
+  "PLR09",   # pylint-refactor too-many
+]
+
+[tool.ruff.pydocstyle]
+convention = "pep257"
+
+[tool.pep8]
+max-line-length = "120"
+
+[tool.pytest.ini_options]
+addopts = ["--verbose"]
+testpaths = ["tests"]
+
+[tool.coverage.report]
+omit = ["_test.py"]
+
+[tool.mypy]
+ignore_missing_imports = true
+show_error_codes = true
+python_version = "3.6"
+
+[tool.hatch.version]
+path = "stqe/__about__.py"

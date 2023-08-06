@@ -1,0 +1,8 @@
+/iscsi_fileio_lun_stress:
+    description: Creates fileio backstore and use it as a lun in iscsi target.
+    test: iscsi_local_target.py
+    tags: [iscsi_stress]
+    requires_setup:
+    - targetcli/setup/stop_multipath
+    - targetcli/setup/create_fileio_1g
+    - targetcli/setup/create_fileio_target
