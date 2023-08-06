@@ -1,0 +1,110 @@
+{% import "macros/components/ts_selector.html" as mac_ts_selector %}
+{% extends "pages/base.html" %}
+
+{% set title = "Explore timeseries" %}
+
+{% block main_content %}
+{{ super() -}}
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col">
+                    {% filter indent(width=20, first=False) %}
+                    {{ mac_ts_selector.render_ts_selector(element_id="tsSelectorExplore") -}}
+                    {% endfilter %}
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col">
+                    <div is="app-timezone-picker" id="timezonePicker" title="Timezone" tzname="{{ g.campaign_ctxt.tz_name }}" required>
+                        <div is="app-spinner"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-xl-flex d-grid mb-2">
+                <div class="col pb-2 pb-xl-0">
+                    <div is="app-datetime-picker" id="start_datetime" title="From" time="00:00" tzname="{{ g.campaign_ctxt.tz_name }}" required>
+                        <div is="app-spinner"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div is="app-datetime-picker" id="end_datetime" title="Until" time="00:00" tzname="{{ g.campaign_ctxt.tz_name }}" required>
+                        <div is="app-spinner"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-xl-flex d-grid mb-2">
+                <div class="col pb-2 pb-xl-0">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Timeseries data state</span>
+                        <select id="data_states" class="form-select" aria-label="Select a timeseries data state" required></select>
+                    </div>
+                </div>
+                <div class="col pb-2 pb-xl-0">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Aggregation mode</span>
+                        <select class="form-select" id="agg" name="agg" aria-label="Select an aggregation mode">
+                            <option value="none" selected>No aggregation</option>
+                            <option value="avg">average</option>
+                            <option value="sum">sum</option>
+                            <option value="min">minimum</option>
+                            <option value="max">maximum</option>
+                            <option value="count">count</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col d-none invisible">
+                    <div is="app-ts-bucket-width" id="bucket" title="Duration" unit="day" value="1"></div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="accordion" id="accordionTsParams">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTsParams">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTsParams" aria-controls="collapseTsParams" aria-expanded="false">
+                                    <span class="fw-bold text-secondary">Timeseries customization</span>
+                                </button>
+                            </h2>
+                            <div id="collapseTsParams" class="accordion-collapse collapse" aria-labelledby="headingTsParams" data-bs-parent="#accordionTsParams">
+                                <div class="accordion-body px-0 py-2" id="tsParam">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button id="loadBtn" class="btn btn-sm btn-outline-primary" title="Load chart"><i class="bi bi-arrow-clockwise"></i> Load chart</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="chartContainer" class="border border-1 rounded bg-white p-2"></div>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
+
+{% block body_scripts %}
+{{ super() -}}
+{% filter indent(width=8, first=True) %}
+<script type="module">
+    import "{{ url_for('static', filename='scripts/modules/components/time/tzPicker.js') }}";
+    import "{{ url_for('static', filename='scripts/modules/components/time/datetimePicker.js') }}";
+    import "{{ url_for('static', filename='scripts/modules/components/timeseries/bucketWidth.js') }}";
+    import "{{ url_for('static', filename='scripts/modules/components/spinner.js') }}";
+    import { TimeseriesDataExploreView } from "{{ url_for('static', filename='scripts/modules/views/timeseries/data/explore.js') }}";
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        let tsDataExploreView = new TimeseriesDataExploreView();
+        tsDataExploreView.refresh();
+
+    });
+</script>
+{% endfilter %}
+{% endblock body_scripts %}

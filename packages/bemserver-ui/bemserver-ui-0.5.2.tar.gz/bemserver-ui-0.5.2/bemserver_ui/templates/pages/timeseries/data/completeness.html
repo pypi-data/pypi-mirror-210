@@ -1,0 +1,83 @@
+{% import "macros/components/ts_selector.html" as mac_ts_selector %}
+{% extends "pages/base.html" %}
+
+{% set title = "Data completeness" %}
+
+{% block main_content %}
+{{ super() -}}
+<div class="container-fluid">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col">
+                    {% filter indent(width=20, first=False) %}
+                    {{ mac_ts_selector.render_ts_selector(element_id="tsSelectorCompleteness") -}}
+                    {% endfilter %}
+                </div>
+            </div>
+            <div class="row d-lg-flex d-grid mb-2">
+                <div class="col pb-3 pb-lg-0">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Period</span>
+                        <select id="period" class="form-select" aria-label="Select a period" required>
+                            <option value="Year-Monthly" selected>Year-Monthly</option>
+                            <option value="Year-Daily">Year-Daily</option>
+                            <option value="Month-Daily">Month-Daily</option>
+                            <option value="Week-Daily">Week-Daily</option>
+                            <option value="Week-Hourly">Week-Hourly</option>
+                            <option value="Day-Hourly">Day-Hourly</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Timeseries data state</span>
+                        <select id="data_states" class="form-select" aria-label="Select a timeseries data state" required></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-lg-flex d-grid mb-2">
+                <div class="col pb-3 pb-lg-0">
+                    <div is="app-datetime-picker" id="end_datetime" title="Until" date="{{ dt_end.date().isoformat() }}" time="{{ dt_end.time().isoformat()[:5] }}" tzname="{{ g.campaign_ctxt.tz_name }}" required>
+                        <div is="app-spinner"></div>
+                    </div>
+                    <small class="fst-italic text-muted">(excluded from the interval)</small>
+                </div>
+                <div class="col">
+                    <div is="app-timezone-picker" id="timezonePicker" title="Timezone" tzname="{{ g.campaign_ctxt.tz_name }}" required>
+                        <div is="app-spinner"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+                <button id="loadBtn" class="btn btn-sm btn-outline-primary" title="Load chart"><i class="bi bi-arrow-clockwise"></i> Load chart</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="chartContainer" class="border border-1 rounded bg-white p-2"></div>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
+
+{% block body_scripts %}
+{{ super() -}}
+{% filter indent(width=8, first=True) %}
+<script type="module">
+    import "{{ url_for('static', filename='scripts/modules/components/time/tzPicker.js') }}";
+    import "{{ url_for('static', filename='scripts/modules/components/time/datetimePicker.js') }}";
+    import "{{ url_for('static', filename='scripts/modules/components/spinner.js') }}";
+    import { TimeSeriesDataCompletenessView } from "{{ url_for('static', filename='scripts/modules/views/timeseries/data/completeness.js') }}";
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        let tsDataCompletenessView = new TimeSeriesDataCompletenessView({height: 500});
+        tsDataCompletenessView.refresh();
+
+    });
+</script>
+{% endfilter %}
+{% endblock body_scripts %}

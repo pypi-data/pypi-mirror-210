@@ -1,0 +1,40 @@
+html,
+body {
+    background-color: #f3f8e9 !important;
+}
+
+body {
+    min-width: 400px;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.app-messages {
+    z-index: 1031;
+    max-height: 150px;
+}
+.app-messages > .alert {
+    min-width: 40vw !important;
+}
+
+.app-signin-panel {
+    min-width: 370px;
+    max-width: 400px;
+}
+
+.app-logo {
+    max-height: 170px;
+}

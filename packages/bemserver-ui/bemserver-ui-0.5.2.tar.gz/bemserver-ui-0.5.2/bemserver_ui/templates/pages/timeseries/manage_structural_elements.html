@@ -1,0 +1,82 @@
+{% extends "pages/base.html" %}
+
+{% set title = "Timeseries" %}
+{% set subtitle = "Manage locations" %}
+
+{% block main_content %}
+{{ super() -}}
+<div class="container-fluid">
+    <div class="row h-100">
+        <div class="col-12 col-xl-6 pb-3 pb-xl-0">
+            <h5>Timeseries</h5>
+            <div class="row mb-3">
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label m-0" for="search">Search</label>
+                    <input type="text" class="form-control" id="search" name="search" autofocus>
+                    <a id="clear" role="button" class="link-danger text-decoration-none mx-1 d-none invisible" title="Clear search filter"><i class="bi bi-x-circle"></i></a>
+                </div>
+            </div>
+            <nav class="row mb-2" aria-label="Timeseries pagination">
+                <div class="col-auto d-flex align-items-center py-1">
+                    <div id="tsPageSizeSelectorContainer"></div>
+                </div>
+                <div class="col d-flex flex-wrap justify-content-end align-items-center gap-2">
+                    <small><app-items-count id="tsItemsCount"></app-items-count></small>
+                    <div id="tsPaginationContainer"></div>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col">
+                    <div id="tsListContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h5>
+                Locations available
+                <sup><a class="link-secondary" title="Help" role="button" data-bs-toggle="collapse" data-bs-target="#helpLocations" aria-expanded="false" aria-controls="helpLocations"><i class="bi bi-question-diamond"></i></a></sup>
+            </h5>
+            <div class="collapse mb-3" id="helpLocations">
+                <div class="alert alert-info pb-0" role="alert">
+                    <span class="fw-bold"><i class="bi bi-question-diamond"></i> Help</span>
+                    <p class="ms-3">Click on a node in sites or zones tree to <span class="fw-bold fst-italic">drag and drop it over a timeseries</span> you want to locate.</p>
+                </div>
+            </div>
+            <ul class="nav nav-tabs app-tabs" id="tabSites" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="sites-tab" data-bs-toggle="tab" data-bs-target="#sites-tabcontent" type="button" role="tab" aria-controls="sites-tabcontent" aria-selected="true"><i class="bi bi-buildings"></i> Sites / Buildings...</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="zones-tab" data-bs-toggle="tab" data-bs-target="#zones-tabcontent" type="button" role="tab" aria-controls="zones-tabcontent" aria-selected="false"><i class="bi bi-bullseye"></i> Zones</button>
+                </li>
+            </ul>
+            <div class="tab-content app-tab-content overflow-auto border border-top-0 bg-white" id="tabSitesContent">
+                <div class="tab-pane fade show active p-3" id="sites-tabcontent" role="tabpanel" aria-labelledby="sites-tab">
+                    <app-tree id="sitesTree"></app-tree>
+                </div>
+                <div class="tab-pane fade p-3" id="zones-tabcontent" role="tabpanel" aria-labelledby="zones-tab">
+                    <app-tree id="zonesTree" toolbar="false"></app-tree>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
+
+{% block body_scripts %}
+{{ super() -}}
+{% filter indent(width=8, first=True) %}
+<script type="module">
+    import { TimeseriesManageStructuralElementsView } from "{{ url_for('static', filename='scripts/modules/views/timeseries/manageStructuralElements.js') }}";
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        let tsManageStructuralElementsView = new TimeseriesManageStructuralElementsView();
+        tsManageStructuralElementsView.refresh();
+
+});
+</script>
+{% endfilter %}
+{% endblock body_scripts %}
