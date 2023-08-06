@@ -1,0 +1,44 @@
+from distutils.core import setup
+setup(
+  name = 'ModularTorch',         
+  packages = ['modular_torch'],   
+  version = '0.1.1',      
+  license='MIT',
+  description = 'custom torch wrapper',   
+  author = 'Mahesh Patapalli',                   
+  author_email = 'mahesh.patapali@gmail.com',      
+  url = 'https://github.com/sirreajohn/ModularTorch',  
+  download_url = 'https://github.com/sirreajohn/ModularTorch/archive/refs/tags/v0.1a.tar.gz',
+  keywords = ['pytorch', 'python', 'deep learning'], 
+  install_requires=[            
+        "zipfile",
+        "requests",
+        "pathlib",
+        "torch",
+        "torchvision"
+        "typing",
+        "numpy",
+        "pandas"
+        "tqdm",
+        "tensorboard",
+        "torch-tb-profiler",
+        "plotly",
+        "datetime",
+        "torchinfo"
+      ],
+  classifiers=[
+    'Development Status :: 4 - Beta',      # "3 - Alpha", "4 - Beta" or "5 - Production/Stable" 
+    'Intended Audience :: Developers',
+    'Topic :: Software Development :: Build Tools',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+  ],
+)
