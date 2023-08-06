@@ -1,0 +1,11 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+
+[tool.flit.metadata]
+module = "copilot"
+dist-name = "django-copilot"
+author = "Vitaliy Kucheryaviy"
+author-email = "ppr.vitaly@gmail.com"
+home-page = "https://github.com/vitalik/django-copilot"
