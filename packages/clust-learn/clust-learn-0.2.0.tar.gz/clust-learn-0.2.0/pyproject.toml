@@ -1,0 +1,25 @@
+[project]
+name = "clust-learn"
+version = "0.2.0"
+authors = [
+  { name="Miguel Alvarez-Garcia", email="malvarez.statistics@gmail.com" },
+]
+description = "A Python package for explainable cluster analysis"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+	'Topic :: Scientific/Engineering',
+	'Programming Language :: Python :: 3.9',
+	'Programming Language :: Python :: 3.10',
+	'Programming Language :: Python :: 3.11'
+]
+
+[project.urls]
+"Homepage" = "https://github.com/malgar/clust-learn"
+"Bug Tracker" = "https://github.com/malgar/clust-learn/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
