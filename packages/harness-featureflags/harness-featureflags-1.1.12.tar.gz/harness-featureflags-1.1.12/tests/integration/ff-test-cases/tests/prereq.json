@@ -1,0 +1,106 @@
+{
+  "apiVersion": "1.0",
+  "flags": [
+    {
+      "defaultServe": { "distribution": null, "variation": "enable" },
+      "environment": "dev",
+      "feature": "bool-flag-prereq",
+      "kind": "boolean",
+      "offVariation": "disable",
+      "prerequisites": [],
+      "project": "default",
+      "rules": [
+        {
+          "ruleId": "",
+          "priority": 1000,
+          "clauses": [
+            {
+              "id": "",
+              "attribute": "identifier",
+              "op": "equal",
+              "values": ["harness"]
+            }
+          ],
+          "serve": {
+            "distribution": null,
+            "variation": "disable"
+          }
+        }
+      ],
+      "state": "on",
+      "variationToTargetMap": null,
+      "variations": [
+        {
+          "description": null,
+          "identifier": "enable",
+          "name": "Enable Page",
+          "value": "true"
+        },
+        {
+          "description": null,
+          "identifier": "disable",
+          "name": "Disable Page",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "defaultServe": { "distribution": null, "variation": "true" },
+      "environment": "dev",
+      "feature": "bool-flag",
+      "kind": "boolean",
+      "offVariation": "false",
+      "prerequisites": [
+        {
+          "feature": "bool-flag-prereq",
+          "variations": ["enable", "disable"]
+        }
+      ],
+      "project": "default",
+      "rules": [
+        {
+          "ruleId": "",
+          "priority": 1000,
+          "clauses": [
+            {
+              "id": "",
+              "attribute": "identifier",
+              "op": "equal",
+              "values": ["harness"]
+            }
+          ],
+          "serve": {
+            "distribution": null,
+            "variation": "false"
+          }
+        }
+      ],
+      "state": "on",
+      "variationToTargetMap": null,
+      "variations": [
+        {
+          "description": null,
+          "identifier": "true",
+          "name": "Enable Page",
+          "value": "true"
+        },
+        {
+          "description": null,
+          "identifier": "false",
+          "name": "Disable Page",
+          "value": "false"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "identifier": "harness",
+      "name": "Harness"
+    }
+  ],
+  "tests": [
+    { "flag": "bool-flag", "expected": true },
+    { "flag": "bool-flag", "target": "harness", "expected": false }
+  ]
+}
