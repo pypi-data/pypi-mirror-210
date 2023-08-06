@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: netdem
+Version: 1.2
+Summary: A neural network machine learning enabled DEM framework for computational particle mechanics.
+Home-page: https://apaam.github.io/netdem_docs/
+Author: APAAM
+Author-email: lai.zhengshou@outlook.com
+Description-Content-Type: text/markdown
+
+# NetDEM
+
+## Welcome
+
+[**NetDEM**](https://apaam.github.io/netdem_docs/) is a C++ program library targeted at the computational mechanics of irregular granular materials and utilizing machine learning tools to boost the computational effciency.
+
+It is currently capable of performing basic and general DEM simulations, with following features:
+
+- Sphere and triangle facets contact solver
+- GJK contact solver for convex particles
+- SDF contact solver for arbitrary (convex and concave) particles
+- Hybrid OpenMP and MPI parallel computing
+- Integrated [mlpack](https://www.mlpack.org/) machine learning environment
+
+The supported particle shapes include ``sphere``, ``cylinder``, ``poly-super-ellipsoid``, ``poly-super-quadrics``, ``spherical harmonics``, ``triangle mesh``, ``level set``, etc.
+
+## Get started
+
+Please kindly refer to [**NetDEM**](https://apaam.github.io/netdem_docs/) for usage, documentation, and code doxygen (python APIs) of the package.
+
+Please kindly node that not all of the c++ properties or methods have been exposed to python. Please contact us (lai.zhengshou@outlook.com) if you would like to contribute.
