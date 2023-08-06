@@ -1,0 +1,6 @@
+[console_scripts]
+odcs-frontend = odcs.server.manage:runssl [server]
+odcs-gencert = odcs.server.manage:generatelocalhostcert [server]
+odcs-manager = odcs.server.manage:cli [server]
+odcs-mock-runroot = odcs.server.mock_runroot:mock_runroot_main [server]
+
