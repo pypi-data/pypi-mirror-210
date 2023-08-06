@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "discordlevelingcard"
+version = "0.5.1"
+readme = "README.md"
+description = "A library with leveling cards for your discord bot."
+repository = "https://github.com/krishsharma0413/DiscordLevelingCard"
+authors = ["Reset <krishsharma0413@gmail.com>"]
+license = "MIT"
+keywords = [
+    "discord", "leveling", "card",
+    "image", "discord.py", "disnake",
+    "nextcord", "rank", "ranking",
+    "level", "discord-bot", "bot",
+    "discord-leveling", "level-card",
+    "discord-leveling-card", "discord-rank-card"
+]
+packages = [
+    { include = "DiscordLevelingCard"}
+]
+include = ["DiscordLevelingCard/assets/*"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4"
+aiohttp = "^3.8.1"
+Pillow = "^9.2.0"
+requests = "^2.28.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
