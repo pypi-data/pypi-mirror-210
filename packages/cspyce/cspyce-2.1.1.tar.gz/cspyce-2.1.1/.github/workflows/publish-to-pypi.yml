@@ -1,0 +1,95 @@
+# This workflow compiles CSPICE for many architectures and publishes a branch
+# to PyPi
+
+name: Publish to PyPI
+run-name: Publish to PyPI triggered by ${{ github.ref_type }} ${{ github.ref_name }}
+
+# Controls when the workflow will run - push of a "v*" tag
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build_wheels:
+    name: Build Python 3 wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        # os: [ubuntu-latest]
+        # python-version: [ '3.11' ]
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.12.3
+        env:
+          CIBW_PROJECT_REQUIRES_PYTHON: '>=3.8'
+          CIBW_BEFORE_BUILD: 'pip3 install numpy setuptools setuptools_scm && python3 setup.py generate && git status && git log --decorate -n 3'
+          CIBW_SKIP: 'pp* *musllinux* *cp27mu*'
+          CIBW_ARCHS: 'auto64'
+          CIBW_ARCHS_MACOS: 'x86_64 arm64'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
+
+
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Build sdist
+        run: |
+          printenv
+          sudo apt install swig
+          pip install numpy setuptools setuptools-scm wheel
+          pwd
+          ls -al
+          git status
+          git tag -l
+          (git log --decorate -n 3)
+          python3 -m setuptools_scm
+          python3 setup.py generate
+          python3 setup.py sdist
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: dist/*.tar.gz
+
+
+  upload_pypi:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: artifact   # prevents extra directory
+          path: dist
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.8.6
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          verify-metadata: false
