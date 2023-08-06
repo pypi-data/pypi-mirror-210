@@ -1,0 +1,238 @@
+====================
+Contributing to PyNN
+====================
+
+Mailing list
+============
+
+Discussions about PyNN take place in the `NeuralEnsemble Google Group`_.
+
+
+Setting up a development environment
+====================================
+
+We strongly suggest you work in a virtual environment, e.g. using virtualenv_ or Anaconda.
+
+Requirements
+------------
+
+In addition to the requirements listed in :doc:`../installation`, you will need to
+install:
+
+    * pytest_
+    * coverage_
+
+to run tests, and:
+
+    * Sphinx_
+    * matplotlib
+
+to build the documentation.
+
+Code checkout
+-------------
+
+PyNN development is based around GitHub. Once you have a GitHub account, you
+should fork_ the official `PyNN repository`_, and then clone your fork to your
+local machine::
+
+    $ git clone https://github.com/<username>/PyNN.git pyNN_dev
+
+To work on the development version::
+
+    $ git checkout master
+
+To keep your PyNN repository up-to-date with respect to the official
+repository, add it as a remote::
+
+    $ git remote add upstream https://github.com/NeuralEnsemble/PyNN.git
+
+and then you can pull in any upstream changes::
+
+    $ git pull upstream master
+
+
+To get PyNN onto your :envvar:`PYTHONPATH` there are many options, such as:
+
+    * pip editable mode (`pip install -e /path/to/PyNN`)
+    * creating a symbolic link named :file:`pyNN` from somewhere that is already
+      on your :envvar:`PYTHONPATH`, such as the :file:`site-packages` directory,
+      to the :file:`pyNN_dev/pyNN` directory.
+
+Coding style
+============
+
+We try to stay fairly close to PEP8_. Please note in particular:
+
+    - indentation of four spaces, no tabs
+    - single space around most operators, but no space around the '=' sign when
+      used to indicate a keyword argument or a default parameter value.
+    - some function/method names in PyNN use ``mixedCase``, but these will
+      gradually be deprecated and replaced with ``lower_case_with_underscores``.
+      Any new functions or methods should use the latter.
+    - we currently target versions 3.8+
+
+
+Testing
+=======
+
+Running the PyNN test suite requires the *pytest_* package,
+and optionally the *pytest-cov* package. To run the entire test suite::
+
+    $ pytest
+
+To see how well the codebase is covered by the tests, run::
+
+    $ pytest --cov=pyNN --cov-report term --cov-report html
+
+There are currently two sorts of tests, unit tests, which aim to exercise
+small pieces of code such as individual functions and methods, and system tests,
+which aim to test that all the pieces of the system work together as expected.
+
+If you add a new feature to PyNN, or fix a bug, you should write both unit and
+system tests.
+
+Unit tests should where necessary make use of mock/fake/stub/dummy objects to
+isolate the component under test as well as possible. The :mod:`pyNN.mock`
+module is a complete mock simulator backend that may be used for this purpose.
+Except when testing a specific simulator interface, unit tests should be able to
+run without a simulator installed.
+
+System tests should be written so that they can run with any of the simulators.
+The suggested way to do this is to write test functions
+that take a simulator module as an argument, and then wrap these functions
+with the following decorator::
+
+    @pytest.mark.parametrize("sim", (pyNN.nest, pyNN.neuron, pyNN.brian2))
+
+To run only the tests within a file
+named 'test_electrodes' located inside system/scenarios, use::
+
+    $ pytest test/system/scenarios/test_electrodes.py
+
+To run a single specific test named 'test_changing_electrode' located within
+some file (and added to registry) inside system/scenarios, use::
+
+    $ pytest test/system/scenarios/test_electrodes.py::test_changing_electrode
+
+
+Submitting code
+===============
+
+The best way to get started with contributing code to PyNN is to fix a small
+bug (`bugs marked "minor" in the bug tracker`_) in your checkout of
+the code. Once you are happy with your changes, **run the test suite again to check
+that you have not introduced any new bugs**. If this is your first contribution
+to the project, please add your name and affiliation/employer to :file:`AUTHORS`.
+
+After committing the changes to your local repository::
+
+    $ git commit -m 'informative commit message'
+
+first pull in any changes from the upstream repository::
+
+    $ git pull upstream master
+
+then push to your own account on GitHub::
+
+    $ git push
+
+Now, via the GitHub web interface, open a pull request.
+
+
+Documentation
+=============
+
+PyNN documentation is generated using Sphinx_.
+
+To build the documentation in HTML format, run::
+
+    $ make html
+
+in the ``doc`` subdirectory of the source tree. Many of the files contain
+examples of interactive Python sessions. The validity of this code can be tested
+by running::
+
+    $ make doctest
+
+PyNN documentation is hosted at http://neuralensemble.org/docs/PyNN
+
+
+Making a release
+================
+
+To make a release of PyNN requires you to have permissions to upload PyNN
+packages to the `Python Package Index`_, and to
+upload documentation to the neuralensemble.org server. If you are interested
+in becoming release manager for PyNN, please contact us via the `mailing list`_.
+
+When you think a release is ready, run through the following checklist one
+last time:
+
+    * do all the tests pass? This means running :command:`pytest` in
+      :file:`test/unittests` and :file:`test/system` and running :command:`make doctest` in
+      :file:`doc`. You should do this on at least two Linux systems -- one a very
+      recent version and one at least a year old, and on at least one version of
+      Mac OS X. You should also do this with multiple Python versions (3.7+).
+    * do all the example scripts generate the correct output? Run the
+      :file:`run_all_examples.py` script in :file:`examples/tools` and then visually
+      check the :file:`.png` files generated in :file:`examples/tools/Results`. Again,
+      you should do this on at least two Linux systems and one Mac OS X system.
+    * does the documentation build without errors? You should then at least skim
+      the generated HTML pages to check for obvious problems.
+    * have you updated the version numbers in :file:`pyproject.toml`, :file:`pyNN/__init__.py`,
+      :file:`doc/conf.py` and :file:`doc/installation.txt`?
+    * have you updated the changelog?
+
+Once you've confirmed all the above, create source and wheel packages using::
+
+    $ python -m build
+
+and check that they install properly (you will find them in the :file:`dist`
+subdirectory).
+
+Now you should commit any changes, then tag with the release number as follows::
+
+    $ git tag x.y.z
+
+where ``x.y.z`` is the release number. You should now upload the documentation
+to http://neuralensemble.org/docs/PyNN/ by updating the `neuralensemble.github.io`
+repository (in the :file:`docs/PyNN` directory).
+
+If this is a final release, there are a few more steps:
+
+    * if it is a major release (i.e. an ``x.y.0`` release), create a new bug-fix
+      branch::
+
+        $ git branch x.y
+
+    * upload the packages to PyPI (Do **not** upload development releases to PyPI)::
+
+        $ twine upload dist/PyNN-x.y.z*
+
+    * update the :file:`codemeta.json` file
+
+    * make an announcement on the `mailing list`_
+
+    * if it is a major release, write a blog post about it with a focus on the
+      new features and major changes
+
+    * go home, take a headache pill and lie down for a while in a darkened room (-;
+
+
+
+.. _Sphinx: http://sphinx-doc.org/
+.. _PEP8: http://www.python.org/dev/peps/pep-0008/
+.. _pytest: https://docs.pytest.org
+.. _coverage: http://nedbatchelder.com/code/coverage/
+.. _`Python Package Index`: http://pypi.python.org/
+.. _`mailing list`: http://groups.google.com/group/neuralensemble
+.. _`NeuralEnsemble Google Group`: http://groups.google.com/group/neuralensemble
+.. _matplotlib: http://matplotlib.sourceforge.net/
+.. _virtualenv: http://www.virtualenv.org/
+.. _`bugs marked "minor" in the bug tracker`: https://github.com/NeuralEnsemble/PyNN/issues?labels=minor&state=open
+.. _`issue tracker`: https://github.com/NeuralEnsemble/PyNN/issues/
+.. _fork: https://github.com/NeuralEnsemble/PyNN/fork
+.. _`PyNN repository`: https://github.com/NeuralEnsemble/PyNN/
+.. _contents: http://software.incf.org/software/pynn/pynn/folder_contents
+.. _`neuralensemble.github.io`: https://github.com/NeuralEnsemble/neuralensemble.github.io
