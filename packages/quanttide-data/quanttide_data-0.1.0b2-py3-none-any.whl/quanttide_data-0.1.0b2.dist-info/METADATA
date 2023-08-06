@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: quanttide-data
+Version: 0.1.0b2
+Summary: 量潮数据工程Python工具包
+License: Apache 2.0
+Author: QuantTide
+Author-email: opensource@quanttide.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: beautifulsoup4 (>=4.12.2,<5.0.0)
+Requires-Dist: logdecorator (>=2.4,<3.0)
+Requires-Dist: requests (>=2.31.0,<3.0.0)
+Description-Content-Type: text/markdown
+
+# `quanttide-data-python`
+
+量潮数据工程Python版
+
+## 安装
+
+### 通过`pip`安装
+
+```shell
+pip install quanttide-data
+```
+
+### 通过`poetry`安装
+
+```shell
+poetry add quanttide-data
+```
+
+## 测试
+
+```shell
+poetry install
+```
+
