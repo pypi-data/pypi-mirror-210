@@ -1,0 +1,10 @@
+include LICENSE
+include MANIFEST.in
+include README.md
+recursive-include django_simple_notes/static *
+recursive-include django_simple_notes/locale *
+recursive-include django_simple_notes/management/commands *
+recursive-include django_simple_notes *.html
+recursive-include django_simple_notes/migrations *
+recursive-include django_simple_notes/fixtures *
+global-exclude *.pyc
