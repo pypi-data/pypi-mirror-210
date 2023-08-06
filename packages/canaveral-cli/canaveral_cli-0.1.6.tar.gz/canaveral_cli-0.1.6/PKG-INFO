@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: canaveral-cli
+Version: 0.1.6
+Summary: Helper CLI to interact with Devscope's internal platform codename Canaveral
+Home-page: https://github.com/DevScope/canaveral-cli
+Author: André Gomes
+Author-email: andre.gomes@devscope.net
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Requires-Dist: Jinja2 (>=3.1.2,<4.0.0)
+Requires-Dist: PyGithub (>=1.58.2,<2.0.0)
+Requires-Dist: PyYAML (>=6.0,<7.0)
+Requires-Dist: inquirerpy (>=0.3.4,<0.4.0)
+Requires-Dist: python-dotenv (>=1.0.0,<2.0.0)
+Requires-Dist: rich (>=13.3.5,<14.0.0)
+Requires-Dist: typer[all] (>=0.9.0,<0.10.0)
+Project-URL: Repository, https://github.com/DevScope/canaveral-cli
+Description-Content-Type: text/markdown
+
+# Canaveral CLI
+
+This Project uses [Typer](https://typer.tiangolo.com/) for the CLI functionality and [InquirerPy](https://inquirerpy.readthedocs.io/en/latest/index.html#) for the parameter selection
+
+## Run it
+Working with virtual envs in Python:
+- https://realpython.com/python-virtual-environments-a-primer
+- https://aaronlelevier.github.io/virtualenv-cheatsheet/
+
+```bash
+$ python3 -m venv venv --prompt="canaveral-env"
+$ source venv/bin/activate
+(canaveral-env) $ 
+(canaveral-env) $ deactivate
+$ 
+$ pip install -r requirements.txt
+$ OR
+$ python -m pip install -r requirements.txt
+```
+
+## How to contribuite
+Project layout to adhere to:
+- https://realpython.com/python-application-layouts/#command-line-application-layouts
+
+## Internal Notes
+
+Devscope Internal notes and documentation avaible at [Canaveral](https://devscope365.sharepoint.com/sites/academy/_layouts/OneNote.aspx?id=%2Fsites%2Facademy%2FSiteAssets%2FAcademy%20Notebook&wd=target%282023.one%7C1069493A-33E1-4F4C-8D77-28AA9AE54494%2FCanaveral%20CLI%7CF359B855-A8C4-4DB9-B416-CA0D700F2904%2F%29)
+

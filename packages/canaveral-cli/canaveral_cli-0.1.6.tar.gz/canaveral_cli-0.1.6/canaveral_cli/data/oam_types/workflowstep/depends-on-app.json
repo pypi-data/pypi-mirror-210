@@ -1,0 +1,1 @@
+{"name": "depends-on-app", "type": "workflow-step", "description": "Wait for the specified Application to complete.", "parameters": [{"usage": "Specify the name of the dependent Application", "mandatory": true, "name": "name", "type": "string"}, {"usage": "Specify the namespace of the dependent Application", "mandatory": true, "name": "namespace", "type": "string"}]}
