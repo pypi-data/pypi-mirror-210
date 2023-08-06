@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qtest_reporter"
+version = "0.0.10"
+authors = [
+  { name="Volodymyr Zyhmund", email="volodymyr.romanovych@gmail.com" },
+]
+description = "qtest_reporter is a tool that allows you to easily report the results of your automated testing to qTest test management tool."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: Freeware",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Natural Language :: English",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = [
+    "requests==2.29.0"
+]
