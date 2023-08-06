@@ -1,0 +1,163 @@
+[build-system]
+requires = ["hatchling>=0.7", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "module-qc-database-tools"
+dynamic = ["version"]
+authors = [
+    { name = "Jay Chan", email = "jay.chan@cern.ch" },
+]
+maintainers = [
+    { name = "Giordon Stark", email = "kratsg@gmail.com" },
+    { name = "Elisabetta Pianori", email = "elisabetta.pianori@cern.ch" },
+    { name = "Lingxin Meng", email = "lingxin.meng@cern.ch" }
+]
+
+
+description = "Python wrapper to interface with LocalDB and Production DB for common tasks for pixel modules."
+readme = "README.md"
+
+requires-python = ">=3.7"
+
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Development Status :: 1 - Planning",
+]
+
+dependencies = [
+    "itkdb>=0.4.3",  # for interface with production database
+    "pandas",
+    "typer",
+    "pymongo",
+    "jsondiff",
+    "importlib_resources>=1.4.0; python_version < '3.9'",  # for resources
+    "jsbeautifier", # for chip config linebreaks vs size
+    "rich"
+]
+
+[project.urls]
+Homepage = "https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools"
+"Bug Tracker" = "https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools/issues"
+Source = "https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools"
+
+[project.scripts]
+module-qc-database-tools = "module_qc_database_tools.cli:app"
+mqdbt = "module_qc_database_tools.cli:app"
+generateYARRConfig = "module_qc_database_tools.cli.generate_yarr_config:app"
+registerComponent =  "module_qc_database_tools.cli.register_component:app"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/module_qc_database_tools/_version.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+    "tbump>=6.7.0",
+    "pylint",
+    "build",
+    "twine",
+]
+
+[tool.hatch.envs.default.scripts]
+tag = "tbump {args}"
+lint = "pylint src"
+build = "python -m build"
+validate = "twine check dist/*"
+# https://github.com/linkchecker/linkchecker/issues/678
+build-check = [
+  "build",
+  "validate",
+]
+upload = "twine upload dist/*"
+
+[tool.hatch.envs.dev]
+template = "dev"
+# pylint and pytest needs to be installed into package environment
+detached = false
+dependencies = [
+    "pytest >=6",
+]
+
+[tool.hatch.envs.dev.scripts]
+test = "pytest -ra {args}"
+
+[[tool.hatch.envs.dev.matrix]]
+python = ["3.7", "3.8", "3.9", "3.10", "3.11", "pypy3.8"]
+
+[tool.ruff]
+select = [
+  "E", "F", "W", # flake8
+  "B",  "B904",  # flake8-bugbear
+  "I",           # isort
+  "ARG",         # flake8-unused-arguments
+  "C4",          # flake8-comprehensions
+  "EM",          # flake8-errmsg
+  "ICN",         # flake8-import-conventions
+  "ISC",         # flake8-implicit-str-concat
+  "PGH",         # pygrep-hooks
+  "PIE",         # flake8-pie
+  "PL",          # pylint
+  "PT",          # flake8-pytest-style
+  "PTH",         # flake8-use-pathlib
+  "RET",         # flake8-return
+  "RUF",         # Ruff-specific
+  "SIM",         # flake8-simplify
+  "T20",         # flake8-print
+  "UP",          # pyupgrade
+  "YTT",         # flake8-2020
+]
+extend-ignore = ["PLR", "E501"]
+target-version = "py37"
+src = ["src"]
+unfixable = ["T20", "F841"]
+exclude = []
+# isort.required-imports = [""]
+
+[tool.ruff.per-file-ignores]
+"src/module_qc_database_tools/cli/generate_yarr_config.py" = ["B008"]
+"src/module_qc_database_tools/cli/main.py" = ["B008"]
+"src/module_qc_database_tools/cli/register_component.py" = ["B008"]
+
+[tool.pylint]
+py-version = "3.7"
+ignore-paths= ["src/module_qc_database_tools/_version.py"]
+reports.output-format = "colorized"
+similarities.ignore-imports = "yes"
+messages_control.disable = [
+  "design",
+  "fixme",
+  "line-too-long",
+  "missing-module-docstring",
+  "wrong-import-position",
+]
+good-names="kB,PC_NTC,DeltaT,rx"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = ["error"]
+testpaths = [
+    "tests",
+]
