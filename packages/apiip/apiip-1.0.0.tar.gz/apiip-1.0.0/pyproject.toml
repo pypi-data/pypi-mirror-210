@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "apiip"
+version = "1.0.0"
+authors = [
+  { name="apiip", email="apiipnet.business@gmail.com" },
+]
+description = "Official python package for apiip.net, it offers one of the leading IP to geolocation API, get the location of any IP with a world-class API serving city, region, country, lat/long data, etc."
+readme = "README.md"
+requires-python = ">=3.0"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+"Homepage" = "https://apiip.net"
+"Documentation" = "https://apiip.net/documentation"
