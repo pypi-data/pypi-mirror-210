@@ -1,0 +1,19 @@
+#-
+#include generaldefs.h
+#include COREPREprocedures.h
+
+#do i=1,NUMBEROFFILES;
+ load PROCESSYESU.parts.'i'.sav;
+#enddo;
+
+
+L amplPROCESSNOU=amp1+...+ ampNUMBEROFFILES;
+
+.sort
+
+#call collectterms
+
+#write <PROCESSYESU.out> "%X"
+print +f;
+
+.end

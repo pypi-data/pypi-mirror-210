@@ -1,0 +1,39 @@
+Update notes for matchmakereft 1.x.y 
+
+1.1.0  26-05-23 JS: Just a copy of 1.0.12
+
+
+1.0.12  26-05-23 JS: Included the correct SMEFT_Green redundancies and added more models to data/models.tar.gz
+        23-05-23 JS: Included the already matched SMEFT_Green model in data/models.tar.gz
+        23-05-23 PO: Changed the flavor symmetry of Ecc and Ecctwo in the SMEFT model.
+	19-05-23 All: Change license and fixed crash while offline. Added required files to generate the SMEFT to model library. Updated manual.
+        18-05-23 PO: Added the shift of evanescent operators in the redundancies for the SMEFT. Set aEV=bEV=...=1 and iCPV=-1.
+	10-05-23 JS: Modified the "welcome" comment when MME is loaded via the CLI to mention the location of the manual. Manual updated to include --parallel and --chunksize options.
+        08-05-23 PO: Minor modifications of matcher.m: i) Adapted TensorMultiply to treat correctly tensors that are identically 0; ii)SumExpandIndicesEfficient changed to not "Union" the result, and use ArrayQ instead of ListQ; iii) "Expand" removed in GotoPhysicalBasis to reduce the execution time.	
+	26-04-23 JS: FR2MM.m modified so that i is not used as a dummy variable (it gave problems if indices where defined as i).
+
+1.0.11  30-06-22 JS: FR2MM.m modified to help the automated test of models.
+        15-06-22 JS: Bug in the RGE calculation in matcher.m fixed.
+
+1.0.10  07-06-22 JS: Added new version of matcher.m to correctly account for the calculation of anomalous dimensions of a WC that has not been included in the UV.
+        30-05-22 JS: Modified MatchMaker.py to fix a bug in the function compute_rge_model_to_eft.
+        11-05-22 PO: Modified matcher to simplify problems in CheckGreenSol if they are non-vanishing before reporting and storing them. If the simplified one is vanishing no error is reported.
+
+1.0.9  11-05-22 JS: Modified FR2MM to support background/quantum splitting of heavy fields.
+
+1.0.8  05-05-22 JS: Fixed generaldefs_skeleton.h to fix a bug with the new implementation of Eps that affected the Minkowski one.
+       04-05-22 AL: i) extend tensor reduction to arbitrary number of momenta and define the trace of gamma5 with arbitrary (even) number of gamma matrices.
+
+1.0.7  28-04-22 JS: i) Fixed wrong treatment of Eps for gauge indices; ii) Changed license to GPLv3.
+
+1.0.6  07-04-22 AC: i) Further changes in procedures.h; ii) Issue fixed in run_form.py; iii) Models removed on models_data.tar.gz reintroduced; iv) Issue fixed on skeleton_frm_reunite
+       23-03-22 AC: i) Fixed problems with bars in the case of having only one amplitude; ii) samb() removed from procedures.h; iii) new version of the SMEFT with more evanescent operators and new redundancies
+	
+1.0.5  17-02-22 JS: Automatic splitting on maximum number of diagrams per process. Parallel option is now changed to --parallel.
+                    New option --chunksize=xx where xx is an int that is the maximun number of diagrams per process.
+1.0.4  08-02-22 JS: Parallel version of run_form available. Just call match_model_to_eftXXX with parallel=True
+1.0.3  04-02-22 AC: Typos corrected in matcher.m and functions.py
+       01-02-22 JS: Modified libs/generate_form.py to avoid using two sets of indices with the same name
+1.0.2  12-01-22 [STABLE] AC: Added requirement of a recent version of the python package tqdm 
+1.0.1  22-12-21 [STABLE] AC: Fixed matchmakereft prompt 
+1.0.0  22-12 21: [STABLE] First public version
