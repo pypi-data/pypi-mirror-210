@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: DRFMultiStepForm
+Version: 0.1.0
+Summary: Create Dynamic Multistep form in DRF
+Home-page: https://github.com/GYBCommerce/DRFMultiStepForm
+Author: GYB Commerce
+Author-email: gybcommerce@gmail.com
+License: MIT
+Keywords: DRFMultiStepForm
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django :: 2.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: django-model-utils (>=2.0)
+
+=============================
+DRFMultiStepForm
+=============================
+
+Create Dynamic Multistep form in DRF
+
+Documentation
+-------------
+
+The full documentation is at https://DRFMultiStepForm.readthedocs.io.
+
+Quickstart
+----------
+
+Install DRFMultiStepForm::
+
+    pip install DRFMultiStepForm
+
+Add it to your `INSTALLED_APPS`:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'multistepform.apps.multistepform',
+        ...
+    )
+
+Add DRFMultiStepForm's URL patterns:
+
+.. code-block:: python
+
+    from multistepform import urls as multistepform_urls
+
+
+    urlpatterns = [
+        ...
+        url(r'^', include(multistepform_urls)),
+        ...
+    ]
+
+
+
+
+
+History
+-------
+
+0.1.0 (2023-04-25)
+++++++++++++++++++
+
+* First release on PyPI.
