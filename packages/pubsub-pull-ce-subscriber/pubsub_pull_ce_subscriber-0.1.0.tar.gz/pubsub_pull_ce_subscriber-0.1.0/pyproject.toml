@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pubsub-pull-ce-subscriber"
+version = "0.1.0"
+description = "A script to pull CloudEvents from a Pub/Sub subscription and then push them to a designated sink"
+authors = ["AdE <ade8850@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "pubsub_pull_ce_subscriber"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = {extras = ["all"], version = "^0.9.0"}
+google-cloud-pubsub = "^2.17.1"
+structlog = "^23.1.0"
+cloudevents = "^1.9.0"
+
+
+[tool.poetry.scripts]
+pubsub-ce-subscribe = "pubsub_pull_ce_subscriber.subscriber:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
