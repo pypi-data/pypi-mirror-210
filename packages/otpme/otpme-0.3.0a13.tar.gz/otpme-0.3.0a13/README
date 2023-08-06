@@ -1,0 +1,68 @@
+# README
+
+OTPme is a flexible One-Time-Password system
+
+OTPme aims to be the most useful authentication system with focus on One-Time-Passwords.
+Currently it consists of different command line tools to manage users, groups, tokens, clients etc. and an authentication tool that's intended to be used with freeradius to authenticate users.
+
+OTPme is open source and released under the terms of the GNU General Public License v2.
+
+Features:
+
+* add different tokens to users
+  * motp tokens (see http://motp.sf.net)
+  * static-password tokens to add different passwords to one user (e.g. a separate strong 32-char password per wlan device)
+  * script-static and script-otp tokens to execute an external authentication script
+    * authentication script is executed to verify the user credentials (e.g. using ntlm_auth against a windows domain)
+    * if script exit code is != 0 authentication will fail
+    * authentication infos from the request can be passed to the script via command line and as environment variables (e.g. no passwords on command line)
+    * when using clear-text requests it is possible to use otp sessions (e.g. script validates otp against commercial otp/radius server)
+    * assign access groups to script tokens just like with any other token
+  * otp-push tokens
+    * deliver OTP to user with an external script (e.g. for SMS sending)
+
+
+* run an authorization script per token or user
+  * script is executed if user/token was verified successful
+  * if script exit code is != 0 authentication will fail
+  * authentication infos from the request can be passed to the script via command line and as environment variables (e.g. no passwords on command line)
+
+* support for OTP-sessions which can be used to re-use an OTP
+  (e.g. login to an web-based Single-Sign-On system that hands over the OTP to an webmail system which uses it for IMAP login)
+
+* configure clients based on name (NAS-Identifier in case of radius) or ip address (e.g. if requests do not contain a NAS-ID)
+
+* supports access groups to configure:
+  * which tokens can be used for which logins (clients)
+  * per group "max login failures"
+  * per OTP-Session "max logins"
+  * session-timeout and unused-session-timeout for OTP-Sessions
+  * child groups that inherit access permissions from parent groups
+  * child sessions to allow other services to use the same OTP
+  * a "Session Master" to make it easier to configure child session relations
+  * per group max sessions. if max sessions is reached for a user, old sessions get removed. (oldest first)
+
+* supports client trust passwords (CTP)
+  * to protect against keyloggers
+  * to improve security by using e.g. a 32-character long trust password
+  * hash algorithm to generate the CTP can be configured per client
+  * CTP usage can be forced per client
+
+* supports per session logout passwords (SLP) which can be used to securely logout a OTP session (and childs if configured)
+
+* count logon failures only once per OTP/password
+  (e.g. a wrong configured mail client which tries to login with the same wrong password again and again may not lock the user account)
+
+* support for MSCHAP Challenge/Response authentication with static-password tokens and MOTP tokens (e.g. often needed for WLAN authentication)
+
+* includes a freeradius module that can be used with rlm_python
+  * much better performance than calling a script for each request
+
+* debugging feature to log authentication data (e.g. password, challenge/response ...), global or for specific users
+
+
+For installation instructions please read the INSTALL file that comes with OTPme.
+
+To get started check out the OTPme Wiki: https://www.otpme.org/redmine/projects/otpme/wiki/Wiki#Documentation
+
+A good starting point is the step-by-step guide: https://www.otpme.org/redmine/projects/otpme/wiki/OTPme_Step-by-Step_Guide
