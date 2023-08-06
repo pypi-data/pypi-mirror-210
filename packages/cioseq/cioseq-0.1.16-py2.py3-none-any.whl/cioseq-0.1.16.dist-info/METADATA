@@ -1,0 +1,327 @@
+Metadata-Version: 2.1
+Name: cioseq
+Version: 0.1.16
+Summary: Manage sequences of frame numbers.
+Home-page: https://github.com/ConductorTechnologies/cioseq
+Author: conductor
+Author-email: info@conductortech.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Multimedia :: Graphics :: 3D Rendering
+Description-Content-Type: text/markdown
+Requires-Dist: future (>=0.18.2)
+
+# sequence
+Manage sequences of frame numbers
+
+## Install
+
+```bash
+pip install cioseq
+```
+
+## Usage
+
+Import
+```
+>>> from cioseq.sequence import Sequence
+```
+
+Several ways to create a Sequence using the `create()` factory method.
+```
+# [start [end [step]]] - Unlike range(), end is inclusive.
+
+>>> s = Sequence.create("1")
+
+>>> s = Sequence.create(1,10,2)
+
+# list
+>>> s = Sequence.create([5,6,7,10,12])
+
+# spec
+>>> s = Sequence.create("1-10x2")
+
+# compound spec with negative frame numbers
+>>> s = Sequence.create("0-10x3, 100, -10--2x2")
+
+# Copy constructor
+>>> s2 = Sequence.create(s)
+>>> s2 == s
+False
+>>> list(s2) == list(s)
+True
+
+>>> list(s)
+[-10, -8, -6, -4, -2, 0, 3, 6, 9, 100]
+
+>>> print(s)
+-10-0x2,3-9x3,100
+
+>>> repr(s)
+"Sequence.create('-10-0x2,3-9x3,100')"
+```
+
+Indexing
+```
+>>> s[-1]
+100
+
+s[0]
+-10
+```
+
+An arithmetic progression is a set of numbers with a common step.
+```
+>>> s = Sequence.create([1,4,7,10,13])
+>>> type(s)
+<class 'cioseq.sequence.Progression'>
+
+>>> s=Sequence.create([1,2,3,5,78])
+>>> type(s)
+<class 'cioseq.sequence.Sequence'>
+>>> s.is_progression()
+False
+
+```
+
+Chunks
+```
+# Split into chunks, which are themselves Sequences.
+>>> s = Sequence.create("1-20", chunk_size=5)
+>>> s.chunk_count()
+4
+>>> s.chunks()
+[Sequence.create('1-5'), Sequence.create('6-10'), Sequence.create('11-15'), Sequence.create('16-20')]
+
+# Chunks can be cyclic.
+>>> s.chunk_strategy = "cycle"
+>>> for c in s.chunks():
+...    print(list(c))
+
+[1, 5, 9, 13, 17]
+[2, 6, 10, 14, 18]
+[3, 7, 11, 15, 19]
+[4, 8, 12, 16, 20]
+```
+
+Booleans
+```
+>>> s = Sequence.create("1-10")
+>>> isect = s.intersection(range(5, 15))
+>>> print(isect)
+5-10
+
+
+>>> s = Sequence.create("1-10")
+>>> uni = s.union(range(5, 15))
+>>> print(uni)
+1-14
+
+```
+
+Intersecting chunks. Helps to determine which tasks contain scout frames.
+
+```
+>>> s = Sequence.create("1-50", chunk_size=5)
+>>> scout =  Sequence.create("1,2,7")
+>>> chunks = s.intersecting_chunks(scout)
+>>> print(chunks)
+[Sequence.create('1-5'), Sequence.create('6-10')]
+```
+
+Multi sequence filename permutations
+
+```
+# single sequence
+>>> template = "/path/%(frame)d/image.%(frame)04d.tif"
+>>> filenames = list(Sequence.permutations(template, frame="0-6x2"))
+>>> print(filenames)
+['/path/0/image.0000.tif', '/path/2/image.0002.tif', '/path/4/image.0004.tif', '/path/6/image.0006.tif']
+
+# several sequences
+>>> template = "image_%(uval)02d_%(vval)02d.%(frame)04d.tif"
+>>> kw = {"uval": "1-2", "vval": "1-2", "frame": "10-11"}
+>>> filenames = Sequence.permutations(template, **kw)
+
+>>> print(filenames)
+<generator object permutations at 0x10260f960>
+
+>>> for f in filenames:
+...    print f
+
+image_01_01.0010.tif
+image_01_02.0010.tif
+image_02_01.0010.tif
+image_02_02.0010.tif
+image_01_01.0011.tif
+image_01_02.0011.tif
+image_02_01.0011.tif
+image_02_02.0011.tif
+```
+
+Offset
+```
+>>> s = Sequence.create("1-10")
+>>> s = s.offset(-5)
+>>> print(s)
+-4-5
+```
+
+Hash (#) filename expansion
+
+```
+>>> s = Sequence.create("8-10")
+s.expand("image.#.exr")
+['image.8.exr', 'image.9.exr', 'image.10.exr']
+
+s.expand("/some/dir_###/img.#####.exr")
+['/some/dir_008/img.00008.exr', '/some/dir_009/img.00009.exr', '/some/dir_010/img.00010.exr']
+```
+
+Dollar(n)F filename expansion
+
+```
+>>> s = Sequence.create("1")
+>>> s.expand_dollar_f("image.$F.exr")
+['image.1.exr']
+
+>>> s.expand_dollar_f("image.$F.$5F.$2F.exr")
+['image.1.00001.01.exr']
+
+```
+
+Use different symbols for frame spec
+```
+>>> s = Sequence.create("1-10, 14, 20-48x4")
+>>> print(s)
+1-10,14,20-48x4
+
+>>> print(s.to(":", "%", ";"))
+1:10;14;20:48%4
+
+>>> print(s.to("to", "by", " "))
+1to10 14 20to48by4
+
+```
+
+Take a subsample of frames
+```
+s = Sequence.create("1-10")
+>>> print(s.subsample(1))
+6
+
+>>> print(s.subsample(2))
+3-8x5
+
+>>> print(s.subsample(3))
+2-6x4,9
+
+>>> print(s.subsample(5))
+2-10x2
+
+>>> print(list(s.subsample(4)))
+[2, 4, 7, 9]
+```
+
+## Test
+
+From git repo
+```
+python -m unittest discover -v -s ./tests  -p 'test_*.py'
+```
+
+## Contributing
+
+
+Clone the repo.
+
+```
+git clone git@github.com:ConductorTechnologies/cioseq.git
+cd cioseq
+```
+
+Set up a clean virtual envirionment with Python 2.7 for development (optional).
+
+```
+python -m virtualenv venv
+. ./venv/bin/activate
+```
+
+Install development dependencies
+```
+pip install -r requirements_dev.txt
+```
+
+pip install --upgrade . 
+
+```
+
+## License
+[MIT](LICENSE)
+
+## Changelog
+
+### Version:0.1.16 -- 24 May 2023
+
+* Added tests for step and irregular sequences. [742d4c4]
+
+### Version:0.1.15 -- 07 Aug 2021
+
+* Use range without importing builtins. [f148290]
+
+### Version:0.1.14 -- 27 Jun 2021
+
+* Removed builtins module to avoid py2/3 errors. [f148290]
+
+### Version:0.1.13 -- 26 Mar 2021
+
+* CICD tweaks and readme. [b9d05ac]
+
+### Version:0.1.12 -- 11 Mar 2021
+
+* Universal flag. [958ef56]
+* Adds pip-dependency-file key. [719ec31]
+
+### Version:0.1.10 -- 10 Mar 2021
+
+* Adds ssh key so we can push the tag in circleci. [60360af]
+* Use skulk context. [3459bc0]
+
+### Version:0.1.9 -- 09 Mar 2021
+
+* Fixed wrong pypi registry. [a3d82e1]
+
+### Version:0.1.6 -- 09 Mar 2021
+
+* Adds release flow to circleci. [71bbca2]
+* Add .circleci/config.yml. [30fd9d9]
+* Adds tox for py 2.7 and 3.8. [7ce0970]
+
+### Version:0.1.5 -- 21 Sep 2020
+
+* Bad test name and $f4 token support. [f3c1923]
+
+### Version:0.1.3 -- 20 Sep 2020
+
+* Added several examples to the README and implemented and indexing. [fdec3b4]
+
+### Version:0.1.2 -- 19 Sep 2020
+
+* Python 2 and 3 compatibility. [4aba985]
+
+### Version:0.1.1 -- 19 Sep 2020
+
+* Transfer from core. As such, this is the first changelog entry. [54f9132]
+* Sequence consumers must use factory. [a9fd08a]
+* Adds cycle_progressions chunk strategy. [37075c9]
+* Expander path list enhancements (#5)
+* Lib enhancements (#4)
+* adds sequence intersection check
+* allows uppercase characters in angle-bracket template.. [255f61f]
+* Initial commit. [7cf8fd3]
+
+
+--
+
