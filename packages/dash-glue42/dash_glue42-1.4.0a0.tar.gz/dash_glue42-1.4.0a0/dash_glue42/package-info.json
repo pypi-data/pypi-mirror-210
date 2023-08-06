@@ -1,0 +1,89 @@
+{
+    "name": "dash_glue42",
+    "version": "1.4.0-alpha.0",
+    "description": "Dash components for Glue42",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/Glue42/glue-dash.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Glue42/glue-dash/issues"
+    },
+    "keywords": [
+        "glue",
+        "glue42",
+        "desktop",
+        "interop",
+        "context"
+    ],
+    "homepage": "https://glue42.com/",
+    "author": {
+        "name": "Glue42",
+        "url": "https://www.glue42.com"
+    },
+    "license": "MIT",
+    "main": "build/index.js",
+    "scripts": {
+        "validate-init": "python _validate_init.py",
+        "prepublishOnly": "npm run validate-init",
+        "build:js": "webpack --mode production",
+        "build:py_and_r": "dash-generate-components ./src/lib/components dash_glue42 -p package-info.json",
+        "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
+        "build": "npm run build:js && npm run build:py_and_r",
+        "build:activated": "npm run build:js && npm run build:py_and_r-activated",
+        "lint": "eslint ./src/**/*.{js,jsx}",
+        "lint:fix": "eslint ./src/**/*.{js,jsx} --quiet --fix",
+        "format": "prettier --write \"src/**/*.{js,jsx}\"",
+        "pack": "npm run lint && npm run build && python setup.py sdist",
+        "publish:pypi": "twine upload dist/*",
+        "publish:test": "twine upload -r testpypi dist/*"
+    },
+    "dependencies": {
+        "@glue42/react-hooks": "^2.2.5",
+        "ramda": "^0.26.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.5.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
+        "@babel/preset-env": "^7.5.4",
+        "@babel/preset-react": "^7.0.0",
+        "babel-eslint": "^10.0.2",
+        "babel-loader": "^8.0.6",
+        "concurrently": "^5.2.0",
+        "copyfiles": "^2.1.1",
+        "css-loader": "^3.0.0",
+        "eslint": "^6.0.1",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.18.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.14.2",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.11",
+        "npm": "^6.1.0",
+        "prettier": "^2.0.5",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.6",
+        "react-docgen": "^5.3.0",
+        "react-dom": "^16.8.6",
+        "style-loader": "^0.23.1",
+        "styled-jsx": "^3.2.1",
+        "webpack": "4.36.1",
+        "webpack-cli": "3.3.6",
+        "webpack-serve": "3.1.0"
+    },
+    "engines": {
+        "node": ">=8.11.0",
+        "npm": ">=6.1.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js, jsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ]
+    }
+}

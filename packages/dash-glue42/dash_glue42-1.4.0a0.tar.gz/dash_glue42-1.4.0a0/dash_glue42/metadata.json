@@ -1,0 +1,755 @@
+{
+  "src/lib/components/Channels.react.js": {
+    "description": "A component exposing the Glue42 Channels API.",
+    "displayName": "Channels",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "list": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "custom",
+            "raw": "channelContextPropTypes"
+          }
+        },
+        "required": false,
+        "description": "A list of all Channel contexts.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "all": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "A list of all Channel names.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "my": {
+        "type": {
+          "name": "custom",
+          "raw": "channelContextPropTypes"
+        },
+        "required": false,
+        "description": "Holds the current Channel context. Value will be null when not joined to a channel.",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "publish": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "data": {
+              "name": "any",
+              "description": "Data object with which to update the channel context.",
+              "required": false
+            },
+            "name": {
+              "name": "string",
+              "description": "The name of the channel to be updated. If not provided will update the current channel.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for publishing new data to a Channel."
+      },
+      "join": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "The name of the channel to join.",
+              "required": true
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for joining a new channel by name. Leaves the current channel."
+      },
+      "leave": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Property for leaving the current channel."
+      }
+    }
+  },
+  "src/lib/components/Glue42.react.js": {
+    "description": "The Glue42 initializer component. The component should be placed at the root of the application.",
+    "displayName": "Glue42",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "isEnterprise": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Indicates whether the application is running in Glue42 Enterprise or Glue42 Core (browser)."
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of this component."
+      },
+      "settings": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "type": {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "CoreApplicationTypes.Client",
+                  "computed": true
+                },
+                {
+                  "value": "CoreApplicationTypes.Platform",
+                  "computed": true
+                }
+              ],
+              "description": "Optional. Accepts either \"platform\" or \"client\" as a value. Specifies whether this is a Main app or a Web Client in the context of Glue42 Core. The default is \"client\".",
+              "required": false
+            },
+            "web": {
+              "name": "exact",
+              "value": {
+                "config": {
+                  "name": "object",
+                  "required": false
+                }
+              },
+              "description": "Optional. An object with one property: config. The config property accepts a configuration object for the Glue42 Web library.\r\nYou should define this object if your app is a Web Client.",
+              "required": false
+            },
+            "webPlatform": {
+              "name": "exact",
+              "value": {
+                "config": {
+                  "name": "object",
+                  "required": false
+                }
+              },
+              "description": "Optional. An object with one property: config. The config property accepts a configuration object for the Web Platform library.\r\nYou should define this object if your app is a Main app in the context of Glue42 Core.",
+              "required": false
+            },
+            "desktop": {
+              "name": "exact",
+              "value": {
+                "config": {
+                  "name": "object",
+                  "required": false
+                }
+              },
+              "description": "Optional. An object with one property: config. The config property accepts a configuration object for the @glue42/desktop library used in Glue42 Enterprise.\r\nYou should define this object if your app is a Glue42 Enterprise app.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Optional. A \"settings\" object containing configuration objects for the Glue42 library.",
+        "defaultValue": {
+          "value": "{\r\n    type: CoreApplicationTypes.Client,\r\n}",
+          "computed": false
+        }
+      },
+      "fallback": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "An optional component to display while initializing Glue42."
+      },
+      "glueReady": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Indicates whether Glue42 JS has initialized."
+      }
+    }
+  },
+  "src/lib/components/interop/MethodInvoke.react.js": {
+    "description": "A component exposing the ability to invoke a Glue42 Interop method.",
+    "displayName": "MethodInvoke",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "result": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "invocationId": {
+              "name": "string",
+              "description": "An ID to correlate the method invocation to its result.",
+              "required": false
+            },
+            "invocationResult": {
+              "name": "object",
+              "description": "The actual result from the method invocation. If the invocation fails, a `null` value is set.",
+              "required": false
+            },
+            "error": {
+              "name": "object",
+              "description": "An error for method invocation failure. Has a `null` value unless the invocation fails.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property that returns a result or an error from a method invocation."
+      },
+      "invoke": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "invocationId": {
+              "name": "string",
+              "description": "An ID to correlate the method invocation to its result.",
+              "required": false
+            },
+            "definition": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "object"
+                }
+              ],
+              "description": "Method name or an object holding the method name, signature and other properties of the method.",
+              "required": true
+            },
+            "argumentObj": {
+              "name": "object",
+              "description": "Invocation arguments.",
+              "required": false
+            },
+            "target": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "string"
+                },
+                {
+                  "name": "object"
+                },
+                {
+                  "name": "arrayOf",
+                  "value": {
+                    "name": "object"
+                  }
+                }
+              ],
+              "description": "Property for specifying a target Interop server.",
+              "required": false
+            },
+            "options": {
+              "name": "exact",
+              "value": {
+                "waitTimeoutMs": {
+                  "name": "number",
+                  "description": "Timeout to discover the method, if not immediately available.",
+                  "required": false
+                },
+                "methodResponseTimeoutMs": {
+                  "name": "number",
+                  "description": "Timeout to wait for a method reply.",
+                  "required": false
+                }
+              },
+              "description": "Property for specifying a timeout for discovering the invoked Interop method\r\nand a timeout for receiving a response from the method.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for invoking an Interop method."
+      }
+    }
+  },
+  "src/lib/components/interop/MethodRegister.react.js": {
+    "description": "A component exposing the ability to register a Glue42 Interop method.",
+    "displayName": "MethodRegister",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "loading_state": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "is_loading": {
+              "name": "bool",
+              "description": "Determines whether the component is loading or not.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Dash-assigned prop holding the loading state object coming from `dash-renderer`."
+      },
+      "definition": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "object"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Method name or an object holding the method name, signature and other properties of the method."
+      },
+      "methodResponseTimeoutMs": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Timeout to wait for the handler to reply. Set this prop to configure how much time the component should wait for a response from the Dash backend.\r\nDefault is 30000 ms.",
+        "defaultValue": {
+          "value": "30000",
+          "computed": false
+        }
+      },
+      "error": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "An error to return in case the method registration fails."
+      },
+      "returns": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specify whether the method is void or returns a result.\r\nDefault is `false`.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "result": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "invocationId": {
+              "name": "string",
+              "description": "An ID to correlate the method invocation to its result.",
+              "required": false
+            },
+            "invocationResult": {
+              "name": "object",
+              "description": "The actual result from the method invocation.",
+              "required": false
+            },
+            "error": {
+              "name": "object",
+              "description": "Holds the returned error when the method invocation has failed.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for returning a result or an error to the caller."
+      },
+      "invoke": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "invocationId": {
+              "name": "string",
+              "description": "An ID to correlate the method invocation to its result.",
+              "required": false
+            },
+            "args": {
+              "name": "object",
+              "description": "Invocation arguments.",
+              "required": false
+            },
+            "caller": {
+              "name": "object",
+              "description": "The Interop client which has invoked the method.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for invoking an Interop method handler."
+      }
+    }
+  },
+  "src/lib/components/Notifications.react.js": {
+    "description": "A component exposing the Glue42 Notifications API.",
+    "displayName": "Notifications",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "raise": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Property to raise a new notification."
+      },
+      "maxActions": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The maximum number of actions supported by the UI toast."
+      }
+    }
+  },
+  "src/lib/components/shared-contexts/Context.react.js": {
+    "description": "A component exposing the ability to subscribe, set and update a Glue42 Shared Context.",
+    "displayName": "Context",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app.\r\nThe ID is used as the context name to subscribe for."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "contextName": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Name of the context to which you want to subscribe. This property takes precedence over the component ID.\r\nUse this property if the context's name contains the characters '.' or '{' as they are not allowed in component IDs."
+      },
+      "context": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "data": {
+              "name": "object",
+              "description": "Current context data.",
+              "required": false
+            },
+            "delta": {
+              "name": "object",
+              "required": false
+            },
+            "removed": {
+              "name": "arrayOf",
+              "value": {
+                "name": "string"
+              },
+              "required": false
+            },
+            "extraData": {
+              "name": "shape",
+              "value": {
+                "updaterId": {
+                  "name": "string",
+                  "description": "The peer id of the updating Interop instance.",
+                  "required": false
+                },
+                "isMineUpdate": {
+                  "name": "bool",
+                  "description": "A flag to indicate whether the current Interop instance has updated the context.",
+                  "required": false
+                }
+              },
+              "description": "Extra information about this context.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Holds the latest context update."
+      },
+      "update": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Property for updating a shared context with the supplied object.\r\nUpdates only the specified context properties. Any other existing context properties will remain intact.\r\nIf the context does not exist, then it will be created."
+      },
+      "set": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Property for setting a new context value.\r\nAll properties of the specified context object will be removed and replaced with the ones supplied in the data property.\r\nAn object that will replace the context value completely."
+      }
+    }
+  },
+  "src/lib/components/shared-contexts/Contexts.react.js": {
+    "description": "A component exposing the Glue42 Contexts API.",
+    "displayName": "Contexts",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "update": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "Name of the context to be updated.",
+              "required": true
+            },
+            "data": {
+              "name": "object",
+              "description": "The object that will be applied to the context.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for updating a shared context with the supplied object.\r\nUpdates only the specified context properties. Any other existing context properties will remain intact.\r\nIf the context does not exist, the it will be created."
+      },
+      "set": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "Name of the context to be replaced.",
+              "required": true
+            },
+            "data": {
+              "name": "object",
+              "description": "The object that will be applied to the context.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property for setting a new context value.\r\nAll properties of the specified context object will be removed and replaced with the ones supplied in the data property.\r\nAn object that will replace the context value completely."
+      },
+      "setPath": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "Name of the context to be updated.",
+              "required": true
+            },
+            "path": {
+              "name": "custom",
+              "raw": "pathPropType",
+              "description": "Path to be updated. Path should be in the format \"prop1.prop2\".",
+              "required": false
+            },
+            "data": {
+              "name": "any",
+              "description": "The object that will be applied to the context.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Sets a path in the context to some value. Use this to update values that are not on top level in the context."
+      },
+      "setPaths": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "Name of the context to be updated.",
+              "required": true
+            },
+            "paths": {
+              "name": "arrayOf",
+              "value": {
+                "name": "custom",
+                "raw": "pathValuePropTypes"
+              },
+              "description": "Array of paths and their values to be updated.",
+              "required": true
+            }
+          }
+        },
+        "required": false,
+        "description": "Sets multiple paths in the context to some values in a single command."
+      },
+      "destroy": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "Name of the context to be removed.",
+              "required": true
+            }
+          }
+        },
+        "required": false,
+        "description": "Destroys a context and all the data associated with it."
+      }
+    }
+  },
+  "src/lib/components/Windows.react.js": {
+    "description": "A component exposing the Glue42 Window Management API.",
+    "displayName": "Windows",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.id"
+        },
+        "required": false,
+        "description": "The ID of this component. Used to identify Dash components in callbacks.\r\nThe ID must be unique across all components in an app."
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "dashBaseProps.setProps"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called to report property changes to Dash in order to make them available for callbacks."
+      },
+      "open": {
+        "type": {
+          "name": "exact",
+          "value": {
+            "name": {
+              "name": "string",
+              "description": "A unique window name.",
+              "required": true
+            },
+            "url": {
+              "name": "string",
+              "description": "The window URL.",
+              "required": true
+            },
+            "options": {
+              "name": "object",
+              "description": "Options for creating a window.",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "Property to open a new Glue42 Window."
+      }
+    }
+  }
+}
