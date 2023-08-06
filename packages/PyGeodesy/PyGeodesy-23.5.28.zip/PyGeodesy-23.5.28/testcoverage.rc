@@ -1,0 +1,25 @@
+
+# python -m coverage html --rcfile=testcoverage.rc --title="..."
+# __version__ = '23.04.04'
+
+[report]
+exclude_lines =
+    pragma: no cover
+    no cover
+    PYCHOK no cover
+    except\s
+    \sraise\s
+    \._notOverloaded\(
+    if False:
+    if __name__ == .__main__.:
+    if _FOR_DOCS:
+
+include =
+    pygeodesy/*.py
+    pygeodesy/deprecated/*.py
+    pygeodesy/geodesicx/*.py
+
+# omit = test/*.py
+
+[html]
+directory = testcoverage
