@@ -1,0 +1,45 @@
+# mlops_settings.yaml
+#
+# Project settings for MLOps framework. See README.md for more details
+
+model_name: mlopsdemo
+human_friendly_model_name: "MLOps Demo"
+model_file: model_code/model.py
+req_file: model_code/requirements.model
+artifact_folder: model_artifact
+models_to_keep: 0
+test_file: model_code/test_model.py
+platform: cdf
+dataset: mlops
+info:
+  prediction: &desc
+    description: "Description prediction service, MLOps Demo"
+    metadata:
+      required_input:
+        - ACS
+        - RDEP
+        - DEN
+      optional_input:
+        -
+      training_wells:
+        - 3/1-4
+      input_types:
+        - int
+        - float
+        - string
+      units:
+        - s/ft
+        - 1
+        - kg/m3
+      output_curves:
+        - AC
+      output_units:
+        - s/ft
+      keyword_arguments:
+        -
+      supports_external_retrieval: False
+      petrel_exposure: False
+      imputed: True
+      num_filler: -999.15
+      cat_filler: UNKNOWN
+    owner: christian.lehre@akerbp.com
