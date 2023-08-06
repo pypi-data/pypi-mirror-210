@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "spai"
+version = "2023.05.26"
+description = ""
+authors = ["Juan Sensio <it@earthpulse.es>"]
+readme = "README.md"
+packages = [{include = "spai"}]
+
+[tool.poetry.scripts]
+spai = "spai.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
