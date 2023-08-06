@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: to-cei
+Version: 0.1.7
+Summary: to-CEI
+Home-page: https://github.com/icaruseu/to-cei
+Author: Daniel Jeller
+Author-email: it@icar-us.eu
+License: GPL 3.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Monasterium to-CEI converter
+
+Models a CEI charters and charter groups as python objects with the ability to
+serialize to xml files ready to be imported into Monasterium.net.
+
+## Installing
+
+Install by executing `pip install to_cei`.
+
+## Building
+
+Build by executing `python -m build`.
+
+## Testing
+
+Launch tests with `pytest`.
