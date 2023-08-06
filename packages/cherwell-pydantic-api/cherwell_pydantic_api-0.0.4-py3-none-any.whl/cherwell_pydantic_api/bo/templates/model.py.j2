@@ -1,0 +1,95 @@
+# Auto-generated file. Do not edit!
+###################################
+# pyright: reportIncompatibleVariableOverride=false, reportUnusedImport=false
+
+
+from typing import Optional, Union, TYPE_CHECKING
+from pydantic import Field
+from .__base import BusinessObjectModelData
+{% if validators %}
+from cherwell_pydantic_api import validators
+{% endif %}
+from cherwell_pydantic_api.types import BusObID, ShortFieldID
+{% if schema.parentSchema %}
+from .{{ schema.parentSchema.identifier }} import {{ schema.parentSchema.identifier }}
+{% else %}
+from .__base import BusinessObjectModelInstanceBase
+{% endif %}
+{% if schema.relationships %}
+from .__base import BusinessObjectRelationship
+from cherwell_pydantic_api.types import RelationshipID
+{% endif %}
+{% for module in modules|sort %}
+import {{ module }}
+{% endfor %}
+
+
+{% if schema.parentSchema %}
+class {{ schema.identifier }}({{ schema.parentSchema.identifier }}):
+{% else %}
+class {{ schema.identifier }}(BusinessObjectModelInstanceBase):
+{% endif %}
+    class _ModelData(BusinessObjectModelData):
+        busobid = BusObID({{ schema.busObId|repr }})
+        firstrecidfield = ShortFieldID({{ schema.firstRecIdField|repr }})
+        recidfields = ShortFieldID({{ schema.recIdFields|repr }})
+        firstrecfield = {{ firstrecfield|repr }}
+        {% if schema.stateFieldId %}
+        statefieldid = ShortFieldID({{ schema.stateFieldId|repr }})
+        statefield = {{ statefield|repr }}
+        {% endif %}
+        {% if schema.states %}
+        states = {{ schema.states.split(',') }}
+        {% endif %}
+        {% if schema.relationships %}
+        relationships = {
+            {% for rel_id, relationship in schema.relationships.items()|sort(attribute='0') %}
+            RelationshipID({{ rel_id|repr }}):  # {{ relationship.target_name }}
+                BusinessObjectRelationship({{ relationship.target|repr }},
+                {% if relationship.target_schema %}target_class_name="{{ relationship.target_schema.identifier }}.{{ relationship.target_schema.name }}",{% endif %}
+                oneToMany={% if relationship.cardinality == 'OneToMany' %}True{% else %}False{% endif %},
+                description={{ relationship.description|repr }},
+                displayName={{ relationship.displayName|repr }}),
+            {% endfor %}
+        }
+        {% endif %}
+
+    class Config:
+        title = {{ schema.name|repr }}
+        allow_population_by_field_name = True
+
+    {% for field in fields %}
+    {{ field.identifier }}: {{ field.python_type }} = Field({{ field.python_default }},
+        {% if field.identifier != field.name %}alias={{ field.name|repr }},{% endif %}
+        {% if field.displayName %}title={{ field.displayName|repr }},{% endif %}
+        {% if field.description %}description={{ field.description|repr }},{% endif %}
+        cw_fi={{ field.short_field_id|repr }},
+        {% if field.category %}cw_category={{ field.category|repr }},{% endif %}
+        {% if field.details %}cw_details={{ field.details|repr }},{% endif %}
+        {{ field.pydantic_field_params }})
+    {% endfor %}
+
+    {% for (validator, validator_params), v_fields in validators.items() %}
+    _{{ validator }}{% if validator_params %}_{{ validator_params }}{% endif %} = validators.{{ validator }}(
+        {% for field in v_fields %}
+        {{ field.name|repr }},
+        {% endfor %}
+        {% if validator_params %}decimal_places={{ validator_params }},{% endif %}
+        pre=True, allow_reuse=True)
+    {% endfor %}
+
+    if TYPE_CHECKING:
+        def __init__(self, *,
+            {% for field in all_fields %}
+            {% if field.python_type in ('str', 'Optional[str]') %}
+            {{ field.identifier }}: {{ field.python_type }} = {{ field.python_default }},
+            {% else %}
+            {{ field.identifier }}: Union[{{ field.python_type }}, str] = {{ field.python_default }},
+            {% endif %}
+            {% endfor %}
+            ):
+            ...
+
+{% if schema.identifier != schema.name %}
+{{ schema.name }} = {{ schema.identifier }}
+{% endif %}

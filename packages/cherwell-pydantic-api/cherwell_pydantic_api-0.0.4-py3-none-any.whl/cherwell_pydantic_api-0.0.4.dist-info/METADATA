@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: cherwell-pydantic-api
+Version: 0.0.4
+Summary: A pythonic, asyncio connector for the Cherwell CSM API with full usage of Pydantic types
+Home-page: https://github.com/dataway/cherwell_pydantic_api
+License: MIT
+Keywords: cherwell,pydantic
+Author: Anthony Uk
+Author-email: uk@anthonyuk.dev
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Customer Service
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Provides-Extra: all
+Provides-Extra: jupyter
+Provides-Extra: modelgen
+Requires-Dist: async-lru (>=2.0.2,<3.0.0)
+Requires-Dist: black (>=23.1.0,<24.0.0) ; extra == "modelgen"
+Requires-Dist: click (>=8.1.3,<9.0.0) ; extra == "modelgen"
+Requires-Dist: dulwich (>=0.21.3,<0.22.0) ; extra == "modelgen"
+Requires-Dist: httpx (>=0.24.0,<0.25.0)
+Requires-Dist: ipyaggrid (>=0.4.0,<0.5.0) ; extra == "jupyter"
+Requires-Dist: ipywidgets (>=8.0.5,<9.0.0) ; extra == "jupyter"
+Requires-Dist: jinja2 (>=3.1.2,<4.0.0) ; extra == "modelgen"
+Requires-Dist: jupyter (>=1.0.0,<2.0.0) ; extra == "jupyter" or extra == "all"
+Requires-Dist: jupyterlab (>=4.0.0,<5.0.0) ; extra == "jupyter"
+Requires-Dist: nest-asyncio (>=1.5.6,<2.0.0) ; extra == "jupyter"
+Requires-Dist: pydantic-changedetect (>=0.2.5,<0.3.0)
+Requires-Dist: pydantic[dotenv] (>=1.10.6,<2.0.0)
+Project-URL: Repository, https://github.com/dataway/cherwell_pydantic_api
+Description-Content-Type: text/markdown
+
+# cherwell_pydantic_api
+## a pythonic, asyncio connector for the Cherwell CSM API with full usage of Pydantic types
+
+This module implements a modern, Pythonic, [asyncio](https://docs.python.org/3/library/asyncio.html) interface to the
+[Cherwell REST API](https://help.cherwell.com/bundle/cherwell_rest_api_10_5_help_only/page/content/system_administration/rest_api/csm_rest_api.html)
+offered by the Cherwell Service Management (CSM) ITSM solution.
+
+It offers both a low-level interface to each API call, as well as a high-level interface that maps Cherwell Business Objects to individual [Pydantic](https://docs.pydantic.dev/) models. These models will be automatically generated for your Cherwell instance and maintained in a git repository. This makes it easy to track changes in business object definitions automatically.
+
+[![license](https://img.shields.io/github/license/dataway/cherwell_pydantic_api.svg)](LICENSE.md)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cherwell-pydantic-api)](https://pypi.python.org/pypi/cherwell-pydantic-api)
+
+## License
+
+[MIT License](LICENSE.md)
+
+[Cherwell Service Management](https://help.cherwell.com/) is a product and trademark of [Ivanti](https://www.ivanti.com/products/cherwell-service-management). This project is not affiliated with Ivanti in any way.
+
