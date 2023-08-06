@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: deep-proto
+Version: 0.0.109
+Summary: DEEP Python Protobuf
+Author-email: Ben Donnelly <b.w.donnelly1@gmail.com>
+License-Expression: Apache-2.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Typing :: Typed
+Requires-Python: >3.7
+Description-Content-Type: text/markdown
+
+![PyPI](https://img.shields.io/pypi/v/deep-proto)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/intergral/go-deep-proto?label=golang)
+
+
+# Language Independent Interface Types For DEEP
+
+The proto files can be consumed as GIT submodules or copied and built directly in the consumer project.
+
+The compiled files are published to central repositories (Maven, ...).
+
+## Generate gRPC Client Libraries
+
+To generate the raw gRPC client libraries, use `make gen-${LANGUAGE}`. Currently supported languages are:
+
+* python
+* golang
