@@ -1,0 +1,871 @@
+<!--
+	Overriding Alabaster Theme to replace link to static page source
+	with a link to GitHub. Using instructions from official guide.
+
+	https://www.sphinx-doc.org/en/master/templating.html#jinja-sphinx-templating-primer
+-->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Release Notes &#8212; Anitya 0.18 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Admin User Guide" href="admin-user-guide.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="release-notes">
+<h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>0.18 (2020-01-13)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api-changes">
+<h3>API Changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Filters in APIv2 are now case insensitive
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/807">#807</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Automatically delete projects without versions that reached configured error threshold
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/865">PR#865</a>)</p></li>
+<li><p>GitHub: Store and use latest known version cursors
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/873">PR#873</a>)</p></li>
+<li><p>Link to commit of latest version if known
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/874">PR#874</a>)</p></li>
+<li><p>Use dropdown field for distro when on Add project form
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/777">#777</a>)</p></li>
+<li><p>Add error counter to project
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/829">#829</a>)</p></li>
+<li><p>Add timeout option for check service
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/843">#843</a>)</p></li>
+<li><p>Strip whitespaces from version when removing prefix
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/866">#866</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="bug-fixes">
+<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix crash on GNU, Crates and Folder backends
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/837">PR#837</a>)</p></li>
+<li><p>Fix OOM issue with check_service
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/842">PR#842</a>)</p></li>
+<li><p>Removed duplicate search form from project search result page
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/877">PR#877</a>)</p></li>
+<li><p>Fix accessing projects in GitLab subgroups
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/884">PR#884</a>)</p></li>
+<li><p>Database schema image is missing in documentation
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/692">#692</a>)</p></li>
+<li><p>Current page is forgotten on login
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/713">#713</a>)</p></li>
+<li><p>If URL is changed, update ecosystem value as well
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/764">#764</a>)</p></li>
+<li><p>Tooltips are not working on Firefox 68
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/813">#813</a>)</p></li>
+<li><p>Use tag name instead of release name for projects, which are checking only releases
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/845">#845</a>)</p></li>
+<li><p>Can’t disable “Check releases instead of tags” checkbox when editing project
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/855">#855</a>)</p></li>
+<li><p>Allow no delimiter in calendar versioning pattern
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/867">#867</a>)</p></li>
+<li><p>Distro search is broken
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/876">#876</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="development-changes">
+<h3>Development Changes<a class="headerlink" href="#development-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use DEBUG level log for development
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/826">PR#826</a>)</p></li>
+<li><p>Add Dependabot configuration file
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/844">PR#844</a>)</p></li>
+<li><p>Bump Vagrant box to Fedora 31
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/858">PR#858</a>)</p></li>
+<li><p>Mock the Fedora Messaging calls in the unit tests
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/860">PR#860</a>)</p></li>
+<li><p>Make <cite>black</cite> show diff of needed changes
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/878">PR#878</a>)</p></li>
+<li><p>Make log output from check_project_release more readable
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/828">#828</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Anatoli Babenia</p></li>
+<li><p>Aurélien Bompard</p></li>
+<li><p>Nicholas La Roux</p></li>
+<li><p>Michal Konečný</p></li>
+<li><p>Nils Philippsen</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>0.17.2 (2019-09-26)<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>Bug Fixes<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix crash on GNU, Crates and Folder backends
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/837">PR#837</a>)</p></li>
+<li><p>Fix OOM issue with check_service
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/842">PR#842</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h3>Contributors<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>0.17.1 (2019-09-09)<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h3>Bug Fixes<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Final info message in check service using error counter instead ratelimit counter
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/823">PR#823</a>)</p></li>
+<li><p>No error was shown when check_service thread crashed
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/824">PR#824</a>)</p></li>
+<li><p>Crash when sorting versions with and without date when looking for last retrieved version
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/825">PR#825</a>)</p></li>
+<li><p>Crash when calling FTP url
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/833">PR#833</a>)</p></li>
+<li><p>Latest version is not updated when version is removed from web interface
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/830">#830</a>)</p></li>
+<li><p>GitHub response 403 doesn’t have ratelimit reset time
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/832">#832</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h3>Contributors<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>0.17.0 (2019-09-03)<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id27">
+<h3>Features<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Adhere to black’s Python 3.6 formatting rules
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/818">PR#818</a>)</p></li>
+<li><p>Support multiple version prefixes
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/655">#655</a>)</p></li>
+<li><p>Make libraries.io SSE consumer part of Anitya
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/723">#723</a>)</p></li>
+<li><p>Check for new versions only when there is any change on the URL till last version was retrieved
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/730">#730</a>)</p></li>
+<li><p>Allow fetching releases on Github backend
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/733">#733</a>)</p></li>
+<li><p>Add calendar versioning
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/740">#740</a>)</p></li>
+<li><p>Add semantic versioning
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/741">#741</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h3>Bug Fixes<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Restore missing closing “”” in sample configuration
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/797">PR#797</a>)</p></li>
+<li><p>Constrain failure during alembic downgrade
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/812">PR#812</a>)</p></li>
+<li><p>Fix createdb.py to now create all tables properly
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/817">PR#817</a>)</p></li>
+<li><p>Hide ecosystem field for non admin users
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/687">#687</a>)</p></li>
+<li><p>Failures during project addition causes distro mapping to be skipped
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/735">#735</a>)</p></li>
+<li><p>Handle status code 403 as rate limit exception on Github backend
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/790">#790</a>)</p></li>
+<li><p>Cannot add distro
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/791">#791</a>)</p></li>
+<li><p>One revision is skipped when doing <cite>alembic upgrade head</cite>
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/819">#819</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id40">
+<h3>Development Changes<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add docker build to Travis CI tests
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/799">PR#799</a>)</p></li>
+<li><p>Change required version for pyasn1
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/812">PR#812</a>)</p></li>
+<li><p>Minor packaging cleanup and gitignore additions
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/816">PR#816</a>)</p></li>
+<li><p>Fix rabbitmq-server in dev environment
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/804">#804</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id43">
+<h3>Contributors<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Anatoli Babenia</p></li>
+<li><p>Michal Konečný</p></li>
+<li><p>Samuel Verschelde</p></li>
+<li><p>Vincent Fazio</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id44">
+<h2>0.16.1 (2019-07-16)<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id45">
+<h3>Bug Fixes<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Check service: Counters saved to database are always 0
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/795">#795</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id47">
+<h3>Development Changes<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix issue with documentation build
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/789">#789</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id49">
+<h3>Contributors<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id50">
+<h2>0.16.0 (2019-06-24)<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id51">
+<h3>Features<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Turn Anitya cron job to service
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/668">#668</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id53">
+<h3>Bug Fixes<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Error 500 when opening distro page
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/709">#709</a>)</p></li>
+<li><p>“Edit” form for Distro Mapping forgets the distributions
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/744">#744</a>)</p></li>
+<li><p>anitya.project.map.new not send when adding new mapping through APIv2
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/760">#760</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id57">
+<h3>Development Changes<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add new dependency ordered_set
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/668">#668</a>)</p></li>
+<li><p>Add diff-cover to tox testing suite
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/782">#782</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id60">
+<h3>Contributors<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id61">
+<h2>0.15.1 (2019-03-06)<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id62">
+<h3>Bug Fixes<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix topic for fedora_messaging
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/750">PR#750</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id63">
+<h3>Development Changes<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Check formatting using black
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/725">PR#725</a>)</p></li>
+<li><p>Remove gunicorn dependency
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/742">PR#742</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="other-changes">
+<h3>Other Changes<a class="headerlink" href="#other-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add sample configuration for Fedora Messaging
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/738">#738</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id65">
+<h3>Contributors<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id66">
+<h2>0.15.0 (2019-02-20)<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id67">
+<h3>Features<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Convert to Fedora Messaging
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/570">PR#570</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id68">
+<h3>Bug Fixes<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Release notes point to fedora-messaging
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/699">#699</a>)</p></li>
+<li><p>Javascript error on add project page
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/714">#714</a>)</p></li>
+<li><p>Changed copyright datum on frontpage to 2013-2019
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/721">#721</a>)</p></li>
+<li><p>Invalid User-Agent
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/729">#729</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id73">
+<h3>Development Changes<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Rename Vagrantfile.example to Vagrantfile
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/715">PR#715</a>)</p></li>
+<li><p>Introduce bandit to tox tests
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/724">PR#724</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id74">
+<h3>Other Changes<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Added example of usage in contribution guide.
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/719">PR#719</a>)</p></li>
+<li><p>Fix URL to fedmsg website on index.html to use the correct website URL
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/722">PR#722</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id75">
+<h3>Contributors<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Jeremy Cline</p></li>
+<li><p>AsciiWolf</p></li>
+<li><p>Zlopez</p></li>
+<li><p>Michal Konečný</p></li>
+<li><p>Neal Gompa</p></li>
+<li><p>Yaron Shahrabani</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id76">
+<h2>0.14.1 (2019-01-17)<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id77">
+<h3>Features<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Show raw version on project page for admins
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/696">PR#696</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id78">
+<h3>Bug Fixes<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Libraries.io consumer is replacing topic_prefix for Anitya
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/704">PR#704</a>)</p></li>
+<li><p>Release unlocked lock in cronjob
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/708">PR#708</a>)</p></li>
+<li><p>Comparing by dates created version duplicates
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/702">#702</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id80">
+<h3>Development Changes<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Remove Date version scheme
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/707">PR#707</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id81">
+<h3>Contributors<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Anatoli Babenia</p></li>
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id82">
+<h2>0.14.0 (2019-01-08)<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id83">
+<h3>Features<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add delete cascade on DB models
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/608">PR#608</a>)</p></li>
+<li><p>Logs table is replaced by simple status on project
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/635">PR#635</a>)</p></li>
+<li><p>Update form for adding new distributions
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/639">PR#639</a>)</p></li>
+<li><p>Refresh page after full check
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/670">PR#670</a>)</p></li>
+<li><p>Show URL for version check on project UI
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/549">#549</a>)</p></li>
+<li><p>Link to backend info from project view and edit pages
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/556">#556</a>)</p></li>
+<li><p>Retrieve all versions, not only the newest one
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/595">#595</a>)</p></li>
+<li><p>Add rate limit handling
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/600">#600</a>)</p></li>
+<li><p>Basic user management UI for admins
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/621">#621</a>)</p></li>
+<li><p>Rate limit enhancements
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/665">#665</a>)</p></li>
+<li><p>Add ecosystem information to project.version.update fedmsg topic.
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/666">#666</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id91">
+<h3>Bug Fixes<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix unhandled exception in GitLab backend
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/663">PR#663</a>)</p></li>
+<li><p>Can’t rename mapping for gstreamer
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/598">#598</a>)</p></li>
+<li><p>Source map error: request failed with status 404 for various javascript packages
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/606">#606</a>)</p></li>
+<li><p>about#test-your-regex link is broken
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/628">#628</a>)</p></li>
+<li><p>Github backend returns reversed list
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/642">#642</a>)</p></li>
+<li><p>Version prefix not working in GitLab backend
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/644">#644</a>)</p></li>
+<li><p>Latest version on Project UI is shown with prefix
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/662">#662</a>)</p></li>
+<li><p>Crash when version is too long
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/674">#674</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id99">
+<h3>Development Changes<a class="headerlink" href="#id99" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add python 3.7 to tox tests
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/650">PR#650</a>)</p></li>
+<li><p>Update Vagrantfile to use Fedora 29 image
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/653">PR#653</a>)</p></li>
+<li><p>Drop support for python 2.7 and python 3.5
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/672">PR#672</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id100">
+<h3>Other Changes<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Update contribution guide
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/636">PR#636</a>)</p></li>
+<li><p>Add GDPR SAR script
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/649">PR#649</a>)</p></li>
+<li><p>Add supported versions of python to setup script
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/651">PR#651</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id101">
+<h3>Contributors<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Anatoli Babenia</p></li>
+<li><p>Graham Williamson</p></li>
+<li><p>Jeremy Cline</p></li>
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id102">
+<h2>0.13.2 (2018-10-12)<a class="headerlink" href="#id102" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id103">
+<h3>Features<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Show users their ID on Settings page
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/631">PR#631</a>)</p></li>
+<li><p>Add sorting by creation date for versions
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/593">#593</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id105">
+<h3>Bug Fixes<a class="headerlink" href="#id105" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Can’t parse owner/repo on Github backend
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/632">PR#632</a>)</p></li>
+<li><p>Login into staging using OpenID not possible
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/issues/616">#616</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id107">
+<h3>Development Changes<a class="headerlink" href="#id107" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add towncrier for generating release notes
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/618">PR#618</a>)</p></li>
+<li><p>Remove deprecations warning
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/627">PR#627</a>)</p></li>
+<li><p>Add documentation dependency to vagrant container
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/630">PR#630</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id108">
+<h3>Contributors<a class="headerlink" href="#id108" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to the contributors of bug reports, pull requests, and pull request
+reviews for this release:</p>
+<ul class="simple">
+<li><p>Eli Young</p></li>
+<li><p>Jeremy Cline</p></li>
+<li><p>Michal Konečný</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-13-1">
+<h2>v0.13.1<a class="headerlink" href="#v0-13-1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id109">
+<h3>Features<a class="headerlink" href="#id109" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add database schema generation (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/603">#603</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="id111">
+<h3>Bug Fixes<a class="headerlink" href="#id111" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix cron issues (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/613">#613</a>).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-13-0">
+<h2>v0.13.0<a class="headerlink" href="#v0-13-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Explicitly depend on <code class="docutils literal notranslate"><span class="pre">defusedxml</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id113">
+<h3>Features<a class="headerlink" href="#id113" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Update GitHub backend to <a class="reference external" href="https://developer.github.com/v4/">GitHub API v4</a> (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/582">#582</a>).</p></li>
+<li><p>Add GitLab backend. This is implemented using <a class="reference external" href="https://docs.gitlab.com/ee/api/README.html">GitLab API v4</a> (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/591">#591</a>).</p></li>
+<li><p>Update CPAN backend to use metacpan.org (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/569">#569</a>).</p></li>
+<li><p>Parse XML from CPAN with defusedxml (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/569">#569</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="id118">
+<h3>Bug Fixes<a class="headerlink" href="#id118" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Change edit message for project, when no edit actually happened (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/579">#579</a>).</p></li>
+<li><p>Fix wrong title on Edit page (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/578">#578</a>).</p></li>
+<li><p>Default custom regex is now configurable (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/571">#571</a>).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-12-1">
+<h2>v0.12.1<a class="headerlink" href="#v0-12-1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id122">
+<h3>Dependencies<a class="headerlink" href="#id122" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Unpin <code class="docutils literal notranslate"><span class="pre">straight.plugin</span></code> dependency. It was pinned to avoid a bug which has
+since been fixed in the latest releases (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/564">#564</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="id124">
+<h3>Bug Fixes<a class="headerlink" href="#id124" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Rather than returning an HTTP 500 when authenticating with two separate
+identity providers using the same email, return a HTTP 400 to indicate the
+client should not retry the request and inform them they must log in with
+the original identity provider (<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/563">#563</a>).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="v0-12-0">
+<h2>v0.12.0<a class="headerlink" href="#v0-12-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id126">
+<h3>Dependencies<a class="headerlink" href="#id126" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Drop the dependency on the Python <code class="docutils literal notranslate"><span class="pre">bunch</span></code> package as it is not used.</p></li>
+<li><p>There is no longer a hard dependency on the <code class="docutils literal notranslate"><span class="pre">rpm</span></code> Python package.</p></li>
+<li><p>Introduce a dependency on the Python <code class="docutils literal notranslate"><span class="pre">social-auth-app-flask-sqlalchemy</span></code> and
+<code class="docutils literal notranslate"><span class="pre">flask-login</span></code> packages in order to support authenticating against OAuth2,
+OpenID Connect, and plain OpenID providers.</p></li>
+<li><p>Introduce a dependency on the Python <code class="docutils literal notranslate"><span class="pre">blinker</span></code> package to support signaling
+in Flask.</p></li>
+<li><p>Introduce a dependency on the Python <code class="docutils literal notranslate"><span class="pre">pytoml</span></code> package in order to support
+a TOML configuration format.</p></li>
+</ul>
+</div>
+<div class="section" id="backwards-incompatible-changes">
+<h3>Backwards-incompatible Changes<a class="headerlink" href="#backwards-incompatible-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Dropped support for Python 2.6</p></li>
+<li><p>Added support for Python 3.4+</p></li>
+</ul>
+<div class="section" id="apis">
+<h4>APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h4>
+<p>A number of functions that make up Anitya’s Python API have been moved
+(<a class="reference external" href="https://github.com/fedora-infra/anitya/pull/503">#503</a>). The full
+list of functions are below. Note that no function signatures have changed.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.check_release</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.check_project_release</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.fedmsg_publish</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.fedmsg_publish</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.log</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.log</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.init</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.init</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.create_project</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.create_project</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.edit_project</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.edit_project</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.map_project</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.map_project</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.flag_project</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.flag_project</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.set_flag_state</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.set_flag_state</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anitya.lib.get_last_cron</span></code> is now <code class="docutils literal notranslate"><span class="pre">anitya.lib.utilities.get_last_cron</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="deprecations">
+<h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Deprecated the v1 HTTP API.</p></li>
+</ul>
+</div>
+<div class="section" id="id128">
+<h3>Features<a class="headerlink" href="#id128" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Introduced a new set of APIs under <code class="docutils literal notranslate"><span class="pre">api/v2/</span></code> that support write operations
+for users authenticated with an API token.</p></li>
+<li><p>Configuration is now TOML format.</p></li>
+<li><p>Added a user guide to the documentation.</p></li>
+<li><p>Added an admin guide to the documentation.</p></li>
+<li><p>Automatically generate API documentation with Sphinx.</p></li>
+<li><p>Introduce httpdomain support to document the HTTP APIs.</p></li>
+<li><p>Add initial support for projects to set a “version scheme” in order to help
+with version ordering. At the present the only version scheme implemented is
+the RPM scheme.</p></li>
+<li><p>Add support for authenticating using a large number of OAuth2, OpenID Connect,
+and OpenID providers.</p></li>
+<li><p>Add a fedmsg consumer that integrates with libraries.io to provide more timely
+project update notifications.</p></li>
+<li><p>Add support for running on OpenShift with s2i.</p></li>
+<li><p>Switch over to pypi.org rather than pypi.python.org</p></li>
+<li><p>Use HTTPS in backend examples, default URLs, and documentation.</p></li>
+</ul>
+</div>
+<div class="section" id="id129">
+<h3>Bug Fixes<a class="headerlink" href="#id129" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed deprecation warnings from using <code class="docutils literal notranslate"><span class="pre">flask.ext</span></code> (#431).</p></li>
+<li><p>Fix the NPM backend’s update feed.</p></li>
+</ul>
+</div>
+<div class="section" id="developer-improvements">
+<h3>Developer Improvements<a class="headerlink" href="#developer-improvements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed all warnings generated from building the Sphinx documentation and
+introduce tests to ensure there are no regressions (#427).</p></li>
+<li><p>Greatly improved the unit tests by breaking monolithic tests up.</p></li>
+<li><p>Moved the unit tests into the <code class="docutils literal notranslate"><span class="pre">anitya.tests</span></code> package so tests didn’t need
+to mess with the Python path.</p></li>
+<li><p>Fixed logging during test runs</p></li>
+<li><p>Switched to pytest as the test runner since nose is dead.</p></li>
+<li><p>Introduced nested transactions for database tests rather than removing the
+database after each test. This greatly reduced run time.</p></li>
+<li><p>Added support for testing against multiple Python versions via tox.</p></li>
+<li><p>Added Travis CI integration.</p></li>
+<li><p>Added code coverage with pytest-cov and Codecov integration.</p></li>
+<li><p>Fixed all flake8 errors.</p></li>
+<li><p>Refactored the database code to avoid circular dependencies.</p></li>
+<li><p>Allow the Vagrant environment to be provisioned with an empty database.</p></li>
+</ul>
+</div>
+<div class="section" id="id130">
+<h3>Contributors<a class="headerlink" href="#id130" title="Permalink to this headline">¶</a></h3>
+<p>Many thanks to all the contributors for this release, including those who filed
+issues. Commits for this release were contributed by:</p>
+<ul class="simple">
+<li><p>Elliott Sales de Andrade</p></li>
+<li><p>Jeremy Cline</p></li>
+<li><p>luto</p></li>
+<li><p>Michael Simacek</p></li>
+<li><p>Nick Coghlan</p></li>
+<li><p>Nicolas Quiniou-Briand</p></li>
+<li><p>Ricardo Martincoski</p></li>
+<li><p>robled</p></li>
+</ul>
+<p>Thank you all for your hard work.</p>
+</div>
+</div>
+<div class="section" id="v0-11-0">
+<h2>v0.11.0<a class="headerlink" href="#v0-11-0" title="Permalink to this headline">¶</a></h2>
+<p>Released February 08, 2017.</p>
+<ul class="simple">
+<li><p>Return 4XX codes in error cases for /projects/new rather than 200 (Issue #246)</p></li>
+<li><p>Allow projects using the “folder” backend to make insecure HTTPS requests
+(Issue #386)</p></li>
+<li><p>Fix an issue where turning the insecure flag on and then off for a project
+resulted in insecure requests until the server was restarted (Issue #394)</p></li>
+<li><p>Add a data migration to set the ecosystem of existing projects if the backend
+they use is the default backend for an ecosystem. Note that this migration
+can fail if existing data has duplicate projects since there is a new
+constraint that a project name is unique within an ecosystem (Issue #402).</p></li>
+<li><p>Fix the regular expression used with the Debian backend to strip the “orig”
+being incorrectly included in the version (Issue #398)</p></li>
+<li><p>Added a new backend and ecosystem for <a class="reference external" href="https://crates.io">https://crates.io</a> (Issue #414)</p></li>
+<li><p>[insert summary of change here]</p></li>
+</ul>
+</div>
+<div class="section" id="v0-10-1">
+<h2>v0.10.1<a class="headerlink" href="#v0-10-1" title="Permalink to this headline">¶</a></h2>
+<p>Released November 29, 2016.</p>
+<ul class="simple">
+<li><p>Fix an issue where the version prefix was not being stripped (Issue #372)</p></li>
+<li><p>Fix an issue where logs were not viewable to some users (Issue #367)</p></li>
+<li><p>Update anitya’s mail_logging to be compatible with old and new psutil
+(Issue #368)</p></li>
+<li><p>Improve Anitya’s error reporting via email (Issue #368)</p></li>
+<li><p>Report the reason fetching a URL failed for the folder backend (Issue #338)</p></li>
+<li><p>Add a timeout to HTTP requests Anitya makes to ensure it does not wait
+indefinitely (Issue #377)</p></li>
+<li><p>Fix an issue where prefixes could be stripped further than intended (Issue #381)</p></li>
+<li><p>Add page titles to the HTML templates (Issue #371)</p></li>
+<li><p>Switch from processes to threads in the Anitya cron job to avoid sharing
+network sockets for HTTP requests across processes (Issue #335)</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Anitya</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=fedora-infra&repo=anitya&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin-user-guide.html">Admin User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.18 (2020-01-13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">0.17.2 (2019-09-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">0.17.1 (2019-09-09)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">0.17.0 (2019-09-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id44">0.16.1 (2019-07-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id50">0.16.0 (2019-06-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id61">0.15.1 (2019-03-06)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id66">0.15.0 (2019-02-20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id76">0.14.1 (2019-01-17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id82">0.14.0 (2019-01-08)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id102">0.13.2 (2018-10-12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-13-1">v0.13.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-13-0">v0.13.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-12-1">v0.12.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-12-0">v0.12.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-11-0">v0.11.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-10-1">v0.10.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="admin-guide.html">Administration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrating-with-anitya.html">Integrating with Anitya</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database models</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="admin-user-guide.html" title="previous chapter">Admin User Guide</a></li>
+      <li>Next: <a href="glossary.html" title="next chapter">Glossary</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" style="text-align: center">
+      &copy;2019, Red Hat, Inc. and others.|
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      (<a href="https://github.com/fedora-infra/anitya/tree/master/docs/_templates">customized</a>)
+      |
+      <a href="https://github.com/fedora-infra/anitya/tree/master/docs/release-notes.rst"
+          rel="nofollow">View source</a>
+    </div>
+  </body>
+</html>

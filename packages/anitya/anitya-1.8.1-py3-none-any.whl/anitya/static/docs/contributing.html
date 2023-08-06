@@ -1,0 +1,392 @@
+<!--
+	Overriding Alabaster Theme to replace link to static page source
+	with a link to GitHub. Using instructions from official guide.
+
+	https://www.sphinx-doc.org/en/master/templating.html#jinja-sphinx-templating-primer
+-->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Development Guide &#8212; Anitya 0.18 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Database models" href="database.html" />
+    <link rel="prev" title="API Documentation" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="development-guide">
+<h1>Development Guide<a class="headerlink" href="#development-guide" title="Permalink to this headline">¶</a></h1>
+<p>Anitya welcomes contributions! Our issue tracker is located on
+<a class="reference external" href="https://github.com/fedora-infra/anitya/issues">GitHub</a>.</p>
+<div class="section" id="contribution-guidelines">
+<h2>Contribution Guidelines<a class="headerlink" href="#contribution-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>When you make a pull request, someone from the fedora-infra organization
+will review your code. Please make sure you follow the guidelines below:</p>
+<div class="section" id="python-support">
+<h3>Python Support<a class="headerlink" href="#python-support" title="Permalink to this headline">¶</a></h3>
+<p>Anitya supports Python 3.6 or greater so please ensure the code
+you submit works with these versions. The test suite will run against all supported
+Python versions to make this easier.</p>
+</div>
+<div class="section" id="code-style">
+<h3>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h3>
+<p>We follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> style guide for Python.
+The test suite includes a test that enforces the required style, so all you need to do is
+run the tests to ensure your code follows the style. If the unit test passes, you are
+good to go!</p>
+<p>To automatically format the code run the following in project root. The <code class="docutils literal notranslate"><span class="pre">.tox</span></code> folder
+will be created when <code class="docutils literal notranslate"><span class="pre">tox</span></code> will be run.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.tox/format/bin/black .
+</pre></div>
+</div>
+</div>
+<div class="section" id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>The test suites can be run using <a class="reference external" href="http://tox.readthedocs.io/">tox</a> by simply running
+<code class="docutils literal notranslate"><span class="pre">tox</span></code> from the repository root. These tests include unit tests, a linter to ensure
+Python code style is correct, checks for possible security issues, and checks the
+documentation for Sphinx warnings or errors.</p>
+<p>All tests must pass. All new code should have 100% test coverage.
+Any bugfix should be accompanied by one or more unit tests to demonstrate the fix.
+If you are unsure how to write unit tests for your code, we will be happy to help
+you during the code review process.</p>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>Anitya uses <a class="reference external" href="http://www.sphinx-doc.org/">sphinx</a> to create its documentation.
+New packages, modules, classes, methods, functions, and attributes all should be
+documented using <a class="reference external" href="http://www.sphinx-doc.org/en/1.7/ext/example_google.html">“Google style”</a>
+docstrings. For historical reasons you may encounter plain reStructuredText-style
+docstrings. Please consider converting them and opening a pull request!</p>
+<p>Python API documentation is automatically generated from the code using Sphinx’s
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/tutorial.html#autodoc">autodoc</a> extension.
+HTTP REST API documentation is automatically generated from the code using the
+<a class="reference external" href="https://pythonhosted.org/sphinxcontrib-httpdomain/">httpdomain</a> extension.</p>
+</div>
+<div class="section" id="release-notes">
+<h3>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h3>
+<p>To add entries to the release notes, create a file in the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory
+with the <code class="docutils literal notranslate"><span class="pre">source.type</span></code> name format, where <code class="docutils literal notranslate"><span class="pre">type</span></code> is one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">feature</span></code>: for new features</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bug</span></code>: for bug fixes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">api</span></code>: for API changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dev</span></code>: for development-related changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">author</span></code>: for contributor names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>: for other changes</p></li>
+</ul>
+<p>And where the <code class="docutils literal notranslate"><span class="pre">source</span></code> part of the filename is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">42</span></code> when the change is described in issue <code class="docutils literal notranslate"><span class="pre">42</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PR42</span></code> when the change has been implemented in pull request <code class="docutils literal notranslate"><span class="pre">42</span></code>, and
+there is no associated issue</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code> for contributors (<code class="docutils literal notranslate"><span class="pre">author</span></code> extention). It should be the
+username part of their commit’s email address.</p></li>
+</ul>
+<p>For example:</p>
+<p>If this PR is solving <a class="reference external" href="https://github.com/fedora-infra/anitya/issues/714">bug 714</a>
+the file inside <code class="docutils literal notranslate"><span class="pre">news</span></code> should be called <code class="docutils literal notranslate"><span class="pre">714.bug</span></code>
+and the content of the file would be:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Javascript</span> <span class="pre">error</span> <span class="pre">on</span> <span class="pre">add</span> <span class="pre">project</span> <span class="pre">page</span></code></p>
+<p>Matching the issue title.</p>
+<p>The text inside the file will be used as entry text.
+A preview of the release notes can be generated with <code class="docutils literal notranslate"><span class="pre">towncrier</span> <span class="pre">--draft</span></code>.</p>
+</div>
+</div>
+<div class="section" id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
+<p>There are two options for setting up a development environment. If you’re not
+sure which one to choose, pick the Vagrant method.</p>
+<div class="section" id="vagrant">
+<h3>Vagrant<a class="headerlink" href="#vagrant" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://vagrantup.com/">Vagrant</a> development environment is set up using <a class="reference external" href="https://www.ansible.com/">Ansible</a>.</p>
+<p>To get started, install Vagrant and Ansible. On Fedora:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo dnf install vagrant libvirt vagrant-libvirt vagrant-sshfs ansible
+</pre></div>
+</div>
+<p>Next, clone the repository and start the Vagrant machine:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/fedora-infra/anitya.git
+$ cd anitya
+$ vagrant up
+$ vagrant reload
+$ vagrant ssh
+</pre></div>
+</div>
+<p>When you log in you’ll be presented with a message of the day with more details
+about the environment.</p>
+<p>To start the Anitya instance in vagrant you can run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ systemctl --user start anitya
+</pre></div>
+</div>
+<p>You may then access Anitya on your host at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">5000</span>
+</pre></div>
+</div>
+<p>By default, Anitya imports the production database so you’ve got something
+to start with. If instead you prefer an empty database, add the following
+to the Ansible provisioner inside your <cite>Vagrantfile</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">.</span><span class="n">extra_vars</span> <span class="o">=</span> <span class="p">{</span> <span class="n">import_production_database</span><span class="p">:</span> <span class="n">false</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please don’t commit any local changes to Vagrantfile. We are managing it
+upstream.</p>
+</div>
+<p>Vagrant is using <a class="reference external" href="https://www.postgresql.org/">PostgreSQL database</a>.
+To work with it use <code class="docutils literal notranslate"><span class="pre">psql</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -u postgres psql
+postgres=#\connect anitya
+</pre></div>
+</div>
+<p>After this you can use standard <a class="reference external" href="https://www.postgresql.org/docs/10/static/tutorial-sql.html">SQL queries</a> or
+another <code class="docutils literal notranslate"><span class="pre">psql</span></code> commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show description of tables</span>
+\<span class="n">dt</span>
+<span class="c1"># Show table description</span>
+\<span class="n">d</span> <span class="n">users</span>
+</pre></div>
+</div>
+<p>For additional <code class="docutils literal notranslate"><span class="pre">psql</span></code> commands see <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">psql</span></code>.</p>
+<p>To run libraries.io service simply run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ librariesio_consumer.py
+</pre></div>
+</div>
+<p>To run check service simply run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ check_service.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-virtualenv">
+<h3>Python virtualenv<a class="headerlink" href="#python-virtualenv" title="Permalink to this headline">¶</a></h3>
+<p>Anitya can also be run in a Python virtualenv. For Fedora:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/fedora-infra/anitya.git
+$ cd anitya
+$ sudo dnf install python3-virtualenvwrapper
+$ source /usr/bin/virtualenvwrapper.sh
+$ mkvirtualenv anitya
+$ workon anitya
+</pre></div>
+</div>
+<p>Issuing that last command should change your prompt to indicate that you are
+operating in an active virtualenv.</p>
+<p>Next, install Anitya:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(anitya)$ pip install -r test_requirements.txt
+(anitya)$ pip install -e .
+</pre></div>
+</div>
+<p>Create the database, by default it will be a sqlite database located at
+<code class="docutils literal notranslate"><span class="pre">/var/tmp/anitya-dev.sqlite</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(anitya) $ python createdb.py
+</pre></div>
+</div>
+<p>You can start the development web server included with Flask with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(anitya)$ FLASK_APP=anitya.wsgi flask run
+</pre></div>
+</div>
+<p>If you want to change the application’s configuration, create a valid configuration
+file and start the application with the <code class="docutils literal notranslate"><span class="pre">ANITYA_WEB_CONFIG</span></code> environment variable
+set to the configuration file’s path. You can look at the
+<a class="reference external" href="https://github.com/fedora-infra/anitya/blob/master/files/anitya.toml.sample">sample configuration</a>
+for guidance.</p>
+</div>
+</div>
+<div class="section" id="release-guide">
+<h2>Release Guide<a class="headerlink" href="#release-guide" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="testing-before-release">
+<h3>Testing before release<a class="headerlink" href="#testing-before-release" title="Permalink to this headline">¶</a></h3>
+<p>To test the new version before release just update the <code class="docutils literal notranslate"><span class="pre">staging</span></code> branch
+to current <code class="docutils literal notranslate"><span class="pre">master</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">staging</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span><span class="o">/</span><span class="n">staging</span>
+</pre></div>
+</div>
+<p>This will automatically start the deployment in
+<a class="reference external" href="https://stg.release-monitoring.org/">staging instance</a>. You can then test the new
+changes there.</p>
+<p>If you need to do any changes in configuration of <code class="docutils literal notranslate"><span class="pre">staging</span></code> instance,
+just update the
+<a class="reference external" href="https://pagure.io/fedora-infra/ansible/blob/main/f/roles/openshift-apps/release-monitoring">release-monitoring role</a>
+in Fedora infra ansible repository.</p>
+<p>If the changes are merged, you can run the playbook by following
+<a class="reference external" href="https://fedora-infra-docs.readthedocs.io/en/latest/sysadmin-guide/sops/anitya.html#configuration">configuration guide</a>
+for Anitya in Fedora infra documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Have in mind that everything needs to be only done for staging. In configuration use jinja statements
+and when deploying don’t forget to use <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">staging</span></code> switch.</p>
+</div>
+</div>
+<div class="section" id="anitya">
+<h3>Anitya<a class="headerlink" href="#anitya" title="Permalink to this headline">¶</a></h3>
+<p>To do the release you need following python packages installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wheel</span>
+<span class="n">twine</span>
+<span class="n">towncrier</span>
+</pre></div>
+</div>
+<p>If you are a maintainer and wish to make a release, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Change the version in <code class="docutils literal notranslate"><span class="pre">anitya.__init__.__version__</span></code>. This is used to set the
+version in the documentation project and the setup.py file.</p></li>
+<li><p>Add any missing news fragments to the <code class="docutils literal notranslate"><span class="pre">news</span></code> folder.</p></li>
+<li><p>Get authors of commits by <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">get-authors.py</span></code>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This script must be executed in <code class="docutils literal notranslate"><span class="pre">news</span></code> folder, because it
+creates files in current working directory.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Generate the changelog by running <code class="docutils literal notranslate"><span class="pre">towncrier</span></code>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you added any news fragment in the previous step, you might see <code class="docutils literal notranslate"><span class="pre">towncrier</span></code>
+complaining about removing them, because they are not committed in git.
+Just ignore this and remove all of them manually; release notes will be generated
+anyway.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Remove every remaining news fragment from <code class="docutils literal notranslate"><span class="pre">news</span></code> folder.</p></li>
+<li><p>Generate new DB schema image by running <code class="docutils literal notranslate"><span class="pre">./generate_db_schema</span></code> in <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder.</p></li>
+<li><p>Commit your changes with message <em>Anitya &lt;version&gt;</em>.</p></li>
+<li><p>Tag a release with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-s</span> <span class="pre">&lt;version&gt;</span></code>.</p></li>
+<li><p>Don’t forget to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--tags</span></code>.</p></li>
+<li><p>Sometimes you need to also do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p></li>
+<li><p>Build the Python packages with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">bdist_wheel</span></code>.</p></li>
+<li><p>Upload the packages with <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">dist/&lt;dists&gt;</span></code>.</p></li>
+</ol>
+</div>
+<div class="section" id="fedora-messaging-schema">
+<h3>Fedora messaging schema<a class="headerlink" href="#fedora-messaging-schema" title="Permalink to this headline">¶</a></h3>
+<p>To do the release you need following python packages installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wheel</span>
+<span class="n">twine</span>
+</pre></div>
+</div>
+<p>If you are a maintainer and wish to make a release of Anitya fedora messaging schema, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">anitya_schema</span></code> directory.</p></li>
+<li><p>Change the version in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p></li>
+<li><p>Commit your changes with message <em>Anitya schema &lt;version&gt;</em>.</p></li>
+<li><p>Don’t forget to <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p></li>
+<li><p>Build the Python packages with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">bdist_wheel</span></code>.</p></li>
+<li><p>Upload the packages with <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">dist/&lt;dists&gt;</span></code>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Anitya</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=fedora-infra&repo=anitya&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin-user-guide.html">Admin User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="admin-guide.html">Administration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrating-with-anitya.html">Integrating with Anitya</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#contribution-guidelines">Contribution Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-guide">Release Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database models</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="api.html" title="previous chapter">API Documentation</a></li>
+      <li>Next: <a href="database.html" title="next chapter">Database models</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" style="text-align: center">
+      &copy;2019, Red Hat, Inc. and others.|
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      (<a href="https://github.com/fedora-infra/anitya/tree/master/docs/_templates">customized</a>)
+      |
+      <a href="https://github.com/fedora-infra/anitya/tree/master/docs/contributing.rst"
+          rel="nofollow">View source</a>
+    </div>
+  </body>
+</html>
