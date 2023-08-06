@@ -1,0 +1,106 @@
+Metadata-Version: 2.1
+Name: compose-py
+Version: 0.2.0
+Summary: A Python library for parsing and loading Compose files
+Author-email: Yuki Igarashi <me@bonprosoft.com>
+License: MIT License
+        
+        Copyright (c) 2023 Yuki Igarashi
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, https://github.com/bonprosoft/compose-py
+Project-URL: repository, https://github.com/bonprosoft/compose-py
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: pydantic
+Provides-Extra: dataclasses
+Provides-Extra: dev
+License-File: LICENSE
+
+# compose-py
+
+A Python library for parsing and loading [Compose](https://github.com/compose-spec/compose-spec) files
+
+## Installation
+
+```sh
+pip install compose-py
+```
+
+By default, the library doesn't have any dependencies for dataclass libraries.
+Choose 'pydantic' or 'dataclasses' and install the library.
+We also provide `extras` for the libraries:
+```sh
+# If you prefer Pydantic models
+pip install "compose-py[pydantic]"
+
+# If you prefer dataclasses models
+pip install "compose-py[dataclasses]"
+```
+
+## Tutorial: Load, modify, and save docker-compose.yml
+
+### Pydantic.BaseModel (default)
+
+```py
+import compose_py
+
+with open("docker-compose.yml", "r") as f:
+    obj = compose_py.load_yaml(f)
+print(obj)  # Prints 'compose_py.models_pydantic.ComposeSpecification(...)'
+print(obj.services["web"])  # Prints 'compose_py.models_pydantic.Service(...)'
+
+# Copy and modify the existing service, then add it to the specification
+web2 = obj.services["web"].copy()
+web2.command = "--port 8081"
+obj.services["web2"] = web2
+
+print(compose_py.dump_yaml_str(obj))
+with open("docker-compose-modified.yml", "w") as f:
+    compose_py.dump_yaml(obj, f)
+```
+
+You can find more APIs under `compose_py.models_pydantic` package.
+
+### dataclasses.dataclass
+
+```py
+import compose_py
+
+with open("docker-compose.yml", "r") as f:
+    obj = compose_py.load_yaml(f, model=compose_py.ModelType.DATACLASSES)
+print(obj)  # Prints 'compose_py.models_dataclasses.ComposeSpecification(...)'
+print(obj.services["web"])  # Prints 'compose_py.models_dataclasses.Service(...)'
+
+# Copy and modify the existing service, then add it to the specification
+web2 = obj.services["web"].copy()
+web2.command = "--port 8081"
+obj.services["web2"] = web2
+
+print(compose_py.dump_yaml_str(obj))
+with open("docker-compose-modified.yml", "w") as f:
+    compose_py.dump_yaml(obj, f, model=compose_py.ModelType.DATACLASSES)
+```
+
+You can find more APIs under `compose_py.models_dataclasses` package.
+
