@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: netdem
+Version: 1.1
+Summary: A neural network machine learning enabled DEM framework for computational particle mechanics.
+Home-page: https://apaam.github.io/netdem_docs/
+Author: APAAM
+Author-email: lai.zhengshou@outlook.com
+Description-Content-Type: text/markdown
+
+# NetDEM
+
+## Welcome
+
+[**NetDEM**](https://apaam.github.io/netdem_docs/) is a C++ program library targeted at the computational mechanics of irregular granular materials and utilizing machine learning tools to boost the computational effciency.
+
+It is currently capable of performing basic and general DEM simulations, with following features:
+
+- Sphere and triangle facets contact solver
+- GJK contact solver for convex particles
+- SDF contact solver for arbitrary (convex and concave) particles
+- Hybrid OpenMP and MPI parallel computing
+- Integrated [mlpack](https://www.mlpack.org/) machine learning environment
+
+The supported particle shapes include ``sphere``, ``cylinder``, ``poly-super-ellipsoid``, ``poly-super-quadrics``, ``spherical harmonics``, ``triangle mesh``, ``level set``, etc.
+
+## Get started
+
+### Install
+
+#### Prerequisites 
+
+The compilation requires ``gcc``, ``autoconf``, ``automake``, ``cmake``, ``mpi``, ``boost``, which can be obtained using
+
+```
+# For MacOS: use brew install, such as
+brew install gcc autoconf autoconf-archive automake cmake openmpi boost
+        
+# For Ubuntu: use apt-get install, such as
+sudo apt install build-essential
+sudo apt-get install -y autoconf-archive automake cmake texinfo
+sudo apt-get install openmpi-bin libopenmpi-dev libboost-all-dev libomp-dev
+```
+
+#### Compile and build
+
+```
+make sync_submodule
+make
+``` 
+
+If some third-party libraries have not been or cannot be downloaded successfully, you can delete them and do a ``git checkout contrib`` and ``make sync_submodule`` again.
+
+
+#### Test the installation
+
+```
+./scripts/run_tests.sh
+```
+
+### Examples & tutorials
+
+Some preliminary examples are located under directory ``examples/``, which can be run with, e.g.,
+
+```
+./build/bin/netdem_example_random_packing 1
+```
+
+For more details please refer to the [website](https://apaam.github.io/netdem_docs/).
+
+### Visualize & post-process
+
+Results can be dumped as VTK files, which can be visualized in [paraview](https://www.paraview.org/).
+
+Plese refer to ``tools/post_process`` for some matlab or python scripts for post-process (e.g., VTK io, stress-strain, spherical histograms of contact anisotropy).
+
+## Support
+
+This code is under active development. Please join us if you have an interest to contribute. 
+
+If you need help using NetDEM, or have found a bug, please [open an issue](https://github.com/apaam/netdem/issues) or [submit a pull request](https://github.com/apaam/netdem/pulls).
