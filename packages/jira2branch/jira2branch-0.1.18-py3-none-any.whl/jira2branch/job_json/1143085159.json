@@ -1,0 +1,101 @@
+{
+    "id": 1143085159,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.97.13",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-03-31T12:12:19.372Z",
+    "started_at": "2021-03-31T12:14:30.115Z",
+    "finished_at": "2021-03-31T12:21:45.280Z",
+    "duration": 435.165494,
+    "queued_duration": 0.987096,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "9d6371c578ed62ffc75d1f2c1b42e25d5d184ae8",
+        "short_id": "9d6371c5",
+        "created_at": "2021-03-31T12:02:27.000+00:00",
+        "parent_ids": [
+            "c161b9288bcfbc962d68f373fe5df18c7069be09",
+            "9d0732e907a2c3a717b139a069d2e7b6cab1b320"
+        ],
+        "title": "Merge branch 'fix/IS-5480-infraspeak-web-suggestion-of-location-is-impacti' into 'master'",
+        "message": "Merge branch 'fix/IS-5480-infraspeak-web-suggestion-of-location-is-impacti' into 'master'\n\nfix/IS-5480: Suggestion of Location is impacting the report of Work Orders\n\nSee merge request infraspeak/web/web-core-client!1933",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-03-31T12:02:27.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-03-31T12:02:27.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/9d6371c578ed62ffc75d1f2c1b42e25d5d184ae8"
+    },
+    "pipeline": {
+        "id": 279462104,
+        "iid": 4978,
+        "project_id": 20143087,
+        "sha": "9d6371c578ed62ffc75d1f2c1b42e25d5d184ae8",
+        "ref": "v0.97.13",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-03-31T12:12:19.302Z",
+        "updated_at": "2021-03-31T12:21:45.446Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/279462104"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1143085159",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 56333,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 279462104
+}

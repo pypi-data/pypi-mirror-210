@@ -1,0 +1,101 @@
+{
+    "id": 1124384570,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.97.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-03-24T14:23:04.359Z",
+    "started_at": "2021-03-24T14:25:17.217Z",
+    "finished_at": "2021-03-24T14:32:00.254Z",
+    "duration": 403.037517,
+    "queued_duration": 3.215596,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "fdb06dbeb8fd7f1bb7718a9b2e0d4119ebbf3bd6",
+        "short_id": "fdb06dbe",
+        "created_at": "2021-03-24T14:14:58.000+00:00",
+        "parent_ids": [
+            "7896627f52311005da80c38819910302f3d9a09a",
+            "7535be7a327789bad080501d5ac2501ce1dcd2b5"
+        ],
+        "title": "Merge branch 'fix/CFT-525_Change_the_Final_Scheduled_Job_Order_Date_in_the_Completed' into 'master'",
+        "message": "Merge branch 'fix/CFT-525_Change_the_Final_Scheduled_Job_Order_Date_in_the_Completed' into 'master'\n\nfix/CFT-525: Change the final scheduled job order date in the completed\n\nSee merge request infraspeak/web/web-core-client!1890",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2021-03-24T14:14:58.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2021-03-24T14:14:58.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/fdb06dbeb8fd7f1bb7718a9b2e0d4119ebbf3bd6"
+    },
+    "pipeline": {
+        "id": 275739833,
+        "iid": 4777,
+        "project_id": 20143087,
+        "sha": "fdb06dbeb8fd7f1bb7718a9b2e0d4119ebbf3bd6",
+        "ref": "v0.97.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-03-24T14:23:04.298Z",
+        "updated_at": "2021-03-24T14:32:00.950Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/275739833"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1124384570",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 55335,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 275739833
+}

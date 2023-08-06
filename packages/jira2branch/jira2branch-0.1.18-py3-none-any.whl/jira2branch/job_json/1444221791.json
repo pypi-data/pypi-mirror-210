@@ -1,0 +1,101 @@
+{
+    "id": 1444221791,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.106.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-07-22T10:51:55.110Z",
+    "started_at": "2021-07-22T10:55:26.070Z",
+    "finished_at": "2021-07-22T11:04:19.137Z",
+    "duration": 533.067018,
+    "queued_duration": 8.04104,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "a06b1e68a03d0b38e03339ca1ac6e85c68320c1f",
+        "short_id": "a06b1e68",
+        "created_at": "2021-07-22T10:39:36.000+00:00",
+        "parent_ids": [
+            "951f28df832d35c29388e77c1bce166ae8ee62d9",
+            "f47b485ec370bc94472f8a02b7cf28806dfd7bf9"
+        ],
+        "title": "Merge branch 'fix/IS-7137_Work-Orders-comments-not-saved-in-history-when-changing-pause-reason' into 'master'",
+        "message": "Merge branch 'fix/IS-7137_Work-Orders-comments-not-saved-in-history-when-changing-pause-reason' into 'master'\n\nFix/IS-7137: Work Orders - comments not saved in history when changing pause reason\n\nSee merge request infraspeak/web/web-core-client!2427\n\nClose IS-7137",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-07-22T10:39:36.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-07-22T10:39:36.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/a06b1e68a03d0b38e03339ca1ac6e85c68320c1f"
+    },
+    "pipeline": {
+        "id": 341183169,
+        "iid": 7393,
+        "project_id": 20143087,
+        "sha": "a06b1e68a03d0b38e03339ca1ac6e85c68320c1f",
+        "ref": "v0.106.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-07-22T10:51:55.053Z",
+        "updated_at": "2021-07-22T11:14:17.590Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/341183169"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1444221791",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 61914,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 341183169
+}

@@ -1,0 +1,101 @@
+{
+    "id": 2303529668,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.125.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-04-07T08:52:47.380Z",
+    "started_at": "2022-04-07T08:54:54.608Z",
+    "finished_at": "2022-04-07T09:06:05.916Z",
+    "duration": 671.307957,
+    "queued_duration": 45.535187,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "35c839d5fe46b7aa19a53f88223c009c9ea0c531",
+        "short_id": "35c839d5",
+        "created_at": "2022-04-07T08:41:17.000+00:00",
+        "parent_ids": [
+            "560eab4861f56a4a8f717fa26f00c5cc918e4691",
+            "fac7105e9d50a9a47199dd4ad60ffa0f9b12fc94"
+        ],
+        "title": "Merge branch 'fix/IS-8009_Work_orders_download_button_for_planned_job_orders_report_by_asset_is_showing_in_work_orders_modal' into 'master'",
+        "message": "Merge branch 'fix/IS-8009_Work_orders_download_button_for_planned_job_orders_report_by_asset_is_showing_in_work_orders_modal' into 'master'\n\nFix/IS-8009: Work Orders - Download Button For Planned Job orders Report By Asset is showing in Work Orders Modal\n\nSee merge request infraspeak/web/web-core-client!3757",
+        "author_name": "Andr\u00e9 Amorim",
+        "author_email": "andre.amorim@infraspeak.com",
+        "authored_date": "2022-04-07T08:41:17.000+00:00",
+        "committer_name": "Andr\u00e9 Amorim",
+        "committer_email": "andre.amorim@infraspeak.com",
+        "committed_date": "2022-04-07T08:41:17.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/35c839d5fe46b7aa19a53f88223c009c9ea0c531"
+    },
+    "pipeline": {
+        "id": 511189515,
+        "iid": 14363,
+        "project_id": 20143087,
+        "sha": "35c839d5fe46b7aa19a53f88223c009c9ea0c531",
+        "ref": "v0.125.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-04-07T08:52:47.316Z",
+        "updated_at": "2022-04-07T09:30:57.389Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/511189515"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2303529668",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 663626,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 511189515
+}

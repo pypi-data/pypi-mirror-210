@@ -1,0 +1,101 @@
+{
+    "id": 2661788407,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.130.9",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-06-30T11:43:25.223Z",
+    "started_at": "2022-06-30T11:52:51.865Z",
+    "finished_at": "2022-06-30T12:05:18.989Z",
+    "duration": 747.123942,
+    "queued_duration": 459.244933,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:37 AM"
+    },
+    "commit": {
+        "id": "8d138cc8746c77295124d3e57d6a063fb88459a3",
+        "short_id": "8d138cc8",
+        "created_at": "2022-06-30T11:29:09.000+00:00",
+        "parent_ids": [
+            "1d759a3987b378273177fb3cfc9f6c6bba8188da",
+            "a5b3ce814b6e5031f1128ae1616c9860bd2135b6"
+        ],
+        "title": "Merge branch 'feat/IS-8275_Infraspeak-WEB-Allow-for-minutes-to-be-manually-changed-in-Other-Cost-Resource-and-Duration-time' into 'master'",
+        "message": "Merge branch 'feat/IS-8275_Infraspeak-WEB-Allow-for-minutes-to-be-manually-changed-in-Other-Cost-Resource-and-Duration-time' into 'master'\n\nfeat/IS-8275 Allow for minutes to be manually changed in Other Cost Resource and Duration time\n\nSee merge request infraspeak/web/web-core-client!4186",
+        "author_name": "Samuel Rosignoli",
+        "author_email": "samuel.rosignoli@infraspeak.com",
+        "authored_date": "2022-06-30T11:29:09.000+00:00",
+        "committer_name": "Samuel Rosignoli",
+        "committer_email": "samuel.rosignoli@infraspeak.com",
+        "committed_date": "2022-06-30T11:29:09.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/8d138cc8746c77295124d3e57d6a063fb88459a3"
+    },
+    "pipeline": {
+        "id": 576942415,
+        "iid": 16982,
+        "project_id": 20143087,
+        "sha": "8d138cc8746c77295124d3e57d6a063fb88459a3",
+        "ref": "v0.130.9",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-06-30T11:43:25.159Z",
+        "updated_at": "2022-06-30T12:20:30.845Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/576942415"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2661788407",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 551961,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 576942415
+}

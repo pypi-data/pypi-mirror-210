@@ -1,0 +1,101 @@
+{
+    "id": 2663495802,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.130.10",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-06-30T16:19:22.092Z",
+    "started_at": "2022-06-30T16:21:13.865Z",
+    "finished_at": "2022-06-30T16:33:50.325Z",
+    "duration": 756.459443,
+    "queued_duration": 2.424008,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:36 AM"
+    },
+    "commit": {
+        "id": "7c7ca8acde7204a406af2af719ebb7366ac4e257",
+        "short_id": "7c7ca8ac",
+        "created_at": "2022-06-30T16:09:19.000+00:00",
+        "parent_ids": [
+            "8d138cc8746c77295124d3e57d6a063fb88459a3",
+            "d5388cc08de8083eb31f7e0ce75d377f9ff63ec5"
+        ],
+        "title": "Merge branch 'fix/IS-8291_Manager-App-Quote-Requests-awaiting-closed-canceled-Quote-Requests-tables-wont-open-if-you-have-awaiting-quote-request' into 'master'",
+        "message": "Merge branch 'fix/IS-8291_Manager-App-Quote-Requests-awaiting-closed-canceled-Quote-Requests-tables-wont-open-if-you-have-awaiting-quote-request' into 'master'\n\nFix/IS-8291 ManagerApp: quote requests tables won't open if you have awaiting quote request\n\nSee merge request infraspeak/web/web-core-client!4233",
+        "author_name": "Samuel Rosignoli",
+        "author_email": "samuel.rosignoli@infraspeak.com",
+        "authored_date": "2022-06-30T16:09:19.000+00:00",
+        "committer_name": "Samuel Rosignoli",
+        "committer_email": "samuel.rosignoli@infraspeak.com",
+        "committed_date": "2022-06-30T16:09:19.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/7c7ca8acde7204a406af2af719ebb7366ac4e257"
+    },
+    "pipeline": {
+        "id": 577232937,
+        "iid": 17008,
+        "project_id": 20143087,
+        "sha": "7c7ca8acde7204a406af2af719ebb7366ac4e257",
+        "ref": "v0.130.10",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-06-30T16:19:22.061Z",
+        "updated_at": "2022-07-05T16:28:38.198Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/577232937"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2663495802",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 551977,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 577232937
+}

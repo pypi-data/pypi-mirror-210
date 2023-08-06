@@ -1,0 +1,101 @@
+{
+    "id": 1121832112,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.97.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-03-23T19:27:24.143Z",
+    "started_at": "2021-03-23T19:29:32.114Z",
+    "finished_at": "2021-03-23T19:36:21.739Z",
+    "duration": 409.624893,
+    "queued_duration": 0.571405,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "cee6c23aa0efb23e4c7f5230850a19f5591559a5",
+        "short_id": "cee6c23a",
+        "created_at": "2021-03-23T19:17:45.000+00:00",
+        "parent_ids": [
+            "b6c1a495640c6b36b144787f381222a5c16c2c6f",
+            "cfd1e5090ae30b31d5e748a6a1efae553b84e760"
+        ],
+        "title": "Merge branch 'fix/IS-6695-planned-job-orders-create-edit-a-planned-job-ty' into 'master'",
+        "message": "Merge branch 'fix/IS-6695-planned-job-orders-create-edit-a-planned-job-ty' into 'master'\n\nfix/IS-6695: Be able to use the same intervention multiple times.\n\nSee merge request infraspeak/web/web-core-client!1907",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-03-23T19:17:45.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-03-23T19:17:45.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/cee6c23aa0efb23e4c7f5230850a19f5591559a5"
+    },
+    "pipeline": {
+        "id": 275229397,
+        "iid": 4752,
+        "project_id": 20143087,
+        "sha": "cee6c23aa0efb23e4c7f5230850a19f5591559a5",
+        "ref": "v0.97.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-03-23T19:27:24.082Z",
+        "updated_at": "2021-03-23T19:39:56.654Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/275229397"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1121832112",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 55841,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 275229397
+}

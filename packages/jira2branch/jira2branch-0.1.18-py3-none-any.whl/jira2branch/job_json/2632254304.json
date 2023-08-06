@@ -1,0 +1,101 @@
+{
+    "id": 2632254304,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.130.5",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-06-23T15:50:52.488Z",
+    "started_at": "2022-06-23T15:52:39.233Z",
+    "finished_at": "2022-06-23T16:04:43.835Z",
+    "duration": 724.602117,
+    "queued_duration": 2.088144,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:37 AM"
+    },
+    "commit": {
+        "id": "d293be5727c844e1158a03634e8af4d7b4750690",
+        "short_id": "d293be57",
+        "created_at": "2022-06-23T15:41:45.000+00:00",
+        "parent_ids": [
+            "792c105b6880f341a0197844abb8127936f3d064",
+            "7173274c77080efb1b74cecc9c0c0579a2f26e2f"
+        ],
+        "title": "Merge branch 'feat/IS-8142_Work-Orders-save-alignment-of-columns' into 'master'",
+        "message": "Merge branch 'feat/IS-8142_Work-Orders-save-alignment-of-columns' into 'master'\n\nfeat/IS-8142 Work Orders: save alignment of columns\n\nSee merge request infraspeak/web/web-core-client!4177",
+        "author_name": "Samuel Rosignoli",
+        "author_email": "samuel.rosignoli@infraspeak.com",
+        "authored_date": "2022-06-23T15:41:45.000+00:00",
+        "committer_name": "Samuel Rosignoli",
+        "committer_email": "samuel.rosignoli@infraspeak.com",
+        "committed_date": "2022-06-23T15:41:45.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/d293be5727c844e1158a03634e8af4d7b4750690"
+    },
+    "pipeline": {
+        "id": 571473467,
+        "iid": 16792,
+        "project_id": 20143087,
+        "sha": "d293be5727c844e1158a03634e8af4d7b4750690",
+        "ref": "v0.130.5",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-06-23T15:50:52.452Z",
+        "updated_at": "2022-06-23T16:20:12.975Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/571473467"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2632254304",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 552512,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 571473467
+}

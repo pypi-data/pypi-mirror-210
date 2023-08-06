@@ -1,0 +1,103 @@
+{
+    "id": 3801905346,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.148.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-02-20T16:19:15.132Z",
+    "started_at": "2023-02-20T16:21:07.606Z",
+    "finished_at": "2023-02-20T16:34:05.410Z",
+    "erased_at": null,
+    "duration": 777.804906,
+    "queued_duration": 3.039216,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:48 AM"
+    },
+    "commit": {
+        "id": "81de0059d6c3a9229e880d53581202fa93698099",
+        "short_id": "81de0059",
+        "created_at": "2023-02-20T16:02:30.000+00:00",
+        "parent_ids": [
+            "0bb1fc2eacdc236851dced446fc00ad5ed52aaec",
+            "cb6a703a844ac375b06d0a524bb27b7610e240a3"
+        ],
+        "title": "Merge branch 'fix/IS-9002_Dashboard-Data-does-not-update-after-refresh' into 'master'",
+        "message": "Merge branch 'fix/IS-9002_Dashboard-Data-does-not-update-after-refresh' into 'master'\n\nfix/IS-8898 Dashboard Data does not update after refresh\n\nSee merge request infraspeak/web/web-core-client!5532",
+        "author_name": "Samuel Rosignoli",
+        "author_email": "samuel.rosignoli@infraspeak.com",
+        "authored_date": "2023-02-20T16:02:30.000+00:00",
+        "committer_name": "Samuel Rosignoli",
+        "committer_email": "samuel.rosignoli@infraspeak.com",
+        "committed_date": "2023-02-20T16:02:30.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/81de0059d6c3a9229e880d53581202fa93698099"
+    },
+    "pipeline": {
+        "id": 783389328,
+        "iid": 24565,
+        "project_id": 20143087,
+        "sha": "81de0059d6c3a9229e880d53581202fa93698099",
+        "ref": "v0.148.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-02-20T16:19:15.097Z",
+        "updated_at": "2023-02-20T16:47:34.613Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/783389328"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3801905346",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 783389328
+}

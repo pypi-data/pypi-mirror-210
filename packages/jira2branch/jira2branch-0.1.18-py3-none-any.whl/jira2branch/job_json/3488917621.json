@@ -1,0 +1,101 @@
+{
+    "id": 3488917621,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.143.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-12-16T20:04:35.889Z",
+    "started_at": "2022-12-16T20:06:23.007Z",
+    "finished_at": "2022-12-16T20:18:00.978Z",
+    "duration": 697.971096,
+    "queued_duration": 1.694494,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:30 AM"
+    },
+    "commit": {
+        "id": "dcc8fecc44ab09d45031eea8f02d6573586cf8a5",
+        "short_id": "dcc8fecc",
+        "created_at": "2022-12-16T19:37:12.000+00:00",
+        "parent_ids": [
+            "6de1e9b8d0aaedc2ce6a6cb66c8783c073fc0a15",
+            "b03b4b9f8c14ff990a2b52eafb7c9b79173fec4d"
+        ],
+        "title": "Merge branch 'fix/IS-8832-assets-cant-open-any-asset-details-loading-the-history-leads-to-a-404-on-contacts-request-specific-to-entity-1849' into 'master'",
+        "message": "Merge branch 'fix/IS-8832-assets-cant-open-any-asset-details-loading-the-history-leads-to-a-404-on-contacts-request-specific-to-entity-1849' into 'master'\n\nfix/IS-8832: Add whenNotFoundRedirect to SummaryContact request\n\nSee merge request infraspeak/web/web-core-client!5220",
+        "author_name": "Gilberto Ferreira",
+        "author_email": "gilberto.ferreira@infraspeak.com",
+        "authored_date": "2022-12-16T19:37:12.000+00:00",
+        "committer_name": "Gilberto Ferreira",
+        "committer_email": "gilberto.ferreira@infraspeak.com",
+        "committed_date": "2022-12-16T19:37:12.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/dcc8fecc44ab09d45031eea8f02d6573586cf8a5"
+    },
+    "pipeline": {
+        "id": 725234400,
+        "iid": 22478,
+        "project_id": 20143087,
+        "sha": "dcc8fecc44ab09d45031eea8f02d6573586cf8a5",
+        "ref": "v0.143.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-12-16T20:04:35.871Z",
+        "updated_at": "2022-12-16T20:19:58.809Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/725234400"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3488917621",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.217.170.142",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 725234400
+}

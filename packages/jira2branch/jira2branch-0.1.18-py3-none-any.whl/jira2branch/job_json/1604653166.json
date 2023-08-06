@@ -1,0 +1,101 @@
+{
+    "id": 1604653166,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.110.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-09-20T10:37:08.052Z",
+    "started_at": "2021-09-20T10:41:14.525Z",
+    "finished_at": "2021-09-20T10:51:34.073Z",
+    "duration": 619.548282,
+    "queued_duration": 28.036117,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "384c4affec0cedb46a76d1cc8136eb648fd69959",
+        "short_id": "384c4aff",
+        "created_at": "2021-09-20T10:24:18.000+00:00",
+        "parent_ids": [
+            "3f46704e9cd109250cb095b55ae70887a6401889",
+            "167e1ad2ad992d8fdd962fb872cb7e87b6613624"
+        ],
+        "title": "Merge branch 'fix/IS-7317_After_change_client_and_location_the_WO_table_isnt_refresh_automatically' into 'master'",
+        "message": "Merge branch 'fix/IS-7317_After_change_client_and_location_the_WO_table_isnt_refresh_automatically' into 'master'\n\nfix/IS-7317: Work Orders: After change client and location, the WO table isn't refresh automatically\n\nSee merge request infraspeak/web/web-core-client!2722",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2021-09-20T10:24:18.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2021-09-20T10:24:18.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/384c4affec0cedb46a76d1cc8136eb648fd69959"
+    },
+    "pipeline": {
+        "id": 373669788,
+        "iid": 8837,
+        "project_id": 20143087,
+        "sha": "384c4affec0cedb46a76d1cc8136eb648fd69959",
+        "ref": "v0.110.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-09-20T10:37:08.010Z",
+        "updated_at": "2021-09-20T13:19:49.463Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/373669788"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1604653166",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 33174,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 373669788
+}

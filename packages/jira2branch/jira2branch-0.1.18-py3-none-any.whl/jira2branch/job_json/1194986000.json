@@ -1,0 +1,101 @@
+{
+    "id": 1194986000,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.99.5",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-20T09:47:36.175Z",
+    "started_at": "2021-04-20T09:51:19.213Z",
+    "finished_at": "2021-04-20T09:59:12.714Z",
+    "duration": 473.501754,
+    "queued_duration": 96.395849,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "7dadb4d9b81f1d9fd56f9c2e0114c2d22ebdf9fd",
+        "short_id": "7dadb4d9",
+        "created_at": "2021-04-20T09:38:24.000+00:00",
+        "parent_ids": [
+            "ad6e49c9fdc840063ac9d5029a889816b65fecdf",
+            "88df93becc3c1e91b6c90d6dd4597260803b4b89"
+        ],
+        "title": "Merge branch 'fix/IS-6693_Sales-The-View-Full-details-button-does-not-work-in-a-specific-flow' into 'master'",
+        "message": "Merge branch 'fix/IS-6693_Sales-The-View-Full-details-button-does-not-work-in-a-specific-flow' into 'master'\n\nFix/IS-6693: Sales - The \"View Full details\" button doesn't work in a specific flow\n\nSee merge request infraspeak/web/web-core-client!2036\n\nClose IS-6693",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-04-20T09:38:24.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-04-20T09:38:24.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/7dadb4d9b81f1d9fd56f9c2e0114c2d22ebdf9fd"
+    },
+    "pipeline": {
+        "id": 289177137,
+        "iid": 5412,
+        "project_id": 20143087,
+        "sha": "7dadb4d9b81f1d9fd56f9c2e0114c2d22ebdf9fd",
+        "ref": "v0.99.5",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-20T09:47:36.126Z",
+        "updated_at": "2021-04-20T10:11:33.980Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/289177137"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1194986000",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 54596,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 289177137
+}

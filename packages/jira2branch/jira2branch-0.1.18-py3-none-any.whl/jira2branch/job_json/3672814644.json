@@ -1,0 +1,103 @@
+{
+    "id": 3672814644,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.146.5",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-01-27T14:33:29.035Z",
+    "started_at": "2023-01-27T14:35:26.847Z",
+    "finished_at": "2023-01-27T14:49:13.718Z",
+    "erased_at": null,
+    "duration": 826.871774,
+    "queued_duration": 1.955077,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:49 AM"
+    },
+    "commit": {
+        "id": "4f6c21cff69b72fe547e85f304d8a4f1405ba975",
+        "short_id": "4f6c21cf",
+        "created_at": "2023-01-27T14:07:05.000+00:00",
+        "parent_ids": [
+            "52ed8a1d7e6c61a973a47686d84395f5c50ea961",
+            "01f24afb5d0e4e02ac98ed10d0ea0a43e7b6fe71"
+        ],
+        "title": "Merge branch 'fix/INT-609_infraspeak-hub-integration-event-tracking-seems-to-be-off-since-hub-2-0-launch' into 'master'",
+        "message": "Merge branch 'fix/INT-609_infraspeak-hub-integration-event-tracking-seems-to-be-off-since-hub-2-0-launch' into 'master'\n\nFix/INT-609: Integration event tracking seems to be off since HUB 2.0 launch\n\nSee merge request infraspeak/web/web-core-client!5426",
+        "author_name": "Andr\u00e9 Amorim",
+        "author_email": "andre.amorim@infraspeak.com",
+        "authored_date": "2023-01-27T14:07:05.000+00:00",
+        "committer_name": "Andr\u00e9 Amorim",
+        "committer_email": "andre.amorim@infraspeak.com",
+        "committed_date": "2023-01-27T14:07:05.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/4f6c21cff69b72fe547e85f304d8a4f1405ba975"
+    },
+    "pipeline": {
+        "id": 759712430,
+        "iid": 23731,
+        "project_id": 20143087,
+        "sha": "4f6c21cff69b72fe547e85f304d8a4f1405ba975",
+        "ref": "v0.146.5",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-01-27T14:33:29.007Z",
+        "updated_at": "2023-01-27T16:54:40.082Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/759712430"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3672814644",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 759712430
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1810856291,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.17",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-23T12:01:24.552Z",
+    "started_at": "2021-11-23T12:03:16.869Z",
+    "finished_at": "2021-11-23T12:13:00.497Z",
+    "duration": 583.628001,
+    "queued_duration": 13.432684,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "d2859961a1845c188061ea0895bbe238a99f8032",
+        "short_id": "d2859961",
+        "created_at": "2021-11-23T11:47:16.000+00:00",
+        "parent_ids": [
+            "d9cc9ec852baa86f8172f240b77dd9ac09c11138",
+            "bafbcf8d8fe02e88b61fbada77d3edbb60c2a15b"
+        ],
+        "title": "Merge branch 'fix/IS-6365_Infraspeak-Hub-Request-disconnected-The-request-icon-is-displayed-on-More-details-column-in-Planned-Jobs' into 'master'",
+        "message": "Merge branch 'fix/IS-6365_Infraspeak-Hub-Request-disconnected-The-request-icon-is-displayed-on-More-details-column-in-Planned-Jobs' into 'master'\n\nFix/IS-6365: Infraspeak Hub: Request disconnected - The request icon is displayed on \"More details\" column in Planned Jobs\n\nSee merge request infraspeak/web/web-core-client!3079\n\nClose IS-6365",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-11-23T11:47:16.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-11-23T11:47:16.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/d2859961a1845c188061ea0895bbe238a99f8032"
+    },
+    "pipeline": {
+        "id": 414612652,
+        "iid": 10670,
+        "project_id": 20143087,
+        "sha": "d2859961a1845c188061ea0895bbe238a99f8032",
+        "ref": "v0.114.17",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-23T12:01:24.505Z",
+        "updated_at": "2021-11-23T12:39:58.589Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/414612652"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1810856291",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 2082348,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 414612652
+}

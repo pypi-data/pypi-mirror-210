@@ -1,0 +1,101 @@
+{
+    "id": 2492367185,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.128.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-05-23T09:53:11.202Z",
+    "started_at": "2022-05-23T10:06:29.842Z",
+    "finished_at": "2022-05-23T10:22:09.457Z",
+    "duration": 939.614852,
+    "queued_duration": 13.042976,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "6962c2b2e065b69b6013e14336cc2f4ab1b46e20",
+        "short_id": "6962c2b2",
+        "created_at": "2022-05-23T09:43:02.000+00:00",
+        "parent_ids": [
+            "7fa35a34ff5b932a4f3b6d6723bacf082cb24422",
+            "4bc661ed787a9794e5a9bfd474601ee752259829"
+        ],
+        "title": "Merge branch 'fix/IS-8211-settings-buildings-locations-when-i-add-a-folder-location-to-a-building-keep-the-focus-and-adjust-the-scroll' into 'master'",
+        "message": "Merge branch 'fix/IS-8211-settings-buildings-locations-when-i-add-a-folder-location-to-a-building-keep-the-focus-and-adjust-the-scroll' into 'master'\n\nFix/IS-8211 Settings buildings locations when i add a folder location to a building keep the focus and adjust the scroll\n\nSee merge request infraspeak/web/web-core-client!4015",
+        "author_name": "Telmo Martins",
+        "author_email": "telmo.martins@infraspeak.com",
+        "authored_date": "2022-05-23T09:43:02.000+00:00",
+        "committer_name": "Telmo Martins",
+        "committer_email": "telmo.martins@infraspeak.com",
+        "committed_date": "2022-05-23T09:43:02.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/6962c2b2e065b69b6013e14336cc2f4ab1b46e20"
+    },
+    "pipeline": {
+        "id": 545587059,
+        "iid": 15876,
+        "project_id": 20143087,
+        "sha": "6962c2b2e065b69b6013e14336cc2f4ab1b46e20",
+        "ref": "v0.128.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-05-23T09:53:11.159Z",
+        "updated_at": "2022-05-23T10:35:22.923Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/545587059"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2492367185",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 583028,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 545587059
+}

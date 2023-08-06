@@ -1,0 +1,101 @@
+{
+    "id": 3387613996,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.141.18",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-11-28T11:29:50.601Z",
+    "started_at": "2022-11-28T11:31:36.145Z",
+    "finished_at": "2022-11-28T11:45:16.094Z",
+    "duration": 819.948218,
+    "queued_duration": 2.53629,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:31 AM"
+    },
+    "commit": {
+        "id": "4cfe0656a3824c6e75d5d87b66b83088eeaa348a",
+        "short_id": "4cfe0656",
+        "created_at": "2022-11-28T11:09:21.000+00:00",
+        "parent_ids": [
+            "55f90ed7f818a43967eae06925d109140dce3a0f",
+            "13b4fda004cb6207416e674a356d084616701eaf"
+        ],
+        "title": "Merge branch 'fix/IS-8758_IS-Handshake-is-not-being-expanded-when-the-user-associates-service-in-WO' into 'master'",
+        "message": "Merge branch 'fix/IS-8758_IS-Handshake-is-not-being-expanded-when-the-user-associates-service-in-WO' into 'master'\n\nFix/IS-8758: IS - Handshake is not being expanded when the user associates service in WO\n\nSee merge request infraspeak/web/web-core-client!5084",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2022-11-28T11:09:21.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2022-11-28T11:09:21.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/4cfe0656a3824c6e75d5d87b66b83088eeaa348a"
+    },
+    "pipeline": {
+        "id": 706838060,
+        "iid": 21878,
+        "project_id": 20143087,
+        "sha": "4cfe0656a3824c6e75d5d87b66b83088eeaa348a",
+        "ref": "v0.141.18",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-11-28T11:29:50.574Z",
+        "updated_at": "2022-11-28T11:56:24.190Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/706838060"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3387613996",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 610701,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 706838060
+}

@@ -1,0 +1,101 @@
+{
+    "id": 3019557587,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.136.10",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-09-13T09:30:30.224Z",
+    "started_at": "2022-09-13T09:32:55.502Z",
+    "finished_at": "2022-09-13T09:46:45.286Z",
+    "duration": 829.783324,
+    "queued_duration": 0.496699,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:35 AM"
+    },
+    "commit": {
+        "id": "2451930e422310c2d821b44bc8f843bb79dfec86",
+        "short_id": "2451930e",
+        "created_at": "2022-09-13T09:15:08.000+00:00",
+        "parent_ids": [
+            "70ff67d5fe7a57c65639963217fca5540a41ad87",
+            "fbffa292e3e976a29fe88b21e40f0c34b31ff6a6"
+        ],
+        "title": "Merge branch 'fix/IS-7924-utilities-entity-380-main-meters-and-prices-of-water-and-gas-not-recognized-in-the-module' into 'master'",
+        "message": "Merge branch 'fix/IS-7924-utilities-entity-380-main-meters-and-prices-of-water-and-gas-not-recognized-in-the-module' into 'master'\n\nIS-7924: Utilities: Entity 380 - main meters and prices of water and gas not recognized in the module\n\nSee merge request infraspeak/web/web-core-client!4591",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-09-13T09:15:08.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-09-13T09:15:08.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/2451930e422310c2d821b44bc8f843bb79dfec86"
+    },
+    "pipeline": {
+        "id": 638582364,
+        "iid": 19152,
+        "project_id": 20143087,
+        "sha": "2451930e422310c2d821b44bc8f843bb79dfec86",
+        "ref": "v0.136.10",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-09-13T09:30:30.197Z",
+        "updated_at": "2022-09-13T10:29:30.180Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/638582364"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3019557587",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 624578,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 638582364
+}

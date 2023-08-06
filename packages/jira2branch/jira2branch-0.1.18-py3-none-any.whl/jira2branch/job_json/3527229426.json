@@ -1,0 +1,101 @@
+{
+    "id": 3527229426,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.143.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-12-27T13:33:43.315Z",
+    "started_at": "2022-12-27T13:35:23.417Z",
+    "finished_at": "2022-12-27T13:45:49.079Z",
+    "duration": 625.662491,
+    "queued_duration": 0.64945,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:30 AM"
+    },
+    "commit": {
+        "id": "77cbbc90308f6b95c19b703f385a6d6cbac31319",
+        "short_id": "77cbbc90",
+        "created_at": "2022-12-27T13:09:15.000+00:00",
+        "parent_ids": [
+            "aa345e659c76180dae4702a41125fa77efe7e5a8",
+            "672149a0fe1cb11b03a095e70eb717a8d8827dfa"
+        ],
+        "title": "Merge branch 'fix/IS-8839_on_pj_table_doesnt_show_info_of_location' into 'master'",
+        "message": "Merge branch 'fix/IS-8839_on_pj_table_doesnt_show_info_of_location' into 'master'\n\nfix/IS-8839: on Planned Jobs table, is not being displayed location info\n\nSee merge request infraspeak/web/web-core-client!5261",
+        "author_name": "Rafael Vieira",
+        "author_email": "rafael.vieira@infraspeak.com",
+        "authored_date": "2022-12-27T13:09:15.000+00:00",
+        "committer_name": "Rafael Vieira",
+        "committer_email": "rafael.vieira@infraspeak.com",
+        "committed_date": "2022-12-27T13:09:15.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/77cbbc90308f6b95c19b703f385a6d6cbac31319"
+    },
+    "pipeline": {
+        "id": 732800881,
+        "iid": 22775,
+        "project_id": 20143087,
+        "sha": "77cbbc90308f6b95c19b703f385a6d6cbac31319",
+        "ref": "v0.143.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-12-27T13:33:43.267Z",
+        "updated_at": "2022-12-27T14:12:24.273Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/732800881"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3527229426",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.217.170.142",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 732800881
+}

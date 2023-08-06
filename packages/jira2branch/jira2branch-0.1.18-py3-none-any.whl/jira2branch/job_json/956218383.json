@@ -1,0 +1,101 @@
+{
+    "id": 956218383,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.92.12",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-01-11T20:22:58.631Z",
+    "started_at": "2021-01-11T20:25:18.388Z",
+    "finished_at": "2021-01-11T20:33:16.621Z",
+    "duration": 478.233469,
+    "queued_duration": 1.774571,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "e692dc035e58f54dbfbe7bf7d26514b6e15ab7f7",
+        "short_id": "e692dc03",
+        "created_at": "2021-01-11T20:12:14.000+00:00",
+        "parent_ids": [
+            "304887e7e15e7b42c06516cc2a69b347d0a857e6",
+            "1776daa99eb505d227392774b55dafa9a27f35e9"
+        ],
+        "title": "Merge branch 'fix/IS-6388-labor-time-sales' into 'master'",
+        "message": "Merge branch 'fix/IS-6388-labor-time-sales' into 'master'\n\nIS-6388  Labor Time - Sales: I can't expand the labor time on Sales\n\nSee merge request infraspeak/web/web-core-client!1513",
+        "author_name": "Eug\u00eanio Inoc\u00eancio",
+        "author_email": "einocencio@infraspeak.com",
+        "authored_date": "2021-01-11T20:12:14.000+00:00",
+        "committer_name": "Eug\u00eanio Inoc\u00eancio",
+        "committer_email": "einocencio@infraspeak.com",
+        "committed_date": "2021-01-11T20:12:14.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/e692dc035e58f54dbfbe7bf7d26514b6e15ab7f7"
+    },
+    "pipeline": {
+        "id": 240169563,
+        "iid": 2989,
+        "project_id": 20143087,
+        "sha": "e692dc035e58f54dbfbe7bf7d26514b6e15ab7f7",
+        "ref": "v0.92.12",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-01-11T20:22:58.587Z",
+        "updated_at": "2021-01-11T20:33:16.801Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/240169563"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/956218383",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 49582,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 240169563
+}

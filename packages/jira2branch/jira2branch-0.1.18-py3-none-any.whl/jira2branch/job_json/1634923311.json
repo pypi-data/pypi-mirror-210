@@ -1,0 +1,101 @@
+{
+    "id": 1634923311,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.111.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-09-29T17:46:26.241Z",
+    "started_at": "2021-09-29T17:50:03.597Z",
+    "finished_at": "2021-09-29T18:00:54.928Z",
+    "duration": 651.330788,
+    "queued_duration": 3.224032,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "347063698598ee986bfa5b938f1ddbed7bec1a49",
+        "short_id": "34706369",
+        "created_at": "2021-09-29T14:12:30.000+00:00",
+        "parent_ids": [
+            "2f2a77ca3ac49d00def3797fe3544f990261e1de",
+            "6f2613a6cccee830b58a093c18f5b7cb2a186226"
+        ],
+        "title": "Merge branch 'fix/IS-7362-cant-delete-work-orders' into 'master'",
+        "message": "Merge branch 'fix/IS-7362-cant-delete-work-orders' into 'master'\n\nfix(IS-7362): Cant delete work orders\n\nSee merge request infraspeak/web/web-core-client!2753",
+        "author_name": "bogas",
+        "author_email": "falves@infraspeak.com",
+        "authored_date": "2021-09-29T14:12:30.000+00:00",
+        "committer_name": "bogas",
+        "committer_email": "falves@infraspeak.com",
+        "committed_date": "2021-09-29T14:12:30.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/347063698598ee986bfa5b938f1ddbed7bec1a49"
+    },
+    "pipeline": {
+        "id": 379631700,
+        "iid": 9009,
+        "project_id": 20143087,
+        "sha": "347063698598ee986bfa5b938f1ddbed7bec1a49",
+        "ref": "v0.111.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-09-29T17:46:26.175Z",
+        "updated_at": "2021-09-29T19:47:41.544Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/379631700"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1634923311",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 34867,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 379631700
+}

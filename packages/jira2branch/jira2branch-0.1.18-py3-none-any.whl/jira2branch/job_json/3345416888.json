@@ -1,0 +1,101 @@
+{
+    "id": 3345416888,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.141.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-11-18T12:48:39.712Z",
+    "started_at": "2022-11-18T12:50:30.439Z",
+    "finished_at": "2022-11-18T13:04:49.217Z",
+    "duration": 858.778087,
+    "queued_duration": 0.940772,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:32 AM"
+    },
+    "commit": {
+        "id": "2dfc479b957d5a94a5389fd9570bb1f98442771c",
+        "short_id": "2dfc479b",
+        "created_at": "2022-11-18T12:27:39.000+00:00",
+        "parent_ids": [
+            "1315a05c19b2fafac87bc8c12b785653775c58c7",
+            "0e80b67cfabae8d553b6eed20f6cf9a201869e31"
+        ],
+        "title": "Merge branch 'fix/IS-8719-direct-quotes-are-not-being-approved-its-not-completing-the-action' into 'master'",
+        "message": "Merge branch 'fix/IS-8719-direct-quotes-are-not-being-approved-its-not-completing-the-action' into 'master'\n\nfix/IS-8719 Direct - Quotes are not being approved, it's not completing the action\n\nSee merge request infraspeak/web/web-core-client!5006",
+        "author_name": "Henrique Figueiredo",
+        "author_email": "hfigueiredo@infraspeak.com",
+        "authored_date": "2022-11-18T12:27:39.000+00:00",
+        "committer_name": "Henrique Figueiredo",
+        "committer_email": "hfigueiredo@infraspeak.com",
+        "committed_date": "2022-11-18T12:27:39.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/2dfc479b957d5a94a5389fd9570bb1f98442771c"
+    },
+    "pipeline": {
+        "id": 698846453,
+        "iid": 21466,
+        "project_id": 20143087,
+        "sha": "2dfc479b957d5a94a5389fd9570bb1f98442771c",
+        "ref": "v0.141.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-11-18T12:48:39.675Z",
+        "updated_at": "2022-11-18T13:30:02.339Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/698846453"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3345416888",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 611343,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 698846453
+}

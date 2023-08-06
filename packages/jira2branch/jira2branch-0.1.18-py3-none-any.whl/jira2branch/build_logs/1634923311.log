@@ -1,0 +1,618 @@
+[0KRunning with gitlab-runner 13.7.0 (943fc252)
+[0;m[0K  on Web Core Client - Tests- docker+machine Gu_oFDiR
+[0;msection_start:1632937804:resolve_secrets[0K[0K[36;1mResolving secrets[0;m
+[0;msection_end:1632937804:resolve_secrets[0Ksection_start:1632937804:prepare_executor[0K[0K[36;1mPreparing the "docker+machine" executor[0;m
+[0;m[0KUsing Docker executor with image node:12.16.1 ...
+[0;m[0KPulling docker image node:12.16.1 ...
+[0;m[0KUsing docker image sha256:88c089733a3b980b3517e8e2e8afa46b338f69d7562550cb3c2e9fd852a2fbac for node:12.16.1 with digest node@sha256:46f4c17e1edbde36d60a9f6362db7912cfe301bac89afef7cc92421ab3e7ca18 ...
+[0;msection_end:1632937806:prepare_executor[0Ksection_start:1632937806:prepare_script[0K[0K[36;1mPreparing environment[0;m
+[0;mRunning on runner-guofdir-project-20143087-concurrent-0 via runner-guofdir-IS-Pipeline-gitlab-runner-1632931281-6aee5ebd...
+section_end:1632937807:prepare_script[0Ksection_start:1632937807:get_sources[0K[0K[36;1mGetting source from Git repository[0;m
+[0;m[32;1mFetching changes with git depth set to 1...[0;m
+Initialized empty Git repository in /builds/infraspeak/web/web-core-client/.git/
+[32;1mCreated fresh repository.[0;m
+[32;1mChecking out 34706369 as v0.111.1...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1632937810:get_sources[0Ksection_start:1632937810:restore_cache[0K[0K[36;1mRestoring cache[0;m
+[0;m[32;1mChecking cache for v0-111-1...[0;m
+Downloading cache.zip from https://is-gitlab-runners-cache.s3.dualstack.eu-west-1.amazonaws.com/project/20143087/v0-111-1[0;m 
+[32;1mSuccessfully extracted cache[0;m
+section_end:1632937875:restore_cache[0Ksection_start:1632937875:step_script[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m
+[0;m[32;1m$ npm run build-production[0;m
+
+> infraspeak-web-core-client@0.111.0 build-production /builds/infraspeak/web/web-core-client
+> vue-cli-service build --mode production --dest dist
+
+
+-  Building for production...
+Starting type checking service...
+Using 1 worker with 2048MB memory limit
+ WARNING  Compiled with 8 warnings5:59:16 PM
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Unexpected console statement (no-console) at src/components/chart/analytic/ChartAnalytic.vue:249:25:
+  247 |                         this.isLoadingData = false
+  248 | 
+> 249 |                         console.error('error getting data: ', error)
+      |                         ^
+  250 |                     })
+  251 |             }
+  252 | 
+
+
+error: Unexpected console statement (no-console) at src/components/chart/analytic/ChartAnalytic.vue:329:29:
+  327 |                         })
+  328 |                         .catch(error => {
+> 329 |                             console.error('error exporting data: ', error)
+      |                             ^
+  330 |                         })
+  331 |                         .finally(progressNoty.close)
+  332 | 
+
+
+2 errors found.
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Unexpected console statement (no-console) at src/components/chart/analyticnew2/ChartAnalytic.vue:132:21:
+  130 |                 })
+  131 |                 .catch(error => {
+> 132 |                     console.error('error exporting data: ', error)
+      |                     ^
+  133 |                 })
+  134 |                 .finally(progressNoty.close)
+  135 |         }
+
+
+1 error found.
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Unexpected console statement (no-console) at src/components/history/failure/HistoryFailure.vue:164:21:
+  162 | 
+  163 |                     })
+> 164 |                     console.log(registryItem)
+      |                     ^
+  165 |                     break
+  166 |                 case EnumFailureRegistryAction.FAILURE_REOPEN:
+  167 |                     if (registry.description) {
+
+
+1 error found.
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+ warning  in ./src/models/Base.transformer.ts
+
+Module Warning (from ./node_modules/thread-loader/dist/cjs.js):
+
+/builds/infraspeak/web/web-core-client/src/models/Base.transformer.ts
+  46:17  error  Unexpected console statement  no-console
+
+✖ 1 problem (1 error, 0 warnings)
+
+
+ @ ./src/models/extension/Extension.transformer.v3.ts 8:0-60 67:2-17
+ @ ./src/api/extension.api.ts
+ @ ./src/store/root/Root.store.ts
+ @ ./src/plugins/analytics/analytics.plugin.ts
+ @ ./src/main.ts
+ @ multi ./src/main.ts
+
+ warning  in ./src/store/root/Root.store.ts
+
+Module Warning (from ./node_modules/thread-loader/dist/cjs.js):
+
+/builds/infraspeak/web/web-core-client/src/store/root/Root.store.ts
+  366:13  error  Unexpected console statement  no-console
+  375:17  error  Unexpected console statement  no-console
+
+✖ 2 problems (2 errors, 0 warnings)
+
+
+ @ ./src/plugins/analytics/analytics.plugin.ts 9:0-52 19:14-23 20:16-25 21:16-25 22:40-49 27:8-17 28:27-36 29:28-37 54:19-28 54:49-58
+ @ ./src/main.ts
+ @ multi ./src/main.ts
+
+ warning  
+
+chunk chunk-6f6188f6 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/tag/popover/IsTagPopover.vue?vue&type=style&index=0&lang=scss&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/field/IsField.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) client-prices-old-cms-screen, screen-direct-app, , , , , , , , , 
+   - while fulfilling desired order of chunk group(s) dashboard-screen, assets-screen, failures-screen, scheduled-works-screen, purchases-screen, sales-screen, sales-quotes, works-screen, quote-requests, , , , , , , 
+
+ warning  
+
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  fonts/fa-light-300.edf31742.woff2 (350 KiB)
+  fonts/fa-light-300.fcac9514.woff (389 KiB)
+  fonts/fa-light-300.56469d9f.ttf (899 KiB)
+  fonts/fa-solid-900.26623167.woff2 (276 KiB)
+  fonts/fa-solid-900.e68a62d2.woff (306 KiB)
+  fonts/fa-solid-900.b904f5cf.ttf (705 KiB)
+  css/app.0597af2f.css (423 KiB)
+  js/app.0918cf4c.js (525 KiB)
+  js/assets-screen.b042cfd4.js (1.3 MiB)
+  js/chunk-12ae715a.d5b5f067.js (1.11 MiB)
+  js/chunk-1488f530.8ff189b3.js (307 KiB)
+  js/chunk-22f975e8.16544c6f.js (1.16 MiB)
+  js/chunk-63bdbf61.c6ccce15.js (315 KiB)
+  js/chunk-74214dbe.4031b2e4.js (444 KiB)
+  js/chunk-752135fa.9cf1793c.js (270 KiB)
+  js/chunk-75edf277.65033304.js (342 KiB)
+  js/chunk-b20f819c.efc1b244.js (903 KiB)
+  js/chunk-vendors.aaa276b8.js (1.92 MiB)
+  js/clients-analytics-screen.464b7cab.js (978 KiB)
+  js/dashboard-screen.6e09665c.js (1.34 MiB)
+  js/economics-analytics-screen.9244f482.js (967 KiB)
+  js/failure-sla-analytics-screen.f3e65d6f.js (980 KiB)
+  js/failures-screen.c0e70efc.js (1.57 MiB)
+  js/home-screen.2be36515.js (251 KiB)
+  js/operators-analytics-screen.f8fb874b.js (985 KiB)
+  js/purchases-screen.8169cc3d.js (376 KiB)
+  js/quote-requests.bb945188.js (1.48 MiB)
+  js/sales-analytics-screen.c8b5c254.js (968 KiB)
+  js/sales-quotes.0a508bd6.js (1.56 MiB)
+  js/sales-screen.5538a050.js (1.57 MiB)
+  js/scheduled-work-analytics-screen.93baa8e6.js (998 KiB)
+  js/scheduled-works-screen.d3332611.js (1.74 MiB)
+  js/screen-direct-app.67c99874.js (525 KiB)
+  js/sla-analytics-screen.e54fba51.js (975 KiB)
+  js/suppliers-analytics-screen.5ecf79a7.js (977 KiB)
+  js/utilities-screen.3da3cbf5.js (914 KiB)
+  js/works-screen.b2b9497c.js (1.51 MiB)
+
+ warning  
+
+entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (2.84 MiB)
+      css/chunk-vendors.b7d36435.css
+      js/chunk-vendors.aaa276b8.js
+      css/app.0597af2f.css
+      js/app.0918cf4c.js
+
+
+  File                                      Size             Gzipped
+
+  dist/js/chunk-vendors.aaa276b8.js         1961.07 KiB      551.21 KiB
+  dist/js/scheduled-works-screen.d333261    1786.32 KiB      509.14 KiB
+  1.js
+  dist/js/failures-screen.c0e70efc.js       1611.59 KiB      472.84 KiB
+  dist/js/sales-screen.5538a050.js          1606.41 KiB      472.77 KiB
+  dist/js/sales-quotes.0a508bd6.js          1597.10 KiB      466.88 KiB
+  dist/js/works-screen.b2b9497c.js          1549.22 KiB      459.95 KiB
+  dist/js/quote-requests.bb945188.js        1517.93 KiB      449.29 KiB
+  dist/js/dashboard-screen.6e09665c.js      1376.73 KiB      440.73 KiB
+  dist/js/assets-screen.b042cfd4.js         1335.27 KiB      425.91 KiB
+  dist/js/chunk-22f975e8.16544c6f.js        1183.89 KiB      384.04 KiB
+  dist/js/chunk-12ae715a.d5b5f067.js        1134.81 KiB      347.20 KiB
+  dist/js/scheduled-work-analytics-scree    997.85 KiB       331.40 KiB
+  n.93baa8e6.js
+  dist/js/operators-analytics-screen.f8f    985.01 KiB       328.85 KiB
+  b874b.js
+  dist/js/failure-sla-analytics-screen.f    980.12 KiB       327.00 KiB
+  3e65d6f.js
+  dist/js/clients-analytics-screen.464b7    978.45 KiB       326.16 KiB
+  cab.js
+  dist/js/suppliers-analytics-screen.5ec    977.02 KiB       326.14 KiB
+  f79a7.js
+  dist/js/sla-analytics-screen.e54fba51.    975.05 KiB       325.74 KiB
+  js
+  dist/js/sales-analytics-screen.c8b5c25    968.06 KiB       323.35 KiB
+  4.js
+  dist/js/economics-analytics-screen.924    967.07 KiB       323.13 KiB
+  4f482.js
+  dist/js/utilities-screen.3da3cbf5.js      913.86 KiB       309.38 KiB
+  dist/js/chunk-b20f819c.efc1b244.js        903.05 KiB       409.76 KiB
+  dist/js/screen-direct-app.67c99874.js     525.32 KiB       103.75 KiB
+  dist/js/app.0918cf4c.js                   524.89 KiB       103.50 KiB
+  dist/js/chunk-74214dbe.4031b2e4.js        444.35 KiB       86.68 KiB
+  dist/js/purchases-screen.8169cc3d.js      376.05 KiB       83.99 KiB
+  dist/js/chunk-75edf277.65033304.js        341.90 KiB       68.67 KiB
+  dist/js/chunk-63bdbf61.c6ccce15.js        314.85 KiB       63.18 KiB
+  dist/js/chunk-1488f530.8ff189b3.js        306.71 KiB       58.82 KiB
+  dist/js/chunk-752135fa.9cf1793c.js        270.12 KiB       54.99 KiB
+  dist/js/home-screen.2be36515.js           250.65 KiB       45.56 KiB
+  dist/js/chunk-b0bf444e.794332f4.js        244.01 KiB       48.32 KiB
+  dist/js/chunk-dac201e2.e0af3870.js        241.50 KiB       47.95 KiB
+  dist/js/chunk-8cb225d8.4fa57080.js        232.49 KiB       45.75 KiB
+  dist/js/planner-screen.a3084ba6.js        226.81 KiB       46.04 KiB
+  dist/js/chunk-0ca438bc.f7dd4dff.js        175.26 KiB       35.04 KiB
+  dist/js/housekeeper-screen.d3708e56.js    146.29 KiB       39.71 KiB
+  dist/js/chunk-01d73788.b8fe00ba.js        120.10 KiB       36.80 KiB
+  dist/js/chunk-3337847c.70644c31.js        99.48 KiB        19.41 KiB
+  dist/js/chunk-4b75a392.bff453f4.js        78.14 KiB        14.48 KiB
+  dist/js/chunk-4a5f46a6.d396d799.js        69.84 KiB        23.51 KiB
+  dist/js/chunk-428f8adf.68bbf0b8.js        56.88 KiB        12.10 KiB
+  dist/js/personal-access-tokens-managem    53.09 KiB        12.88 KiB
+  ent-screen.d1832ae6.js
+  dist/js/chunk-734472ee.0713486b.js        50.07 KiB        10.21 KiB
+  dist/js/chunk-49f3666c.6dc0a341.js        49.92 KiB        10.84 KiB
+  dist/js/integrations-management-screen    48.19 KiB        12.44 KiB
+  .d7b37c78.js
+  dist/js/client-prices-old-cms-screen.0    47.96 KiB        12.65 KiB
+  377bbeb.js
+  dist/js/cost-center-management-screen.    46.41 KiB        11.35 KiB
+  b4deaf1c.js
+  dist/js/webhooks-management-screen.a43    42.18 KiB        9.24 KiB
+  01edf.js
+  dist/js/other-cost-management-screen.6    42.07 KiB        10.77 KiB
+  72a1380.js
+  dist/js/chunk-6aa4d180.33e07bc6.js        41.31 KiB        9.25 KiB
+  dist/js/gatekeeper-screen.f051af93.js     41.08 KiB        10.41 KiB
+  dist/js/webhook-logs-management-screen    39.28 KiB        8.63 KiB
+  .bae176d2.js
+  dist/js/settings-screen.2905ac6a.js       38.42 KiB        9.25 KiB
+  dist/js/chunk-61f33501.8c9ded9a.js        37.59 KiB        10.71 KiB
+  dist/precache-manifest.3ecf49e972fe266    37.35 KiB        8.94 KiB
+  834efc02d4bc9d69b.js
+  dist/js/chunk-530fae1c.5977e7de.js        37.24 KiB        10.57 KiB
+  dist/js/utility-types-management-scree    37.20 KiB        7.57 KiB
+  n.99395fe3.js
+  dist/js/automations-screen-management.    36.39 KiB        9.64 KiB
+  e98677d9.js
+  dist/js/document-types-management-scre    34.50 KiB        7.70 KiB
+  en.d5d4942a.js
+  dist/new-relic/new-relic-staging.js       33.31 KiB        10.18 KiB
+  dist/new-relic/new-relic-production.js    33.27 KiB        10.17 KiB
+  dist/js/iot-management-screen.5209cc76    33.06 KiB        8.71 KiB
+  .js
+  dist/js/chunk-3e219d7a.bda736ff.js        32.81 KiB        9.62 KiB
+  dist/js/chunk-0609db90.56e6f775.js        31.84 KiB        9.40 KiB
+  dist/js/assets-and-staff-screen-manage    30.59 KiB        8.30 KiB
+  ment.f5c0f2a9.js
+  dist/js/chunk-290cc3ae.c3ae1ed3.js        30.57 KiB        6.86 KiB
+  dist/js/chunk-4e702d8c.c0394965.js        28.33 KiB        6.24 KiB
+  dist/js/chunk-2ddde7c0.46450440.js        28.26 KiB        6.10 KiB
+  dist/js/chunk-17b81324.e8e87b3d.js        27.31 KiB        6.77 KiB
+  dist/js/chunk-cee61e7c.1966c2f8.js        26.87 KiB        5.43 KiB
+  dist/js/chunk-7ac18437.5346c531.js        26.12 KiB        5.08 KiB
+  dist/js/chunk-71072e12.0c078c58.js        26.08 KiB        6.14 KiB
+  dist/js/welcome-screen.867ddebb.js        26.00 KiB        5.61 KiB
+  dist/js/chunk-4adbcfb3.e9f691c9.js        25.99 KiB        5.77 KiB
+  dist/js/chunk-7b1d24dd.62683b4c.js        25.90 KiB        8.18 KiB
+  dist/js/old-cms-screen.113842c7.js        25.63 KiB        6.59 KiB
+  dist/js/chunk-01575096.c666303a.js        25.40 KiB        8.06 KiB
+  dist/js/chunk-22748a4d.3eea8583.js        25.37 KiB        6.29 KiB
+  dist/js/chunk-50ba1901.eb246cf9.js        23.83 KiB        5.94 KiB
+  dist/js/chunk-0783c95c.742719b3.js        23.80 KiB        5.62 KiB
+  dist/js/chunk-2546f00d.864ff094.js        23.48 KiB        5.91 KiB
+  dist/js/chunk-68fbe5e2.c2209f6d.js        23.13 KiB        5.58 KiB
+  dist/js/chunk-9c103840.afeda9c7.js        22.77 KiB        5.74 KiB
+  dist/js/chunk-50dce618.c2367400.js        22.52 KiB        5.12 KiB
+  dist/js/chunk-410534bc.3f9372e5.js        21.75 KiB        5.14 KiB
+  dist/js/chunk-2850a79c.a44a8ba1.js        21.71 KiB        5.10 KiB
+  dist/js/chunk-d486d454.c403a699.js        21.01 KiB        5.31 KiB
+  dist/js/chunk-c5f5e1a4.34524686.js        20.83 KiB        5.06 KiB
+  dist/js/chunk-9ae46708.b610bad9.js        20.82 KiB        4.95 KiB
+  dist/js/chunk-57dfac94.0cf27989.js        20.12 KiB        5.39 KiB
+  dist/js/chunk-7908356c.74324548.js        20.04 KiB        4.82 KiB
+  dist/js/welcome-whats-new.f73024df.js     19.75 KiB        6.26 KiB
+  dist/js/analytics-screen.c442a05c.js      19.49 KiB        6.33 KiB
+  dist/js/chunk-7e2e62a3.8695178e.js        19.47 KiB        4.51 KiB
+  dist/js/chunk-cce56360.ffe91879.js        19.38 KiB        4.60 KiB
+  dist/js/chunk-6381b0f1.c4e99049.js        19.33 KiB        4.47 KiB
+  dist/js/home-screen~utilities-screen~u    19.24 KiB        5.31 KiB
+  tility-types-management-screen.ea786d5
+  7.js
+  dist/js/chunk-5b46b3be.adcc4d04.js        18.75 KiB        6.81 KiB
+  dist/js/chunk-58a1cb1a.8a46149f.js        18.39 KiB        3.50 KiB
+  dist/js/chunk-9e6055e2.a464b28a.js        17.87 KiB        4.53 KiB
+  dist/js/chunk-775fec42.0ce2b68d.js        17.65 KiB        6.59 KiB
+  dist/js/chunk-ce97c0fa.f4a4df45.js        17.41 KiB        4.01 KiB
+  dist/js/chunk-508b5db4.508d1b6d.js        17.07 KiB        4.01 KiB
+  dist/js/chunk-9e9c9b90.5c5cdf13.js        17.06 KiB        6.44 KiB
+  dist/js/status-screen-management.638c8    16.44 KiB        4.18 KiB
+  922.js
+  dist/js/chunk-a96b0240.1c712fd7.js        16.38 KiB        3.94 KiB
+  dist/js/analytics-screen~home-screen.6    15.68 KiB        3.26 KiB
+  3c3609a.js
+  dist/js/chunk-118d19aa.bfb7695f.js        15.55 KiB        4.26 KiB
+  dist/js/integrations-management-screen    15.08 KiB        5.37 KiB
+  ~webhook-logs-management-screen~webhoo
+  ks-management-screen.b242f23c.js
+  dist/js/chunk-020eb630.87fcd708.js        14.84 KiB        3.62 KiB
+  dist/js/chunk-992a14a8.2d81c46c.js        14.11 KiB        4.22 KiB
+  dist/js/clients-analytics-screen~econo    13.84 KiB        5.08 KiB
+  mics-analytics-screen~failure-sla-anal
+  ytics-screen~housekeeper-screen~~0dc97
+  81f.7bc12674.js
+  dist/js/chunk-66a09149.112f4059.js        13.71 KiB        4.09 KiB
+  dist/js/analytics-screen~assets-and-st    13.39 KiB        2.90 KiB
+  aff-screen-management~assets-screen~au
+  tomations-screen-management~clie~c6f22
+  0b3.996a9e12.js
+  dist/js/hub-apps~hub-screen.1056b0ab.j    13.32 KiB        3.63 KiB
+  s
+  dist/js/chunk-4eec0cf6.03eaf499.js        13.26 KiB        5.30 KiB
+  dist/js/chunk-5439ff79.27416caf.js        13.24 KiB        3.32 KiB
+  dist/js/chunk-36c95e7d.1b25d8f6.js        13.11 KiB        3.65 KiB
+  dist/js/chunk-3d6c5fe6.84ec1946.js        12.92 KiB        3.97 KiB
+  dist/js/chunk-6b42b25f.3506e1c8.js        12.90 KiB        2.99 KiB
+  dist/js/chunk-2ca6309a.c576a1c1.js        12.85 KiB        3.17 KiB
+  dist/js/chunk-774ae73c.5b06a3df.js        12.14 KiB        3.82 KiB
+  dist/js/chunk-e097ab28.fa3d28c1.js        12.02 KiB        3.78 KiB
+  dist/js/chunk-e7e30c8a.de01be4f.js        11.70 KiB        3.30 KiB
+  dist/js/chunk-39a10aa6.28bce0e2.js        11.46 KiB        2.57 KiB
+  dist/js/chunk-6f6188f6.11910a8a.js        10.97 KiB        3.01 KiB
+  dist/js/chunk-a898623e.fa52c0db.js        10.54 KiB        2.46 KiB
+  dist/js/account-blocked.2221d1c1.js       10.24 KiB        3.78 KiB
+  dist/js/login-screen.e4b2265b.js          10.17 KiB        4.04 KiB
+  dist/js/hub-apps.a39df99d.js              10.16 KiB        2.85 KiB
+  dist/js/chunk-4d5eb85b.601dce1a.js        9.91 KiB         2.36 KiB
+  dist/js/cost-center-management-screen~    9.83 KiB         3.56 KiB
+  document-types-management-screen~gatek
+  eeper-screen~other-cost-manageme~7224f
+  f35.bb6871d3.js
+  dist/js/assets-and-staff-screen-manage    9.82 KiB         2.87 KiB
+  ment~automations-screen-management~sta
+  tus-screen-management.dcfdb98a.js
+  dist/js/chunk-a4692d46.58480428.js        9.40 KiB         3.06 KiB
+  dist/js/chunk-76a05bde.2d60f394.js        9.10 KiB         2.38 KiB
+  dist/js/chunk-0837de77.26ae5f71.js        8.89 KiB         2.96 KiB
+  dist/js/chunk-053c745c.a5de1db9.js        8.83 KiB         2.71 KiB
+  dist/js/chunk-383db2c7.fff567a4.js        8.71 KiB         2.32 KiB
+  dist/js/chunk-3b33c162.878d3376.js        6.39 KiB         1.74 KiB
+  dist/js/chunk-61bb3ffe.53dd3e4d.js        6.17 KiB         1.99 KiB
+  dist/js/chunk-7edb60e6.13458de4.js        6.08 KiB         2.10 KiB
+  dist/js/hub-screen.e97a47ec.js            5.41 KiB         1.78 KiB
+  dist/js/chunk-4bf9951a.4142ccba.js        4.68 KiB         1.68 KiB
+  dist/basic.js                             3.61 KiB         1.13 KiB
+  dist/js/chunk-5c252a5e.3e929a76.js        3.58 KiB         1.19 KiB
+  dist/js/chunk-2d0d8057.3c3ed904.js        3.48 KiB         1.19 KiB
+  dist/js/page-not-found-screen.879e41a7    3.40 KiB         1.53 KiB
+  .js
+  dist/js/chunk-2d212ff2.6629aa81.js        3.00 KiB         1.13 KiB
+  dist/js/chunk-2d2261a8.da626f13.js        2.97 KiB         1.21 KiB
+  dist/js/chunk-2d0b1be8.d9984fd0.js        2.94 KiB         1.13 KiB
+  dist/js/chunk-2d0e91af.ad0f37a9.js        2.64 KiB         1.14 KiB
+  dist/js/chunk-2d0e1dae.cdc5bfc6.js        2.62 KiB         1.18 KiB
+  dist/js/chunk-2d0e4a7c.6b07ec80.js        2.60 KiB         1.15 KiB
+  dist/js/chunk-2d0ce796.5f2a3efe.js        2.52 KiB         1.16 KiB
+  dist/js/chunk-2d0db486.34bed1c2.js        2.50 KiB         1.15 KiB
+  dist/js/chunk-2d21b27e.07be6566.js        2.49 KiB         1.09 KiB
+  dist/js/chunk-2d229616.f7ca2457.js        2.47 KiB         1.13 KiB
+  dist/js/chunk-2d228e49.d768461f.js        2.41 KiB         1.07 KiB
+  dist/js/chunk-2d22d238.2e039c12.js        2.40 KiB         1.11 KiB
+  dist/js/chunk-2d0b2213.6a128350.js        2.38 KiB         1.03 KiB
+  dist/js/chunk-2d0da6ab.74241921.js        2.19 KiB         1.05 KiB
+  dist/js/chunk-2d0d622d.38de996c.js        2.13 KiB         0.97 KiB
+  dist/js/chunk-2d0cba55.e7d6e534.js        2.07 KiB         1.00 KiB
+  dist/js/chunk-f50c655a.21b7e4e2.js        2.00 KiB         0.87 KiB
+  dist/js/chunk-2d0f0dec.d782f997.js        1.98 KiB         0.97 KiB
+  dist/js/chunk-2d216de6.77705d1b.js        1.96 KiB         1.02 KiB
+  dist/js/chunk-2d2132bb.b65fbc8c.js        1.96 KiB         0.94 KiB
+  dist/js/chunk-2d0b2ee7.2a81427c.js        1.94 KiB         1.01 KiB
+  dist/js/chunk-2d0cf17f.e3785b20.js        1.94 KiB         0.99 KiB
+  dist/js/chunk-2d0bdb3c.439f6ea8.js        1.93 KiB         0.98 KiB
+  dist/js/chunk-2d237f33.2a8c2cae.js        1.93 KiB         1.00 KiB
+  dist/js/chunk-2d0e26c3.1dbaca88.js        1.93 KiB         0.97 KiB
+  dist/js/chunk-2d2259d8.83888308.js        1.92 KiB         0.94 KiB
+  dist/js/chunk-2d0d70e6.c3640bf9.js        1.91 KiB         0.98 KiB
+  dist/js/chunk-2d0ea0ba.3e43d6b9.js        1.90 KiB         0.98 KiB
+  dist/js/chunk-2d0d6a95.3d883ea9.js        1.90 KiB         0.93 KiB
+  dist/js/chunk-2d0cca32.2bac9c9b.js        1.90 KiB         0.91 KiB
+  dist/js/chunk-2d0d03e8.594e85b0.js        1.90 KiB         0.92 KiB
+  dist/js/chunk-2d0d70c6.67724bf1.js        1.90 KiB         0.96 KiB
+  dist/js/chunk-2d0c575a.9770dc11.js        1.90 KiB         0.94 KiB
+  dist/js/chunk-2d0e9ba2.c8755efe.js        1.89 KiB         0.94 KiB
+  dist/js/chunk-2d0b9447.463d5376.js        1.88 KiB         0.92 KiB
+  dist/js/chunk-2d0a45e0.4ae886a3.js        1.87 KiB         0.91 KiB
+  dist/js/chunk-2d217af6.ab91f521.js        1.87 KiB         1.01 KiB
+  dist/js/chunk-2d0b23c4.8daecc20.js        1.86 KiB         0.93 KiB
+  dist/js/chunk-2d2107bd.2b521a96.js        1.86 KiB         0.92 KiB
+  dist/js/chunk-2d22e165.96d5bfa2.js        1.86 KiB         0.91 KiB
+  dist/js/chunk-2d20f204.6b3c5220.js        1.85 KiB         0.97 KiB
+  dist/js/chunk-2d21a5d7.22ef6e49.js        1.85 KiB         0.92 KiB
+  dist/js/chunk-2d0e57ff.3ecd9637.js        1.85 KiB         0.89 KiB
+  dist/js/analytics-customizations-scree    1.85 KiB         0.84 KiB
+  n.dbf83fa3.js
+  dist/js/chunk-2d2288f4.b828a075.js        1.85 KiB         0.89 KiB
+  dist/js/chunk-77215428.c7d3206c.js        1.84 KiB         0.95 KiB
+  dist/js/chunk-2d0cbca7.f3384819.js        1.83 KiB         0.94 KiB
+  dist/js/chunk-2d0d0f3c.81b63e6b.js        1.80 KiB         0.91 KiB
+  dist/js/chunk-2d0d3ea6.e6f28ebc.js        1.79 KiB         0.93 KiB
+  dist/js/chunk-2d0e5eb9.8665eff2.js        1.79 KiB         0.91 KiB
+  dist/js/chunk-2d20e85d.6479021d.js        1.77 KiB         0.87 KiB
+  dist/js/chunk-2d20f558.03553899.js        1.76 KiB         0.86 KiB
+  dist/service-worker.js                    1.06 KiB         0.62 KiB
+  dist/css/app.0597af2f.css                 422.55 KiB       71.11 KiB
+  dist/css/scheduled-works-screen.958eaa    154.30 KiB       15.15 KiB
+  83.css
+  dist/css/chunk-74214dbe.314e992c.css      141.18 KiB       13.70 KiB
+  dist/css/assets-screen.a34c1066.css       113.55 KiB       11.82 KiB
+  dist/css/chunk-22f975e8.e2f69ee8.css      95.16 KiB        9.31 KiB
+  dist/css/sales-screen.2e1353f5.css        93.90 KiB        11.11 KiB
+  dist/css/failures-screen.bfd9d564.css     92.25 KiB        10.71 KiB
+  dist/css/screen-direct-app.80fa24cc.cs    91.41 KiB        10.21 KiB
+  s
+  dist/css/purchases-screen.6c838eba.css    86.19 KiB        9.61 KiB
+  dist/css/chunk-75edf277.1295a669.css      83.89 KiB        9.47 KiB
+  dist/css/works-screen.560b0bab.css        79.06 KiB        10.04 KiB
+  dist/css/chunk-63bdbf61.2cf9ba52.css      78.03 KiB        8.75 KiB
+  dist/css/sales-quotes.033ebd58.css        77.02 KiB        9.75 KiB
+  dist/css/chunk-752135fa.52a38a9f.css      73.07 KiB        8.96 KiB
+  dist/css/chunk-dac201e2.860cabff.css      72.32 KiB        7.43 KiB
+  dist/css/chunk-b0bf444e.c9adde31.css      71.02 KiB        7.32 KiB
+  dist/css/quote-requests.9db8dab5.css      68.90 KiB        8.89 KiB
+  dist/css/planner-screen.7b15bb00.css      62.07 KiB        6.81 KiB
+  dist/css/chunk-1488f530.fce3509e.css      61.27 KiB        7.70 KiB
+  dist/css/chunk-8cb225d8.db2925a5.css      55.27 KiB        6.71 KiB
+  dist/css/dashboard-screen.d6b130de.css    53.28 KiB        11.32 KiB
+  dist/css/chunk-0ca438bc.bb7ad2fb.css      44.05 KiB        5.75 KiB
+  dist/css/chunk-b20f819c.a3d6c9e2.css      40.72 KiB        3.60 KiB
+  dist/css/chunk-3337847c.a6f1721c.css      36.77 KiB        4.28 KiB
+  dist/css/home-screen.c35abcaa.css         33.03 KiB        5.67 KiB
+  dist/css/scheduled-work-analytics-scre    26.59 KiB        4.08 KiB
+  en.5f440eaa.css
+  dist/css/housekeeper-screen.40832853.c    26.14 KiB        4.37 KiB
+  ss
+  dist/css/utilities-screen.859d65b7.css    25.26 KiB        3.53 KiB
+  dist/css/sla-analytics-screen.63b404b5    23.34 KiB        3.96 KiB
+  .css
+  dist/css/chunk-6aa4d180.e372029f.css      23.29 KiB        2.88 KiB
+  dist/css/failure-sla-analytics-screen.    23.26 KiB        3.96 KiB
+  49b84844.css
+  dist/css/suppliers-analytics-screen.b0    23.24 KiB        3.95 KiB
+  2fc14b.css
+  dist/css/clients-analytics-screen.0a71    23.22 KiB        3.95 KiB
+  cc70.css
+  dist/css/chunk-734472ee.ddd616dc.css      22.58 KiB        3.58 KiB
+  dist/css/chunk-17b81324.1353b27f.css      22.55 KiB        3.71 KiB
+  dist/css/chunk-4b75a392.fc418231.css      19.39 KiB        2.71 KiB
+  dist/css/chunk-290cc3ae.caf281c2.css      19.11 KiB        2.68 KiB
+  dist/css/personal-access-tokens-manage    18.83 KiB        3.29 KiB
+  ment-screen.58d949c3.css
+  dist/css/chunk-4e702d8c.25d52a79.css      18.62 KiB        2.96 KiB
+  dist/css/operators-analytics-screen.14    18.12 KiB        3.07 KiB
+  381f1e.css
+  dist/css/chunk-0783c95c.665507a9.css      18.02 KiB        2.93 KiB
+  dist/css/integrations-management-scree    17.66 KiB        2.66 KiB
+  n.6d0c6f09.css
+  dist/css/chunk-71072e12.055ff5d9.css      17.11 KiB        2.28 KiB
+  dist/css/chunk-ce97c0fa.26cb350f.css      16.97 KiB        2.32 KiB
+  dist/css/webhook-logs-management-scree    16.79 KiB        3.16 KiB
+  n.f31b3dff.css
+  dist/css/chunk-428f8adf.ce5c5179.css      16.54 KiB        2.94 KiB
+  dist/css/chunk-49f3666c.7cded25f.css      16.15 KiB        2.81 KiB
+  dist/css/utility-types-management-scre    16.09 KiB        3.02 KiB
+  en.9abb41f5.css
+  dist/css/economics-analytics-screen.5a    16.03 KiB        2.95 KiB
+  f047a3.css
+  dist/css/sales-analytics-screen.6fc764    15.98 KiB        2.94 KiB
+  8b.css
+  dist/css/chunk-7ac18437.4dac64ea.css      15.92 KiB        2.54 KiB
+  dist/css/webhooks-management-screen.c9    15.91 KiB        2.99 KiB
+  c0496c.css
+  dist/css/automations-screen-management    15.66 KiB        2.85 KiB
+  .6aa05460.css
+  dist/css/welcome-screen.0223b5f3.css      15.04 KiB        2.12 KiB
+  dist/css/analytics-screen~assets-and-s    14.78 KiB        2.71 KiB
+  taff-screen-management~assets-screen~a
+  utomations-screen-management~clie~c6f2
+  20b3.a03ae891.css
+  dist/css/chunk-4adbcfb3.016b1a6f.css      14.13 KiB        2.75 KiB
+  dist/css/chunk-c5f5e1a4.63c55d0e.css      13.82 KiB        2.70 KiB
+  dist/css/chunk-68fbe5e2.14b84ec0.css      13.76 KiB        2.68 KiB
+  dist/css/iot-management-screen.1dcfc62    13.35 KiB        2.27 KiB
+  e.css
+  dist/css/chunk-22748a4d.55e999bc.css      13.23 KiB        2.81 KiB
+  dist/css/analytics-screen.c5db6568.css    12.90 KiB        2.06 KiB
+  dist/css/chunk-2546f00d.73b1d8b0.css      12.72 KiB        2.74 KiB
+  dist/css/chunk-9c103840.5c9c1646.css      12.72 KiB        2.77 KiB
+  dist/css/settings-screen.1dd9ed50.css     12.55 KiB        2.07 KiB
+  dist/css/chunk-410534bc.e26381a3.css      12.35 KiB        2.59 KiB
+  dist/css/chunk-0609db90.8d1cab67.css      12.18 KiB        2.65 KiB
+  dist/css/chunk-530fae1c.bdee9eee.css      12.18 KiB        2.65 KiB
+  dist/css/chunk-61f33501.bdee9eee.css      12.18 KiB        2.65 KiB
+  dist/css/chunk-2ddde7c0.abd7600c.css      12.08 KiB        2.62 KiB
+  dist/css/chunk-3e219d7a.ba350f62.css      12.03 KiB        2.59 KiB
+  dist/css/chunk-9e6055e2.ba350f62.css      12.03 KiB        2.59 KiB
+  dist/css/chunk-01d73788.ab7194bd.css      11.12 KiB        2.50 KiB
+  dist/css/chunk-6f6188f6.0fb5ada6.css      10.11 KiB        2.17 KiB
+  dist/css/welcome-whats-new.e5f3831c.cs    10.03 KiB        2.40 KiB
+  s
+  dist/css/assets-and-staff-screen-manag    9.99 KiB         2.14 KiB
+  ement.d32d6fd7.css
+  dist/css/hub-apps.bfc8afa8.css            9.78 KiB         2.42 KiB
+  dist/css/chunk-a898623e.7d6f8694.css      9.66 KiB         1.53 KiB
+  dist/css/chunk-50dce618.e9b16d77.css      9.39 KiB         1.89 KiB
+  dist/css/cost-center-management-screen    8.90 KiB         2.01 KiB
+  .3f04ed04.css
+  dist/css/status-screen-management.8f92    8.89 KiB         1.82 KiB
+  d799.css
+  dist/css/chunk-a96b0240.842f4672.css      8.36 KiB         1.84 KiB
+  dist/basic.css                            8.23 KiB         1.61 KiB
+  dist/css/assets-and-staff-screen-manag    7.93 KiB         2.10 KiB
+  ement~automations-screen-management~st
+  atus-screen-management.7234a433.css
+  dist/css/integrations-management-scree    7.93 KiB         2.10 KiB
+  n~webhook-logs-management-screen~webho
+  oks-management-screen.7234a433.css
+  dist/css/chunk-7908356c.22169f7a.css      7.57 KiB         1.11 KiB
+  dist/css/chunk-508b5db4.267e81b4.css      7.37 KiB         1.76 KiB
+  dist/css/document-types-management-scr    6.99 KiB         1.91 KiB
+  een.7b642c16.css
+  dist/css/gatekeeper-screen.7b642c16.cs    6.99 KiB         1.91 KiB
+  s
+  dist/css/other-cost-management-screen.    6.99 KiB         1.91 KiB
+  7b642c16.css
+  dist/css/chunk-2850a79c.bcdddba3.css      6.66 KiB         1.61 KiB
+  dist/css/chunk-cee61e7c.a1982dac.css      6.65 KiB         1.20 KiB
+  dist/css/chunk-50ba1901.5f25c3a7.css      6.50 KiB         1.90 KiB
+  dist/css/chunk-d486d454.5f25c3a7.css      6.50 KiB         1.90 KiB
+  dist/css/chunk-7e2e62a3.a2149444.css      6.17 KiB         1.79 KiB
+  dist/css/chunk-6b42b25f.fa851718.css      6.14 KiB         1.76 KiB
+  dist/css/chunk-cce56360.bab4b31b.css      6.09 KiB         1.77 KiB
+  dist/css/chunk-020eb630.c64c155d.css      5.78 KiB         1.36 KiB
+  dist/css/old-cms-screen.6f72c589.css      5.60 KiB         1.03 KiB
+  dist/css/chunk-57dfac94.295276c5.css      5.49 KiB         1.66 KiB
+  dist/css/chunk-3b33c162.0c6c7cba.css      5.45 KiB         1.29 KiB
+  dist/css/login-screen.25307e7f.css        5.38 KiB         1.65 KiB
+  dist/css/chunk-118d19aa.2c01f412.css      5.22 KiB         1.58 KiB
+  dist/css/chunk-5b46b3be.a1b73f60.css      5.21 KiB         1.26 KiB
+  dist/css/chunk-9ae46708.786eaf53.css      5.16 KiB         1.59 KiB
+  dist/css/page-not-found-screen.188a005    5.08 KiB         1.23 KiB
+  2.css
+  dist/css/chunk-2ca6309a.5c09f55a.css      5.01 KiB         1.58 KiB
+  dist/css/chunk-01575096.5d1e9d46.css      4.96 KiB         1.54 KiB
+  dist/css/chunk-7b1d24dd.5d1e9d46.css      4.96 KiB         1.54 KiB
+  dist/css/hub-screen.8ce857ab.css          4.88 KiB         1.70 KiB
+  dist/css/chunk-4d5eb85b.9a16d887.css      4.82 KiB         1.48 KiB
+  dist/css/chunk-6381b0f1.9a16d887.css      4.82 KiB         1.48 KiB
+  dist/css/chunk-76a05bde.9a16d887.css      4.82 KiB         1.48 KiB
+  dist/css/chunk-383db2c7.ff1f0a1d.css      4.71 KiB         1.20 KiB
+  dist/css/client-prices-old-cms-screen.    4.53 KiB         1.33 KiB
+  bc20b962.css
+  dist/css/chunk-7edb60e6.dce1d25a.css      4.21 KiB         1.41 KiB
+  dist/css/chunk-61bb3ffe.d741150c.css      4.05 KiB         1.42 KiB
+  dist/css/cost-center-management-screen    3.81 KiB         1.37 KiB
+  ~document-types-management-screen~gate
+  keeper-screen~other-cost-manageme~7224
+  ff35.82a73e45.css
+  dist/css/clients-analytics-screen~econ    3.71 KiB         0.90 KiB
+  omics-analytics-screen~failure-sla-ana
+  lytics-screen~housekeeper-screen~~0dc9
+  781f.ee04961b.css
+  dist/css/chunk-vendors.b7d36435.css       3.37 KiB         0.66 KiB
+  dist/css/chunk-36c95e7d.b007516c.css      3.25 KiB         1.18 KiB
+  dist/css/chunk-775fec42.f9af6428.css      3.24 KiB         1.17 KiB
+  dist/css/chunk-774ae73c.2c327f89.css      2.80 KiB         1.10 KiB
+  dist/css/chunk-3d6c5fe6.880574f6.css      2.80 KiB         1.10 KiB
+  dist/css/chunk-e097ab28.1d93bbf6.css      2.78 KiB         1.10 KiB
+  dist/css/chunk-992a14a8.50fc5e5e.css      2.77 KiB         1.10 KiB
+  dist/css/chunk-66a09149.7820c514.css      2.77 KiB         1.10 KiB
+  dist/css/chunk-e7e30c8a.2105e75e.css      2.66 KiB         1.04 KiB
+  dist/css/hub-apps~hub-screen.1999e1ac.    2.65 KiB         1.06 KiB
+  css
+  dist/css/chunk-5439ff79.bb7fb333.css      2.53 KiB         0.99 KiB
+  dist/css/account-blocked.9455c858.css     2.43 KiB         0.98 KiB
+  dist/css/chunk-4eec0cf6.c8b12daa.css      2.06 KiB         0.86 KiB
+  dist/css/chunk-a4692d46.07b61f93.css      1.97 KiB         0.83 KiB
+  dist/css/chunk-0837de77.03891c8c.css      1.95 KiB         0.82 KiB
+  dist/css/chunk-4bf9951a.bc1303a9.css      1.93 KiB         0.84 KiB
+  dist/css/analytics-customizations-scre    1.89 KiB         0.79 KiB
+  en.ae2ebb8b.css
+  dist/css/chunk-5c252a5e.3e629460.css      1.87 KiB         0.82 KiB
+  dist/css/chunk-f50c655a.09717947.css      1.86 KiB         0.80 KiB
+
+  Images and other types of assets omitted.
+
+ DONE  Build complete. The dist directory is ready to be deployed.
+ INFO  Check out deployment instructions at https://cli.vuejs.org/guide/deployment.html
+      
+section_end:1632938360:step_script[0Ksection_start:1632938360:archive_cache[0K[0K[36;1mSaving cache for successful job[0;m
+[0;m[32;1mCreating cache v0-111-1...[0;m
+dist/: found 411 matching files and directories   [0;m 
+node_modules/: found 163485 matching files and directories[0;m 
+Uploading cache.zip to https://is-gitlab-runners-cache.s3.dualstack.eu-west-1.amazonaws.com/project/20143087/v0-111-1[0;m 
+[32;1mCreated cache[0;m
+section_end:1632938449:archive_cache[0Ksection_start:1632938449:cleanup_file_variables[0K[0K[36;1mCleaning up file based variables[0;m
+[0;msection_end:1632938449:cleanup_file_variables[0K[32;1mJob succeeded
+[0;m

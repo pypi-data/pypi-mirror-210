@@ -1,0 +1,100 @@
+{
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "id": 3404512828,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.142.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-11-30T19:50:00.299Z",
+    "started_at": "2022-11-30T19:51:42.121Z",
+    "finished_at": "2022-11-30T20:06:18.910Z",
+    "duration": 876.788662,
+    "queued_duration": 2.276976,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "12:09 PM"
+    },
+    "commit": {
+        "id": "2cc6c2306578072ce547c757d38e445512af80e9",
+        "short_id": "2cc6c230",
+        "created_at": "2022-11-30T19:20:32.000+00:00",
+        "parent_ids": [
+            "6c52734960d04ba34ae07224ff48070efacc2223"
+        ],
+        "title": "fix(SelectContact): suggestions affected by search",
+        "message": "fix(SelectContact): suggestions affected by search\n",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-11-30T19:20:32.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-11-30T19:20:32.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/2cc6c2306578072ce547c757d38e445512af80e9"
+    },
+    "pipeline": {
+        "id": 709851757,
+        "iid": 22083,
+        "project_id": 20143087,
+        "sha": "2cc6c2306578072ce547c757d38e445512af80e9",
+        "ref": "v0.142.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-11-30T19:50:00.273Z",
+        "updated_at": "2022-11-30T20:09:23.319Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/709851757"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3404512828",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "project_id": 20143087,
+    "pipeline_id": 709851757
+}

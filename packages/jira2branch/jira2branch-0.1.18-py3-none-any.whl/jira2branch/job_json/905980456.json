@@ -1,0 +1,101 @@
+{
+    "id": 905980456,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.91.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2020-12-11T16:10:49.166Z",
+    "started_at": "2020-12-11T16:23:05.418Z",
+    "finished_at": "2020-12-11T16:30:22.475Z",
+    "duration": 437.057776,
+    "queued_duration": 20.932833,
+    "user": {
+        "id": 6412053,
+        "username": "fmartins87",
+        "name": "F\u00e1bio Martins",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412053/avatar.png",
+        "web_url": "https://gitlab.com/fmartins87",
+        "created_at": "2020-07-13T13:58:26.929Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "@fabiomartins87",
+        "website_url": "",
+        "organization": "",
+        "job_title": "Engineering Team Lead",
+        "pronouns": null,
+        "bot": false,
+        "work_information": "Engineering Team Lead",
+        "followers": 0,
+        "following": 0,
+        "local_time": "11:04 AM"
+    },
+    "commit": {
+        "id": "a620bcf81e1d46de4e0c0a2d439caae4c06af5f2",
+        "short_id": "a620bcf8",
+        "created_at": "2020-12-11T10:54:48.000+00:00",
+        "parent_ids": [
+            "df155ca2ab5aa197dd0fe32c8e7ad077ee3efa51",
+            "4507c894ae3d7d6f3d2fc5dc32983d32c04306f9"
+        ],
+        "title": "Merge branch 'hotfix/IS-6049-hotfix-nps-next-nudge' into 'master'",
+        "message": "Merge branch 'hotfix/IS-6049-hotfix-nps-next-nudge' into 'master'\n\nhotfix: IS-6049 Hotfix NPS next nudge\n\nSee merge request infraspeak/web/web-core-client!1436",
+        "author_name": "Fabio Alves",
+        "author_email": "falves@infraspeak.com",
+        "authored_date": "2020-12-11T10:54:48.000+00:00",
+        "committer_name": "Fabio Alves",
+        "committer_email": "falves@infraspeak.com",
+        "committed_date": "2020-12-11T10:54:48.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/a620bcf81e1d46de4e0c0a2d439caae4c06af5f2"
+    },
+    "pipeline": {
+        "id": 228600606,
+        "iid": 2561,
+        "project_id": 20143087,
+        "sha": "a620bcf81e1d46de4e0c0a2d439caae4c06af5f2",
+        "ref": "v0.91.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2020-12-11T16:10:49.108Z",
+        "updated_at": "2020-12-11T16:45:36.310Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/228600606"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/905980456",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 49270,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 228600606
+}

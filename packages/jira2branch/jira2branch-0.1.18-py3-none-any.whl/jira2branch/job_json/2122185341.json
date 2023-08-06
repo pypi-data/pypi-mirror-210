@@ -1,0 +1,101 @@
+{
+    "id": 2122185341,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.121.15",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-02-22T11:59:01.734Z",
+    "started_at": "2022-02-22T12:00:57.357Z",
+    "finished_at": "2022-02-22T12:12:32.594Z",
+    "duration": 695.237623,
+    "queued_duration": 2.627959,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "7a4a3c69e98404221cad213e6b03181a4dd22757",
+        "short_id": "7a4a3c69",
+        "created_at": "2022-02-22T11:49:37.000+00:00",
+        "parent_ids": [
+            "30fc81086676bac7ae4101290adb74e9b8046bba",
+            "03a8c14ab993f85925c058ba58f57ab5939f6d93"
+        ],
+        "title": "Merge branch 'fix/wt3-731-when-changing-anything-in-the-document-secti' into 'master'",
+        "message": "Merge branch 'fix/wt3-731-when-changing-anything-in-the-document-secti' into 'master'\n\nWT3-731: When changing anything in the document section of the building, after saving the changes, the picture of the building is deleted\n\nSee merge request infraspeak/web/web-core-client!3477",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-02-22T11:49:37.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-02-22T11:49:37.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/7a4a3c69e98404221cad213e6b03181a4dd22757"
+    },
+    "pipeline": {
+        "id": 476661451,
+        "iid": 13008,
+        "project_id": 20143087,
+        "sha": "7a4a3c69e98404221cad213e6b03181a4dd22757",
+        "ref": "v0.121.15",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-02-22T11:59:01.696Z",
+        "updated_at": "2022-02-22T12:46:42.470Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/476661451"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2122185341",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1249289,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 476661451
+}

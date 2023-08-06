@@ -1,0 +1,100 @@
+{
+    "id": 1847112559,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.115.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-12-03T13:25:44.709Z",
+    "started_at": "2021-12-03T13:27:47.169Z",
+    "finished_at": "2021-12-03T13:37:32.717Z",
+    "duration": 585.547922,
+    "queued_duration": 8.84437,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "e5c3242e45f82c84c9b55d2de979e41db6bdfcde",
+        "short_id": "e5c3242e",
+        "created_at": "2021-12-03T13:14:50.000+00:00",
+        "parent_ids": [
+            "2e609327b83e0cd3db8f2632b47a5e1f3a759e13"
+        ],
+        "title": "Merge branch 'chore/ENG-111-move-unlock-script-to-deploy-after_script' into 'develop'",
+        "message": "Merge branch 'chore/ENG-111-move-unlock-script-to-deploy-after_script' into 'develop'\n\nENG-111: Move unlock script to deploy after_script\n\nSee merge request infraspeak/web/web-core-client!3130\n\n(cherry picked from commit db7f84ab5e88583273e774541d654322bac53b84)\n\nf0224ceb update\nfbd4580c update\naa088a73 Merge remote-tracking branch 'origin/develop' into...\n3c3fd736 update",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-11-30T10:41:26.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-12-03T13:14:50.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/e5c3242e45f82c84c9b55d2de979e41db6bdfcde"
+    },
+    "pipeline": {
+        "id": 421966753,
+        "iid": 11006,
+        "project_id": 20143087,
+        "sha": "e5c3242e45f82c84c9b55d2de979e41db6bdfcde",
+        "ref": "v0.115.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-12-03T13:25:44.648Z",
+        "updated_at": "2021-12-03T17:08:06.049Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/421966753"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1847112559",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1296171,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 421966753
+}

@@ -1,0 +1,101 @@
+{
+    "id": 2567475101,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.129.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-06-09T08:52:41.228Z",
+    "started_at": "2022-06-09T08:54:55.982Z",
+    "finished_at": "2022-06-09T09:06:34.227Z",
+    "duration": 698.245577,
+    "queued_duration": 0.686251,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:38 AM"
+    },
+    "commit": {
+        "id": "68a006962e4df54437f15997b2c2d61b6e55f75f",
+        "short_id": "68a00696",
+        "created_at": "2022-06-09T08:41:37.000+00:00",
+        "parent_ids": [
+            "8ce508a2d7830cb948f1731b1e7b201d54213804",
+            "d696e720c6f2481e7a4ea99fad2c8fb1fca3f0b6"
+        ],
+        "title": "Merge branch 'fix/IS-8271_cant_create_a_Usage_Based_Maintenance_due_to_calendar_error' into 'master'",
+        "message": "Merge branch 'fix/IS-8271_cant_create_a_Usage_Based_Maintenance_due_to_calendar_error' into 'master'\n\nfix/IS-8271: Cant create a Usage Based Maintenance Job due to calendar error\n\nSee merge request infraspeak/web/web-core-client!4139",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2022-06-09T08:41:37.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2022-06-09T08:41:37.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/68a006962e4df54437f15997b2c2d61b6e55f75f"
+    },
+    "pipeline": {
+        "id": 559538237,
+        "iid": 16457,
+        "project_id": 20143087,
+        "sha": "68a006962e4df54437f15997b2c2d61b6e55f75f",
+        "ref": "v0.129.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-06-09T08:52:41.192Z",
+        "updated_at": "2022-06-09T09:14:40.153Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/559538237"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2567475101",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 564181,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 559538237
+}

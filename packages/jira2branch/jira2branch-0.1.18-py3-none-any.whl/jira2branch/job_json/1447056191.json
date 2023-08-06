@@ -1,0 +1,101 @@
+{
+    "id": 1447056191,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.106.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-07-23T08:55:26.014Z",
+    "started_at": "2021-07-23T08:58:52.075Z",
+    "finished_at": "2021-07-23T09:07:25.909Z",
+    "duration": 513.833416,
+    "queued_duration": 0.941666,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "eba7bfd1b7e4094921dbe8f99de1befc98be716e",
+        "short_id": "eba7bfd1",
+        "created_at": "2021-07-23T08:42:29.000+00:00",
+        "parent_ids": [
+            "a06b1e68a03d0b38e03339ca1ac6e85c68320c1f",
+            "e0e5a660f028b0221d646613284cb805f6dfabcb"
+        ],
+        "title": "Merge branch 'fix/IS-7148_Work-Orders-editing-description-of-Other-Costs-type-Duration-and-Resource-leads-to-error' into 'master'",
+        "message": "Merge branch 'fix/IS-7148_Work-Orders-editing-description-of-Other-Costs-type-Duration-and-Resource-leads-to-error' into 'master'\n\nFix/IS-7148: Work Orders - editing description of Other Costs - type Duration and Resource - leads to error\n\nSee merge request infraspeak/web/web-core-client!2426\n\nClose IS-7148",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-07-23T08:42:29.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-07-23T08:42:29.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/eba7bfd1b7e4094921dbe8f99de1befc98be716e"
+    },
+    "pipeline": {
+        "id": 341749847,
+        "iid": 7417,
+        "project_id": 20143087,
+        "sha": "eba7bfd1b7e4094921dbe8f99de1befc98be716e",
+        "ref": "v0.106.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-07-23T08:55:25.977Z",
+        "updated_at": "2021-07-23T09:12:11.615Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/341749847"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1447056191",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 61913,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 341749847
+}

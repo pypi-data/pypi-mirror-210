@@ -1,0 +1,101 @@
+{
+    "id": 1696756421,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.112.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-10-20T08:38:21.668Z",
+    "started_at": "2021-10-20T08:41:59.287Z",
+    "finished_at": "2021-10-20T08:53:22.086Z",
+    "duration": 682.798962,
+    "queued_duration": 8.99284,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "4d639ea033a734fb6ef35793464818e9bfb36d42",
+        "short_id": "4d639ea0",
+        "created_at": "2021-10-20T08:21:41.000+00:00",
+        "parent_ids": [
+            "00d65c7c47bee615279404cba5866c82a17d4ff7",
+            "1aa3b106c418f8c4886537e448bf54ff1c3f637d"
+        ],
+        "title": "Merge branch 'fix/IS-7354_Screen_Assets_filters_are_cleaned_when_applied' into 'master'",
+        "message": "Merge branch 'fix/IS-7354_Screen_Assets_filters_are_cleaned_when_applied' into 'master'\n\nfix/IS-7354: Screen assets filters are cleaned when applied\n\nSee merge request infraspeak/web/web-core-client!2862",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2021-10-20T08:21:41.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2021-10-20T08:21:41.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/4d639ea033a734fb6ef35793464818e9bfb36d42"
+    },
+    "pipeline": {
+        "id": 391733748,
+        "iid": 9643,
+        "project_id": 20143087,
+        "sha": "4d639ea033a734fb6ef35793464818e9bfb36d42",
+        "ref": "v0.112.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-10-20T08:38:21.607Z",
+        "updated_at": "2021-10-20T09:49:14.629Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/391733748"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1696756421",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 35041,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 391733748
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1166148063,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.98.9",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-09T11:59:22.903Z",
+    "started_at": "2021-04-09T12:01:54.551Z",
+    "finished_at": "2021-04-09T12:09:07.917Z",
+    "duration": 433.366718,
+    "queued_duration": 22.229669,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "6bb58fc3128a62585762bab6e24064347ddde036",
+        "short_id": "6bb58fc3",
+        "created_at": "2021-04-09T11:48:15.000+00:00",
+        "parent_ids": [
+            "95424fbcc6c1f5d76ad1f39ce27003d4f1993a2e",
+            "76fc5c6928c2011ea58df11a6540454ae66adaa1"
+        ],
+        "title": "Merge branch 'fix/IS-6823-dark-mode-balloon-message' into 'master'",
+        "message": "Merge branch 'fix/IS-6823-dark-mode-balloon-message' into 'master'\n\nfix(IS-6823): Fix color of balloon messages in dark mode\n\nSee merge request infraspeak/web/web-core-client!1994",
+        "author_name": "Fabio Alves",
+        "author_email": "falves@infraspeak.com",
+        "authored_date": "2021-04-09T11:48:15.000+00:00",
+        "committer_name": "Fabio Alves",
+        "committer_email": "falves@infraspeak.com",
+        "committed_date": "2021-04-09T11:48:15.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/6bb58fc3128a62585762bab6e24064347ddde036"
+    },
+    "pipeline": {
+        "id": 283909295,
+        "iid": 5206,
+        "project_id": 20143087,
+        "sha": "6bb58fc3128a62585762bab6e24064347ddde036",
+        "ref": "v0.98.9",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-09T11:59:22.860Z",
+        "updated_at": "2021-04-09T12:09:08.573Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/283909295"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1166148063",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 56994,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 283909295
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1195186283,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.99.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-20T10:56:08.417Z",
+    "started_at": "2021-04-20T10:58:15.142Z",
+    "finished_at": "2021-04-20T11:05:20.175Z",
+    "duration": 425.033501,
+    "queued_duration": 0.550333,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "6fe7781c9cb674edffcd3c47c872d7f4df197662",
+        "short_id": "6fe7781c",
+        "created_at": "2021-04-20T10:40:02.000+00:00",
+        "parent_ids": [
+            "7dadb4d9b81f1d9fd56f9c2e0114c2d22ebdf9fd",
+            "f56a938a61819b01fac07a92401fe23fa6611ed7"
+        ],
+        "title": "Merge branch 'fix/FixCameraAccessOnIosManagerApp' into 'master'",
+        "message": "Merge branch 'fix/FixCameraAccessOnIosManagerApp' into 'master'\n\nfix: Fix camera access for iOS manager app\n\nSee merge request infraspeak/web/web-core-client!2034",
+        "author_name": "Ricardo Ferreira",
+        "author_email": "rferreira@infraspeak.com",
+        "authored_date": "2021-04-20T10:40:02.000+00:00",
+        "committer_name": "Ricardo Ferreira",
+        "committer_email": "rferreira@infraspeak.com",
+        "committed_date": "2021-04-20T10:40:02.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/6fe7781c9cb674edffcd3c47c872d7f4df197662"
+    },
+    "pipeline": {
+        "id": 289218002,
+        "iid": 5423,
+        "project_id": 20143087,
+        "sha": "6fe7781c9cb674edffcd3c47c872d7f4df197662",
+        "ref": "v0.99.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-20T10:56:08.337Z",
+        "updated_at": "2021-04-20T11:05:22.018Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/289218002"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1195186283",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 54597,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 289218002
+}

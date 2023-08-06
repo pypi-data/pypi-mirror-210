@@ -1,0 +1,101 @@
+{
+    "id": 1420603980,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.105.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-07-13T14:05:55.398Z",
+    "started_at": "2021-07-13T14:10:00.246Z",
+    "finished_at": "2021-07-13T14:19:32.757Z",
+    "duration": 572.511165,
+    "queued_duration": 17.063777,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "45af29b8511d34ec0d90c40a49c76bd86a354b70",
+        "short_id": "45af29b8",
+        "created_at": "2021-07-13T13:52:34.000+00:00",
+        "parent_ids": [
+            "a2ea245deb85b664a36dab3850f7e38ebd022cea",
+            "d1f7e32bd447b956f47f237d47d44360920229e4"
+        ],
+        "title": "Merge branch 'fix/WT3-188--Add-new-History-Item-of-SLA-changed' into 'master'",
+        "message": "Merge branch 'fix/WT3-188--Add-new-History-Item-of-SLA-changed' into 'master'\n\nFix/WT3-188: add new history item of sla changed\n\nSee merge request infraspeak/web/web-core-client!2381",
+        "author_name": "Tiago Sim\u00f5es",
+        "author_email": "tsimoes@infraspeak.com",
+        "authored_date": "2021-07-13T13:52:34.000+00:00",
+        "committer_name": "Tiago Sim\u00f5es",
+        "committer_email": "tsimoes@infraspeak.com",
+        "committed_date": "2021-07-13T13:52:34.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/45af29b8511d34ec0d90c40a49c76bd86a354b70"
+    },
+    "pipeline": {
+        "id": 336181553,
+        "iid": 7222,
+        "project_id": 20143087,
+        "sha": "45af29b8511d34ec0d90c40a49c76bd86a354b70",
+        "ref": "v0.105.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-07-13T14:05:55.318Z",
+        "updated_at": "2021-07-13T14:28:32.356Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/336181553"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1420603980",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 41423,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 336181553
+}

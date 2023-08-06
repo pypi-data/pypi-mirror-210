@@ -1,0 +1,101 @@
+{
+    "id": 2663738202,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.130.11",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-06-30T17:11:25.965Z",
+    "started_at": "2022-06-30T17:19:20.997Z",
+    "finished_at": "2022-06-30T17:31:00.987Z",
+    "duration": 699.98959,
+    "queued_duration": 234.906531,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:36 AM"
+    },
+    "commit": {
+        "id": "4c8b56a5c598e156b9905e1a6b945659faf29207",
+        "short_id": "4c8b56a5",
+        "created_at": "2022-06-30T16:51:04.000+00:00",
+        "parent_ids": [
+            "7c7ca8acde7204a406af2af719ebb7366ac4e257",
+            "3da959e4134b384c964ddd611af044fe42270226"
+        ],
+        "title": "Merge branch 'fix/RT-1830_Change-translation-tag-redesign__completed-on-on-sales-and-purchases' into 'master'",
+        "message": "Merge branch 'fix/RT-1830_Change-translation-tag-redesign__completed-on-on-sales-and-purchases' into 'master'\n\nFix/RT-1830: Change translation tag redesign__completed-on on sales and purchases\n\nSee merge request infraspeak/web/web-core-client!4235\n\nClose RT-1830",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2022-06-30T16:51:04.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2022-06-30T16:51:04.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/4c8b56a5c598e156b9905e1a6b945659faf29207"
+    },
+    "pipeline": {
+        "id": 577277130,
+        "iid": 17022,
+        "project_id": 20143087,
+        "sha": "4c8b56a5c598e156b9905e1a6b945659faf29207",
+        "ref": "v0.130.11",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-06-30T17:11:25.916Z",
+        "updated_at": "2022-06-30T17:37:46.370Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/577277130"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2663738202",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 552031,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 577277130
+}

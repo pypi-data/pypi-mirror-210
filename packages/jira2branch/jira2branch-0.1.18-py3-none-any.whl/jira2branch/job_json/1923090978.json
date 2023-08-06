@@ -1,0 +1,101 @@
+{
+    "id": 1923090978,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.117.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-12-27T16:40:20.644Z",
+    "started_at": "2021-12-27T16:41:37.536Z",
+    "finished_at": "2021-12-27T16:51:08.059Z",
+    "duration": 570.522325,
+    "queued_duration": 2.518492,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "a8aa975cefb8e88dcb7afbea00b5855cd8c625e2",
+        "short_id": "a8aa975c",
+        "created_at": "2021-12-27T16:33:09.000+00:00",
+        "parent_ids": [
+            "232e84bebb65614cdd448e3dc47812dcd5cb7c17",
+            "efc3d4141c2894f5f69af5798c184559b7c9df2d"
+        ],
+        "title": "Merge branch 'Fix/IS-4754-the-creator-of-a-failure-on-web-direct-failure-history-is-not-the-one-who-created' into 'master'",
+        "message": "Merge branch 'Fix/IS-4754-the-creator-of-a-failure-on-web-direct-failure-history-is-not-the-one-who-created' into 'master'\n\nFix/IS-4754:  The creator of a failure on Web Direct, failure history, is not the one who created\n\nSee merge request infraspeak/web/web-core-client!3244",
+        "author_name": "Joel Piccoli da Rosa",
+        "author_email": "jpiccoli@infraspeak.com",
+        "authored_date": "2021-12-27T16:33:09.000+00:00",
+        "committer_name": "Joel Piccoli da Rosa",
+        "committer_email": "jpiccoli@infraspeak.com",
+        "committed_date": "2021-12-27T16:33:09.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/a8aa975cefb8e88dcb7afbea00b5855cd8c625e2"
+    },
+    "pipeline": {
+        "id": 437458454,
+        "iid": 11640,
+        "project_id": 20143087,
+        "sha": "a8aa975cefb8e88dcb7afbea00b5855cd8c625e2",
+        "ref": "v0.117.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-12-27T16:40:20.600Z",
+        "updated_at": "2021-12-27T16:56:38.290Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/437458454"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1923090978",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1245821,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 437458454
+}

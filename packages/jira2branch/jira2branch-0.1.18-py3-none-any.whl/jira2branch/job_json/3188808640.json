@@ -1,0 +1,101 @@
+{
+    "id": 3188808640,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.138.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-10-18T10:37:43.666Z",
+    "started_at": "2022-10-18T10:39:30.080Z",
+    "finished_at": "2022-10-18T10:51:59.288Z",
+    "duration": 749.207869,
+    "queued_duration": 1.109036,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "111b9a4c7e6e37329552c5c7c905d1c7d6141012",
+        "short_id": "111b9a4c",
+        "created_at": "2022-10-18T10:26:16.000+00:00",
+        "parent_ids": [
+            "8aa61158da47368453ae6f57b8e7e12f633c25ce",
+            "6892ce784c752bd4d5c043e24fa97faa72e00e89"
+        ],
+        "title": "Merge branch 'fix/IS-8588_Location-Types-when-scrolling-down-it-has-a-limitation-and-doesnt-display-all-location-types' into 'master'",
+        "message": "Merge branch 'fix/IS-8588_Location-Types-when-scrolling-down-it-has-a-limitation-and-doesnt-display-all-location-types' into 'master'\n\nfix/IS-8588 Location Types: when scrolling down it has a limitation and doesn't display all location types\n\nSee merge request infraspeak/web/web-core-client!4825",
+        "author_name": "Samuel Rosignoli",
+        "author_email": "samuel.rosignoli@infraspeak.com",
+        "authored_date": "2022-10-18T10:26:16.000+00:00",
+        "committer_name": "Samuel Rosignoli",
+        "committer_email": "samuel.rosignoli@infraspeak.com",
+        "committed_date": "2022-10-18T10:26:16.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/111b9a4c7e6e37329552c5c7c905d1c7d6141012"
+    },
+    "pipeline": {
+        "id": 669697752,
+        "iid": 20415,
+        "project_id": 20143087,
+        "sha": "111b9a4c7e6e37329552c5c7c905d1c7d6141012",
+        "ref": "v0.138.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-10-18T10:37:43.617Z",
+        "updated_at": "2022-10-18T11:09:21.796Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/669697752"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3188808640",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 615897,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 669697752
+}

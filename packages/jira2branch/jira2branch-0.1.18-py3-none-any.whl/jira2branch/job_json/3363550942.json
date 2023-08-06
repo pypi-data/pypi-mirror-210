@@ -1,0 +1,101 @@
+{
+    "id": 3363550942,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.141.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-11-22T15:50:30.012Z",
+    "started_at": "2022-11-22T15:52:13.442Z",
+    "finished_at": "2022-11-22T16:05:12.126Z",
+    "duration": 778.683945,
+    "queued_duration": 2.357686,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:32 AM"
+    },
+    "commit": {
+        "id": "30cf4d37ef0e7d58d2d68518a91166468157c59b",
+        "short_id": "30cf4d37",
+        "created_at": "2022-11-22T15:29:25.000+00:00",
+        "parent_ids": [
+            "3b9fe3623fa500dabd437049116d0756dee04593",
+            "5f0b39bd7494886bf2548d928e5c4bedce7a49a4"
+        ],
+        "title": "Merge branch 'fix/IS-8737_financial_analasys_not_loading-' into 'master'",
+        "message": "Merge branch 'fix/IS-8737_financial_analasys_not_loading-' into 'master'\n\nfix/IS-8737  Financial analysis not loading\n\nSee merge request infraspeak/web/web-core-client!5031",
+        "author_name": "Eug\u00eanio Inoc\u00eancio",
+        "author_email": "eugenio.inocencio@infraspeak.com",
+        "authored_date": "2022-11-22T15:29:25.000+00:00",
+        "committer_name": "Eug\u00eanio Inoc\u00eancio",
+        "committer_email": "eugenio.inocencio@infraspeak.com",
+        "committed_date": "2022-11-22T15:29:25.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/30cf4d37ef0e7d58d2d68518a91166468157c59b"
+    },
+    "pipeline": {
+        "id": 702242665,
+        "iid": 21631,
+        "project_id": 20143087,
+        "sha": "30cf4d37ef0e7d58d2d68518a91166468157c59b",
+        "ref": "v0.141.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-11-22T15:50:29.984Z",
+        "updated_at": "2022-11-23T10:19:02.559Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/702242665"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3363550942",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 611343,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 702242665
+}

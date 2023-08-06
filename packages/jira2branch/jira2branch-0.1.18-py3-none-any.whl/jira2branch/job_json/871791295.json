@@ -1,0 +1,101 @@
+{
+    "id": 871791295,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.90.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2020-11-25T12:20:47.998Z",
+    "started_at": "2020-11-25T12:25:14.656Z",
+    "finished_at": "2020-11-25T12:33:04.333Z",
+    "duration": 469.676604,
+    "queued_duration": 18.355792,
+    "user": {
+        "id": 5903432,
+        "username": "rferreira1",
+        "name": "Ricardo Ferreira",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5903432/avatar.png",
+        "web_url": "https://gitlab.com/rferreira1",
+        "created_at": "2020-04-30T21:53:46.789Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": null,
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "11:04 AM"
+    },
+    "commit": {
+        "id": "c30159da34aeea4145aa20da02329d480ce75bde",
+        "short_id": "c30159da",
+        "created_at": "2020-11-24T16:47:10.000+00:00",
+        "parent_ids": [
+            "e548edec853f0880c9ce6586b3f0a611858e7833",
+            "7a0c0ad0cedd32589cd73f5276310a82a5455d5a"
+        ],
+        "title": "Merge branch 'fix/IS-6198_Sales-and-purchase-tables-and-registry-are-not-updated-when-item-is-deleted' into 'master'",
+        "message": "Merge branch 'fix/IS-6198_Sales-and-purchase-tables-and-registry-are-not-updated-when-item-is-deleted' into 'master'\n\nResolve IS-6198: Sale and purchase tables and registry are not updated when item is deleted\n\nSee merge request infraspeak/web/web-core-client!1364\n\nClose IS-6198",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2020-11-24T16:47:10.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2020-11-24T16:47:10.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/c30159da34aeea4145aa20da02329d480ce75bde"
+    },
+    "pipeline": {
+        "id": 221064086,
+        "iid": 2283,
+        "project_id": 20143087,
+        "sha": "c30159da34aeea4145aa20da02329d480ce75bde",
+        "ref": "v0.90.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2020-11-25T12:20:47.905Z",
+        "updated_at": "2020-11-25T12:36:29.172Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/221064086"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/871791295",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 37588,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 221064086
+}

@@ -1,0 +1,103 @@
+{
+    "id": 3594659451,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.144.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-01-12T15:06:16.495Z",
+    "started_at": "2023-01-12T15:09:08.357Z",
+    "finished_at": "2023-01-12T15:20:20.655Z",
+    "erased_at": null,
+    "duration": 672.297576,
+    "queued_duration": 2.992139,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:50 AM"
+    },
+    "commit": {
+        "id": "39bc5db3d705ce96acf0165dde5bd1c7de722ab1",
+        "short_id": "39bc5db3",
+        "created_at": "2023-01-12T14:38:09.000+00:00",
+        "parent_ids": [
+            "f84bffd09fd633ab2b50e45c960b64f178cb38bd",
+            "a8781b9835bfe161698a1bf335815d7ec7be1037"
+        ],
+        "title": "Merge branch 'fix/IS-8915-Work-Orders--can't-edit-task-observations' into 'master'",
+        "message": "Merge branch 'fix/IS-8915-Work-Orders--can't-edit-task-observations' into 'master'\n\nfix/IS-8915: Work Orders: can't edit task observations\n\nSee merge request infraspeak/web/web-core-client!5331",
+        "author_name": "Tiago Sim\u00f5es",
+        "author_email": "tsimoes@infraspeak.com",
+        "authored_date": "2023-01-12T14:38:09.000+00:00",
+        "committer_name": "Tiago Sim\u00f5es",
+        "committer_email": "tsimoes@infraspeak.com",
+        "committed_date": "2023-01-12T14:38:09.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/39bc5db3d705ce96acf0165dde5bd1c7de722ab1"
+    },
+    "pipeline": {
+        "id": 745623280,
+        "iid": 23263,
+        "project_id": 20143087,
+        "sha": "39bc5db3d705ce96acf0165dde5bd1c7de722ab1",
+        "ref": "v0.144.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-01-12T15:06:16.455Z",
+        "updated_at": "2023-01-12T15:37:52.682Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/745623280"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3594659451",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 745623280
+}

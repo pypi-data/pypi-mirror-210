@@ -1,0 +1,101 @@
+{
+    "id": 3124014993,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.137.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-10-04T11:16:40.535Z",
+    "started_at": "2022-10-04T11:19:15.202Z",
+    "finished_at": "2022-10-04T11:32:51.049Z",
+    "duration": 815.847199,
+    "queued_duration": 0.673481,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "4a0886e4a481f157bcd9e8e46102570c84ab9426",
+        "short_id": "4a0886e4",
+        "created_at": "2022-10-04T11:03:53.000+00:00",
+        "parent_ids": [
+            "22daa32cdda7cb9d92c3f8808cf15af5bcd6bee5",
+            "c657ee1fd08ee140a4a52f9e53f09da25a6961db"
+        ],
+        "title": "Merge branch 'feat/CS-294-dexis-certificates-export' into 'master'",
+        "message": "Merge branch 'feat/CS-294-dexis-certificates-export' into 'master'\n\nfeat/CS-294: Create new sideDialog for a new custom indicator for client Dexis\n\nSee merge request infraspeak/web/web-core-client!4721",
+        "author_name": "Lu\u00eds Bessa",
+        "author_email": "lbessa@infraspeak.com",
+        "authored_date": "2022-10-04T11:03:53.000+00:00",
+        "committer_name": "Lu\u00eds Bessa",
+        "committer_email": "lbessa@infraspeak.com",
+        "committed_date": "2022-10-04T11:03:53.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/4a0886e4a481f157bcd9e8e46102570c84ab9426"
+    },
+    "pipeline": {
+        "id": 657869508,
+        "iid": 20016,
+        "project_id": 20143087,
+        "sha": "4a0886e4a481f157bcd9e8e46102570c84ab9426",
+        "ref": "v0.137.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-10-04T11:16:40.497Z",
+        "updated_at": "2022-10-04T13:07:47.031Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/657869508"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3124014993",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 621810,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 657869508
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1769196622,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-10T13:32:04.785Z",
+    "started_at": "2021-11-10T13:34:43.806Z",
+    "finished_at": "2021-11-10T13:44:26.318Z",
+    "duration": 582.511899,
+    "queued_duration": 11.047883,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "bc744fce1cdb5f9b1d90e0f08274febfb0602499",
+        "short_id": "bc744fce",
+        "created_at": "2021-11-10T13:19:16.000+00:00",
+        "parent_ids": [
+            "ecb3d0c43b739888588f03bd2cd3f97af646188a",
+            "e8d4b1079f613660239ac2fc945cbf0e87f4978d"
+        ],
+        "title": "Merge branch 'fix/IS-7363_Implement-the-new-endpoint-with-support-for-mutiple-building-id-and-category-id' into 'master'",
+        "message": "Merge branch 'fix/IS-7363_Implement-the-new-endpoint-with-support-for-mutiple-building-id-and-category-id' into 'master'\n\nFix/IS-7364: Implement the new endpoint with the support for multiple building_id and a category_id\n\nSee merge request infraspeak/web/web-core-client!2948",
+        "author_name": "Pedro Nogueira",
+        "author_email": "pnogueira@infraspeak.com",
+        "authored_date": "2021-11-10T13:19:16.000+00:00",
+        "committer_name": "Pedro Nogueira",
+        "committer_email": "pnogueira@infraspeak.com",
+        "committed_date": "2021-11-10T13:19:16.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/bc744fce1cdb5f9b1d90e0f08274febfb0602499"
+    },
+    "pipeline": {
+        "id": 406246915,
+        "iid": 10235,
+        "project_id": 20143087,
+        "sha": "bc744fce1cdb5f9b1d90e0f08274febfb0602499",
+        "ref": "v0.114.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-10T13:32:04.616Z",
+        "updated_at": "2021-11-10T13:53:41.244Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/406246915"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1769196622",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 2190259,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 406246915
+}

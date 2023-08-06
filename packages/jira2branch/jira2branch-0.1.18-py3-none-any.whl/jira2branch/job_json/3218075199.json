@@ -1,0 +1,101 @@
+{
+    "id": 3218075199,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.138.9",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-10-24T13:45:13.380Z",
+    "started_at": "2022-10-24T13:47:01.283Z",
+    "finished_at": "2022-10-24T13:59:49.865Z",
+    "duration": 768.581524,
+    "queued_duration": 2.977636,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "2454f885971f06ce542ae9f00f69e415cecb2792",
+        "short_id": "2454f885",
+        "created_at": "2022-10-24T13:32:38.000+00:00",
+        "parent_ids": [
+            "ec8e775cc3362e00f6d26393dfe8cafdead4b9bb",
+            "2bea1483bd35216c5040b80d1a7a2b51a5b27fea"
+        ],
+        "title": "Merge branch 'feat/IS-8562_Analytics_-_Planned_Jobs_and_Work_Orders_-_Show_a_total_of_Closed_between_the_applied_dates' into 'master'",
+        "message": "Merge branch 'feat/IS-8562_Analytics_-_Planned_Jobs_and_Work_Orders_-_Show_a_total_of_Closed_between_the_applied_dates' into 'master'\n\nFeat/IS-8562: Updated Work Orders and Scheduled Works Analytics (included new metric)\n\nSee merge request infraspeak/web/web-core-client!4853",
+        "author_name": "Nelson Gon\u00e7alves",
+        "author_email": "ngoncalves@infraspeak.com",
+        "authored_date": "2022-10-24T13:32:38.000+00:00",
+        "committer_name": "Nelson Gon\u00e7alves",
+        "committer_email": "ngoncalves@infraspeak.com",
+        "committed_date": "2022-10-24T13:32:38.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/2454f885971f06ce542ae9f00f69e415cecb2792"
+    },
+    "pipeline": {
+        "id": 675390665,
+        "iid": 20616,
+        "project_id": 20143087,
+        "sha": "2454f885971f06ce542ae9f00f69e415cecb2792",
+        "ref": "v0.138.9",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-10-24T13:45:13.355Z",
+        "updated_at": "2022-10-24T14:05:51.712Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/675390665"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3218075199",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 615895,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 675390665
+}

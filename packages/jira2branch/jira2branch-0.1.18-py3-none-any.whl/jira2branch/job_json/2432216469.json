@@ -1,0 +1,100 @@
+{
+    "id": 2432216469,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.127.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-05-09T16:43:55.351Z",
+    "started_at": "2022-05-09T16:51:10.594Z",
+    "finished_at": "2022-05-09T17:03:13.425Z",
+    "duration": 722.83103,
+    "queued_duration": 240.819365,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "c6aec6a2d0733a26e314ce4182b990ea48e10513",
+        "short_id": "c6aec6a2",
+        "created_at": "2022-05-09T16:06:32.000+00:00",
+        "parent_ids": [
+            "ea5373b5b91f9e9abdf14b200b490f17e6a54aff"
+        ],
+        "title": "Merge branch 'WT3-835-is-map-marker-list-refactor' into 'develop'",
+        "message": "Merge branch 'WT3-835-is-map-marker-list-refactor' into 'develop'\n\nWT3-835: IsMap marker list refactor\n\nSee merge request infraspeak/web/web-core-client!3905\n\n(cherry picked from commit 038f8676c0275b87ce2665ac33fff752d1db78ab)\n\n691bbbe2 unused model\nba4eeb29 map zoom config\n168fc815 Merge remote-tracking branch 'origin/develop' into...\n66e22a83 refactor\na34726da update\ncf2e8229 update\nb829d6b1 update\neb96af50 update\n3f74b514 update\nd1e2dfb1 update\nd233d02a fix\n8ca03ae3 update\nd6e499ee update\n24a6287e update\nc2e210e6 update\ne61dd6c5 update\n07b008e7 update\nf2338727 update\n82f23f96 update\n399f1890 update\n34cc9234 fix\n78a3b443 Merge branch 'chore/WT3-833-is-map-picker-marker-isolation' into...\n974097cc stories update\n73b7e361 update\n78465ed0 fix\n68494754 fix\n20aae404 Merge branch 'chore/WT3-833-is-map-picker-marker-isolation' into...\nda609aef update\n68b89a18 Merge branch 'chore/WT3-833-is-map-picker-marker-isolation' into...\n51659b45 unused style removed\n8fa74682 Merge branch 'chore/WT3-833-is-map-picker-marker-isolation' into...\nf1dffecd stories updated\n45152d35 stories update\nceb375a7 update\n23cb626f update\nbe7a43c8 Merge branch 'chore/WT3-833-is-map-picker-marker-isolation' into...\n54fca670 Merge remote-tracking branch 'origin/develop' into WT3-835-is-map-marker-list-refactor\nbbbdd631 update\nf11768b6 update\n229e7601 update\n5d48fe9c update\ndfc0b6b0 Merge remote-tracking branch 'origin/develop' into WT3-835-is-map-marker-list-refactor\n10dd7f13 update\nafb0a841 update\n9aeb9d25 update\n47c337c8 update\n6b2c6405 fix\n6bd53ba7 Update src/components/common/map/tests/IsMap.spec.ts\n51b2bc06 update\n2c475c76 Merge branch 'WT3-835-is-map-marker-list-refactor' of...\nc7c5b570 update\n35dc39c4 documentation update\n78a5678d div removed\n8cc384d9 update\n9399f712 Merge remote-tracking branch 'origin/develop' into WT3-835-is-map-marker-list-refactor",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-05-09T13:53:44.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-05-09T16:06:32.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/c6aec6a2d0733a26e314ce4182b990ea48e10513"
+    },
+    "pipeline": {
+        "id": 534752006,
+        "iid": 15335,
+        "project_id": 20143087,
+        "sha": "c6aec6a2d0733a26e314ce4182b990ea48e10513",
+        "ref": "v0.127.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-05-09T16:43:55.306Z",
+        "updated_at": "2022-05-09T18:43:58.663Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/534752006"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2432216469",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 828903,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 534752006
+}

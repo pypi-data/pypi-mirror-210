@@ -1,0 +1,100 @@
+{
+    "id": 1215670920,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.99.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-27T13:25:38.335Z",
+    "started_at": "2021-04-27T13:48:41.772Z",
+    "finished_at": "2021-04-27T13:56:01.324Z",
+    "duration": 439.55193,
+    "queued_duration": 39.966523,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "6062a8f8ef6d67b6afd12d68b94d58c8c8c2aa8c",
+        "short_id": "6062a8f8",
+        "created_at": "2021-04-27T14:12:10.000+01:00",
+        "parent_ids": [
+            "d102fab863f8fa498540272e48d137d01586c89f"
+        ],
+        "title": "Add arm machine to deployer",
+        "message": "Add arm machine to deployer\n",
+        "author_name": "Gon\u00e7alo Queir\u00f3s",
+        "author_email": "mail@goncaloqueiros.net",
+        "authored_date": "2021-04-26T17:12:47.000+01:00",
+        "committer_name": "Gon\u00e7alo Queir\u00f3s",
+        "committer_email": "mail@goncaloqueiros.net",
+        "committed_date": "2021-04-27T14:12:10.000+01:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/6062a8f8ef6d67b6afd12d68b94d58c8c8c2aa8c"
+    },
+    "pipeline": {
+        "id": 293054486,
+        "iid": 5556,
+        "project_id": 20143087,
+        "sha": "6062a8f8ef6d67b6afd12d68b94d58c8c8c2aa8c",
+        "ref": "v0.99.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-27T13:25:38.288Z",
+        "updated_at": "2021-04-27T15:04:58.319Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/293054486"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1215670920",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 54723,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 293054486
+}

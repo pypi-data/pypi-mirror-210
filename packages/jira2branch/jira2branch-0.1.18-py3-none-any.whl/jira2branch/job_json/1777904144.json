@@ -1,0 +1,101 @@
+{
+    "id": 1777904144,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-12T15:29:20.738Z",
+    "started_at": "2021-11-12T15:39:15.420Z",
+    "finished_at": "2021-11-12T15:48:52.365Z",
+    "duration": 576.944784,
+    "queued_duration": 2.218619,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "0db36d9ad5b2c572ddaadff0350730b6e35a99ca",
+        "short_id": "0db36d9a",
+        "created_at": "2021-11-12T15:19:43.000+00:00",
+        "parent_ids": [
+            "b2a1edd7544a57ea509f6a0514e903b28ece3cd0",
+            "f874299108d0948d9464d7bedbc8c4e9cfaea36c"
+        ],
+        "title": "Merge branch 'fix/IS-7509_Cant-download-measurments-report' into 'master'",
+        "message": "Merge branch 'fix/IS-7509_Cant-download-measurments-report' into 'master'\n\nFix/IS-7509: Can't download measurments report\n\nSee merge request infraspeak/web/web-core-client!3010",
+        "author_name": "Pedro Nogueira",
+        "author_email": "pnogueira@infraspeak.com",
+        "authored_date": "2021-11-12T15:19:43.000+00:00",
+        "committer_name": "Pedro Nogueira",
+        "committer_email": "pnogueira@infraspeak.com",
+        "committed_date": "2021-11-12T15:19:43.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/0db36d9ad5b2c572ddaadff0350730b6e35a99ca"
+    },
+    "pipeline": {
+        "id": 407921048,
+        "iid": 10365,
+        "project_id": 20143087,
+        "sha": "0db36d9ad5b2c572ddaadff0350730b6e35a99ca",
+        "ref": "v0.114.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-12T15:29:20.680Z",
+        "updated_at": "2021-11-12T15:58:57.930Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/407921048"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1777904144",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 2141865,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 407921048
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1777706874,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-12T14:44:24.094Z",
+    "started_at": "2021-11-12T14:49:19.394Z",
+    "finished_at": "2021-11-12T14:59:13.516Z",
+    "duration": 594.122195,
+    "queued_duration": 1.512438,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "b2a1edd7544a57ea509f6a0514e903b28ece3cd0",
+        "short_id": "b2a1edd7",
+        "created_at": "2021-11-12T14:33:22.000+00:00",
+        "parent_ids": [
+            "f26c2362300849980166cf0063f68212cce60f42",
+            "7e123ab8f0b1171c7dfb761a8b699bcca87cc1c1"
+        ],
+        "title": "Merge branch 'fix/IS-7451_Work-orders-send-by-email-allows-you-to-send-to-non-contacts-but-gives-500-on-the-console' into 'master'",
+        "message": "Merge branch 'fix/IS-7451_Work-orders-send-by-email-allows-you-to-send-to-non-contacts-but-gives-500-on-the-console' into 'master'\n\nFix/IS-7451: Work Orders: send by email allows you to send to non-contacts but gives 500 on the console\n\nSee merge request infraspeak/web/web-core-client!2924",
+        "author_name": "Pedro Nogueira",
+        "author_email": "pnogueira@infraspeak.com",
+        "authored_date": "2021-11-12T14:33:22.000+00:00",
+        "committer_name": "Pedro Nogueira",
+        "committer_email": "pnogueira@infraspeak.com",
+        "committed_date": "2021-11-12T14:33:22.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/b2a1edd7544a57ea509f6a0514e903b28ece3cd0"
+    },
+    "pipeline": {
+        "id": 407881920,
+        "iid": 10355,
+        "project_id": 20143087,
+        "sha": "b2a1edd7544a57ea509f6a0514e903b28ece3cd0",
+        "ref": "v0.114.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-12T14:44:24.043Z",
+        "updated_at": "2021-11-12T14:59:13.800Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/407881920"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1777706874",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1434370,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 407881920
+}

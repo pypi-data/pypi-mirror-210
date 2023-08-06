@@ -1,0 +1,103 @@
+{
+    "id": 3688333423,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.146.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-01-31T10:58:53.356Z",
+    "started_at": "2023-01-31T11:00:57.438Z",
+    "finished_at": "2023-01-31T11:14:28.515Z",
+    "erased_at": null,
+    "duration": 811.076813,
+    "queued_duration": 11.153031,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:49 AM"
+    },
+    "commit": {
+        "id": "22b1935b87785fde25555d19c7283fc9619941ae",
+        "short_id": "22b1935b",
+        "created_at": "2023-01-31T10:30:24.000+00:00",
+        "parent_ids": [
+            "1a353a0351dac9de83cebc02e4bddd8992513ba3",
+            "2e13ec185e0a8ce6031b801a6772ae42655b72c2"
+        ],
+        "title": "Merge branch 'fix/IS-8982_Work-Orders-Other-Costs-Option-to-choose-half-hours-reflects-on-a-different-time-when-saving-information' into 'master'",
+        "message": "Merge branch 'fix/IS-8982_Work-Orders-Other-Costs-Option-to-choose-half-hours-reflects-on-a-different-time-when-saving-information' into 'master'\n\nFix/IS-8982: Work Orders - Other Costs: Option to choose half hours reflects on a different time when saving information\n\nSee merge request infraspeak/web/web-core-client!5435",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2023-01-31T10:30:24.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2023-01-31T10:30:24.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/22b1935b87785fde25555d19c7283fc9619941ae"
+    },
+    "pipeline": {
+        "id": 762676219,
+        "iid": 23807,
+        "project_id": 20143087,
+        "sha": "22b1935b87785fde25555d19c7283fc9619941ae",
+        "ref": "v0.146.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-01-31T10:58:53.339Z",
+        "updated_at": "2023-01-31T11:19:52.771Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/762676219"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3688333423",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 762676219
+}

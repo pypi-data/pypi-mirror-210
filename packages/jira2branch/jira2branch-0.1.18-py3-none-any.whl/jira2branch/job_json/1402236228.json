@@ -1,0 +1,101 @@
+{
+    "id": 1402236228,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.104.10",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-07-06T10:52:44.827Z",
+    "started_at": "2021-07-06T10:57:10.906Z",
+    "finished_at": "2021-07-06T11:06:05.741Z",
+    "duration": 534.835113,
+    "queued_duration": 0.569772,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "71ce10e9f9ac182bdf0756f104f4847e06c7112e",
+        "short_id": "71ce10e9",
+        "created_at": "2021-07-06T10:36:52.000+00:00",
+        "parent_ids": [
+            "ee13678ffc31ec5b64692d80102a6e919db073f2",
+            "253a2411c3c78d3c40cf39056add3ffe0b0c7b18"
+        ],
+        "title": "Merge branch 'fix/IS-7062-work-orders-send-by-email-via-supplier-not-sendi' into 'master'",
+        "message": "Merge branch 'fix/IS-7062-work-orders-send-by-email-via-supplier-not-sendi' into 'master'\n\nIS-7062: Work Orders - Send by Email via Supplier not sending to all email addresses input\n\nSee merge request infraspeak/web/web-core-client!2346",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-07-06T10:36:52.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-07-06T10:36:52.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/71ce10e9f9ac182bdf0756f104f4847e06c7112e"
+    },
+    "pipeline": {
+        "id": 332439107,
+        "iid": 7053,
+        "project_id": 20143087,
+        "sha": "71ce10e9f9ac182bdf0756f104f4847e06c7112e",
+        "ref": "v0.104.10",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-07-06T10:52:44.715Z",
+        "updated_at": "2021-07-06T12:05:19.024Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/332439107"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1402236228",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 37854,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 332439107
+}

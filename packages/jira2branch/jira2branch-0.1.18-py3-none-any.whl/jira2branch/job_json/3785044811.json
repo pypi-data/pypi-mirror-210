@@ -1,0 +1,103 @@
+{
+    "id": 3785044811,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.148.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-02-16T17:13:01.921Z",
+    "started_at": "2023-02-16T17:14:45.127Z",
+    "finished_at": "2023-02-16T17:25:38.820Z",
+    "erased_at": null,
+    "duration": 653.693268,
+    "queued_duration": 1.978983,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:48 AM"
+    },
+    "commit": {
+        "id": "722d53f5b722efb725a757675bb68b94cffc5bd7",
+        "short_id": "722d53f5",
+        "created_at": "2023-02-16T16:57:16.000+00:00",
+        "parent_ids": [
+            "3fefecc6b079bb40750721346866ebb4fcedcbdb",
+            "fd7757044a89fb4c2f6ba8ed11f9028ab0406371"
+        ],
+        "title": "Merge branch 'fix/IS-9014_Analytics_Planned_Jobs_Monthly_Distribution_doesnt_show_the_all_the_total_of_scheduled_planned_job_orders' into 'master'",
+        "message": "Merge branch 'fix/IS-9014_Analytics_Planned_Jobs_Monthly_Distribution_doesnt_show_the_all_the_total_of_scheduled_planned_job_orders' into 'master'\n\nfix/IS-9014:Analytics - Planned Jobs - Monthly Distribution doesn't show the all the total of scheduled planned job orders\n\nSee merge request infraspeak/web/web-core-client!5509",
+        "author_name": "Jos\u00e9 S\u00e1",
+        "author_email": "jsa@infraspeak.com",
+        "authored_date": "2023-02-16T16:57:16.000+00:00",
+        "committer_name": "Jos\u00e9 S\u00e1",
+        "committer_email": "jsa@infraspeak.com",
+        "committed_date": "2023-02-16T16:57:16.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/722d53f5b722efb725a757675bb68b94cffc5bd7"
+    },
+    "pipeline": {
+        "id": 780098439,
+        "iid": 24422,
+        "project_id": 20143087,
+        "sha": "722d53f5b722efb725a757675bb68b94cffc5bd7",
+        "ref": "v0.148.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-02-16T17:13:01.894Z",
+        "updated_at": "2023-02-16T17:32:16.127Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/780098439"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3785044811",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 780098439
+}

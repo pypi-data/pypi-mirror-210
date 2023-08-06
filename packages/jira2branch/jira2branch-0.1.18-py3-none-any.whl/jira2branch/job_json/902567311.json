@@ -1,0 +1,100 @@
+{
+    "id": 902567311,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.91.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2020-12-10T10:41:30.372Z",
+    "started_at": "2020-12-10T10:52:32.552Z",
+    "finished_at": "2020-12-10T11:00:25.972Z",
+    "duration": 473.419849,
+    "queued_duration": 17.881366,
+    "user": {
+        "id": 5903432,
+        "username": "rferreira1",
+        "name": "Ricardo Ferreira",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5903432/avatar.png",
+        "web_url": "https://gitlab.com/rferreira1",
+        "created_at": "2020-04-30T21:53:46.789Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": null,
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "11:04 AM"
+    },
+    "commit": {
+        "id": "df155ca2ab5aa197dd0fe32c8e7ad077ee3efa51",
+        "short_id": "df155ca2",
+        "created_at": "2020-12-10T10:22:42.000+00:00",
+        "parent_ids": [
+            "eb7178a8323734b509678bdd0bc9a92cfbaf0626"
+        ],
+        "title": "Merge branch 'feat/IS-6229_AddZARCurrency' into 'develop'",
+        "message": "Merge branch 'feat/IS-6229_AddZARCurrency' into 'develop'\n\nfeat: Allow formatting ZAR currency\n\nSee merge request infraspeak/web/web-core-client!1426\n\n(cherry picked from commit df5f6dd1dcde4a7078dbd66291499d6b13d50866)\n\n797d5abf feat: Allow formatting ZAR currency",
+        "author_name": "Ricardo Ferreira",
+        "author_email": "rferreira@infraspeak.com",
+        "authored_date": "2020-12-07T16:39:34.000+00:00",
+        "committer_name": "Ricardo Ferreira",
+        "committer_email": "rferreira@infraspeak.com",
+        "committed_date": "2020-12-10T10:22:42.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/df155ca2ab5aa197dd0fe32c8e7ad077ee3efa51"
+    },
+    "pipeline": {
+        "id": 227871614,
+        "iid": 2503,
+        "project_id": 20143087,
+        "sha": "df155ca2ab5aa197dd0fe32c8e7ad077ee3efa51",
+        "ref": "v0.91.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2020-12-10T10:41:30.308Z",
+        "updated_at": "2020-12-10T12:14:57.345Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/227871614"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/902567311",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 48759,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 227871614
+}

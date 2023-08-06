@@ -1,0 +1,115 @@
+{
+    "id": 3938493254,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.152.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-03-15T11:46:18.502Z",
+    "started_at": "2023-03-15T11:48:19.458Z",
+    "finished_at": "2023-03-15T12:03:30.587Z",
+    "erased_at": null,
+    "duration": 911.128738,
+    "queued_duration": 3.02769,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "11:06 AM"
+    },
+    "commit": {
+        "id": "a1a10a37b51726dc4b54f68aaabe84e119c2dc00",
+        "short_id": "a1a10a37",
+        "created_at": "2023-03-15T11:31:36.000+00:00",
+        "parent_ids": [
+            "1f6ab51d9298c68e06d087dbe42176ae2a4cb6fd",
+            "4783ffa45832f8ab1b0ac34d071e1a302f0a1ef2"
+        ],
+        "title": "Merge branch 'fix/IS-8962-infraspeak-web-assets-technical-characteristics-materials-included-in-stocks-are-not-pulling-up-from-the-list' into 'master'",
+        "message": "Merge branch 'fix/IS-8962-infraspeak-web-assets-technical-characteristics-materials-included-in-stocks-are-not-pulling-up-from-the-list' into 'master'\n\nfix/IS-8962: Characteristics from Materials displaying ID instead of label.\n\nSee merge request infraspeak/web/web-core-client!5676",
+        "author_name": "Telmo Martins",
+        "author_email": "telmo.martins@infraspeak.com",
+        "authored_date": "2023-03-15T11:31:36.000+00:00",
+        "committer_name": "Telmo Martins",
+        "committer_email": "telmo.martins@infraspeak.com",
+        "committed_date": "2023-03-15T11:31:36.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/a1a10a37b51726dc4b54f68aaabe84e119c2dc00"
+    },
+    "pipeline": {
+        "id": 807171623,
+        "iid": 25558,
+        "project_id": 20143087,
+        "sha": "a1a10a37b51726dc4b54f68aaabe84e119c2dc00",
+        "ref": "v0.152.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-03-15T11:46:18.476Z",
+        "updated_at": "2023-03-15T12:23:42.719Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/807171623"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3938493254",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "archive",
+            "size": 24788701,
+            "filename": "artifacts.zip",
+            "file_format": "zip"
+        },
+        {
+            "file_type": "metadata",
+            "size": 14648,
+            "filename": "metadata.gz",
+            "file_format": "gzip"
+        },
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "3.252.159.134",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": "2023-03-22T12:03:16.809Z",
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 807171623
+}

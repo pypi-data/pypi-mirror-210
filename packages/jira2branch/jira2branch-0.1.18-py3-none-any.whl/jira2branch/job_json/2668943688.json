@@ -1,0 +1,101 @@
+{
+    "id": 2668943688,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.131.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-07-01T17:11:35.483Z",
+    "started_at": "2022-07-01T17:13:18.510Z",
+    "finished_at": "2022-07-01T17:25:20.798Z",
+    "duration": 722.287822,
+    "queued_duration": 0.560165,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:36 AM"
+    },
+    "commit": {
+        "id": "9e773e608d44e2748ab75104555ac8f66959c321",
+        "short_id": "9e773e60",
+        "created_at": "2022-07-01T17:02:46.000+00:00",
+        "parent_ids": [
+            "69581f91b9fb9f45323166a268e0d80d42371c85",
+            "74ee6d914170b5734b6e2fa737ab6db8d300d6d0"
+        ],
+        "title": "Merge branch 'fix/dashboard-flexbox-fix' into 'master'",
+        "message": "Merge branch 'fix/dashboard-flexbox-fix' into 'master'\n\nfix/dashboard-flexbox-fix\n\nSee merge request infraspeak/web/web-core-client!4243",
+        "author_name": "Samuel Rosignoli",
+        "author_email": "samuel.rosignoli@infraspeak.com",
+        "authored_date": "2022-07-01T17:02:46.000+00:00",
+        "committer_name": "Samuel Rosignoli",
+        "committer_email": "samuel.rosignoli@infraspeak.com",
+        "committed_date": "2022-07-01T17:02:46.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/9e773e608d44e2748ab75104555ac8f66959c321"
+    },
+    "pipeline": {
+        "id": 578207728,
+        "iid": 17061,
+        "project_id": 20143087,
+        "sha": "9e773e608d44e2748ab75104555ac8f66959c321",
+        "ref": "v0.131.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-07-01T17:11:35.439Z",
+        "updated_at": "2022-07-01T17:33:37.804Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/578207728"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2668943688",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 551388,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 578207728
+}

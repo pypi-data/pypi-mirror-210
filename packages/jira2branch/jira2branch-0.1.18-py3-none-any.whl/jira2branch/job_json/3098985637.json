@@ -1,0 +1,101 @@
+{
+    "id": 3098985637,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.137.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-09-28T16:23:53.333Z",
+    "started_at": "2022-09-28T16:25:41.078Z",
+    "finished_at": "2022-09-28T16:37:34.630Z",
+    "duration": 713.552194,
+    "queued_duration": 2.269314,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:34 AM"
+    },
+    "commit": {
+        "id": "192bb3a37866eb8146b71af69d671d5456477c70",
+        "short_id": "192bb3a3",
+        "created_at": "2022-09-28T16:07:06.000+00:00",
+        "parent_ids": [
+            "f056d02794cd16430bb8d3ef100011dd94470cf5",
+            "d6f7c7bb371a12381a743ae45a007b4885c6d87f"
+        ],
+        "title": "Merge branch 'fix/IS-6381--Settings---Building--Filter-is-reset-after-drag-location-to-another-folder' into 'master'",
+        "message": "Merge branch 'fix/IS-6381--Settings---Building--Filter-is-reset-after-drag-location-to-another-folder' into 'master'\n\nfix/IS-6381: Settings - Building: Filter is reset after drag location to another folder\n\nSee merge request infraspeak/web/web-core-client!4688",
+        "author_name": "Gabriel Monteiro",
+        "author_email": "gmonteiro@infraspeak.com",
+        "authored_date": "2022-09-28T16:07:06.000+00:00",
+        "committer_name": "Gabriel Monteiro",
+        "committer_email": "gmonteiro@infraspeak.com",
+        "committed_date": "2022-09-28T16:07:06.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/192bb3a37866eb8146b71af69d671d5456477c70"
+    },
+    "pipeline": {
+        "id": 653227118,
+        "iid": 19824,
+        "project_id": 20143087,
+        "sha": "192bb3a37866eb8146b71af69d671d5456477c70",
+        "ref": "v0.137.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-09-28T16:23:53.303Z",
+        "updated_at": "2022-09-28T16:48:17.710Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/653227118"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3098985637",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 805422,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 653227118
+}

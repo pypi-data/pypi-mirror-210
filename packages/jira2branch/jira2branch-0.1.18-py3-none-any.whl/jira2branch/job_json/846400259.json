@@ -1,0 +1,113 @@
+{
+    "id": 846400259,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.89.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2020-11-12T18:50:14.892Z",
+    "started_at": "2020-11-12T18:51:22.381Z",
+    "finished_at": "2020-11-12T18:57:35.577Z",
+    "duration": 373.196562,
+    "queued_duration": 67.439117,
+    "user": {
+        "id": 5903432,
+        "username": "rferreira1",
+        "name": "Ricardo Ferreira",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5903432/avatar.png",
+        "web_url": "https://gitlab.com/rferreira1",
+        "created_at": "2020-04-30T21:53:46.789Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": null,
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "11:04 AM"
+    },
+    "commit": {
+        "id": "2b6bce7d3af7aef2fd46ad4f1c3168c020bc557e",
+        "short_id": "2b6bce7d",
+        "created_at": "2020-11-12T17:56:45.000+00:00",
+        "parent_ids": [
+            "3847e42a96e613dd345526838df887e64c42ac3e",
+            "3a5857370bd04010068698dd610b32d40849b22d"
+        ],
+        "title": "Merge branch 'chore/IS-6125-infraspeak-web-show-sales-module-to-technicians' into 'master'",
+        "message": "Merge branch 'chore/IS-6125-infraspeak-web-show-sales-module-to-technicians' into 'master'\n\n - sale and quote modules permissions updated\n\nSee merge request infraspeak/web/web-core-client!1291",
+        "author_name": "Ricardo Ferreira",
+        "author_email": "rferreira@infraspeak.com",
+        "authored_date": "2020-11-12T17:56:45.000+00:00",
+        "committer_name": "Ricardo Ferreira",
+        "committer_email": "rferreira@infraspeak.com",
+        "committed_date": "2020-11-12T17:56:45.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/2b6bce7d3af7aef2fd46ad4f1c3168c020bc557e"
+    },
+    "pipeline": {
+        "id": 215398595,
+        "iid": 2016,
+        "project_id": 20143087,
+        "sha": "2b6bce7d3af7aef2fd46ad4f1c3168c020bc557e",
+        "ref": "v0.89.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2020-11-12T18:14:56.296Z",
+        "updated_at": "2020-11-12T19:01:15.710Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/215398595"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/846400259",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "archive",
+            "size": 16465487,
+            "filename": "artifacts.zip",
+            "file_format": "zip"
+        },
+        {
+            "file_type": "metadata",
+            "size": 11115,
+            "filename": "metadata.gz",
+            "file_format": "gzip"
+        },
+        {
+            "file_type": "trace",
+            "size": 75125,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": "2020-11-13T06:57:34.027Z",
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 215398595
+}

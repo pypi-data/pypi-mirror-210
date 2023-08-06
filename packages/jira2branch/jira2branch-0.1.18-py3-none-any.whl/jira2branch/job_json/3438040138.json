@@ -1,0 +1,100 @@
+{
+    "id": 3438040138,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.142.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-12-07T13:32:51.306Z",
+    "started_at": "2022-12-07T13:36:24.355Z",
+    "finished_at": "2022-12-07T13:50:23.597Z",
+    "duration": 839.242196,
+    "queued_duration": 2.272675,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:53 AM"
+    },
+    "commit": {
+        "id": "fa64998542f6baee33a89c8cb79a3a4a71077981",
+        "short_id": "fa649985",
+        "created_at": "2022-12-07T13:01:33.000+00:00",
+        "parent_ids": [
+            "652c1f083c67f25ad5e8cf1bf010d54452e014d5"
+        ],
+        "title": "Fix/RT-2261: Suppliers Settings - Error 500 when user try to access contact list",
+        "message": "Fix/RT-2261: Suppliers Settings - Error 500 when user try to access contact list\n\nCloses fix/RT-2261_Suppliers-Settings-Error-500-when-user-try-to-access-contact-list\n",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2022-12-05T13:09:25.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-12-07T13:01:33.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/fa64998542f6baee33a89c8cb79a3a4a71077981"
+    },
+    "pipeline": {
+        "id": 715928279,
+        "iid": 22223,
+        "project_id": 20143087,
+        "sha": "fa64998542f6baee33a89c8cb79a3a4a71077981",
+        "ref": "v0.142.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-12-07T13:32:51.268Z",
+        "updated_at": "2022-12-07T14:00:27.115Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/715928279"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3438040138",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 715928279
+}

@@ -1,0 +1,101 @@
+{
+    "id": 2236293695,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.123.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-03-22T18:00:00.866Z",
+    "started_at": "2022-03-22T18:01:26.535Z",
+    "finished_at": "2022-03-22T18:12:35.219Z",
+    "duration": 668.683697,
+    "queued_duration": 2.63367,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "6624e01b6f72e63da645b288b4a11fc6366fc3e4",
+        "short_id": "6624e01b",
+        "created_at": "2022-03-22T17:50:11.000+00:00",
+        "parent_ids": [
+            "6f3d759c38096369be2385922908731d4573233a",
+            "d7c2d9144a781d02d867cc496464785bad4ec59b"
+        ],
+        "title": "Merge branch 'fix/RT-1634_Quote-requests-after-approving-a-received-quote-the-received-quote-lines-are-not-being-displayed' into 'master'",
+        "message": "Merge branch 'fix/RT-1634_Quote-requests-after-approving-a-received-quote-the-received-quote-lines-are-not-being-displayed' into 'master'\n\nFix/RT-1634: Quote requests: after approving a received quote, the received quote lines are not being displayed\n\nSee merge request infraspeak/web/web-core-client!3661",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2022-03-22T17:50:11.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2022-03-22T17:50:11.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/6624e01b6f72e63da645b288b4a11fc6366fc3e4"
+    },
+    "pipeline": {
+        "id": 498474709,
+        "iid": 13918,
+        "project_id": 20143087,
+        "sha": "6624e01b6f72e63da645b288b4a11fc6366fc3e4",
+        "ref": "v0.123.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-03-22T18:00:00.836Z",
+        "updated_at": "2022-03-23T10:37:35.689Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/498474709"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2236293695",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 676324,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 498474709
+}

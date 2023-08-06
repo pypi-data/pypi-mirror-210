@@ -1,0 +1,101 @@
+{
+    "id": 919206355,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.92.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2020-12-17T16:17:32.772Z",
+    "started_at": "2020-12-17T16:18:11.457Z",
+    "finished_at": "2020-12-17T16:25:38.522Z",
+    "duration": 447.064229,
+    "queued_duration": 38.618485,
+    "user": {
+        "id": 5903432,
+        "username": "rferreira1",
+        "name": "Ricardo Ferreira",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/5903432/avatar.png",
+        "web_url": "https://gitlab.com/rferreira1",
+        "created_at": "2020-04-30T21:53:46.789Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": null,
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "11:03 AM"
+    },
+    "commit": {
+        "id": "b4c0ec6902c9ed85dc5b3330aec634b764a56eae",
+        "short_id": "b4c0ec69",
+        "created_at": "2020-12-17T15:31:44.000+00:00",
+        "parent_ids": [
+            "4d57219d544e7665cc0b9afbd3c8af1a955d194b",
+            "561e54f1c0f3a937b77a4583789492e96c70ceeb"
+        ],
+        "title": "Merge branch 'hotfix/IS-6320-hub-tweaks' into 'master'",
+        "message": "Merge branch 'hotfix/IS-6320-hub-tweaks' into 'master'\n\nhotfix: IS-6320 - Tweaks for mobile, tablet and UX on Hub\n\nSee merge request infraspeak/web/web-core-client!1470",
+        "author_name": "Fabio Alves",
+        "author_email": "falves@infraspeak.com",
+        "authored_date": "2020-12-17T15:31:44.000+00:00",
+        "committer_name": "Fabio Alves",
+        "committer_email": "falves@infraspeak.com",
+        "committed_date": "2020-12-17T15:31:44.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/b4c0ec6902c9ed85dc5b3330aec634b764a56eae"
+    },
+    "pipeline": {
+        "id": 231442898,
+        "iid": 2701,
+        "project_id": 20143087,
+        "sha": "b4c0ec6902c9ed85dc5b3330aec634b764a56eae",
+        "ref": "v0.92.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2020-12-17T15:57:05.125Z",
+        "updated_at": "2020-12-17T18:16:27.966Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/231442898"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/919206355",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 46770,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 231442898
+}

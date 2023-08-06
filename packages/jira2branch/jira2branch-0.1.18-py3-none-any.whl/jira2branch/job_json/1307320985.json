@@ -1,0 +1,100 @@
+{
+    "id": 1307320985,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.102.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-05-31T22:17:35.610Z",
+    "started_at": "2021-05-31T22:20:49.533Z",
+    "finished_at": "2021-05-31T22:30:07.881Z",
+    "duration": 558.34765,
+    "queued_duration": 1.032542,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "76998e2e27d3596da5198ae688c231157b8f9622",
+        "short_id": "76998e2e",
+        "created_at": "2021-05-31T23:06:31.000+01:00",
+        "parent_ids": [
+            "8c2164be8e5a427d6d3d776c2a8c04a5fa9cfb02"
+        ],
+        "title": "Add production ARM host.",
+        "message": "Add production ARM host.\nRemove host 3 from testing envs\n",
+        "author_name": "Gon\u00e7alo Queir\u00f3s",
+        "author_email": "mail@goncaloqueiros.net",
+        "authored_date": "2021-05-31T23:06:31.000+01:00",
+        "committer_name": "Gon\u00e7alo Queir\u00f3s",
+        "committer_email": "mail@goncaloqueiros.net",
+        "committed_date": "2021-05-31T23:06:31.000+01:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/76998e2e27d3596da5198ae688c231157b8f9622"
+    },
+    "pipeline": {
+        "id": 312574454,
+        "iid": 6348,
+        "project_id": 20143087,
+        "sha": "76998e2e27d3596da5198ae688c231157b8f9622",
+        "ref": "v0.102.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-05-31T22:17:35.571Z",
+        "updated_at": "2021-05-31T22:30:10.117Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/312574454"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1307320985",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 38820,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 312574454
+}
