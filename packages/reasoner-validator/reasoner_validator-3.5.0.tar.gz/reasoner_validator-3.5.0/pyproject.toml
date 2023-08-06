@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "reasoner-validator"
+version = "3.5.0"
+description = "Validation tools for Reasoner API"
+authors = [
+    "Richard Bruskiewich <richard.bruskiewich@delphinai.com>",
+    "Patrick Wang <patrickelvin@gmail.com>"
+]
+maintainers = [
+    "Richard Bruskiewich <richard.bruskiewich@delphinai.com>",
+    "Kenneth Morton <kenneth kenny@covar.com>"
+]
+license = "MIT"
+readme = "README.md"
+
+homepage = "https://github.com/NCATSTranslator"
+repository = "https://github.com/NCATSTranslator/reasoner-validator"
+documentation = "https://translator-reasoner-validator.readthedocs.io/en/latest/"
+keywords = [
+    "NCATS",
+    "Biomedical Data Translator",
+    "Translator",
+    "ReasonerAPI",
+    "TRAPI",
+    "validation",
+    "Biolink Model"
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+
+packages = [{include = "reasoner_validator"}]
+
+include = [
+    { path = "tests" },
+    { path = "docs" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+bmt = "^1.0.15"
+jsonschema = "^4.17.0"
+PyYAML = "^6.0"
+requests = "^2.28.1"
+pydantic = "^1.8.0"
+urllib3 = "^1.26.15"
+numpydoc = {version = "^1.5.0", optional = true}
+sphinx = {version = "^5.3.0", optional = true}
+myst-parser = {version = "^0.18.1", optional = true}
+fastapi = {version = "^0.68", optional = true}
+uvicorn = {version = "^0.15", optional = true}
+pytest-cov = {version = "^4.0.0", optional = true}
+pytest = {version = "^7.2.2", optional = true}
+sphinx-rtd-theme = {version = "^1.2.1", optional = true}
+
+
+[tool.poetry.urls]
+"Change Log" = "https://github.com/NCATSTranslator/reasoner-validator/blob/master/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/NCATSTranslator/reasoner-validator/issues"
+
+[tool.poetry.extras]
+docs = ["numpydoc", "sphinx", "myst-parser", "sphinx-rtd-theme"]
+web = ["fastapi", "uvicorn"]
+dev = ["pytest", "pytest-cov"]
+
+[tool.coverage.run]
+source = ["reasoner_validator"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
