@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+
+name = "khloraascaf"
+version = "1.10.0"
+authors = [{ name = "vepain", email = "victor.epain@laposte.net" }]
+description = "A python package that takes an assembly result of a chloroplast genome and continues it by computing the scaffolding stage."
+keywords = ["Scaffolding", "Chloroplast", "Assembly", "DNA repeats"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: Unix",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+license = { file = "LICENCE" }
+requires-python = ">=3.9"
+dependencies = [
+    "bitarray >=2.4.0, <2.5.0",
+    "pulp >=2.7, <2.8",
+    "revsymg >=0.4.1, < 0.5.0",
+    "PyYAML >=6.0, < 6.1",
+]
+
+[project.urls]
+
+Homepage = "https://gitlab.com/khloraa_scaffolding/khloraa_scaffolding"
+Repository = "https://gitlab.com/khloraa_scaffolding/khloraa_scaffolding"
+Documentation = "https://khloraa-scaffolding.readthedocs.io"
+Changelog = "https://khloraa-scaffolding.readthedocs.io/en/latest/changelog.html"
+
+[tool.setuptools.package-data]
+
+khloraascaf = ["py.typed"]
