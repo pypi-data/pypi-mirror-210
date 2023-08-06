@@ -1,0 +1,16 @@
+from setuptools import setup, find_packages
+
+setup(
+    name='Candataloader',
+    version='1.0.7',
+    author='PhongPhat',
+    author_email='19522010@gm.uit.edu.vn',
+    description='A library for downloading datasets',
+    packages=find_packages(),
+    package_data={
+        '': ['datasets/Survival Analysis Dataset for automobile IDS.csv', 'datasets/SynCAN.csv'],
+    },
+    python_requires='>=3.6',
+    install_requires=[
+    ],
+)
