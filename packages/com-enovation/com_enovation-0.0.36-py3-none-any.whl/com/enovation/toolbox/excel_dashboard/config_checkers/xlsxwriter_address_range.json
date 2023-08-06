@@ -1,0 +1,6 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/address/range",
+  "description": "Address for a range, relative or absolute, mono or multiple: 'A1:A2', '$A1:A$2', 'A$1,A2 $A$1:A2'.",
+  "type": "string",
+  "pattern": "^\\$?[A-Z]+\\$?\\d+(?::\\$?[A-Z]+\\$?\\d+)?(\\x20(?:\\$?[A-Z]+\\$?\\d+(?::\\$?[A-Z]+\\$?\\d+)?))*$"
+}

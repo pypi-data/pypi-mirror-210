@@ -1,0 +1,155 @@
+{
+    "$id": "https://enovation.com/xlsxwriter/workbook/add_format/properties",
+
+    "type": "object",
+    "description": "properties that are available for formatting cells in Excel. The properties of a cell that can be formatted include: fonts, colors, patterns, borders, alignment and number formatting. Default Excel 2007+ cell format is Calibri 11 with all other properties off. See website for further details: https://xlsxwriter.readthedocs.io/format.html",
+    "additionalProperties": false,
+    "minProperties": 1,
+    "properties": {
+        "font_name": {
+            "description": "Category Font. Font used in the cell. Excel can only display fonts that are installed on the system that it is running on. Therefore it is best to use the fonts that come as standard such as ‘Calibri’, ‘Times New Roman’ and ‘Courier New’. The default font for an unformatted cell in Excel 2007+ is ‘Calibri’.",
+            "type": "string"
+        },
+        "font_size": {
+            "description": "Category Font. Size of the font used in the cell. Excel adjusts the height of a row to accommodate the largest font size in the row.",
+            "type": "integer"
+        },
+        "font_color": {
+            "description": "Category Font. Color of the font used in the cell. Color can be a Html style #RRGGBB string or a limited number of named colors. See website for further details: https://xlsxwriter.readthedocs.io/format.html.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "bold": {
+            "description": "Category Font. To turn on bold for the format font.",
+            "type": "boolean"
+        },
+        "italic": {
+            "description": "Category Font. To turn on italic for the format font.",
+            "type": "boolean"
+        },
+        "underline": {
+            "description": "Category Font. To turn on underline for the format. The available underline styles are: 1 = Single underline (the default), 2 = Double underline, 33 = Single accounting underline and 34 = Double accounting underline.",
+            "enum": [1, 2, 33, 34]
+        },
+        "font_strikeout": {
+            "description": "Category Font. To set the strikeout property of the font.",
+            "type": "boolean"
+        },
+        "font_script": {
+            "description": "Category Font. To set the superscript/subscript property of the font. The available options are: 1 = Superscript and 2 = Subscript",
+            "enum": [1, 2]
+        },
+        "num_format": {
+            "description": "Category Number. Set the number format for a cell. It controls whether a number is displayed as an integer, a floating point number, a date, a currency value or some other user defined format. The numerical format of a cell can be specified by using a format string or an index to one of Excel’s built-in formats: 'd mmm yyyy' = Format string or '0x0F' = Format index. See website for indices to Excel's built-in formats: https://xlsxwriter.readthedocs.io/format.html",
+            "type": "string"
+        },
+        "locked": {
+            "description": "Category Protection. To set the cell locked state. This property can be used to prevent modification of a cell’s contents. Following Excel’s convention, cell locking is turned on by default. However, it only has an effect if the worksheet has been protected using the worksheet protect() method.",
+            "type": "boolean"
+        },
+        "hidden": {
+            "description": "Category Protection. To hide formulas in a cell. This property is used to hide a formula while still displaying its result. This is generally used to hide complex calculations from end users who are only interested in the result. It only has an effect if the worksheet has been protected using the worksheet protect() method.",
+            "type": "boolean"
+        },
+        "align": {
+            "description": "Category Alignment. To set the horizontal alignment for data in the cell: left, center, right, fill, justify, center_across or distributed",
+            "enum": ["left", "center", "right", "fill", "justify", "center_across", "distributed"]
+        },
+        "valign": {
+            "description": "Category Alignment. To set the vertical alignment for data in the cell: top, vcenter, bottom, vjustify or vdistributed",
+            "enum": ["top", "vcenter", "bottom", "vjustify", "vdistributed"]
+        },
+        "rotation": {
+            "description": "Category Alignment. To set the rotation of the text in a cell. Rotation angle is in the range -90 to 90 and 270. The angle 270 indicates text where the letters run from top to bottom.",
+            "type": "number"
+        },
+        "text_wrap": {
+            "description": "Category Alignment. To turn text wrapping on for text in a cell.",
+            "type": "boolean"
+        },
+        "reading_order": {
+            "description": "Category Alignment. To set the reading order for the text in a cell. This is useful when creating Arabic, Hebrew or other near or far eastern worksheets. It can be used in conjunction with the Worksheet right_to_left() method to also change the direction of the worksheet.",
+            "type": "boolean"
+        },
+        "text_justlast": {
+            "description": "Category Alignment. To turn on the justify last text property. Only applies to Far Eastern versions of Excel.",
+            "type": "boolean"
+        },
+        "center_across": {
+            "description": "Category Alignment. To center text across adjacent cells. Text can be aligned across two or more adjacent cells. This is an alias for align='center_across'). Only the leftmost cell should contain the text. The other cells in the range should be blank but should include the formatting.",
+            "type": "boolean"
+        },
+        "indent": {
+            "description": "Category Alignment. To set the cell text indentation level, as an integer.",
+            "type": "integer"
+        },
+        "shrink": {
+            "description": "Category Alignment. To turn on the text 'shrink to fit' for a cell.",
+            "type": "boolean"
+        },
+        "pattern": {
+            "description": "Category Pattern. To set the background pattern of a cell. The most common pattern is 1 which is a solid fill of the background color. Pattern ranges from 0 to 18",
+            "type": "integer",
+            "min": 0,
+            "max": 18
+        },
+        "bg_color": {
+            "description": "Category Pattern. To set the color of the background pattern in a cell. If a pattern has not been defined then a solid fill pattern is used as the default. The color can be a Html style #RRGGBB string or a limited number of named colors.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "fg_color": {
+            "description": "Category Pattern. To set the color of the foreground pattern in a cell. The color can be a Html style #RRGGBB string or a limited number of named colors.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "border": {
+            "description": "Category Border. To set the cell border style. A cell border is comprised of a border on the bottom, top, left and right. These can be set to the same value or individually using the relevant properties. The following shows the border styles sorted by XlsxWriter index number: 0 = None, 1 = Continuous weight 1, 2 = Continuous weight 2, 3 = Dash weight 1, 4 = Dot weight 1, 5 = Continuous weight 3, 6 = Double weight 3, 7 = Continuous weight 0, 8 = Dash weight 2, 9 = Dash Dot weight 1, 10 = Dash Dot weight 2, 11 = Dash Dot Dot weight, 12 = Dash Dot Dot weight 2, 13 = SlantDash Dot weight 2",
+            "type": "integer",
+            "min": 0,
+            "max": 13
+        },
+        "bottom": {
+            "description": "Category Border. To set the cell bottom border style.",
+            "type": "integer",
+            "min": 0,
+            "max": 13
+        },
+        "top": {
+            "description": "Category Border. To set the cell top border style.",
+            "type": "integer",
+            "min": 0,
+            "max": 13
+        },
+        "left": {
+            "description": "Category Border. To set the cell left border style.",
+            "type": "integer",
+            "min": 0,
+            "max": 13
+        },
+        "right": {
+            "description": "Category Border. To set the cell right border style.",
+            "type": "integer",
+            "min": 0,
+            "max": 13
+        },
+        "border_color": {
+            "description": "Category Border. To set the color of the cell border. A cell border is comprised of a border on the bottom, top, left and right. These can be set to the same value or individually using the relevant properties. The color can be a Html style #RRGGBB string or a limited number of named colors.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "bottom_color": {
+            "description": "Category Border. To set the color of the bottom cell border.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "top_color": {
+            "description": "Category Border. To set the color of the top cell border.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "left_color": {
+            "description": "Category Border. To set the color of the left cell border.",
+            "$ref": "/xlsxwriter/colors"
+        },
+        "right_color": {
+            "description": "Category Border. To set the color of the right cell border.",
+            "$ref": "/xlsxwriter/colors"
+        }
+    }
+}
+

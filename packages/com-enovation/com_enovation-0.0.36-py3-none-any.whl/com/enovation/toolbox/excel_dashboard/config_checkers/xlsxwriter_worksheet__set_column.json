@@ -1,0 +1,44 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/worksheet/set_column/parameters",
+  "description": "To set properties for one or more columns of cells.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "first_col",
+      "last_col"
+    ],
+    "properties": {
+      "first_col": {
+        "description": "First column (zero-indexed).",
+        "type": "integer",
+        "min": 0
+      },
+      "last_col": {
+        "description": "Last column (zero-indexed). Can be same as first_col",
+        "type": "integer",
+        "min": 0
+      },
+      "width": {
+        "description": "The width of the column(s), in character units",
+        "type": "number",
+        "min": 0
+      },
+      "cell_format": {
+        "description": "Optional Format object",
+        "$ref": "/xlsxwriter/workbook/add_format/properties"
+      },
+      "options": {
+        "description": "Optional parameters: hidden, level, collapsed",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "level": {"type": "integer"},
+          "hidden": {"type": "integer"},
+          "collapsed": {"type": "integer"}
+        }
+      }
+    }
+  }
+}

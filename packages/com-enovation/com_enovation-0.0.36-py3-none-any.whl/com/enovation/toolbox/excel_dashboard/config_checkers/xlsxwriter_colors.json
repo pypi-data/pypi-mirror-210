@@ -1,0 +1,15 @@
+{
+    "$id": "https://enovation.com/xlsxwriter/colors",
+    "description": "Color can be a Html style #RRGGBB string or a limited number of named colors. See website for further details: https://xlsxwriter.readthedocs.io/format.html.",
+    "type": "string",
+
+    "anyOf": [
+        {
+            "enum": ["black", "blue", "brown", "cyan", "gray", "green", "lime", "magenta", "navy", "orange", "pink",
+                "purple", "red", "silver", "white", "yellow" ]
+        },
+        {
+            "pattern": "^#[A-F0-9]{6}$"
+        }
+    ]
+}

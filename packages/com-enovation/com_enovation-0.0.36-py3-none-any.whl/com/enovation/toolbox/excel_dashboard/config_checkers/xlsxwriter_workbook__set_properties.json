@@ -1,0 +1,54 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/workbook/set_properties/properties",
+  "description": "To set the document properties such as Title, Author etc. These properties are visible when you use the Office Button -> Prepare -> Properties option in Excel and are also available to external applications that read or index windows files. The properties are all optional.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+
+    "title": {
+      "description": "Title",
+      "type": "string"
+    },
+    "subject": {
+      "description": "Subject",
+      "type": "string"
+    },
+    "author": {
+      "description": "Author",
+      "type": "string"
+    },
+    "manager": {
+      "description": "Manager",
+      "type": "string"
+    },
+    "company": {
+      "description": "Company",
+      "type": "string"
+    },
+    "category": {
+      "description": "Category",
+      "type": "string"
+    },
+    "keywords": {
+      "description": "Keywords: 'Sample, Example, Properties'",
+      "type": "string"
+    },
+    "created": {
+      "description": "Created",
+      "type": "string",
+      "format": "date"
+    },
+    "comments": {
+      "description": "Comments",
+      "type": "string"
+    },
+    "status":  {
+      "description": "Status",
+      "type": "string"
+    },
+    "hyperlink_base":  {
+      "description": "hyperlink_base",
+      "type": "string"
+    }
+  }
+}

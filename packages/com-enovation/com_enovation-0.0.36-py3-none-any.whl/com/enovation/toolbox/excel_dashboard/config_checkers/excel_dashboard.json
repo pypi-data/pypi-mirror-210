@@ -1,0 +1,129 @@
+{
+  "$id": "https://enovation.com/excel_dashboard",
+  "description": "The json schema to configure an Excel Dashboard.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sheets"
+  ],
+  "properties": {
+    "workbook.options": {
+      "description": "To specify the workbook options",
+      "$ref": "/xlsxwriter/workbook/options"
+    },
+    "workbook.set_properties": {
+      "description": "To set the document properties such as Title, Author etc. These properties are visible when you use the Office Button -> Prepare -> Properties option in Excel and are also available to external applications that read or index windows files. The properties are all optional.",
+      "$ref": "/xlsxwriter/workbook/set_properties/properties"
+    },
+    "vba": {
+      "description": "Add vba to the excel...",
+      "$ref": "/xlsxwriter/vba"
+    },
+    "format": {
+      "description": "The default format, level 1, that is to be applied across all sheets/ widgets.",
+      "$ref": "/xlsxwriter/workbook/add_format/properties"
+    },
+    "sheets": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9_]*$",
+        "maxLength": 20
+      },
+      "patternProperties": {
+        "": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "widgets"
+          ],
+          "properties": {
+            "worksheet.set_column": {
+              "$ref": "/xlsxwriter/worksheet/set_column/parameters"
+            },
+            "worksheet.set_row": {
+              "$ref": "/xlsxwriter/worksheet/set_row/parameters"
+            },
+            "worksheet.freeze_panes": {
+              "$ref": "/xlsxwriter/worksheet/freeze_panes/parameters"
+            },
+            "worksheet.hide": {
+              "description": "To hide the current worksheet.",
+              "type": "boolean"
+            },
+            "format": {
+              "description": "The default format, level 2, that is to be applied within a given sheet, across widgets.",
+              "$ref": "/xlsxwriter/workbook/add_format/properties"
+            },
+            "widgets": {
+              "type": "object",
+              "minProperties": 1,
+              "description": "Widget labels should follow the following rule",
+              "propertyNames": {
+                "pattern": "^[a-z_]+$",
+                "maxLength": 20
+              },
+              "patternProperties": {
+                "": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "address",
+                    "widget_id"
+                  ],
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "pattern": "^[A-Z]+\\d+$"
+                    },
+                    "parameters_map": {
+                      "type": "object",
+                      "propertyNames": {
+                        "pattern": "^[a-z_]+$",
+                        "maxLength": 20
+                      },
+                      "patternProperties": {
+                        "": {
+                          "type": "string",
+                          "pattern": "^[a-z_]+$"
+                        }
+                      }
+                    },
+                    "widget_id": {
+                      "description": "The widget id, that is the json schema $id excluding the base URL. Aka if json schema $id is 'https://enovation.com/company_a_b_c/project_d_e_f/widget_g', then we should reference it here as '/company_a_b_c/project_d_e_f/widget_g', getting ride of the base URL which is 'https://enovation.com'. This node is dynamically overridden by ConfigChecker, to list all the subscribed widgets.",
+                      "type": "string"
+                    },
+                    "format": {
+                      "description": "The default format, level 3, that is to be applied within a given widgets.",
+                      "$ref": "/xlsxwriter/workbook/add_format/properties"
+                    },
+                    "config": {
+                      "description": "The widget configuration which should comply with the json schema of the widget.",
+                      "type": "object"
+                    }
+                  },
+                  "oneOf": [
+                    {
+                      "description": "This 'oneOf' list is dynamically constructed by the config_checker class, which will add as many records as widgets. The below is an illustrative widget, but will be overriden.",
+                      "properties": {
+                        "widget_id": {
+                          "const": "https://enovation.com/excel_dashboard/cover_sheet"
+                        },
+                        "config": {
+                          "$ref": "/excel_dashboard/cover_sheet"
+                        }
+                      },
+                      "required": [
+                        "config"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "$id": "https://enovation.com/excel_dashboard/table_zoom",
+
+  "type": "object",
+  "description": "Widget to print a table zoom",
+  "additionalProperties": false,
+  "minProperties": 1,
+
+  "properties": {
+
+    "format": {
+      "description": "The default format to be applied when no format is set.",
+      "$ref": "/xlsxwriter/workbook/add_format/properties"
+    },
+
+    "value": {
+      "description": "The default value to be displayed when no value nor parameter is set.",
+      "$ref": "#/$defs/value"
+    },
+
+    "parameter": {
+      "description": "The default parameter to be displayed when no value nor parameter is set.",
+      "$ref": "#/$defs/parameter"
+    },
+
+    "conditional_formattings": {
+      "description": "An array of conditional formattings to be applied",
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "/xlsxwriter/worksheet/conditional_format"}
+    }
+  },
+
+  "not": {
+    "description": "We cannot have both default 'value' and default 'parameter' at the same time.",
+    "required":  ["value", "parameter"]
+  },
+
+  "patternProperties": {
+
+    "^\\@?[A-Z]+\\@?\\d+$": {
+      "description": "Pattern 1: one single cell, no list",
+      "$ref": "#/$defs/pattern1"
+    },
+
+    "^\\@?[A-Z]+\\@?\\d+:\\@?[A-Z]+\\@?\\d+$": {
+
+      "anyOf": [
+        {"description": "Pattern 2: range which replicates one cell, or to be merged",
+          "$ref": "#/$defs/pattern2"},
+        {"description": "Pattern 3: range as list of cells",
+          "$ref": "#/$defs/pattern3"},
+        {"description": "Pattern 4: range with one value or parameter and a list of formats.",
+          "$ref": "#/$defs/pattern4"},
+        {"description": "Pattern 5: range with list of values or parameters and a list of formats",
+          "$ref": "#/$defs/pattern5"},
+        {"description": "Pattern 6: range with list of values or list of parameters and one format",
+          "$ref": "#/$defs/pattern6"}
+      ]
+    }
+  },
+
+  "$defs": {
+
+    "value": {
+      "description": "Value can be any of the below type. Cannot be an array, an object or null.",
+      "type": ["string", "number", "integer", "boolean"]
+    },
+
+    "parameter": {
+      "description": "Parameter that should be a string.",
+      "type": "string"
+    },
+
+    "cell_mergeable": {
+      "type": "object",
+      "description": "One single cell, reused across other patterns.",
+      "additionalProperties": false,
+      "minProperties": 1,
+
+      "properties": {
+        "format": {"$ref": "/xlsxwriter/workbook/add_format/properties"},
+        "value": {"$ref": "#/$defs/value"},
+        "parameter": {"$ref": "#/$defs/parameter"},
+        "merged": {"type":  "boolean"}
+      },
+
+      "not": {
+        "description": "We cannot have both 'value' and 'parameter' at the same time.",
+        "type": "object", "required":  ["value", "parameter"]
+      }
+    },
+
+    "cell_not_mergeable": {
+      "description": "One single cell, reused across other patterns, that cannot be set to be merged.",
+      "$ref": "#/$defs/cell_mergeable",
+      "not": {"required":  ["merged"]}
+    },
+
+    "pattern1": {
+      "$ref": "#/$defs/cell_not_mergeable",
+      "description": "Pattern 1: one single cell, no list"
+    },
+
+    "pattern2": {
+      "$ref": "#/$defs/cell_mergeable",
+      "description": "Pattern 2: range which replicates one cell, that could be merged."
+    },
+
+    "pattern3": {
+      "description": "Pattern 3: range as list of cells",
+      "additionalProperties": false,
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/cell_not_mergeable"}
+    },
+
+    "pattern4": {
+      "type": "object",
+      "description": "Pattern 4: range with one value or parameter and a list of formats.",
+      "additionalProperties": false,
+      "minProperties": 1,
+
+      "properties": {
+        "value": {"$ref": "#/$defs/value"},
+        "parameter": {"$ref": "#/$defs/parameter"},
+        "format": {"type": "array", "minItems": 1, "items": {"$ref": "/xlsxwriter/workbook/add_format/properties"}}
+      },
+
+      "not": {
+        "description": "We cannot have both 'value' and 'parameter' at the same time.",
+        "type": "object", "required":  ["value", "parameter"]
+      }
+    },
+
+    "pattern5": {
+      "type": "object",
+      "description": "Pattern 5: range with list of values or list of parameters and a list of formats",
+      "additionalProperties": false,
+      "minProperties": 1,
+
+      "properties": {
+        "value": {"type": "array", "minItems": 1, "additionalProperties": false, "items": {"$ref": "#/$defs/value"}},
+        "parameter": {"type": "array", "minItems": 1, "additionalProperties": false, "items": {"$ref": "#/$defs/parameter"}},
+        "format": {
+          "type": "array", "minItems": 1,
+          "additionalProperties": false, "items": {"$ref": "/xlsxwriter/workbook/add_format/properties"}
+        }
+      },
+
+      "not": {
+        "description": "We cannot have both a list of 'values' and a list of 'parameters' at the same time.",
+        "type": "object", "required":  ["value", "parameter"]
+      }
+    },
+
+    "pattern6": {
+      "type": "object",
+      "description": "Pattern 6: range with list of values and one format",
+      "additionalProperties": false,
+      "minProperties": 1,
+
+      "properties": {
+        "value": {"type": "array", "minItems": 1, "additionalProperties": false, "items": {"$ref": "#/$defs/value"}},
+        "parameter": {"type": "array", "minItems": 1, "additionalProperties": false, "items": {"$ref": "#/$defs/parameter"}},
+        "format": {"$ref": "/xlsxwriter/workbook/add_format/properties"}
+      },
+
+      "not": {
+        "description": "We cannot have both a list of 'values' and a list of 'parameters' at the same time.",
+        "type": "object", "required":  ["value", "parameter"]
+      }
+    }
+  }
+}

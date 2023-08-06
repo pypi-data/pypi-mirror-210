@@ -1,0 +1,17 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/address/cell",
+  "description": "Address for one single cell, simple or absolute: A1, $A1, A$1, $A$1.",
+  "type": "string",
+
+  "pattern": "^\\$?[A-Z]+\\$?\\d+$",
+
+  "$defs": {
+    "relative_cell": {
+      "$id": "/xlsxwriter/address/relative_cell",
+      "description": "Address for one single cell, simple, relative or absolute: A1, $A1, A@1, @$A1.",
+      "type": "string",
+
+      "pattern": "^\\@?\\$?[A-Z]+\\@?\\$?\\d+$"
+    }
+  }
+}

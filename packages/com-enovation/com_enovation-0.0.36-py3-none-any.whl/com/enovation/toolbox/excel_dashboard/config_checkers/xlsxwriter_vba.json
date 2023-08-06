@@ -1,0 +1,34 @@
+{
+  "$id": "https://enovation.com/xlsxwriter/vba",
+  "description": "Address for one single cell, simple or absolute: A1, $A1, A$1, $A$1.",
+  "type": "object",
+
+  "required": ["workbook.add_vba_project"],
+  "additionalProperties": false,
+
+  "properties": {
+    "workbook.add_vba_project": {
+      "description": "Add a vbaProject binary to the Excel workbook. The add_vba_project() method can be used to add macros or functions to a workbook using a binary VBA project file that has been extracted from an existing Excel xlsm file. Only one vbaProject.bin file can be added per workbook.",
+      "type": "string"
+    },
+    "workbook.set_vba_name": {
+      "description": "Set the VBA name for the workbook. The set_vba_name() method can be used to set the VBA codename for the workbook. This is sometimes required when a vbaProject macro included via add_vba_project() refers to the workbook. The default Excel VBA name of ThisWorkbook is used if a user defined name isn’t specified.",
+      "type": "string"
+    },
+    "worksheet.set_vba_name": {
+      "description": "Set the VBA name for the worksheets. The set_vba_name() method can be used to set the VBA codename for the worksheet. This is sometimes required when a vbaProject macro included via add_vba_project() refers to the worksheet. The default Excel VBA names of Sheet1, Sheet2 are used if a user defined name aren’t specified.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9_]*$",
+        "maxLength": 20
+      },
+      "patternProperties": {
+        "": {
+          "type": "string",
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}
