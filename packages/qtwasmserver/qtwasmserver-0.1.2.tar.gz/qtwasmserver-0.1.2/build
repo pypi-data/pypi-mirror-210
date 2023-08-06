@@ -1,0 +1,6 @@
+# Run this to build and upload the package
+rm -rf dist/
+hatch build
+hatch publish
+
+
