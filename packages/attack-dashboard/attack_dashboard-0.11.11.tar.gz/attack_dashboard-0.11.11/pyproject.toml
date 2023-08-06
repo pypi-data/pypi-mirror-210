@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "attack_dashboard"
+version = "0.11.11"
+description = "Update ATT&CK data for the HELK kibana dashboard."
+authors = ["3lLobo <flocwolf@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/3lLobo/mitre-dash"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^1.5.3"
+mitreattack-python = "^2.0.6"
+stix2 = "^3.0.1"
+taxii2-client = "^2.3.0"
+addict = "^2.4.0"
+tqdm = "^4.65.0"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+notebook = "^6.5.3"
+black = "^23.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+attack_fetch = "attack_dashboard.__main__:main"
+attack_dash_up = "attack_dashboard.up_dash:main"
+attack_data_up = "attack_dashboard.up_data:main"
