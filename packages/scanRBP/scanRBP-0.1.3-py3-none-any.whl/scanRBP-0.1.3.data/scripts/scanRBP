@@ -1,0 +1,224 @@
+#!python
+
+from Bio import motifs
+import math
+import os
+import sys
+import argparse
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import numpy as np
+import pandas
+import glob
+import argparse
+from pathlib import Path
+import pybio
+import gzip
+import scanRBP
+
+scanRBP_path = Path(__file__).parent.absolute()
+
+CLIP_data = {}
+def read_CLIP():
+    f = open("eCLIP_data/metadata.tsv", "rt")
+    header = f.readline().replace("\r", "").replace("\n", "").split("\t")
+    r = f.readline()
+    while r:
+        r = r.replace("\r", "").replace("\n", "").split("\t")
+        data = dict(zip(header, r))
+        if data["File format"]=="bed narrowPeak":
+            fbase = data["File accession"]
+            fbed = f"eCLIP_data/{fbase}.bed"
+            protein = data["Experiment target"].replace("-human", "")
+            cell_type = data["Biosample term name"]
+            CLIP_data[(cell_type, protein)] = pybio.data.Bed(f"CLIP_data/{fbed}")
+        r = f.readline()
+    f.close()
+
+help_0 = """Usage: scanRBP sequence output [options]
+    * one sequence provided on the command line, generates output.png/pdf + output.tab
+
+Usage: scanRBP filename.fasta [options]
+    * one heatmap/matrix will be generated per sequence from the FASTA file
+    * output name of the files will be sequence ids provided in the fasta file
+
+Usage: scanRBP search search_term
+    * returns list of proteins available matching search_term
+
+Options:
+     -annotate                Annotate each heatmap cell with the number
+     -xlabels                 Display sequence (x-labels), default False
+     -protein TARDBP.K562.00  Only analyze binding for the provided protein (default: analyze binding for all proteins in scanRBP database)
+     -figsize "(10,20)"       Change matplotlib/seaborn figure size for the heatmap, example width=10, height=20
+     -heatmap title           Make heatmap (png+pdf) with title
+     -output_folder folder    Store all results to the output folder (default: current folder)
+     -nonzero                 All negative vector values are set to 0, not enabled by default
+     -CLIP                    Use actual CLIP data, do not use PWM
+"""
+
+parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, add_help=False)
+parser.add_argument('commands', help="command(s) to run", nargs='*')
+parser.add_argument("-help", "-h", "--help", action="store_true")
+parser.add_argument("-annotate", "--annotate", action="store_true", default=False)
+parser.add_argument("-xlabels", "--xlabels", action="store_true", default=False)
+parser.add_argument("-protein", "--protein", default=False)
+parser.add_argument("-figsize", "--figsize", default=False)
+parser.add_argument("-title", "--title", default=False)
+parser.add_argument("-matrix", "--matrix", action="store_true", default=True)
+parser.add_argument("-CLIP", "--CLIP", action="store_true", default=False)
+parser.add_argument("-nonzero", "--nonzero", action="store_true", default=False)
+parser.add_argument("-heatmap", "--heatmap", default=False)
+parser.add_argument("-output_folder", "--output_folder", default=".")
+parser.add_argument("-version", "--version", help="Print version", action="store_true")
+
+args = parser.parse_args()
+
+print(f"[scanRBP] v{scanRBP.version}, https://github.com/grexor/scanRBP")
+print(f"[scanRBP] data folder: {scanRBP.config.data_folder}")
+print()
+
+# find all proteins with search
+def find_proteins(search):
+    results, results_data = [], []
+    for scan_id, data in scanRBP.database.proteins.items():
+        protein_desc_lower = data["description"].lower()
+        scan_id_lower = scan_id.lower()
+        search_lower = search.lower()
+        if scan_id_lower.find(search_lower)!=-1 or protein_desc_lower.find(search_lower)!=-1:
+            results.append(scan_id)
+            results_data.append(data)
+    return results, results_data
+
+if args.version:
+    sys.exit(0)
+
+if len(args.commands) not in [1,2] or args.help:
+    print(help_0)
+    sys.exit(0)
+
+# converts BED files to bedGraph files (eCLIP datasets)
+def bed_bedgraph(fname_in, fname_out):
+    fin = gzip.open(fname_in)
+    fout = gzip.open(fname_out, "wb")
+    return
+
+def make_bedgraph():
+    files = glob.glob("../data/CLIP_bed/*.bed.gz")
+    print(files)
+
+def process_CLIP(chr, strand, start, stop, output_fname):
+    heatmap_data = []
+    heatmap_columns = []
+    scores = CLIP_data["tardbp"].get_vector(chr, strand, start, stop)
+    heatmap_data.append(scores)
+    heatmap_columns.append("K562.TARDBP.0")
+    heatmap_rows = list(range(start, stop+1))
+    if strand=="-":
+        heatmap_rows.reverse()
+    basename = output_fname.replace(".png", "").replace(".pdf", "")
+    data = pandas.DataFrame(heatmap_data, index=heatmap_columns, columns=heatmap_rows)
+    data.to_csv(args.output_folder+"/"+basename+"_CLIP.tab", sep="\t")
+
+
+def process(seq, output_fname, args):
+    heatmap_data = []
+    heatmap_columns = []
+
+    for scan_id, pssm in scanRBP.pwm.pssm.items():
+        if args.protein: # only process a specific protein?
+            if scan_id not in args.protein:
+                continue
+        scores = pssm.calculate(seq)
+        scores = [x if x!=-math.inf else 0 for x in scores]
+        if args.nonzero:
+            scores = [x if x>=0 else 0 for x in scores]
+        if len(scores)<len(seq):
+            scores = scores + [0] * (len(seq)-len(scores))
+        heatmap_data.append(scores)
+        heatmap_columns.append(scan_id)
+
+    for index, data in enumerate(heatmap_data):
+        assert(len(seq)==len(data))
+
+    heatmap_rows = list(seq)
+    basename = output_fname.replace(".png", "").replace(".pdf", "")
+    data = pandas.DataFrame(heatmap_data, index=heatmap_columns, columns=heatmap_rows)
+    data.to_csv(args.output_folder+"/"+basename+"_PWM.tab", sep="\t")
+
+    if args.heatmap!=False:
+        plt.figure()
+        sns.set(font="Arial")
+        sns.set(font_scale=0.4)
+        sns.set_style("dark")
+        sns.set_style("ticks")
+
+        rdgn = sns.diverging_palette(h_neg=130, h_pos=10, s=99, l=55, sep=3, as_cmap=True)
+        optional_params = {"linewidths":0.0}
+        optional_params["col_cluster"] = False
+        optional_params["annot"] = args.annotate
+        optional_params["center"] = 0
+        optional_params["fmt"] = ".0f"
+        optional_params["yticklabels"] = True
+        optional_params["xticklabels"] = args.xlabels
+        optional_params["cmap"] = rdgn
+        optional_params["cbar_pos"] = None
+
+        if args.figsize!=False:
+            optional_params["figsize"] = eval(args.figsize)
+        fig = sns.clustermap(data, **optional_params)
+        fig.ax_col_dendrogram.set_visible(False)
+
+        plt.title(args.heatmap)
+        plt.tight_layout() 
+        plt.savefig(args.output_folder+"/"+basename+".png", dpi=300)
+        plt.savefig(args.output_folder+"/"+basename+".pdf")
+        plt.close()
+
+if len(args.commands)>0:
+
+    if args.protein:
+        args.protein, _ = find_proteins(args.protein)
+
+    if args.commands[0]=="config":
+        if len(args.commands)>1:
+            scanRBP.config.init(args.commands[1])
+        sys.exit(0)
+
+    if args.commands[0]=="search":
+        if len(args.commands)>1:
+            proteins, proteins_data = find_proteins(args.commands[1])
+            if len(proteins)>0:
+                print("[scanRBP] Found proteins in the scanRBP database:")
+                table = []
+                for rec in proteins_data:
+                    table.append([rec['scan_id'], rec['protein'], rec['tissue'], rec['description']])
+                df = pandas.DataFrame(table, columns = ['scan_id', 'protein', 'tissue', 'description'])
+                print(df.to_string(index=False))
+            else:
+                print(f"[scanRBP] Found no proteins in the scanRBP database with provided seach '{args.commands[1]}'")
+        else:
+            print("[scanRBP] please provide search term (protein name)")
+        sys.exit(0)
+
+    if args.commands[0].lower().endswith(".fasta") or args.commands[0].lower().endswith(".fa"):
+        import pybio
+        data = pybio.data.Fasta(args.commands[0])
+        while data.read():
+            id = data.id.lstrip(" ")
+            id = id.split(" ")[0].replace("+", "plus").replace("-", "minus")
+            id_records = id.replace("plus", "+").replace("minus", "-").split("_")
+            chrstrand, start, stop = "_".join(id_records[:-2]), id_records[-2], id_records[-1] # chr name can have _ inside
+            start, stop = int(start), int(stop)
+            chr, strand = chrstrand[:-1], chrstrand[-1]
+            seq = data.sequence
+            # TODO
+            #process_CLIP(chr, strand, start, stop, id)
+            process(seq, id, args)
+    elif args.commands[0]=="bed":
+        make_bedgraph()
+    else:
+        if len(args.commands)>=2:
+            process(args.commands[0], args.commands[1], args)
+        else:
+            print(help_0)
