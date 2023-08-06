@@ -1,0 +1,23 @@
+    {% load solo_tags %}
+    {% comment %} text_header start {% endcomment %}
+
+
+    <header class="w-full container mx-auto">
+        <div class="flex flex-col items-center py-12">
+
+                     {% block top_name %}
+            <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
+                {% get_solo 'tbase_config.General' as site_config %}{{site_config.site_title}}
+            </a>  {% endblock %}
+
+            <p class="text-lg text-gray-600 items-center ">
+                             {% block top_description %}
+
+                             {% get_solo 'tbase_config.General' as site_config %}{{site_config.tagline}}
+                             {% endblock %}
+            </p>
+        </div>
+    </header>
+
+
+        {% comment %} text_header end {% endcomment %}

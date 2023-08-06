@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}en{% endblock %}">
+	<head>
+{% block tailwind_script %}
+  <script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{% comment %} tailwind配置信息 {% endcomment %}
+ {% block tailwind_config %}
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+{% endblock %}
+
+
+{% comment %} tailwindcss {% endcomment %}
+ {% block tailwind_css %}
+
+<style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+
+
+
+    pre {
+    width: 100%;
+    overflow: auto;
+}
+  </style>
+{% endblock %}
+
+
+
+{% comment %} 基本的meta {% endcomment %}
+{%block meta_base%}
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% endblock %}
+
+
+<!---以下内容为拓展-->
+
+{% comment %} 标题区 {% endcomment %}
+ {% block title %}
+    <title>title</title>
+{% endblock %}
+{% comment %} 拓展meta区域 {% endcomment %}
+{%block meta%}
+
+{% endblock %}
+
+{% comment %} script 区 {% endcomment %}
+{% block script %}
+{% endblock %}
+
+{% comment %} add  添加额外的头信息{% endcomment %}
+{% block head %}
+{% endblock %}
+
+
+	</head>
+
+
+{% block body %}
+	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
+     {% block container %}
+		<div class="container mx-auto">
+      {% block section %}
+			<section class="flex items-center justify-center h-screen">
+
+        {% comment %} 核心内容区 {% endcomment %}
+        {% block content %}
+        {% endblock %}
+			</section>
+              {% endblock %}
+		</div>
+     {% endblock %}
+	</body>
+{% endblock %}
+
+</html>
