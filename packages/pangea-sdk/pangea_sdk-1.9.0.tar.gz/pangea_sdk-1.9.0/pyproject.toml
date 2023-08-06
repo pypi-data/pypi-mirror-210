@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "pangea-sdk"
+version = "1.9.0"
+description = "Pangea API SDK"
+authors = ["Glenn Gallien <glenn.gallien@pangea.cloud>"]
+license = "MIT"
+readme = "README.md"
+homepage = ""
+repository = ""
+keywords = ["Pangea", "SDK", "Audit"]
+classifiers = [
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+]
+packages = [
+    { include = "pangea" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7.2"
+requests = "^2.27.1"
+cryptography = "39.0.1"
+schema = "^0.7.5"
+python-dateutil = "^2.8.2"
+alive-progress = "^2.4.1"
+pydantic = "^1.10.2"
+pytest = "^7.2.0"
+deprecated = "^1.2.13"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.941"
+black = "^22.1.0"
+docstring-parser = "^0.14.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
