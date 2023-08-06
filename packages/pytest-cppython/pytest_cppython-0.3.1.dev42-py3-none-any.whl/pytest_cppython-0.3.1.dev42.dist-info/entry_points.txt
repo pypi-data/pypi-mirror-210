@@ -1,0 +1,12 @@
+[cppython.generator]
+mock=pytest_cppython.mock.generator:MockGenerator
+
+[cppython.provider]
+mock=pytest_cppython.mock.provider:MockProvider
+
+[cppython.scm]
+mock=pytest_cppython.mock.scm:MockSCM
+
+[pytest11]
+pytest_cppython=pytest_cppython.plugin
+
