@@ -1,0 +1,81 @@
+[tool.poetry]
+name = "nqsdk"
+version = "1.0.0-alpha-15"
+description = "NQ SDK"
+authors = ["Inqana Ltd. <develop@inqana.com>"]
+readme = "README.md"
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jsonschema = "^4"
+pytz = "*"
+requests = "^2"
+djangorestframework = "^3"
+phonenumbers = "^8"
+email-validator = "^1"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20"
+pytest = "^7.2"
+pytest-mock = "^3.10"
+Faker = "^15"
+tox = "^3"
+
+
+[build-system]
+requires = ["poetry_core >= 1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+extend-exclude = """
+^/.venv/
+"""
+
+
+[tool.isort]
+profile = "black"
+verbose = false
+py_version = "310"
+skip_gitignore = true
+line_length = 100
+use_parentheses = true
+include_trailing_comma = true
+known_first_party = [
+  "abstract",
+  "dummy",
+]
+known_third_party = []
+sections = [
+  "FUTURE",
+  "STDLIB",
+  "THIRDPARTY",
+  "FIRSTPARTY",
+  "LOCALFOLDER"
+]
+no_lines_before = "LOCALFOLDER"
+
+
+[tool.pytest.ini_options]
+addopts = [
+  # Stop after first fail
+  # "-x",
+  # Prevent stdout capturing during normal run (w/o failures)
+  "-s",
+  # Verbose output
+  # "-v",
+]
+testpaths = [
+  "tests",
+]
