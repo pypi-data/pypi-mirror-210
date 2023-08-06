@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: pyFolderOrganizer
+Version: 0.0.1b0
+Summary: Python package to organize a folder in sub-directories based on file types.
+Home-page: https://github.com/kotsiossp97/pyFolderOrganizer
+Author: Konstantinos Andreou
+Author-email: kotsiossp@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/kotsiossp97/pyFolderOrganizer/issues
+Project-URL: Documentation, https://pyfolderorganizer.readthedocs.io/en/latest/index.html
+Project-URL: Source Code, https://github.com/kotsiossp97/pyFolderOrganizer
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Utilities
+Classifier: Operating System :: Microsoft
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: Microsoft :: Windows :: Windows 11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# pyFolderOrganizer
+ ![Read the docs][docs-shield] ![PyPI Downloads][pypiDown-shield]  ![Last Commit][lastCommit-shield]
+
+ Python package to organize a folder in sub-directories based on file types.
+
+#
+## Documentation
+View documentation on [Readthedocs](https://pyfolderorganizer.readthedocs.io/en/latest/index.html)
+#
+## Setup
+You can install this package from:
+
+From GitHub:
+
+```bash
+pip install git+https://github.com/kotsiossp97/pyFolderOrganizer.git@latest
+```
+
+From PIP:
+
+```bash
+pip install pyFolderOrganizer
+```
+
+#
+## Usage
+### Basic Example
+```python
+import pyFolderOrganizer
+
+path = "path/to/be/organized"
+organizer = pyFolderOrganizer.FolderOrganizer(path)
+```
+
+### Observer Mode
+Package offers "Observer Mode" that listens for any file created in the directory that the organizer is set to. Creates a thread and when a new file is detected, is automatically moved to the corresponding folder depending of the file extension.
+```python
+organizer = pyFolderOrganizer.FolderOrganizer(path, observe=True)
+```
+
+### Enable/Disable Windows Toasts
+Set the `notifications` argument to True to enable windows notifications on startup and when a file gets organized.
+Clicking the notification opens an explorer window to the corresponding path. This is turned off by default.
+```python
+organizer = pyFolderOrganizer.FolderOrganizer(path, notifications=True)
+```
+
+### Enable/Disable Console Printing
+By default, the package prints messages on the console, equivalent to the notifications. This can be turned off by setting the `printing` argument:
+```python
+organizer = pyFolderOrganizer.FolderOrganizer(path, printing=False)
+```
+
+#
+## Available Extensions
+These are the folders that will contain the files with the provided extensions. Folders are auto created, so no need to create any of them.
+
+| Folder Name   | Extensions                                            |
+| ------------- | ----------------------------------------------------- |
+| PDF           | .pdf                                                  |
+| CodeFiles     | .py, .c, .cpp, .java, .h, .html, .php, .js, .tsx      |
+| OfficeFiles   | .txt, .doc, .docx, .xls, .xlsx, .accdb, .ppt, .pptx   |
+| MusicFiles    | .mp3, .wav, .flac                                     |
+| ImageFiles    | .jpg, .jpeg, .png, .gif, .dds                         |
+| Compressed    | .zip, .rar, .7z, .gz                                  |
+| Executables   | .exe, .msi                                            |
+| General       | All other file extensions                             |
+
+### Add custom folder/extension
+To-do
+
+[docs-shield]:https://img.shields.io/readthedocs/pyfolderorganizer?style=for-the-badge
+[pypiDown-shield]:https://img.shields.io/pypi/dw/pyfolderorganizer?style=for-the-badge
+[lastCommit-shield]: https://img.shields.io/github/last-commit/kotsiossp97/pyFolderOrganizer?style=for-the-badge
