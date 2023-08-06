@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "pinia": "^2.0.35",
+    "vite": "^4.2.1",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "scripts": {
+    "test:unit": "jest",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@vue/test-utils": "^2.4.0-alpha.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
+    "vue-jest": "^5.0.0-alpha.10"
+  }
+}

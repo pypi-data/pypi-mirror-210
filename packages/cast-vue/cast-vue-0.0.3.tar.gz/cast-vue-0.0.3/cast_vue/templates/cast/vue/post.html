@@ -1,0 +1,7 @@
+{% extends "./base.html" %}
+{% block head %}
+  <!-- Used to determine the route name of vue route -->
+  <script id="vue-route-name" type="application/json">"PostDetail"</script>
+  <!-- Used to determine the slug parameter of vue route -->
+  <script id="slug" type="application/json">"{{ page.slug }}"</script>
+{% endblock %}
