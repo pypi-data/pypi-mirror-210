@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: corpus-judge
+Version: 0.0.2
+Summary: Cleaning, setting Justices
+Home-page: https://mv3.dev
+Author: Marcelino G. Veloso III
+Author-email: mars@veloso.one
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Typing :: Typed
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: sqlpyd (>=0.1.8,<0.2.0)
+Requires-Dist: unidecode (>=1.3.6,<2.0.0)
+Project-URL: Documentation, https://justmars.github.io/corpus-judge
+Project-URL: Repository, https://github.com/justmars/corpus-judge
+Description-Content-Type: text/markdown
+
+# corpus-judge
+
+![Github CI](https://github.com/justmars/corpus-judge/actions/workflows/main.yml/badge.svg)
+
+## Development
+
+See [documentation](https://justmars.github.io/corpus-judge).
+
+1. Run `poetry install`
+2. Run `poetry shell`
+3. Run `pytest`
+
