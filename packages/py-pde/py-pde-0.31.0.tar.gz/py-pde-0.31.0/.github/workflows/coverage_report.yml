@@ -1,0 +1,41 @@
+name: "Generate coverage report"
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install FFmpeg
+      continue-on-error: true
+      run: |
+        sudo apt-get install ffmpeg
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - uses: mpi4py/setup-mpi@v1
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r tests/requirements_all.txt
+        pip install -r tests/requirements.txt
+
+    - name: Generate coverage report
+      run: |
+        export NUMBA_DISABLE_JIT=1
+        export MPLBACKEND="agg"
+        export PYTHONPATH="${PYTHONPATH}:`pwd`"
+        pytest --cov-config=pyproject.toml --cov-report xml:report_coverage.xml --cov=pde --runslow pde
+        mpiexec -n 2 pytest --cov-config=pyproject.toml --cov-report xml:report_coverage.xml --cov-append --cov=pde --use_mpi pde
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./report_coverage.xml
+        flags: unittests
+        name: codecov-pydev
+        fail_ci_if_error: true
