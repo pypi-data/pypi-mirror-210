@@ -1,0 +1,10 @@
+# This file contains some special rules that the
+# slpkg can handle better.
+# /etc/slpkg/rules.toml
+# Date: 23/05/2023, Version: 4.8.6
+
+[UPGRADE]
+# If the installed package version pattern has a different matching
+# than the repository version for some special rules like nvidia-kernel,
+# please add the package in this list below.
+PACKAGES = ["nvidia-kernel", "virtualbox-kernel"]
