@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: napari-geoscience-viewer
+Version: 0.1.1
+Summary: A napari plugin for quick-viewing HDF5 and NetCDF files
+Home-page: https://github.com/yunhal/napari-geoscience-viewer
+Author: Yunha Lee
+Author-email: yunha.lee.00@gmail.com
+Project-URL: Bug Tracker, https://github.com/yunhal/napari-geoscience-viewer/issues
+Project-URL: Documentation, https://github.com/yunhal/napari-geoscience-viewer#README.md
+Project-URL: Source Code, https://github.com/yunhal/napari-geoscience-viewer
+Project-URL: User Support, https://github.com/yunhal/napari-geoscience-viewer/issues
+Classifier: Framework :: napari
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: h5py
+Requires-Dist: xarray
+Requires-Dist: netCDF4
+Requires-Dist: magicgui
+Requires-Dist: shapely
+Requires-Dist: napari-geojson
+Provides-Extra: testing
+Requires-Dist: tox ; extra == 'testing'
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+Requires-Dist: pytest-qt ; extra == 'testing'
+Requires-Dist: napari ; extra == 'testing'
+Requires-Dist: pyqt5 ; extra == 'testing'
+
+# napari-geoscience-viewer
+
+A napari plugin for visualizing geoscience HDF5 and netCDF data
+
+![](./img/napari_geo_demo.gif)
+
+
+Notes on this current version:
+1. Xarray is used to visualize netCDF, and h5py is used for HDF5. The dimensions stored in HDF5 doesn't work easily with xarray, so h5py is used instead. 
+
+2. For netCDF, it displays world map as a napari shape layer. This only works well for entire globe domain, not for a regional domain, which will be added in future. 
+
+3. Map projections are not available yet. 
+
+
+
+
