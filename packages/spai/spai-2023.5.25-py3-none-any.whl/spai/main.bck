@@ -1,0 +1,106 @@
+import typer
+from pathlib import Path
+import os
+import requests
+import yaml
+
+from minio import Minio
+
+from .commands import hello
+
+app = typer.Typer()
+app.add_typer(hello.app, name="hello")
+
+client = Minio(
+    endpoint=os.environ['S3_ENDPOINT'],
+    access_key=os.environ['ACCESS_KEY_ID'],
+    secret_key=os.environ['SECRET_ACCESS_KEY'],
+    secure=True,
+    region=os.environ['S3_REGION'],
+)
+
+bucket = os.environ['S3_BUCKET']
+
+if not client.bucket_exists(bucket):
+    client.make_bucket(bucket)
+    print(f'{bucket} created')
+
+@app.command()
+def run(dir: Path = typer.Option(Path("."), "-d")):
+    if not dir.exists():
+        raise typer.BadParameter(f"Directory '{dir}' does not exist.")
+    if not 'spai.config.yml' in os.listdir(dir):
+        raise typer.BadParameter(f"Directory '{dir}' is not a spai project. No spai.config.yml file found.")
+    # load config
+    config = {}
+    with open(dir / 'spai.config.yml', 'r') as f:
+        config = yaml.safe_load(f)
+    print(config)
+    # send to api
+    typer.echo(f"Deploying...")
+    if 'scripts' in config:
+        typer.echo(f"Deploying scripts...")
+        for script in config['scripts']:
+            typer.echo(f"Deploying script '{script['name']}'...")
+            response = requests.post(
+                'http://localhost:8000/deploy/script', 
+                files={
+                    'script': open(dir / script['file'], 'rb'),
+                    'requirements': open(dir / script['requirements'], 'rb'),
+                    'env': open(dir /  script['env'], 'rb') if 'env' in script else None,
+                },
+                data={
+                    'name': script['name'],
+                    'run': script['run'] if 'run' in script and script['run'] == True else None
+                }
+            )
+            if response.status_code == 200:
+                typer.echo("Script deployed successfully!")
+            else:
+                typer.echo("Something went wrong.")
+                typer.echo(response.json()['detail'])
+    if 'apis' in config:
+        typer.echo(f"Deploying apis...")
+        for script in config['apis']:
+            typer.echo(f"Deploying api '{script['name']}'...")
+            response = requests.post(
+                'http://localhost:8000/deploy/api', 
+                files={
+                    'script': open(dir / script['file'], 'rb'),
+                    'requirements': open(dir / script['requirements'], 'rb'),
+                    'env': open(dir /  script['env'], 'rb') if 'env' in script else None,
+                },
+                data={
+                    'name': script['name'],
+                    'port': script['port']
+                }
+            )
+            if response.status_code == 200:
+                typer.echo("api deployed successfully!")
+            else:
+                typer.echo("Something went wrong.")
+                typer.echo(response.json()['detail'])
+    if 'agents' in config:
+        typer.echo(f"Deploying agents...")
+        for script in config['agents']:
+            typer.echo(f"Deploying agent '{script['name']}'...")
+            response = requests.post(
+                'http://localhost:8000/deploy/agent', 
+                files={
+                    'script': open(dir / script['file'], 'rb'),
+                    'requirements': open(dir / script['requirements'], 'rb') if 'requirements' in script else None,
+                    'env': open(dir /  script['env'], 'rb') if 'env' in script else None,
+                },
+                data={
+                    'name': script['name'],
+                }
+            )
+            if response.status_code == 200:
+                typer.echo("Agent deployed successfully!")
+            else:
+                typer.echo("Something went wrong.")
+                typer.echo(response.json()['detail'])
+    typer.echo(f"Deployment complete!")
+
+if __name__ == "__main__":
+    app()
