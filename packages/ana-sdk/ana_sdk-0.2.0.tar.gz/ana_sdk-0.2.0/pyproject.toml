@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ana-sdk"
+version = "0.2.0"
+description = "SDK que visa fornecer uma interface para interagir com os serviços ANA."
+authors = ["Jovane Mafort"]
+license = "MIT License"
+readme = "README.md"
+packages = [{include = "ana_sdk"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.30.0"
+jsonschema = "^4.17.3"
+python-dotenv = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
