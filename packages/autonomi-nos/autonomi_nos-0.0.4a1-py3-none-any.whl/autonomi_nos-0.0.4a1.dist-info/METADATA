@@ -1,0 +1,121 @@
+Metadata-Version: 2.1
+Name: autonomi-nos
+Version: 0.0.4a1
+Summary: Nitrous oxide system (NOS) for computer-vision.
+License: MIT License
+        
+        Copyright (c) 2023 Autonomi AI
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Documentation, https://autonomi-ai.github.io/nos/
+Project-URL: Source Code, https://github.com/autonomi-ai/nos
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: av (>=10.0.0)
+Requires-Dist: cloudpickle (>=2.2.1)
+Requires-Dist: docker (>=6.0.0)
+Requires-Dist: grpcio-tools (<=1.49.1,>=1.32.0)
+Requires-Dist: loguru (>=0.7.0)
+Requires-Dist: opencv-python-headless (>=4.6.0.66)
+Requires-Dist: Pillow
+Requires-Dist: psutil (>=5.9.5)
+Requires-Dist: pydantic
+Requires-Dist: rich (>=12.5.1)
+Requires-Dist: tqdm
+Requires-Dist: typer (>=0.7.0)
+Requires-Dist: typing-extensions (>=4.5.0)
+Provides-Extra: dev
+Requires-Dist: black[jupyter] (==22.3.0) ; extra == 'dev'
+Requires-Dist: build (==0.10.0) ; extra == 'dev'
+Requires-Dist: pre-commit (==3.2.2) ; extra == 'dev'
+Requires-Dist: ruff (==0.0.262) ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: mkdocs ; extra == 'docs'
+Requires-Dist: mkdocs-exclude ; extra == 'docs'
+Requires-Dist: mkdocs-include-markdown-plugin ; extra == 'docs'
+Requires-Dist: mkdocs-material ; extra == 'docs'
+Requires-Dist: mkdocs-pymdownx-material-extras ; extra == 'docs'
+Requires-Dist: mkdocs-same-dir ; extra == 'docs'
+Requires-Dist: mkdocstrings ; extra == 'docs'
+Requires-Dist: mkdocstrings-python ; extra == 'docs'
+Requires-Dist: mkdocstrings[python] ; extra == 'docs'
+Provides-Extra: server
+Requires-Dist: diffusers ; extra == 'server'
+Requires-Dist: huggingface-hub ; extra == 'server'
+Requires-Dist: pyarrow (>=12.0.0) ; extra == 'server'
+Requires-Dist: ray[serve] (>=2.4.0) ; extra == 'server'
+Requires-Dist: transformers (>=4.28.1) ; extra == 'server'
+Requires-Dist: torch (<2.0.0,>=1.12.1) ; extra == 'server'
+Requires-Dist: torchaudio (>=0.13.1) ; extra == 'server'
+Requires-Dist: torchvision (>=0.13.0) ; extra == 'server'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-asyncio ; extra == 'test'
+Requires-Dist: typeguard ; extra == 'test'
+Provides-Extra: torch
+Requires-Dist: torch (<2.0.0,>=1.12.1) ; extra == 'torch'
+Requires-Dist: torchaudio (>=0.13.1) ; extra == 'torch'
+Requires-Dist: torchvision (>=0.13.0) ; extra == 'torch'
+
+# nos 🔥: Nitrous Oxide System (NOS) for Computer Vision
+
+<p align="center">
+    <a href="https://pypi.org/project/autonomi-nos/">
+        <img alt="PyPi Version" src="https://badge.fury.io/py/autonomi-nos.svg">
+    </a>
+    <a href="https://pypi.org/project/autonomi-nos/">
+        <img alt="PyPi Version" src="https://img.shields.io/pypi/pyversions/autonomi-nos">
+    </a>
+    <a href="https://pypi.org/project/autonomi-nos/">
+        <img alt="PyPi Downloads" src="https://img.shields.io/pypi/dm/autonomi-nos">
+    </a>
+    <a href="https://discord.gg/QAGgvTuvgg">
+        <img alt="Discord" src="https://img.shields.io/badge/discord-chat-purple?color=%235765F2&label=discord&logo=discord">
+    </a>
+</p>
+
+**NOS** is a PyTorch library for optimizing and running lightning-fast inference of popular computer vision models. NOS inherits its name from "Nitrous Oxide System", the performance-enhancing system typically used in racing cars. NOS is designed to be modular and easy to extend.
+
+## Why NOS?
+- ⚡️ **Fast**: Built for PyTorch and designed to optimize/run models faster
+- 🔥 **Performant**: Run models such as SDv2 or object detection 2-3x faster out-of-the-box
+- 👩‍💻 **No PhD required**: Optimize models for maximum HW performance without a PhD in ML
+- 📦 **Extensible**: Easily add optimization and HW-support for custom models
+- ⚙️ **HW-accelerated:** Take full advantage of your HW (GPUs, ASICs) without compromise
+- ☁️ **Cloud-agnostic:** Run on any cloud HW (AWS, GCP, Azure, Lambda Labs, On-Prem)
+
+## Batteries Included
+ - 💪 **SOTA Model Support:** NOS provides out-of-the-box support for popular CV models such as [Stable Diffusion](stabilityai/stable-diffusion-2), [OpenAI CLIP](openai/clip-vit-base-patch32), [OpenMMLab](https://github.com/open-mmlab/) object detection, tracking and more
+ - 🔌 **APIs:** NOS provides out-of-the-box APIs and avoids all the ML model deployment hassles
+ - 🐳 **Docker:** NOS ships with docker images to run accelerated and scalable CV workloads
+ - 📈 **Multi-Platform**: NOS allows you to run models on different HW (NVIDIA, custom ASICs) without any model compilation or runtime management.
+
+
+## Contribute
+We welcome contributions! Please see our [contributing guide](docs/CONTRIBUTING.md) for more information.
