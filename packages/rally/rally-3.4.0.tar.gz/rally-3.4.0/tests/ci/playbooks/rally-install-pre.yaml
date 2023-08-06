@@ -1,0 +1,49 @@
+- hosts: all
+  name: Prepare host to install Rally
+  tasks:
+    - name: Uninstall python3-pyyaml (CentOS 8 & 9)
+      become: true
+      package:
+        state: absent
+        name: python3-pyyaml
+
+    - name: Install python3.8-dev (Ubuntu 20.04)
+      become: true
+      package:
+        state: present
+        name: python3.8-dev
+      when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04"
+
+    - name: Install python3.10-dev (Ubuntu 22.04)
+      become: true
+      package:
+        state: present
+        name: python3.10-dev
+      when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "22.04"
+
+    - name: Install pip3 if needed
+      become: true
+      shell:
+        executable: /bin/bash
+        chdir: '{{ zuul.project.src_dir }}'
+        cmd: |
+          set -e
+          python_version=`python3 --version`
+          python_version=`echo $python_version |awk '{print $2}'`
+          echo $python_version
+          if [[ $python_version =~ ^3.6 ]]; then
+              pip_url=https://bootstrap.pypa.io/pip/3.6/get-pip.py
+          else
+              pip_url=https://bootstrap.pypa.io/get-pip.py
+          fi
+          curl $pip_url -o /tmp/get-pip.py
+          python3 /tmp/get-pip.py
+
+    - name: Install bindep
+      become: true
+      shell: pip3 install --upgrade bindep
+
+    - name: Prepare rally plugins stored at home dir
+      shell: |
+        mkdir --parents ~/.rally/plugins
+        cp --recursive {{ zuul.project.src_dir }}/rally-jobs/plugins/* ~/.rally/plugins
