@@ -1,0 +1,52 @@
+#!/usr/bin/env bpftrace
+
+BEGIN {
+    ###SYSCALL_FILTER###
+}
+
+
+usdt:###INTERPRETER_PATH###:function__entry {
+        @stack[pid, tid]++;                     // depth (int)
+        @latest_supervised_module =  str(arg0); // module name (string)
+}
+
+// usdt:###INTERPRETER_PATH###:function__return {
+//     @["depth"]--;
+// }
+
+tracepoint:raw_syscalls:sys_enter / @stack[pid, tid] && @syscalls_filters["general_requirements", args->id] != 1 && @syscalls_filters[@latest_supervised_module, args->id] != 1 /  {
+    printf("\033[91m[SECURITY PROFILE VIOLATED]: %s called syscall %d at depth %d\033[0m\r\n", @latest_supervised_module, args->id, @stack[pid, tid]);
+    if (str($1) == "STOP") {
+        printf("\n^^^ STOPPING PROCESS %d DUE TO SYSCALL VIOLATION ^^^\n", pid);
+        signal("SIGSTOP");
+        printf("\t\tPROCESS %d STOPPED.\r\n", pid);
+    }
+    else if (str($1) == "KILL") {
+        printf("\n^^^ KILLING PROCESS %d DUE TO SYSCALL VIOLATION ^^^\n", pid);
+        signal("SIGKILL");
+        printf("\t\tKILLED.\r\n");
+        exit(); // option
+    }
+}
+
+
+// Invoked before importlib imports a module
+// import__find__load__start(str modulename)
+// usdt:###INTERPRETER_PATH###:import__find__load__start {
+    // TODO: verify that the module is allowed in the syscall filter.
+    // @imports[arg0] = count();
+    // printf("importing %d", arg0);
+// }
+
+// Invoked after importlib imports a module
+// import__find__load__done(str modulename, int found)
+// usdt:###INTERPRETER_PATH###:import__find__load__done{
+    // printf("imported %d", arg0);
+// }
+
+
+END {
+    clear(@syscalls_filters);
+    clear(@latest_supervised_module);
+    clear(@stack);
+}
