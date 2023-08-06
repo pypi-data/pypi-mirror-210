@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: suxarray
+Version: 0.1.1
+Summary: suxarray is an extension of uxarray for SCHISM.
+Home-page: https://github.com/cadwrdeltamodeling/suxarray
+Author: California Department of Water Resources
+Author-email: knam@water.ca.gov
+License: MIT license
+Keywords: suxarray
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8,<3.11
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: uxarray (>=2023.4.1)
+Requires-Dist: xarray (>=2023.4.1)
+Requires-Dist: netcdf4 (>=1.6)
+Requires-Dist: shapely (>=2.0)
+Requires-Dist: Click (>=7.0)
+Provides-Extra: vtk
+Requires-Dist: vtk (>=9.2) ; extra == 'vtk'
+
+========
+suxarray
+========
+
+``suxarray`` is an extension of uxarray for SCHISM grids.
+
+
+SCHISM grid
+-----------
+
+The SCHISM grid is a horizontal unstructured grid with a layered vertical grid. It uses a mixture of triangular and quadrilateral horizontal elements. The vertical grid can be a hybrid sigma and z coordinate system (SZ grid) or a variable number of sigma layers (LSC2). The SCHISM grid is described in the SCHISM manual (https://schism-dev.github.io/schism/master/index.html). The SCHISM uses `UGRID convention <https://ugrid-conventions.github.io/ugrid-conventions>`_ in its NetCDF output files.
+
+
+Goals
+-----
+
+``suxarray`` is intended to use ``xarray`` through ``uxarray`` while keeping and handling SCHISM grid-specific information. Also, it will provide useful operations for SCHISM grid data.
+
+
+Features
+--------
+
+TBD
+
+
+Installation
+------------
+
+TBD
+
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.1 (2023-05-24)
+------------------
+* First release on conda-forge
+
+0.1.0 (2023-05-24)
+------------------
+* First release on PyPI.
+
+Added
+^^^^^
+* Add the main codes
