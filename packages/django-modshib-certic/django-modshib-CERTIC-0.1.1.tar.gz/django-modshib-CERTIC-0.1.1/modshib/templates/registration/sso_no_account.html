@@ -1,0 +1,17 @@
+{% extends "registration/reg_base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Connexion SSO" %}{% endblock head_title %}
+{% block content %}
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="card" style="margin: 2em">
+            <div class="card-body">
+                <h5 class="card-title">{{ site_name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{% translate "Connexion SSO" %}</h6>
+                <div class="card-text">
+                    {% translate "Vous n'avez pas de compte actif sur cette application." %}
+                </div>
+                <a href="{{login_redirect}}">{% translate "Retour à la page d'authentification" %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

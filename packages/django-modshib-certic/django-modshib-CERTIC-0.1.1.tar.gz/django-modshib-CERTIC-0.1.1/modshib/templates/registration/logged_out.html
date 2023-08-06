@@ -1,0 +1,17 @@
+{% extends "registration/reg_base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Déconnexion" %}{% endblock head_title %}
+{% block content %}
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="card" style="margin: 2em">
+            <div class="card-body">
+                <h5 class="card-title">{{ site_name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{% translate "Déconnexion" %}</h6>
+                <div class="card-text">
+                    {% translate "Vous êtes déconnecté." %}
+                </div>
+                <a href="/">{% translate "Retour à l'accueil" %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

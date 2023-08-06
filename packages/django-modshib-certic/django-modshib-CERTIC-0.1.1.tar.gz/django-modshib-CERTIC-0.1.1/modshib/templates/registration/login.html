@@ -1,0 +1,28 @@
+{% extends "registration/reg_base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Connexion" %}{% endblock head_title %}
+{% block content %}
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="card" style="margin: 2em">
+            <div class="card-body">
+                <h5 class="card-title">{{ site_name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{% translate "Connexion" %}</h6>
+                <div class="card-text d-grid gap-2">
+                    <a href="{% url "modshib_sso" %}" class="btn btn-primary">{% translate "Connection via SSO" %}</a>
+                </div>
+                <div class="card-text" style="margin-top: 1em;">
+                    ou:
+                </div>
+                <div class="card-text" id="localForm">
+                    <form method="post" class="d-grid gap-2">
+                        {% csrf_token %}
+                        <table class="table">
+                            {{ form.as_table }}
+                        </table>
+                        <button class="btn btn-secondary" type="submit">{% translate "Connexion avec mot de passe" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
