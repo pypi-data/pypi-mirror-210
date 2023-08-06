@@ -1,0 +1,45 @@
+from functools import wraps
+from inspect import signature
+from typing import Callable, Optional, Union
+
+from click import get_current_context
+from click.core import Context
+
+from cornflakes.decorator.click.rich._rich_argument import RichArg
+from cornflakes.decorator.click.rich._rich_command import RichCommand
+from cornflakes.decorator.click.rich._rich_group import RichGroup
+
+F = Callable[..., Union[RichCommand, RichGroup, RichArg]]
+
+
+def rich_global_option_wrapper(click_func, *wrap_args, pass_context: Optional[bool] = None, **wrap_kwargs) -> F:
+    """Wrapper Method for rich command / group."""
+
+    def global_option_click_decorator(func):
+        click_cls = click_func(*wrap_args, **wrap_kwargs)(func)
+
+        @wraps(func)
+        def click_callback(*args, **kwargs):
+            kwargs["self"]: RichGroup = func
+            kwargs["parent"]: RichGroup = click_cls
+            if pass_context:
+                kwargs["ctx"]: Optional["Context"] = get_current_context()
+            if click_cls.config:
+                if click_cls.config.GLOBAL_OPTIONS and func.__module__ != "cornflakes.click":
+                    for option_obj in click_cls.config.GLOBAL_OPTIONS:
+                        option_obj(
+                            *args,
+                            **{
+                                key: value
+                                for key, value in kwargs.items()
+                                if key in signature(option_obj).parameters.keys()
+                            },
+                        )
+            return func(
+                *args, **{key: value for key, value in kwargs.items() if key in signature(func).parameters.keys()}
+            )
+
+        click_cls.callback = click_callback
+        return click_cls
+
+    return global_option_click_decorator
