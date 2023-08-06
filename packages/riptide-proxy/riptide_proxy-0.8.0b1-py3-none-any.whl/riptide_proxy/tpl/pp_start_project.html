@@ -1,0 +1,28 @@
+{% include 'head.html' %}
+<h1>Starting {{ project["name"] }}...</h1>
+<p>The service "{{ service_name }}" in "{{ project["name"] }}" is not running. </p>
+<p>Autostart ist enabled. The services in the project will now be started...</p>
+<hr>
+<p id="stuck-warning">If the process is stuck and you wish to reset it, run riptide stop and restart the proxy server.</p>
+<p id="error-warning">Startup of one or more services failed.</p>
+<div id="autostart-table">
+    {% for service in services_to_start %}
+        <div class="at-entry" data-service="{{ service }}">
+            <div class="at-row">
+                <div class="at-col col-name">{{ service }}</div>
+                <div class="at-col col-step">
+                    <span class="k">?</span>/<span class="n">?</span>
+                </div>
+                <div class="at-col col-progress">
+                    <div class="progress wrapper">
+                        <div class="progress progress-bar yellow" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="at-entry-status">...</div>
+        </div>
+    {% end %}
+</div>
+<div id="autostart-error"></div>
+<script>{% include 'socket.js' %}</script>
+{% include 'foot.html' %}
