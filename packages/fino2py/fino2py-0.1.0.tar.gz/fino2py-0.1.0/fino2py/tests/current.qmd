@@ -1,0 +1,814 @@
+---
+jupyter: fino2py
+---
+
+# Finometer to python example project.
+
+This document is a working example of how I've written and apllied this code to you Project. I will have sent on the two data files in the email, So make sure you check them at the appropriate points. 
+
+```{python}
+import pandas as pd
+import numpy as np
+import pathlib as pl
+import datetime as dt
+from typing import Union, Optional, Tuple, List
+from functools import reduce #needed to allow merging of multiple datasets      
+
+
+# saving the name of the data directory
+data_folder = pl.Path(r'..\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23')
+
+# saving the path to the timestamps file
+time_stamps = r'..\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Timesheets (1).csv'
+
+# times columns
+time_columns = ['Participant ID', 'Start of Baseline', 'End of Baseline', 'Start of Task 1', 'End of Task 1', 'Start of Recovery Period', 'End of Recovery Period']
+
+#saving path to output directory
+output = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\output')
+```
+
+I have converted this to markdown so that it can't be re rerun. But the point of this cell is to clean up the case convention (upper and lowercase)
+used in the naming here. 
+```
+
+
+# Loop through all files and folders in the tree containing the word 'participant'
+for entry in data_folder.glob('**/*participant*'):
+    # Check if the entry is a file or folder
+    if entry.is_file() or entry.is_dir():
+        # Get the current name of the file or folder
+        current_name = entry.name
+        # Convert the name to sentence case using the title() method
+        new_name = current_name.replace('participant', 'Participant').title()
+        # Rename the file or folder with the new name
+        entry.rename(entry.with_name(new_name))
+
+
+# Loop through all files in the tree containing the word 'participant'
+for entry in data_folder.glob('**/*participant*'):
+    # Check if the entry is a file
+    if entry.is_file():
+        # Get the current suffix (file extension) of the file
+        current_suffix = entry.suffix
+        # Convert the suffix to lowercase using the lower() method
+        new_suffix = current_suffix.lower()
+        # Rename the file with the new suffix
+        new_entry = entry.with_suffix(new_suffix)
+        entry.rename(new_entry)
+
+#Cleaining up from previous tests
+for i in data_folder.glob('**/*.csv'):
+    i.unlink()
+
+```
+
+After this I need to work on finding the participants with two parts, then merging parts one and two together into a single file. 
+
+```{python}
+multipart = []
+
+for i in data_folder.iterdir():
+    if i.is_dir():
+        #check if ' Part 2' is in the stem of the folder
+        if 'Part ' in i.stem:
+            # save the folder name to a list
+            folder_name = i.name
+            multipart.append(folder_name)
+
+
+
+
+[print(i) for i in multipart]
+```
+
+Ok so we've found 3 participants with multipart studies. 
+
+ Participant 23
+ Participant 30
+ Participant 65
+
+I need to clean up the nameing of the first part of Participant 23, and then I need to work on combining parts 1 and 2 into one `.txt` file for all of them. I'm documenting this here so that it's accounted for. I'm going to do it in a code cell and then conver the cell to markdown to be safe. 
+
+```
+# removeing the words ' Part 1' from the folder and file stems
+for i in data_folder.glob('**/*'):
+    if ' Part 1' in i.stem:
+        new_stem = i.stem.replace(' Part 1', '')
+        new_name = i.parent.joinpath(new_stem + i.suffix)
+        i.rename(new_name)
+        print(new_name)
+```
+
+Now to do some text editing and resaving. 
+
+So what I need to do is 
+ 1. find the part 1 `.txt` file and the part 2 `.txt` file
+ 2. read them both into memory
+ 3. extract the data (which begins on line 9 of the `.txt` files) from the part 2 file
+ 4. write those lines onto the the end of the data in the part 1 folder __without editing any of the earlier parts of the part 1 file__
+ 5. save this new version of the part 1 `.txt`
+  - maybe save a note on one of the blank lines that this is a new file, but this can't change the header structure (add new lines before line 9)
+
+Also, for the mean time I should save these new `.txt` files in an output folder...
+
+Let's see what I can do. 
+
+
+
+```{python}
+# saving the path to both part 1 and part 2 of participant 23
+part1_23 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 23_2022-11-04_16.31.31\Participant 23_2022-11-04_16.31.31.txt')
+part2_23 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 23 Part 2_2022-11-04_17.00.16\Participant 23 Part 2_2022-11-04_17.00.16.txt')
+combined_23 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\output\Participant 23_2022-11-04_16.31.31.txt')
+
+def append_cardio_data(
+    part1_file: Union[str, pl.Path],
+    part2_file: Union[str, pl.Path],
+    output_file: Optional[Union[str, pl.Path]] = None
+) -> List[str]:
+    '''
+    Appends cardiovascular data from part 2 file to part 1 file and optionally writes the combined data to an output file.
+
+    Parameters
+    ----------
+    part1_file : Union[str, Path]
+        File path of the part 1 file.
+    part2_file : Union[str, Path]
+        File path of the part 2 file.
+    output_file : Union[str, Path], optional
+        File path of the output file to write the combined data (default is None).
+
+    Returns
+    -------
+    List[str]
+        List of combined cardiovascular data.
+    '''
+    
+    # Step 1: Read in the part 1 file
+    with open(part1_file, 'r') as f:
+        lines_part1 = f.readlines()
+
+    # Step 2: Save the header above line 9 in file 1
+    header_part1 = lines_part1[:8]
+
+    # Step 3: Save the data from line 9 down from file 1
+    data_part1 = lines_part1[8:]
+
+    # Step 4: Save the data from line 9 down in file 2
+    with open(part2_file, 'r') as f:
+        lines_part2 = f.readlines()[9:]
+
+    # Step 5: Append the data from file 2 to the bottom of the data from file 1
+    combined_data = data_part1 + lines_part2
+    
+    if output_file is not None:
+        # Step 6: Write all three things to a .txt file
+        with open(output_file, 'w') as f:
+            f.writelines(header_part1)
+            f.writelines(combined_data)
+    
+    return combined_data
+
+
+# # Example usage
+# append_cardio_data(part1_23, part2_23, combined_23)
+```
+
+So now when I run this I have a single file that combines both of the files for the participant (in this case Participant 23) into 1 `.txt` file, when you inspect the file you can see the time jump, partly because there's a skip in the `'Time (s)'` column, but also you can see the recalibration period as shown below
+
+```
+Time (s);Systolic Pressure (mmHg);Diastolic Pressure (mmHg);Mean Pressure (mmHg);Heart rate (bpm);Stroke Volume (ml);Left Ventricular Ejection Time (ms);Pulse Interval (ms);...
+16:57:17.135;201;168;186;117;15.8;300;515;742;1.8;6.090;8120;;
+17:00:19.705;0;0;0;103;0.0;0;585;0;0.0;0.000;0;;
+17:00:20.290;0;0;0;103;0.0;0;580;0;0.0;0.000;0;;
+17:00:20.870;0;0;0;76;0.0;0;785;0;0.0;0.000;0;;
+17:00:21.655;0;0;0;31;0.0;0;1910;0;0.0;0.000;0;;
+17:00:23.565;0;0;0;53;0.0;0;1130;0;0.0;0.000;0;;
+17:00:24.695;0;0;0;100;0.0;0;600;0;0.0;0.000;0;; 
+17:00:25.295;0;0;0;98;0.0;0;615;0;0.0;0.000;0;;
+17:00:25.910;0;0;0;99;0.0;0;605;0;0.0;0.000;0;;
+17:00:26.515;0;0;0;101;0.0;0;595;0;0.0;0.000;0;;
+17:00:27.110;0;0;0;102;0.0;0;590;0;0.0;0.000;0;;
+17:00:27.700;0;0;0;98;0.0;0;615;0;0.0;0.000;0;;
+17:00:28.315;0;0;0;93;0.0;0;645;0;0.0;0.000;0;;
+17:00:28.960;0;0;0;90;0.0;0;670;0;0.0;0.000;0;;
+17:00:29.630;0;0;0;97;0.0;0;620;0;0.0;0.000;0;;
+17:00:30.250;0;0;0;91;0.0;0;660;0;0.0;0.000;0;;
+17:00:30.910;0;0;0;94;0.0;0;640;0;0.0;0.000;0;;
+17:00:31.550;0;0;0;92;0.0;0;650;0;0.0;0.000;0;;
+17:00:32.200;0;0;0;90;0.0;0;670;0;0.0;0.000;0;;
+17:00:32.870;0;0;0;86;0.0;0;700;0;0.0;0.000;0;;
+17:00:33.570;0;0;0;88;0.0;0;685;0;0.0;0.000;0;;
+17:00:34.255;0;0;0;86;0.0;0;695;0;0.0;0.000;0;;
+17:00:34.950;0;0;0;83;0.0;0;720;0;0.0;0.000;0;;
+17:00:35.670;0;0;0;80;0.0;0;750;0;0.0;0.000;0;;
+17:00:36.420;0;0;0;77;0.0;0;775;0;0.0;0.000;0;;
+17:00:37.194;176;112;136;90;46.0;295;670;1675;4.1;1.977;2636;;
+
+```
+
+Now that we know we have a function that will work we can run it on the 3 problem participants and overwrite the part 1 `.txt` file with full data. This is a big part of why I wanted to document this process in a notebook so everyone can see exactly what's been done. I can very easily call it on the participant 23 files because of the work up above
+
+```{python}
+# commented out to avoid overwriting the file
+# append_cardio_data(part1_23, part2_23, part1_23)
+```
+
+So now, Participant 23 has 1 file, in the folder with the correct name. 
+
+Lets do the same for Participants 30 and 65
+
+```{python}
+# saving the path to both part 1 and part 2 of participant 30
+p30_01 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 30_2022-11-08_10.40.42\Participant 30_2022-11-08_10.40.42.txt')
+p30_02 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 30 Part 2_2022-11-08_11.24.07\Participant 30 Part 2_2022-11-08_11.24.07.txt')
+
+# saving the path to both part 1 and part 2 of participant 65
+p65_01 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 65_2022-11-22_10.40.43\Participant 65_2022-11-22_10.40.43.txt')
+p65_02 = pl.Path(r'C:\Users\kevin.omalley\OneDrive - University of Limerick\Documents\GitHub\fino2py\all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 65 Part 2_2022-11-22_11.18.00\Participant 65 Part 2_2022-11-22_11.18.00.txt')
+
+# creating the combined file for participant 30
+# append_cardio_data(p30_01, p30_02, p30_01)
+# commented to avoid repeating it now that the original part 1 file has been overwritten
+```
+
+```{python}
+# creating the combined file for participant 65
+# append_cardio_data(p65_01, p65_02, p65_01) 
+# commented to avoid repeating it now that the original part 1 file  has been overwritten
+```
+
+The 3 participants with multiple parts have been written together into a single `.txt` file (per participant), the original part 1 file has been overwritten to contain all the data and now I'm going to manually delete the part 2 folders for each person. This is why a 'raw' data corpus has been saved seperately as a zip archive so we can always go back and look at that data if needed. 
+
+# Functions
+From here down are the function definitions. I'm not sure currently how to split this up currently as the functions don't follow on in order, but I'll see how that feels from now on. 
+
+## Times
+
+The functions immediately below relate handling the various time objects. There are two types of times
+ 1. The `Time(s)` generated by the finometer as it captures data at each heart beat.
+  - these are in the format '12:13:02.154' (`'%H:%M:%S.%f'`). 
+ 2. The 'timestamps' generated by the research as the mark the start and end of each testing stage in their protocol.
+  - these are either in the format '12:13:02' (`'%H:%M:%S'` this is preferable), or '12:13' (`'%H:%M'`, this would indicate a minor issue in timekeeping)
+
+These require different functions and they need to be defined before the importing and reshaping takes place.  
+
+```{python}
+def convert_fino_time(fino_time: str) -> dt.datetime.time:
+    """
+    Converts the string times produced by the Finometer to datime objects in the '%H:%M:%S.%f' format.
+
+    Parameters:
+    ----------
+    fino_time : str
+        The Finometer time in the format '%H:%M:%S.%f'
+
+    Returns:
+    -------
+    datetime.time
+        The time as a `datetime.time` object.
+    """
+    try:
+        time = dt.datetime.strptime(fino_time, '%H:%M:%S.%f').time()
+        time_str_no_ms = time.strftime('%H:%M:%S')
+        time_obj_no_ms = dt.datetime.strptime(time_str_no_ms, '%H:%M:%S').time()
+    except Exception as e:
+        raise ValueError(f"Failed to convert time {fino_time} to datetime object. Error: {e}")
+
+    return time_obj_no_ms
+```
+
+```{python}
+def convert_timestamp_time(timestamp_time: str) -> dt.datetime.time:
+    """
+    Convert the timestamp time in the format '09:02:12' to datetime.time object without microseconds.
+
+    Parameters:
+    ----------
+    timestamp_time : str
+        The timestamp time in the format '09:02:12'
+
+    Returns:
+    -------
+    datetime.time
+        The time as a `datetime.time` object.
+    """
+    try:
+        time = dt.datetime.strptime(timestamp_time, '%H:%M:%S').time()
+    except Exception as e:
+        raise ValueError(f"Failed to convert time {timestamp_time} to datetime object. Error: {e}")
+
+    return time
+```
+
+```{python}
+def convert_partial_time(partial_time: str) -> dt.datetime.time:
+    """
+    Convert the partial time in the format '09:02' to a datetime.time object with 0 seconds.
+
+    Parameters:
+    ----------
+    partial_time : str
+        The partial time in the format '09:02'
+
+    Returns:
+    -------
+    datetime.time
+        The time as a `datetime.time` object with 0 seconds.
+    """
+    try:
+        time = dt.datetime.strptime(partial_time, '%H:%M').time()
+        time_str = time.strftime('%H:%M:%S')
+        time_obj = dt.datetime.strptime(time_str, '%H:%M:%S').time()
+    except Exception as e:
+        raise ValueError(f"Failed to convert time {partial_time} to datetime object. Error: {e}")
+
+    return time_obj
+```
+
+```{python}
+print(convert_partial_time('09:02'), type(convert_partial_time('09:02')))
+```
+
+```{python}
+print(convert_timestamp_time('09:02:12'), type(convert_timestamp_time('09:02:12')))
+```
+
+```{python}
+print(convert_fino_time('09:02:12.142'),type(convert_fino_time('09:02:12.142')))
+```
+
+These functions appear to return the kind of object that we need to do the work, and the edit all the required times into the same `'%H:%M:%S'` format. So the next step is to define the functions that import the data from the finometer. 
+
+## importing 
+
+```{python}
+def read_raw_finometer_data(folder_path: Union[str, pl.Path], interval: Optional[str] = None, save_csv: bool = False) -> Tuple[pd.DataFrame, str]:
+    '''This function imports the raw finometer data and then calculates the average of each measure over the selected time period
+    The default time period is 1 minute, but this can be changed by setting the interval parameter to a different value. 
+    This function may not be needed in many cases, but it is useful to have, and a good place to start.
+    
+    Parameters
+    ----------
+    folder_path : pathlib.Path object or str 
+        The path to the folder containing the .txt file
+    interval : str, optional
+        If provided, the function will resample the data to the given interval and return the resampled data.
+    save_csv : bool, optional
+        If True, the function will save the imported data as a .csv file in the same folder as the .txt file.
+        The default is False.
+    Raises
+    ------
+    TypeError:
+        If folder_path is not a pathlib.Path object or a string
+    ValueError:
+        If folder_path does not exist or is not a directory
+        If there is not exactly one .txt file in the folder
+
+    Returns
+    -------
+    pandas.DataFrame:
+        Dataframe with the raw finometer data resampled to the given interval
+
+    ID : str
+        The Participant ID of the participant whose data is being imported
+    '''
+    
+    try:
+        folder_path = pl.Path(folder_path)
+    except TypeError:
+        raise TypeError('folder_path must be a pathlib.Path object or a string')
+
+    if not folder_path.exists():
+        raise ValueError('folder_path does not exist')
+
+    if folder_path.is_dir():
+        files = [file for file in folder_path.glob('*.txt')]
+        if len(files) != 1:
+            raise ValueError(f'Expected one .txt file, but found {len(files)} in the folder {folder_path.name}')
+        file = files[0]
+    elif folder_path.is_file():
+        file = folder_path
+
+    ID = file.stem.split('_')[0]
+
+
+
+    df = pd.read_csv(
+        file,
+        sep=';',
+        header=0,
+        skiprows=8,
+        skipfooter=1,
+        engine='python',
+    )
+
+    df = df[['Time (s)', 'Systolic Pressure (mmHg)', 'Diastolic Pressure (mmHg)',
+       'Mean Pressure (mmHg)', 'Heart rate (bpm)', 'Stroke Volume (ml)',
+       'Left Ventricular Ejection Time (ms)', 'Pulse Interval (ms)',
+       'Maximum Slope (mmHg/s)', 'Cardiac Output (l/min)',
+       'Total Peripheral Resistance Medical Unit (mmHg.min/l)',
+       'Total Peripheral Resistance CGS (dyn.s/cm5)', 'Markers']]
+
+    df.index = pd.to_datetime(df['Time (s)'], format='%H:%M:%S.%f').dt.floor('ms')
+    df = df.drop('Time (s)', axis=1)
+
+    if interval: # if the user specifies an interval, resample the data to that interval
+        df = df.resample(f'{interval}').mean()
+        df.index = df.index.strftime('%H:%M:%S.%f').str[:-3]
+    else:
+        df.index = df.index.strftime('%H:%M:%S.%f').str[:-3]
+
+    csv_path = folder_path / file.with_stem(f'imported data for {ID}').with_suffix('.csv')
+    if save_csv:
+        df.to_csv(csv_path, index=True)
+
+    return df, ID
+
+```
+
+```{python}
+a, a_id = read_raw_finometer_data([i for i in data_folder.iterdir() if i.is_dir()][0], save_csv=True)
+```
+
+```{python}
+a.columns
+```
+
+```{python}
+def import_demographics(folder_path: str) -> pd.DataFrame:
+    """
+    Reads in the demographics from the .txt file and returns a DataFrame row containing the data.
+
+    Parameters:
+    file_path (str): Path to the demographics file.
+
+    Returns:
+    demographics_df (pd.DataFrame): DataFrame containing the demographics data.
+    """
+
+    try:
+        folder_path = pl.Path(folder_path)
+    except TypeError:
+        raise TypeError('folder_path must be a pathlib.Path object or a string')
+
+    if not folder_path.exists():
+        raise ValueError('folder_path does not exist')
+
+    if folder_path.is_dir():
+        files = [file for file in folder_path.glob('*.txt')]
+        if len(files) != 1:
+            raise ValueError(f'Expected one .txt file, but found {len(files)} in the folder')
+        file = files[0]
+    elif folder_path.is_file():
+        file = folder_path
+
+    ID = file.stem.split('_')[0]
+
+    # Read in the demographics data from the file
+    df = pd.read_csv(
+        file,
+        sep=';',
+        header=0,
+        skiprows=2,
+        nrows=1,
+        engine='python'
+        )
+
+    # Select the relevant columns from the DataFrame
+    demographics_df = df.loc[:, ['Identification', 'Age (yrs)', 'Height (cm)', 'Weight (kg)', 'Gender']]
+
+    # Rename the columns
+    demographics_df.columns = ['Participant ID', 'Age (years)', 'Height (cm)', 'Weight (kg)', 'Gender']
+
+
+    return demographics_df
+```
+
+```{python}
+def create_chunk(df, ID, tag, start, end):
+    """
+    Create a chunk of data from a dataframe between specified start and end times and return a new dataframe
+    containing the mean values for each column in the chunk.
+    
+    Parameters:
+    -----------
+    df : pandas DataFrame
+        The dataframe containing the data to extract a chunk from.
+    ID : str
+        The participant ID to include in the output dataframe.
+    tag : str
+        The tag to include in the column names of the output dataframe.
+    start : str or None
+        The start time of the chunk in the format 'HH:MM:SS' or 'HH:MM:SS.mmm'. If None, the chunk starts at the 
+        beginning of the dataframe.
+    end : str or None
+        The end time of the chunk in the format 'HH:MM:SS' or 'HH:MM:SS.mmm'. If None, the chunk ends at the 
+        end of the dataframe.
+    
+    Returns:
+    --------
+    pandas DataFrame
+        A new dataframe containing the mean values for each column in the specified chunk of the input dataframe.
+        The output dataframe has a row for the specified participant ID and columns with names that include the
+        specified tag.
+    """
+    # Convert the index to datetime (although this still feels like a kludge and I don't like it)
+    df.index = pd.to_datetime(df.index, format='%H:%M:%S.%f')
+
+
+    # Extract the chunk of data and compute the mean values for each column
+    try:
+        if start and end:
+            chunk = df.between_time(start_time=start, end_time=end).mean().to_frame().T
+        elif start:
+            chunk = df.between_time(start_time=start).mean().to_frame().T
+        elif end:
+            chunk = df.between_time(end_time=end).mean().to_frame().T
+        else:
+            chunk = df.mean().to_frame().T
+    except Exception as e:
+        raise ValueError(f"Failed to extract chunk between {start} and {end}. Error: {e}")
+    
+    # Rename the columns with the specified tag and insert the participant ID as the first column
+    chunk.columns = [f"{tag} {i}" for i in chunk.columns]
+    chunk.insert(0, 'Participant ID', ID)
+
+    return chunk
+```
+
+```{python}
+def import_protocol_times(times_file_path: Union[pl.Path,str], cols_to_keep: list, save_csv: bool = False) -> pd.DataFrame:
+    '''
+    This function imports the protocol times from a .csv file and returns a cleaned pandas dataframe with the protocol times for each participant.
+
+    Parameters
+    ----------
+    times_file_path : pathlib.Path or str
+        The path to the .csv file containing the protocol times.
+    save_csv : bool, optional
+        If True, the imported data will be saved as a .csv file in the same folder as the .csv file.
+
+    Raises
+    ------
+    TypeError:
+        If times_file_path is not a pathlib.Path object.
+    ValueError:
+        If times_file_path does not exist or is not a file.
+        If times_file_path does not have a .csv extension.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A cleaned pandas dataframe with the protocol times for each participant.
+    '''
+    
+    assert isinstance(times_file_path, (str, pl.Path)), 'file_path must be a pathlib.Path object or a string that can be converted to one.'
+    if isinstance(times_file_path, str):
+        times_file_path = pl.Path(times_file_path)
+    
+    assert times_file_path.exists(), 'file_path does not exist'
+    assert times_file_path.is_file(), 'file_path is not a file'
+    assert times_file_path.suffix == '.csv', 'file_path is not a csv file, please save times file as a .csv file'
+
+    def convert_time(time_str):
+        '''This function converts a time string to a datetime object if possible'''
+        try:
+            time_str = time_str.strip('"')
+            if len(time_str) == 5:
+                return convert_partial_time(time_str)
+            elif len(time_str) == 8:
+                return convert_timestamp_time(time_str)
+            else:
+                return np.nan
+        except Exception as e:
+            return np.nan
+
+    df = pd.read_csv(times_file_path)
+    df.columns = [col.strip() for col in df.columns]
+    
+    if cols_to_keep:
+        df = df[cols_to_keep]
+    
+    for col in df.columns[1:]:
+        df[col] = df[col].apply(convert_time)
+
+    if save_csv: #if you want to save the csv file (which may be useful if you want to use the data in other ways)
+        try:
+            df.to_csv(times_file_path.parent / f"cleaned times.csv", index=False)
+            print(f"CSV saved for {times_file_path.stem}")
+        except Exception as e:
+            print(f"Could not save csv file, error: {e}")
+
+    return df
+```
+
+```{python}
+y = import_protocol_times(
+    time_stamps, time_columns)
+
+y.head()
+```
+
+```{python}
+y[y.isna().any(axis=1)]
+```
+
+```{python}
+# testing version of the function 
+
+def import_protocol_averages(frame, id, times=None, save_csv=None):
+    '''A function that imports the averaged finometer files (which have already been processed from the raw data)
+    to produce averages for each section of the experimental protocol.
+
+    Parameters
+    ----------
+    frame : pandas.DataFrame 
+        The DataFrame containing the averaged finometer data
+    id : str
+        The participant ID
+    save_csv : bool, optional
+        If True, the imported data will be saved as a .csv file in the same folder as the .csv file, 
+        this is not always needed and should be used sparingly
+    times : dict, optional
+        A dictionary of tuples of times, with the keys being the names of the time periods.
+
+    Returns
+    -------
+    pandas.DataFrame
+        A DataFrame with the mean values of the given columns during each time period of the study.
+
+    Raises
+    ------
+    TypeError
+        If frame is not a pandas.DataFrame object
+        If id is not a string
+    ValueError
+        If times is not provided as a dictionary with at least one key-value pair
+        If there are not enough times provided for a given time period
+        If there are too many times provided for a given time period
+    '''
+
+    # check if frame is a pandas.DataFrame object
+    if not isinstance(frame, pd.DataFrame):
+        raise TypeError('''
+        frame must be a pandas.DataFrame object, produced by the read_raw_finometer_data function, 
+        have you run the read_raw_finometer_data function on the data?''')
+
+    if not isinstance(id, str):
+        raise TypeError('id must be a string')
+
+    if not times:
+        raise ValueError("times must be a dictionary and at least one key-value pair must be provided.")
+    
+    # Create an empty list of dataframes, each representing a chunk of the protocol
+    chunks = []
+    
+    for i in times.keys():
+        if len(times[i]) < 2:
+            raise ValueError(f"There are not enough times provided for the {i}.")
+        elif len(times[i]) > 2:
+            raise ValueError(f"There are too many times provided for the {i}.")
+        elif len(times[i]) == 2:
+            if times[i][0] < times[i][1]:
+                chunks.append(create_chunk(frame, id, i, times[i][0], times[i][1]))
+
+
+
+    data_merge = reduce(lambda left, right: pd.merge(left, right, on=["Participant ID"], how="outer"), chunks)
+    data_merge.set_index('Participant ID', inplace=True)
+
+    if save_csv:
+        path = pl.Path(save_csv)
+        data_merge.to_csv( path / f"{id} protocol_averages.csv")
+        print(f"Saved {id} protocol averages.csv to {path.stem}")
+
+    return data_merge
+```
+
+```{python}
+# this cell runs the functions on all the different files and writes them to a single dataframe
+
+import warnings
+
+warnings.filterwarnings('ignore')
+dfs = []
+
+for row in y.iterrows():
+    id = row[1][0]
+    times = {'baseline' : [row[1][1], row[1][2]], 'task' : [row[1][3], row[1][4]], 'recovery' : [row[1][5], row[1][6]]}
+
+
+    for folder in data_folder.glob('**'):
+        if id == folder.stem.split('_')[0]:
+            df, df_id = read_raw_finometer_data(folder)
+
+            try:
+                dfs.append(import_protocol_averages(df, df_id, times))
+            except:
+                print(f"Could not import protocol averages for {id}")
+
+warnings.filterwarnings('default')
+
+
+
+
+result_df = pd.concat(dfs, axis=0)
+
+```
+
+```{python}
+# Then I save them to an excel file
+# result_df.to_excel(output/'Ailbhe data time one and two.xlsx')
+
+# and view the first 20 rows
+result_df.head(20)
+```
+
+As we can see from the rows above, the files are being read in, but because the naming of the folders and files hasn't been fixed the rows are very messy. For example, we can see that there are 3 rows the 'Participant 11' in the 'Participant ID' column. This is because there's 3 different folders with the name 'Participant 11' followed by date and time information. This is because there are 3 different participant 11 (maybe there was multiple starts and stops with this person?). 
+
+If we look at the folder called `'all_data\Finometer Data Semester 1 and 2 14.04.23\Participant 3_2022-10-27_12.16.15'` we can see that the files are called `'Participant 3_2022-10-27_12.16.15\Eve_2022-10-27_12.16.15....'` so the filenames don't match the folder names and the ID's within the `.txt` files match the file names and not the folders. 
+
+I need to fix this for this project (and make sure it doesn't happen in future projects) 
+
+So lets start by deleting folders that don't belong any more, this will include the duplicates and the 'Part 2' Folders that we mentioned earlier. 
+
+(This is being done manually so there's no code cell for it...)
+
+Then I need to iterate over every folder, then over the files in each folder, and if the file stems don't match the folder name I need to replace them. This is worrying though because if we examine the  particpant 7 folder, the `.txt` file is called '\Participant 7_2022-10-28_13.40.16\8_2022-10-28_13.40.16.txt`'
+
+I'm just going to trust that the folder titles are correct and go with that. 
+
+
+```
+
+#converting this cell to Markdown so it doesn't run again when knitting
+
+#renaming the files stems to match the folder names
+# iterate over the top level of the data folder
+for i in data_folder.glob('*'):
+    #check to see if the file is a directory
+    if i.is_dir():
+        #iterate over the files in the directory
+        for j in i.glob('*'):
+            #check if the file stem is the same as the folder stem
+            if j.stem == i.stem:
+                pass
+            #if not, rename the file stem to match the folder stem with the original suffix
+            else:
+                j.rename(j.parent / f"{i.stem}{j.suffix}")
+
+```
+
+Now that that's done, we can rerun the cell that made that results df for us again, I'm going to paste a new cell in to do this instead of just going back up and rerunning the cell, I save a second version of the excel file then, that is named for (*hopefully*) with the correct participant names in the ID columns 
+
+```{python}
+# this cell runs the functions on all the different files and writes them to a single dataframe
+
+import warnings
+
+warnings.filterwarnings('ignore')
+dfs = []
+
+for row in y.iterrows():
+    id = row[1][0]
+    times = {'baseline' : [row[1][1], row[1][2]], 'task' : [row[1][3], row[1][4]], 'recovery' : [row[1][5], row[1][6]]}
+
+
+    for folder in data_folder.glob('**'):
+        if id == folder.stem.split('_')[0]:
+            df, df_id = read_raw_finometer_data(folder)
+
+            try:
+                dfs.append(import_protocol_averages(df, df_id, times))
+            except:
+                print(f"Could not import protocol averages for {id}")
+
+warnings.filterwarnings('default')
+
+
+
+
+new_result_df = pd.concat(dfs, axis=0)
+```
+
+```{python}
+# viewing the first 20 rows of the new dataframe
+new_result_df.head(20)
+```
+
+The head of that dataset looks much better, there's an issue with participant 10 and 20 but everyone else looks good. Hopefully this data is enough for you to work with. 
+
+I'm going to save it to an excel file now. 
+
+```{python}
+new_result_df.to_excel(output/'Ailbhe data time one and two (naming fixed).xlsx')
+```
+
+OK, so you should now have 2 datasets, one which has loads of bad data in it to show you how important it is to get the protocol right, and one where the data has been pre cleaned a little. Hopefully this is enough for you to do the analysis with Stephen on Monday. 
+
+All the best, 
+
+Kev
+
