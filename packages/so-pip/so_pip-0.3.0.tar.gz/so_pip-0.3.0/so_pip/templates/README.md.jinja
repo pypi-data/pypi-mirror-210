@@ -1,0 +1,32 @@
+## General info
+This project is code extracted from the question ["{{ item["title"] }}"]({{ item["url"] }})
+
+- Original Post [in html](post.html), [in markdown](post.md), [in text](post.txt)
+
+## Setup
+To build and install this package:
+
+{% if item["language"] == "python" %}
+    ```
+    # Read code to see if it all looks legit
+    $ python setup.py build sdist
+    # copy vendor_packages folder to your code base
+    # Add vendor folder to PYTHONPATH
+    $ pip install vendor_packages/*.* -t vendor
+    ```
+    Don't push to pypi unless you put substantial effort into it, pypi is already full of junk.
+{% elif item["language"] == "lua" %}
+    TODO: lua rocks usage example
+{% elif item["language"] == "go" %}
+    TODO: go module usage example
+{% else %}
+    consult documentation for the {{ item["language"] }} language as to how to use or package it.
+{% endif %}
+
+
+## Supporting Documents
+- [Contributing](CONTRIBUTING.md)
+- [Change Log](CHANGELOG.md)
+- [Authors](AUTHORS.md)
+- [Code of Conduct](CODE_OF_CONDUCT.txt)
+- [Licenses](LICENSE/)
