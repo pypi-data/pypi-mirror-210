@@ -1,0 +1,18 @@
+- id: cercis
+  name: cercis
+  description: "Cercis: a more configurable Python code formatter"
+  entry: cercis
+  language: python
+  minimum_pre_commit_version: 2.9.2
+  require_serial: true
+  types_or: [python, pyi]
+- id: cercis-jupyter
+  name: cercis-jupyter
+  description:
+    "Cercis: a more configurable Python code formatter (with Jupyter Notebook support)"
+  entry: cercis
+  language: python
+  minimum_pre_commit_version: 2.9.2
+  require_serial: true
+  types_or: [python, pyi, jupyter]
+  additional_dependencies: [".[jupyter]"]
