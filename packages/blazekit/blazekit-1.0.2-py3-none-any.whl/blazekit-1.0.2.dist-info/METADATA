@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: blazekit
+Version: 1.0.2
+Summary: UI to interact with Kubernetes Clusters
+Home-page: UNKNOWN
+Author: Rishabh Jain
+Author-email: rishabhking05@gmail.com
+License: UNKNOWN
+Project-URL: Source Code, https://github.com/rishabhjain05/BlazeKit
+Keywords: python,kubernetes,aws cli
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: bleach (==6.0.0)
+Requires-Dist: certifi (==2023.5.7)
+Requires-Dist: charset-normalizer (==3.1.0)
+Requires-Dist: docutils (==0.20.1)
+Requires-Dist: idna (==3.4)
+Requires-Dist: importlib-metadata (==6.6.0)
+Requires-Dist: importlib-resources (==5.12.0)
+Requires-Dist: jaraco.classes (==3.2.3)
+Requires-Dist: keyring (==23.13.1)
+Requires-Dist: markdown-it-py (==2.2.0)
+Requires-Dist: mdurl (==0.1.2)
+Requires-Dist: more-itertools (==9.1.0)
+Requires-Dist: pkginfo (==1.9.6)
+Requires-Dist: Pygments (==2.15.1)
+Requires-Dist: readme-renderer (==37.3)
+Requires-Dist: requests (==2.30.0)
+Requires-Dist: requests-toolbelt (==1.0.0)
+Requires-Dist: rfc3986 (==2.0.0)
+Requires-Dist: rich (==13.3.5)
+Requires-Dist: six (==1.16.0)
+Requires-Dist: twine (==4.0.2)
+Requires-Dist: typing-extensions (==4.5.0)
+Requires-Dist: urllib3 (==2.0.2)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: zipp (==3.15.0)
+
+# BlazeKit
+
+The Blazekit project is a user-friendly graphical interface that allows users to interact with a Kubernetes cluster without the need for advanced command-line knowledge. With this GUI, users can easily manage their Kubernetes resources, deploy applications, monitor cluster health, and perform various other operations, all through an intuitive and visually appealing interface.
+
+## Usage
+
+v1.0.2
+1. Clear Screen
+2. Install Kubectl
+3. Install AWS CLI
+4. Cluster Health
+5. Show Pods
+6. View Pods Details
+7. Describe a Pod
+8. Show Nodes
+9. View Nodes Details
+10. Describe a Node
+11. Show Deployments
+12. Describe a Deployment
+13. Show Services
+14. Describe a Service
+15. Terminal
+16. Delete Evicted Pods
+
+![Screenshot 2023-05-27 at 3 40 40 PM](https://github.com/rishabhjain05/BlazeKit/assets/36572497/1b4d3438-181b-47c9-80a8-2f939461bf29)
+
+## Getting Started
+
+To get started with BlazeKit, follow these steps:
+
+1. **Install the library**: Run the following command to install the library
+   ```shell
+   python3 -m pip install blazekit
+   ```
+
+2. **Run blazekit**: Run BlazeKit with the following command
+   ```shell
+   python3 -m blazekit
+   ```
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to BlazeKit, please fork the repository and create a pull request.
+
