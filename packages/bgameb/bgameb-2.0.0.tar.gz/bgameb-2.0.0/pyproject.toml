@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=65.3.0", "wheel>=0.37.1", "incremental==21.3.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.towncrier]
+package = "bgameb"
+package_dir = "."
+single_file = true  # if false, filename is formatted like `title_format`.
+filename = "CHANGELOG.rst"
+directory = "bgameb/newsfragments/"
+title_format = "Release v{version} ({project_date})"
+start_string = ".. release notes"
+issue_format = "https://github.com/KonstantinKlepikov/BoardGameBuilder/issues/{issue}"
+underlines = "=-~"
+wrap = false  # Wrap text to 79 characters
+all_bullets = true  # make all fragments bullet points
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+pythonpath = [
+  "."
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.mypy]
+plugins = [
+  "pydantic.mypy"
+]
+follow_imports = "silent"
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+allow_redefinition = true
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
