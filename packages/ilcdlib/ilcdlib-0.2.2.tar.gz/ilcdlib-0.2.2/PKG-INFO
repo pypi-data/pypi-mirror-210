@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: ilcdlib
+Version: 0.2.2
+Summary: A toolkit for reading and writing ILCD format and it's derivatives
+Home-page: https://github.com/cchangelabs/ilcdlib
+License: Apache-2.0
+Author: C-Change Labs
+Author-email: support@c-change-labs.com
+Maintainer: C-Change Labs
+Maintainer-email: support@c-change-labs.com
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: cli
+Provides-Extra: lxml
+Requires-Dist: cli-rack (>=1.0.6) ; extra == "cli"
+Requires-Dist: lxml (>=4.9.2,<4.10.0) ; extra == "lxml"
+Requires-Dist: openepd (>=0.1.3,<1.0.0)
+Requires-Dist: urllib3 (>=1.26.16,<2.0.0)
+Project-URL: Repository, https://github.com/cchangelabs/ilcdlib
+Description-Content-Type: text/markdown
+
+# ILCD Lib
+
+<p align="center">
+<a href="https://pypi.org/project/ilcdlib/"><img src="https://img.shields.io/pypi/l/ilcdlib?style=for-the-badge" title="License: Apache-2"/></a> 
+<a href="https://pypi.org/project/ilcdlib/"><img src="https://img.shields.io/pypi/pyversions/ilcdlib?style=for-the-badge" title="Python Versions"/></a> 
+<a href="https://github.com/psf/black/"><img src="https://img.shields.io/badge/Code%20Style-black-black?style=for-the-badge" title="Code style: black"/></a> 
+<a href="https://pypi.org/project/ilcdlib/"><img src="https://img.shields.io/pypi/v/ilcdlib?style=for-the-badge" title="PyPy Version"/></a> 
+<a href="https://pypi.org/project/ilcdlib/"><img src="https://img.shields.io/pypi/dm/ilcdlib?style=for-the-badge" title="PyPy Downloads"/></a> 
+<br>
+<a href="https://github.com/cchangelabs/ilcdlib/actions/workflows/sanity-check.yml"><img src="https://img.shields.io/github/actions/workflow/status/cchangelabs/ilcdlib/sanity-check.yml?style=for-the-badge" title="Build Status"/></a> 
+<a href="https://github.com/cchangelabs/ilcdlib/"><img src="https://img.shields.io/github/last-commit/cchangelabs/ilcdlib?style=for-the-badge" title="Last Commit"/></a> 
+<a href="https://github.com/cchangelabs/ilcdlib/releases/"><img src="https://img.shields.io/github/release-date/cchangelabs/ilcdlib?style=for-the-badge" title="Last Release"/></a> 
+<a href="https://github.com/cchangelabs/ilcdlib/releases/"><img src="https://img.shields.io/github/v/release/cchangelabs/ilcdlib?style=for-the-badge" title="Recent Version"></a> 
+</p>
+
+Python library providing parsing capabilities for ILCD XML files.
+
+## For Developers
+
+### Requirements
+
+* Python 3.11+
+* sed
+* make
+
+### Setup
+
+```bash
+make setup
+```
+
+### Building a wheel
+
+```bash
+make build
+```
+
