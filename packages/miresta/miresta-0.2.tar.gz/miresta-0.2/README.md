@@ -1,0 +1,34 @@
+# miresta
+
+<!-- This are visual tags that you may add to your package at the beginning with useful information on your package --> 
+[![version](https://img.shields.io/pypi/v/pymiau?color=blue)](https://pypi.org/project/miresta/)
+[![downloads](https://img.shields.io/pypi/dw/pymiau)](https://pypi.org/project/miresta/)
+
+This package performs a subtraction between two numbers.
+
+<p align="center"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Farbolabc.com%2Fjuegos-de-restas&psig=AOvVaw0OJqtiEsboiquYNJsoQkPR&ust=1685123384663000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLiYr4aEkf8CFQAAAAAdAAAAABAR" alt="Logo""/></p>
+
+## Download and install
+
+
+If you are using `PyPI` installation it's as simple as:
+
+```
+pip install miresta
+```
+
+## Quick start
+
+In this section you should provide the most simple instructions to use
+your package.
+
+For instance:
+
+```
+import miresta
+
+```
+
+------------
+
+This package has been designed and written by Diana Carolina Zapata Zuluaga (C) 2023
