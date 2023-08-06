@@ -1,0 +1,6 @@
+[sqlalchemy.dialects]
+seqslab.hive = seqslab.sqlalchemy.hive:SeqsLabHiveDialect
+
+[superset.db_engine_specs]
+seqslab = seqslab.superset.seqslab:SeqsLabHiveEngineSpec
+

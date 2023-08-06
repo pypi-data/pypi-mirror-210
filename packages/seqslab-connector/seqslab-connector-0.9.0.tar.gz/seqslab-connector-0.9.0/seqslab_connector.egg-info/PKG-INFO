@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: seqslab-connector
+Version: 0.9.0
+Summary: Atgenomix SeqsLab Connector for Python
+Home-page: https://github.com/atgenomix/seqslab-connector
+Author: Allen Chang
+Author-email: allen.chang@atgenomix.com
+License: Apache License, Version 2.0
+Project-URL: Documentation, https://docs.atgenomix.com/
+Project-URL: Repository, https://github.com/atgenomix/seqslab-connector
+Description: # seqslab-connector
+        
+        The SeqsLab Connector for Python based on [pyhive](https://github.com/dropbox/PyHive) allows you to create 
+        a Python DB API connection to Atgenomix SeqsLab interactive jobs (clusters) and develop Python-based workflow applications. 
+        It is a Hive-Thrift-based client with no dependencies on ODBC or JDBC. 
+        It also provides a [SQLAlchemy](https://www.sqlalchemy.org/) dialect and an [Apache Superset](https://superset.apache.org/)
+        database engine spec for use with tools to execute DQL.
+        
+        You are welcome to file an issue for general use cases. You can also contact Atgenomix Support [here](https://console.seqslab.net).
+        
+        
+        ### Requirements
+        Python 3.7 or above is required.
+        
+        
+        ### Installation
+        
+        Install using pip.
+        
+        `pip install seqslab-connector` 
+        
+        For Apache Superset integration install with
+        
+        `pip install seqslab-connector[superset]`
+        
+        
+        ### Usage
+        
+        #### DB-API
+        
+        ```python
+        from seqslab import hive
+        
+        cursor = hive.connect(database='run_name', http_path='job_run_id', username='user', password='pass', host='job_cluster_host')
+        cursor.execute('SHOW TABLES')
+        print(cursor.fetchall())
+        cursor.execute('SELECT * FROM my_workflow_table_name LIMIT 10')
+        print(cursor.fetchall())
+        cursor.close()
+        ```
+        
+        #### SQLAlchemy
+        
+        ```python
+        from sqlalchemy.engine import create_engine
+        
+        engine = create_engine('seqslab+hive://user:pass@job_cluster_host/run_name?http_path=job_run_id')
+        ```
+        
+        #### Apache Superset
+        
+        [Connecting to Databases](https://superset.apache.org/docs/databases/db-connection-ui)
+        
+        #### Documentation
+        For the latest documentation, see [SeqsLab](https://docs.atgenomix.com).
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+Provides-Extra: sqlalchemy
+Provides-Extra: superset
