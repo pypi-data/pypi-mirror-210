@@ -1,0 +1,92 @@
+[[tool.poetry.source]]
+name = "ts_pypi_virtual"
+url = "https://tetrascience.jfrog.io/artifactory/api/pypi/ts-pypi-virtual/simple"
+default = true
+
+[tool.poetry]
+name = "ts-ids-validator"
+version = "0.9.15"
+description = "Python utility for validating IDS"
+authors = ["TetraScience <developers@tetrascience.com>"]
+packages = [
+    { include = "ids_validator" }
+]
+include = ["ids_validator/templates"]
+repository = "https://github.com/tetrascience/ts-ids-validator"
+homepage = "https://developers.tetrascience.com"
+readme = "README.md"
+license = "Apache-2.0"
+classifiers=[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7.2,<4.0"
+jsonref = "*"
+pydash = "*"
+rich = "*"
+jsonschema = ">=4.0.0"
+ts-ids-es-json-generator = "*"
+pydantic = ">=1.8.2"
+# typing-extensions v4.6.0 contains a bug which affect pydash for Python v3.10 or later
+typing-extensions = "<4.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+snapshottest = "~=0.6.0"
+black = ">=22.1.0"
+pre-commit = "^2.0"
+pylint = "~=2.14.5"
+
+[tool.poetry.scripts]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 88
+target-version = ['py37', 'py38', 'py39']
+include = '\.pyi?$'
+extend-exclude = "snapshots"
+
+
+[tool.pytest.ini_options]
+testpaths = [
+    "__tests__"
+]
+
+[tool.coverage.run]
+branch = true
+source = [
+    "ids_validator"
+]
+omit = ["snapshots"]
+
+# Many options copied from the docs here:
+# https://coverage.readthedocs.io/en/coverage-5.5/config.html#syntax
+[tool.coverage.report]
+show_missing = true
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    "pragma: no cover",
+
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self\\.debug",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == .__main__.:",
+]
+ignore_errors = true
