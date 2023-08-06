@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: django-vendor-promo
+Version: 0.2.0
+Summary: Extension to Django Vendor to add Promo Code capabilities
+Author: Roberto Himmelbauer
+Author-email: Grant Viklund <renderbox@gmail.com>
+Project-URL: Homepage, https://github.com/renderbox/django-vendor-promo/
+Project-URL: Bug Tracker, https://github.com/renderbox/django-vendor-promo/issues
+Keywords: django,app
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.mit.txt
+Requires-Dist: Django (<4.0,>=3.0)
+Requires-Dist: django-autoslug
+Requires-Dist: django-extensions
+Requires-Dist: django-vendor (>=0.2.25)
+Requires-Dist: django-site-configs
+Requires-Dist: django-integrations
+Requires-Dist: iso4217
+Requires-Dist: authorizenet
+Requires-Dist: stripe
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: crispy-bootstrap4 ; extra == 'dev'
+Requires-Dist: crispy-bootstrap5 ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: flake8-black ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: bandit ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: dj-database-url ; extra == 'dev'
+Requires-Dist: psycopg2-binary ; extra == 'dev'
+Requires-Dist: django-crispy-forms ; extra == 'dev'
+Requires-Dist: django-site-configs ; extra == 'dev'
+Requires-Dist: django-integrations ; extra == 'dev'
+Requires-Dist: django-allauth ; extra == 'dev'
+Requires-Dist: toml ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: m2r ; extra == 'docs'
+Requires-Dist: django-extensions ; extra == 'docs'
+Requires-Dist: coverage ; extra == 'docs'
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: rstcheck ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+
+![Django Vendor Promo CI](https://github.com/renderbox/django-vendor-promo/workflows/Django%20Vendor%20Promo%20CI/badge.svg)
+
+![Django Vendor Promo CI](https://github.com/renderbox/django-vendor-promo/workflows/Django%20Vendor%20Promo%20Develop/badge.svg)
+
+# Django Vendor Promo
+
+Extension to Django Vendor to add Promo Code capabilities
