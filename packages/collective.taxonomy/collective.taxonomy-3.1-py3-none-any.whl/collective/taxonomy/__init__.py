@@ -1,0 +1,6 @@
+# -*- coding: utf-8 -*-
+
+PATH_SEPARATOR = "\u241F"
+LEGACY_PATH_SEPARATOR = "/"
+PRETTY_PATH_SEPARATOR = " » "
+NODE = "#NODE"

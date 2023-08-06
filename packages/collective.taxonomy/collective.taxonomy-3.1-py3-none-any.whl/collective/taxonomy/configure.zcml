@@ -1,0 +1,178 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.taxonomy"
+    >
+
+  <i18n:registerTranslations directory="locales" />
+
+  <include package="plone.app.registry" />
+  <include package=".restapi" />
+ 
+
+  <include package="plone.supermodel" />
+
+  <permission
+      id="collective.taxonomy.ManageTaxonomies"
+      title="Manage taxonomies"
+      />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.taxonomy"
+      description="Registers control panel and default settings."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.taxonomy uninstall"
+      description="Uninstall profile for collective.taxonomy."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+  <genericsetup:importStep
+      name="collective.taxonomy"
+      title="Manage the taxonomy tool"
+      description="Import taxonomies from VDEX-format."
+      handler=".exportimport.importTaxonomy"
+      >
+</genericsetup:importStep>
+
+  <genericsetup:exportStep
+      name="collective.taxonomy"
+      title="Export the taxonomies into VDEX-format."
+      description="Exports records and settings"
+      handler=".exportimport.exportTaxonomy"
+      />
+
+  <browser:page
+      name="taxonomy-settings"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".controlpanel.TaxonomySettingsControlPanel"
+      permission="collective.taxonomy.ManageTaxonomies"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="taxonomy-add"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".controlpanel.TaxonomyAddForm"
+      permission="collective.taxonomy.ManageTaxonomies"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="taxonomy-edit"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".controlpanel.TaxonomyEditForm"
+      permission="collective.taxonomy.ManageTaxonomies"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="taxonomy-export"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".controlpanel.TaxonomyExport"
+      permission="collective.taxonomy.ManageTaxonomies"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="taxonomy"
+      for="*"
+      class=".browser.TaxonomyView"
+      allowed_interface=".interfaces.ITaxonomyView"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="tabular_view"
+      template="listing_tabular.pt"
+      menu="plone_displayviews"
+      title="Tabular view"
+      for="plone.app.contenttypes.behaviors.collection.ISyndicatableCollection"
+      class=".browser.TaxonomyCollectionView"
+      permission="zope2.View"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <adapter
+      factory=".browser.TaxonomyTraverser"
+      for="*
+           *"
+      name="taxonomy"
+      />
+
+  <browser:resourceDirectory
+      name="taxonomy"
+      directory="javascripts/build"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:resourceDirectory
+      name="taxonomy.icons"
+      directory="icons"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:resource
+      name="collective.taxonomy.css"
+      file="collective.taxonomy.css"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="taxonomy-edit-data"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".jsonimpl.EditTaxonomyData"
+      template="edit_taxonomy_data.pt"
+      permission="collective.taxonomy.ManageTaxonomies"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="taxonomy-import"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".jsonimpl.ImportJson"
+      permission="collective.taxonomy.ManageTaxonomies"
+      layer=".interfaces.IBrowserLayer"
+      />
+
+  <adapter
+      factory=".collectionfilter.groupby_modifier"
+      name="modifier_1"
+      zcml:condition="installed collective.collectionfilter"
+      />
+
+  <utility
+      factory=".vocabulary.TaxonomyVocabulary"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      name="collective.taxonomy.taxonomies"
+      />
+
+  <utility
+      factory=".vocabulary.PermissionsVocabulary"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      name="collective.taxonomy.permissions"
+      />
+
+  <utility
+      factory=".vocabulary.LanguagesVocabulary"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      name="collective.taxonomy.languages"
+      />
+
+  <include file="widget.zcml" />
+  <include file="upgradesteps.zcml" />
+
+</configure>

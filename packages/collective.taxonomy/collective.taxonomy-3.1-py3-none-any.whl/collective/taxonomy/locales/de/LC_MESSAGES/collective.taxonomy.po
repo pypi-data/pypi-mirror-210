@@ -1,0 +1,204 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-05-04 05:38+0000\n"
+"PO-Revision-Date: 2018-07-09 11:43+0200\n"
+"Last-Translator: Bo Simonsen <bo@headnet.dk>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: da\n"
+"Language-Name: \n"
+"Preferred-Encodings: utf-8\n"
+"Domain: collective.taxonomy\n"
+"Language: de\n"
+"X-Generator: Poedit 2.0.8\n"
+
+#: ./interfaces.py:106
+msgid " "
+msgstr ""
+
+#: ./controlpanel.py:203
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: ./controlpanel.py:216
+msgid "Add cancelled"
+msgstr "Hinzufügen abgebrochen"
+
+#: ./controlpanel.py:214
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ./controlpanel.py:255
+msgid "Changes saved"
+msgstr "Änderungen gespeichert"
+
+#: ./interfaces.py:128
+msgid "Check this box if you want the field to be mono-valued"
+msgstr "Das Feld soll eine einfache Auswahl sein."
+
+#: ./interfaces.py:121
+msgid "Check this box if you want the field to be required"
+msgstr "Das Feld soll ein Pflichtfeld sein."
+
+#: ./interfaces.py:112
+msgid "Check this box if you want to purge all entries when uploading."
+msgstr ""
+
+#: ./interfaces.py:98
+msgid "Default language"
+msgstr "Standardsprache"
+
+#: ./interfaces.py:92
+msgid "Description"
+msgstr "Beschreibung"
+
+#: ./controlpanel.py:261
+msgid "Edit cancelled"
+msgstr "Editieren abgebrochen"
+
+#: ./interfaces.py:142
+msgid "Field prefix"
+msgstr ""
+
+#: ./interfaces.py:151
+msgid "Fieldset"
+msgstr ""
+
+#: ./interfaces.py:152
+msgid "Fieldset for the taxonomy behavior field. Example: 'categorization'. Use 'default' for the first fieldset."
+msgstr ""
+
+#: ./controlpanel.py:107
+msgid "Please select at least one taxonomy."
+msgstr "Mindestens eine Taxonomie wählen."
+
+#: ./controlpanel.py:71
+msgid "Please select one taxonomy."
+msgstr "Eine Taxonomie wählen."
+
+#: ./interfaces.py:143
+msgid "Prefix used for behavior indexer."
+msgstr ""
+
+#: ./interfaces.py:111
+msgid "Purge entries on upload"
+msgstr ""
+
+#: ./configure.zcml:23
+msgid "Registers control panel and default settings."
+msgstr ""
+
+#: ./interfaces.py:120
+msgid "Required"
+msgstr "Pflichtfeld"
+
+#: ./controlpanel.py:234
+msgid "Save"
+msgstr "Speichern"
+
+#: ./interfaces.py:127
+msgid "Single select"
+msgstr "Einfache Auswahl"
+
+#: ./interfaces.py:50
+#: ./profiles/default/controlpanel.xml
+msgid "Taxonomies"
+msgstr "Taxonomien"
+
+#: ./interfaces.py:79
+msgid "Taxonomy"
+msgstr "Taxonomie"
+
+#: ./controlpanel.py:104
+msgid "Taxonomy deleted."
+msgstr "Taxonomie gelöscht"
+
+#: ./controlpanel.py:193
+msgid "Taxonomy imported."
+msgstr "Taxonomie importiert"
+
+#: ./controlpanel.py:38
+msgid "Taxonomy settings"
+msgstr "Taxonomie Einstellungen"
+
+#: ./interfaces.py:80
+msgid "The taxonomy identifier"
+msgstr "Der Kurzname/Identifier (keine Leerzeichen und Sonderzeichen erlaubt)"
+
+#: ./jsonimpl.py:133
+msgid "There seems to have been an error."
+msgstr "Ein Fehler ist aufgetreten."
+
+#: ./interfaces.py:86
+msgid "Title"
+msgstr "Titel"
+
+#: ./configure.zcml:32
+msgid "Uninstall profile for collective.taxonomy."
+msgstr ""
+
+#: ./interfaces.py:105
+msgid "Upload VDEX xml file"
+msgstr "Neue VDEX Datei hochladen"
+
+#: ./interfaces.py:93
+msgid "Will be used for the field description as well"
+msgstr "Wird auch für die Beschreibung des Feldes verwendet."
+
+#: ./interfaces.py:87
+msgid "Will be used for the field title as well"
+msgstr "Wird auch für den Feldtitel verwendet."
+
+#: ./interfaces.py:134
+msgid "Write permission"
+msgstr "Berechtigung zum Schreiben"
+
+#: ./interfaces.py:135
+msgid "Write permission for the field"
+msgstr "Berechtigung zum Schreiben des Feldes."
+
+#: ./jsonimpl.py:126
+msgid "Your taxonomy has been saved with success."
+msgstr "Die Taxonomie wurde erfolgreich gespeichert."
+
+#: ./configure.zcml:23
+msgid "collective.taxonomy"
+msgstr "collective.taxonomy"
+
+#: ./configure.zcml:32
+msgid "collective.taxonomy uninstall"
+msgstr ""
+
+#. Default: "Select the taxonomies you desire to modify"
+#: ./interfaces.py:52
+msgid "help_taxonomies"
+msgstr "Taxonomie, die verändert werden soll, auswählen."
+
+#. Default: "Add"
+#: ./controlpanel.py:55
+msgid "label_add_taxonomy"
+msgstr "Taxonomie hinzufügen"
+
+#. Default: "Delete taxonomy"
+#: ./controlpanel.py:88
+msgid "label_delete_taxonomy"
+msgstr "Taxonome löschen"
+
+#. Default: "Edit taxonomy data"
+#: ./controlpanel.py:74
+msgid "label_edit_data_taxonomy"
+msgstr "Taxonomische Daten editieren"
+
+#. Default: "Edit"
+#: ./controlpanel.py:61
+msgid "label_edit_taxonomy"
+msgstr "Taxonomie editieren"
+
+#. Default: "Export"
+#: ./controlpanel.py:113
+msgid "label_export"
+msgstr "Exportieren"
