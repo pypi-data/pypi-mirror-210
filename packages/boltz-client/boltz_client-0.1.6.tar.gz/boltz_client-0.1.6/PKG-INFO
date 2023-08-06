@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: boltz-client
+Version: 0.1.6
+Summary: python boltz client
+Home-page: https://boltz.exchange
+License: MIT
+Author: dni
+Author-email: office@dnilabs.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: click (>=8)
+Requires-Dist: embit (>=0.4)
+Requires-Dist: httpx (>=0.23)
+Requires-Dist: websockets (>=10)
+Project-URL: Repository, https://github.com/dni/boltz-client-python
+Description-Content-Type: text/markdown
+
+# boltz.exchange python client
+A boltz.exchange client for python
+
+## installing
+```console
+poetry install
+```
+
+## running cli
+```console
+poetry run boltz
+```
+
+## starting regtest
+```console
+cd docker
+chmod +x regtest
+./regtest
+```
+
+## running tests
+```console
+poetry run pytest
+```
+
