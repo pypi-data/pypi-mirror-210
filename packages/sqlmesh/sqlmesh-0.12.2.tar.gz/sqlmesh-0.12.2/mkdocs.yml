@@ -1,0 +1,86 @@
+site_name: SQLMesh
+nav:
+  - "Overview": index.md
+  - Get started:
+    - prerequisites.md
+    - installation.md
+    - quick_start.md
+  - Guides:
+    - guides/projects.md
+    - guides/models.md
+    - guides/testing.md
+    - guides/scheduling.md
+    - guides/connections.md
+    - guides/multi_repo.md
+    - guides/migrations.md
+  - Concepts:
+    - concepts/overview.md
+    - Models:
+      - concepts/models/overview.md
+      - concepts/models/model_kinds.md
+      - concepts/models/sql_models.md
+      - concepts/models/python_models.md
+      - concepts/models/seed_models.md
+      - concepts/models/external_models.md
+    - concepts/plans.md
+    - concepts/environments.md
+    - concepts/tests.md
+    - concepts/audits.md
+    - concepts/macros.md
+    - concepts/hooks.md
+    - Architecture:
+      - concepts/architecture/snapshots.md
+      - concepts/architecture/serialization.md
+    - concepts/glossary.md
+  - Reference:
+    - API:
+      - reference/overview.md
+      - reference/cli.md
+      - reference/notebook.md
+      - reference/python.md
+    - reference/configuration.md
+  - Integrations:
+    - integrations/overview.md
+    - integrations/airflow.md
+    - integrations/dbt.md
+    - integrations/github.md
+    - integrations/engines.md
+  - Resources:
+    - comparisons.md
+    - development.md
+    - release_notes.md
+  - API: _readthedocs/html/sqlmesh.html
+theme:
+  name: material
+  logo: sqlmesh.png
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: #091c79
+      accent: #cce8fe
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: #cce8fe
+      accent: #091c79
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+plugins:
+  - include-markdown
+  - search
+markdown_extensions:
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+copyright: Tobiko Data Inc.
