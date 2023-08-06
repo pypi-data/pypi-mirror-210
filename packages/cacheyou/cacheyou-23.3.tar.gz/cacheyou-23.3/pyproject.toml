@@ -1,0 +1,156 @@
+[project]
+name = "CacheYou"
+version = "23.3"
+description = "httplib2 caching for requests"
+keywords = [
+    "requests",
+    "http",
+    "caching",
+    "web",
+]
+readme = "README.md"
+authors = [
+    { name = "Frost Ming", email = "me@frostming.com" },
+    { name = "Eric Larson", email = "eric@ionrock.org" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "msgpack>=0.5.2",
+    "requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/frostming/cacheyou"
+Documentation = "https://cacheyou.readthedocs.io"
+"Release Notes" = "https://cacheyou.readthedocs.io/en/latest/release_notes.html"
+
+[project.optional-dependencies]
+filecache = [
+    "filelock>=3.8.0",
+]
+redis = [
+    "redis>=2.10.5",
+]
+
+[project.scripts]
+doesitcache = "cacheyou._cmd:main"
+
+[tool.pdm]
+plugins = [
+    "pdm-autoexport",
+]
+
+[tool.pdm.build]
+source-includes = [
+    "docs/",
+    "tox.ini",
+    "tests/",
+]
+
+[tool.pdm.scripts]
+test = "pytest"
+release = "bumpver update"
+docs = [
+    "sphinx-autobuild",
+    "docs/",
+    "build/docs",
+    "-a",
+    "--watch",
+    "cacheyou",
+    "--port",
+    "8765",
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "tox",
+    "bumpver>=2023.1124",
+    "pytest>=7.3.1",
+]
+docs = [
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme>=1.2.0",
+]
+
+[[tool.pdm.autoexport]]
+filename = "docs/requirements.txt"
+groups = [
+    "docs",
+]
+without-hashes = true
+
+[tool.black]
+line-length = 100
+target-version = [
+    "py37",
+    "py38",
+    "py39",
+    "py310",
+]
+
+[tool.ruff]
+line-length = 100
+select = [
+    "B",
+    "C4",
+    "E",
+    "F",
+    "PGH",
+    "RUF",
+    "W",
+    "YTT",
+]
+extend-ignore = [
+    "B018",
+    "B019",
+]
+src = [
+    "src",
+]
+target-version = "py37"
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.isort]
+known-first-party = [
+    "cacheyou",
+]
+
+[tool.bumpver]
+current_version = "23.3"
+version_pattern = "YY.INC0[PYTAGNUM]"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    "version = \"{version}\"",
+]
+"cacheyou/__init__.py" = [
+    "__version__ = \"{pep440_version}\"",
+]
+"docs/conf.py" = [
+    "release = \"{pep440_version}\"",
+]
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
