@@ -1,0 +1,142 @@
+# django_simple_notes
+
+Add private (available only to logged in users) notes to different pages of your Django-CMS site, through generic foreign keys (using content types).
+
+<div align="center">
+  <a href="https://gitlab.com/kapt/open-source/django-simple-notes/uploads/3347c5f7a59fc03ccdf085910ffe8ce3/django-simple-notes-demo.webm">
+    <img src="https://gitlab.com/kapt/open-source/django-simple-notes/uploads/6627c1021ab019d79b984a6e54261525/image.png" alt="Demo video thumbnail" />
+  </a>
+</div>
+
+<div align="center">
+  <a href="https://pypi.org/project/django-simple-notes/">
+    <img src="https://img.shields.io/pypi/v/django-simple-notes?color=%232a2" alt="icon pypi version" />
+  </a>
+  <a href="https://pypi.org/project/django-simple-notes/">
+    <img src="https://img.shields.io/pypi/dm/django-simple-notes?color=%232a2" alt="icon pypi downloads" />
+  </a>
+</div>
+
+# Requirements
+
+- Python 3.10+
+- Django 2.2+
+
+# Install
+
+- run `python3 -m pip install django_simple_notes`
+- add `django_simple_notes` to your `INSTALLED_APPS`
+- run `python manage.py migrate django_simple_notes`
+- that's all folks!
+
+----
+
+# Features
+
+- Add private notes on nearly each page of your site
+  - supports djangocms pages & djangocms-blog posts out of the box!
+  - you *can* add your own function to support even more type of pages (in apphooks)!
+- Supports adding different notes for same page in different languages
+
+----
+
+# How it works?
+
+The main logic is in `cms_toolbars.py`, in the `get_content_type_and_id` function.
+
+This function will try to retrieve the content type and the id of the object (CMS Page, DjangoCMS-blog Post...). If it find the object, another function will create an empty SimpleNote for this object, and will save it. This way, we don't need to differentiate the create and the edit link of the note in the toolbar (I don't know if it's possible to refresh only the toolbar to return the right link (create/edit)).
+
+Another cool function is the `get_queryset` in `admin.py`. It will return the full queryset if we're on a `change` page (edit the object in the admin). It will however only returns the "non-empty" objects in the `list` view (in order to not clutter the list view too much).
+
+----
+
+# Customize it!
+
+You can define your own function that find `object_ct` and `object_id` in your settings!
+
+Django simple notes will try to get a function from your site settings, named `SIMPLE_NOTES_CUSTOM_CONTENT_TYPE_AND_ID`. It will then execute it, and if it returns `None, None` it will launch its own `get_content_type_and_id` function (in order to retrieve cms/djangocms-blog ct/id).
+
+## Here's an example to get you started:
+
+*Just copy/paste this file in your site settings, and update it to suits your needs.*
+
+```py
+def SIMPLE_NOTES_CUSTOM_CONTENT_TYPE_AND_ID(request):
+    # init parameters
+    object_ct = None
+    object_id = None
+
+    # condition from request (use this to find the object/page type)
+    if request.resolver_match.view_name in (
+        "my_app_view",
+    ):
+        # necessary imports, be sure to include them in your function or you might stumble accross an import loop
+        from my_app.models import MyModel
+        slug = (
+            request.resolver_match.kwargs["slug"]
+            if "slug" in request.resolver_match.kwargs
+            else ""
+        )
+
+        # a condition (if we have a slug, then retrieve the object using its slug)
+        if slug:
+            my_object = MyModel.objects.get(slug=slug)
+            object_ct = my_object
+            object_id = my_object.id
+        else:
+            # another condition (for if we have its id)
+            id = (
+                request.resolver_match.kwargs["pk"]
+                if "pk" in request.resolver_match.kwargs
+                else ""
+            )
+            if id:
+                my_object = MyModel.objects.get(id=id)
+                object_ct = MyModel
+                object_id = my_object.id
+
+    # return found ct/id or None/None
+    # None/None will allow the regular `get_content_type_and_id` to proceed, searching for cms or blog pages
+    return object_ct, object_id
+```
+
+## In order to get the object url, you will need to add another function
+
+This function is named `SIMPLE_NOTES_ADMIN_URLS`, and is called in `admin.py` if it exists.
+
+It's goal is to return an url for the current object, in order to add a direct link to the page in the admin list view.
+
+If the returned url is `None`, then simple notes will try to get the url of a CMS page or a djangocms-blog Post.
+
+If no link is found, the object name will be displayed without a link.
+
+*Here's an example to get you started:*
+
+```py
+def SIMPLE_NOTES_ADMIN_URLS(obj):
+    if obj.content_type.model == "mymodel":  # an object from a model with get_absolute_url()
+        from my_app.models import MyModel
+        return MyModel.objects.get(id=obj.object_id).get_absolute_url()
+    if obj.content_type.model == "myothermodel":  # another model, which don't have get_absolute_url()
+        from django.urls import reverse
+        return reverse("view-name", kwargs={"pk": obj.object_id})
+    return None
+```
+
+## Oh, and you can customize this too:
+
+* `SIMPLE_NOTES_TOOLBAR_MENU_TEXT` (Default to `_("Simple notes")`): The toolbar menu text.
+* `SIMPLE_NOTES_TOOLBAR_EDIT_TEXT` (Default to `_("Edit note for current page")`): The toolbar edit button text.
+* `SIMPLE_NOTES_TOOLBAR_LIST_TEXT` (Default to `_("Notes list")`): The toolbar "show list notes" text.
+
+![Toolbar screenshot](https://gitlab.com/kapt/open-source/django-simple-notes/uploads/b816124205dee0bc44799e03a1e291b4/image.png)
+> *Toolbar screenshot with default values.*
+
+----
+
+### Todo?
+
+Here's a sneak peak of the (maybe) future features:
+
+- compatible not only with djangocms-text-ckeditor but with django-ckeditor too (no dependency to djangocms anymore!)
+- supports simple django apps!
