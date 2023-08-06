@@ -1,0 +1,19 @@
+[build-system]
+requires = ["maturin>=0.14,<0.15"]
+build-backend = "maturin"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "python"
+module-name = "fasttextaug.rust_fasttextaug"
+manifest-path = "rust/Cargo.toml"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+
+[tool.isort]
+py_version=311
+line_length = 100
+length_sort = true
