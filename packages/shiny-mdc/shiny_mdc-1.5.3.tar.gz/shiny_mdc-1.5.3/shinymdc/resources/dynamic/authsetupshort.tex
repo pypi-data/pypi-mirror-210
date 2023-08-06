@@ -1,0 +1,7 @@
+\author{%
+  $for(author)$
+    \mbox{$it.name$\textsuperscript{$for(it.affiliation)$$it$$sep$,$endfor$$if(it.equalcontrib)$$if(skipequal)$$else$$if(it.affiliation)$,$else$$endif$*$endif$$endif$}}$if(it.email)$\\%
+    \mbox{\href{mailto:$it.email$}{\texttt{\textsmaller{$it.email$}}}}$endif$
+  $sep$\and
+  $endfor$%
+}

@@ -1,0 +1,125 @@
+\PassOptionsToPackage{hidelinks}{hyperref}
+
+\documentclass[%
+  letterpaper,%
+  twocolumn,%
+  $if(lang)$$lang$$else$english$endif$%
+]{article}
+
+\usepackage[%
+  textwidth=492pt,%
+  textheight=624pt,%
+  columnsep=12pt,%
+  footskip=50pt,%
+  footnotesep=50pt%
+]{geometry}
+\usepackage[sf,big,raggedright,compact]{titlesec}
+\usepackage{fancyhdr}
+\usepackage{newtxtext}
+\usepackage{etoolbox}
+
+\def\nobibcompress{TRUE}
+\input{$reqsetup$}
+\input{$floatsetup$}
+\input{$dblfloatsetup$}
+\input{$mathsetup$}
+\input{$bibsupersetup$}
+\input{$miscsetup$}
+
+$if(smalltabs)$
+% Use small font for tables.
+\AtBeginEnvironment{tabular}{\smaller}
+$else$
+$endif$
+
+% Configure caption font.
+\captionsetup{justification=raggedright,font={sf,small}}
+
+% Add periods after section numbers.
+\titlelabel{\thetitle.\enskip}
+
+% Configure page no.
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{{\normalfont\sffamily\scriptsize\thepage}}
+
+% Configure title format.
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \begin{flushleft}%
+    \normalfont\sffamily%
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{@{}l@{}}%
+          \@author
+      \end{tabular}\par}%
+    {\normalsize \@date}%
+  \end{flushleft}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+% Change '\and' to left align contents.
+\makeatletter
+\def\and{%
+  \end{tabular}%
+  \hskip 1em \@plus.17fil%
+  \begin{tabular}[t]{@{}l@{}}}%
+\makeatother
+
+\title{$title$}
+\date{$if(date)$\vspace*{1em} $date$$endif$}
+
+\input{$authsetupshort$}
+
+$for(includes)$
+$it$
+$endfor$
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{fancy}
+\parindent=2em
+
+% Add author-info footnote.
+\blfootnote{%
+  {%
+    \normalfont\sffamily\scriptsize%
+    $if(skipequal)$$else$\mbox{\textsuperscript{*}\,Equal contribution.}\enskip$endif$%
+    $for(institute)$\mbox{\textsuperscript{$institute.id$}\,$institute.name$.}\enskip$endfor$%
+  }%
+}
+
+$if(abstract)$
+\hrule height 1pt
+\vspace{1ex}%
+{\parindent=0pt \normalfont\sffamily\normalsize $abstract$}
+\vspace{1ex}%
+\hrule height 1pt
+\vspace{1ex}
+$endif$
+
+$if(body)$
+$body$
+$endif$
+
+$for(sections)$
+$it$
+$endfor$
+
+$if(bibliography)$
+\footnotesize
+\bibliographystyle{unsrtnat}
+\bibliography{$bibliography$}
+\normalsize
+$endif$
+
+\input{$addappendices$}
+
+\end{document}

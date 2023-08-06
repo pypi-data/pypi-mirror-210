@@ -1,0 +1,34 @@
+\PassOptionsToPackage{hidelinks}{hyperref}
+
+\documentclass[varwidth,border={0 1pt}]{standalone}
+
+\input{$reqsetup$}
+\input{$floatsetup$}
+\input{$mathsetup$}
+\input{$bibsupersetup$}
+\input{$miscsetup$}
+
+$for(includes)$
+$it$
+$endfor$
+
+\begin{document}
+
+% Disable background color.
+\nopagecolor
+
+$if(body)$
+$body$
+$endif$
+
+$for(sections)$
+$it$
+$endfor$
+
+$if(bibliography)$
+\clearpage
+\bibliographystyle{unsrtnat}
+\bibliography{$bibliography$}
+$endif$
+
+\end{document}

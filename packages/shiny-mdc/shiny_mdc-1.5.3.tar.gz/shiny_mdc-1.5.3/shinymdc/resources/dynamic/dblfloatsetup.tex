@@ -1,0 +1,24 @@
+$if(nonidan)$
+\usepackage{stfloats}
+$else$
+\usepackage{nidanfloat}
+\renewcommand{\dblbotfraction}{0.8}
+$endif$
+
+\setcounter{topnumber}{1}
+\setcounter{dbltopnumber}{2}
+\setcounter{bottomnumber}{1}
+\setcounter{dblbotnumber}{1}
+\setcounter{totalnumber}{4}
+
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\dbltopfraction}{0.8}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.85}
+\renewcommand{\dblfloatpagefraction}{0.8}
+
+\makeatletter
+\setlength{\@dblfptop}{0pt}
+\setlength{\@dblfpbot}{0pt plus 1fil}
+\makeatother

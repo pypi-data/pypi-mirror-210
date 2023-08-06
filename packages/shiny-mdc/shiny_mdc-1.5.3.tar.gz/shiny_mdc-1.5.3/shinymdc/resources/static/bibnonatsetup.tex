@@ -1,0 +1,25 @@
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+% Define natibib 'cite*' commands using 'cite'.
+\NewDocumentCommand\citep{o o m}{%
+  \,%
+  \IfNoValueTF{#1}{%
+    \cite{#3}%
+  }{%
+    \IfNoValueTF{#2}{%
+      \ifblank{#1}{\cite{#3}}{\cite[#1]{#3}}%
+    }{%
+      \ifblank{#2}{\cite{#3}}{\cite[#2]{#3}}%
+    }%
+  }%
+}
+\NewDocumentCommand\citet{o m}{%
+  \IfNoValueTF{#1}{%
+    \cite{#2}%
+  }{%
+    \ifblank{#1}{\cite{#2}}{\cite[#1]{#2}}%
+  }%
+}
+\let\citealp\citep
+\newcommand{\citetext}[1]{ (\!#1)}

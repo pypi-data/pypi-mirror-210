@@ -1,0 +1,13 @@
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+
+% Define the tightlist command used by pandoc.
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}%
+}
+
+% Modify footnotes inside captions to use '\protect'.
+\let\oldfootnote\footnote
+\renewcommand{\footnote}[1]{\ifx\caption@checkhyp\caption@refhypmode\else\protect\oldfootnote{#1}\fi}

@@ -1,0 +1,62 @@
+\PassOptionsToPackage{hidelinks}{hyperref}
+
+\documentclass[%
+  letterpaper,%
+  $if(lang)$$lang$$else$english$endif$%
+]{article}
+
+\usepackage[margin=1.5in,footskip=0.75in]{geometry}
+\usepackage{parskip}
+
+\input{$reqsetup$}
+\input{$floatsetup$}
+\input{$mathsetup$}
+\input{$bibsupersetup$}
+\input{$miscsetup$}
+
+% Increase maximum figure/table widths.
+\renewcommand{\maxfigwidth}{6.5in}
+\renewcommand{\maxtabwidth}{6.5in}
+
+\title{\vspace{-5ex} $title$}
+\date{$if(date)$$date$$endif$}
+
+\input{$authsetup$}
+
+$for(includes)$
+$it$
+$endfor$
+
+\begin{document}
+
+\setnowidow[2]
+\maketitle
+
+% Add equal-contrib footnote.
+$if(skipequal)$
+$else$
+\blfootnote{\textsuperscript{*}\,Equal contribution.}
+$endif$
+
+$if(abstract)$
+\section*{Abstract}
+$abstract$
+$endif$
+
+$if(body)$
+$body$
+$endif$
+
+$for(sections)$
+$it$
+$endfor$
+
+$if(bibliography)$
+\clearpage
+\bibliographystyle{unsrtnat}
+\bibliography{$bibliography$}
+$endif$
+
+\input{$addappendices$}
+
+\end{document}

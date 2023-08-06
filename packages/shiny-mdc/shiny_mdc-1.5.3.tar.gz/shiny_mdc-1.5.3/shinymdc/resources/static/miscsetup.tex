@@ -1,0 +1,48 @@
+\usepackage[T1]{fontenc}
+\usepackage[babel=true,tracking=true]{microtype}
+\usepackage{babel}
+\usepackage[title]{appendix}
+\usepackage[bottom]{footmisc}
+\usepackage{footnote}
+\usepackage{acronym}
+\usepackage{relsize}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancyvrb}
+\usepackage{pgf}
+\usepackage{nowidow}
+
+% Handle footnotes inside tables, figures.
+\makesavenoteenv{table}
+\makesavenoteenv{table*}
+\makesavenoteenv{figure}
+\makesavenoteenv{figure*}
+
+% Add small space after footnote label.
+\makeatletter
+\renewcommand\@makefntext[1]{%
+  \parindent 1em%
+  \noindent
+  \hb@xt@1.8em{\hss\@makefnmark}\,#1}
+\makeatother
+
+% Add small space before super/sub-scripts and footnotes.
+\let\origsup\textsuperscript
+\renewcommand{\textsuperscript}[1]{\,\origsup{#1}}
+\let\origsub\textsubscript
+\renewcommand{\textsubscript}[1]{\,\origsub{#1}}
+\let\origfootnote\footnote
+\renewcommand{\footnote}[1]{\,\origfootnote{#1}}
+
+% Create command for footnote without marker.
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \begin{NoHyper}
+  \renewcommand\thefootnote{}\footnote{\raggedright\hspace{-2em} #1}%
+  \addtocounter{footnote}{-1}%
+  \end{NoHyper}
+  \endgroup
+}
+
+% Configure acronym font.
+\renewcommand*{\acsfont}[1]{{\scshape\textsmaller{#1}}}

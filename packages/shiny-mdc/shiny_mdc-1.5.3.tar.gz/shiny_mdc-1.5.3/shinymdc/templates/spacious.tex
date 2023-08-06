@@ -1,0 +1,143 @@
+\PassOptionsToPackage{hidelinks}{hyperref}
+
+\documentclass[%
+  letterpaper,%
+  12pt,%
+  $if(lang)$$lang$$else$english$endif$%
+]{article}
+
+\usepackage[textwidth=360pt,textheight=600pt,footnotesep=60pt]{geometry}
+\usepackage[rm,up,big,raggedright]{titlesec}
+\usepackage{fancyhdr}
+\usepackage{cfr-lm}
+% \usepackage{ebgaramond}
+
+\input{$reqsetup$}
+\input{$floatsetup$}
+\input{$mathsetup$}
+\input{$bibsupersetup$}
+\input{$miscsetup$}
+
+% Increase maximum figure/table sizes.
+\renewcommand{\maxfigwidth}{6.5in}
+\renewcommand{\maxfigheight}{10in}
+\renewcommand{\maxtabwidth}{6.5in}
+\renewcommand{\maxtabheight}{10in}
+
+% Use proportional, lining digits for footnotes and superscripts.
+\makeatletter
+\renewcommand{\@makefnmark}{\hbox{\@textsuperscript{\normalfont\plstyle\@thefnmark}}}
+\makeatother
+\let\oldts\textsuperscript
+\renewcommand{\textsuperscript}[1]{\oldts{\textpl{#1}}}
+
+% Use proportional, lining digits for bibliography labels.
+\renewcommand{\bibnumfmt}[1]{[\textpl{#1}]}
+
+% Use tabular, lining digits in tables.
+\AtBeginEnvironment{tabular}{\tlstyle}
+
+% Configure paragraph title font.
+\titleformat*{\paragraph}{\itshape}
+
+% Configure caption font.
+\captionsetup{justification=raggedright,font={small}}
+
+% Add periods after section numbers.
+\titlelabel{\thetitle.\enskip}
+
+% Configure page no.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{{\normalfont\footnotesize\thepage}}
+
+% Configure title format.
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \vskip 3ex%
+  \begin{flushleft}%
+    \normalfont%
+    {\Huge \@title \par}%
+    \vskip 3ex%
+    {\large
+      \lineskip 2ex%
+      \@author
+      \par}%
+    {\normalsize \@date}%
+  \end{flushleft}%
+  \par}
+\makeatother
+
+% Change '\and' to add vertical space.
+\makeatletter
+\def\and{\vskip 2ex}
+\makeatother
+
+\title{$title$}
+\date{$if(date)$\vspace*{3ex}$date$$endif$}
+
+\input{$authsetupshort$}
+
+$for(includes)$
+$it$
+$endfor$
+
+\begin{document}
+
+\setnowidow[2]
+\maketitle
+
+\thispagestyle{empty}
+\parindent=3em
+
+% Add author-info footnote.
+\blfootnote{%
+  {%
+    \normalfont\scriptsize\raggedright%
+    $if(skipequal)$$else$\mbox{\textsuperscript{*}\,Equal contribution.}\enskip$endif$%
+    $for(institute)$\mbox{\textsuperscript{$institute.id$}\,$institute.name$.}\enskip$endfor$%
+  }%
+}
+
+$if(abstract)$
+\section*{Abstract}
+$abstract$
+$endif$
+
+$if(body)$
+$body$
+$endif$
+
+$for(sections)$
+$it$
+$endfor$
+
+$if(bibliography)$
+\clearpage
+\footnotesize
+\bibliographystyle{unsrtnat}
+\bibliography{$bibliography$}
+\normalsize
+$endif$
+
+$if(appendices)$
+$for(appendices/pairs)$
+\clearpage
+\begin{appendices}
+  \renewcommand{\thesection}{\textsmaller{\textsc{$it.key/alpha/uppercase$}}\arabic{section}}
+  \renewcommand{\thefigure}{\textsmaller{\textsc{$it.key/alpha/uppercase$}}\arabic{figure}}
+  \renewcommand{\thetable}{\textsmaller{\textsc{$it.key/alpha/uppercase$}}\arabic{table}}
+  \renewcommand{\thefootnote}{\textsmaller{\textsc{$it.key/alpha/uppercase$}}\arabic{footnote}}
+  \setcounter{table}{0}
+  \setcounter{figure}{0}
+  \setcounter{footnote}{0}
+  $it.value$
+\end{appendices}
+$sep$
+
+$endfor$
+$endif$
+
+
+\end{document}

@@ -1,0 +1,22 @@
+\newlength{\maxnamelen}
+\newlength{\maxemlen}
+\newlength{\maxinstlen}
+
+% Use the longest name, email, and institute to get box sizes for the author list.
+\newbox\tempbox
+\savebox{\tempbox}{\hbox{$longest_author_name$\textsuperscript{*}}}
+\setlength{\maxnamelen}{\wd\tempbox}
+\savebox{\tempbox}{\hbox{\texttt{\textsmaller{$longest_email$}}}}
+\setlength{\maxemlen}{\wd\tempbox}
+\savebox{\tempbox}{\hbox{\textsmaller{$longest_inst_name$}}}
+\setlength{\maxinstlen}{\wd\tempbox}
+
+\author{%
+  $for(author)$
+  \makebox[\maxnamelen][c]{$it.name$$if(it.equalcontrib)$$if(skipequal)$$else$\textsuperscript{*}$endif$$endif$}$if(it.institute)$\\%
+    $for(it.institute)$\makebox[\maxinstlen]{{\textsmaller{$it$}}}$sep$\\%
+    $endfor$$endif$$if(it.email)$\\%
+    \makebox[\maxemlen]{\href{mailto:$it.email$}{\texttt{\textsmaller{$it.email$}}}}$endif$%
+  $sep$\vspace{1ex}\and%
+  $endfor$%
+}
