@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: aeroapi-python
+Version: 1.1.2
+Summary: FlightAware AeroAPI Caller for Python
+Home-page: https://github.com/derens99/aeroapi-python
+Author: Deren S
+Author-email: derens9999@gmail.com
+License: MIT
+Keywords: python aeroapi flightaware flightaware-api flightaware-aeroapi flightaware-aeroapi-python flightaware-aeroapi-python3 flightaware-aeroapi-python3.5 flightaware-aeroapi-python3.6 flightaware-aeroapi-python3.7 flightaware-aeroapi-python3.8 flightaware-aeroapi-python3.9
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Education :: Testing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+
+# AeroApi Python
+
+Python wrapper for the FlightAware's AeroAPI
+
+## Description
+
+AeroAPI (formerly FlightXML) is FlightAware's live flight data API that provides powerful, reliable information about real-time and historical flight information. This Python wrapper allows for easier interaction with the AeroAPI from Python applications.
+
+## FlightAware AeroAPI Reference
+[AeroAPI](https://flightaware.com/aeroapi)
+
+## Installation
+
+```bash
+pip install aeroapi-python
+```
+    
+### Using test pypi, install with this command.
+```bash
+pip install --index-url https://pypi.org/simple/ --extra-index-url https://test.pypi.org/simple/ aeroapi-python
+```
+
+## Usage
+
+```python
+from aeroapi_python import AeroApi
+
+# initialize with your AeroAPI username and API Key
+aero_api = AeroAPI('your-api-key')
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Authors
+
+- [@derens99](https://www.github.com/derens99)
