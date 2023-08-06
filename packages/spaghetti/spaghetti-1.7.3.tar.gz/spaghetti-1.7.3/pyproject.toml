@@ -1,0 +1,136 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[project]
+name = "spaghetti"
+dynamic = ["version"]
+maintainers = [
+    {name = "James D. Gaboardi", email = "jgaboardi@gmail.com"},
+]
+license = {text = "BSD 3-Clause"}
+description = "Analysis of Network-constrained Spatial Data"
+keywords = ["spatial statistics", "networks", "graphs"]
+readme = {text = """\
+Spaghetti is an open-source Python library for the analysis of network-based
+spatial data. Originating from the `network` module in `PySAL`_
+(Python Spatial Analysis Library), it is under active development
+for the inclusion of newly proposed methods for building
+graph-theoretic networks and the analysis of network events.
+
+.. _PySAL: http://pysal.org
+""", content-type = "text/x-rst"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "esda",
+    "libpysal",
+    "numpy",
+    "pandas>=1.0",
+    "rtree",
+    "scipy>=1.0",
+]
+
+[project.urls]
+Home = "https://pysal.org/spaghetti/"
+Repository = "https://github.com/pysal/spaghetti"
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+    "pre-commit",
+]
+docs = [
+    "nbsphinx",
+    "numpydoc",
+    "sphinx",
+    "sphinxcontrib-bibtex",
+    "sphinx_bootstrap_theme",
+]
+plus = [
+    "geopandas>=0.12.0",
+    "shapely>=2",
+]
+tests = [
+    "pytest",
+    "pytest-cov",
+    "pytest-timeout",
+    "pytest-xdist",
+    "codecov",
+    "coverage",
+    "twine",
+    "wheel",
+]
+nb_pypi = [
+    "mip",
+    "ortools",
+]
+nb_conda = [
+    "matplotlib",
+    "matplotlib-scalebar",
+    "pulp",
+    "seaborn",
+    "splot",
+    "watermark",
+]
+
+[tool.setuptools.packages.find]
+include = [
+    "spaghetti",
+    "spaghetti.*",
+]
+
+[tool.black]
+line-length = 88
+extend-exclude = '''
+(
+  docs/conf.py
+)
+#'''
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "I", "UP", "N", "B", "A", "C4", "SIM", "ARG"]
+target-version = "py38"
+ignore = [
+    "B006",
+    "B008",
+    "B009",
+    "B010",
+    "C408",
+    "E731",
+    "F401",
+    "F403",
+    "N803",
+    "N806",
+    "N999",
+    "UP007"
+]
+exclude = ["spaghetti/tests/*", "docs/*"]
+
+[tool.coverage.run]
+source = ["./spaghetti"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if self.debug:",
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "except ModuleNotFoundError:",
+    "except ImportError",
+]
+ignore_errors = true
+omit = ["spaghetti/tests/*", "docs/conf.py"]
