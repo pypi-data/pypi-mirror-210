@@ -1,0 +1,30 @@
+
+# CONF_DIR_NAME = "conf"
+DEFAULT_CONF_FILE_NAME = "conf.yaml"
+DEFAULT_LOG_CONF_FILE_NAME = "log.yaml"
+
+CONF_KEY_PLUGINS = 'plugins'
+CONF_KEY_COMMANDS = 'commands'
+CONF_KEY_COMPONENTS = 'components'
+CONF_KEY_SERVICES = 'services'
+
+CONF_KEY_KEY = 'key'
+CONF_KEY_CONTEXT = 'context'
+CONF_KEY_CLASS = 'class'
+CONF_KEY_INIT_ARGS = 'init_args'
+CONF_KEY_DESCRIPTION = 'description'
+CONF_KEY_HANDLER_ARGS_CONF = 'handle_args_conf'
+CONF_KEY_GROUP_DESC = 'group_desc'
+CONF_KEY_TYPE = 'type'
+CONF_KEY_DEST = 'dest'
+
+CONF_KEY_LOG_FILE_PATH = "log_file"
+DEFAULT_LOG_FILE_PATH = "logs/runtime.log"
+
+EXIT_CODE_NORMAL = 0
+EXIT_CODE_CONF_ERROR = 1
+EXIT_CODE_UNKNOWN = 2
+EXIT_CODE_RUN_ARGUMENTS_ERROR = 3
+
+MINUTE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
+SECOND_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
