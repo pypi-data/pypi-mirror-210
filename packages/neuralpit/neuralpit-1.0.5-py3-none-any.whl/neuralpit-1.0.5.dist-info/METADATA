@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: neuralpit
+Version: 1.0.5
+Summary: NeuralPit SDK
+Author-email: Quang Nguyen <quang.nguyen@neuralpit.com>
+Keywords: api,neural,neuralpit
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: lxml
+Requires-Dist: toml
+Requires-Dist: langchain
+Requires-Dist: openai
+Requires-Dist: bs4
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: bumpver ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: pip-tools ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+
+# Update version
+python -m pip install pip-tools
+pip install bumpver
+pip-compile --extra dev pyproject.toml
+bumpver update --minor
+
+# Install package locally
+python -m pip install -e .
