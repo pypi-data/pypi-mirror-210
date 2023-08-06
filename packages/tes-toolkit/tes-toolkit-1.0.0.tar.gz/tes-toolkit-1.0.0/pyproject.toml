@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tes-toolkit"
+version = "1.0.0"
+description = "A toolkit for minmaxers of Elder Scrolls games"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "Will Bolton"}]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment :: Role-Playing",
+    "Topic :: Utilities",
+]
+keywords = ["Elder Scrolls","Oblivion","Morrowind","Bethesda"]
+
+[project.urls]
+repository = "https://github.com/WillOnGit/tes-toolkit"
+
+[tool.setuptools]
+py-modules = ["tes_toolkit"]
