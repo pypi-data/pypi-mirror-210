@@ -1,0 +1,120 @@
+Metadata-Version: 2.1
+Name: dicomselect
+Version: 0.3.1
+Summary: UNKNOWN
+Home-page: https://github.com/DIAGNijmegen/dicomselect
+Author: 
+Author-email: Stan.Noordman@radboudumc.nl
+License: MIT License
+Project-URL: Bug Tracker, https://github.com/DIAGNijmegen/dicomselect
+Platform: unix
+Platform: linux
+Platform: osx
+Platform: cygwin
+Platform: win32
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: setuptools (~=60.2.0)
+Requires-Dist: pydicom (~=2.3.1)
+Requires-Dist: SimpleITK (~=2.2.1)
+Requires-Dist: tqdm (~=4.65.0)
+Requires-Dist: pandas (~=2.0.0)
+Requires-Dist: pylibjpeg (~=1.4.0)
+Requires-Dist: pylibjpeg-libjpeg (~=1.3.4)
+Requires-Dist: picai-prep (~=2.1.6)
+Requires-Dist: rapidfuzz (~=3.0.0)
+Requires-Dist: python-Levenshtein (~=0.21.0)
+Requires-Dist: treelib
+Provides-Extra: testing
+Requires-Dist: pytest (>=6.0) ; extra == 'testing'
+Requires-Dist: pytest-cov (>=2.0) ; extra == 'testing'
+Requires-Dist: mypy (>=0.910) ; extra == 'testing'
+Requires-Dist: flake8 (>=3.9) ; extra == 'testing'
+Requires-Dist: tox (>=3.24) ; extra == 'testing'
+
+# dicomselect
+
+# Create a new database
+```python
+from pathlib import Path
+from dicomselect.database import Database
+
+db_path = Path('dicomselect_archive.db')
+db_path.parent.mkdir(parents=True, exist_ok=True)
+db = Database(db_path)
+db.create('/path/to/archive', max_workers=4)
+```
+
+# Select scans
+1. Simple matching of values
+```python
+from dicomselect.database import Database
+
+mapping = {
+    "t2w": {
+        "SeriesDescription": [
+            "t2_tse_tra_snel_bij bewogen t2 tra",
+            "t2_tse_tra",        
+            "t2_tse_tra_prostate",
+            "t2_tse_tra_snel",
+            "t2_tse_tra_Grappa3"
+        ]
+    },
+}
+
+db = Database('/path/to/dicomselect_archive.db').open()
+query = db.where("series_description", 'in', mapping["t2w"]["SeriesDescription"])
+```
+
+2. Pattern matching and combining queries
+```python
+from dicomselect.database import Database
+
+mapping = {
+    "hbv": {
+        "SeriesDescription": [
+            "ep2d_diff_tra%CALC_BVAL",
+            "diffusie-3Scan-4bval_fsCALC_BVAL"
+        ],
+        "ImageType": [
+            r"DERIVED\PRIMARY\DIFFUSION\CALC_BVALUE\TRACEW\DIS2D\DFC",
+            r"DERIVED\PRIMARY\DIFFUSION\CALC_BVALUE\TRACEW\DIS2D",
+            r"DERIVED\PRIMARY\DIFFUSION\CALC_BVALUE\TRACEW\ND\DFC",
+            r"DERIVED\PRIMARY\DIFFUSION\CALC_BVALUE\TRACEW\NORM\DIS2D",
+        ]
+    }
+}
+
+db = Database('/path/to/dicomselect_archive.db').open()
+query1 = db.where("series_description", "LIKE", mapping["hbv"]["SeriesDescription"])
+query2 = db.where("image_type", "LIKE", mapping["hbv"]["ImageType"])
+query = query1.union(query2)
+db.close()
+```
+
+# Show info
+```python
+query.info().filter("series_description").print()
+```
+
+# Convert
+
+```python
+from dicomselect.database import Database
+
+db = Database('/path/to/dicomselect_archive.db')
+plan = db.plan('{patient_id}/{series_description}_{patient_age}', query)
+plan.target_dir = '/path/to/target_dir'
+plan.extension = '.mha'
+plan.print()
+plan.execute(max_workers=4)
+```
+
+
