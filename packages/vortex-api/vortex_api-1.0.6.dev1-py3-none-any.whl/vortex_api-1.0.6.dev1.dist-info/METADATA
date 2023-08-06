@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: vortex-api
+Version: 1.0.6.dev1
+Summary: Vortex APIs to place orders in AsthaTrade Flow application
+Home-page: https://vortex.asthatrade.com
+Download-URL: https://github.com/AsthaTech/pyvortex
+Author: Astha Credit & Securities Pvt Ltd.
+Author-email: tech@asthatrade.com
+License: MIT
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests (>=2.25.1)
+Requires-Dist: wrapt (>=1.15.0)
+Requires-Dist: six (>=1.11.0)
+Requires-Dist: pyOpenSSL (>=17.5.0)
+Requires-Dist: python-dateutil (>=2.6.1)
+Requires-Dist: autobahn[twisted] (==19.11.2)
+
+# Vortex API Python Client
+
+# Installation 
+
+```
+pip install vortex-api
+```
+
+
+# Api Usage 
+
+```python 
+from vortex_api import AsthaTradeVortexAPI
+from vortex_api import Constants as Vc
+
+client = AsthaTradeVortexAPI("your api secret","your application id")
+
+#For client login using TOTP
+client.login("client code","client password","totp")
+
+# Place order 
+
+client.place_order(
+       exchange = Vc.ExchangeTypes.NSE_EQUITY,
+       token = 22,
+       transaction_type =  Vc.TransactionSides.BUY,
+       product = Vc.ProductTypes.DELIVERY,
+       variety = Vc.VarietyTypes.REGULAR_LIMIT_ORDER,
+       quantity = 1,
+       price = 1700.0,
+       trigger_price=0.0,
+       disclosed_quantity= 0,
+       validity = Vc.ValidityTypes.FULL_DAY)
+
+#Get order book 
+client.orders(limit=20,offset=1)
+
+
+```
+Refer to the [python document](https://vortex.asthatrade.com/docs/pyvortex/vortex_api.html) for all methods and features
+
