@@ -1,0 +1,31 @@
+---
+type: object
+additionalProperties: false
+
+properties:
+  specs:
+    type: string
+    default: picolibcpp
+
+  c_standard:
+    type: string
+    default: gnu17
+
+  cxx_standard:
+    type: string
+    default: gnu++20
+
+  root:
+    type: string
+    default: "./toolchains/$toolchain/out/bin"
+
+  # If set, overrides any other toolchain pathing or prefix construction.
+  prefix:
+    type: string
+    default: ""
+
+  extra_cflags:
+    type: array
+    default: []
+    items:
+      type: string
