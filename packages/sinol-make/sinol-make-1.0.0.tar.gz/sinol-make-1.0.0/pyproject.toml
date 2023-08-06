@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=67.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sinol-make"
+dynamic = ["version"]
+authors = [
+  { name="Mateusz Masiarz", email="m.masiarz@fri.edu.pl" }
+]
+maintainers = [
+  { name="Tomasz Nowak", email="tomasz.nowak@tonowak.com" }
+]
+description = "CLI tool for creating sio2 task packages"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+	"argparse",
+	"requests",
+	"PyYAML",
+	"dictdiffer"
+]
+
+[project.optional-dependencies]
+tests = [
+  "pytest",
+  "pytest-cov"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sio2project/sinol-make"
+"Bug Tracker" = "https://github.com/sio2project/sinol-make/issues"
+
+[project.scripts]
+sinol-make = "sinol_make:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "sinol_make.__version__" }

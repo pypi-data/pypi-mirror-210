@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: sinol-make
+Version: 1.0.0
+Summary: CLI tool for creating sio2 task packages
+Author-email: Mateusz Masiarz <m.masiarz@fri.edu.pl>
+Maintainer-email: Tomasz Nowak <tomasz.nowak@tonowak.com>
+Project-URL: Homepage, https://github.com/sio2project/sinol-make
+Project-URL: Bug Tracker, https://github.com/sio2project/sinol-make/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Provides-Extra: tests
+License-File: LICENSE
+
+# sinol-make
+CLI tool for creating sio2 task packages. \
+Currently in development and not yet ready to be used.
+
+## Installing from source
+`pip3 install .`
+
+## Running tests
+1. Install `sinol-make` with test dependencies: \
+```pip3 install .[tests]```
+2. Run `pytest` in root directory of this repository.
