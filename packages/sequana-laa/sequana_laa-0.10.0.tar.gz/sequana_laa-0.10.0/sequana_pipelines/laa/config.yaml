@@ -1,0 +1,97 @@
+#input_pattern: "data/lima*.fastq"
+#input_pattern: "databam/*bam"
+#input_directory: "."
+
+input_directory: /home/cokelaer/Work/github/sequana_pipelines/sequana_laa/sequana_pipelines/laa/data
+input_pattern: '*fastq.gz'
+reference_file: 'AB038249.fa'
+
+
+# if you have some samples starting with prefix to bed removed,
+# uncomment this line and fill the list 
+extra_prefixes_to_strip: ["lima_output"]
+
+# do not change:
+data_type_choice: "lima.ccs.fastq"   
+
+#
+#
+# data_type_choice__ = ["lima.ccs.fastq", "lima.ccs.bam", "subreads.bam"]
+#input:
+#    data_type_choice: lima.ccs.fastq
+
+apptainers:
+    graphviz: https://zenodo.org/record/7928262/files/graphviz_7.0.5.img
+    raxml: https://zenodo.org/record/7968244/files/raxml_8.2.12.img
+    sequana_tools: https://zenodo.org/record/7963917/files/sequana_tools_0.15.1.img
+
+# for populations, and ploidy of 1, a population SNP found in a population
+# will have a score of 0. Here setting to 2 is a trick. Alternative is
+# to set freebayes scores to 0
+# Useful options: 
+# --min-alternate-count set to 0.01 (default is 0.05) allows detection of SNPs
+# with frequency as low as 1% but this may lead to False positive. Useful for
+# hypervariable virus population.
+# -- legacy-gls could be use if SNPs have zero score whereas they look good
+# --noindels clean up the final VCF with only SNPs but not recommended by
+# freebayes
+#
+# With new freebayes if min alternate is low, some SNPs 
+# bcftools norm performs left-align and normalize indels; check if REF alleles match the reference;
+# split multiallelic sites into multiple rows; recover multiallelics from multiple rows.
+#
+freebayes:
+    do: true
+    ploidy: 2
+    options: --min-alternate-fraction 0.01 --legacy-gls
+    split_multiallelic: true
+
+
+snpeff:
+    do: false
+    annotation_file: AB038249.gbk
+    options: -no-downstream -no-upstream
+
+kraken:
+    do: false
+    databases:
+        -
+
+freebayes_vcf_filter:
+    do: true
+    freebayes_score: 0
+    frequency: 0.0
+    min_depth: 10
+    forward_depth: 3
+    reverse_depth: 3
+    strand_ratio: 0.2
+raxml_mltree:
+    N: 100
+    options: ''
+
+
+raxml_bootstrap:
+    N: 100
+    options: ''
+
+itol:
+  do: false
+
+
+
+#############################################################################
+##   MultiQC aggregates results from bioinformatics analyses across many
+##   samples into a single report.
+##
+## :Parameters:
+##
+## - options: any options recognised by multiqc
+## - output-directory: Create report in the specified output directory
+## - config_file: by default, we use sequana RNA-seq multiqc_config file.
+##       If you want your own multiqc, fill this entry
+multiqc:
+    options: "-p -f"
+    modules: sequana_bamtools_stats sequana_laa
+    input_directory: "."
+    config_file: "multiqc_config.yaml"
+
