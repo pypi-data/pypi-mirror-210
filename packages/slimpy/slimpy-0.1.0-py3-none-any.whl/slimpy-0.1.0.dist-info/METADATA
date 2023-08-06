@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: slimpy
+Version: 0.1.0
+Summary: Custom String Slicing and Matching in Python
+Project-URL: Homepage, https://github.com/max-efort/slimpy
+Author-email: Jibril <erikfortran@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2023 Jibril
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: matching,mismatch,slicing
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# slimpy
+A simple library that provides custom string slicing and matching.
+
+slimpy provides a convenient solution for searching and identifying strings
+that may have unexpected characters. It is useful for searching and identifying 
+an expected string but has mismatched characters, for example, strings 
+extracted from OCR tools like pytesseract. In fact, that is the reason behind 
+the creation of this library.
+
+For example, suppose there is a script that extracts text from an image 
+and there is an expected word to be present in the extracted text:
+
+```python
+expected_word = "character"
+extracted_text = "This sentence has one typo word that has two mismatch oharaoter"
+expected_word in extracted_text
+>>> False
+
+# We can use this library to tackle this kind of occasion
+from slimpy import Fragment, REM
+
+word_Fragment = Fragment(expected_word)
+matching = REM()
+matching.set_reference(extracted_text)
+match = matching.perform_matching(word_Fragment)
+match
+>>> 
+Fragmented string: character
+Pattern match    : .{0,1}hara.*?ter
+List of match    : ['oharaoter']
+
+match.match
+>>> oharaoter
+match.pattern
+>>> .{0,1}hara.*?ter
+```
+
+That's it! As mentioned earlier, searching and identifying strings that may 
+have unexpected characters. 
+For more information, visit the GitHub [page](https://github.com/max-efort/slimpy).
