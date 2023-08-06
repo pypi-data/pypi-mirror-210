@@ -1,0 +1,7 @@
+include README.md
+include circuitgraph/netlists/*
+include circuitgraph/parsing/verilog.lark
+include docs/*
+include requirements.txt
+include LICENSE
+recursive-include tests *.py
