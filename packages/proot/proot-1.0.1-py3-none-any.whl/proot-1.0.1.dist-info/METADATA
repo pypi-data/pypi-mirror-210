@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: proot
+Version: 1.0.1
+Summary: 
+Author: Hirano Ryota
+Author-email: konnnahimoaruyone@gmail.com
+Requires-Python: >=3.11,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+
+Gets the root path of the project.
+
+import proot
+
+root_path = proot.get_proot()
+print(root_path)
+
