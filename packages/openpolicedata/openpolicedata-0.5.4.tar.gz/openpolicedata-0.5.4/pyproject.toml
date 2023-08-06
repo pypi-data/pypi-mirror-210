@@ -1,0 +1,12 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:distutils Version classes are deprecated. Use packaging.version instead.*:DeprecationWarning::",
+    "ignore:An exception was ignored while fetching the attribute `__array_interface__` from an object of type 'Polygon'*:DeprecationWarning:geopandas.*:"
+]
