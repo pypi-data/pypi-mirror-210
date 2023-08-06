@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: GXN
+Version: 0.0.28
+Summary: Generalizable Gene Self-Expressive Networks
+Home-page: 
+Author: Sergio Peignier
+Author-email: sergio.peignier@insa-lyon.fr
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: tqdm
+Requires-Dist: scipy
+Requires-Dist: gseapy
+Requires-Dist: goatools
+Requires-Dist: kneed
+Requires-Dist: pygraphviz
+Requires-Dist: networkx
+Requires-Dist: grenadine
+
+# GXN: Generalizable Gene Self-Expressive Networks
+
+## Description
+
+In this work we introduce Generalizable Gene Self-Expressive Networks, as a new simple, interpretable, and predictive formalism to model gene networks.
+This package contains two methods, based respectively on ElasticNet and Orthogonal Matching Pursuit regression algorithms, that aim at inferring, assessing and tuning Generalizable Gene Self-Expressive Networks.
+This package also contains several tutorials that also help to evaluated the generalization capabilities of these new approaches using new internal measure on Three RNAseq datasets from complex eukaryotes, namely C. familiaris, R. norvegicus and H. sapiens.
+
+### GXN•OMP
+
+GXN•OMP relies on the well-known Orthogonal Matching Pursuit algorithm that aims at solving a linear regression task subject to a sparsity constrain ensuring that only $d_0$ nonzero coefficients are used.
+More formally, GXN•OMP aims at solving the following objective function:
+
+
+
+$$C_{\star,g}^* =  ArgMin_{C_{\star,g}} \|| X_{\star,g} - X\cdot C_{\star,g} \||^2_2$$
+
+Subject to:
+
+$$\|C_{\star,g}\|_0 \leq d_0,$$
+
+$$C_{g,g} =0 \quad \forall g \in \{1, \dots,  N\},$$
+
+$$C_{j,g} = 0 \quad \forall j \notin \Psi$$
+
+To solve this task, OMP relies on a greedy forward feature selection method.
+At each step, the method selects the feature with the highest correlation with the current residual, then it updates the regression coefficients and recomputes the residual using an orthogonal projection on the subspace of the previously selected features.
+Moreover, an inner cross-validation step is used to select the parameter $d_0$ in a range between 0 and the hyper-parameter $d_0^{max}$ defining the maximal number of features.
+In practice, hyper-parameter $d_0^{max} = min(\delta \times |\Psi|,  rank(X_{\star,\Psi}))$ is set as a fraction $\delta$ of the number of regulators $|\Psi|$ (or as the rank of matrix $X_{\star,\Psi}$, whenever this values is lower). Here we set $d_0^{max}=30$
+
+### GXN•EN
+
+GXN•EN relies in the ElasticNet regression technique, that address the linear regression task using simultaneously $\ell_1$ and $\ell_2$ regularization. More formally, GXN•EN address the following objective function:
+
+$C_{\star,g}^* =  ArgMin_{C_{\star,g}}$     $\frac{1}{2D} \times \|| X_{\star,g} - X\cdot C_{\star,g} \||^2_2 + \alpha  \rho$  $\|| C_{\star,g} \||_1$ + $\alpha/2\times(1-\rho)\times$  $\|| C_{\star,g} \||^2_2$
+
+
+
+Subject to:
+
+$$C_{g,g} =0 \quad \forall g \in \{1, \dots,  N\},$$
+
+$$C_{j,g} = 0 \quad \forall j \notin \Psi$$
+
+
++ $X$ simply denotes the gene expression matrix, and $D$ the number of samples
++ Internally the method evaluates $\rho \in \{0.8,0.9,0.99,1\}$
++ $1/\epsilon=K_{\alpha}$ defines the number of $\alpha$ values that should be tested between $\alpha_{max} = \frac{max_{i\neq j} (| X_{\star,i}^\intercal \cdot X_{\star,j}| )}{n\rho}$ (for which the coefficients vector is null) and a value $\alpha_{min} = \epsilon \alpha_{max}$. Notice that 0<$\epsilon$<1).
+
+
+## Installation
+
+`pip install GXN`
+
+## Authors
+Sergio Peignier
+
+## License
+MIT License
