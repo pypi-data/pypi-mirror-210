@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: gfs-dynamical-core
+Version: 0.1.23
+Summary: Only the dynamical core of the climt repository
+Home-page: https://github.com/Ai33L/gfs_dynamical_core.git
+Author: Abel Shibu
+Author-email: abels2000@gmail.com
+License: BSD license
+Keywords: gfs_dynamical_core
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+License-File: LICENSE
+Requires-Dist: numpy (>=1.16.0)
+Requires-Dist: pint (>=0.7.0)
+Requires-Dist: xarray (>=0.8.0)
+Requires-Dist: sympl (==0.4.1)
+Requires-Dist: cython (>=0.25)
+Requires-Dist: scipy (>=0.18.1)
+Requires-Dist: climt (==0.17.12)
+
+==================
+gfs-dynamical-core
+==================
+
+**gfs-dynamical-core** is home to the GFS dynamical core, which was previously available on
+CliMT.
+
+* Free software: BSD license
+
+Installation
+-------------
+
+gfs-dynamical-core can be installed directly from the python package index using pip.
+
+    pip install gfs-dynamical-core
+
+
+=======
+History
+=======
+
+Latest
+---------
+
+* GFS Dynamical core shifted over and working.
