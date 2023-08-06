@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: openbd
+Version: 0.2.0
+Summary: `openbd` is a package for openBD( https://openbd.jp/ ).
+Home-page: https://github.com/SaitoTsutomu/openbd
+License: Apache-2.0
+Author: SaitoTsutomu
+Author-email: tsutomu7@hotmail.co.jp
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
+Description-Content-Type: text/markdown
+
+# openbd
+
+`openbd` is a package for openBD( https://openbd.jp/ ).
+
+## Installation
+
+```
+pip install openbd
+```
+
+## Example
+
+```python
+from openbd import book_info
+print(book_info('4764905809'))
+```
+
+```
+BookInfo(isbn='9784764905801', title='データ分析ライブラリーを用いた最適化モデルの作り方',
+subtitle=None, series='Pythonによる 問題解決シリーズ', authors='斉藤 努／著、久保 幹雄／監修',
+publish='近代科学社', date='2018/12/13', price='3200円', page='224', size='B5変形',
+content='各種ライブラリを組み合わせることで、シンプルで分かりやすい最適化モデルの作成方法を学ぶ',
+image='https://cover.openbd.jp/9784764905801.jpg', data=None)
+```
+
