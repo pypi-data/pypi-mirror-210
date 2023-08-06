@@ -1,0 +1,43 @@
+name: ravenpy
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - raven-hydro ==0.2.1
+  - python >=3.8,<3.12
+  - affine
+  - cftime
+  - cf_xarray
+  - click
+#  - climpred >=2.2.0  # conda package is incompatible with latest raven-hydro
+  - dask
+  - fiona >=1.9
+  - flit
+  - gdal >=3.1
+  - geopandas >=0.13.0
+  - haversine
+  - holoviews
+  - hvplot
+  - lxml
+  - matplotlib
+  - netcdf4
+  - numpy
+  - owslib <0.29.0  # see: https://github.com/geopython/OWSLib/issues/871
+  - pandas
+  - pint >=0.20
+  - pre-commit
+  - pydantic
+  - pymbolic
+  - pyogrio
+  - pyproj >=3.0
+  - rasterio
+  - requests
+  - rioxarray
+  - scipy
+  - shapely
+  - spotpy
+  - statsmodels
+  - xarray
+  - xclim >=0.43
+  - xesmf
+  - xskillscore
