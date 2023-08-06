@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: poe-cli
+Version: 0.1.0
+Summary: Command line interface for Poe.
+Home-page: https://github.com/salastro/poe-cli
+Author: SalahDin Rezk
+Author-email: salah2112004@gmail.com
+Project-URL: Bug Tracker, https://github.com/salastro/poe-cli/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# POE-CLI
+Command line interface for Poe.
+
+
+https://github.com/salastro/poe-cli/assets/63563250/d4a2333c-0707-410a-818e-3fb0a644a2c4
+
+
+## Installation
+```
+git clone https://github.com/salastro/poe-cli.git
+cd poe-cli
+pip install -e .
+```
+
+## Usage
+Read how to get [Poe token](https://github.com/ading2210/poe-api#finding-your-token).
+```bash
+poe -h # show help
+poe -t TOKEN -l  # list bots
+poe -t TOKEN -m "Who are you?" # use default bot (ChatGPT).
+poe -t TOKEN -b beaver -m "Who are you?" # use GPT-4
+```
+
+
