@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "poetry-source-env"
+version = "2.0.0"
+description = "Load Poetry package sources from environment variables"
+authors = ["celsius narhwal <hello@celsiusnarhwal.dev>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/celsiusnarhwal/poetry-source-env"
+repository = "https://github.com/celsiusnarhwal/poetry-source-env"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+dict-deep = "^4.1.2"
+poetry = "^1.5.0"
+pydantic = "^1.10.7"
+
+[tool.poetry.plugins."poetry.plugin"]
+poetry-source-env = "poetry_source_env.plugin:PoetrySourcePlugin"
+
+[tool.black]
+target-version = ["py38"]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
