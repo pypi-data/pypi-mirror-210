@@ -1,0 +1,91 @@
+Metadata-Version: 2.1
+Name: MechEyeAPI
+Version: 1.5.7.2.1.0
+Summary: Mech-Eye Industrial 3D Camera API
+Home-page: https://www.mech-mind.com
+Author: Mech-Mind Robotics
+Author-email: 
+License: BSD 3-Clause
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+
+# Mech-Eye Python Interface
+
+This is official Python interfaces for Mech-Eye cameras.
+
+Please select the proper branch corresponding to the camera firmware version.
+
+## Introduction
+
+This project is developped by python. We use ZeroMQ library to connect camera devices in the LANs. And json is used to pack and unpack data from network. Supported on both Windows and Ubuntu OS.
+
+## Features
+
+By using these interfaces, you can easily control your mech_eye cameras in python programs. The features are as follows:
+
+* Connect to your camera in your LANS.
+* Set and get camera parameters like exposure time, period and so on.
+* Get color images and depth images as numpy arrays.
+* Get point cloud data as the format defined in open3d, a python lib which can deal with point clouds.
+
+## Installation
+
+### Dependencies
+
+1. Download and install [Mech-Eye SDK_1.5.2](https://www.mech-mind.com/download/CameraSDK.html)
+2. Clone this repository to a specific folder.
+3. Add MechEyeApi to the path of environment variables of the system.
+
+We ran and tested interfaces on Python3.6. Make sure to install Python 3.6 or higher.
+
+These python libraries are needed:
+
+* json
+* numpy
+
+json and numpy you can install with pip, by the following command:
+
+```Python
+pip3 install json numpy
+```
+
+### Installing official version from PyPI using PIP
+
+Use PIP to fetch the latest official version from PyPI:
+
+```Python
+pip install MechEyeAPI
+```
+
+On some systems Python 3 `pip` is called `pip3`. In this guide we assume it is called `pip`. When using PIP version 19 or higher build dependencies are handled automatically.
+
+## Quick Start
+
+In terminal, change your working directory to the repo, then in  **captureResultToCV.py**, then run:
+
+```powershell
+python.exe captureResultToCV.py
+```
+
+Some pictures will also be captured and stored in the same directory of the repo.
+
+## Project hierarchy
+
+The following shows the hierarchy of project files:
+
+```
+Mech-Eye_python_interface
+
+├─ captureResultToCV.py
+├─ captureResultToPLY.py
+├─ connectAndCaptureImage.py
+└─ getAndSetParameter.py
+```
+
+
