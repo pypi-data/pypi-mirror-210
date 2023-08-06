@@ -1,0 +1,13 @@
+[console_scripts]
+reva = reva.cli:main
+
+[reva.cli]
+autotest = reva.autotest:autotest
+documentaccesscontrol = reva.document_access_control:document_access_control
+info = reva.info:show
+loanproducts = reva.loan_products:loan_products
+namespace = reva.namespaces:namespaces
+ready = reva.info:ready
+rolesandpermissions = reva.roles_and_permissions:roles_and_permissions
+sitesettings = reva.site_settings:site_settings
+workflow = reva.workflow:workflow
