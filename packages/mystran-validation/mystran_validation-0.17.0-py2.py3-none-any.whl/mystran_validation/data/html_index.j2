@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>MYSTRAN testing summary</title>
+    <link rel="stylesheet" href="https://unpkg.com/bamboo.css">
+    <style>
+{% include 'custom.css' %}
+    </style>
+    <body>
+      <h1>Mystran Testing Summary</h1>
+      <ul>
+      {% for run in runs %}
+        <li><a href={{run}}/mystran-testing.html>{{run}}</a></li>
+      {% endfor %}
+      </ul>
+      {{matrix.to_html() }}
+    </body>
+</html>
+
