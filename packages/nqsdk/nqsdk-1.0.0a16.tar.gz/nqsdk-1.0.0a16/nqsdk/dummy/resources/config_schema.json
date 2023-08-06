@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NQ Dummy Provider",
+  "description": "NQ Dummy provider schema",
+  "type": "object",
+  "properties": {
+    "auth_token": {
+      "type": "string",
+      "minLength": 1
+    },
+    "send_url": {
+      "$ref": "#/definitions/saneUrl"
+    },
+    "delivery_check_url": {
+      "$ref": "#/definitions/saneUrl"
+    },
+    "delivery_check_method": {
+      "$ref": "#/definitions/methods"
+    },
+    "ack_check_url": {
+      "$ref": "#/definitions/saneUrl"
+    },
+    "ack_check_method": {
+      "$ref": "#/definitions/methods"
+    },
+    "health_check_url": {
+      "$ref": "#/definitions/saneUrl"
+    },
+    "health_check_method": {
+      "$ref": "#/definitions/methods"
+    },
+    "balance_get_url": {
+      "$ref": "#/definitions/saneUrl"
+    },
+    "balance_get_method": {
+      "$ref": "#/definitions/methods"
+    }
+  },
+  "definitions": {
+    "saneUrl": {"format": "uri", "pattern": "^https?://"},
+    "methods": {
+      "type": "string",
+      "enum": ["post", "get"]
+    }
+  }
+}
