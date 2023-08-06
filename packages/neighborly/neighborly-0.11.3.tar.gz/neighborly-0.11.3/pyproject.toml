@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neighborly"
+description = "An agent-based modeling framework for simulating towns of characters in games"
+authors = [
+    { name = "Shi Johnson-Bey", email = "shijbey@gmail.com" },
+]
+readme = "README.md"
+dynamic = ["version"]
+requires-python = ">=3.8"
+keywords = [
+    "social simulation",
+    "games",
+    "simulation",
+    "artificial intelligence",
+    "agent-based modeling",
+    "multiagent systems",
+    "emergent narrative"
+]
+license = { file = "LICENSE.md" }
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Games/Entertainment :: Simulation",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Artificial Life",
+    "Topic :: Sociology",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed"
+]
+dependencies = [
+    "esper",
+    "ordered-set",
+    "numpy",
+    "pyYAML",
+    "pydantic",
+    "tracery3",
+    "pandas",
+    "flask",
+    "flask_restful"
+]
+
+[project.optional-dependencies]
+testing = [
+    "pytest",
+    "pytest-cov"
+]
+samples = [
+    "notebook"
+]
+development = [
+    "isort",
+    "black",
+    "black[d]",
+    "build"
+]
+docs = [
+    "sphinx"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ShiJbey/neighborly"
+"Bug Tracker" = "https://github.com/ShiJbey/neighborly/issues"
+"Repository" = "https://github.com/ShiJBey/neighborly.git"
+"Changelog" = "https://github.com/ShiJbey/neighborly/blob/main/CHANGELOG.md"
+"Documentation" = "https://shijbey.github.io/neighborly/"
+
+[project.scripts]
+neighborly = "neighborly.__main__:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "neighborly.__version__.VERSION" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+default_section = "THIRDPARTY"
+known_first_party = "neighborly"
+src_paths = ["src/neighborly", "test", "samples"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+
+[tool.pyright]
+reportMissingTypeStubs = "none"
