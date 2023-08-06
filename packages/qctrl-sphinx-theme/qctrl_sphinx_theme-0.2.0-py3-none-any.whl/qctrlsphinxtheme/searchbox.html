@@ -1,0 +1,9 @@
+{%- if 'singlehtml' not in builder %}
+<div class="searchbox">
+  <form action="{{ pathto('search') }}" method="get">
+    <input type="search" name="q" class="search" placeholder="{{ _('Search documentation...') }}">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+{%- endif %}
