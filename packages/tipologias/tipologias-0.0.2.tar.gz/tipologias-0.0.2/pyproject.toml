@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tipologias"
+version = "0.0.2"
+authors = [
+  { name="Marciel Barcellos", email="marciel.barcellos@tcmrio.tc.br" },
+  { name="Nicolau Rodrigues", email="nicolau.rodrigues@tcmrio.tc.br" },
+]
+description = "Pacote de tipologias para trilhas de auditoria do TCMRIO"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+  'pandas == 1.5.3',
+  'openpyxl == 3.1.2',
+]
+
+[project.optional-dependencies]
+tests = [
+  'anyio == 3.6.2',
+  'black == 23.3.0',
+  'cryptography == 37.0.4',
+  'isort == 5.12.0',
+  'pyodbc == 4.0.32',
+  'pytest == 7.3.1',
+  'python-decouple == 3.6',
+  'SQLAlchemy == 1.4.32',
+]
+
+[project.urls]
+"source" = "https://gitlab.com/tcmrj/tipologias"
+"Bug Tracker" = "https://gitlab.com/tcmrj/tipologias/-/issues"
+
+
+[tool.black]
+line-length = 119
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.isort]
+profile = "black"
+skip_glob = ["docs/*"]
+multi_line_output = 3
+
+[tool.flake8]
+ignore = ['E231', 'E241']
+per-file-ignores = [
+    '__init__.py:F401',
+]
+max-line-length = 119
+count = true
