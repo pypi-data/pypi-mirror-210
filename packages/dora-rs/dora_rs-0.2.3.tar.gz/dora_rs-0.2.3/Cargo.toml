@@ -1,0 +1,28 @@
+[package]
+version= "0.2.3"
+name = "dora-node-api-python"
+edition = "2021"
+documentation= "https://dora.carsmos.ai/dora/"
+description= "`dora` goal is to be a low latency, composable, and distributed data flow."
+license= "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["tracing", "telemetry"]
+tracing = ["dora-node-api/tracing"]
+telemetry = ["dora-runtime/telemetry"]
+
+[dependencies]
+dora-node-api = { path = "local_dependencies/dora-node-api" }
+dora-operator-api-python = { path = "local_dependencies/dora-operator-api-python" }
+pyo3 = { version = "0.18", features = ["eyre", "abi3-py37"] }
+eyre = "0.6"
+serde_yaml = "0.8.23"
+flume = "0.10.14"
+dora-runtime = { features = ["tracing", "python"] , path = "local_dependencies/dora-runtime" }
+arrow = { version = "35.0.0", features = ["pyarrow"] }
+
+[lib]
+name = "dora"
+crate-type = ["cdylib"]

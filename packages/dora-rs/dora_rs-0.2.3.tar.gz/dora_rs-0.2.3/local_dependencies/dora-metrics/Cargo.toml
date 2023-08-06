@@ -1,0 +1,16 @@
+[package]
+name = "dora-metrics"
+version= "0.2.3"
+edition = "2021"
+documentation= "https://dora.carsmos.ai/dora/"
+description= "`dora` goal is to be a low latency, composable, and distributed data flow."
+license= "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures = "0.3.21"
+opentelemetry = { version = "0.17", features = ["rt-tokio", "metrics"] }
+opentelemetry-otlp = { version = "0.10", features = ["tonic", "metrics"] }
+opentelemetry-system-metrics = "0.1.1"
+tokio = { version = "1.24.2", features = ["full"] }

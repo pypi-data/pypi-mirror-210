@@ -1,0 +1,44 @@
+[package]
+name = "dora-runtime"
+version= "0.2.3"
+edition = "2021"
+documentation= "https://dora.carsmos.ai/dora/"
+description= "`dora` goal is to be a low latency, composable, and distributed data flow."
+license= "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dora-node-api = { default-features = false , path = "../dora-node-api" }
+dora-operator-api-python = { optional = true , path = "../dora-operator-api-python" }
+dora-operator-api-types = { path = "../dora-operator-api-types" }
+dora-core = { path = "../dora-core" }
+dora-tracing = { optional = true , path = "../dora-tracing" }
+dora-metrics = { optional = true , path = "../dora-metrics" }
+opentelemetry = { version = "0.18.0", features = [
+    "rt-tokio",
+    "metrics",
+], optional = true }
+opentelemetry-system-metrics = { version = "0.1.1", optional = true }
+eyre = "0.6.8"
+futures = "0.3.21"
+futures-concurrency = "7.1.0"
+libloading = "0.7.3"
+serde_yaml = "0.8.23"
+tokio = { version = "1.24.2", features = ["full"] }
+tokio-stream = "0.1.8"
+# pyo3-abi3 flag allow simpler linking. See: https://pyo3.rs/v0.13.2/building_and_distribution.html
+pyo3 = { version = "0.18", features = ["eyre", "abi3-py37"], optional = true }
+tracing = "0.1.36"
+tracing-subscriber = "0.3.15"
+dora-download = { path = "../dora-download" }
+flume = "0.10.14"
+clap = { version = "4.0.3", features = ["derive"] }
+tracing-opentelemetry = { version = "0.18.0", optional = true }
+
+[features]
+default = ["tracing"]
+tracing = ["dora-tracing"]
+telemetry = ["tracing", "opentelemetry", "tracing-opentelemetry"]
+metrics = ["opentelemetry", "opentelemetry-system-metrics", "dora-metrics"]
+python = ["pyo3", "dora-operator-api-python"]

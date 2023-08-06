@@ -1,0 +1,20 @@
+[package]
+name = "dora-tracing"
+version= "0.2.3"
+edition = "2021"
+documentation= "https://dora.carsmos.ai/dora/"
+description= "`dora` goal is to be a low latency, composable, and distributed data flow."
+license= "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+
+[dependencies]
+tokio = { version = "1.24.2", features = ["full"] }
+tracing-subscriber = { version = "0.3.15", features = ["env-filter"] }
+tracing-opentelemetry = { version = "0.18.0" }
+eyre = "0.6.8"
+tracing = "0.1.36"
+opentelemetry = { version = "0.18.0", features = ["rt-tokio", "metrics"] }
+opentelemetry-jaeger = { version = "0.17.0", features = ["rt-tokio"] }
