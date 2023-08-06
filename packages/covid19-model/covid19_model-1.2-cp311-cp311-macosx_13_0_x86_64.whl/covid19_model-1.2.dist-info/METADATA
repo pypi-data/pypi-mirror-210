@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: covid19-model
+Version: 1.2
+Summary: A package including several compartmental models, that are solved and visualized based on real data
+Author-email: Samuel Mulzer <samuel.mulzer@icloud.com>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: matplotlib (>=3.6.2)
+Requires-Dist: numpy (>=1.23.5)
+
+# Covid-19 model
+
+Package for epidemiologic modelling of dieseases like Covid-19.
+
+It includes
+
+- compartmental models (SIR model + SIRS model with vaccination and seasonality)
+- solving algorithm
+- visualization
