@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: quart-mongo
+Version: 0.1.0
+Summary: Quart-Mongo bridges Quart, Motor, and Odmantic to create a powerful MongoDB extension for your Quart app.
+Home-page: https://github.com/Quart-Addons/quart-mongo
+License: MIT
+Author: Chris Rood
+Author-email: quart.addons@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: docs
+Requires-Dist: motor (>=3.1.1,<4.0.0)
+Requires-Dist: odmantic (>=0.9.2,<0.10.0)
+Requires-Dist: pydantic (>=1.10.7,<2.0.0)
+Requires-Dist: pydata_sphinx_theme ; extra == "docs"
+Requires-Dist: pymongo (>=4.3.3,<5.0.0)
+Requires-Dist: quart (>=0.18.3,<0.19.0)
+Project-URL: Repository, https://github.com/Quart-Addons/quart-mongo
+Description-Content-Type: text/markdown
+
+# Quart Mongo
+
+![Quart Mongo Logo](logos/logo.png)
+
+Quart-Mongo bridges [Quart][], [Motor][], and [Odmantic][] to create a powerful MongoDB extension to use in your Quart applications. It also provides some convenience helpers as well as being able to work with [Quart-Schema][].
+
+![Quart Plug Mongo](logos/quart_mongo.png)
+
+# Installation 
+
+Install the extension with the following command:
+
+    $ pip3 install quart-mongo
+
+# Usage
+
+To use the extension simply import the class wrapper and pass the Quart app 
+object back to here. Do so like this:
+
+    from quart import Quart
+    from quart_mongo import Mongo
+
+    app = Quart(__name__)
+    babel = Mongo(app)
+
+
+# Documentation
+
+The documentation for Quart-Mongo and is available [here][docs].
+
+[Quart]: https://quart.palletsprojects.com/en/latest/>
+[Motor]: https://motor.readthedocs.io/en/stable/>
+[Odmantic]: https://art049.github.io/odmantic/
+[Quart-Schema]: https://github.com/pgjones/quart-schema
+[docs]: https://quart-babel.readthedocs.io
+
