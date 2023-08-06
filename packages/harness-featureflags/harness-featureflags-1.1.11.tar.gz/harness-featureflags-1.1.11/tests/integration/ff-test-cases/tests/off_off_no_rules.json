@@ -1,0 +1,47 @@
+{
+  "apiVersion": "1.0",
+  "flags": [
+    {
+      "defaultServe": { "distribution": null, "variation": "false" },
+      "environment": "demoenv",
+      "feature": "bool-flag-on-serve-false",
+      "kind": "boolean",
+      "offVariation": "false",
+      "prerequisites": [],
+      "project": "FeatureFlagsDemo",
+      "rules": [],
+      "state": "on",
+      "variationToTargetMap": null,
+      "variations": [
+        {
+          "description": null,
+          "identifier": "true",
+          "name": "Enable Page",
+          "value": "true"
+        },
+        {
+          "description": null,
+          "identifier": "false",
+          "name": "Disable Page",
+          "value": "false"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "identifier": "harness",
+      "name": "Harness"
+    },
+    {
+      "identifier": "enver",
+      "attributes": {
+        "email": "enver.bisevac@harness.io"
+      }
+    }
+  ],
+  "tests": [
+    { "flag": "bool-flag-on-serve-false", "expected": false },
+    { "flag": "bool-flag-on-serve-false", "target": "harness", "expected": false }
+  ]
+}
