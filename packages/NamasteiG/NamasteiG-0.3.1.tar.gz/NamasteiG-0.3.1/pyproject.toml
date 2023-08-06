@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "NamasteiG"
+version = "0.3.1"
+authors = [
+  { name="Abhinav Bhardwaj", email="abhinav.bhardwaj.56614@gmail.com" },
+]
+description = "Most PowerFull Instagram Library"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://t.me/namastelibrary"
+"Bug Tracker" = "https://t.me/namastehackers"
