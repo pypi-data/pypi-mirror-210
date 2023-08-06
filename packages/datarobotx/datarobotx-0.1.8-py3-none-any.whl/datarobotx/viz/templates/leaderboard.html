@@ -1,0 +1,37 @@
+<style>
+    .drx-leaderboard td {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+    .drx-lb-header {
+        margin: 0.25em;
+    }
+</style>
+<h3 class="drx-lb-header">Leaderboard for {{project_name}}</h3>
+<table style="width: max-content;overflow-x: scroll;" class="drx-leaderboard">
+    <tr>
+        <th>Model Number</th>
+        <th>Model Name</th>
+        {% for metric in metrics %}
+        <th {% if metric==key_metric %} style="font-weight: 900;" {% else %} style="font-weight: 400;" {% endif %}>{{
+            metric }}</th>
+        {% endfor %}
+    </tr>
+    {% for model in models %}
+    <tr {% if loop.index==1 %} style="background-color:lightyellow; color:black" {% endif %}>
+        <td>M{{ model["modelNumber"] | string }}
+            <div style="display: inline-block;width: 40px;">
+                <a href="{{webui_base_url}}/projects/{{projectId}}/models/{{model['id']}}/blueprint" target="_blank" rel="noopener noreferrer">
+                    {% include "robot.svg" %}
+                    {% if model['id'] == recommended_model_id %}<span style="font-size: 14px;position: relative; bottom: .15em;">🏆</span>{% endif %}
+                </a>
+            </div>
+        </td>
+        <td>{{model['modelType']}}</td>
+        {% for metric in metrics %}
+        <td>{{ model['metrics'][metric] | metric_parser }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<small><em>{% for caveat in fine_print %}{{ caveat }}<br>{% endfor %}</em></small>
