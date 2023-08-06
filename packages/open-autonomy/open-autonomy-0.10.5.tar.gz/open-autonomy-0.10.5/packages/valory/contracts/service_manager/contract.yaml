@@ -1,0 +1,19 @@
+name: service_manager
+author: valory
+version: 0.1.0
+type: contract
+description: Service Manager contract
+license: Apache-2.0
+aea_version: '>=1.0.0, <2.0.0'
+fingerprint:
+  __init__.py: bafybeiao4aiyvkvg75zfi2nf34hidx2uzcbqibc2bukyutisg5zhxskhlq
+  build/ServiceManager.json: bafybeiaykphmrdujhb7knvivig2qhm7ksj7sa4cppqrgbh3efq4z5yv4jm
+  contract.py: bafybeicqyj737jytcxsgsvw7eap4mjfpg3izyjhtpj3cdkbelylvhvzfmm
+  tests/__init__.py: bafybeifehip3omosjvpq3uqvxomtgrmqjoqdttyzhvu2qysybjf6btwkpi
+  tests/test_contract.py: bafybeibi5omdp6tk3s2ea46uw2tgg6mqjdxbts4ppctrhed7srz6odiwoq
+fingerprint_ignore_patterns: []
+contracts: []
+class_name: ServiceManagerContract
+contract_interface_paths:
+  ethereum: build/ServiceManager.json
+dependencies: {}
