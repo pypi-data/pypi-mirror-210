@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: flowchain
+Version: 0.0.3
+Summary: Flowchain - Method Chaining for TensorFlow
+Home-page: https://github.com/OrigamiDream/flowchain
+Author: OrigamiDream
+Author-email: hello@origamidream.me
+License: MIT
+Keywords: machine learning,deep learning,tensorflow,method chaining,extension
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Flowchain - Method Chaining for TensorFlow
+
+Extensive and simple tensor method chaining for TensorFlow
+
+Only add 2 lines of code at the top of your codes!
+```python
+from flowchain import enable_tensor_chaining
+
+enable_tensor_chaining()  # this does everything for you.
+```
+
+This package makes following approach possible:
+```python
+# before
+x = tf.abs(lhs - rhs)
+x = tf.reduce_sum(x, 1)
+x = tf.argmin(x, output_type=tf.int32)
+
+# after
+x = (lhs - rhs).abs().reduce_sum(1).argmin(output_type=tf.int32)
+```
+
