@@ -1,0 +1,2 @@
+class TaipanError(Exception):
+    pass
