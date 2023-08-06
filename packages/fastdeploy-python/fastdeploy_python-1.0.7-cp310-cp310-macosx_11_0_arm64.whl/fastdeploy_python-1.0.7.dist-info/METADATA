@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: fastdeploy-python
+Version: 1.0.7
+Summary: Deploy Kit Tool For Deeplearning models.
+Home-page: https://github.com/PaddlePaddle/FastDeploy.git
+Author: fastdeploy
+Author-email: fastdeploy@baidu.com
+License: Apache 2.0
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Dist: wheel
+Requires-Dist: requests
+Requires-Dist: tqdm
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: fastdeploy-tools (>=0.0.5)
+Requires-Dist: pyyaml
+Requires-Dist: fastapi
+Provides-Extra: mypy
+Requires-Dist: mypy (==0.600) ; extra == 'mypy'
+
