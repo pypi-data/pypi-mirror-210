@@ -1,0 +1,77 @@
+version: '3.3'
+services:
+  rippled_1:
+    image: rippled_node
+    container_name: rippled_1
+    environment:
+      - RIPPLED_BUILD_DIR=$RIPPLED_BUILD_DIR
+      - RIPPLED_CONFIG_DIR=$RIPPLED_CONFIG_DIR
+    ports:
+      - 5001:51234
+      - 6001:6006
+      - 2459:2459
+    volumes:
+      - ${RIPPLED_BUILD_DIR}:/opt/ripple/bin
+      - ${RIPPLED_CONFIG_DIR}/rippled_1:/opt/ripple/etc
+      - $HOME/rippled_log/rippled_1:/var/log/rippled
+      - $HOME/rippled_db/rippled_1:/var/lib/rippled/db
+
+  rippled_2:
+    image: rippled_node
+    container_name: rippled_2
+    environment:
+      - RIPPLED_BUILD_DIR=$RIPPLED_BUILD_DIR
+    ports:
+      - 5002:51234
+      - 6002:6006
+      - 2469:2459
+    volumes:
+      - ${RIPPLED_BUILD_DIR}:/opt/ripple/bin
+      - ${RIPPLED_CONFIG_DIR}/rippled_2:/opt/ripple/etc
+      - $HOME/rippled_log/rippled_2:/var/log/rippled
+      - $HOME/rippled_db/rippled_2:/var/lib/rippled/db
+
+  rippled_3:
+    image: rippled_node
+    container_name: rippled_3
+    environment:
+      - RIPPLED_BUILD_DIR=$RIPPLED_BUILD_DIR
+    ports:
+      - 5003:51234
+      - 6003:6006
+      - 2479:2459
+    volumes:
+      - ${RIPPLED_BUILD_DIR}:/opt/ripple/bin
+      - ${RIPPLED_CONFIG_DIR}/rippled_3:/opt/ripple/etc
+      - $HOME/rippled_log/rippled_3:/var/log/rippled
+      - $HOME/rippled_db/rippled_3:/var/lib/rippled/db
+
+  rippled_4:
+    image: rippled_node
+    container_name: rippled_4
+    environment:
+      - RIPPLED_BUILD_DIR=$RIPPLED_BUILD_DIR
+    ports:
+      - 5004:51234
+      - 6004:6006
+      - 2489:2459
+    volumes:
+      - ${RIPPLED_BUILD_DIR}:/opt/ripple/bin
+      - ${RIPPLED_CONFIG_DIR}/rippled_4:/opt/ripple/etc
+      - $HOME/rippled_log/rippled_4:/var/log/rippled
+      - $HOME/rippled_db/rippled_4:/var/lib/rippled/db
+
+  rippled_5:
+    image: rippled_node
+    container_name: rippled_5
+    environment:
+      - RIPPLED_BUILD_DIR=$RIPPLED_BUILD_DIR
+    ports:
+      - 5005:51234
+      - 6005:6006
+      - 2499:2459
+    volumes:
+      - ${RIPPLED_BUILD_DIR}:/opt/ripple/bin
+      - ${RIPPLED_CONFIG_DIR}/rippled_5:/opt/ripple/etc
+      - $HOME/rippled_log/rippled_5:/var/log/rippled
+      - $HOME/rippled_db/rippled_5:/var/lib/rippled/db
