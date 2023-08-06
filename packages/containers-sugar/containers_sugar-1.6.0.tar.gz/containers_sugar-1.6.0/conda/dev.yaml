@@ -1,0 +1,10 @@
+name: containers-sugar
+channels:
+  - nodefaults
+  - conda-forge
+dependencies:
+  - python 3.8.1
+  - poetry
+  - nodejs  # used by semantic-release
+  - urllib3 <2  # conflicts with
+  - docker-compose
