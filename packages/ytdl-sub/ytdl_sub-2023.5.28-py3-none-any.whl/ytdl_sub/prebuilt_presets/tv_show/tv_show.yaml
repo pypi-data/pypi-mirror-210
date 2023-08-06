@@ -1,0 +1,95 @@
+presets:
+
+
+  _plex_tv_show: # Default Highest Resolution, No AV1, which is not currently supported by plex
+    preset:
+      - "_plex_base"
+      - "_episode_base"
+      - "_episode_video_tags"
+    ytdl_options:
+      format: "(bv*[ext=mp4][vcodec~='^((he|a)vc|h26[45])']+ba[ext=m4a]) / (bv[ext=mp4]*+ba[ext=m4a]/b)"
+    overrides:
+      tv_show_poster_file_name: "poster.jpg"
+      tv_show_fanart_file_name: "fanart.jpg"
+      season_poster_file_name: "Season {season_number_padded}/Season{season_number_padded}.jpg"
+
+  _jellyfin_tv_show:
+    preset:
+      - "_base"
+      - "_episode_base"
+      - "_episode_video_tags"
+      - "_episode_nfo_tags"
+    overrides:
+      tv_show_poster_file_name: "poster.jpg"
+      tv_show_fanart_file_name: "fanart.jpg"
+      season_poster_file_name: "season{season_number_padded}-poster.jpg"
+
+  _kodi_tv_show:
+    preset:
+      - "_kodi_base"
+      - "_jellyfin_tv_show"
+
+####################################################################################################
+
+  # TV show from one or more sources. Uses {url}'s avatar and banner as poster and fanart
+  _tv_show_by_date:
+    download:
+      download_strategy: "multi_url"
+      urls:
+        - url: "{url}"
+          playlist_thumbnails:
+            - name: "{tv_show_poster_file_name}"
+              uid: "avatar_uncropped"
+            - name: "{tv_show_fanart_file_name}"
+              uid: "banner_uncropped"
+        - url: "{url2}"
+        - url: "{url3}"
+        - url: "{url4}"
+        - url: "{url5}"
+        - url: "{url6}"
+        - url: "{url7}"
+        - url: "{url8}"
+        - url: "{url9}"
+        - url: "{url10}"
+        - url: "{url11}"
+        - url: "{url12}"
+        - url: "{url13}"
+        - url: "{url14}"
+        - url: "{url15}"
+        - url: "{url16}"
+        - url: "{url17}"
+        - url: "{url18}"
+        - url: "{url19}"
+        - url: "{url20}"
+    overrides:
+      url2: ""
+      url3: ""
+      url4: ""
+      url5: ""
+      url6: ""
+      url7: ""
+      url8: ""
+      url9: ""
+      url10: ""
+      url11: ""
+      url12: ""
+      url13: ""
+      url14: ""
+      url15: ""
+      url16: ""
+      url17: ""
+      url18: ""
+      url19: ""
+      url20: ""
+
+####################################################################################################
+
+  # TV show from a collection. Must specify additional `tv_show_collection_season` presets in
+  # addition. Each season sets its own `collection_season_number/_padded`
+  _tv_show_collection:
+    download:
+      download_strategy: "multi_url"
+
+    overrides:
+      season_number: "{collection_season_number}"
+      season_number_padded: "{collection_season_number_padded}"
