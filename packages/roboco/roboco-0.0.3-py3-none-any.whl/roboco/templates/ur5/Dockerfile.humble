@@ -1,0 +1,11 @@
+FROM ros:humble
+
+RUN apt-get update && apt-get install -y \
+    ros-${ROS_DISTRO}-ur-robot-driver \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
+
+# Install dependencies using rosdep
+WORKDIR /ros_ws

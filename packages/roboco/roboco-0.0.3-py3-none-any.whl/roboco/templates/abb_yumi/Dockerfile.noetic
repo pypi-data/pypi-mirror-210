@@ -1,0 +1,25 @@
+FROM ros:noetic
+
+RUN apt-get update && apt-get install -y \
+    git \
+    python3-vcstool \
+    python3-catkin-tools \
+    && rm -rf /var/lib/apt/lists/*
+# Building abb yumi packages requires using catkin-tools instead of catkin_make
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
+# Download source dependencies
+RUN vcs import . --input https://github.com/ros-industrial/abb_robot_driver/raw/master/pkgs.repos
+
+# Install dependencies using rosdep
+WORKDIR /ros_ws
+RUN apt-get update \
+    && rosdep update \
+    && DEBIAN_FRONTEND=noninteractive rosdep install --from-paths src --ignore-src -r --default-yes \
+    && rm -rf /var/lib/apt/lists/*
+
+# Build packages. Note: catkin config --extend is required because we can't source /opt/ros/$ROS_DISTRO/setup.bash in a Dockerfile
+RUN catkin config \
+    --extend /opt/ros/$ROS_DISTRO && \
+    catkin build -DCMAKE_BUILD_TYPE=Release

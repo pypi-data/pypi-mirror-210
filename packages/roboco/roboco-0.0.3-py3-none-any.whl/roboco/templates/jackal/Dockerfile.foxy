@@ -1,0 +1,25 @@
+FROM ros:foxy
+
+RUN apt-get update && apt-get install -y \
+    ros-${ROS_DISTRO}-jackal-simulator \
+    ros-${ROS_DISTRO}-jackal-control \
+    ros-${ROS_DISTRO}-jackal-description \
+    ros-${ROS_DISTRO}-jackal-msgs \
+    ros-${ROS_DISTRO}-jackal-navigation \
+    ros-${ROS_DISTRO}-jackal-gazebo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and enter catkin workspace
+WORKDIR /ros_ws/src
+
+# Download source dependencies
+RUN git clone --branch foxy-devel https://github.com/jackal/jackal.git
+
+# Install dependencies using rosdep
+WORKDIR /ros_ws
+RUN apt-get update \
+    && rosdep update \
+    && DEBIAN_FRONTEND=noninteractive rosdep install --from-paths src --ignore-src -r --default-yes \
+    && rm -rf /var/lib/apt/lists/*
+
+#RUN colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
