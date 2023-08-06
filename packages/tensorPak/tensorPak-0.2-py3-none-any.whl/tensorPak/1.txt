@@ -1,0 +1,152 @@
+# Preprocessing
+
+import numpy as np
+import pandas as pd
+
+data_url = 'D:/BE/DL/data/housing.xls'
+dfd = pd.read_csv(data_url)
+dfd.head()
+
+raw_df = pd.read_csv(data_url, sep="\s+", header=None)
+raw_df
+
+data = np.hstack([raw_df.values[::2, :], raw_df.values[1::2, :2]])
+target = raw_df.values[1::2, 2]
+
+raw_df
+
+data = pd.DataFrame(raw_df)
+
+data.head()
+
+data.columns = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT',"PRICE"]
+
+data.head()
+
+data.to_csv("D:/BE/DL/data/boston.csv", index=False)
+
+print(data.shape)
+
+data.isnull().sum()
+
+# Visualization
+
+import seaborn as sns
+sns.distplot(data.PRICE)
+
+sns.lineplot(data=data, x='PRICE', y='RM')
+
+sns.boxplot(data.PRICE)
+
+correlation = data.corr()
+correlation.loc['PRICE']
+
+import matplotlib.pyplot as plt
+fig, axes = plt.subplots(figsize=(12,10))
+sns.heatmap(correlation, square=True, annot=True)
+
+# Regression Models
+
+X = data.iloc[:, :-1]
+Y = data.PRICE
+
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+from sklearn.metrics import mean_squared_error, r2_score
+
+from tabulate import tabulate
+
+from sklearn.linear_model import LinearRegression, Lasso
+from sklearn.cross_decomposition import PLSRegression
+from mord import OrdinalRidge
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+
+#Linear Regression
+linear_reg = LinearRegression()
+linear_reg.fit(X_train, Y_train)
+y_pred_linear = linear_reg.predict(X_test)
+linear_r2 = r2_score(Y_test, y_pred_linear)
+
+#Lasso Regression
+lasso_reg = make_pipeline(StandardScaler(), Lasso(alpha=0.1))
+lasso_reg.fit(X_train, Y_train)
+y_pred_lasso = lasso_reg.predict(X_test)
+lasso_r2 = r2_score(Y_test, y_pred_lasso)
+
+#Polynomial Regression
+poly_reg = make_pipeline(PolynomialFeatures(degree=2), StandardScaler(), LinearRegression())
+poly_reg.fit(X_train, Y_train)
+y_poly_pred = poly_reg.predict(X_test)
+poly_r2 = r2_score(Y_test, y_poly_pred)
+
+#partial least square Regression
+pls_reg = make_pipeline(StandardScaler(), PLSRegression(n_components=5))
+pls_reg.fit(X_train, Y_train)
+y_pred_pls = pls_reg.predict(X_test)
+pls_r2 = r2_score(Y_test, y_pred_pls)
+
+#Ordinal Regression
+ordinal_reg = OrdinalRidge(alpha=0.1)
+ordinal_reg.fit(X_train, Y_train)
+y_pred_ordinal = ordinal_reg.predict(X_test)
+ordinal_r2 = r2_score(Y_test, y_pred_ordinal)
+
+table = [
+    ["Linear Regression", str(linear_r2*100) + " %"],
+    ["Lasso Regression", str(lasso_r2*100) + " %"],
+    ["Polynomial Regression", str(poly_r2*100) + " %"],
+    ["Partial Least Square Regression", str(pls_r2*100) + " %"],
+    ["Ordinal Regression", str(ordinal_r2*100) + " %"]
+]
+
+
+headers = ["Models", "R2-Score"]
+
+print(tabulate(table, headers, tablefmt="grid"))
+
+# Neural Network
+
+from sklearn.preprocessing import StandardScaler
+
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+import keras
+from keras.layers import Dense, Activation, Dropout
+from keras.models import Sequential
+
+model = Sequential()
+
+model.add(Dense(128, activation='relu', input_dim=13))
+model.add(Dense(64, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(16, activation='relu'))
+model.add(Dense(1, activation='relu'))
+
+model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
+
+model
+
+model.fit(X_train, Y_train, epochs=100)
+
+y_pred_nn = model.predict(X_test)
+nn_r2 = r2_score(Y_test, y_pred_nn)
+
+# Evaluation of Model
+
+table = [
+    ["Linear Regression", str(linear_r2*100) + " %"],
+    ["Lasso Regression", str(lasso_r2*100) + " %"],
+    ["Polynomial Regression", str(poly_r2*100) + " %"],
+    ["Partial Least Square Regression", str(pls_r2*100) + " %"],
+    ["Ordinal Regression", str(ordinal_r2*100) + " %"],
+    ["Neural Network", str(nn_r2*100)+" %"]
+]
+
+headers = ['Models', 'R2-Score']
+
+print(tabulate(table, headers, tablefmt='markdown'))
+

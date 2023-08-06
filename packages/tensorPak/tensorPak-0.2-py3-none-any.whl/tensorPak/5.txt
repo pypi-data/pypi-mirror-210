@@ -1,0 +1,97 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import warnings
+
+base = "D:/BE/DL/final code of LP 5/DL/assignmentdl/data/Recurrent Neural Network"
+
+train_data = pd.read_csv(base + "/Stock_Price_Train.csv")
+
+train_data.head()
+
+train = train_data.loc[:, ['Open']].values
+
+train
+
+# Scaling
+
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler(feature_range=(0, 1))
+train_scaled = scaler.fit_transform(train)
+train_scaled
+
+plt.plot(train_scaled)
+
+X_train = []
+Y_train = []
+timestep = 50
+for i in range(timestep, 1258):
+    X_train.append(train_scaled[i-timestep:i, 0])
+    Y_train.append(train_scaled[i, 0])
+X_train, Y_train = np.array(X_train), np.array(Y_train)
+
+X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
+
+# RNN Model Creation
+
+from keras.models import Sequential
+from keras.layers import Dense, SimpleRNN, Dropout
+
+regressor = Sequential()
+
+regressor.add(SimpleRNN(units=50, activation='tanh', return_sequences=True, input_shape = (X_train.shape[1], 1)))
+regressor.add(Dropout(0.2))
+
+regressor.add(SimpleRNN(units=50, activation='tanh', return_sequences=True))
+regressor.add(Dropout(0.2))
+
+regressor.add(SimpleRNN(units=50, activation='tanh', return_sequences=True))
+regressor.add(Dropout(0.2))
+
+regressor.add(SimpleRNN(units=50))
+regressor.add(Dropout(0.2))
+
+regressor.add(Dense(units=1))
+
+regressor.summary()
+
+regressor.compile(optimizer='adam', loss='mean_squared_error')
+
+regressor.fit(X_train, Y_train, epochs=25, batch_size=32)
+
+# Testing
+
+test_data = pd.read_csv(base + "/Stock_Price_Test.csv")
+test_data.head()
+
+real_stock_price = test_data.loc[:, ['Open']].values
+
+total_data = pd.concat((train_data['Open'], test_data['Open']), axis=0)
+inputs = total_data[len(train_data) - len(test_data) - timestep:].values.reshape(-1,1)
+inputs = scaler.transform(inputs)
+
+inputs.shape
+
+X_test = []
+for i in range(timestep,70):
+    X_test.append(inputs[i-timestep:i,0])
+X_test = np.array(X_test)
+X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
+
+predicted_stock_price = regressor.predict(X_test)
+predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
+
+print(real_stock_price)
+
+print(predicted_stock_price)
+
+# Visualization
+
+plt.plot(real_stock_price, color='red', label='Google Stock Price')
+plt.plot(predicted_stock_price, color='blue', label='Predicted Stock Price')
+plt.xlabel('Time')
+plt.ylabel('Stock Price')
+plt.legend()
+plt.show()
+

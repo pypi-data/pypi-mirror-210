@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+#include <ctime>
+
+using namespace std;
+
+__global__ void multiply(int *a, int *b, int *c, int n){
+  int i = blockIdx.x*blockDim.x + threadIdx.x;
+  int j = blockIdx.y*blockDim.y + threadIdx.y;
+  if(i < n && j < n){
+    int sum = 0;
+    for(int k = 0; k < n; k++){
+      sum += a[i*n + k] * b[j+k*n];
+    }
+    c[i*n+j] = sum;
+  }
+}
+
+int main(){
+  int n = 22;
+  srand(time(0));
+
+  int *a = new int[n*n];
+  int *b = new int[n*n];
+  int *c = new int[n*n];
+
+  for(int i = 0; i < n*n; i++){
+    a[i] = rand()%10;
+    b[i] = rand()%10;
+  }
+  int *d_a, *d_b, *d_c;
+  cudaMalloc(&d_a, n*n*sizeof(int));
+  cudaMalloc(&d_b, n*n*sizeof(int));
+  cudaMalloc(&d_c, n*n*sizeof(int));
+
+  cudaMemcpy(d_a, a, n*n*sizeof(int), cudaMemcpyHostToDevice);
+  cudaMemcpy(d_b, b, n*n*sizeof(int), cudaMemcpyHostToDevice);
+
+  dim3 threadPerBlock(n, n, 1);
+  dim3 blockPerGrid(1, 1, 1);
+  if(n*n > 512){
+    threadPerBlock.x = 512;
+    threadPerBlock.y = 512;
+    blockPerGrid.x = ceil(double(n)/double(threadPerBlock.x));
+    blockPerGrid.y = ceil(double(n)/double(threadPerBlock.y));
+  }
+
+  clock_t parallel_start = clock();
+
+  multiply<<<blockPerGrid, threadPerBlock>>>(d_a, d_b, d_c, n);
+
+  cudaMemcpy(c, d_c, n*n*sizeof(int), cudaMemcpyDeviceToHost);
+
+  clock_t  parallel_end = clock();
+
+  double duration = double(parallel_end - parallel_start)/CLOCKS_PER_SEC;
+
+  cout << "A matrix:\n";
+  for(int i = 0; i < n; i++){
+      for(int j = 0 ;j < n; j++){
+          printf("%d ", a[i*n+j]);
+      }
+      printf("\n");
+  }
+
+  cout << "B matrix:\n";
+  for(int i = 0; i < n; i++){
+      for(int j = 0 ;j < n; j++){
+          printf("%d ", b[i*n+j]);
+      }
+      printf("\n");
+  }
+
+  cout << "C matrix:\n";
+  for(int i = 0; i < n; i++){
+      for(int j = 0 ;j < n; j++){
+          printf("%d ", c[i*n+j]);
+      }
+      printf("\n");
+  }
+
+  clock_t serial_start = clock();
+    //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    // Perform matrix multiplication on the CPU (serial execution)
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            int sum = 0;
+            for (int k = 0; k < n; ++k) {
+                sum += a[i * n + k] * b[k * n + j];
+            }
+            c[i * n + j] = sum;
+        }
+    }
+
+    // End timer for serial execution
+    clock_t serial_end = clock();
+    double serial_time = double(serial_end - serial_start) / CLOCKS_PER_SEC;
+
+  printf("Time taken Parallel : %3.7f ms\n", duration);
+  printf("Time taken Serail : %3.7f ms\n", serial_time);
+}
