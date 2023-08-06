@@ -1,0 +1,14 @@
+qiskit==0.41.1
+qiskit_ibm_runtime==0.10.0
+cirq==1.1.0
+amazon-braket-sdk==1.36.5
+numpy>=1.22.3
+strangeworks==0.4.1
+strangeworks-braket==1.0.3
+
+[dev]
+black
+bumpver
+isort
+pip-tools
+pytest
