@@ -1,0 +1,3 @@
+import natalify
+
+natalify.start()
