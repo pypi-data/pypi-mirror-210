@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: py-pdf-term
+Version: 1.0.2
+Summary: A fully-configurable terminology extraction module written in Python
+Home-page: https://github.com/kumachan-mis/py-pdf-term
+License: MIT
+Keywords: terminology extraction,technical term,pdf
+Author: Yuya Suwa
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: pdfminer.six (>=20221105,<20221106)
+Requires-Dist: spacy (>=3.5.3,<4.0.0)
+Project-URL: Repository, https://github.com/kumachan-mis/py-pdf-term
+Description-Content-Type: text/markdown
+
+# py-pdf-term
+
+A fully-configurable terminology extraction module written in Python
+
+## Installation
+
+```
+pip install py-pdf-term
+```
+
+You also need to install spaCy models `ja_core_news_sm` and `en_core_web_sm`, which this module depends on.
+
+```
+pip install https://github.com/explosion/spacy-models/releases/download/ja_core_news_sm-3.5.0/ja_core_news_sm-3.5.0.tar.gz
+pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0.tar.gz
+```
+
+## Documentation
+
+https://kumachan-mis.github.io/py-pdf-term
+
