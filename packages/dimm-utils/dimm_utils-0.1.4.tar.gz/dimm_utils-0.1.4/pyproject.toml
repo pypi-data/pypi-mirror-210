@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "dimm_utils"
+version = "0.1.4"
+description = "A collection of utilities for DIMM"
+authors = ["Eric Juta <ericjuta@trisolaris.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+boto3 = "^1.26.138"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

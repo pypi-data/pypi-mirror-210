@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: dimm-utils
+Version: 0.1.4
+Summary: A collection of utilities for DIMM
+Author: Eric Juta
+Author-email: ericjuta@trisolaris.io
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: boto3 (>=1.26.138,<2.0.0)
+Description-Content-Type: text/markdown
+
+## How to publish
+
+> Manually for now to pypi via api key
+
+- poetry build
+- poetry publish
+
