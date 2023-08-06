@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: langchain-wenxin
+Version: 0.3.0
+Project-URL: Documentation, https://github.com/unknown/langchain-wenxin#readme
+Project-URL: Issues, https://github.com/unknown/langchain-wenxin/issues
+Project-URL: Source, https://github.com/unknown/langchain-wenxin
+Author-email: Tao Yang <swulling@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.7
+Requires-Dist: langchain>=0.0.175
+Requires-Dist: requests
+Requires-Dist: sseclient-py
+Description-Content-Type: text/markdown
+
+# langchain-wenxin - Langchain Baidu WENXINWORKSHOP wrapper
+
+[![PyPI - Version](https://img.shields.io/pypi/v/langchain-wenxin.svg)](https://pypi.org/project/langchain-wenxin)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/langchain-wenxin.svg)](https://pypi.org/project/langchain-wenxin)
+
+-----
+
+**Table of Contents**
+
+- [Installation](#installation)
+- [License](#license)
+
+## Installation
+
+```console
+pip install langchain-wenxin
+```
+
+## Document
+
+WENXINWORKSHOP API: <https://cloud.baidu.com/doc/WENXINWORKSHOP/s/flfmc9do2>
+
+## How to use
+
+```bash
+export BAIDU_API_KEY="xxxxx"                            
+export BAIDU_SECRET_KEY="xxxxx"
+```
+
+```python3
+from langchain_wenxin.llms import Wenxin,ChatWenxin
+
+# Wenxin model
+llm = Wenxin(model="eb-instant")
+print(llm("你好"))
+
+# Wenxin chat model
+from langchain.schema import HumanMessage
+llm = ChatWenxin()
+print(llm([HumanMessage(content="你好")]))
+```
+
+Support models:
+- wenxin: 文心一言
+- eb-instant: 文心 EB-Lite
+
+## License
+
+`langchain-wenxin` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
