@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: nowparsinguris
+Version: 3.9.9
+Summary: Validate URIs
+Project-URL: Homepage, https://github.com/rottingresearch/urivalidator
+Author-email: Marshal Miller <marshal@rottingresearch.org>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: broken,link,linkrot,pdf,reference,rot,uri,url,validator
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Requires-Dist: chardet==5.1.0
+Requires-Dist: lxml==4.9.2
+Requires-Dist: pdfminer-six==20221105
+Provides-Extra: dev
+Requires-Dist: black==23.3.0; extra == 'dev'
+Requires-Dist: build==0.10.0; extra == 'dev'
+Requires-Dist: coverage==7.2.6; extra == 'dev'
+Requires-Dist: flake8==6.0.0; extra == 'dev'
+Requires-Dist: mccabe<=0.7.0; extra == 'dev'
+Requires-Dist: mega-py==1.0.8; extra == 'dev'
+Requires-Dist: mypy==1.3.0; extra == 'dev'
+Requires-Dist: pylint==2.17.4; extra == 'dev'
+Requires-Dist: pytest==7.3.1; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: mega-py==1.0.8; extra == 'test'
+Requires-Dist: pytest==7.3.1; extra == 'test'
+Description-Content-Type: text/markdown
+
+# urivalidator
+Python library the validates URIs for the organization
