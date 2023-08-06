@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: apgmx
+Version: 0.0.1
+Summary: A database migrations tool for asyncpg
+License: GPL-3.0
+Author: Noelle
+Author-email: 73260931+No767@users.noreply.github.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: uvloop
+Requires-Dist: asyncpg (>=0.27.0,<0.28.0)
+Requires-Dist: typer[all] (>=0.9.0,<0.10.0)
+Requires-Dist: uvloop (>=0.17.0,<0.18.0) ; extra == "uvloop"
+Description-Content-Type: text/markdown
+
+# apgmx
+
+**⚠️ This project was created for internal use within [Akari](https://github.com/No767/Akari), support will be minimal.**
+
+A database migrations tool for asyncpg (fork of RDanny's migrations system)
+
+## Key Features
+
+- Simple migrations 
+- Loads database uri either from .json config or from exported environment variables
+
+## Installing
+
+Currently as of now, PyPi releases are not available, so this project can only be installed via git: 
+
+```bash
+pip install git+https://github.com/No767/apgmx
+```
+
+## Usage
+
+See `apgmx --help` for more info and usage
+
+## Credits
+
+Thanks to Danny and the contributors of RoboDanny for providing the base of this project.
