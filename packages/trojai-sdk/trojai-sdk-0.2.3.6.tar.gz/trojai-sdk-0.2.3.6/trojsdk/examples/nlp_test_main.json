@@ -1,0 +1,41 @@
+{
+    "test_run_name": "my_test_nlp_run",
+    "task_type": "nlp",
+    "subtask": "classification",
+    "attacks": [
+        "QWERTYAttack",
+        "DeletionAttack",
+        "SynonymAttack",
+        "QWERTYAugmentation",
+        "DeletionAugmentation"
+    ],
+    "dataset": {
+        "name": "test_nlp_dataset",
+        "path_to_data": "s3://troj-coco-backup/nlp/dataset.csv",
+        "classes_dictionary": {
+            "world": 0,
+            "sports": 1,
+            "business": 2,
+            "technology": 3
+        },
+        "input_column": "input",
+        "target_column": "label"
+    },
+    "model": {
+        "name": "my_nlp_model",
+        "path_to_model_file": "s3://troj-coco-backup/nlp/user_model.py",
+        "metadata": [
+            "meta1",
+            "meta2"
+        ],
+        "model_args_dict": {}
+    },
+    "auth_config": "trojsdk/examples/auth_config_dev.json",
+    "save_path": "./run_output.json",
+    "compute_severity": true,
+    "docker_metadata":{
+        "docker_image_url": "trojai/troj-engine-base-nlp:4b32477c7ca05dde671b1c953014a49ccf00981d",
+        "docker_secret_name": "trojaicreds",
+        "image_pull_policy": "IfNotPresent"
+    }
+}

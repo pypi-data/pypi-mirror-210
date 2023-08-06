@@ -1,0 +1,11 @@
+{
+  "name": "small_classification_job_tabular",
+  "task_type": "tabular",
+  "audit": true,
+  "subtask": "classification",
+  "attacks": "trojsdk/configs/s3_test/all_pipe_transform_config.json",
+  "dataset": "trojsdk/configs/s3_test/s3_stars_validation_config.json",
+  "model": "trojsdk/configs/s3_test/s3_starKNN_config.json",
+  "random_seed": 42,
+  "auth_config": "trojsdk/configs/auth_config_dev.json"
+}

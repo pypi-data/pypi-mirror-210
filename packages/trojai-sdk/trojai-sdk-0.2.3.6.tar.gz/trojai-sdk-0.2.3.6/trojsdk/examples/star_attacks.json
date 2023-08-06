@@ -1,0 +1,54 @@
+{
+    "attacks": [
+    {
+        "attack_name": "FeatureToNan",
+        "display_name": "Feature to NaN attack on age feature",
+        "column_names": [
+            "age"
+        ],
+        "attack_kwargs": {
+            "rmse_thresh": 2000
+        }
+    },
+    {
+        "attack_name": "AbsurdValue",
+        "display_name": "Absurd value attack on smoker feature",
+        "column_names": [
+            "smoker"
+        ],
+        "attack_kwargs": {
+            "rmse_thresh": 2000
+        }
+    },
+    {
+        "attack_name": "AbsurdValue",
+        "display_name": "Absurd value attack on region feature",
+        "column_names": [
+            "region"
+        ],
+        "attack_kwargs": {
+            "rmse_thresh": 2000
+        }
+    },
+    {
+        "attack_name": "NumberToString",
+        "display_name": "Number to string attack attack on children feature",
+        "column_names": [
+            "children"
+        ],
+        "attack_kwargs": {
+            "rmse_thresh": 2000
+        }
+    },
+    {
+        "attack_name": "ScaleShift",
+        "display_name": "Scale shift attack on bmi feature",
+        "column_names": [
+            "bmi"
+        ],
+        "attack_kwargs": {
+            "rmse_thresh": 2000
+        }
+    }
+]
+}

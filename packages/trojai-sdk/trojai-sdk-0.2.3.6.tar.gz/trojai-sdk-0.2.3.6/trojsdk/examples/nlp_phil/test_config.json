@@ -1,0 +1,10 @@
+{
+	"name": "banking77_test_dataset",
+	"path_to_data": "s3://phil-nlp/banking77/clean_test.csv",
+	"input_column":"text",
+	"target_column":"labels",
+	"classes_dictionary": "./trojsdk/examples/nlp_phil/label_map_num.json",
+	"data_loader_config": {
+		"batch_size": 2
+	}
+}

@@ -1,0 +1,46 @@
+
+stages:
+  - prod-tag
+
+
+################################################
+#DEV TAG PIPELINE X.Y.Z-meta (directly from tag)
+################################################
+
+#Pushes helm package, with version and appversion as tag override (ignores Chart.yaml) to trojaidev (private Artifact Registry)
+# build-dev:
+#   stage: dev-tag
+#   image: python:3.8
+#   only:
+#     - /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))$/
+#   except:
+#     - branches
+#   script:
+#     - pip install build
+#     - pip install twine
+#     - python3 -m build
+#     - echo "building"
+#     - echo ${TWINE_DEV_USER}
+#     - TWINE_PASSWORD=${TWINE_DEV_PASSWORD} TWINE_USERNAME=${TWINE_DEV_USER} python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+
+
+
+####################################################
+#PROD RELEASE TAG PIPELINE X.Y.Z (directly from tag)
+####################################################
+
+#Pushes helm package, with version and appversion as tag override (ignores Chart.yaml) to trojaiprod (customer facing Artifact Registry)
+build-prod:
+  stage: prod-tag
+  image: python:3.8
+  only:
+    - /^(\d+\.)?(\d+\.)?(\*|\d+)-release$/
+  except:
+    - branches
+  script:
+    - pip install build
+    - pip install twine
+    - python3 -m build
+    - echo "building"
+    - TWINE_PASSWORD=${TWINE_PROD_PASSWORD} TWINE_USERNAME=${TWINE_PROD_USER} python3 -m twine upload dist/*

@@ -1,0 +1,74 @@
+{
+  "test_run_name": "small_classification_job_tabular",
+  "task_type": "tabular",
+  "subtask": "classification",
+  "attacks": [
+      {
+        "attack_name": "NumberToString",
+        "column_names": ["Temperature_log"]
+      },
+      {
+        "attack_name": "FeatureToNan",
+        "column_names": ["Temperature_log"]
+      },
+      {
+        "attack_name": "FloatToInt",
+        "column_names": ["Temperature_log"]
+      },
+      {
+        "attack_name": "AbsurdValue",
+        "column_names": ["Temperature_log"]
+      },
+      {
+        "attack_name": "NewFeature",
+        "column_names": ["N/A"]
+      },
+      {
+        "attack_name": "MissingFeature",
+        "column_names": ["Temperature_log"]
+      },
+      {
+        "attack_name": "EmptyString",
+        "column_names": ["Color"]
+      },
+      {
+        "attack_name": "UnseenCategory",
+        "column_names": ["Color"],
+        "attack_kwargs": {
+          "unseen_value": "green"
+        }
+      },
+      {
+        "attack_name": "AdditiveNoise",
+        "column_names": ["Temperature_log"],
+        "attack_kwargs": {
+          "dev": 0.1
+        }
+      },
+          {
+        "attack_name": "ScaleShift",
+        "column_names": ["Temperature_log"]
+      }
+    ],
+  "dataset":   {"name": "stars_validation",
+  "path_to_data": "s3://trojai-test-file-storage/stars_validation.csv",
+  "data_loader_config": {"batch_size":  3, "shuffle": false},
+  "label_column": "Type",
+  "classes_dictionary": {
+      "red dwarf": 0,
+      "brown dwarf": 1,
+      "white dwarf":  2,
+      "main sequence": 3,
+      "super giants": 4,
+      "hyper giants": 5
+      }
+  },
+  "model":
+    {
+      "name": "StarKNN",
+      "path_to_model_file": "s3://trojai-test-file-storage/StarKNNWrapper.py",
+      "model_args_dict": {"model_file": "s3://trojai-test-file-storage/StarKNNPipe.pkl"}
+    },
+  "random_seed": 42,
+  "auth_config": "trojsdk/examples/tabular_test/troj_dev_auth.json"
+}

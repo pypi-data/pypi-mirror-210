@@ -1,0 +1,50 @@
+{
+  "attacks": [
+    {
+      "attack_name": "NumberToString",
+      "column_names": ["Temperature_log"]
+    },
+    {
+      "attack_name": "FeatureToNan",
+      "column_names": ["Temperature_log"]
+    },
+    {
+      "attack_name": "FloatToInt",
+      "column_names": ["Temperature_log"]
+    },
+    {
+      "attack_name": "AbsurdValue",
+      "column_names": ["Temperature_log"]
+    },
+    {
+      "attack_name": "NewFeature",
+      "column_names": ["N/A"]
+    },
+    {
+      "attack_name": "MissingFeature",
+      "column_names": ["Temperature_log"]
+    },
+    {
+      "attack_name": "EmptyString",
+      "column_names": ["Color"]
+    },
+    {
+      "attack_name": "UnseenCategory",
+      "column_names": ["Color"],
+      "attack_kwargs": {
+        "unseen_value": "green"
+      }
+    },
+    {
+      "attack_name": "AdditiveNoise",
+      "column_names": ["Temperature_log"],
+      "attack_kwargs": {
+        "dev": 0.1
+      }
+    },
+        {
+      "attack_name": "ScaleShift",
+      "column_names": ["Temperature_log"]
+    }
+  ]
+}

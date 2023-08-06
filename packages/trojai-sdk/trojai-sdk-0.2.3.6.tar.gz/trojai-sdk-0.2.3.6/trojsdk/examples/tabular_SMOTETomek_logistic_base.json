@@ -1,0 +1,51 @@
+{
+	"test_run_name": "cleaned_credit_approval_data",
+	"task_type": "tabular",
+	"audit": true,
+	"run_attacks_from_model_profile": true,
+	"dataset": {
+		"name": "cleaned_credit_approval_test",
+		"path_to_data": "s3://trojai-object-storage/CreditApprovalFiles/cleaned_approval_test.csv",
+		"data_loader_config": {
+			"batch_size": 16,
+			"shuffle": false
+		}
+	},
+	"train_dataset": {
+		"name": "cleaned_credit_approval_train",
+		"path_to_data": "s3://trojai-object-storage/CreditApprovalFiles/cleaned_approval_train.csv",
+		"data_loader_config": {
+			"batch_size": 16,
+			"shuffle": false
+		},
+		"label_column": "target",
+		"classes_dictionary": {
+			"No": 0,
+			"Yes": 1
+		}
+	},
+	"model": {
+		"name": "SMOTETomek_logistic",
+		"path_to_model_file": "s3://trojai-object-storage/CreditApprovalFiles/sklearn_wrapper.py",
+		"model_args_dict": {
+			"model_file": "s3://trojai-object-storage/CreditApprovalFiles/SMOTETomek_logistic.pkl"
+		}
+	},
+	"auth_config": {
+		"api_endpoint": "https://trojaibackend.troj.red/api/v1",
+		"auth_keys": {
+			"api_key": "55555"
+		},
+		"secrets": {
+			"AWS_ACCESS_KEY_ID": "AKIAQASF3SJBUF24YMZI",
+			"AWS_SECRET_ACCESS_KEY": "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"
+		},
+		"project_name": "credit_approval_model_comparison",
+		"dataset_name": "cleaned_credit_approval_data"
+	},
+	"docker_metadata": {
+		"docker_image_url": "trojai/troj-engine-base-tabular:tabular-dev-latest",
+		"docker_secret_name": "trojaicreds",
+		"image_pull_policy": "Always"
+	}
+}

@@ -1,0 +1,10 @@
+{
+  "test_run_name": "small_classification_job_tabular",
+  "task_type": "tabular",
+  "subtask": "classification",
+  "attacks": "trojsdk/examples/tabular_test/all_pipe_transform_config.json",
+  "dataset": "trojsdk/examples/tabular_test/s3_stars_validation_config.json",
+  "model": "trojsdk/examples/tabular_test/s3_starKNN_config.json",
+  "random_seed": 42,
+  "auth_config": "trojsdk/examples/tabular_test/troj_dev_auth.json"
+}

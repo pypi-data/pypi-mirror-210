@@ -1,0 +1,17 @@
+{
+  "name": "stars_validation",
+  "path_to_data": "s3://troj-coco-backup/tabular/stars_validation.csv",
+  "data_loader_config": {
+    "batch_size": 3,
+    "shuffle": false
+  },
+  "label_column": "Type",
+  "classes_dictionary": {
+    "red dwarf": 0,
+    "brown dwarf": 1,
+    "white dwarf": 2,
+    "main sequence": 3,
+    "super giants": 4,
+    "hyper giants": 5
+  }
+}

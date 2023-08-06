@@ -1,0 +1,16 @@
+{	"test_run_name": "bert_banking77",
+	"task_type": "nlp",
+	"subtask": "classification",
+	
+	"audit": true,
+	"integrity_checks": [
+		{"check_name": "WordBasedBackdoor", "target_class": 0},
+		{"check_name": "RandomStringBackdoor", "target_class": 1}
+		],
+	"attacks": "./trojsdk/examples/nlp_phil/attacks.json",
+	"dataset": "./trojsdk/examples/nlp_phil/test_config.json", 
+	"train_dataset": "./trojsdk/examples/nlp_phil/train_config.json",
+	"model": "./trojsdk/examples/nlp_phil/model_config.json", 
+	
+	"auth_config": "./trojsdk/examples/auth_config_dev.json"
+}

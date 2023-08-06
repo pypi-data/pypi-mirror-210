@@ -1,0 +1,129 @@
+{
+	"test_run_name": "test_run_audit",
+	"task_type": "tabular",
+	"subtask": "regression",
+	"audit": true,
+	"auth_config": "./trojsdk/examples/auth_config_dev.json",
+	"attacks": [
+		{
+			"attack_name": "FeatureToNan",
+			"display_name": "Feature to NaN attack on age feature",
+			"column_names": [
+				"age"
+			],
+			"attack_kwargs": {
+				"rmse_thresh": 2000
+			}
+		},
+		{
+			"attack_name": "AbsurdValue",
+			"display_name": "Absurd value attack on smoker feature",
+			"column_names": [
+				"smoker"
+			],
+			"attack_kwargs": {
+				"rmse_thresh": 2000
+			}
+		},
+		{
+			"attack_name": "AbsurdValue",
+			"display_name": "Absurd value attack on region feature",
+			"column_names": [
+				"region"
+			],
+			"attack_kwargs": {
+				"rmse_thresh": 2000
+			}
+		},
+		{
+			"attack_name": "NumberToString",
+			"display_name": "Number to string attack attack on children feature",
+			"column_names": [
+				"children"
+			],
+			"attack_kwargs": {
+				"rmse_thresh": 2000
+			}
+		},
+		{
+			"attack_name": "ScaleShift",
+			"display_name": "Scale shift attack on bmi feature",
+			"column_names": [
+				"bmi"
+			],
+			"attack_kwargs": {
+				"rmse_thresh": 2000
+			}
+		}
+	],
+	"run_attacks_from_model_profile": true,
+	"integrity_checks": [
+		{
+			"check_name": "EppsSingletonDriftCheck"
+		}
+	],
+	"dataset": {
+		"name": "insurance_test_dataset",
+		"path_to_data": "s3://trojai-object-storage/medical_insurance/data/insurance_test.csv",
+		"data_loader_config": {
+			"batch_size": 3,
+			"shuffle": false
+		},
+		"label_column": "charges"
+	},
+	"train_dataset": {
+		"name": "insurance_train_dataset",
+		"path_to_data": "s3://trojai-object-storage/medical_insurance/data/insurance_train.csv",
+		"data_loader_config": {
+			"batch_size": 3,
+			"shuffle": false
+		},
+		"label_column": "charges"
+	},
+	"deploy_dataset": {
+		"name": "insurance_train_dataset",
+		"path_to_data": "s3://trojai-object-storage/medical_insurance/data/insurance_test.csv",
+		"data_loader_config": {
+			"batch_size": 3,
+			"shuffle": false
+		},
+		"label_column": "charges"
+	},
+	"model": {
+		"name": "polynomial_regression",
+		"path_to_model_file": "s3://trojai-object-storage/medical_insurance/model/model.py",
+		"model_args_dict": {
+			"path_to_model_file": "s3://trojai-object-storage/medical_insurance/model/model.pkl",
+			"path_to_polynomial": "s3://trojai-object-storage/medical_insurance/model/polynomial.pkl"
+		}
+	},
+	"docker_metadata": {
+		"docker_image_url": "trojai/troj-engine-base-tabular:tabular-dev-latest",
+		"docker_secret_name": "trojaicreds",
+		"image_pull_policy": "Always"
+	},
+	"k8s_metadata": {
+		"container_port": 80,
+		"resources": {
+			"requests": {
+				"cpu": "250m",
+				"memory": "800M"
+			},
+			"limits": {
+				"cpu": "500m",
+				"memory": "2000M"
+			}
+		},
+		"tolerations": [
+			{
+				"effect": "NoSchedule",
+				"operator": "Equal",
+				"value": "robustness-evaluation",
+				"key": "dedicated"
+			}
+		],
+		"node_selector": {
+			"dedicated": "robustness-evaluation"
+		}
+	}
+}
