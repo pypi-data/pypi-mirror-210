@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "init-equation"
+version = "0.1.6"
+description = "Added qrcode lines in main.py for main.tex"
+authors = ["vaibhavblayer <vaibhavblayer@gmail.com>"]
+readme = "README.md"
+packages = [{include = "init_equation"}]
+
+
+[tool.poetry.scripts]
+init-equation = "init_equation.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
