@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.7.0
+    container_name: logstash
+    ports:
+      - 5044:5044
+      - 32173:32173
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/config/logstash.conf:ro
+    env_file:
+      - ../.env
+    environment:
+      - xpack.monitoring.elasticsearch.ssl.verification_mode=none
+    entrypoint: logstash -f /usr/share/logstash/config/logstash.conf
