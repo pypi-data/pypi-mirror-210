@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "socketcan"
+version = "1.3.0"
+authors = [
+  { name="Patrick Menschel", email="menschel.p@posteo.de" },
+]
+description = "A python 3 interface to socketcan"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Embedded Systems",
+]
+dependencies = [
+    "socketcan",
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/menschel/socketcan"
+"Bug Tracker" = "https://gitlab.com/menschel/socketcan/issues"
+
+[tool.setuptools.packages.find]
+include = ["socketcan"]
