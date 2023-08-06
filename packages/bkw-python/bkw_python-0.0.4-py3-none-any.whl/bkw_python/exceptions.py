@@ -1,0 +1,2 @@
+class BkwException(Exception):
+    pass
