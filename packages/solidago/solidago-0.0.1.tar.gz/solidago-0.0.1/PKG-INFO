@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: solidago
+Version: 0.0.1
+Summary: Algorithms for the Tournesol platform
+Project-URL: Homepage, https://github.com/tournesol-app/tournesol/tree/main/solidago
+Project-URL: Bug Tracker, https://github.com/tournesol-app/tournesol/issues
+Author-email: Tournesol Association <hello@tournesol.app>
+Keywords: collaborative recommendations,comparison based,judgement aggregation,mehestan,tournesol
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Requires-Dist: numba==0.57.0
+Requires-Dist: numpy<1.25,>=1.24.3
+Requires-Dist: pandas<2.0,>=1.5.3
+Provides-Extra: test
+Requires-Dist: pytest<8.0.0,>=7.1.3; extra == 'test'
+Description-Content-Type: text/markdown
+
+# Solidago
+
+**Solid** **A**lgorithm **Go**vernance, used by the Tournesol platform
