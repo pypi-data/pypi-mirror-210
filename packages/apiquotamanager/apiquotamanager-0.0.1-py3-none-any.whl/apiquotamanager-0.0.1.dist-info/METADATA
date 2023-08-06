@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: apiquotamanager
+Version: 0.0.1
+Summary: API Quota Manager Python
+Author: Sunny Dung
+Author-email: sdung@jobsync.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+# JobSync API-Quota-Manager Library
+### To install
+```bash
+pip install apiquotamanager
+```
+---
+## Quota Management
+### To import
+```python
+from apiquotamanager.taleo_quota_manager import QuotaManager
+```
+### Example
+```python
+from apiquotamanager.taleo_quota_manager import QuotaManager
+obj_q = QuotaManager('taleo-enterprise-api')
+obj_q.calculate_requests_quota(total_quota=2000, used_quota=500, qtime='1 minute')
+obj_q.calculate_requests_quota(total_quota=2000, used_quota=500, qtime='1 hour')
+obj_q.calculate_requests_quota(total_quota=2000, used_quota=500, qtime='1 day')
+obj_q.calculate_requests_quota(total_quota=2000, used_quota=500, qtime='1 month')
+obj_q.calculate_requests_quota(total_quota=2000, used_quota=500, qtime='1 year')
+```
