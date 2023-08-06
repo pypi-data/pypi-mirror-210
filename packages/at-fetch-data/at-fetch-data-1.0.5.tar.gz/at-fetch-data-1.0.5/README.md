@@ -1,0 +1,54 @@
+## at_fetch_data
+
+```
+pip install at_fetch_data
+```
+
+### api
+
+
+- get_all_klines_data: 
+    - url:str 
+        - http://47.243.179.153:8000/api/kline/spot
+    - symbol: str 
+    - interval: str
+    - start_time: int
+    - end_time: int
+- get_kline_count: 
+    - url: str
+        - http://47.243.179.153:8000/api/kline/spot_count
+    - symbol: str
+    - interval: str
+    - start_time: int
+    - end_time: int
+
+
+### usage
+
+```
+from fetch.fetch import Fetch
+import asyncio
+import time
+
+
+async def main():
+    request = Fetch()
+    start_time = 1533684900
+    end_time = 1533687900
+    symbol = "btcusdt"
+    interval = "1m"
+    start = time.time()
+    # await asyncio.sleep(1)
+    res = await request.get_all_klines_data(
+        "http://47.243.179.153:8000/api/kline/spot", symbol, interval, start_time, end_time
+    )
+    end = time.time()
+    exec_time = end - start
+    print("exec_time", exec_time)
+    # res已经是按照顺序的dataframe数据格式
+    print(res)
+
+
+asyncio.run(main())
+
+```
