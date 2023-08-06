@@ -1,0 +1,51 @@
+[build-system]
+requires = ["flit_core >=3.6,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "songwhip"
+readme = "README.md"
+authors = [
+    {name="Amethyst Reese", email="amethyst@n7.gg"},
+]
+license = {file="LICENSE"}
+dynamic = ["version", "description"]
+requires-python = ">=3.10"
+dependencies = [
+    "click >= 8",
+    "munch >= 2.5",
+    "rich >= 13",
+]
+
+[project.optional-dependencies]
+dev = [
+    "attribution==1.6.2",
+    "black==23.3.0",
+    "flake8==6.0.0",
+    "flit==3.8.0",
+    "mypy==1.2.0",
+    "ufmt==2.0.1",
+    "usort==1.0.6",
+]
+
+[project.scripts]
+songwhip = "songwhip.__main__:main"
+
+[project.urls]
+Home = "https://github.com/amyreese/songwhip"
+
+[tool.flit.sdist]
+exclude = [
+    ".github/",
+]
+
+[tool.attribution]
+name = "songwhip"
+package = "songwhip"
+version_file = true
+ignored_authors = ["dependabot[bot]"]
+signed_tags = true
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
