@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: authpy
+Version: 2.1.1
+Summary: Authentication system in Python made easy
+Author: TheUnkownHacker
+Author-email: jhamb.aarav@gmail.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+AuthPy is a simple authentication library for Python that provides functionality for user signup and login with secure password storage. 
+It utilizes bcrypt for password hashing and encryption for enhanced security.
+
+Features:
+
+	User signup with strong password requirements
+	User login with password verification
+	Secure storage of usernames and passwords using encryption
+	Automatic database creation if not found
+Usage:
+	Install Authpy - pip install authpy
+	Import AuthPy -  from authpy import AuthPy
+	Create an AuthPy Class - auth = AuthPy()
+	Use the auth instance to call the following methods:
+	
+	signup(username, password): Sign up a new user with a username and password. 
+		
+	login(username, password): Log in an existing user with a username and password. 
+
+Example Usage:
+
+	# Create AuthPy instance
+	auth = AuthPy()
+
+	# Sign up a new user
+	username_input = input("What is your username: ")
+	password_input = input("Enter your password: ")
+	try:
+    	auth.signup(username_input, password_input)
+    	print("Signup successful")
+	except ValueError as e:
+    	print("Signup failed:", str(e))
+
+	# Log in an existing user
+	username_input = input("What is your username: ")
+	password_input = input("Enter your password: ")
+	login_result = auth.login(username_input, password_input)
+	print(login_result)
