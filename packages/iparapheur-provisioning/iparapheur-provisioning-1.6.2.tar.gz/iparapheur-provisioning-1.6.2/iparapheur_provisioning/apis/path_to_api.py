@@ -1,0 +1,50 @@
+import typing_extensions
+
+from iparapheur_provisioning.paths import PathValues
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_user_user_id import ApiProvisioningV1AdminUserUserId
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id import ApiProvisioningV1AdminTenantTenantId
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_user_user_id import ApiProvisioningV1AdminTenantTenantIdUserUserId
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_typology_type_type_id import ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeId
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_typology_type_type_id_subtype_subtype_id import ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeIdSubtypeSubtypeId
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_desk_desk_id import ApiProvisioningV1AdminTenantTenantIdDeskDeskId
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant import ApiProvisioningV1AdminTenant
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_user import ApiProvisioningV1AdminTenantTenantIdUser
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_typology_type import ApiProvisioningV1AdminTenantTenantIdTypologyType
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_typology_type_type_id_subtype import ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeIdSubtype
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_tenant_tenant_id_desk import ApiProvisioningV1AdminTenantTenantIdDesk
+from iparapheur_provisioning.apis.paths.api_provisioning_v1_admin_user import ApiProvisioningV1AdminUser
+
+PathToApi = typing_extensions.TypedDict(
+    'PathToApi',
+    {
+        PathValues.API_PROVISIONING_V1_ADMIN_USER_USER_ID: ApiProvisioningV1AdminUserUserId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID: ApiProvisioningV1AdminTenantTenantId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_USER_USER_ID: ApiProvisioningV1AdminTenantTenantIdUserUserId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE_TYPE_ID: ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE_TYPE_ID_SUBTYPE_SUBTYPE_ID: ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeIdSubtypeSubtypeId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_DESK_DESK_ID: ApiProvisioningV1AdminTenantTenantIdDeskDeskId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT: ApiProvisioningV1AdminTenant,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_USER: ApiProvisioningV1AdminTenantTenantIdUser,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE: ApiProvisioningV1AdminTenantTenantIdTypologyType,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE_TYPE_ID_SUBTYPE: ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeIdSubtype,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_DESK: ApiProvisioningV1AdminTenantTenantIdDesk,
+        PathValues.API_PROVISIONING_V1_ADMIN_USER: ApiProvisioningV1AdminUser,
+    }
+)
+
+path_to_api = PathToApi(
+    {
+        PathValues.API_PROVISIONING_V1_ADMIN_USER_USER_ID: ApiProvisioningV1AdminUserUserId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID: ApiProvisioningV1AdminTenantTenantId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_USER_USER_ID: ApiProvisioningV1AdminTenantTenantIdUserUserId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE_TYPE_ID: ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE_TYPE_ID_SUBTYPE_SUBTYPE_ID: ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeIdSubtypeSubtypeId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_DESK_DESK_ID: ApiProvisioningV1AdminTenantTenantIdDeskDeskId,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT: ApiProvisioningV1AdminTenant,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_USER: ApiProvisioningV1AdminTenantTenantIdUser,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE: ApiProvisioningV1AdminTenantTenantIdTypologyType,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_TYPOLOGY_TYPE_TYPE_ID_SUBTYPE: ApiProvisioningV1AdminTenantTenantIdTypologyTypeTypeIdSubtype,
+        PathValues.API_PROVISIONING_V1_ADMIN_TENANT_TENANT_ID_DESK: ApiProvisioningV1AdminTenantTenantIdDesk,
+        PathValues.API_PROVISIONING_V1_ADMIN_USER: ApiProvisioningV1AdminUser,
+    }
+)
