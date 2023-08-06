@@ -1,0 +1,184 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
+name = "safir"
+description = "The Rubin Observatory SQuaRE framework for FastAPI services."
+license = {file = "LICENSE"}
+readme= "README.md"
+keywords = [
+    "rubin",
+    "lsst",
+]
+# https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: POSIX",
+    "Typing :: Typed",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "cryptography",
+    "fastapi",
+    "gidgethub",
+    "httpx>=0.20.0",
+    "pydantic",
+    "starlette",
+    "structlog>=21.2.0",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+arq = [
+    "arq>=0.23"
+]
+db = [
+    "asyncpg",
+    "sqlalchemy[asyncio]>=1.4.18",
+]
+dev = [
+    "asgi-lifespan",
+    "coverage[toml]",
+    "flake8",
+    "mypy",
+    "pre-commit",
+    "psycopg2",
+    "pytest",
+    "pytest-asyncio",
+    "respx",
+    "scriv",
+    "sqlalchemy[mypy]",
+    "types-redis",
+    "uvicorn",
+    # documentation
+    "documenteer[guide]>=0.7.0b2",
+    "autodoc_pydantic",
+]
+gcs = [
+    "google-auth",
+    "google-cloud-storage"
+]
+kubernetes = [
+    "kubernetes_asyncio"
+]
+redis = [
+    "redis>=4.2.0rc1,!=4.5.2", # https://github.com/redis/redis-py/issues/2633
+]
+
+[[project.authors]]
+name = "Association of Universities for Research in Astronomy, Inc. (AURA)"
+email = "sqre-admin@lists.lsst.org"
+
+[project.urls]
+Homepage = "https://safir.lsst.io"
+Source = "https://github.com/lsst-sqre/safir"
+"Change log" = "https://safir.lsst.io/changelog.html"
+"Issue tracker" = "https://github.com/lsst-sqre/safir/issues"
+
+[build-system]
+requires = [
+    "setuptools>=61",
+    "wheel",
+    "setuptools_scm[toml]>=6.2"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[tool.coverage.run]
+parallel = true
+branch = true
+source = ["safir"]
+
+[tool.coverage.paths]
+source = ["src", ".tox/*/site-packages"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:"
+]
+
+[tool.black]
+line-length = 79
+target-version = ["py311"]
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | build
+  | dist
+)/
+'''
+# Use single-quoted strings so TOML treats the string like a Python r-string
+# Multi-line strings are implicitly treated by black as regular expressions
+
+[tool.isort]
+profile = "black"
+line_length = 79
+known_first_party = ["safir", "tests"]
+skip = ["docs/conf.py"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+filterwarnings = [
+    "ignore:'cgi' is deprecated:DeprecationWarning:google.cloud.storage.blob",
+    # Google modules call a deprecated pkg_resources API.
+    "ignore:pkg_resources is deprecated as an API:DeprecationWarning",
+    "ignore:.*pkg_resources\\.declare_namespace:DeprecationWarning",
+]
+python_files = [
+    "tests/*.py",
+    "tests/*/*.py"
+]
+
+[tool.mypy]
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+ignore_missing_imports = true
+local_partial_types = true
+no_implicit_reexport = true
+plugins = [
+    "pydantic.mypy",
+    "sqlalchemy.ext.mypy.plugin",
+]
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_ignores = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[tool.scriv]
+categories = [
+    "Backwards-incompatible changes",
+    "New features",
+    "Bug fixes",
+    "Other changes",
+]
+entry_title_template = "{{ version }} ({{ date.strftime('%Y-%m-%d') }})"
+format = "md"
+md_header_level = "2"
+new_fragment_template = "file:changelog.d/_template.md"
+skip_fragments = "_template.md"
