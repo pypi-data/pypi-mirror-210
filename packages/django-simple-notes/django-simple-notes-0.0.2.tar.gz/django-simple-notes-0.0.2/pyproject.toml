@@ -1,0 +1,28 @@
+[tool.isort]
+profile = "black"
+known_local_folder = ["src"]
+sections="FUTURE,STDLIB,DJANGO,THIRDPARTY,LOCALFOLDER,FIRSTPARTY"
+import_heading_stdlib = "Standard Library"
+import_heading_firstparty= "Project"
+import_heading_thirdparty= "Third party"
+import_heading_localfolder= "Local application / specific library imports"
+known_django= "django"
+import_heading_django= "Django"
+
+[tool.black]
+include = '\.pyi?$'
+exclude = '''
+(
+    \.eggs         # exclude a few common directories in the
+  | \.git          # root of the project
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | node_modules
+)
+'''
