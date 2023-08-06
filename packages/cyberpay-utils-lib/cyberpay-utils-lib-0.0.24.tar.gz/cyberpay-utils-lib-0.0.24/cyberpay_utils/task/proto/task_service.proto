@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+service TaskController {
+  rpc GetTasks(GetTasksRequest) returns (GetTasksResponse) {}
+}
+
+message Task {
+  int32 id = 1;
+  string title = 3;
+  optional string description = 4;
+  string price = 5;
+  string from_date = 6;
+  string to_date = 7;
+  bool is_completed = 8;
+  bool is_paid = 9;
+  bool is_signed = 10;
+  string state = 11;
+  string payment_datetime = 12;
+  int32 company_user_id = 13;
+}
+
+message GetTasksRequest {
+  optional uint32 company_id = 1;
+  optional uint32 user_id = 2;
+  optional bool is_completed = 3;
+  optional bool is_paid = 4;
+  optional bool is_signed = 5;
+}
+
+message GetTasksResponse { repeated Task tasks = 1; }
