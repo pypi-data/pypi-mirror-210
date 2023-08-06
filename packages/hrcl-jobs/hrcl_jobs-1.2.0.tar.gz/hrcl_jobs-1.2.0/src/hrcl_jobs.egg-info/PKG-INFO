@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: hrcl-jobs
+Version: 1.2.0
+Summary: Runs python functions on worker threads with main thread communicating with sql db
+Author-email: "Austin M. Wallace" <awallace43@gatech.edu>
+Project-URL: Homepage, https://github.com/Awallace3/hierarchical_python_jobs
+Project-URL: Bug Tracker, https://github.com/Awallace3/hierarchical_python_jobs/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: psi4
+License-File: LICENSE
+
+# Hierarchical Python Jobs
+
+# Installation
+```bash 
+pip install hrcl-jobs
+```
+**NOTE** if you are using macos, you might need to do the following to install with pip
+```bash 
+brew install mpich
+sudo find / -name mpicc
+```
+And then run the pip install with the path to your mpicc
+```bash
+env MPICC=/yourpath/mpicc pip3 install hrcl-jobs
+```
+
+
