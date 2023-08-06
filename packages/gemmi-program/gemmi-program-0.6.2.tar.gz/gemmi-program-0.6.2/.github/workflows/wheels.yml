@@ -1,0 +1,47 @@
+# Build wheels using cibuildwheel https://cibuildwheel.readthedocs.io/
+
+name: Wheels
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      cibw_build:
+        description: 'CIBW_BUILD'
+        default: '*'
+      cibw_skip:
+        description: 'CIBW_SKIP'
+        default: ''
+
+jobs:
+  build_wheels:
+    name: Wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            arch: "x86_64"
+          - os: windows-2019
+            arch: "AMD64"
+          - os: macos-11
+            arch: "x86_64 arm64"
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build wheels
+      uses: pypa/cibuildwheel@v2.12.3
+      env:
+        CIBW_BUILD: ${{ github.event.inputs.cibw_build }}
+        CIBW_SKIP: ${{ github.event.inputs.cibw_skip }}
+        CIBW_ARCHS: "${{ matrix.arch }}"
+        # increase pip debugging output
+        CIBW_BUILD_VERBOSITY: 1
+
+    - run: ls -lh wheelhouse
+      shell: bash
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: program_wheels
+        path: wheelhouse/*.whl
