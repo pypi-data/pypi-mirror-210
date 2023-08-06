@@ -1,0 +1,147 @@
+.editorconfig
+.gitignore
+.pre-commit-config.yaml
+LICENSE
+README.rst
+pyproject.toml
+setup.cfg
+.github/dependabot.yml
+.github/ISSUE_TEMPLATE/bug_report.md
+.github/ISSUE_TEMPLATE/feature_request.md
+.github/workflows/CI-CD.yaml
+src/adsorption_file_parser/__init__.py
+src/adsorption_file_parser/_version.py
+src/adsorption_file_parser/bel_common.py
+src/adsorption_file_parser/bel_csv.py
+src/adsorption_file_parser/bel_dat.py
+src/adsorption_file_parser/bel_excel.py
+src/adsorption_file_parser/mic_excel.py
+src/adsorption_file_parser/qnt_txt.py
+src/adsorption_file_parser/smsdvs_excel.py
+src/adsorption_file_parser/trp_excel.py
+src/adsorption_file_parser.egg-info/PKG-INFO
+src/adsorption_file_parser.egg-info/SOURCES.txt
+src/adsorption_file_parser.egg-info/dependency_links.txt
+src/adsorption_file_parser.egg-info/requires.txt
+src/adsorption_file_parser.egg-info/top_level.txt
+src/adsorption_file_parser.egg-info/zip-safe
+src/adsorption_file_parser/utils/__init__.py
+src/adsorption_file_parser/utils/common_utils.py
+src/adsorption_file_parser/utils/unit_parsing.py
+src/adsorption_file_parser/utils/units.py
+tests/__init__.py
+tests/conftest.py
+tests/test_3p.py
+tests/test_bel.py
+tests/test_mic.py
+tests/test_qnt.py
+tests/test_smsdvs.py
+tests/test_unit_parser.py
+tests/data/3p/AC_ref_filter_Ar_87K_run 3_rep.json
+tests/data/3p/AC_ref_filter_Ar_87K_run 3_rep.xlsx
+tests/data/3p/README.txt
+tests/data/bel/1.DAT
+tests/data/bel/1.json
+tests/data/bel/200819-2_jis.DAT
+tests/data/bel/200819-2_jis.json
+tests/data/bel/ASch082B_Zndmbdcdabco_C2H4_Exp191004a_weight correction_jis.csv
+tests/data/bel/ASch082B_Zndmbdcdabco_C2H4_Exp191004a_weight correction_jis.json
+tests/data/bel/ASch082C_Zntmbdcdabco_C2H6_Exp190819a_jis.csv
+tests/data/bel/ASch082C_Zntmbdcdabco_C2H6_Exp190819a_jis.json
+tests/data/bel/Asch065B_C2H6_298K_Exp190327a_jis.csv
+tests/data/bel/Asch065B_C2H6_298K_Exp190327a_jis.json
+tests/data/bel/CEP 3xx-2-B 120529.DAT
+tests/data/bel/CEP 3xx-2-B 120529.json
+tests/data/bel/DUT-13-CH4-190K.csv
+tests/data/bel/DUT-13-CH4-190K.json
+tests/data/bel/DUT-13_CH4_111K.DAT
+tests/data/bel/DUT-13_CH4_111K.json
+tests/data/bel/DUT-13_CH4_111K_run2.DAT
+tests/data/bel/DUT-13_CH4_111K_run2.json
+tests/data/bel/DUT-32-N2_77K(BelMax).csv
+tests/data/bel/DUT-32-N2_77K(BelMax).json
+tests/data/bel/DUT-49_Ar_87K.DAT
+tests/data/bel/DUT-49_Ar_87K.json
+tests/data/bel/DUT-49_N2_77K.DAT
+tests/data/bel/DUT-49_N2_77K.json
+tests/data/bel/DUT-49_nbutane_273K.DAT
+tests/data/bel/DUT-49_nbutane_273K.json
+tests/data/bel/DUT-49_nbutane_298K.DAT
+tests/data/bel/DUT-49_nbutane_298K.json
+tests/data/bel/DUT-67-N2_77K.DAT
+tests/data/bel/DUT-67-N2_77K.json
+tests/data/bel/DUT-67_DCM_298K.DAT
+tests/data/bel/DUT-67_DCM_298K.json
+tests/data/bel/DUT-67_EtOH_298K.DAT
+tests/data/bel/DUT-67_EtOH_298K.json
+tests/data/bel/DUT-67_H2O_298K.DAT
+tests/data/bel/DUT-67_H2O_298K.json
+tests/data/bel/DUT-67_MeOH_298K.DAT
+tests/data/bel/DUT-67_MeOH_298K.json
+tests/data/bel/DUT-67_acetone_298K.DAT
+tests/data/bel/DUT-67_acetone_298K.json
+tests/data/bel/DUT-67_hexane_298K.DAT
+tests/data/bel/DUT-67_hexane_298K.json
+tests/data/bel/DUT-67_isopropanol_298K.DAT
+tests/data/bel/DUT-67_isopropanol_298K.json
+tests/data/bel/DUT-67_toluol_298K.DAT
+tests/data/bel/DUT-67_toluol_298K.json
+tests/data/bel/DUT-67_wasser_298K.DAT
+tests/data/bel/DUT-67_wasser_298K.json
+tests/data/bel/DUT-8_zn_etoh_298k.DAT
+tests/data/bel/DUT-8_zn_etoh_298k.json
+tests/data/bel/README.txt
+tests/data/bel/Sample_C.json
+tests/data/bel/Sample_C.xls
+tests/data/bel/Sample_D.json
+tests/data/bel/Sample_D.xls
+tests/data/bel/Sample_E.DAT
+tests/data/bel/Sample_E.json
+tests/data/mic/README.txt
+tests/data/mic/Sample_A.json
+tests/data/mic/Sample_A.xls
+tests/data/mic/Sample_B.json
+tests/data/mic/Sample_B.xls
+tests/data/mic/Sample_C.json
+tests/data/mic/Sample_C.xls
+tests/data/mic/Sample_D.json
+tests/data/mic/Sample_D.xls
+tests/data/mic/Sample_E.json
+tests/data/mic/Sample_E.xls
+tests/data/mic/Sample_F.json
+tests/data/mic/Sample_F.xls
+tests/data/mic/Sample_G.json
+tests/data/mic/Sample_G.xls
+tests/data/mic/Sample_H.json
+tests/data/mic/Sample_H.xls
+tests/data/mic/Sample_I.json
+tests/data/mic/Sample_I.xls
+tests/data/mic/Sample_J.json
+tests/data/mic/Sample_J.xls
+tests/data/mic/Sample_K.json
+tests/data/mic/Sample_K.xls
+tests/data/mic/Sample_L.json
+tests/data/mic/Sample_L.xls
+tests/data/mic/Sample_M.json
+tests/data/mic/Sample_M.xls
+tests/data/mic/Sample_N.json
+tests/data/mic/Sample_N.xls
+tests/data/qnt/BF001 DUT-13 (Raw Analysis Data).json
+tests/data/qnt/BF001 DUT-13 (Raw Analysis Data).txt
+tests/data/qnt/CU(BIPY)(BTB)_N2_77 (Raw Analysis Data).json
+tests/data/qnt/CU(BIPY)(BTB)_N2_77 (Raw Analysis Data).txt
+tests/data/qnt/DUT-60_N2 (Raw Analysis Data).json
+tests/data/qnt/DUT-60_N2 (Raw Analysis Data).txt
+tests/data/qnt/DUT-6_LP_N2 (Raw Analysis Data).json
+tests/data/qnt/DUT-6_LP_N2 (Raw Analysis Data).txt
+tests/data/qnt/DUT-75_N2 (Raw Analysis Data).json
+tests/data/qnt/DUT-75_N2 (Raw Analysis Data).txt
+tests/data/qnt/RE-22 (Raw Analysis Data).json
+tests/data/qnt/RE-22 (Raw Analysis Data).txt
+tests/data/qnt/README
+tests/data/smsdvs/13X water 30c.json
+tests/data/smsdvs/13X water 30c.xlsx
+tests/data/smsdvs/MIL-101Cr H2O@air 30c.json
+tests/data/smsdvs/MIL-101Cr H2O@air 30c.xlsx
+tests/data/smsdvs/Takeda 5A water 30c.json
+tests/data/smsdvs/Takeda 5A water 30c.xlsx
