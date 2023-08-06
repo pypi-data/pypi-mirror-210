@@ -1,0 +1,21 @@
+YANG Diffs
+==========
+
+Making use of the dataset functionality, you can also produce dataset that will
+show you changes of a module between versions. To do this, you will need 2 YANG
+sets, one containing the module with the newer version and one containing the
+same module with the older version. Do the same dataset setup used to output a
+dataset, but then also choose the "Previous YANG Set for comparison" to instead
+output the differences between them.
+
+Just like the datasets "Display diff" shows in the web page or "Download .csv"
+to download a results file to the browser.
+
+- greater than less than (< and >) represent differences between an xpath
+
+- minus (-) shows an xpath that has been removed
+
+- plus (+) shows an xpath that has been added
+
+.. image:: images/yangdiff.png
+   :alt: Screenshot of YANG Diff results.
