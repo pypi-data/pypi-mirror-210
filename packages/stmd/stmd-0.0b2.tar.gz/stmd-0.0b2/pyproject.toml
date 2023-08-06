@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stmd"
+version = "0.0.b2"
+description = "stmd - Scrape to Markdown"
+readme = "README.md"
+license = { text = "GNU General Public License v3 (GPLv3)" }
+keywords = []
+dependencies = []
+
+[project.optional-dependencies]
+# x11 = ["ewmh"]
+
+[project.scripts]
+stmd = "stmd.__main__:main"
+
+[project.urls]
+repository = "https://codeberg.org/johndovern/stmd"
