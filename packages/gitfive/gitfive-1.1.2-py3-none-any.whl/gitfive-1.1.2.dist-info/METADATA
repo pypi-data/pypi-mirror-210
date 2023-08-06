@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: gitfive
+Version: 1.1.2
+Summary: Track down GitHub users.
+Home-page: https://github.com/mxrch/gitfive
+Author: mxrch
+Author-email: mxrch.dev@pm.me
+License: MPL-2.0
+Keywords: osint,pentest,cybersecurity,investigation,hideandsec,malfrats
+Description-Content-Type: text/x-rst
+Requires-Dist: httpx (==0.23.0)
+Requires-Dist: anyio (==3.6.1)
+Requires-Dist: rich (==12.6.0)
+Requires-Dist: levenshtein (==0.20.5)
+Requires-Dist: Pillow (==9.3.0)
+Requires-Dist: beautifulsoup4 (==4.9.3)
+Requires-Dist: python-dateutil (==2.8.2)
+Requires-Dist: imagehash (==4.3.1)
+Requires-Dist: GitPython (==3.1.27)
+Requires-Dist: trio (==0.21.0)
+Requires-Dist: googlesearch-python (==1.1.0)
+Requires-Dist: pwinput (==1.0.2)
+Requires-Dist: unidecode (==1.3.6)
+Requires-Dist: alive-progress (==2.4.1)
+
+GitFive is an OSINT tool designed to retrieve a maximum informations on a GitHub target.
