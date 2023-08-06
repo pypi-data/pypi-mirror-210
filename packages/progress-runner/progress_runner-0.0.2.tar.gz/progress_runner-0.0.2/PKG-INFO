@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: progress_runner
+Version: 0.0.2
+Summary: an ncurses process runner with progress display
+Home-page: https://github.com/danroblewis/progress_runner
+Author: Daniel Lewis
+Author-email: daniel.robert.lewis@gmail.com
+License: MIT
+Description: 
+        Progress Runner
+        ===============
+        
+        `progress_runner` is an ncurses display for batch-processing.
+        
+        
+        Installation:
+        -------------
+        
+        ```bash
+        $ pip3 install progress_runner
+        ```
+        
+        
+        Usage from shell:
+        -----------------
+        
+        Create a python file with a `work` function in it. Ex:
+        ```py
+        async def work(param):
+        	return True
+        ```
+        
+        The function must be async, take one parameter, and return bool.
+        
+        ```bash
+        $ progress_runner test.py test_params.txt
+        ```
+        
+        When using the shell command, the params file will be parsed as newline-delimited-text, and each line will be passed into your custom `work` function.
+        
+        
+        Usage in python:
+        ----------------
+        ```py
+        import progress_runner
+        
+        async def work(param):
+        	return True
+        
+        params = [
+        	(1,2,3),
+        	(4,5,6),
+        	(7,8,9)
+        ]
+        
+        progress_runner.run(work, params, nthreads=5)
+        
+        # or:
+        
+        p = progress_runner.ProgressRunner(work, params, nthreads=5)
+        p.run()
+        ```
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.7.0
+Description-Content-Type: text/markdown
