@@ -1,0 +1,15 @@
+setuptools
+z3c.jbot
+plone.api>=1.8.4
+plone.restapi
+plone.app.dexterity
+souper.plone
+collective.honeypot>=2.1
+
+[test]
+plone.app.testing
+plone.testing>=5.0.0
+plone.app.contenttypes
+plone.app.robotframework[debug]
+collective.MockMailHost
+requests-mock

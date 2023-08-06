@@ -1,0 +1,82 @@
+# This repository adheres to the publiccode.yml standard by including this
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.3'
+categories:
+  - application-development
+  - content-management
+dependsOn:
+  open:
+    - name: Plone
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: '4'
+description:
+  it:
+    features:
+      - Feedback
+      - Customer satisfaction
+    longDescription: |
+      Plugin per Plone per rilevare la soddisfazione degli utenti nella
+      consultazione dei contenuti dei siti web della PA (come previsto dal CAD).
+
+
+      Aggiunge  in fondo a tutti i contenuti Plone un box per consentire agli
+      utenti di esprimere un feedback sull'utilità di quel contenuto e lasciare
+      eventualmente un commento. Il Captcha previene lo spam.
+
+
+      I redattori hanno un cruscotto dove possono vedere quali contenuti hanno
+      ricevuto dei feedback. Si possono esportare in CSV, cancellare
+      periodicamente, ordinare a piacere, filtrare.
+    shortDescription: Modulo per rilevare la soddisfazione degli utenti nei siti web
+    documentation: https://github.com/RegioneER/rer.customersatisfaction/blob/main/docs/MA_Plone5_uso_CustomerSatisfaction.pdf
+    screenshots:
+      - docs/customer-satisfaction_1-Recensione.jpg
+      - docs/customer-satisfaction_2-Elenco-Recensioni.jpg
+      - docs/customer-satisfaction_3-Dettaglio-Commenti.jpg
+developmentStatus: stable
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: false
+  riuso:
+    codiceIPA: r_emiro
+legal:
+  license: GPL-2.0-only
+  mainCopyrightOwner: Regione Emilia-Romagna
+  repoOwner: Regione Emilia-Romagna
+localisation:
+  availableLanguages:
+    - it
+    - en
+  localisationReady: true
+maintenance:
+  contacts:
+    - affiliation: Regione Emilia-Romagna
+      email: webmaster@regione.emilia-romagna.it
+      name: Sara Turra
+  contractors:
+    - name: RedTurtle
+      until: '2021-12-31'
+      website: 'https://www.redturtle.it/'
+  type: contract
+name: Customer Satisfaction per CMS Plone
+platforms:
+  - web
+releaseDate: '2021-08-19'
+softwareType: addon
+softwareVersion: 1.0.1
+url: 'https://github.com/RegioneER/rer.customersatisfaction'
+usedBy:
+  - Regione Emilia-Romagna
