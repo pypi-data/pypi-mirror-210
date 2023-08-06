@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+
+[project]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering"
+]
+dependencies = [
+  "xarray>=2022.3.0",
+  "numpy>=1.18"
+]
+description = "Statistical analysis tools for meteorological and climate data."
+dynamic = ["version"]
+license = {file = "LICENSE"}
+name = "earthkit-climate"
+readme = "README.md"
+
+[tool.coverage.run]
+branch = true
+
+[tool.isort]
+profile = "black"
+
+[tool.pydocstyle]
+add_ignore = ["D1, D2, D4"]
+convention = "numpy"
+
+[tool.setuptools]
+packages = ["earthkit.climate"]
+
+[tool.setuptools_scm]
+write_to = "earthkit/climate/version.py"
+write_to_template = '''
+# Do not change! Do not track in version control!
+__version__ = "{version}"
+'''
