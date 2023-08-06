@@ -1,0 +1,82 @@
+Metadata-Version: 2.1
+Name: pass-collaborate
+Version: 0.1.3
+Summary: A pass extension that helps collectives manage the access to their passwords
+License: GPL-3.0-only
+Author-email: Lyz <lyz-code-security-advisories@riseup.net>
+Requires-Python: >=3.9
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Utilities
+Requires-Dist: click>=8.1.3
+Requires-Dist: goodconf[yaml]>=2.0.1
+Requires-Dist: pydantic[email]>=1.10.2
+Requires-Dist: python-gnupg>=0.5.0
+Requires-Dist: rich>=12.6.0
+Requires-Dist: ruyaml>=0.91.0
+Requires-Dist: typer>=0.7.0
+Project-URL: Issues, https://github.com/lyz-code/pass-collaborate/issues
+Project-URL: documentation, https://lyz-code.github.io/pass-collaborate
+Project-URL: homepage, https://github.com/lyz-code/pass-collaborate
+Description-Content-Type: text/markdown
+
+# pass-collaborate
+
+[![Actions Status](https://github.com/lyz-code/pass-collaborate/workflows/Tests/badge.svg)](https://github.com/lyz-code/pass-collaborate/actions)
+[![Actions Status](https://github.com/lyz-code/pass-collaborate/workflows/Build/badge.svg)](https://github.com/lyz-code/pass-collaborate/actions)
+
+A pass extension that helps collectives manage the access to their passwords.
+
+## Help
+
+See [documentation](https://lyz-code.github.io/pass-collaborate) for more
+details.
+
+## Installing
+
+```bash
+pip install pass-collaborate
+pass_collaborate init
+```
+
+## Contributing
+
+For guidance on setting up a development environment, and how to make a
+contribution to *pass-collaborate*, see
+[Contributing to pass-collaborate](https://lyz-code.github.io/pass-collaborate/contributing).
+
+## Donations
+
+<noscript><a href="https://liberapay.com/Lyz/donate"><img alt="Donate using
+Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
+or
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T3GP0V8)
+
+If you are using some of my open-source tools, have enjoyed them, and want to
+say "thanks", this is a very strong way to do it.
+
+If your product/company depends on these tools, you can sponsor me to ensure I
+keep happily maintaining them.
+
+If these tools are helping you save money, time, effort, or frustrations; or
+they are helping you make money, be more productive, efficient, secure, enjoy a
+bit more your work, or get your product ready faster, this is a great way to
+show your appreciation. Thanks for that!
+
+And by sponsoring me, you are helping make these tools, that already help you,
+sustainable and healthy.
+
+## License
+
+GPLv3
+
