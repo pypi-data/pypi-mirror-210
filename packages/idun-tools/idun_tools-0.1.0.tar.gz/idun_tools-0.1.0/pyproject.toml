@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "idun_tools"
+version = "0.1.0"
+description = ""
+authors = ["Konstantinos Samaras-Tsakiris <konstantinos@iduntechnologies.com>"]
+readme = "README.md"
+packages = [{include = "idun_tools"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+loguru = "^0.7.0"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2"
+mypy = "^0.982"
+pylint = "^2.15"
+black = "^22.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
