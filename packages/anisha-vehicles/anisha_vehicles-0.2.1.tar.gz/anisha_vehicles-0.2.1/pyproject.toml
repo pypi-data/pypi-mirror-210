@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "anisha_vehicles"
+version = "0.2.1"
+description = ""
+authors = ["anishart <anisharattan5@gmail.com>"]
+readme = "README.md"
+#packages = [{include = "anisha_vehicles"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
