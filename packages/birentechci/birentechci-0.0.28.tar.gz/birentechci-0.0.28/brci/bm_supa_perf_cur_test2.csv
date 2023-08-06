@@ -1,0 +1,5 @@
+OP,Shape,Cur-Cbi,Type
+SoftmaxBwd,GX0000000000000000000000,0,base
+CEloss,M:16*1000,1,base
+SoftmaxBwd,GX0000000000000000000000,2,current
+CEloss,M:16*1000,3,current
