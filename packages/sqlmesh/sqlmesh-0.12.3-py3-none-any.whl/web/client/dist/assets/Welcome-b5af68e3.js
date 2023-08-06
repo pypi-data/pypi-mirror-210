@@ -1,0 +1,1 @@
+import{j as e}from"./index-3144ef62.js";function o(){return e.jsxs("div",{className:"p-4",children:[e.jsx("h1",{className:"text-2xl font-bold",children:"Welcome to the documentation"}),e.jsx("p",{className:"text-lg mt-4",children:"Here you can find all the information about the models and their fields."})]})}export{o as default};
