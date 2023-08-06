@@ -1,0 +1,14 @@
+- **Thư viện fields của Profiling** :
+  - 0.1.7 upgrade requests library
+  - 0.1.6.4 fix normalized device_id 
+  - 0.1.6.3 upgrade admin_sdk support encrypt data
+  - 0.1.6.1 upgrade admin_sdk
+  - 0.1.6 using admin_sdk
+  - 0.1.5.5 support internal_id
+  - 0.1.5.4 singleton merchant_config
+  - 0.1.5.3 support validate phone_number
+  - 0.1.5.2 update check unification rule
+  - 0.1.5.1 fix profile_tag get update data
+  - 0.1.5 fix marital_status get update data
+  - 0.1.4 fix get UDT support trigger
+  - 0.1.3 remove provinces data
