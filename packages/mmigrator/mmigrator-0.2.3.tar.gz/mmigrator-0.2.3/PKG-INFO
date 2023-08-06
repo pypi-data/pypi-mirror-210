@@ -1,0 +1,118 @@
+Metadata-Version: 2.1
+Name: mmigrator
+Version: 0.2.3
+Summary: Migration engine for MongoDB
+Project-URL: Homepage, https://github.com/sergekovalev/mmigrator
+Project-URL: Bug Tracker, https://github.com/sergekovalev/mmigrator/issues
+Author-email: Serhii Kovalov <moiserge.k@gmail.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.0
+Requires-Dist: pydantic
+Requires-Dist: pymongo
+Requires-Dist: snakecase
+Description-Content-Type: text/markdown
+
+# MongoDb Migrator
+Migration engine for MongoDB\
+Supports CLI
+
+## Installation
+
+```bash
+$ python -m pip install mmigrator
+```
+
+## Configuration
+`init` command (see below) will create a *mmigrator.config.json* file
+with following structure:
+
+```json
+{
+    "dist": "migrations",
+    "connection": {
+        "host": "",
+        "port": "",
+        "database": "",
+        "user": "",
+        "password": ""
+    }
+}
+```
+Connection variables could be set from .env|.json files.\
+e.g. from .env file:
+```json
+"host": ".env[MONGO_HOST]",
+"port": ".env[MONGO_PORT]",
+"database": ".env[MONGO_DB]",
+"user": ".env[MONGO_USER]",
+"password": ".env[MONGO_PASSWORD]"
+```
+
+## Usage
+
+### Help
+```bash
+$ mmigrator help
+```
+
+### Init configs
+optional, will run automatically on any migration command*
+#### CLI 
+```bash
+$ mmigrator init
+```
+
+#### from code:
+```py
+from mmigrator import MigrationManager
+...
+MigrationManager.init()
+```
+
+### Create migration
+#### CLI
+```bash
+$ mmigrator g SomeName
+# or
+$ mmigrator new SomeName
+```
+
+#### from code:
+```py
+MigrationManager.generate("SomeName")
+```
+
+### Run migrations
+#### CLI
+```bash
+$ mmigrator migrate
+# or add --silent flag for dry-run (skip exceptions)
+$ mmigrator migrate --silent
+```
+
+#### from code:
+```py
+MigrationManager.migrate()
+# or add silent=True flag for dry-run (skip exceptions)
+MigrationManager.migrate(silent=True)
+
+```
+
+
+### Revert migrations
+#### CLI
+```bash
+$ mmigrator revert
+# or add --silent flag for dry-run (skip exceptions)
+$ mmigrator revert --silent
+```
+
+#### from code:
+```py
+MigrationManager.revert()
+# or add silent=True flag for dry-run (skip exceptions)
+MigrationManager.revert(silent=True)
+```
