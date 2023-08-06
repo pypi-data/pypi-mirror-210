@@ -1,0 +1,38 @@
+[project]
+name = "ohmytmp-simimg"
+version = "0.0.2"
+description = "ohmytmp plugin simimg"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["ohmytmp"]
+
+authors = [
+  {name = "userElaina", email = "userelaina@pm.me" }
+]
+maintainers = [
+  {name = "userElaina", email = "userelaina@pm.me" }
+]
+
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3"
+]
+
+dependencies = [
+  "ohmytmp",
+]
+
+[tool.poetry]
+packages = [
+    { include = "ohmytmp_plugins.simimg" },
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ohmytmp/plugin-simimg"
+"Bug Reports" = "https://github.com/ohmytmp/plugin-simimg/issues"
+"Source" = "https://github.com/ohmytmp/plugin-simimg"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
