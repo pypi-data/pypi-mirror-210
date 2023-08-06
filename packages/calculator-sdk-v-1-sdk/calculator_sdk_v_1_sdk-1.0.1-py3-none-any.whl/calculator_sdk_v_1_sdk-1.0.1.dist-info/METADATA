@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: calculator-sdk-v-1-sdk
+Version: 1.0.1
+Summary: Use calculator 
+Author-email: Moiz Gillani <moiz.gillani@apimatic.io>
+Project-URL: Documentation, https://docs.google.com/document/d/17RO57-MpyJZX0_Bpg-d6DbVJjr5SUzWOBlnC8OxZNP8/edit
+Keywords: calculator,sum,product
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: apimatic-core (~=0.2.0)
+Requires-Dist: apimatic-core-interfaces (~=0.1.0)
+Requires-Dist: apimatic-requests-client-adapter (~=0.1.0)
+Requires-Dist: python-dateutil (~=2.8.1)
+Requires-Dist: enum34 (>=1.1.10,~=1.1)
+Provides-Extra: testutils
+Requires-Dist: pytest (>=7.2.2) ; extra == 'testutils'
+
