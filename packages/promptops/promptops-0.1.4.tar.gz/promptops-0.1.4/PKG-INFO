@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: promptops
+Version: 0.1.4
+Summary: Your CLI assistant. Ask questions, get shell commands.
+Home-page: https://promptops.com/
+Author: CtrlStack inc.
+License: GPLv3
+Project-URL: Documentation, https://docs.promptops.com/cli
+Project-URL: Changelog, https://docs.promptops.com/en/stable/changelog.html
+Project-URL: Live demo, https://promptops.com/
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+`um` is a GPT-powered CLI assistant. Ask questions in plain English, get the perfect shell command.
+
+<img src="https://github.com/promptops/cli/raw/main/media/default.png" />
+
+# Features
+
+- find the right command without leaving the terminal
+- `um` can index your history to find commands you've run before
+- `um` instantly learns from your corrections
+- simple interface to clarify your question or provide more context
+- free to use
+
+# Installation
+
+## pip (preferred)
+
+Make sure you have python 3.9 or more recent
+
+```shell
+pip3 install promptops
+```
+
+## homebrew (MacOS only)
+
+```shell
+brew install promptops/promptops/promptops-cli
+```
+
+# Usage
+
+## um
+
+```shell
+um <question>
+```
+
+## local runner
+
+```shell
+promptops runner
+```
+
+# Examples
+
+```shell
+um list contents of tar file
+um upload file to s3
+```
+
+## More screenshots
+
+Semantic search in history
+
+<img src="https://github.com/promptops/cli/raw/main/media/semantic-search.png" />
+
+Provide more context flow
+
+<img src="https://github.com/promptops/cli/raw/main/media/clarify.png" />
+
+# Development setup
+
+create virtual env
+
+```shell
+python3 -m venv ./venv
+. ./venv/bin/activate
+```
+
+install dependencies
+
+```shell
+pip install -r requirements.txt
+```
+
+install the cli
+
+```shell
+make install
+```
+
+test with
+
+```shell
+um get pods
+```
