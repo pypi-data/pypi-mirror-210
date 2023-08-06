@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "soremoji"
+version = "0.3.4"
+description = "自维护的 gitmoji-cli，做了部分更改"
+authors = ["mute. <mute231010@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+wcwidth = "^0.2.6"
+sorampt = "^0.1.6"
+
+[tool.poetry.scripts]
+soremoji = "soremoji.__main__:main"
+
+[tool.black]
+line-length = 88
+target-version = ["py37", "py38", "py39", "py310"]
+include = '\.pyi?$'
+extend-exclude = '''
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+length_sort = true
+skip_gitignore = true
+force_sort_within_sections = true
+extra_standard_library = ["typing_extensions"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
