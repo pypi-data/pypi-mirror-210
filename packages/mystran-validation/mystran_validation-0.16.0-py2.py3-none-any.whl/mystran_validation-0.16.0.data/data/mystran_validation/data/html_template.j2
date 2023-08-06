@@ -1,0 +1,147 @@
+{% macro make_downloadable(assets, target, linkname="", pop=True) -%}
+  {% if linkname == "" -%}
+    {% set linkname=target -%}
+  {% endif -%}
+  {% if target in assets %}
+    {% if pop==True %}
+      {% set target = assets.pop(target) -%}
+    {% else %}
+      {% set target = assets[target] -%}
+    {% endif %}
+  {% set extension = target | getext %}
+  {% set direct=False %}
+  {% if extension | lower in (".txt", ".nas", ".bulk", ".f06", ".dat", ".neu") -%}
+    {% set direct=True -%}
+  {% endif -%}
+  {% if direct -%}
+    <li><a href="{{ target  }}">{{linkname}}</a> | <a href="{{target}}" download>Direct Download</a>
+{% else -%}
+  <li><a href="{{ target  }}">{{linkname}}</a>
+{% endif -%}
+({{ extension[1:] }})</li>
+{% endif -%}  {#/ if target in assets #}
+{%- endmacro %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>mystran-testing.xml</title>
+    <link rel="stylesheet" href="https://unpkg.com/bamboo.css">
+    <style>
+{% include 'custom.css' %}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready(function () {
+              $('#data').DataTable({
+                      "columns": [
+                              { "width": "25%" },
+                              { "width": "15%" },
+                              null
+
+                            ]
+                    } );
+            });
+    </script>
+  </head>
+  <body style="margin-bottom: 0px !important">
+    <div class="title">
+      <h1>MYSTRAN "{{mystran_version}} {{mystran_date}}"<small>Testing</small></h1>
+    </div>
+    {% for testsuite in testsuites %}
+      <div class="testsuite">
+        {# build TOC ============================================================== #}
+        <h2>Summary <small>for Test Suite "{{ testsuite.meta["name"] }}"</small></h2>
+        <p>Published: {{publication_date.strftime("%Y-%m-%d %H-%M")}}</p>
+        <table id="data" class="table TreeTable">
+          <thead>
+            <tr>
+              <th>Test</th>
+              <th>Status</th>
+              <th>Desc</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ini_name, testcases in testsuite.testcases.items() %}
+              {%  set _first_tcprops = testcases.testcases[0].properties %}
+              {% set ilink = testcases.testcases[0].properties["internal_link"] %}
+              <tr title="{{ini_name}}" class="alert-{{testcases.status}}">
+                <td><a href="#{{ ilink|slugify}}">{{ ilink }}</a></td>
+                {# <td><a href="#{{ ini_name|slugify}}">{{ testcases.short_classname }}</a></td> #}
+                <td> {{ testcases.html_status }}</td>
+                <td>{{ testcases.shortdesc }} <span class="tags">{{ testcases.marks | join(" ")}}</span></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {# /build TOC ============================================================== #}
+
+        {% for ini_name, testcases in testsuite.testcases.items() %}
+          {% set ilink = testcases.testcases[0].properties["internal_link"] %}
+          <hr/>
+
+          <h2 id="{{ilink | slugify}}">Test-case {{ ilink }}</h2>
+          {{ testcases.shortdesc }}
+          <hr/>
+          <h3>Assets</h3>
+            {% set figure=testcases.rel_assets["DEFAULT"].pop("fig", "0") %}
+          {% if testcases.testcases[0].properties["confidential"] == "False" %}
+          {% set assets = testcases.rel_assets["DEFAULT"] %}
+          <ul>
+            {{ make_downloadable(assets, "bulk", "NASTRAN Data File") }}
+            {{ make_downloadable(assets, "neutral output", "MYSTRAN Neutral output") }}
+            {{ make_downloadable(assets, "F06 output", "MYSTRAN F06 output") }}
+            {{ make_downloadable(assets, "reference", "Reference Results File") }}
+            {{ make_downloadable(assets, "NX F06 output", "NX NASTRAN f06 output") }}
+            {{ make_downloadable(assets, "xlsxdiff", "XLSXDiff results") }}
+            {# remaining of collected assets #}
+            {% for k, path  in testcases.rel_assets["DEFAULT"].items()  %}
+                  {{ make_downloadable(assets, k, pop=False) }}
+            {% endfor %}
+          </ul>
+      {% else %} {# CONFIDENTIAL #}
+          <p><aside class="note"><b>Confidential: </b>Data cannot be shared</aside>
+          </p>
+      {% endif %}
+      {% if figure != "0" %}
+          <figure>
+              <img src="{{figure}}" alt="{{testcases.shortdesc}}" style="width:50%">
+          </figure>
+      {% endif %}
+          {% for tc in testcases.testcases %}
+            <div class=tc_report_{{tc.status}}>
+              <h4>Test {{ tc }}</h4>
+              {% if testcases.rel_assets[tc.name] | length > 0%}
+                <p>The following assets override defaults</p>
+                <ul>
+                  {% for k, path in testcases.rel_assets[tc.name].items() %}
+                    <li><a href="{{ path }}">{{ k }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              <p>{{ tc.properties["description"] }} with the following tolerances:
+              <ul>
+                <li>Absolute Tolerance: {{tc.properties["atol"]}}</li>
+                <li>Relative Tolerance: {{tc.properties["rtol"]}}</li>
+              </ul>
+              </p>
+              {% if tc.skipped %}<b class="alert-skipped">SKIPPED</b> {{tc.skipped['message']}}
+              {% elif tc.failure %}
+                <details>
+                  <summary> <span class="alert-failed">FAILED</span> (click to reveal Failure details)</summary>
+                  <pre>{{tc.failure['message']}}</pre>
+                </details>
+              {% else %}<b class="alert-success">SUCCESS</b>
+              {% endif %}
+            </div>
+          {% endfor %}
+
+        {% endfor %}{# end of test cases #}
+      </div>
+    {% endfor %}{# end of test suites #}
+  </body>
+</html>
