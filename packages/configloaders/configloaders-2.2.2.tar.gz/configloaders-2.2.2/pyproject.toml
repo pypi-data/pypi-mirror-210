@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "configloaders"
+version = "2.2.2"
+description = "Configloaders is a Python library that allows you to easily load configuration from various types of configuration files and inject them into various types of objects, such as classes, dictionaries, functions, and methods."
+authors = ["jawide <596929059@qq.com>"]
+readme = "README.md"
+packages = [{include = "configloaders"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.scripts]
+configloaders = "configloaders.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
