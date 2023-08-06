@@ -1,0 +1,200 @@
+Metadata-Version: 2.1
+Name: unirange
+Version: 1.0
+Summary: Unirange is a notation for specifying multiple Unicode codepoints.
+Author: WhoAteMyButter
+License: MIT
+Project-URL: Source, https://gitlab.com/whoatemybutter/unirange
+Project-URL: Changelog, https://gitlab.com/whoatemybutter/unirange/-/blob/master/CHANGELOG.md
+Project-URL: Issues, https://gitlab.com/whoatemybutter/unirange/-/issues
+Keywords: unicode,characters,range,unirange
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+# Unirange
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Pylint](https://img.shields.io/badge/pylint-10.00-ffbf48)](https://pylint.pycqa.org/en/latest/)
+[![License](https://img.shields.io/badge/license-MIT-a51931)](https://spdx.org/licenses/MIT.html)
+[![PyPi](https://img.shields.io/pypi/v/unirange)](https://pypi.org/project/unirange/)
+[![GitLab Release (latest by SemVer)](https://img.shields.io/gitlab/v/release/46367257?sort=semver)](https://gitlab.com/whoatemybutter/unirange/-/releases)
+
+Unirange is a notation for specifying multiple Unicode codepoints.
+
+A unirange comprises comma-delimited **components**.
+
+A **part** is a notation for a single character, like ``A``, ``U+2600``, or ``0x7535``.
+It is matched by the regular expression ``!?(?:0x|U\+|&#x)([0-9A-F]{1,7});?|(.)``
+
+A **range** is two **parts** split by ``..`` (two dots) or ``-`` (a hyphen).
+It is matched by the regular expression ``(?PART(?:-|\.\.)PART)``
+
+A **component** comprises either a **range** or a **part**.
+It is matched by the regular expression ``(RANGE|PART)``
+
+The full unirange notation is matched by the regular expression ``(?:COMPONENT, ?)*``
+
+Exclusion can be applied to any component by prefixing it with a ``!``.
+This will instead perform the *difference* (subtraction) on the current set of characters.
+
+---
+
+## Table of contents
+
+- [📄 About](#-about)
+- [📦 Installation](#-installation)
+- [🛠 Usage](#-usage)
+- [📰 Changelog](#-changelog)
+- [📜 License](#-license)
+
+---
+
+## 📄 About
+
+### Component
+
+A component is either a *range*, or a *part*.
+These components define what characters are included or excluded by the unirange.
+
+### Part
+
+A part is a *single* character notation.
+In a *range*, there exist two parts, split by ``..`` or ``-``.
+In the range ``U+2600..U+26FF``, ``U+2600`` and ``U+26FF`` are parts.
+
+Parts can match any of these regular expressions:
+
+* ``U\+.{1,6}``
+* ``&#x.{1,6}``
+* ``0x.{1,6}``
+* ``.``
+
+If more than one character is in a part, and it is *not* prefixed, it is **invalid**.
+For example, ``2600`` is not a valid part, but ``U+2600`` is.
+
+> There is no way to specify a codepoint in a base system other than **hexadecimal**.
+> ``&#1234`` is not valid.
+
+### Range
+
+A range is two *parts* separated by ``..`` or ``-``.
+
+#### Implied infinite expansion
+
+If either (but not both) part of the range is absent, it is called **implied infinite expansion** *(IIE)*.
+With IIE, the range's boundaries are implied to become to lower or upper limits of the Unicode character set.
+
+If the first part is absent, the first part becomes U+0000.
+If the second part is absent, it becomes U+10FFFF.
+If both parts are absent, *the range is invalid*.
+
+This means that the range ``U+2600..`` will result in characters from U+2600 to U+10FFFF.
+It is semantically equivalent to ``U+2600..U+10FFFF``.
+
+This also applies to the reverse: the range ``..U+2600`` will result in characters from U+0000 to U+2600.
+Likewise, it is equivalent to ``U+0000..U+2600``.
+
+### Exclusion
+
+To exclude a character from being included in a resulting range, prefix a component with a ``!``.
+This will prevent it from being included in the range, regardless of what other parts indicate.
+
+For example, ``U+2600..U+26FF, U+2704, !U+2605`` will include the codepoints from U+2600 **up to** U+2605,
+and then from U+2606 to U+26FF, as well as U+2704.
+
+You can exclude ranges as well. Either part of a range may be prefixed with a ``!`` to label that part as an
+exclusion. ``!U+2600..U+267F``, ``!U+2600..!U+267F``, and ``!U+2600..!U+267F`` result in the same range:
+no codepoints from U+2600 to U+267F.
+
+**Exclusions must come after the inclusions, or else they will be overridden.**
+
+> The order of your components matters when excluding. 
+> Components after an exclusion that conflict with it *will* obsolete it, overriding it. 
+> For example, ``!U+2600..U+2650,U+2600..U+26FF`` will result in the effective range of ``U+2600-26FF``.
+
+---
+
+## 📦 Installation
+
+`unirange` is available on PyPI.
+It requires a Python version of **at least 3.11.0.**
+
+To install unirange with pip, run:
+```shell
+python -m pip install unirange
+```
+
+### "externally-managed-environment"
+
+This error occurs on some Linux distributions such as Fedora 38 and Ubuntu 23.04.
+It can be solved by either:
+
+1. Using a [virtual environment (venv)](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
+2. Using [pipx](https://github.com/pypa/pipx)
+
+---
+
+## 🛠 Usage
+Using `unirange` is simple.
+
+```python
+>>> import unirange
+>>> unirange.unirange_to_characters("A..Z")
+{'G', 'D', 'I', 'K', 'X', 'J', 'V', 'O', 'H', 'C', 'A', 'B', 'Y', 'F', 'P', 'W', 'L', 'M', 'R', 'S', 'E', 'T', 'Z', 'N', 'U', 'Q'}
+
+>>> unirange.unirange_to_characters("..0")
+{'\x19', '0', '\x1c', '#', '\x14', '\x0c', '\x01', '\x0e', '\r', '\t', '+', '.', '%', '\x18', '\x15', '\x12', '\x16', '\x05', '!', '\x1b', '/', '\x17', '\x0b', '&', '\x1d', '\n', '\x1e', '\x10', '"', "'", '\x04', '\x1a', '(', ' ', '\x08', '\x07', '\x03', ')', '\x1f', '\x02', '\x13', '$', '-', '\x11', ',', '\x00', '*', '\x06', '\x0f'}
+
+>>> unirange.unirange_to_characters("U+2600..U+26FF, !U+2610..")
+{'☌', '☍', '☂', '☉', '☏', '☋', '☀', '☄', '☃', '☈', '☆', '☊', '☇', '★', '☁', '☎'}
+
+>>> unirange.unirange_to_characters("U+2600....")
+unirange.UnirangeError: Invalid unirange notation: U+2600....
+
+>>> unirange.unirange_to_characters("U+2600..U+10000")
+{'쏳', '䔿', '镔', '种', '嗼', '溳', '㟏', '걕', '줿', '죕', '䑀', 'ꕀ', '\ue548', '豴', '촫', '䪻', '䋱', '蹾', '퉙', '烅', '\uea1f', ...}
+```
+
+It can also be used in CLI:
+
+```shell
+$ python -m unirange U+2600..U+2610
+☀ ☁ ☂ ☃ ☄ ★ ☆ ☇ ☈ ☉ ☊ ☋ ☌ ☍ ☎ ☏ ☐ 
+$ python -m unirange U+2600
+☀ 
+$ python -m unirange 'U+2600..,!U+2650..'
+☀ ☁ ☂ ☃ ☄ ★ ☆ ☇ ☈ ☉ ☊ ☋ ☌ ☍ ☎ ☏ ☐ ☑ ☒ ☓ ☔ ☕ ☖ ☗ ☘ ☙ ☚ ☛ ☜ ☝ ☞ ☟ ☠ ☡ ☢ ☣ ☤ ☥ ☦ ☧ ☨ ☩ ☪ ☫ ☬ ☭ ☮ ☯ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ☸ ☹ ☺ ☻ ☼ ☽ ☾ ☿ ♀ ♁ ♂ ♃ ♄ ♅ ♆ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ 
+```
+
+> For some uniranges, you may need to wrap the argument in `'` or else the shell will interpret them oddly:
+> ```shell
+> $ python -m unirange U+2600..,!U+2650..
+> bash: !U+2650..: event not found
+> $ python -m unirange 'U+2600..,!U+2650..'
+> # Works as expected.
+> ```
+
+---
+
+## 📰 Changelog
+
+The changelog is at [CHANGELOG.md](CHANGELOG.md).
+
+---
+
+## 📜 License
+
+`unirange` is licensed under the [MIT license](https://spdx.org/licenses/MIT.html).
