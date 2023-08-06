@@ -1,0 +1,58 @@
+name: Manual build API example
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/example-build.yml"
+      - "example/**"
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  local-ci:
+    name: Example app
+    runs-on: ubuntu-20.04
+
+    # Setup PostgreSQL
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: test
+          POSTGRES_USER: test
+          POSTGRES_DB: schemathesis-example
+        # Wait until Postgres is ready
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v3.0.0
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r example/requirements.txt
+
+      # Starts the API in the background
+      - name: Start API
+        run: python example/main.py &
+        env:
+          DB_URL: "postgresql://test:test@127.0.0.1/schemathesis-example"
+
+      # Runs positive Schemathesis tests
+      - uses: schemathesis/action@v1
+        continue-on-error: true
+        with:
+          # A local API schema location
+          schema: "http://localhost:5000/api/openapi.json"
+          # Set your token from secrets
+          token: ${{ secrets.SCHEMATHESIS_TOKEN }}
+          max-examples: "10"
