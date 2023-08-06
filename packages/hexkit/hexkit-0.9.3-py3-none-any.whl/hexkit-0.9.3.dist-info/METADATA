@@ -1,0 +1,117 @@
+Metadata-Version: 2.1
+Name: hexkit
+Version: 0.9.3
+Summary: A Toolkit for Building Microservices using the Hexagonal Architecture
+Home-page: https://github.com/ghga-de/hexkit
+Author: German Human Genome Phenome Archive (GHGA)
+Author-email: contact@ghga.de
+License: Apache 2.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown; charset=UTF-8
+License-File: LICENSE
+Requires-Dist: pydantic (==1.10.6)
+Requires-Dist: PyYAML (==6.0)
+Requires-Dist: dependency-injector (==4.41.0)
+Provides-Extra: akafka
+Requires-Dist: aiokafka (==0.8.0) ; extra == 'akafka'
+Requires-Dist: jsonschema (>=4.17.3) ; extra == 'akafka'
+Provides-Extra: all
+Requires-Dist: aiokafka (==0.8.0) ; extra == 'all'
+Requires-Dist: jsonschema (>=4.17.3) ; extra == 'all'
+Requires-Dist: boto3 (==1.26.50) ; extra == 'all'
+Requires-Dist: botocore (==1.29.50) ; extra == 'all'
+Requires-Dist: motor (==3.1.1) ; extra == 'all'
+Requires-Dist: testcontainers[kafka] (==3.4.1) ; extra == 'all'
+Requires-Dist: testcontainers (==3.4.1) ; extra == 'all'
+Requires-Dist: testcontainers[mongo] (==3.4.1) ; extra == 'all'
+Provides-Extra: mongodb
+Requires-Dist: motor (==3.1.1) ; extra == 'mongodb'
+Provides-Extra: s3
+Requires-Dist: boto3 (==1.26.50) ; extra == 's3'
+Requires-Dist: botocore (==1.29.50) ; extra == 's3'
+Provides-Extra: test-akafka
+Requires-Dist: aiokafka (==0.8.0) ; extra == 'test-akafka'
+Requires-Dist: jsonschema (>=4.17.3) ; extra == 'test-akafka'
+Requires-Dist: testcontainers[kafka] (==3.4.1) ; extra == 'test-akafka'
+Provides-Extra: test-all
+Requires-Dist: aiokafka (==0.8.0) ; extra == 'test-all'
+Requires-Dist: jsonschema (>=4.17.3) ; extra == 'test-all'
+Requires-Dist: testcontainers[kafka] (==3.4.1) ; extra == 'test-all'
+Requires-Dist: boto3 (==1.26.50) ; extra == 'test-all'
+Requires-Dist: botocore (==1.29.50) ; extra == 'test-all'
+Requires-Dist: testcontainers (==3.4.1) ; extra == 'test-all'
+Requires-Dist: motor (==3.1.1) ; extra == 'test-all'
+Requires-Dist: testcontainers[mongo] (==3.4.1) ; extra == 'test-all'
+Provides-Extra: test-mongodb
+Requires-Dist: motor (==3.1.1) ; extra == 'test-mongodb'
+Requires-Dist: testcontainers[mongo] (==3.4.1) ; extra == 'test-mongodb'
+Provides-Extra: test-s3
+Requires-Dist: boto3 (==1.26.50) ; extra == 'test-s3'
+Requires-Dist: botocore (==1.29.50) ; extra == 'test-s3'
+Requires-Dist: testcontainers (==3.4.1) ; extra == 'test-s3'
+
+![tests](https://github.com/ghga-de/hexkit/actions/workflows/unit_and_int_tests.yaml/badge.svg)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/hexkit.svg)](https://pypi.python.org/pypi/hexkit/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/hexkit.svg)](https://pypi.python.org/pypi/hexkit/)
+[![Coverage Status](https://coveralls.io/repos/github/ghga-de/hexkit/badge.svg?branch=main)](https://coveralls.io/github/ghga-de/hexkit?branch=main)
+
+# hexkit
+A Toolkit for Building Microservices using the Hexagonal Architecture.
+
+## Installation
+This package is available at PyPI:
+https://pypi.org/project/hexkit
+
+You can install it from there using:
+```
+pip install hexkit
+```
+
+Thereby, you may specify following extra(s):
+- `api`: dependencies needed to use the API server functionalities
+- `dev`: dependencies needed for development and testing
+
+## Development
+For setting up the development environment, we rely on the
+[devcontainer feature](https://code.visualstudio.com/docs/remote/containers) of vscode.
+
+To use it, you have to have Docker as well as vscode with its "Remote - Containers" extension (`ms-vscode-remote.remote-containers`) extension installed.
+Then, you just have to open this repo in vscode and run the command
+`Remote-Containers: Reopen in Container` from the vscode "Command Palette".
+
+This will give you a full-fledged, pre-configured development environment including:
+- infrastructural dependencies of the service (databases, etc.)
+- all relevant vscode extensions pre-installed
+- pre-configured linting and auto-formating
+- a pre-configured debugger
+- automatic license-header insertion
+
+Moreover, inside the devcontainer, there is follwing convenience command available
+(please type it in the integrated terminal of vscode):
+- `dev_install` - install the lib with all development dependencies and pre-commit hooks
+(please run that if you are starting the devcontainer for the first time
+or if added any python dependencies to the [`./setup.cfg`](./setup.cfg))
+
+If you prefer not to use vscode, you could get a similar setup (without the editor specific features)
+by running the following commands:
+``` bash
+# Execute in the repo's root dir:
+cd ./.devcontainer
+
+# build and run the environment with docker-compose
+docker build -t hexkit .
+docker run -it hexkit /bin/bash
+
+```
+
+## License
+This repository is free to use and modify according to the [Apache 2.0 License](./LICENSE).
