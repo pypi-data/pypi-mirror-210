@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: rbx
+Version: 3.1.0.dev26
+Summary: Scoota Platform utilities
+Home-page: http://scoota.com/
+Author: The Scoota Engineering Team
+Author-email: engineering@scoota.com
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Internet
+Requires-Python: >=3.7
+Provides-Extra: auth
+Provides-Extra: buildtools
+Provides-Extra: geo
+Provides-Extra: manifest
+Provides-Extra: notifications
+Provides-Extra: platform
+Provides-Extra: queues
+Provides-Extra: storage
+Provides-Extra: tasks
+Provides-Extra: test
+License-File: LICENSE
+
+A collection of common tools for Scoota services.
+
