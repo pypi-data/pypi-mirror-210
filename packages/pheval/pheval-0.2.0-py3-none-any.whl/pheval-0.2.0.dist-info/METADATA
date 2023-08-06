@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: pheval
+Version: 0.2.0
+Summary: 
+Author: Yasemin Bridges
+Author-email: y.bridges@qmul.ac.uk
+Requires-Python: >=3.9,<4.0.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: class-resolver (>=0.3.10,<0.4.0)
+Requires-Dist: click (>=8.1.3)
+Requires-Dist: deprecation (>=2.1.0)
+Requires-Dist: google (>=3.0.0,<4.0.0)
+Requires-Dist: jaydebeapi (>=1.2.3)
+Requires-Dist: matplotlib (>=3.7.0,<4.0.0)
+Requires-Dist: oaklib (>=0.1.55,<0.2.0)
+Requires-Dist: pandas (>=1.5.1)
+Requires-Dist: phenopackets (>=2.0.2,<3.0.0)
+Requires-Dist: plotly (>=5.13.0,<6.0.0)
+Requires-Dist: pyaml (>=21.10.1,<22.0.0)
+Requires-Dist: pyserde (>=0.9.8,<0.10.0)
+Requires-Dist: seaborn (>=0.12.2,<0.13.0)
+Requires-Dist: tqdm (>=4.64.1)
+Description-Content-Type: text/markdown
+
+# PhEval - Phenotypic Inference Evaluation Framework
+
+There is currently no empirical framework to evaluate the performance of phenotype matching and prioritization tools, much needed to guide tuning for cross species inference. Many algorithms are evaluated using simulations, which may fail to capture real-world scenarios. This gap presents a number of problems: it is difficult to optimize algorithms if we do not know which choices lead to better results; performance may be sensitive to factors that are subject to change, such as ontology structure or annotation completeness. We will develop a modular Phenotypic Inference Evaluation Framework, PhEval and use it to optimize our own algorithms, as well as deliver it as a community resource.
+
+
