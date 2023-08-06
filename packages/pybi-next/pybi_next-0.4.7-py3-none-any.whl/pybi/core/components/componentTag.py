@@ -1,0 +1,25 @@
+from enum import Enum
+
+
+class ComponentTag(Enum):
+    App = "App"
+    DataSource = "DataSource"
+    Slicer = "elSlicer"
+    Input = "elInput"
+    NumberSlider = "elNumberSlider"
+    Table = "elTable"
+    EChart = "EChart"
+    Box = "Box"
+    Text = "Text"
+    Upload = "Upload"
+    TextValue = "TextValue"
+    Markdown = "Markdown"
+    ColBox = "ColBox"
+    FlowBox = "FlowBox"
+    GridBox = "GridBox"
+    Tabs = "elTabs"
+    Icon = "Icon"
+    SvgIcon = "SvgIcon"
+    Affix = "Affix"
+    Mermaid = "Mermaid"
+    Space = "Space"
