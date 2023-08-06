@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: resoto-plugin-gcp
+Version: 3.5.0
+Summary: Resoto GCP Collector Plugin
+Home-page: https://github.com/someengineering/resoto/tree/main/plugins/gcp
+License: Apache 2.0
+Keywords: cloud security
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Unix
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Classifier: Topic :: Security
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: resotolib (==3.5.0)
+Requires-Dist: google-api-python-client (==2.86.0)
+Requires-Dist: oauth2client (==4.1.3)
+Requires-Dist: retrying (==1.3.4)
+Requires-Dist: tenacity (==8.2.2)
+
+# resoto-plugin-gcp
+An GCP collector plugin for Resoto.
