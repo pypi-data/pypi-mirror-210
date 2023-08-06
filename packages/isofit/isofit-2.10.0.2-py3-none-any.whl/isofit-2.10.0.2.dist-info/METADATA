@@ -1,0 +1,109 @@
+Metadata-Version: 2.1
+Name: isofit
+Version: 2.10.0.2
+Summary: Imaging Spectrometer Optimal FITting
+Home-page: http://github.com/isofit/isofit
+Author: David R. Thompson, Winston Olson-Duvall, Philip G. Brodrick, and Team
+Author-email: david.r.thompson@jpl.nasa.gov
+License: BSD 3-Clause License
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: click
+Requires-Dist: gdal (>=2.0.0)
+Requires-Dist: matplotlib (>=2.2.2)
+Requires-Dist: ndsplines (>=0.1.2)
+Requires-Dist: numpy (>=1.20)
+Requires-Dist: pandas (>=0.24.0)
+Requires-Dist: pep8 (>=1.7.1)
+Requires-Dist: protobuf (~=3.19.0)
+Requires-Dist: pytest (>=3.5.1)
+Requires-Dist: pyyaml (>=5.3.2)
+Requires-Dist: ray (>=1.2.0)
+Requires-Dist: scikit-image (>=0.17.0)
+Requires-Dist: scikit-learn (>=0.19.1)
+Requires-Dist: scipy (>=1.3.0)
+Requires-Dist: spectral (>=0.19)
+Requires-Dist: tensorflow (>=2.0.1)
+Requires-Dist: utm
+Requires-Dist: xxhash (>=1.2.0)
+Provides-Extra: dev
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+
+=============================================
+ISOFIT - Imaging Spectrometer Optimal FITting
+=============================================
+
+ISOFIT contains a set of routines and utilities for fitting surface, atmosphere and instrument models to imaging
+spectrometer data. It is written primarily in Python, with JSON format configuration files and some dependencies on
+widely-available numerical and scientific libraries such as scipy, numpy, and scikit-learn. It is designed for maximum
+flexibility, so that users can swap in and evaluate model components based on different radiative transfer models (RTMs)
+and various statistical descriptions of surface, instrument, and atmosphere. It can run on individual radiance spectra
+in text format, or imaging spectrometer data cubes.
+
+* Please check the documentation_ for installation and usage instructions and in depth information.
+
+* There are two main branches:
+
+ * `dev <https://github.com/isofit/isofit/tree/dev>`__ (for activate development)
+ * `main <https://github.com/isofit/isofit/tree/main>`__ (in-line with the current release)
+
+* Information on how to **cite the ISOFIT Python package** can be found in the
+  `CITATION <https://github.com/unbohn/isofit_build_workflow/blob/master/CITATION>`__ file.
+
+
+License
+-------
+Free software: Apache License v2
+
+All images contained in any (sub-)directory of this repository are licensed under the CC0 license which can be found
+`here <https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt>`__.
+
+Feature overview
+----------------
+
+* utilities for fitting surface, atmosphere and instrument models to imaging spectrometer data
+* a selection of radiative transfer models (RTMs) incl. MODTRAN, LibRadTran, and 6S
+* sRTMnet emulator for MODTRAN 6 by coupling a neural network with a surrogate RTM (6S v2.1)
+* various statistical descriptions of surface, instrument, and atmosphere
+* application to both individual radiance spectra and imaging spectrometer data cubes
+* custom instrument models to handle new sensors
+* observation uncertanities to account for model discrepancy errors
+* prior distribution based on background knowledge of the state vector
+
+Status
+------
+
+|badge1| |badge2| |badge3| |badge4| |badge5| |badge6| |badge7| |badge8|
+
+.. |badge1| image:: https://img.shields.io/static/v1?label=Documentation&message=readthedocs&color=blue
+    :target: https://isofit.readthedocs.io/en/latest/index.html
+
+.. |badge2| image:: https://readthedocs.org/projects/pip/badge/?version=stable
+    :target: https://pip.pypa.io/en/stable/?badge=stable
+
+.. |badge3| image:: https://img.shields.io/pypi/v/isofit.svg
+    :target: https://pypi.python.org/pypi/isofit
+
+.. |badge4| image:: https://img.shields.io/conda/vn/conda-forge/isofit.svg
+    :target: https://anaconda.org/conda-forge/isofit
+
+.. |badge5| image:: https://img.shields.io/pypi/l/isofit.svg
+    :target: https://github.com/isofit/isofit/blob/master/LICENSE
+
+.. |badge6| image:: https://img.shields.io/pypi/pyversions/isofit.svg
+    :target: https://img.shields.io/pypi/pyversions/isofit.svg
+
+.. |badge7| image:: https://img.shields.io/pypi/dm/isofit.svg
+    :target: https://pypi.python.org/pypi/isofit
+
+.. |badge8| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6908949.svg
+   :target: https://doi.org/10.5281/zenodo.6908949
+
+.. _documentation: https://isofit.readthedocs.io/en/latest/index.html
