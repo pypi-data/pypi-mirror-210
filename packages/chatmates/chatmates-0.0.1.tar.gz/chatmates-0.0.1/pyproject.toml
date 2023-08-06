@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "chatmates"
+version = "0.0.1"
+description = "Chatty Agents"
+
+license = "Apache License, Version 2.0"
+
+authors = [
+    "Nishant Sinha <nishant@offnote.co>"
+]
+
+repository = "https://github.com/ekshaks/chatmates"
+
+# README file(s) are used as the package description
+readme = ["README.md", "LICENSE"]
+
+# Keywords (translated to tags on the package index)
+keywords = ["LLM", "QA", "IR"]
+
+[tool.poetry.dependencies]
+# Compatible Python versions
+python = ">=3.10"
+
