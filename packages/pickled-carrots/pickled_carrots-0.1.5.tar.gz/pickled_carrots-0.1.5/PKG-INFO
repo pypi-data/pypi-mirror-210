@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: pickled-carrots
+Version: 0.1.5
+Summary: 
+Author: pickled cattots team
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: SQLAlchemy (>=2.0.13,<3.0.0)
+Requires-Dist: boto3 (>=1.26.128,<2.0.0)
+Requires-Dist: certifi (>=2022.12.7,<2023.0.0)
+Requires-Dist: cryptography (>=40.0.2,<41.0.0)
+Requires-Dist: h5py (>=3.8.0,<4.0.0)
+Requires-Dist: ipdb (>=0.13.13,<0.14.0)
+Requires-Dist: jupyter (>=1.0.0,<2.0.0)
+Requires-Dist: mplstereonet (>=0.6.2,<0.7.0)
+Requires-Dist: plotly (>=5.14.1,<6.0.0)
+Requires-Dist: psutil (>=5.9.5,<6.0.0)
+Requires-Dist: pymongo (>=4.3.3,<5.0.0)
+Requires-Dist: pyodbc (==4.0.34)
+Requires-Dist: pyproj (==3.4.1)
+Requires-Dist: python-ternary (>=1.0.8,<2.0.0)
+Requires-Dist: pytz (>=2023.3,<2024.0)
+Requires-Dist: shapely (>=2.0.1,<3.0.0)
+Requires-Dist: statsmodels (>=0.14.0,<0.15.0)
+Requires-Dist: uquake (>=1.2.4,<2.0.0)
+Description-Content-Type: text/markdown
+
+# ESG_Research
+
+This repository contains Python and C# code which is used for various different functions. In this document we will go through what each folder contains.
+
+__Analytics_Notebooks__
+
+This folder contains Jupyter notebooks which have various different functionalities. More notebooks can be found on the DataShare, under Frac4/Notebooks.
+
+&nbsp;
+
+
+__ESG-dash__
+
+A dash-based dashboard for evaluating sensor quality for mining sites.
+
+&nbsp;
+
+
+__ESG__
+
+The main module folder for our Python codes. The files within this folder are used in most of our jupyter notebooks. More details on what each file contains can be found in the folder.
+
+&nbsp;
+
+__ITG-FMC__
+
+Contains the tiltmeter processing dashboard written in Python, a Fiber processing C# app, a DPA and DPA-RTA C# app, and a copy of the Stress Inversion python package (which has since been merged into the main ESG repo.
+
+&nbsp;
+
+__Scripts__
+
+Contains various Python scripts which are used to automated processes such as HypoDD or noise analysis.
+
+&nbsp;
+
+__build/lib, dist, esg_das, esg_dts__
+
+Python code for processing Fiber data. 
+
+&nbsp;
+
+__Miscellaneous__
+
+There are some additional files in this folder which are related to replicated anaconda environments. The requirements.txt file can be used to create ESG's default environment.
+
