@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin:0;padding:0">
+  <table style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
+    <tr>
+      <td align="center" style="padding:0;">
+        <table style="width:900px;border-collapse:collapse;text-align:left;border:1px solid #cccccc;border-spacing:0;">
+          <tr>
+            <td align="center" style="padding:40px 30px;background:#009cff;">
+              <img src="https://aimtouch.com.br/wp-content/uploads/2022/04/LOGO-ELGIN-BRANCO.png" width="200"
+              style="height:auto; display:block;" />
+            </td>
+          </tr>
+          {alerta:}
+          <tr>
+            <td style="padding:36px 30px 10px 30px;">
+              <table cellspacing="0" cellpadding="0" style="width:100%; border-collapse:collapse;border:0;border-spacing:0;">
+                <tr>
+                  <td style="padding:0 0 15px 0;color:#153643;">
+                    <h1 style="margin:0 0 20px 0;font-family:Arial,sans-serif;text-align:left;" >Monitoramento Dados Bi - Elgin</h1>
+                        <div style="margin:0 0 12px 0;font-size:16px;line-height:25px;font-family:Arial,sans-serif;">
+                          <b>Data Referência:</b> {dtRef:} <br>
+                          <b>Processo:</b> {nome_processo:} <br>
+                          <b>Tipo Serviço:</b> {tipo_servico:} <br>
+                          <b>Ambiente:</b> {environment:} <br>
+                          <b>Status:</b> {status:}
+                          
+                          <br>{exception:}
+                          
+                          <br>
+                          <p style="font-size:15px;font-family:Arial;">Clique no botão abaixo para acessar o dashboard de monitoramento.</p>
+                        </div>
+                      <table cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td bgcolor="#0064a1" style="padding: 10px; border-radius: 6px; border: 2px solid #00578d;">
+                            <a href="http://ec2-3-212-140-23.compute-1.amazonaws.com:3000/?orgId=1" target="_blank" style="font-family: Arial, sans-serif; font-size: 15px; font-weight: bold; color: #ffffff; text-decoration: none; display: inline-block; padding: 13px 20px; background-color: #0064a1;">
+                              Acessar Grafana
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:30px;background:#f7f7f7;">
+              <table
+                style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
+                <tr>
+                  <td style="padding:0;width:70%;" align="left">
+                    <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#202020;">
+                      <b>Para solicitação de projetos ou aberturas de incidentes, acessar o portal Cherwell.</b>
+                    </p>
+                  </td>
+                  <td style="padding:0;width:50%;" align="right">
+                    <table style="border-collapse:collapse;border:0;border-spacing:0;">
+                      <tr>
+                        <td style="padding:0 0 0 10px;width:38px;">
+                          <a href="https://servicedesk.elgin.com.br/" style="color:#313131;"><img
+                              src="https://www.bcit.ca/wp-content/uploads/2021/10/cherwell_logo.png" alt="Cherwell"
+                              width="38" style="height:auto;display:block;border:0;" /></a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
