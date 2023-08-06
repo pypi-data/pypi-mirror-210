@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pathvar"
+version = "1.0.1"
+description = "Interacting with PATH variable from Linux BASH command line."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Hussine Mahmoud Kandil", email = "hussein.mahmoud.s7s@gmail.com" },
+]
+keywords = [
+    "path",
+    "command line",
+    "linux",
+    "terminal",
+    "environment variable",
+    "system",
+    "os",
+]
+classifiers = ["Programming Language :: Python"]
+# dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/hussein-m-kandil/pathvar/"
+
+[project.scripts]
+pathvar = "pathvar.project:main"
+
+# Explicit identification of the project's packages directory
+[tool.setuptools.packages.find]
+where = ["src"]
