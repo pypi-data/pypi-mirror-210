@@ -1,0 +1,15 @@
+torch>=2.0.1
+multimethod>=1.9.1
+
+[all]
+ndtorch[examples,test]
+
+[examples]
+jupyter-lab
+numpy
+matplotlib
+twiss
+
+[test]
+pytest
+pytest-cov
