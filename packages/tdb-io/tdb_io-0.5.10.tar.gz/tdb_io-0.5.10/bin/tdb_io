@@ -1,0 +1,313 @@
+#!/usr/bin/env python3
+#  insert to remote IP should work  from the previous commit
+
+from fire import Fire
+#from tdb_io import mongo
+from tdb_io.version import __version__
+
+from tdb_io import mongo
+from tdb_io import influx
+from tdb_io import h5toinfl
+
+# plotting like in earlier mymongo
+from tdb_io import h5t
+
+# new thing - import org emacs table - 1 per file now
+from tdb_io import org2h5
+
+import os
+
+import socket
+
+import pandas as pd # i have copied all h5 to infl from org test here
+
+import sys
+from influxdb import InfluxDBClient
+
+
+def launch(MODE="help", *args, **kwargs):
+#==============================================
+    if MODE=="help":
+        print("h... available modes: \n\t\t usage |  insert | ls | chk infl")
+        print("\t\t... usage      \t Show usage examples.. ")
+        print("\t\t... ls      \t This lists influxdb OR h5 file")
+        print("\t\t... insert database measurement -v ... \t This inserts into MONGO and INFLUXDB (experimental)")
+        print("\t\t... chk infl \t REMOVES&CREATES local influx db I_AM_*")
+        print("\t\t...          \t allow for looking at hostname remotely")
+        print("\t\t... plt filename.h5  -p c  -l  -w    \t plot c vs. t[ime] graph (nolines,show)")
+        print("\t\t... org orgfile \t convert org table to hdf file")
+        print("\t\t... insert infl filename.h5 \t insert hdf file to (local) influx/test as measurement=filename")
+        quit()
+    print("D... args  = ", args)
+    print("D... kwargs= ", kwargs)
+
+    if MODE=="usage":
+        print("USAGE:")
+        print("\t... ls      \t  ls infl      ...(automatiically creates h5 file)")
+        print("\t... ls      \t  ls infl test dell 9999999    ...(creates h5 file)")
+        print("\t... ls      \t  ls infl test nfs  9999999    ...(creates h5 file)")
+        print("\t...         \t  ls infl test")
+        print("\t...         \t  ls infl -ip 192.168.0.19")
+        print("\t...         \t  ls infl test zen")
+        print("\t...         \t  ls infl test zen --delete ?")
+        print("\t...         \t  ... to delete measurement ?")
+        print()
+        print("\t...         \t  ls ../mymongo/manual_mongo2h5/data_home_electro.h5")
+        print("\t...         \t  ls home_electro_20201221_142425.h5 ")
+        print("\t...         \t  ls home_electro_20201221_142425.h5 /T20201221_142425")
+        print()
+        print("\t... CONVERSION h5 TO csv ... ipython script:")
+        print('''\t import pandas as pd
+\t df = pd.read_hdf("influx_rpi4b456_uno_integrator_95648.h5")
+\t df.drop( ['df','battery','ntp_t_ms'] , axis=1, inplace=True)
+\t df.dropna( subset=['dt'], inplace=True)
+\t df.sort_values(by = "time", ascending = True, inplace=True)
+\t df2 = df[ df.time>"2021-12-03T19:01:00.425700Z" ].copy()
+\t df2.to_hdf("currents_sorted_3_4Dec.h5","currents_sorted_3_4Dec")
+\t
+\t h[ ["time","pin7"] ].to_csv("nfs_currents.csv")
+\t h[ ["time","pin7"] ][h.pin7>0].to_csv("nfs_currents2.csv")
+
+''')
+        print("\t... CONVERSION ALL TO TXT - save all to txt ")
+        print('''\t...      \t ls home.h5 -f > allprint.txt
+''')
+        print()
+        print("\t... plt    \t  plt home_electro_20201221_151030.h5 -p low -w")
+        print("\t...        \t  plt home_electro_20201221_151030.h5 -p low -w a.jpg")
+        print("\t...        \t  plt home_electro_20201221_151030.h5 -p low -w a.txt")
+        print("\t...        \t  plt home_electro_20201221_151030.h5 -p low -w a.org???")
+        print("\t... plt derivative")
+        print("\t...        \t  plt home_electro_20201221_151030.h5 -p d_low -D 1y -w ")
+        print("\t...        \t  plt home_electro_20201221_151030.h5 -p d_low -D 1y -l 18m -w")
+        print("\t... plt derivative 2axes")
+        print("\t...        \t  plt home_electro_20201221_151030.h5 -p low:d_low -D 1y -w ")
+        print()
+        print('\t... insert  \t  insert -v "field:value,field2:value2" ??? ')
+        print("\t... chk infl \t  chk infl")
+        quit()
+    #print("D... args  = ", args)
+    #print("D... kwargs= ", kwargs)
+
+    print("D... MODE=",MODE)
+#==============================================
+    if MODE=="insert":
+        if len(args)==0:
+            print("H... ./"+os.path.basename(__file__)+" insert database collection/measurementname -v a=1,b=2 ")
+            sys.exit(0)
+        if args[0]=="infl":
+            print(f"i... inserting {args[1]} into local influx")
+
+            hdf5name = args[1]
+            with pd.HDFStore(hdf5name) as hdf:
+                keysavailable=hdf.keys()
+                print("i... keys         :",  keysavailable)
+                if len(keysavailable)==1:
+                    # overriding key
+                    key=keysavailable[0]
+                    print("D... only one key available, key overriden....")
+                else:
+                    print("!... multiple keys in hdf file, quitting", keysavailable)
+                    sys.exit(0)
+                df3 = hdf.get(key)
+                print(df3)
+
+            # ---------- every 100 points - write
+            creds,ips = influx.read_infl_credentials()
+            print( creds ,"##", ips )
+            client = InfluxDBClient( IP, 8086,creds[0],creds[1],creds[2],ssl=False, timeout=30)
+
+            body = []
+            res = 0
+            #for i in range(1000):
+            measurement_name = os.path.splitext( os.path.basename(hdf5name) )[0]  # "nfs_curr_bkup"
+            print(f"i... measurement == {measurement_name}")
+            for i in range(len(df3)):
+                point = {}
+                point["measurement"] = measurement_name
+                point["time"] = df3.iloc[i]["time"]
+                point["fields"] = {}
+                for j in df3.columns:
+                    if j=="time":
+                        continue
+                    # print( type(df3.iloc[i][j]) , df3.iloc[i][j] )
+                    if not( df3.iloc[i][j] >=0 ):
+                        continue
+                    point["fields"][j] = df3.iloc[i][j]
+                # df3.iloc[i]
+                # print(  point)
+                body.append( point )
+                if len(body)%100 == 0:
+                    print(f"i... @{i:6d};  #points = {len(body)}" )
+                    res = client.write_points(body )
+                    print(f"i... res={res}")
+                    body = []
+                #break
+
+            # print( "i... points", len(body) )
+            if len(body)>0:
+                print(f"i... writing last {len(body)} points")
+                # res = client.write_points(body )
+
+            sys.exit(0) # ENDOF
+
+        database=args[0]
+        collection=args[1]
+        values=kwargs['v']
+        # mongo.mongowrite( database, collection, values ) # writes influx too
+        print("!... mongo write is commented out ...")
+        print("i... influx write ... ")
+        influx.influxwrite( database, collection, values )
+#==============================================
+
+    if MODE=="ls":
+
+        if len(args)==0:
+            print("H... ./"+os.path.basename(__file__)+"  filename.h5 ")
+            quit()
+        #print("ok")
+        if args[0].find(".h5")>0:
+            fvalue = False
+            if 'f' in kwargs:
+                fvalue=kwargs['f'] # full text
+            print("D... fval/kwargs",fvalue, kwargs)
+            print("D... args",args)
+            if len(args)==1:
+                h5toinfl.read_h5( args[0], fulltext=fvalue )
+            else: # key also
+                h5toinfl.read_h5( args[0], key=args[1], fulltext=fvalue )
+
+        #================ influx
+        elif (args[0]=="infl")or(args[0]=="influx"):
+            print("D...  listing influx databases")
+            dbcheck = "_"
+            sercheck = ""
+            qlimit = 5
+            IP = "127.0.0.1"
+            delete = False
+            dbpr = False
+            if len(args)>1:
+                dbcheck = args[1]
+                print("D... args  = ",args)
+                print("D... kwargs=",kwargs)
+            if len(args)>2:
+                sercheck = args[2]  # which series
+            if len(args)>3:
+                qlimit = args[3]   # how many
+
+            #if len(args)>4:  # i dont want this fixed position
+            #    IP = args[4]
+
+            if len(kwargs)>0:
+                if 'delete' in kwargs.keys():
+                    delete = kwargs["delete"]
+                if 'ip' in kwargs.keys():
+                    IP = kwargs["ip"]
+                    print(f"D... IP == {IP}")
+
+            res = influx.check_databases(IP=IP)
+            print("D... done")
+            for i in res:
+                if i['name'].find("_")==0:
+                    continue
+                chk = " "
+                if dbcheck == i["name"]:
+                    chk = "*"
+                    dbpr = True
+                print( chk, i["name"] )
+
+            if dbpr:
+                res = influx.check_series(dbcheck, IP=IP) #check 1 database
+
+                if sercheck in res:
+                    influx.check_series(dbcheck, sercheck, qlimit, IP) #check 1 series
+                    if delete:
+                        influx.check_series(dbcheck, sercheck, delete=True)
+        #rlwrap influx -precision rfc3339
+        # show databases
+        # use test
+        # show measurements
+
+
+    if MODE=="chk":
+        if len(args)==0:
+            print("H... ./"+os.path.basename(__file__)+" chk  infl ")
+            quit()
+        #================ influx
+        if (args[0]=="infl")or(args[0]=="influx"):
+                influx.checkout_hostname_database()
+
+    if MODE=="print":
+        if len(args)==0:
+            print("H... ./___  filename.h5 [item]")
+            quit()
+        print("ok")
+        h5toinfl.read_h5( args[0] )
+
+
+    if MODE=="plt":
+        print("D... plot with h5t.py: ", args)
+        print("D... tdb_io plt  reference_repo.h5  -p temp  ")
+        print("D... tdb_io plt  reference_repo.h5  -p size,size  ")
+        pvalue = ""
+        wvalue = False
+        Dvalue="" # default
+
+        newkwargs={}  # new keyWARGS
+        if 'p' in kwargs: newkwargs['plot']=kwargs['p']
+        if 'w' in kwargs: newkwargs['writejpg']=kwargs['w']
+        if 'D' in kwargs: newkwargs['DERIVATIVE']=kwargs['D']
+        if 'l' in kwargs: newkwargs['lines_off']=kwargs['l']
+         # #values="",
+         # DERIVATIVE="",
+         # INTEGRAL=False,
+         # last="",
+         # background="white",
+         # points_off=False,
+         # lines_off=False,
+         # writejpg=False,
+
+        # if 'p' in kwargs:
+        #     pvalue=str(kwargs['p']) # plot
+        # if 'w' in kwargs:
+        #     wvalue = kwargs['w'] # write
+        # if "D" in kwargs:
+        #     Dvalue = kwargs['D']
+
+        # ---- newkwargs - send all
+        if len(args)==1: # FILENAME
+            #h5t.main(args[0], plot = pvalue, writejpg = wvalue, DERIVATIVE=Dvalue)
+            print("D... 1 argument mode sending args=",newkwargs)
+            h5t.main(args[0], **newkwargs)
+        if len(args)==2: # FILENAME AND ALSO THE KEY
+            print("D... 2 argumets call to h5t,  pvalue=", pvalue)
+            h5t.main(args[0], args[1], plot = pvalue, writejpg = wvalue, DERIVATIVE=Dvalue)
+
+
+    if MODE=="org":
+        print("D... convert org to h5")
+        org2h5.orgme(args[0])
+
+
+    if MODE=="    ":print("ok")
+    if MODE=="    ":print("ok")
+
+    return
+
+
+
+
+
+
+def test_launch():
+    assert launch('A')==0
+
+if __name__=="__main__":
+    print("D...        tdb_io: version:",__version__)
+    Fire( launch )
+    print("____________________________________________________help")
+    print("    ...  use  'column -s, -t < somefile.csv | less -#2 -N -S'  to view")
+#    print("    ...    or with : cargo install csvlens; csvlens")
+    print('    ...    or with pip install visidata;  vd file.csv;  ')
+    print('                 shift-f [sort ]sort shift-s  "copy  |regex  shift-cd delcol   q')
+    print('    ...          #int %floa @date !defx-axe .plot  g.allplot   zz zoom  ')
