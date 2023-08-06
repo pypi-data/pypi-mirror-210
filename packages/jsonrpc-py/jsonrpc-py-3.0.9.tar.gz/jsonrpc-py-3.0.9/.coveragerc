@@ -1,0 +1,15 @@
+[run]
+# Omit the source file with typing stubs:
+omit = jsonrpc/typedefs.py
+source = jsonrpc
+
+[report]
+fail_under = 100.0
+precision = 2
+exclude_lines =
+    # Have to re-enable the standard pragma:
+    pragma: no cover
+    # Don't complain about missing debug-only code:
+    def __repr__
+    # Don't complain about typing stubs:
+    @(typing\.)?overload
