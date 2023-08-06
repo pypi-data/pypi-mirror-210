@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: baichat-py
+Version: 0.3.0
+Summary: 
+Home-page: https://codeberg.org/Bavarder/baichat-py
+License: GPL-3.0-or-later
+Keywords: openai,gpt3,baichat,chat
+Author: 0xMRTT
+Author-email: 0xMRTT@proton.me
+Maintainer: 0xMRTT
+Maintainer-email: 0xMRTT@proton.me
+Requires-Python: >=3.10,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Dist: curl-cffi (>=0.5.6,<0.6.0)
+Requires-Dist: fake-useragent (>=1.1.3,<2.0.0)
+Project-URL: Bug Tracker, https://codeberg.org/Bavarder/baichat-py/issues
+Project-URL: Documentation, https://codeberg.org/Bavarder/baichat-py
+Project-URL: Repository, https://github.com/Bavarder/baichat-py
+Description-Content-Type: text/markdown
+
+# BAIChat API Python
+
+## Installation
+
+### Pypi
+
+``` shell
+pip install baichat-py
+```
+
+### Codeberg
+
+``` shell
+pip install --index-url https://codeberg.org/api/packages/Bavarder/pypi/simple/ baichat-py
+```
+
+## Usage
+
+``` python 
+from baichat_py import Completion
+
+prompt = "Hello, world!"
+for token in Completion.create(prompt):
+    print(token, end="", flush=True)
+    print("")
+```
