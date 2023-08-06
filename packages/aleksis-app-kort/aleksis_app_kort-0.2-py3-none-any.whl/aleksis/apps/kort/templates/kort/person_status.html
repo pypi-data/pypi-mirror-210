@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if missing_fields_count %}
+  <span class="red-text">
+    <i class="material-icons iconify left" data-icon="mdi:alert-octagon-outline"></i>
+    {% blocktrans with count=missing_fields_count %}{{ count }} missing data fields{% endblocktrans %}
+  </span>
+{% else %}
+  <span class="green-text">
+    <i class="material-icons iconify left" data-icon="mdi:check-circle-outline"></i>
+    {% blocktrans %}Data complete{% endblocktrans %}
+  </span>
+{% endif %}

@@ -1,0 +1,15 @@
+{% load i18n %}
+<table>
+  <tr>
+    <th>{% trans "Person" %}</th>
+    <td>{{ card.person }}</td>
+  </tr>
+  <tr>
+    <th>{% trans "Chip number" %}</th>
+    <td>{{ card.chip_number }}</td>
+  </tr>
+  <tr>
+    <th>{% trans "Valid until" %}</th>
+    <td>{{ card.valid_until }}</td>
+  </tr>
+</table>

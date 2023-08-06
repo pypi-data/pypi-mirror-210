@@ -1,0 +1,35 @@
+{# -*- engine:django -*- #}
+
+{% extends "core/base.html" %}
+
+{% load material_form i18n any_js rules %}
+
+
+{% block browser_title %}{% blocktrans %}Card Printer{% endblocktrans %}{% endblock %}
+{% block page_title %}{{ object.name }}{% endblock %}
+
+
+{% block content %}
+  <a class="btn waves-effect waves-light secondary margin-bottom" href="{% url "card_printers" %}">
+    <i class="material-icons left iconify" data-icon="mdi:arrow-left"></i>
+    {% trans "Back to all printers" %}
+  </a>
+  {% has_perm 'kort.edit_cardprinter_rule' user printer as can_edit %}
+  {% has_perm 'kort.delete_cardprinter_rule' user printer as can_delete %}
+
+  {% if can_edit %}
+    <a class="btn waves-effect waves-light margin-bottom orange modal-trigger"
+       href="{% url "edit_card_printer" object.pk %}">
+      <i class="material-icons left iconify" data-icon="mdi:pencil-outline"></i>
+      {% trans "Edit" %}
+    </a>
+  {% endif %}
+  {% if can_delete %}
+    <a class="btn waves-effect waves-light margin-bottom red modal-trigger"
+       href="{% url "delete_card_printer" object.pk %}">
+      <i class="material-icons left iconify" data-icon="mdi:delete-outline"></i>
+      {% trans "Delete" %}
+    </a>
+  {% endif %}
+  {% include "kort/printer/detail_content.html" with printer=object %}
+{% endblock %}

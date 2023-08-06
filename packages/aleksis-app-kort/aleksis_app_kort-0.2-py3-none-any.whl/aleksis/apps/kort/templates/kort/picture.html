@@ -1,0 +1,11 @@
+{% load i18n %}
+{% if picture %}
+  <div class="{% firstof class "clip-circle" %}">
+    <img class="{% firstof img_class "hundred-percent" %}" src="{{ picture.url }}" alt="{% trans "Person picture" %}"/>
+  </div>
+{% else %}
+  {# There is a user without a person #}
+  <div class="{% firstof class "clip-circle" %} no-image">
+    <i class="material-icons">person</i>
+  </div>
+{% endif %}

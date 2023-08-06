@@ -1,0 +1,67 @@
+{% load i18n rules %}
+<div class="row">
+  <div class="col s12 m12 l6">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title">{% trans "Card details" %}</div>
+        <table>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:person-outline"></i>
+              {% trans "Person" %}</th>
+            <td>{{ card.person }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:barcode"></i>
+              {% trans "Chip number" %}
+            </th>
+            <td><code>{{ card.chip_number|default:_("not set yet") }}</code></td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:calendar-clock"></i>
+              {% trans "Valid until" %}
+            </th>
+            <td>{{ card.valid_until }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:card-account-details-star-outline"></i>
+              {% trans "Card Layout" %}
+            </th>
+            <td>{{ card.layout|default:"–" }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:checkbox-blank-badge-outline"></i>
+              {% trans "Status" %}
+            </th>
+            <td>
+              {% include "kort/card/status.html" %}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m12 l6">
+    {% include "kort/card/print_form.html" %}
+    {% if card.pdf_file %}
+      <a href="{{ card.pdf_file.url }}" class="btn waves-effect waves-light">
+        <i class="material-icons left iconify" data-icon="mdi:file-pdf-box"></i>
+        {% trans "Show card as PDF" %}
+      </a>
+    {% else %}
+      {% has_perm 'kort.edit_card_rule' user card as can_edit %}
+      {% if can_edit %}
+        <div class="row center-via-flex">
+          <a class="btn waves-effect waves-light" href="{% url "generate_card_pdf" card.pk %}">
+            <i class="material-icons left iconify" data-icon="mdi:file-pdf-box"></i>
+            {% trans "Generate card as PDF" %}
+          </a>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

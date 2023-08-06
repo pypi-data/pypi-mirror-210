@@ -1,0 +1,90 @@
+{# -*- engine:django -*- #}
+
+{% extends "core/base.html" %}
+
+{% load material_form i18n any_js django_tables2 static %}
+
+{% block extra_head %}
+  {{ form.media.css }}
+  {% include_css "select2-materialize" %}
+{% endblock %}
+
+{% block browser_title %}{% blocktrans %}Issue card(s){% endblocktrans %}{% endblock %}
+{% block page_title %}{% blocktrans %}Issue card(s){% endblocktrans %}{% endblock %}
+
+
+{% block content %}
+  {% include_js "select2-materialize" %}
+
+  <form method="post" enctype="multipart/form-data">
+    {% if wizard.steps.index == 0 %}
+      <figure class="alert primary">
+        <i class="material-icons iconify left" data-icon="mdi:information-outline"></i>
+        {% blocktrans %}
+          Please select the persons and/or the groups to whom you want to issue new cards.
+          After clicking on 'Next', you will be able to check whether the data of the persons
+          are complete and include everything needed for the cards.
+        {% endblocktrans %}
+      </figure>
+    {% else %}
+        <figure class="alert primary">
+        <i class="material-icons iconify left" data-icon="mdi:information-outline"></i>
+        {% blocktrans %}
+          In the following table you can see all selected persons and the related data needed for the cards.
+          Please select the persons to whom you want to issue new cards.
+        {% endblocktrans %}
+      </figure>
+    {% endif %}
+
+    <div class="margin-bottom">
+      {% csrf_token %}
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+          {% form form=form %}{% endform %}
+          {{ form.media.js }}
+        {% endfor %}
+      {% else %}
+        {% form form=wizard.form %}{% endform %}
+        {{ form.media.js }}
+      {% endif %}
+      {% if persons_table %}
+        {{ wizard.form.selected_objects.errors }}
+        {% render_table persons_table %}
+      {% endif %}
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        {% if wizard.steps.prev %}
+          <button name="wizard_goto_step" class="btn primary waves-effect waves-light margin-bottom"
+                  type="submit"
+                  value="{{ wizard.steps.prev }}">
+            <i class="material-icons left">arrow_back</i>
+            {% trans "Previous step" %}
+          </button>
+        {% endif %}
+
+        {% if wizard.steps.count|add:"-1" == wizard.steps.index %}
+          <button type="submit" class="btn green  waves-effect waves-light margin-bottom">
+            {% trans "Issue cards for selected persons" %}<i class="material-icons right">send</i>
+          </button>
+        {% else %}
+          <button class="btn primary-color waves-effect waves-light margin-bottom" type="submit"
+                  value="{{ wizard.steps.prev }}">
+            <i class="material-icons right">arrow_forward</i>
+            {% trans "Next step" %}
+          </button>
+        {% endif %}
+
+        <a href="{% url "cards" %}"
+           class="btn-flat waves-effect waves-red red-text margin-bottom">
+          <i class="material-icons left">clear</i> {% trans "Cancel" %}
+        </a>
+      </div>
+    </div>
+  </form>
+
+  <script src="{% static "js/multi_select.js" %}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,738 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-19 15:48+0100\n"
+"PO-Revision-Date: 2022-08-12 22:00+0000\n"
+"Last-Translator: Jonathan Weth <teckids@jonathanweth.de>\n"
+"Language-Team: German <https://translate.edugit.org/projects/aleksis/aleksis-app-kort/de/>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.12.1\n"
+
+#: aleksis/apps/kort/apps.py:31
+msgid "Access and manage printer status and print jobs"
+msgstr "Druckerstatus und Druckaufträge anzeigen und verwalten"
+
+#: aleksis/apps/kort/forms.py:15
+msgid "Select person(s) or group(s)"
+msgstr "Person(en) oder Gruppe(n) auswählen"
+
+#: aleksis/apps/kort/forms.py:16
+msgid "Select validity"
+msgstr "Gültigkeit auswählen"
+
+#: aleksis/apps/kort/forms.py:17
+msgid "Select layout"
+msgstr "Layout auswählen"
+
+#: aleksis/apps/kort/forms.py:18
+msgid "Select printer (optional)"
+msgstr "Drucker auswählen (optional)"
+
+#: aleksis/apps/kort/forms.py:22 aleksis/apps/kort/forms.py:111
+#: aleksis/apps/kort/templates/kort/printer/detail.html:8
+msgid "Card Printer"
+msgstr "Kartendrucker"
+
+#: aleksis/apps/kort/forms.py:23
+msgid "Select a printer to directly print the newly issued card."
+msgstr "Wählen Sie einen Drucker aus, um die neu ausgestellte Karte direkt zu drucken."
+
+#: aleksis/apps/kort/forms.py:28
+msgid "Persons"
+msgstr "Personen"
+
+#: aleksis/apps/kort/forms.py:41
+msgid "Groups"
+msgstr "Gruppen"
+
+#: aleksis/apps/kort/forms.py:51 aleksis/apps/kort/models.py:191
+msgid "Card layout"
+msgstr "Kartenlayout"
+
+#: aleksis/apps/kort/forms.py:53 aleksis/apps/kort/models.py:263
+#: aleksis/apps/kort/tables.py:30
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:24
+#: aleksis/apps/kort/templates/kort/card/short.html:12
+msgid "Valid until"
+msgstr "Gültig bis"
+
+#: aleksis/apps/kort/forms.py:63
+msgid "You must select at least one person or group."
+msgstr "Sie müssen mindestens eine Person oder Gruppe auswählen."
+
+#: aleksis/apps/kort/forms.py:71
+msgid "The selected groups don't have any members."
+msgstr "Die ausgewählten Gruppen haben keine Mitglieder."
+
+#: aleksis/apps/kort/forms.py:91
+msgid "Generic attributes"
+msgstr "Allgemeine Attribute"
+
+#: aleksis/apps/kort/forms.py:93
+msgid "Printer settings"
+msgstr "Druckereinstellungen"
+
+#: aleksis/apps/kort/forms.py:138 aleksis/apps/kort/models.py:228
+msgid "Required data fields"
+msgstr "Benötigte Datenfelder"
+
+#: aleksis/apps/kort/models.py:24
+msgid "Online"
+msgstr "Online"
+
+#: aleksis/apps/kort/models.py:25
+msgid "Offline"
+msgstr "Offline"
+
+#: aleksis/apps/kort/models.py:26
+msgid "With errors"
+msgstr "Mit Fehlern"
+
+#: aleksis/apps/kort/models.py:27
+msgid "Not registered"
+msgstr "Nicht registriert"
+
+#: aleksis/apps/kort/models.py:56
+msgid "Registered"
+msgstr "Registriert"
+
+#: aleksis/apps/kort/models.py:57
+msgid "In progress"
+msgstr "In Bearbeitung"
+
+#: aleksis/apps/kort/models.py:58
+msgid "Finished"
+msgstr "Beendet"
+
+#: aleksis/apps/kort/models.py:59
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: aleksis/apps/kort/models.py:64 aleksis/apps/kort/models.py:223
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:11
+#: aleksis/apps/kort/templates/kort/card_layout/short.html:4
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:11
+#: aleksis/apps/kort/templates/kort/printer/short.html:4
+msgid "Name"
+msgstr "Name"
+
+#: aleksis/apps/kort/models.py:65
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:24
+msgid "Description"
+msgstr "Beschreibung"
+
+#: aleksis/apps/kort/models.py:66
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:17
+#: aleksis/apps/kort/templates/kort/printer/short.html:8
+msgid "Location"
+msgstr "Ort"
+
+#: aleksis/apps/kort/models.py:70 aleksis/apps/kort/models.py:336
+#: aleksis/apps/kort/tables.py:95
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:38
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:38
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:90
+#: aleksis/apps/kort/templates/kort/printer/short.html:12
+msgid "Status"
+msgstr "Status"
+
+#: aleksis/apps/kort/models.py:74 aleksis/apps/kort/models.py:340
+msgid "Status text"
+msgstr "Statustext"
+
+#: aleksis/apps/kort/models.py:75 aleksis/apps/kort/tables.py:58
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:31
+msgid "Last seen at"
+msgstr "Zuletzt gesehen am"
+
+#: aleksis/apps/kort/models.py:80
+msgid "OAuth2 application"
+msgstr "OAuth2-Anwendung"
+
+#: aleksis/apps/kort/models.py:87
+msgid "CUPS printer"
+msgstr "CUPS-Drucker"
+
+#: aleksis/apps/kort/models.py:89
+msgid "Generate card number on server"
+msgstr "Kartennummer auf dem Server generieren"
+
+#: aleksis/apps/kort/models.py:91
+msgid "Card detector"
+msgstr "Karten-Detektor"
+
+#: aleksis/apps/kort/models.py:181
+msgid "Card printer"
+msgstr "Kartendrucker"
+
+#: aleksis/apps/kort/models.py:182
+#: aleksis/apps/kort/templates/kort/printer/list.html:8
+#: aleksis/apps/kort/templates/kort/printer/list.html:9
+msgid "Card printers"
+msgstr "Kartendrucker"
+
+#: aleksis/apps/kort/models.py:186
+msgid "Media file"
+msgstr "Mediendatei"
+
+#: aleksis/apps/kort/models.py:198
+msgid "Media file for a card layout"
+msgstr "Mediendatei für ein Kartenlayout"
+
+#: aleksis/apps/kort/models.py:199
+msgid "Media files for card layouts"
+msgstr "Mediendateien für Kartenlayouts"
+
+#: aleksis/apps/kort/models.py:224
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:43
+msgid "Template"
+msgstr "Template"
+
+#: aleksis/apps/kort/models.py:225
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:49
+msgid "Custom CSS"
+msgstr "Benutzerdefiniertes CSS"
+
+#: aleksis/apps/kort/models.py:226
+msgid "Width"
+msgstr "Breite"
+
+#: aleksis/apps/kort/models.py:226 aleksis/apps/kort/models.py:227
+msgid "in mm"
+msgstr "in mm"
+
+#: aleksis/apps/kort/models.py:227
+msgid "Height"
+msgstr "Höhe"
+
+#: aleksis/apps/kort/models.py:248
+msgid "Template is invalid: {}"
+msgstr "Template ist ungültig: {}"
+
+#: aleksis/apps/kort/models.py:254 aleksis/apps/kort/models.py:267
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:31
+#: aleksis/apps/kort/templates/kort/card_layout/detail.html:8
+msgid "Card Layout"
+msgstr "Kartenlayout"
+
+#: aleksis/apps/kort/models.py:255
+msgid "Card Layouts"
+msgstr "Kartenlayouts"
+
+#: aleksis/apps/kort/models.py:260
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:11
+#: aleksis/apps/kort/templates/kort/card/short.html:4
+msgid "Person"
+msgstr "Person"
+
+#: aleksis/apps/kort/models.py:262
+msgid "Chip Number"
+msgstr "Chip-Nummer"
+
+#: aleksis/apps/kort/models.py:264 aleksis/apps/kort/tables.py:31
+msgid "Deactivated"
+msgstr "Deaktiviert"
+
+#: aleksis/apps/kort/models.py:270
+msgid "PDF file"
+msgstr "PDF-Datei"
+
+#: aleksis/apps/kort/models.py:303
+msgid "There is no layout provided for the card."
+msgstr "Es wurde kein Layout für die Karte bereitgestellt."
+
+#: aleksis/apps/kort/models.py:322 aleksis/apps/kort/models.py:331
+#: aleksis/apps/kort/templates/kort/card/detail.html:8
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:84
+msgid "Card"
+msgstr "Karte"
+
+#: aleksis/apps/kort/models.py:323
+#: aleksis/apps/kort/templates/kort/card/list.html:8
+#: aleksis/apps/kort/templates/kort/card/list.html:9
+msgid "Cards"
+msgstr "Karten"
+
+#: aleksis/apps/kort/models.py:328
+msgid "Printer"
+msgstr "Drucker"
+
+#: aleksis/apps/kort/models.py:343
+msgid "Card print job"
+msgstr "Karten-Druckauftrag"
+
+#: aleksis/apps/kort/models.py:344
+msgid "Card print jobs"
+msgstr "Karten-Druckaufträge"
+
+#: aleksis/apps/kort/tables.py:28
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:17
+#: aleksis/apps/kort/templates/kort/card/short.html:8
+msgid "Chip number"
+msgstr "Chip-Nummer"
+
+#: aleksis/apps/kort/tables.py:29 aleksis/apps/kort/tables.py:57
+msgid "Current status"
+msgstr "Aktueller Status"
+
+#: aleksis/apps/kort/tables.py:32 aleksis/apps/kort/tables.py:61
+#: aleksis/apps/kort/tables.py:85
+msgid "Actions"
+msgstr "Aktionen"
+
+#: aleksis/apps/kort/tables.py:54
+msgid "Printer name"
+msgstr "Druckername"
+
+#: aleksis/apps/kort/tables.py:55
+msgid "Printer location"
+msgstr "Druckerort"
+
+#: aleksis/apps/kort/tables.py:59
+msgid "Running jobs"
+msgstr "Laufende Aufträge"
+
+#: aleksis/apps/kort/tables.py:81
+msgid "Layout name"
+msgstr "Layoutname"
+
+#: aleksis/apps/kort/templates/kort/card/actions.html:8
+#: aleksis/apps/kort/templates/kort/card/detail.html:9
+#, python-format
+msgid "Card of %(person)s"
+msgstr "Karte von %(person)s"
+
+#: aleksis/apps/kort/templates/kort/card/actions.html:14
+#: aleksis/apps/kort/templates/kort/card/actions.html:31
+#: aleksis/apps/kort/templates/kort/card_layout/actions.html:11
+#: aleksis/apps/kort/templates/kort/printer/actions.html:11
+msgid "Close"
+msgstr "Schließen"
+
+#: aleksis/apps/kort/templates/kort/card/actions.html:20
+#: aleksis/apps/kort/templates/kort/card_layout/actions.html:17
+#: aleksis/apps/kort/templates/kort/printer/actions.html:17
+msgid "Show"
+msgstr "Anzeigen"
+
+#: aleksis/apps/kort/templates/kort/card/actions.html:25
+msgid "Do you really want to deactivate the following card?"
+msgstr "Möchten Sie wirklich die folgende Karte deaktivieren?"
+
+#: aleksis/apps/kort/templates/kort/card/actions.html:35
+#: aleksis/apps/kort/templates/kort/card/actions.html:41
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
+#: aleksis/apps/kort/templates/kort/card/actions.html:47
+#: aleksis/apps/kort/templates/kort/card/delete.html:30
+#: aleksis/apps/kort/templates/kort/card_layout/actions.html:33
+#: aleksis/apps/kort/templates/kort/card_layout/delete.html:29
+#: aleksis/apps/kort/templates/kort/card_layout/detail.html:31
+#: aleksis/apps/kort/templates/kort/printer/actions.html:33
+#: aleksis/apps/kort/templates/kort/printer/delete.html:29
+#: aleksis/apps/kort/templates/kort/printer/detail.html:31
+msgid "Delete"
+msgstr "Löschen"
+
+#: aleksis/apps/kort/templates/kort/card/delete.html:8
+msgid "Delete Card"
+msgstr "Karte löschen"
+
+#: aleksis/apps/kort/templates/kort/card/delete.html:12
+msgid "Do you really want to delete the following card?"
+msgstr "Möchten Sie wirklich die folgende Karte löschen?"
+
+#: aleksis/apps/kort/templates/kort/card/delete.html:16
+msgid ""
+"\n"
+"      Please pay attention that a deletion of a card is irreversible and should be only used to clean up misprints.\n"
+"      If you just want to make a card unusable because a student has lost his card or left the school,\n"
+"      please deactivate the card instead.\n"
+"    "
+msgstr ""
+"\n"
+"      Bitte beachten Sie, dass das Löschen einer Karte nicht rückgängig gemacht werden kann und nur zum Aufräumen von Fehldrucken benutzt werden sollte.\n"
+"Wenn Sie lediglich eine Karte unbenutzbar machen wollen, weil ein Schüler seine Karte verloren hat oder die Schule verlässt,\n"
+"deaktivieren Sie die Karte bitte stattdessen.\n"
+"    "
+
+#: aleksis/apps/kort/templates/kort/card/delete.html:26
+#: aleksis/apps/kort/templates/kort/card_layout/delete.html:25
+#: aleksis/apps/kort/templates/kort/printer/delete.html:25
+msgid "Go back"
+msgstr "Zurück"
+
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:6
+msgid "Card details"
+msgstr "Kartendetails"
+
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:19
+msgid "not set yet"
+msgstr "noch nicht festgelegt"
+
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:53
+msgid "Show card as PDF"
+msgstr "Karte als PDF anzeigen"
+
+#: aleksis/apps/kort/templates/kort/card/detail_content.html:61
+msgid "Generate card as PDF"
+msgstr "Karte als PDF generieren"
+
+#: aleksis/apps/kort/templates/kort/card/edit.html:12
+#: aleksis/apps/kort/templates/kort/card/edit.html:13
+msgid "Edit card"
+msgstr "Karte bearbeiten"
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:12
+#: aleksis/apps/kort/templates/kort/card/issue.html:13
+msgid "Issue card(s)"
+msgstr "Karte(n) ausstellen"
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:23
+msgid ""
+"\n"
+"          Please select the persons and/or the groups to whom you want to issue new cards.\n"
+"          After clicking on 'Next', you will be able to check whether the data of the persons\n"
+"          are complete and include everything needed for the cards.\n"
+"        "
+msgstr ""
+"\n"
+"          Bitte wählen Sie die Personen und/oder die Gruppen aus, für die Sie neue Karten ausstellen wollen.\n"
+"Nachdem Sie auf 'Weiter' geklickt haben, können Sie prüfen, ob die Daten der Personen vollständig sind\n"
+"und alles Notwendige für die Karten enthalten.\n"
+"        "
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:32
+msgid ""
+"\n"
+"          In the following table you can see all selected persons and the related data needed for the cards.\n"
+"          Please select the persons to whom you want to issue new cards.\n"
+"        "
+msgstr ""
+"\n"
+"          In der folgenden Tabelle können Sie alle ausgewählten Personen und die zugehörigen Daten, die für die Karten benötigt werden, sehen.\n"
+"Bitte wählen Sie die Personen aus, für die Sie neue Karten ausstellen wollen.\n"
+"        "
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:65
+msgid "Previous step"
+msgstr "Vorheriger Schritt"
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:71
+msgid "Issue cards for selected persons"
+msgstr "Karten für ausgewählte Personen ausstellen"
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:77
+msgid "Next step"
+msgstr "Nächster Schritt"
+
+#: aleksis/apps/kort/templates/kort/card/issue.html:83
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: aleksis/apps/kort/templates/kort/card/list.html:17
+msgid "Issue new card(s)"
+msgstr "Neue Karte(n) ausstellen"
+
+#: aleksis/apps/kort/templates/kort/card/print_form.html:8
+#: aleksis/apps/kort/templates/kort/card/print_form.html:16
+msgid "Print card"
+msgstr "Karte drucken"
+
+#: aleksis/apps/kort/templates/kort/card/status.html:3
+msgid "Valid"
+msgstr "Gültig"
+
+#: aleksis/apps/kort/templates/kort/card/status.html:5
+msgid "Not valid"
+msgstr "Nicht gültig"
+
+#: aleksis/apps/kort/templates/kort/card_layout/actions.html:26
+#: aleksis/apps/kort/templates/kort/card_layout/detail.html:24
+#: aleksis/apps/kort/templates/kort/printer/actions.html:27
+#: aleksis/apps/kort/templates/kort/printer/detail.html:24
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: aleksis/apps/kort/templates/kort/card_layout/create.html:12
+#: aleksis/apps/kort/templates/kort/card_layout/create.html:13
+msgid "Create card layout"
+msgstr "Kartenlayout erstellen"
+
+#: aleksis/apps/kort/templates/kort/card_layout/create.html:23
+#: aleksis/apps/kort/templates/kort/card_layout/edit.html:23
+msgid "Media Files"
+msgstr "Mediendateien"
+
+#: aleksis/apps/kort/templates/kort/card_layout/delete.html:8
+msgid "Delete Card Layout"
+msgstr "Kartenlayout löschen"
+
+#: aleksis/apps/kort/templates/kort/card_layout/delete.html:12
+msgid "Do you really want to delete the following card layout?"
+msgstr "Möchten Sie wirklich das folgende Kartenlayout löschen?"
+
+#: aleksis/apps/kort/templates/kort/card_layout/delete.html:16
+msgid ""
+"\n"
+"      Please pay attention that this also will prevent the successful finishing of all active print jobs\n"
+"      which use these template.\n"
+"    "
+msgstr ""
+"\n"
+"      Bitte beachten Sie, dass dies auch die erfolgreiche Fertigstellung aller aktiven Druckaufträge verhindern wird,\n"
+" die dieses Template nutzen.\n"
+"    "
+
+#: aleksis/apps/kort/templates/kort/card_layout/detail.html:15
+msgid "Back to all layouts"
+msgstr "Zurück zu allen Layouts"
+
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:6
+msgid "Layout details"
+msgstr "Layoutdetails"
+
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:17
+msgid "Size (w × h)"
+msgstr "Größe (b x h)"
+
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:24
+msgid "Media files"
+msgstr "Mediendateien"
+
+#: aleksis/apps/kort/templates/kort/card_layout/detail_content.html:31
+msgid "No media files uploaded."
+msgstr "Keine Mediendateien hochgeladen."
+
+#: aleksis/apps/kort/templates/kort/card_layout/edit.html:12
+#: aleksis/apps/kort/templates/kort/card_layout/edit.html:13
+msgid "Edit card layout"
+msgstr "Kartenlayout bearbeiten"
+
+#: aleksis/apps/kort/templates/kort/card_layout/instructions.html:4
+msgid "Instructions on templating the card"
+msgstr "Anweisungen zum Gestalten der Karte"
+
+#: aleksis/apps/kort/templates/kort/card_layout/instructions.html:5
+msgid ""
+"\n"
+"      You will be able to use the following data in your individual template. The template has to been written in the\n"
+"      Django template language.\n"
+"    "
+msgstr ""
+"\n"
+"      Sie können die folgenden Daten in Ihrem individuellen Template nutzen. Das Template muss in der\n"
+"Django-Template-Sprache geschrieben werden.\n"
+"    "
+
+#: aleksis/apps/kort/templates/kort/card_layout/instructions.html:11
+msgid "The chip number as string"
+msgstr "Die Chip-Nummer als Zeichenkette"
+
+#: aleksis/apps/kort/templates/kort/card_layout/instructions.html:15
+msgid "This will give you access to any attributes of the person object like name, personal data or contact data."
+msgstr "Dies gibt Ihnen Zugriff zu allen Attributen des Personen-Objekts wie z. B. Name, persönliche Daten oder Kontaktdaten."
+
+#: aleksis/apps/kort/templates/kort/card_layout/instructions.html:19
+msgid "The date until when the card is valid"
+msgstr "Das Datum, bis wann die Karte gültig ist"
+
+#: aleksis/apps/kort/templates/kort/card_layout/instructions.html:24
+msgid "This will give you access to the uploaded media files. Replace 0 by the number of your media file (starting with 0)."
+msgstr "Dies gibt Ihnen Zugriff auf die hochgeladenen Mediendateien. Ersetzen Sie 0 durch die Nummer Ihrer Mediendatei (startend mit 0)."
+
+#: aleksis/apps/kort/templates/kort/card_layout/list.html:8
+#: aleksis/apps/kort/templates/kort/card_layout/list.html:9
+msgid "Card layouts"
+msgstr "Kartenlayouts"
+
+#: aleksis/apps/kort/templates/kort/card_layout/list.html:17
+msgid "Create new card layout"
+msgstr "Neues Kartenlayout erstellen"
+
+#: aleksis/apps/kort/templates/kort/person_status.html:5
+#, python-format
+msgid "%(count)s missing data fields"
+msgstr "%(count)s fehlende Datenfelder"
+
+#: aleksis/apps/kort/templates/kort/person_status.html:10
+msgid "Data complete"
+msgstr "Daten vollständig"
+
+#: aleksis/apps/kort/templates/kort/picture.html:4
+msgid "Person picture"
+msgstr "Bild der Person"
+
+#: aleksis/apps/kort/templates/kort/printer/create.html:12
+#: aleksis/apps/kort/templates/kort/printer/create.html:13
+msgid "Create card"
+msgstr "Karte erstellen"
+
+#: aleksis/apps/kort/templates/kort/printer/delete.html:8
+msgid "Delete Card Printer"
+msgstr "Kartendrucker löschen"
+
+#: aleksis/apps/kort/templates/kort/printer/delete.html:12
+msgid "Do you really want to delete the following card printer?"
+msgstr "Möchten Sie wirklich den folgenden Kartendrucker löschen?"
+
+#: aleksis/apps/kort/templates/kort/printer/delete.html:16
+msgid ""
+"\n"
+"      Please pay attention that this also will deactivate the access for the print client and you would have to\n"
+"      reconfigure the client if you want to use it further.\n"
+"    "
+msgstr ""
+"\n"
+"      Bitte beachten Sie, dass dies auch den Zugriff für den Druckclient deaktivieren wird und Sie außerdem \n"
+"den Druckklient neu konfigurieren müssen, wenn Sie ihn weiter benutzen wollen.\n"
+"    "
+
+#: aleksis/apps/kort/templates/kort/printer/detail.html:15
+msgid "Back to all printers"
+msgstr "Zurück zu allen Druckern"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:6
+msgid "Printer details"
+msgstr "Druckerdetails"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:33
+msgid "never seen yet"
+msgstr "noch nicht gesehen"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:60
+msgid "Setup printer client"
+msgstr "Druckclient einrichten"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:62
+msgid ""
+"\n"
+"              To enable printing, you have to register the print client on the device\n"
+"              which the printer is connected to.\n"
+"            "
+msgstr ""
+"\n"
+"              Um das Drucken zu aktivieren, müssen Sie den Druckklient auf dem Gerät\n"
+"registrieren, an das der Drucker angeschlossen ist.\n"
+"            "
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:67
+msgid "1. Download print client"
+msgstr "1. Druckclient herunterladen"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:68
+msgid "2. Download configuration file"
+msgstr "2. Konfigurationsdatei herunterladen"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:71
+msgid "Download configuration"
+msgstr "Konfiguration herunterladen"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:73
+msgid "3. Setup client"
+msgstr "3. Client einrichten"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:80
+msgid "Print jobs"
+msgstr "Druckaufträge"
+
+#: aleksis/apps/kort/templates/kort/printer/detail_content.html:87
+msgid "Created at"
+msgstr "Erstellt am"
+
+#: aleksis/apps/kort/templates/kort/printer/edit.html:12
+#: aleksis/apps/kort/templates/kort/printer/edit.html:13
+msgid "Edit card printer"
+msgstr "Kartendrucker bearbeiten"
+
+#: aleksis/apps/kort/templates/kort/printer/list.html:17
+msgid "Register new card printer"
+msgstr "Neuen Kartendrucker registrieren"
+
+#: aleksis/apps/kort/views.py:69
+msgid "The cards have been created successfully."
+msgstr "Die Karten wurden erfolgreich erstellt."
+
+#: aleksis/apps/kort/views.py:137 aleksis/apps/kort/views.py:193
+msgid "The print job #{} for the card {} on the printer {} has been created successfully."
+msgstr "Der Druckauftrag #{} für die Karte {} auf dem Drucker {} wurde erfolgreich erstellt."
+
+#: aleksis/apps/kort/views.py:145 aleksis/apps/kort/views.py:200
+msgid "The print job couldn't be started because of the following error: {}"
+msgstr "Der Druckauftrag konnte wegen folgendem Fehler nicht gestartet werden: {}"
+
+#: aleksis/apps/kort/views.py:158
+msgid "The card has been deleted successfully."
+msgstr "Die Karte wurde erfolgreich gelöscht."
+
+#: aleksis/apps/kort/views.py:171
+msgid "The card has been deactivated successfully."
+msgstr "Die Karte wurde erfolgreich deaktiviert."
+
+#: aleksis/apps/kort/views.py:220
+msgid "The chip number is missing."
+msgstr "Die Chip-Nummer fehlt."
+
+#: aleksis/apps/kort/views.py:232
+msgid "Progress: Generate card layout as PDF file"
+msgstr "Fortschritt: Kartenlayout als PDF-Datei generieren"
+
+#: aleksis/apps/kort/views.py:233
+msgid "Generating PDF file …"
+msgstr "PDF-Datei wird generiert …"
+
+#: aleksis/apps/kort/views.py:234
+msgid "The PDF file with the card layout has been generated successfully."
+msgstr "Die PDF-Datei mit dem Kartenlayout wurde erfolgreich erstellt."
+
+#: aleksis/apps/kort/views.py:235
+msgid "There was a problem while generating the PDF file."
+msgstr "Es ist ein Fehler beim Generieren der PDF-Datei aufgetreten."
+
+#: aleksis/apps/kort/views.py:237
+msgid "Show card"
+msgstr "Karte anzeigen"
+
+#: aleksis/apps/kort/views.py:275
+msgid "The card printer has been created successfully."
+msgstr "Der Kartendrucker wurde erfolgreich erstellt."
+
+#: aleksis/apps/kort/views.py:288
+msgid "The card printer has been changed successfully."
+msgstr "Der Kartendrucker wurde erfolgreich geändert."
+
+#: aleksis/apps/kort/views.py:301
+msgid "The card printer has been deleted successfully."
+msgstr "Der Kartendrucker wurde erfolgreich gelöscht."
+
+#: aleksis/apps/kort/views.py:364
+msgid "The card layout has been created successfully."
+msgstr "Das Kartenlayout wurde erfolgreich erstellt."
+
+#: aleksis/apps/kort/views.py:382
+msgid "The card layout has been changed successfully."
+msgstr "Das Kartenlayout wurde erfolgreich geändert."
+
+#: aleksis/apps/kort/views.py:395
+msgid "The card layout has been deleted successfully."
+msgstr "Das Kartenlayout wurde erfolgreich gelöscht."
+
+#~ msgid "Student ID Cards"
+#~ msgstr "Schülerausweise"
+
+#~ msgid "All Cards"
+#~ msgstr "Alle Karten"
+
+#~ msgid "Card Printers"
+#~ msgstr "Kartendrucker"

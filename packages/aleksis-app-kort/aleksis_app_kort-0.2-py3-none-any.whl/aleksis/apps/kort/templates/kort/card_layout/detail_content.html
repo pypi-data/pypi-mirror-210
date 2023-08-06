@@ -1,0 +1,54 @@
+{% load i18n %}
+<div class="row no-margin">
+  <div class="col s12 m12 l12 xl6 no-padding">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title">{% trans "Layout details" %}</div>
+        <table>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:label-outline"></i>
+              {% trans "Name" %}</th>
+            <td>{{ card_layout.name }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:image-size-select-large"></i>
+              {% trans "Size (w × h)" %}
+            </th>
+            <td>{{ card_layout.width }} mm × {{ card_layout.height }} mm</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:folder-multiple-image"></i>
+              {% trans "Media files" %}
+            </th>
+            <td>
+              <ul class="collection">
+                {% for file in card_layout.media_files.all %}
+                    <a class="collection-item" href="{{ file.media_file.url }}">{{ file.media_file.name }}</a>
+                  {% empty %}
+                  <li class="collection-item">{% trans "No media files uploaded." %}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m12 l12 xl6">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title">{% trans "Template" %}</div>
+        <pre>{{ card_layout.template|linebreaksbr }}</pre>
+      </div>
+    </div>
+       <div class="card">
+      <div class="card-content">
+        <div class="card-title">{% trans "Custom CSS" %}</div>
+        <pre>{{ card_layout.css|linebreaksbr }}</pre>
+      </div>
+    </div>
+  </div>
+</div>

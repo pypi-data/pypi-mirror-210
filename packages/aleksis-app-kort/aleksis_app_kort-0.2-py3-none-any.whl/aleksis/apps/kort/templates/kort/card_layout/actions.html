@@ -1,0 +1,35 @@
+{% load i18n rules %}
+
+<div id="detail-modal-{{ card_layout.pk }}" class="modal">
+  <div class="modal-content">
+    <h4>{{ card_layout.name }}</h4>
+    {% include "kort/card_layout/detail_content.html" %}
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+      <i class="material-icons left iconify" data-icon="mdi:close"></i>
+      {% trans "Close" %}
+    </a>
+  </div>
+</div>
+<a class="btn-flat waves-effect waves-green green-text modal-trigger" href="#detail-modal-{{ card_layout.pk }}">
+  <i class="material-icons left iconify" data-icon="mdi:play-box-outline"></i>
+  {% trans "Show" %}
+</a>
+{% has_perm 'kort.edit_cardlayout_rule' user card_layout as can_edit %}
+{% has_perm 'kort.delete_cardlayout_rule' user card_layout as can_delete %}
+
+{% if can_edit %}
+  <a class="btn-flat waves-effect waves-orange orange-text modal-trigger"
+     href="{% url "edit_card_layout" card_layout.pk %}">
+    <i class="material-icons left iconify" data-icon="mdi:pencil-outline"></i>
+    {% trans "Edit" %}
+  </a>
+{% endif %}
+{% if can_delete %}
+  <a class="btn-flat waves-effect waves-red red-text modal-trigger"
+     href="{% url "delete_card_layout" card_layout.pk %}">
+    <i class="material-icons left iconify" data-icon="mdi:delete-outline"></i>
+    {% trans "Delete" %}
+  </a>
+{% endif %}

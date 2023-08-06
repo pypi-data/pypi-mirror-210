@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: aleksis-app-kort
+Version: 0.2
+Summary: AlekSIS (School Information System) — App Kort (manage student IDs)
+Home-page: https://aleksis.org
+License: EUPL-1.2
+Author: Margarete Grassl
+Author-email: grasslma@katharineum.de
+Requires-Python: >=3.9,<4.0
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Education
+Requires-Dist: aleksis-core (>=3.0,<4.0)
+Requires-Dist: django-ace (>=1.0.12,<2.0.0)
+Requires-Dist: django-formtools (>=2.3,<3.0)
+Requires-Dist: python-barcode (>=0.14.0,<0.15.0)
+Project-URL: Repository, https://edugit.org/AlekSIS/onboarding/AlekSIS-App-Kort
+Description-Content-Type: text/x-rst
+
+AlekSIS (School Information System) — App Kort (manage student IDs)
+==================================================================================================
+
+AlekSIS
+-------
+
+This is an application for use with the `AlekSIS®`_ platform.
+
+Features
+--------
+
+The author of this app did not describe it yet.
+
+Licence
+-------
+
+::
+
+  Copyright © 2021, 2022 Jonathan Weth <dev@jonathanweth.de>
+  Copyright © 2021 Margarete Grassl <grasslma@katharineum.de>
+
+  Licenced under the EUPL, version 1.2 or later
+
+Please see the LICENCE.rst file accompanying this distribution for the
+full licence text or on the `European Union Public Licence`_ website
+https://joinup.ec.europa.eu/collection/eupl/guidelines-users-and-developers
+(including all other official language versions).
+
+.. _AlekSIS®: https://edugit.org/AlekSIS/AlekSIS
+.. _European Union Public Licence: https://eupl.eu/
+
