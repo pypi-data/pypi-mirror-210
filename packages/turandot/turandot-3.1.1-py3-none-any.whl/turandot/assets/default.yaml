@@ -1,0 +1,89 @@
+###
+# All keys can be overridden in a template or document by placing them under
+# the key "turandot_config" in the template's meta file
+# or under the key "turandot_config" in the documents frontmatter header
+# document definitions override template definitions
+###
+
+general:
+  encoding: utf8
+  save_intermediate: false  # Save intermediate files during conversion algorithm - useful for template debugging
+  file_select_persistence: true  # Save lastly used file path to database
+
+
+# Configuration for external APIs
+api:
+  zotero:
+    host: "localhost"
+    port: 23119
+
+
+# Config mandatory processors
+processors:
+
+  # Markdown -> HTML Processor
+  convert_to_html:
+    markdown_ext:
+      # Configuration for built-in markdown extensions; all except key "enabled" are passed directly as kwargs to the extensions
+      # most of them are documented on https://python-markdown.github.io/extensions/
+      abbr:
+        enable: true
+      attr_list:
+        enable: true
+      codehilite:
+        enable: true
+      def_list:
+        enable: true
+      fenced_code:
+        enable: true
+      footnotes:
+        enable: true
+      md_in_html:
+        enable: true
+      tables:
+        enable: true
+      toc:
+        enable: true
+        marker: "[TOC]"
+
+      # Non-built-in Markdown extension for Katex
+      # ct. https://pypi.org/project/markdown-katex/
+      markdown_katex:
+        enable: true
+        insert_fonts_css: true  # Seems to render \sqrt badly
+        no_inline_svg: true  # Makes \sqrt in WeasyPrint render correctly, ct. https://pypi.org/project/markdown-katex/
+
+      # Non-built-in Markdown extension for Citeproc
+      # ct. https://md-citeproc.readthedocs.io/en/latest/construct/
+      md_citeproc:
+        enable: true
+        csljson: null  # overridden by application
+        cslfile: null  # overridden by application
+        locale: en-US
+        notation: "inline_footnote"
+        output: "num_footnotes"
+        footnotes_token: "[FOOTNOTES]"
+        bibliography_token: "[BIBLIOGRAPHY]"
+        strict: false
+
+  # PDF Output
+  weasyprint_to_pdf:
+    optimize_size:
+      images: true
+      fonts: false
+
+
+# Activate/Deactivate optional processor classes
+opt_processors:
+  toc_pagination_containers:  # Use BeautifulSoup to wrap page numbers in TOC in additional containers
+    enable: true
+  unified_math_block_marker:  # Replace KaTeX block markers with Github compatible version
+    enable: true
+
+
+# Debugging tools
+debug:
+  use_tmp_db: false
+  weasyprint:
+    use_tmp_file: false
+    rm_tmp_file: true
