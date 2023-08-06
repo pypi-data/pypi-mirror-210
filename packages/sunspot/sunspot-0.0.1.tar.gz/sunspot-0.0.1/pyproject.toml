@@ -1,0 +1,10 @@
+[project]
+name = "sunspot"
+version = "0.0.1"
+description = "Simple and light-weight ephemeris engine for automated telescope guidance and astronomical observation."
+readme = "README.md"
+authors = [{ name = "Phillip Curtsmith", email = "phillip.curtsmith@gmail.com" }]
+dependencies = []
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
