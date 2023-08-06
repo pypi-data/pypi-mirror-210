@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: the-spymaster-util
+Version: 3.0.8
+Summary: Common utilities and infra for The Spymaster game.
+Home-page: https://github.com/asaf-kali/the-spymaster-util
+Author: Asaf Kali
+Author-email: akali93@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: boto3 (>=1.24.6,<2.0.0)
+Requires-Dist: dynaconf (>=3.1,<4.0)
+Requires-Dist: pydantic (>=1.9,<2.0)
+Requires-Dist: requests (>=2.28,<3.0)
+Requires-Dist: ulid-py (>=1.1,<2.0)
+Project-URL: Repository, https://github.com/asaf-kali/the-spymaster-util
+Description-Content-Type: text/markdown
+
+# The Spymaster Util
+Common utilities and infra for The Spymaster game.
+
+[![Unit tests](https://github.com/asaf-kali/the-spymaster-util/actions/workflows/tests.yml/badge.svg)](https://github.com/asaf-kali/the-spymaster-util/actions/workflows/tests.yml)
+[![Lint](https://github.com/asaf-kali/the-spymaster-util/actions/workflows/lint.yml/badge.svg)](https://github.com/asaf-kali/the-spymaster-util/actions/workflows/lint.yml)
+
