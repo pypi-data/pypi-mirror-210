@@ -1,0 +1,85 @@
+[build-system]
+requires = [
+    "Cython >=0.29; python_version<'3.8'",
+    "Cython >=0.29.14; python_version=='3.8'",
+    "Cython >=0.29.15; python_version>='3.9'",
+    "oldest-supported-numpy",
+    "pkgconfig",
+    "setuptools",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["bbi*"]
+
+[project]
+name = "pybbi"
+description = "Python bindings to the UCSC Big Binary (bigWig/bigBed) file library."
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+  {name = "Nezar Abdennur", email = "nabdennur@gmail.com"},
+]
+keywords = [
+    "genomics",
+    "bioinformatics",
+    "bigwig",
+    "bigbed",
+    "bigbinaryindexed",
+    "bbi",
+    "ucsc",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "numpy",
+]
+
+dynamic = ["version", "readme"]
+
+[tool.setuptools.dynamic]
+version = {attr = "bbi.__version__"}
+readme = {file = ["README.md"], content-type = "text/markdown"}
+
+[project.optional-dependencies]
+test = [
+    'pytest',
+    'pandas'
+]
+
+[project.urls]
+homepage = "https://github.com/nvictus/pybbi"
+documentation = "https://github.com/nvictus/pybbi#README.md"
+repository = "https://github.com/nvictus/pybbi"
+
+
+[tool.cibuildwheel]
+build = ["cp38-*", "cp39-*", "cp310-*", "cp311-*"]
+skip = "*-musllinux*"
+build-verbosity = 3
+
+[tool.cibuildwheel.linux]
+archs = ["x86_64", "aarch64"]
+before-all = "yum install -y gcc make zlib-devel openssl-devel libpng-devel"
+
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64"]  # "arm64" is not yet supported by GitHub Actions (Needs M1 runner)
+before-all = """
+brew install pkg-config openssl libpng  # -> /usr/local (x86_64)
+"""

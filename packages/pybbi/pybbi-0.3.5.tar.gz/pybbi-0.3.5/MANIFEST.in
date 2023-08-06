@@ -1,0 +1,19 @@
+include LICENSE
+include README.md
+include Makefile
+include bbi/cbbi.pyx
+include bbi/cbbi.pxd
+graft src
+graft include
+graft tests
+
+recursive-exclude venv *
+global-exclude __pycache__/*
+global-exclude *.o
+global-exclude *.a
+global-exclude *.so
+global-exclude *.pyd
+global-exclude *.pyc
+global-exclude .git*
+global-exclude .deps/*
+global-exclude .DS_Store
