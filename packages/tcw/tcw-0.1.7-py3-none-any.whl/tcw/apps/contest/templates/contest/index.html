@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <div>
+        <a href="{{ url_for('contest.new') }}" class="btn btn-outline-primary mb-5">
+            Create A New Contest!
+        </a>
+    </div>
+
+    {% include "contest/animation.html" %}
+
+</div>
+{% endblock %}

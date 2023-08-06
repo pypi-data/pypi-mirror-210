@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script>
+        function copyText(){
+            const target = document.getElementById('contest-link');
+            target.select();
+            target.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+        }
+        window.onload = function() {
+            const e = document.getElementById('expires');
+            const d = new Date(e.value);
+            e.value = d.toDateString() + " " + d.toLocaleTimeString();
+        }
+    </script>
+{% if data %}
+    <h4 class="text-center">Your contest has started!</h4>
+    <div class="card" style="margin-bottom: 5.0rem;">
+        <div class="card-body">
+            <div class="container">
+                <h6 class="mt-4">Contest Link</h6>
+                <div class="input-group mb-3">
+                    <input type="text" value="{{ url_for('contest.signup', name=data.name, _external=True) }}" class="form-control" id="contest-link">
+                    <button class="btn btn-outline-secondary" type="button" id="copy-clibboard" onclick="copyText()">copy</button>
+                </div>
+            </div>
+            <div class="container">
+                <h6 class="mt-4">Contest Details</h6>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="title" value="{{ data.title }}">
+                    <label for="title" >title</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <textarea class="form-control" id="instructions">{{ data.instructions }}</textarea>
+                    <label for="instructions">instructions</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="winners" value="{{ data.winners }}">
+                    <label for="winners">number of winners</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="max" value="{{ data.max_entrants }}">
+                    <label for="max">max entrants</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="expires" value="{{ data.expires }}">
+                    <label for="expires">expires</label>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h3>Whoops!</h3>
+    Something went wrong. The contest data is missing. Sorry. Try again.
+{% endif %}
+{% endblock %}
