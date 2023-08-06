@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: tomte
+Version: 0.2.12
+Summary: A library that wraps many useful tools (linters, analysers, etc) to keep Python code clean, secure, well-documented and optimised.
+License: MIT
+Author: David Minarsch
+Author-email: david.minarsch@googlemail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: bandit
+Provides-Extra: black
+Provides-Extra: cli
+Provides-Extra: darglint
+Provides-Extra: docs
+Provides-Extra: flake8
+Provides-Extra: isort
+Provides-Extra: liccheck
+Provides-Extra: mypy
+Provides-Extra: pylint
+Provides-Extra: safety
+Provides-Extra: tests
+Provides-Extra: tox
+Provides-Extra: vulture
+Requires-Dist: Markdown (==3.3.7) ; extra == "docs"
+Requires-Dist: Pygments (==2.14.0) ; extra == "docs"
+Requires-Dist: bandit (==1.7.4) ; extra == "bandit"
+Requires-Dist: black (==22.12.0) ; extra == "black"
+Requires-Dist: bs4 (==0.0.1) ; extra == "docs"
+Requires-Dist: click (==8.0.2) ; extra == "black" or extra == "cli" or extra == "docs"
+Requires-Dist: darglint (==1.8.1) ; extra == "darglint"
+Requires-Dist: flake8 (==3.9.2) ; extra == "flake8"
+Requires-Dist: flake8-bugbear (==23.1.14) ; extra == "flake8"
+Requires-Dist: flake8-docstrings (==1.6.0) ; extra == "flake8"
+Requires-Dist: flake8-eradicate (==1.4.0) ; extra == "flake8"
+Requires-Dist: flake8-isort (==6.0.0) ; extra == "flake8"
+Requires-Dist: isort (==5.11.4) ; extra == "isort"
+Requires-Dist: liccheck (==0.8.3) ; extra == "liccheck"
+Requires-Dist: markdown-include (==0.8.0) ; extra == "docs"
+Requires-Dist: mkdocs (==1.4.2) ; extra == "docs"
+Requires-Dist: mkdocs-macros-plugin (==0.7.0) ; extra == "docs"
+Requires-Dist: mkdocs-material (==9.0.4) ; extra == "docs"
+Requires-Dist: mypy (==0.991) ; extra == "mypy"
+Requires-Dist: pydoc-markdown (==4.6.4) ; extra == "docs"
+Requires-Dist: pydocstyle (==6.2.3) ; extra == "flake8" or extra == "docs"
+Requires-Dist: pylint (==2.13.9) ; extra == "pylint"
+Requires-Dist: pymdown-extensions (==9.9.1) ; extra == "docs"
+Requires-Dist: pytest (==7.2.1) ; extra == "tests"
+Requires-Dist: pytest-asyncio (==0.20.3) ; extra == "tests"
+Requires-Dist: pytest-cov (==4.0.0) ; extra == "tests"
+Requires-Dist: pytest-randomly (==3.12.0) ; extra == "tests"
+Requires-Dist: pytest-rerunfailures (==11.0) ; extra == "tests"
+Requires-Dist: requests (==2.28.2) ; extra == "cli"
+Requires-Dist: safety (==2.3.5) ; extra == "safety"
+Requires-Dist: tox (==3.28.0) ; extra == "cli" or extra == "tox"
+Requires-Dist: vulture (==2.7) ; extra == "vulture"
