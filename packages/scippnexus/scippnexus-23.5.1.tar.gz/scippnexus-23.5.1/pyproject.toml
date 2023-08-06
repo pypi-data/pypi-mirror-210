@@ -1,0 +1,37 @@
+[build-system]
+requires = [
+  "setuptools>=42",
+  "setuptools_scm[toml]>=6.2",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[tool.pytest.ini_options]
+# The custom `externalfile` marker runs tests that require passwordless
+# SSH access to login.esss.dk. We do not run it by default. Make sure to
+# setup keys in your SSH agent before running `pytest -m externalfile`.
+addopts = "-ra -v --strict-markers -m 'not externalfile'"
+testpaths = "tests"
+filterwarnings = [
+  "error",
+  "ignore::UserWarning",
+]
+markers = [
+    "externalfile",
+]
+
+[tool.bandit]
+# Excluding tests because bandit doesn't like `assert`.
+exclude_dirs = ["docs/conf.py", "tests"]
+
+[tool.black]
+skip-string-normalization = true
+
+[tool.isort]
+skip_gitignore = true
+profile = "black"
+
+[tool.mypy]
+mypy_path = "src"
+ignore_missing_imports = true
