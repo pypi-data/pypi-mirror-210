@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "app-transport-framework-library"
+version = "0.1.5"
+description = ""
+authors = ["Sven Sommer <rob.hoffmann@posteo.de>"]
+readme = "README.md"
+packages = [{include = "app_transport_framework_library"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fhir-resources = "6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
