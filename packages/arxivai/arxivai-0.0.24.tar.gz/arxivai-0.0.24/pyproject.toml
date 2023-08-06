@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "arxivai"
+version = "0.0.24"
+description = "Utilities for arXiv AI - https://arxivai.org/"
+authors = ["Bongsang Kim <happykbs@gmail.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.30.0"
+feedparser = "^6.0.10"
+google-cloud-storage = "^2.9.0"
+tiktoken = "^0.4.0"
+openai = "^0.27.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
