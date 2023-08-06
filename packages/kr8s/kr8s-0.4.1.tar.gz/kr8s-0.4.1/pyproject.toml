@@ -1,0 +1,113 @@
+[project]
+name = "kr8s"
+authors = [
+    {name = "Jacob Tomlimson", email = "jacob@tomlinson.email"},
+]
+description = "A Kubernetes API library"
+readme = "README.md"
+keywords = ["kubernetes", "kubectl"]
+license = {text = "BSD-3-Clause"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "aiohttp",
+    'importlib-metadata; python_version<"3.8"',
+]
+dynamic = ["version"]
+
+[tool.poetry]
+name = "kr8s"
+version = "0.4.1"  # This will be populated at build time by poetry-dynamic-versioning
+description = "A Kubernetes API library"
+authors = ["Jacob Tomlinson <jacob@tomlinson.email>"]
+license = "BSD-3-Clause"
+readme = "README.md"
+
+[tool.poetry-dynamic-versioning]
+enable = false
+vcs = "git"
+style = "semver"
+
+[tool.poetry-dynamic-versioning.substitution]
+files = ["kr8s/__init__.py"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "^3.8.4"
+pyyaml = "^6.0"
+asyncio-atexit = "^1.0.1"
+aiofiles = "^23.1.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.2"
+pytest-asyncio = "^0.20.3"
+pytest-kind = {git = "https://codeberg.org/hjacobs/pytest-kind.git"}
+pytest-timeout = "^2.1.0"
+pytest-rerunfailures = "^11.1.2"
+pytest-cov = "^4.0.0"
+
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^5.3.0"
+sphinx-autobuild = "^2021.3.14"
+myst-parser = "^1.0.0"
+furo = "^2023.3.27"
+sphinx-copybutton = "^0.5.1"
+sphinx-design = "^0.3.0"
+sphinxcontrib-mermaid = "^0.8.1"
+sphinx-autoapi = "^2.1.0"
+
+[tool.pytest.ini_options]
+addopts = "-v --keep-cluster --durations=10 --cov=kr8s --cov-report term-missing --cov-report xml:coverage.xml"
+timeout = 300
+xfail_strict = true
+reruns = 5
+reruns_delay = 1
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.ruff]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+select = ["E", "F", "I"]
+ignore = []
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["I"]
+# unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+line-length = 120
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.10.
+target-version = "py310"
