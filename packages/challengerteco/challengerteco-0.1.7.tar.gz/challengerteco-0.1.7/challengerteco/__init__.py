@@ -1,0 +1,2 @@
+from challengerteco import Challenger
+from challengerteco.Challenger import Challenger

@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "challengerteco"
+version = "0.1.7"
+description = "Fix en manejo de deciles"
+authors = ["Eduardo Pagnone <mlopsaa@teco.com.ar>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+lightgbm = "^3.1.1"
+xgboost = "^1.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
