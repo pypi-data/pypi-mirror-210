@@ -1,0 +1,40 @@
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "bdata"
+authors  = [{name="Derek Fujimoto", email="dfujimoto@triumf.ca" }]
+description = "β-NMR/β-NQR MUD file reader and asymmetry calculator"
+readme = "README.md"
+classifiers = [
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOS",
+        "Operating System :: Microsoft :: Windows",
+        "Development Status :: 5 - Production/Stable",
+]
+license = {file = "LICENSE"}
+requires-python = ">=3.7"
+dependencies = [
+    'numpy>=1.19',
+    'mud-py >= 1.2.14',
+    'scipy>=1.2.0',
+    'requests >= 2.22.0',
+    'pandas >= 0.25',
+    'iminuit >= 2.6.1'
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/dfujim/bdata"
+"Bug Tracker" = "https://github.com/dfujim/bdata/issues"
+
+# set version
+[tool.hatch.version]
+path = "bdata/version.py"
