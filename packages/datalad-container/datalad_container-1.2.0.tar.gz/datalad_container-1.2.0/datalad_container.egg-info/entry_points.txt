@@ -1,0 +1,5 @@
+[datalad.extensions]
+container = datalad_container:command_suite
+
+[datalad.metadata.extractors]
+container_inspect = datalad_container.extractors.metalad_container:MetaladContainerInspect
