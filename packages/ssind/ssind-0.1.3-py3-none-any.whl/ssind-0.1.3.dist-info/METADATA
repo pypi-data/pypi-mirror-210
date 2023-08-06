@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: ssind
+Version: 0.1.3
+Summary: Take Unlimited ScreenShot Automation and make a report
+Home-page: https://github.com/irfnrdh/ssind/issues
+Author: Irfannur Diah
+Author-email: irfnrdh@gmail.com
+License: AGPLv3
+Project-URL: Documentation, https://github.com/irfnrdh/ssind/wiki
+Project-URL: Source Code, https://github.com/irfnrdh/ssind
+Project-URL: Issue Tracker, https://github.com/irfnrdh/ssind/issues
+Keywords: sample setuptools development
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Flask
+Requires-Dist: pdfkit
+Requires-Dist: tqdm
+Requires-Dist: click
+Requires-Dist: selenium
+Requires-Dist: requests
+
+[![Upload Python Package](https://github.com/irfnrdh/ssind/actions/workflows/python-publish.yml/badge.svg)](https://github.com/irfnrdh/ssind/actions/workflows/python-publish.yml)
+
+![image](https://github.com/irfnrdh/ssind/assets/7637012/f34a13ed-805f-47de-9671-8e2f63a66fcd)
+
+
+```
+$ ssind_
+
+    ssind adalah sebuah alat untuk menangkap layar
+    secara otomatis tanpa batas dengan mudah.
+
+    filosofinya jangan direbitin.
+
+    selengkapnya ada di > ceritaind > buatind
+
+Penggunaan:
+
+    [INSTALL MANUAL]
+    
+    $ git clone https://github.com/irfnrdh/ssind.git
+    $ cd ssind
+    $ pip install --editable . 
+    $ ssind --help
+
+    [INSTALL DARI PY]
+
+    $ pip install ssind
+ ```
