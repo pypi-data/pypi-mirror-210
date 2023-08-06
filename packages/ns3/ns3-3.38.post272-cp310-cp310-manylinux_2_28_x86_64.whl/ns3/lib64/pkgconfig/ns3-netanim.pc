@@ -1,0 +1,13 @@
+exec_prefix="/gcl-builds/build/lib.linux-x86_64-cpython-310/ns3/bin"
+libdir="/gcl-builds/build/lib.linux-x86_64-cpython-310/ns3/lib64"
+includedir="/gcl-builds/build/lib.linux-x86_64-cpython-310/ns3/include"
+
+Name: ns3-netanim
+Description: 
+URL: 
+Version: 3.dev
+Requires:  ns3-internet ns3-mobility ns3-wimax ns3-wifi ns3-csma ns3-lte ns3-uan ns3-energy ns3-lr-wpan ns3-wave ns3-point-to-point-layout
+Requires.private: 
+Cflags: -I"${includedir}" -I/usr/local/include -I/usr/local; -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gtk-3.0 -I/usr/include/cairo -I/usr/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/atk-1.0 -I/usr/include/libxml2 -I/opt/_internal/cpython-3.10.11/include/python3.10
+Libs: -L"${libdir}" -lns3-dev-netanim  -lns3-dev-internet -lns3-dev-mobility -lns3-dev-wimax -lns3-dev-wifi -lns3-dev-csma -lns3-dev-lte -lns3-dev-uan -lns3-dev-energy -lns3-dev-lr-wpan -lns3-dev-wave -lns3-dev-point-to-point-layout -l-lpthread
+Libs.private: -L"${libdir}" 
