@@ -1,0 +1,55 @@
+[project]
+name = "average-minimum-distance"
+description = "Descriptors of crystals based on geometry (isometry invariants)."
+readme = "README.md"
+requires-python = ">=3.7.1"
+license = {text = "CC-BY-NC-SA-4.0"}
+dynamic = ["version", "dependencies"]
+keywords = [
+    "isometry", "invariant", "descriptor", "crystal", "amd", "pdd",
+    "similarity", "average", "minimum", "pointwise", "distance", "cif"
+]
+authors = [{name = "Daniel Widdowson", email = "D.E.Widdowson@liverpool.ac.uk"}]
+maintainers = [{name = "Daniel Widdowson", email = "D.E.Widdowson@liverpool.ac.uk"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: Other/Proprietary License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Mathematics"
+]
+
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "amd.__version__"}
+dependencies = {file = "requirements.txt"}
+
+[project.optional-dependencies]
+ccdc = ["csd-python-api"]
+gemmi = ["gemmi"]
+pymatgen = ["pymatgen"]
+dev = ["pytest"]
+
+[project.urls]
+Documentation = "https://average-minimum-distance.readthedocs.io/en/latest/"
+"Source Code" = "https://github.com/dwiddo/average-minimum-distance/"
+Changelog = "https://github.com/dwiddo/average-minimum-distance/blob/master/CHANGELOG.md"
+
+[project.scripts]
+amd-compare = "amd.cli:main"
