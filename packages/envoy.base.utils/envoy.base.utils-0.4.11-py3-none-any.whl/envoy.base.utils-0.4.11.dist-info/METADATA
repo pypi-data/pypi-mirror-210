@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: envoy.base.utils
+Version: 0.4.11
+Summary: "A collection of utils used in Envoy proxy's CI"
+Home-page: https://github.com/envoyproxy/toolshed/tree/main/envoy.base.utils
+Author: Ryan Northey
+Author-email: ryan@synca.io
+Maintainer: Ryan Northey
+Maintainer-email: ryan@synca.io
+License: Apache Software License 2.0
+Requires-Python: >=3.10.0
+Requires-Dist: abstracts (>=0.0.12)
+Requires-Dist: aio.api.github (>=0.2.4)
+Requires-Dist: aio.core (>=0.10.0)
+Requires-Dist: aio.run.runner (>=0.3.3)
+Requires-Dist: aiohttp (>=3.8.1)
+Requires-Dist: frozendict
+Requires-Dist: jinja2
+Requires-Dist: orjson
+Requires-Dist: packaging (>=23.0)
+Requires-Dist: protobuf
+Requires-Dist: pytz
+Requires-Dist: pyyaml
+Requires-Dist: trycast (>=0.7.3)
+Requires-Dist: zstandard
+
+
+envoy.base.utils
+================
+
+Base utilities for Envoy proxy's CI
