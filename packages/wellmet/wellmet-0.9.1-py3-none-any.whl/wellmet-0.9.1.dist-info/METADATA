@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: wellmet
+Version: 0.9.1
+Summary: a pure Python framework for spatial structural reliability analysis
+Home-page: https://rocketgit.com/iam-git/WellMet
+Author: Gerasimov Aleksei
+Author-email: <ger-alex@seznam.cz>
+License: MIT
+Keywords: failure probability,Monte Carlo,surrogate model
+Platform: UNKNOWN
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: mpmath
+Requires-Dist: quadpy
+Requires-Dist: pandas
+Requires-Dist: PyQt5
+Requires-Dist: pyqtgraph (>=0.13.1)
+
+WellMet is a pure Python framework for failure probability estimation and detection of failure surfaces by adaptive sequential decomposition of the design domain
+
