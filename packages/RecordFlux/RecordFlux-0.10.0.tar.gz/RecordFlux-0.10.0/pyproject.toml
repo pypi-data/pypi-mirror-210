@@ -1,0 +1,145 @@
+[build-system]
+requires = ['setuptools>=45', 'setuptools_scm[toml]>=6.2', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools_scm]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+target-version = "py38"
+select = [
+    "F",    # pyflakes
+    "E",    # pycodestyle
+    "W",    # pycodestyle
+    "I",    # isort
+    "D",    # pydocstyle
+    "UP",   # pyupgrade
+    "PL",   # pylint
+    "RUF"   # ruff
+]
+ignore = [
+    "D100",    # public-module
+    "D101",    # public-class
+    "D102",    # public-method
+    "D103",    # public-function
+    "D104",    # public-package
+    "D105",    # magic-method
+    "D106",    # public-nested-class
+    "D107",    # public-init
+    "D202",    # no-blank-line-after-function
+    "D203",    # one-blank-line-before-class
+    "D212",    # multi-line-summary-first-line
+    "E501",    # line-too-long
+    "E741",    # ambiguous-variable-name
+    "UP007",   # typing-union
+    "PLC0414", # useless-import-alias
+    "PLC1901", # compare-to-empty-string
+    "PLR2004", # magic-value-comparison
+    "PLR5501", # collapsible-else-if
+    "RUF001",  # ambiguous-unicode-character-string
+    "RUF100",  # unused-noqa
+]
+line-length = 100
+
+[tool.ruff.isort]
+combine-as-imports = true
+known-third-party = [
+    'gi',
+    'icontract',
+    'pydantic',
+    'pydotplus',
+    'pytest',
+    'z3',
+]
+
+[tool.ruff.pylint]
+max-args = 6
+max-branches = 12
+max-returns = 10
+max-statements = 50
+
+[tool.pylint.master]
+jobs = 0
+load-plugins = 'devutils.pylint_checker'
+
+[tool.pylint.messages_control]
+disable = ['all']
+enable = ['anon-bool-arg']
+
+[tool.mypy]
+mypy_path = 'stubs'
+check_untyped_defs = true
+disallow_any_explicit = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+no_implicit_reexport = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = [
+    'astroid',
+    'langkit.*',
+    'pylint.*',
+    'ruamel',
+    'setuptools.*',
+    'setuptools_scm.*',
+    'wheel.*',
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = '--tb=short'
+filterwarnings = [
+    'ignore:visit_NameConstant is deprecated; add visit_Constant:PendingDeprecationWarning',
+    'ignore:visit_Str is deprecated; add visit_Constant:PendingDeprecationWarning',
+]
+
+[tool.coverage.paths]
+source = ['rflx']
+
+[tool.coverage.run]
+branch = true
+concurrency = ['multiprocessing']
+parallel = true
+sigterm = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
+exclude_lines = [
+    'pragma: no cover',
+    'assert False',
+    'def __repr__',
+    'def __str__',
+    'if TYPE_CHECKING:',
+    'raise NotImplementedError',
+    'return NotImplemented',
+]

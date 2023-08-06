@@ -1,0 +1,22 @@
+
+with "gnatcoll";
+
+library project Librflxlang is
+   for Create_Missing_Dirs use "true";
+
+   for Languages use ("Ada", "C");
+   for Source_Dirs use ("src", "langkit/langkit/support", "gnatcoll-bindings/gmp", "gnatcoll-bindings/iconv");
+   for Library_Name use "rflxlang";
+   for Library_Kind use "relocatable";
+   for Library_Dir use "python/librflxlang";
+   for Library_Standalone use "encapsulated";
+   for Library_Auto_Init use "True";
+   for Interfaces use ("librflxlang-analysis.adb", "librflxlang-analysis.ads", "librflxlang-c.adb", "librflxlang-c.ads", "librflxlang-common.adb", "librflxlang-common.ads", "librflxlang-debug.adb", "librflxlang-debug.ads", "librflxlang-generic_api-introspection.ads", "librflxlang-generic_api.adb", "librflxlang-generic_api.ads", "librflxlang-implementation-c.adb", "librflxlang-implementation-c.ads", "librflxlang-implementation.adb", "librflxlang-implementation.ads", "librflxlang-introspection.adb", "librflxlang-introspection.ads", "librflxlang-introspection_implementation.adb", "librflxlang-introspection_implementation.ads", "librflxlang-iterators.adb", "librflxlang-iterators.ads", "librflxlang-lexer.adb", "librflxlang-lexer.ads", "librflxlang-lexer_implementation.adb", "librflxlang-lexer_implementation.ads", "librflxlang-lexer_state_machine.adb", "librflxlang-lexer_state_machine.ads", "librflxlang-parsers.adb", "librflxlang-parsers.ads", "librflxlang-private_converters.ads", "librflxlang-public_converters.adb", "librflxlang-public_converters.ads", "librflxlang.ads");
+   for Object_Dir use "obj/dev";
+   package Compiler is
+      Common_Args := ("-fPIC", "-g", "-Ofast");
+      for Default_Switches ("Ada") use Common_Args & "-gnatn2";
+      for Default_Switches ("C") use Common_Args;
+   end Compiler;
+   for Library_Options use ("-lgmp");
+end Librflxlang;
