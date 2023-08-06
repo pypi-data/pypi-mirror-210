@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: remote-llm
+Version: 0.0.1
+Summary: Remote LLM
+Author-email: Comath <code@aivillage.org>
+Project-URL: Homepage, https://github.com/comath/remote_llm
+Requires-Python: >=3.9
+Requires-Dist: betterproto (==1.2.5)
+Requires-Dist: grpclib (==0.4.3)
+Requires-Dist: nest-asyncio (==1.5.6)
+Requires-Dist: pytest
+Requires-Dist: transformers (==4.26.1)
+Requires-Dist: torch (==1.13.1)
+Requires-Dist: sqlalchemy (==2.0.4)
+
