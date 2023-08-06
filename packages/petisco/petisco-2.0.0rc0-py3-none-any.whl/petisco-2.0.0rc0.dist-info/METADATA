@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: petisco
+Version: 2.0.0rc0
+Summary: Petisco is a framework for helping Python developers to build clean Applications
+Home-page: https://github.com/alice-biometrics/petisco
+Author: Alice Biometrics
+Author-email: support@alicebiometrics.com
+License: MIT
+Keywords: DDD,Use Case,Clean Architecture,REST,Applications
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: meiga (>=1.9.0)
+Requires-Dist: pydantic (<2,>=1.10.5)
+Requires-Dist: requests (<3,>=2.28.2)
+Requires-Dist: pyyaml (<7,>=6.0)
+Requires-Dist: loguru (<1,>=0.6.0)
+Requires-Dist: pyjwt[crypto] (==2.4.0)
+Requires-Dist: validators (<1.0.0,>=0.18.2)
+Requires-Dist: deprecation
+Provides-Extra: elastic
+Requires-Dist: elasticsearch[async] (<8.0.0,>=7.13.1) ; extra == 'elastic'
+Requires-Dist: elastic-apm (<7.0.0,>=6.15.1) ; extra == 'elastic'
+Provides-Extra: elastic-apm
+Requires-Dist: elastic-apm (<7.0.0,>=6.15.1) ; extra == 'elastic-apm'
+Provides-Extra: fastapi
+Requires-Dist: fastapi (<1.0.0,>=0.95.2) ; extra == 'fastapi'
+Provides-Extra: rabbitmq
+Requires-Dist: pika (==1.3.2) ; extra == 'rabbitmq'
+Provides-Extra: redis
+Requires-Dist: redis (<5.0.0,>=4.5.3) ; extra == 'redis'
+Provides-Extra: rich
+Requires-Dist: rich ; extra == 'rich'
+Provides-Extra: slack
+Requires-Dist: slack-sdk (<4.0.0,>=3.20.2) ; extra == 'slack'
+Provides-Extra: sqlalchemy
+Requires-Dist: sqlalchemy (<3.0.0,>=2.0.15) ; extra == 'sqlalchemy'
+Requires-Dist: sqlalchemy-utils (>=0.40.0) ; extra == 'sqlalchemy'
+Requires-Dist: PyMySQL (==1.0.3) ; extra == 'sqlalchemy'
+
+# petisco 🍪  
+
+[![version](https://img.shields.io/github/release/alice-biometrics/petisco/all.svg)](https://github.com/alice-biometrics/petisco/releases) 
+[![ci](https://github.com/alice-biometrics/petisco/workflows/ci/badge.svg)](https://github.com/alice-biometrics/petisco/actions) 
+[![pypi](https://img.shields.io/pypi/dm/petisco)](https://pypi.org/project/petisco/) 
+[![codecov](https://codecov.io/gh/alice-biometrics/petisco/branch/main/graph/badge.svg?token=YHXAYKX0VO)](https://codecov.io/gh/alice-biometrics/petisco)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![license](https://img.shields.io/github/license/alice-biometrics/petisco.svg)](https://github.com/alice-biometrics/petisco/blob/main/LICENSE)
+[![versions](https://img.shields.io/pypi/pyversions/petisco.svg)](https://github.com/alice-biometrics/petisco)
+
+<img src="https://github.com/alice-biometrics/custom-emojis/blob/master/images/alice_header.png?raw=true" width=auto>
+
+> **Warning**
+> Disclaimer:
+> Current version now is v1 (not stable yet). 
+> v0 is now deprecated (legacy branch)
+
+---
+
+**Documentation**: <a href="https://alice-biometrics.github.io/petisco/" target="_blank">https://alice-biometrics.github.io/petisco/</a>
+
+**Source Code**: <a href="https://github.com/alice-biometrics/petisco" target="_blank">https://github.com/alice-biometrics/petisco</a>
+
+---
+
+## What is petisco? 🍪
+
+petisco is a framework for helping Python developers to build clean Applications in Python.
+
+## How could petisco help me? 🍪
+
+petisco provides several handy classes to help you on defining your domain with hexagonal architecture, event streaming and CQRS.
+
+
+## Installation 💻
+
+```console
+pip install petisco
+```
+
+Installation with Extras 
+
+```console
+pip install petisco[fastapi,sqlalchemy,elastic,elastic-apm,rabbitmq,slack,redis]
+```
+
+## Contribute 
+
+We'd love you to contribute to *petisco* 🥳🥳🥳🥳🥳🥳️️!
+
+For more information, check our [documentation](https://alice-biometrics.github.io/petisco/contributing/)
+
+## Contact 📬
+
+support@alicebiometrics.com
