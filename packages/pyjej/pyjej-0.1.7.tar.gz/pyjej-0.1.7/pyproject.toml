@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pyjej"
+version = "0.1.7"
+description = "Проект для взаимодействия с Jenkins через CLI"
+authors = ["Кустов Денис <kudv@pkzdrav.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+invoke = "^2.1.2"
+pyyaml = "^6.0"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
