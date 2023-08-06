@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: qtgql
+Version: 0.119.1
+Summary: Qt framework for building graphql driven QML applications
+License: MIT
+Author: Nir
+Author-email: 88795475+nrbnlulu@users.noreply.github.com
+Maintainer: Nir.J Benlulu
+Maintainer-email: nrbnlulu@gmail.com
+Requires-Python: >=3.9,<3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: attrs (>=22.2.0,<23.0.0)
+Requires-Dist: frozendict (>=2.3.8,<3.0.0)
+Requires-Dist: graphql-core (>=3.2.3,<4.0.0)
+Requires-Dist: jinja2 (>=3.1.2,<4.0.0)
+Requires-Dist: rich (>=13.3.5,<14.0.0)
+Requires-Dist: typer (>=0.9.0,<0.10.0)
+Requires-Dist: typingref (>=0.100.0,<0.101.0)
+Project-URL: Documentation, https://nrbnlulu.github.io/qtgql/
+Project-URL: Homepage, https://github.com/nrbnlulu/qtgql
+Description-Content-Type: text/markdown
+
+###  Qt framework for building graphql driven QML applications
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/qtgql?style=for-the-badge)](https://pypi.org/project/qtgql/)
+[![PyPI](https://img.shields.io/pypi/v/qtgql?style=for-the-badge)](https://pypi.org/project/qtgql/)
+[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/nrbnlulu/qtgql/tests.yml?branch=main&style=for-the-badge)
+](https://github.com/nrbnlulu/qtgql/actions/workflows/tests.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/nrbnlulu/qtgql?style=for-the-badge)](https://app.codecov.io/gh/nrbnlulu/qtgql)
+[![Discord](https://img.shields.io/discord/1067870318301032558?label=discord&style=for-the-badge)](https://discord.gg/5vmRRJp9fu)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/qtgql?style=for-the-badge)
+
+### Disclaimer
+This project is currently under development, and **it is not** production ready,
+You can play-around and tell us what is wrong / missing / awesome :smile:.
+
+[Visit the docs for more info](https://nrbnlulu.github.io/qtgql/) (WIP)
+
+
+### Features
+- [x] object types, for each field there is a corresponding `Q_PROPERTY`
+- [ ] enums
+- [ ] custom scalars
+- [ ] Unions
+- [ ] interfaces
+- [ ] Garbage collection
+- [ ] Type-safe operation handlers
+  - [x] Query.
+  - [ ] Mutations.
+  - [ ] Subscriptions.
+- [ ] updates: fetch the same query multiple times would not instantiate everything from scratch
+it would compare the current data with data received and emit __only__ the signals that are needed.
+- [x] Native-Qt client implementation of "[graphql-transport-ws](https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md)" protocol (supports subscriptions) - You can provide your own network layer though.
+- [ ] Fully typed input variables.
+
