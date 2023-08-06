@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "peakventures"
+version = "1.1.2"
+description = "PeakVentures Python Utilities for DataBricks"
+authors = ["Volodymyr Smirnov <volodymyr@peakventures.co>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+azure-storage-blob = "^12.16.0"
+boto3 = "^1.26.141"
+tenacity = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
