@@ -1,0 +1,49 @@
+site_name: mkdocs-macros
+site_description: A framework for macros and automation for mkdocs
+docs_dir: docs # indispensable or readthedocs will fail
+theme: 
+  # name: readthedocs
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.tabs
+  palette:
+    scheme: slate
+    primary: teal
+    accent: teal
+repo_url: https://github.com/fralau/mkdocs_macros_plugin
+edit_uri: edit/master/webdoc/docs/
+copyright: © Laurent Franceschetti, 2023. This work is licensed under CC BY-SA 4.0.
+nav:
+    - Home: index.md
+    - 'User Guide': 
+      - "Rich Markdown Pages": pages.md
+      - "Git information": git_info.md
+      - "Writing modules": macros.md
+      - "Advanced usage": advanced.md
+      - Controlling macros rendering: rendering.md
+      - Post-production: post_production.md
+      - Writing pluglets: pluglets.md
+    - Faq:
+      - "Tips and Tricks": tips.md
+      - "Troubleshooting": troubleshooting.md
+      - "Asking for help?": help.md
+    - Contributing: contribute.md
+    - Changelog: changelog.md
+    - About:
+      - "Why this project?": why.md
+      - License: license.md
+
+markdown_extensions:
+  - admonition
+  - footnotes
+
+plugins:
+  # do not use the macros plugin, for 
+  # 1. a question of "boostrap" (avoid chicken and the egg issues)
+  # 2. avoid interpreting the jinja2 code examples as instructions.
+  - search
+  - include-markdown
+
+
