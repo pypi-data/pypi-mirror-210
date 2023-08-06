@@ -1,0 +1,24 @@
+[project]
+name = "dgl_client"
+dynamic = ["version", "description"]
+authors = [
+    { name = "Mario Ceresa", email = "mario.ceresa@ec.europa.eu" }
+]
+dependencies = [
+    "sseclient",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
+
+[project.urls]
+Home = "https://github.com/jrcf7/dgl_client"
+
+[project.scripts]
+dglc = "dgl_client.main:main"
