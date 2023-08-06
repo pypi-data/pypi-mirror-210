@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: stanford-wdl-kit
+Version: 1.6.0
+Summary: A WDL toolkit with a focus on ETL and Cloud integration
+Home-page: https://github.com/susom/wdl-kit
+Author: Darren Guan, Joe Mesterhazy, Tyler Tollefson, Smita Limaye, Jay Chen
+Author-email: dguan2@stanford.edu, jmesterh@stanford.edu, tjt8712@stanford.edu, slimaye@stanford.edu, jchen313@stanford.edu
+Maintainer: Research IT: Technology & Digital Solutions, Stanford Medicine
+Maintainer-email: rit-oss-admin@stanford.edu
+License: Apache License, Version 2.0
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
+
+# WDL-kit
+## A WDL toolkit with a focus on ETL and Cloud integration
+
+WDL-kit is a collection of dockerized utilities to simplify the creation of ETL-like workflows in the Workflow Definition Language. 
+
+## Features
+
+* YAML-to-WDL
+  
+  Converts .yaml files into .wdl tasks. This is primarily a workaround for the WDL language not supporting multi-line strings, which is problematic for SQL ETL workflows. 
+
+* Google Cloud
+
+  Wrappers for BigQuery, Google Cloud Storage, etc. 
+
+* Slack
+
+  Wrapper for sending Slack messages
+
+* MailGun
+
+  Wrapper for sending mail via MailGun
