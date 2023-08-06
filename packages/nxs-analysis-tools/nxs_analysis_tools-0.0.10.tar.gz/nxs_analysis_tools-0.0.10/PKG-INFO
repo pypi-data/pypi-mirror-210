@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: nxs_analysis_tools
+Version: 0.0.10
+Summary: Tools for analyzing scattering data in .nxs format.
+Home-page: https://github.com/stevenjgomez/nxs_analysis_tools
+Author: Steven J. Gomez Alvarado
+Author-email: stevenjgomez@ucsb.edu
+License: MIT
+Keywords: diffraction xrd nexusformat nexus nxs scattering
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Image Processing
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+License-File: LICENSE.txt
+
+
+nxs_analysis_tools
+===============================
+
+A suite of tools for slicing (2D) cutting (1D) and transforming (e.g., symmetrizing, interpolating, 3D-deltaPDF) nexus format (.nxs) scattering data.
+
+Installation
+------------
+
+Fast install:
+
+::
+
+    pip install nxs_analysis_tools
+
+For a manual install get this package:
+
+::
+
+    wget https://github.com/stevenjgomez/nxs_analysis_tools/archive/master.zip
+    unzip master.zip
+    rm master.zip
+    cd nxs_analysis_tools-master
+
+Install the package:
+
+::
+
+    python setup.py install
+
+    
+    
