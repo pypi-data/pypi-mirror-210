@@ -1,0 +1,175 @@
+# Pyslit
+All in one perfect module for immutable data types
+***
+
+### Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install faiz.
+
+```bash
+pip install pyslit
+```
+
+#### Functions
+```
+pyslit.size() #returns the size of datatype or balance size from given element
+pyslit.edit() #
+pyslit.remove()
+pyslit.remove_item()
+pyslit.remove_items()
+pyslit.add()
+pyslit.sort()
+pyslit.sort_alpha()
+pyslit.sort_num()
+pyslit.sort_all()
+pyslit.index()
+pyslit.index_all()
+pyslit.isnum()
+pyslit.isalpha()
+pyslit.isalphanum()
+pyslit.replace()
+pyslit.replaces()
+pyslit.replace_all()
+pyslit.change_key()
+pyslit.get_key()
+pyslit.get_value()
+```
+
+#### Example
+```
+#data types used here is just for example
+#any data types(list,tuple,string) can be manipulated by all the functions
+#Functions marked with dictionary can only manipulate with dictionary
+
+import pyslit
+
+a = 'ashraq'
+a = pyslit.remove_item(a,'a',2)  #remove element at a particular occurance
+print(a)
+
+s = pyslit.size(a,element='h',balance=True)
+print(b)
+
+b = ('a',1,2,3)
+b = pyslit.edit(b, 0, 0)   #Dictionary
+print(b)
+
+t = (1,2,3,4,5)
+t = pyslit.remove(t)       #Dictionary
+print(t)
+
+t1 = (1,5,5,5,3,4,5,6,7,5)
+t1 = pyslit.remove_items(t1,5)#remove element for the number of times occurance
+print(t1)
+
+t2 = (1,4,3,6,9)
+t2 = pyslit.add(t2,"ashraq",2)
+print(t2)
+
+t3 = (3,1,2,3,5,8,0)
+t3 = pyslit.sort(t3)
+print(t3)
+
+t3 = (3,1,2,3,'A','e','c',4,3)
+t3 = pyslit.sort_alpha(t3)
+print(t3)
+
+t3 = (3,1,2,3,'A','e','c',4,3)
+t3 = pyslit.sort_alpha(t3,first='num',reverse = True)
+print(t3)
+
+t4 = (3,1,2,3,'A','e','c',4,3)
+t4 = pyslit.sort_num(t4,reverse = True)
+print(t4)
+
+t4 = (3,1,2,3,'A','e','c',4,3)
+t4 = pyslit.sort_num(t4,first='alpha')
+print(t4)
+
+t5 = (3,1,2,3,'A','e','c',4,3)
+t5 = pyslit.sort_all(t5,first='alpha',reverse=True)
+print(t5)
+
+t5 = (3,1,2,3,'A','e','c',4,3)
+t5 = pyslit.sort_all(t5,first='num',reverse_num=True)
+print(t5)
+
+t5 = (3,1,2,3,'A','e','c',4,3)
+t5 = pyslit.sort_all(t5,first='num',reverse_alpha=True)
+print(t5)
+
+t6 = (3,1,2,3,'A','e','c',4,3)
+i = pyslit.index(t6, element=3,10,12,occurance=2)
+print(i)
+
+i_all = pyslit.index_all(t6, element=3, 10, 12)
+print(i_all)
+
+a = 'Ashraq@2006'
+n = pyslit.isnum(a)
+print(n)
+n = pyslit.isnum(a, 0, 7)
+print(n)
+
+al = pyslit.isalpha(a)
+print(al)
+al = pyslit.isnum(a, 7, 11)
+print(al)
+
+aln = pyslit.isalphanum(a)
+print(aln)
+aln = pyslit.isalphanum(a, 6, 7)
+print(aln)
+
+r = 'abracadabra'
+r = pyslit.replace(r, 'ab', 'sp')
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace(r, 'ab', 'sp', occurance=2)
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace(r, 'ab', 'sp', 0, 2)
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replaces(r, 'ab', 'sp')
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replaces(r, 'ab', 'sp', occurance=2)
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace_all(r, 'ab', 'sp')
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace_all(r, 'ab', 'sp', 0, 2)
+print(r)
+
+d = {1:10,5:10,2:20,6:20,3:30,10:1}
+
+k = pyslit.change_key(d,key=5,n_key=7)   #Dictionary
+print(k)
+k = pyslit.change_key(d,value=1,n_key=10)#Dictionary
+print(k)
+
+gk = pyslit.get_key(d,10)                #Dictionary
+print(gk)
+gk = pyslit.get_key(d,10,multiple=True)  #Dictionary
+print(gk)
+
+gv = pyslit.get_value(d,6)               #Dictionary
+print(gv)
+```
+
+#### Contributing
+```
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+Please make sure to update tests as appropriate.
+```
+#### License
+[MIT](https://choosealicense.com/licenses/mit/)
