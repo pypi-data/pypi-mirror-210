@@ -1,0 +1,2 @@
+window.setupOwncloudFilePickerWidget=e=>{let{filepickerUrl:t,fieldId:i}=e;window.addEventListener("message",(e=>{const d=document.querySelector("#owncloud_filepicker-file-picker"),l=document.querySelector("#attachment-owncloudfilepicker-form input[type=submit]");d&&e.origin===t&&e.source===d.contentWindow&&e.data&&e.data.files&&(document.getElementById(`${i}-files`).value=e.data.files.join("\n"),l.disabled=!e.data.ready||!e.data.files.length)}))};
+//# sourceMappingURL=owncloud.d0efb128.bundle.js.map
