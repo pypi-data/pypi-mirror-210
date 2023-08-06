@@ -1,0 +1,128 @@
+name:
+  type: string
+desc:
+  type: string
+type:
+  type: string
+  allowed: ['ram_mem', 'rom_mem', 'acc_uart', 'acc_timer', 'acc_dma', 'acc_irq', 'acc_rst', 'acc_custom_slave', 'acc_noc', 'acc_eth']
+mem_size_kib:
+  required: False
+  type: integer
+  oneof:
+    - dependencies:
+        type: 'ram_mem'
+    - dependencies:
+        type: 'rom_mem'
+    - dependencies:
+        type: 'acc_custom_slave'
+base_addr:
+  required: False
+  type: integer
+addr_width:
+  required: False
+  type: integer
+# acc_timer
+irq_timer:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_timer'
+# acc_rst
+rst_def_addr:
+  required: False
+  type: integer
+  dependencies:
+    type: 'acc_rst'
+rst_addr_out:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_rst'
+rst_pulse_width:
+  required: False
+  type: integer
+  min: 2
+  dependencies:
+    type: 'acc_rst'
+bootloader_type:
+  required: False
+  type: string
+  allowed: ['act_h', 'act_l']
+  dependencies:
+    type: 'acc_rst'
+io_bootloader:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_rst'
+# acc_dma
+irq_dma_done:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_dma'
+irq_dma_error:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_dma'
+# acc_uart
+io_tx:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_uart'
+io_rx:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_uart'
+irq_uart_rx:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_uart'
+# acc_irq
+irq_type:
+  required: False
+  type: integer
+  dependencies:
+    type: 'acc_irq'
+irq_summary:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_irq'
+vec_mapping:
+  required: False
+  type: list
+  dependencies:
+    type: 'acc_irq'
+# acc_noc
+irq_noc:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_noc'
+# acc_eth
+pkt_recv_irq:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_eth'
+pkt_sent_irq:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_eth'
+pkt_recv_full_irq:
+  required: False
+  type: string
+  dependencies:
+    type: 'acc_eth'
+eth_type:
+  required: False
+  type: string
+  allowed: ['csr', 'infifo', 'outfifo']
+  dependencies:
+    type: 'acc_eth'

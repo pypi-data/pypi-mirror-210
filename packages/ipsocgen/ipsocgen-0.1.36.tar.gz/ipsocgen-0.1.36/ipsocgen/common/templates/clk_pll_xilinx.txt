@@ -1,0 +1,68 @@
+  //
+  // Clk/PLL signals
+  //
+  logic clk_in_buff;
+  logic clk_buff_out;
+  logic clk_feedback_in;
+  logic clk_feedback_out;
+  logic pll_locked;
+  logic rst_pll;
+  {% if tmpl.rst_in_type == 'act_l' %}
+  assign rst_pll = ~{{ tmpl.io_rst_pin }};
+  {% else %}
+  assign rst_pll = {{ tmpl.io_rst_pin }};
+  {% endif %}
+
+`ifdef SIMULATION
+  assign {{ tmpl.clk_int }} = {{ tmpl.io_in_clk }};
+`else
+  //
+  // PLLE2_BASE: Base Phase Locked Loop (PLL)
+  //             7 Series
+  PLLE2_ADV#(
+    .BANDWIDTH           ("OPTIMIZED"),
+    .COMPENSATION        ("ZHOLD"),
+    .STARTUP_WAIT        ("FALSE"),
+    .DIVCLK_DIVIDE       ({{ tmpl.divclk_divide }}),
+    .CLKFBOUT_MULT       ({{ tmpl.clkfbout_mult }}),
+    .CLKFBOUT_PHASE      (0.000),
+    .CLKOUT0_DIVIDE      ({{ tmpl.clkout_divide }}),
+    .CLKOUT0_PHASE       (0.000),
+    .CLKOUT0_DUTY_CYCLE  (0.500),
+    .CLKIN1_PERIOD       ({{ tmpl.clkin_period }})
+  ) u_{{ tmpl.name }} (
+    .CLKFBOUT            (clk_feedback_in),
+    .CLKOUT0             (clk_buff_out),
+     // Input clock control
+    .CLKFBIN             (clk_feedback_out),
+    .CLKIN1              (clk_in_buff),
+    .CLKIN2              (1'b0),
+     // Tied to always select the primary input clock
+    .CLKINSEL            (1'b1),
+    // Ports for dynamic reconfiguration
+    .DADDR               (7'h0),
+    .DCLK                (1'b0),
+    .DEN                 (1'b0),
+    .DI                  (16'h0),
+    .DWE                 (1'b0),
+    // Other control and status signals
+    .LOCKED              (pll_locked),
+    .PWRDWN              (1'b0),
+    .RST                 (rst_pll)
+  );
+
+  IBUF clk_in_ibufg(
+    .I ({{ tmpl.io_in_clk }}),
+    .O (clk_in_buff)
+  );
+
+  BUFG clk_feedback_buf(
+    .I (clk_feedback_in),
+    .O (clk_feedback_out)
+  );
+
+  BUFG clk_out_buf(
+    .I (clk_buff_out),
+    .O ({{ tmpl.clk_int }})
+  );
+`endif

@@ -1,0 +1,26 @@
+
+  //
+  // {{ tmpl.desc }}
+  //
+  axi_rst_ctrl #(
+    .RESET_VECTOR_ADDR ({{ tmpl.rst_def_addr }}),
+    .BASE_ADDR         ({{ tmpl.base_addr }}),
+    .RESET_PULSE_WIDTH ({{ tmpl.rst_pulse_width }})
+  ) u_{{ tmpl.name }}  (
+    .clk               ({{ tmpl.clk }}),
+    .rst               ({% if tmpl.rst_in_type == 'act_l' %}~{{ tmpl.io_in_rst }}{% else %}{{ tmpl.io_in_rst }}{% endif %}),
+    .bootloader_i      ({% if tmpl.bootloader_type == 'act_l' %}~{{ tmpl.io_bootloader }}{% else %}{{ tmpl.io_bootloader }}{% endif %}),
+    .axi_mosi          (slaves_axi_mosi[{{ tmpl.slv_id }}]),
+    .axi_miso          (slaves_axi_miso[{{ tmpl.slv_id }}]),
+    .rst_addr_o        ({{ tmpl.rst_addr_out }}),
+    .rst_o             ({{ tmpl.rst }})
+  );
+
+  // synthesis translate_off
+  function automatic void writeRstAddr__{{ tmpl.name }}(rst_addr);
+    /*verilator public*/
+    logic [31:0] rst_addr;
+    u_{{ tmpl.name }}.rst_loading = rst_addr;
+  endfunction
+  // synthesis translate_on
+

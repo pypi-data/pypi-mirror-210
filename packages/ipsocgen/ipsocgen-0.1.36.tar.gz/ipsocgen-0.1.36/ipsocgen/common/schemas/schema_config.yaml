@@ -1,0 +1,236 @@
+proj_name:
+  type: string
+desc:
+  type: string
+type:
+  type: string
+  allowed: ['soc', 'mpsoc']
+#fpga_board:
+# type: string
+# allowed: ['none', 'arty_a7', 'nexys_video', 'aliexpress_qmtech_k325']
+soc_desc: # RULES FOR SOC
+  type: dict
+  required: False
+  dependencies:
+    type: 'soc'
+  schema:
+    bus_name:
+      type: string
+    bus_type:
+      type: string
+      allowed: ['axi4']
+    addr_width:
+      type: integer
+      allowed: [32, 64]
+    txn_id_width:
+      type: integer
+      allowed: [8]
+    data_width:
+      type: integer
+      allowed: [32, 64]
+    num_masters:
+      type: integer
+      min: 2
+    num_slaves:
+      type: integer
+      min: 1
+    proc_required:
+      type: string
+      allowed: ['y', 'n']
+    proc:
+      required: False
+      type: dict
+      schema:
+        name:
+          type: string
+        clk:
+          type: dict
+          schema:
+            clk_int:
+              type: string
+        rst:
+          type: dict
+          schema:
+            rst_int:
+              type: string
+        type:
+          type: string
+          allowed: ['nox', 'vex']
+        boot:
+          type: dict
+          schema:
+            type:
+              type: string
+              allowed: ['slave_id', 'value', 'signal']
+            slave:
+              required: False
+              type: integer
+            value:
+              required: False
+              type: integer
+            signal:
+              required: False
+              type: string
+        irq_mapping:
+          type: dict
+          schema:
+            external:
+              type: string
+            timer:
+              type: string
+            software:
+              type: string
+    mmap_type:
+      type: string
+      allowed: ['auto', 'manual']
+    clk:
+      type: dict
+      schema:
+        name:
+          type: string
+        io_in_clk:
+          type: string
+        clk_int:
+          type: string
+        type:
+          type: string
+          allowed: ['pll', 'direct']
+        pll:
+          type: dict
+          required: False
+          schema:
+            divclk_divide:
+              type: integer
+            clkfbout_mult:
+              type: integer
+            clkout_divide:
+              type: integer
+            io_rst_pin:
+              type: string
+            rst_in_type:
+              type: string
+              allowed: ['act_h', 'act_l']
+            clkin_period:
+              type: integer
+    rst:
+      type: dict
+      schema:
+        name:
+          type: string
+        rst_int:
+          type: string
+        io_in_rst:
+          type: string
+        type:
+          type: string
+          allowed: ['acc_rst', 'direct']
+        rst_in_type:
+          type: string
+          allowed: ['act_h', 'act_l']
+    masters:
+      type: dict
+    slaves:
+      type: dict
+
+# RULES FOR MPSOC
+mpsoc_desc:
+  type: dict
+  required: False
+  dependencies:
+    type: 'mpsoc'
+  schema:
+    clk:
+      type: dict
+      schema:
+        name:
+          type: string
+        clk_int:
+          type: string
+        type:
+          type: string
+          allowed: ['pll', 'direct']
+        pll:
+          type: dict
+          required: False
+          schema:
+            divclk_divide:
+              type: integer
+            clkfbout_mult:
+              type: integer
+            clkout_divide:
+              type: integer
+            io_rst_pin:
+              type: string
+            rst_in_type:
+              type: string
+              allowed: ['act_h', 'act_l']
+            clkin_period:
+              type: integer
+    rst:
+      type: dict
+      schema:
+        name:
+          type: string
+        rst_int:
+          type: string
+        io_in_rst:
+          type: string
+        rst_in_type:
+          type: string
+          allowed: ['act_h', 'act_l']
+        type:
+          type: string
+          allowed: ['acc_rst', 'direct']
+    noc:
+      type: dict
+      schema:
+        type:
+          type: string
+          allowed: ['ravenoc']
+        size_x:
+          type: integer
+          min: 1
+        size_y:
+          type: integer
+          min: 2
+        flit_data_width:
+          type: integer
+          required: False
+          allowed: [32, 64]
+          dependencies:
+            type: 'ravenoc'
+        n_virt_chn:
+          type: integer
+          required: False
+          allowed: [1,2,3,4]
+        flit_buff:
+          type: integer
+          required: False
+          allowed: [1,2,4,8]
+          dependencies:
+            type: 'ravenoc'
+        h_priority:
+          type: string
+          required: False
+          allowed: ['ZeroHighPrior','ZeroLowPrior']
+          dependencies:
+            type: 'ravenoc'
+        routing_alg:
+          type: string
+          required: False
+          allowed: ['XYAlg','YXAlg']
+          dependencies:
+            type: 'ravenoc'
+        max_sz_pkt:
+          type: integer
+          required: False
+          min: 256
+          dependencies:
+            type: 'ravenoc'
+        base_addr:
+          type: string
+          required: False
+          dependencies:
+            type: 'ravenoc'
+    tiles:
+      type: dict

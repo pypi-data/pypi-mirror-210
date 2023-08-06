@@ -1,0 +1,40 @@
+
+
+  s_axi_mosi_t  [{{ axi4bus.num_masters-1 }}:0] masters_axi_mosi;
+  s_axi_miso_t  [{{ axi4bus.num_masters-1 }}:0] masters_axi_miso;
+  s_axi_mosi_t  [{{ axi4bus.num_slaves-1 }}:0] slaves_axi_mosi;
+  s_axi_miso_t  [{{ axi4bus.num_slaves-1 }}:0] slaves_axi_miso;
+
+  //
+  // {{ axi4bus.desc }}
+  //
+  axi_crossbar_wrapper #(
+    .ADDR_WIDTH       ({{ axi4bus.b_addr_width }}),
+    .DATA_WIDTH       ({{ axi4bus.b_data_width }}),
+    .N_MASTERS        ({{ axi4bus.num_masters }}),
+    .N_SLAVES         ({{ axi4bus.num_slaves }}),
+    .AXI_TID_WIDTH    ({{ axi4bus.txn_id_width }}),
+    .M_BASE_ADDR      ({
+                        {%- for base in axi4bus.base_addr_h|reverse -%}
+                        {% if base %}
+                        {{- axi4bus.b_addr_width }}'h{{ axi4bus.base_addr_h[base] }},
+                        {% else %}
+                        {{- axi4bus.b_addr_width }}'h{{ axi4bus.base_addr_h[base] -}}
+                        {% endif %}
+                        {%- endfor -%}
+                      }),
+    .M_ADDR_WIDTH     ({
+                        {%- for addr in axi4bus.addr_width|reverse -%}
+                        {% if addr %}
+                        {{- axi4bus.b_addr_width }}'d{{ axi4bus.addr_width[addr] }},
+                        {% else %}
+                        {{- axi4bus.b_addr_width }}'d{{ axi4bus.addr_width[addr] -}}
+                        {% endif %}
+                        {%- endfor -%}
+                      })
+  ) u_{{ axi4bus.bus_name }} (
+    .clk              ({{ axi4bus.clk }}),
+    .rst              ({{ axi4bus.rst }}),
+    .*
+  );
+

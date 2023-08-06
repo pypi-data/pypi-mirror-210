@@ -1,0 +1,46 @@
+  logic clk_in_buff;
+  logic clk_buff_out;
+  logic clk_feedback_in;
+  logic clk_feedback_out;
+  logic clk_locked;
+
+  //
+  // PLLE2_BASE: Base Phase Locked Loop (PLL)
+  //             7 Series
+  PLLE2_BASE #(
+    .BANDWIDTH("OPTIMIZED"),
+    .CLKFBOUT_MULT     ({{ tmpl.pll_mult }}),
+    .CLKFBOUT_PHASE    (0.0),
+    .CLKIN1_PERIOD     (0.0),
+    .CLKOUT0_DIVIDE    ({{ tmpl.pll_div }}),
+    .CLKOUT0_DUTY_CYCLE(0.5)
+    .CLKOUT0_PHASE     (0.0),
+    .DIVCLK_DIVIDE     (1),
+    .STARTUP_WAIT      ("FALSE")
+  ) u_{{ tmpl.name }} (
+    .CLKOUT0  (clk_buff_out),
+    .CLKFBOUT (clk_feedback_in),
+    .LOCKED   (clk_locked),
+    .CLKIN1   (clk_in_buff),
+    .CLKIN2   (1'b0),
+    .PWRDWN   (1'b0),
+    .RST      ({{ tmpl.rst_int }}),
+    .CLKFBIN  (clk_feedback_out)
+  );
+
+  IBUF clk_in_ibufg(
+    .I ({{ tmpl.io_in_clk }}),
+    .O (clk_in_buff)
+  );
+
+  BUFG clk_feedback_buf(
+    .I (clk_feedback_in),
+    .O (clk_feedback_out)
+  );
+
+  BUFG clk_out_buf(
+    .I (clk_buff_out),
+    .O ({{ tmpl.clk_int }})
+  );
+
+

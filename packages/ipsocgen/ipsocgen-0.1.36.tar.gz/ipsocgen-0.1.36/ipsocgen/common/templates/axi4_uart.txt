@@ -1,0 +1,14 @@
+
+  //
+  // {{ tmpl.desc }}
+  //
+  axi_uart_wrapper u_{{ tmpl.name }} (
+    .clk              ({{ tmpl.clk }}),
+    .rst              ({{ tmpl.rst }}),
+    .axi_mosi         (slaves_axi_mosi[{{ tmpl.slv_id }}]),
+    .axi_miso         (slaves_axi_miso[{{ tmpl.slv_id }}]),
+    .uart_tx_o        ({{ tmpl.io_tx }}),
+    .uart_rx_i        ({{ tmpl.io_rx }}),
+    .uart_rx_irq_o    ({{ tmpl.irq_uart_rx }})
+  );
+

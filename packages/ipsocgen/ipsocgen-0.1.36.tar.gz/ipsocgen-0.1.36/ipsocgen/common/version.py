@@ -1,0 +1,1 @@
+__IPSOCGEN_VERSION__ = '0.1.36'

@@ -1,0 +1,12 @@
+  /* verilator lint_off PINMISSING */
+  // {{ tmpl.name }}
+  {{ tmpl.name }} u_{{ tmpl.name }} (
+    // Mandatory IOs
+    .{{ "%-16s"|format(tmpl.io_clk)|truncate(16) }} ({{ tmpl.io_clk_mpsoc }}),
+    .{{ "%-16s"|format(tmpl.io_rst)|truncate(16) }} ({{ tmpl.io_rst_mpsoc }}),
+    .noc_axi_miso_i   ({{ tmpl.io_noc_miso }}),
+    .noc_axi_mosi_o   ({{ tmpl.io_noc_mosi }}),
+    .irq_ravenoc      ({{ tmpl.io_noc_irq }})
+  );
+  /* verilator lint_on PINMISSING */
+

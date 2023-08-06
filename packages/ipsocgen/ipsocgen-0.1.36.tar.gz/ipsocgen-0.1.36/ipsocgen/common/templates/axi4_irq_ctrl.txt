@@ -1,0 +1,24 @@
+  logic [31:0] irq_vector_mapping;
+
+  {%- for irq in tmpl.vec_mapping %}
+  assign irq_vector_mapping[{{ loop.index0 }}] = {{ irq }};
+  {%- endfor %}
+  {% if tmpl.all_irq_filled == 0 %}
+  assign irq_vector_mapping[31:{{ tmpl.max_irq }}] = '0; // TIE-L not used IRQs
+  {% endif %}
+
+  //
+  // {{ tmpl.desc }}
+  //
+  axi_irq_ctrl #(
+    .BASE_ADDR        ({{ tmpl.base_addr }}),
+    .TYPE_OF_IRQ      ({{ tmpl.irq_type }})
+  ) u_{{ tmpl.name }} (
+    .clk              ({{ tmpl.clk }}),
+    .rst              ({{ tmpl.rst }}),
+    .irq_i            (irq_vector_mapping),
+    .irq_summary_o    ({{ tmpl.irq_summary }}),
+    .axi_mosi         (slaves_axi_mosi[{{ tmpl.slv_id }}]),
+    .axi_miso         (slaves_axi_miso[{{ tmpl.slv_id }}])
+  );
+
