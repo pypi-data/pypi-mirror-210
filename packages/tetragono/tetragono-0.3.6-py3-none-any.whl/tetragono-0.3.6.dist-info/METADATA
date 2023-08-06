@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: tetragono
+Version: 0.3.6
+Summary: OBC square tensor network state(PEPS) library
+Home-page: https://github.com/USTC-TNS/TAT/tree/TAT/tetragono
+Author: Hao Zhang
+Author-email: zh970205@mail.ustc.edu.cn
+License: GPLv3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: PyTAT (==0.3.6)
+Requires-Dist: lazy-graph (==0.3.6)
+Requires-Dist: tetraux (==0.3.6)
+Requires-Dist: PyScalapack (==0.3.6)
+Requires-Dist: mpi4py
+Requires-Dist: numpy
+Provides-Extra: aps
+Requires-Dist: torch ; extra == 'aps'
+
+
+
+# tetragono
+
+tetragono is an OBC square tensor network state(PEPS) library.
+
