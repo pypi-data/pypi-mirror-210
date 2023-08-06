@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pracci"
+version = "0.1.0"
+description = ""
+authors = ["recoma <seokbong60@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+coverage = "^7.2.6"
+codecov = "^2.1.13"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
