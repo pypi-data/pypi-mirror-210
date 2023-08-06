@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: frinx-python-sdk
+Version: 0.1.0
+Summary: Python SDK for Frinx Machine Workflow Manager
+License: Apache 2.0
+Keywords: frinx-machine,workflow-manager,conductor
+Author: Jozef Volak
+Author-email: jozef.volak@elisapolystar.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: influxdb_client
+Requires-Dist: prometheus-client (>=0.16.0,<0.17.0)
+Requires-Dist: pydantic
+Requires-Dist: python_graphql_client
+Requires-Dist: requests
+Description-Content-Type: text/markdown
+
+# Frinx Python SDK
+
+Some basic information about package ["TODO]
+
+
+## Development
+
+### Poetry useful commands
+
+#### Virtual Environment activate
+```shell
+# Add dependency
+poetry env use /path/to/python
+# If you have the python executable in your PATH you can use it:
+poetry env use python3.10
+
+# Show env info
+poetry env info
+```
+
+#### Add dependency
+```shell
+poetry init --python
+```
+
+#### Dependency management
+```shell
+# Add dependency
+poetry add django@^4.0.0
+
+# Remove dependency
+poetry remove django
+```
+
+#### Package build
+```shell
+poetry build
+
+# Verbose output
+poetry build -vvv
+```
+
