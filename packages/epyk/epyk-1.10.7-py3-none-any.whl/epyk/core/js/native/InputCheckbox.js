@@ -1,0 +1,1 @@
+function InputCheckbox(a,b,c){a.checked=b.value;if((typeof b.text!=='undefined')||(b.text!==null)){a.parentNode.insertBefore(document.createTextNode(b.text),a.nextSibling);};if(typeof c.css!=='undefined'){for(var d in c.css){a.style[d]=c.css[d];}}}

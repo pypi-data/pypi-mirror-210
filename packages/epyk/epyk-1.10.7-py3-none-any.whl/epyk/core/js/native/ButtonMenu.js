@@ -1,0 +1,1 @@
+function buttonMenu(c,d,a){var b=c.querySelector("div");d.forEach(function(d){var c=document.createElement("a");c.innerHTML=d;Object.keys(a).forEach(function(b){c.style[b]=a[b];});b.appendChild(c);});}

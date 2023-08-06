@@ -1,0 +1,1 @@
+function lastUpdated(c,a,b){if(b.showdown){var d=new showdown.Converter(b.showdown);a=d.makeHtml(a);}if(b._children>0){c.appendChild(document.createTextNode(a));}else{if(b.icon){c.innerHTML=a+'&nbsp;&nbsp;<i class="'+b.icon+'"></i>';}else{c.innerHTML=a;}};c.setAttribute('data-value',a);}
