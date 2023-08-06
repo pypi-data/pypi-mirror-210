@@ -1,0 +1,8 @@
+exclude .gitignore
+exclude .gitmodules
+exclude CODEOWNERS
+exclude tox.ini
+recursive-exclude .github *
+recursive-exclude pytests *
+recursive-include submodules/api-common-protos/google *.proto
+recursive-include submodules/frequenz-api-common/proto/frequenz *.proto

@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: frequenz-api-microgrid
+Version: 0.14.0
+Summary: Frequenz gRPC API for monitoring and control of microgrids
+Author-email: Frequenz Energy-as-a-Service GmbH <floss@frequenz.com>
+License: MIT
+Project-URL: Changelog, https://github.com/frequenz-floss/frequenz-api-microgrid/releases
+Project-URL: Repository, https://github.com/frequenz-floss/frequenz-api-microgrid
+Project-URL: Issues, https://github.com/frequenz-floss/frequenz-api-microgrid/issues
+Project-URL: Support, https://github.com/frequenz-floss/frequenz-api-microgrid/discussions/categories/support
+Keywords: frequenz,api,microgrid,grpc
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: <4,>=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+Frequenz Microgrid API
+======================
+
+Microgrid is a gRPC API used to provide monitoring and control over the
+components of a microgrid.
+
+This repository provides the core gRPC and protobuf spec together with
+support for generating dedicated API packages for various languages.
+
+
+Contributing
+============
+
+If you want to know how to build this project and contribute to it, please
+check out the [Contributing
+Guide](https://github.com/frequenz-floss/frequenz-api-microgrid/blob/v0.x.x/CONTRIBUTING.md).
