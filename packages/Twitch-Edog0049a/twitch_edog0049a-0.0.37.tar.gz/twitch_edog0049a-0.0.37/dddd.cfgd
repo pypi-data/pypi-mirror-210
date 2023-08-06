@@ -1,0 +1,21 @@
+[metadata]
+name = Twitch_Edog0049a
+version = 0.0.36
+author = Eli Reid
+author_email =  EliR@Elireid.com
+description = Twitch library for chat, api, pubs, and eventsub
+long_description = file: README.md, LICENSE.txt
+long_description_content_type = text/markdown
+url = https://github.com/eli-reid/twitch
+project_urls =
+    Bug Tracker = https://github.com/eli-reid/twitch/-/issues
+    repository = https://github.com/eli-reid/twitch
+classifiers =
+    Programming Language :: Python :: 3
+    License :: OSI Approved :: MIT License
+    Operating System :: OS Independent
+
+[options]
+python_requires = >=3.10
+
+packages = find:

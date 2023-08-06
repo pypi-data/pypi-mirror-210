@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "Twitch_Edog0049a"
+version = "0.0.37"
+description = 'Twitch library for chat, api, pubs, and eventsub'
+readme = {"file" = "README.md", "content-type" = "text/markdown"}
+requires-python = ">=3.8"
+license = "Apache-2.0 OR MIT"
+authors = [
+  { name = "Eli Reid", email = "Elir@elireid.com" },
+]
+
+[project.urls]
+"Source code" = "https://github.com/eli-reid/twitch"
+
+[project.entry-points.plugin-namespace]
+Twitch = "Twitch"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/Twitch"]
