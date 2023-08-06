@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: ziffy
+Version: 0.1.0
+Summary: 
+Author: Federico A. Corazza
+Author-email: git@facorazza.com
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: click (>=8.0.0,<9.0.0)
+Requires-Dist: rich (>=13.0.0,<14.0.0)
+Requires-Dist: tqdm (>=4.0.0,<5.0.0)
+Description-Content-Type: text/markdown
+
+# ziffy
+
+A ZFS command line utility to browse and rescue damaged pools using low level API calls.
+
+## Installation
+
+```shell
+pip install ziffy
+```
+
+## Examples
+
+Root privileges are likely required to access the disks.
+
+```shell
+sudo python -m ziffy datasets <pool-name>
+```
+
