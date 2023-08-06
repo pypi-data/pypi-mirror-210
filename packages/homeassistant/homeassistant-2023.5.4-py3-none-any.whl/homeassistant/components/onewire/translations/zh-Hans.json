@@ -1,0 +1,37 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "\u8bbe\u5907\u5df2\u7ecf\u914d\u7f6e\u8fc7\u4e86"
+        },
+        "error": {
+            "cannot_connect": "\u8fde\u63a5\u5931\u8d25"
+        },
+        "step": {
+            "user": {
+                "title": "\u8bbe\u7f6e\u670d\u52a1\u5668\u8be6\u7ec6\u4fe1\u606f"
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "humidity": {
+                "name": "\u6e7f\u5ea6"
+            },
+            "temperature": {
+                "name": "\u6e29\u5ea6"
+            },
+            "voltage": {
+                "name": "\u7535\u538b"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "device_selection": {
+                "data": {
+                    "clear_device_options": "\u6e05\u9664\u6240\u6709\u8bbe\u5907\u914d\u7f6e"
+                }
+            }
+        }
+    }
+}

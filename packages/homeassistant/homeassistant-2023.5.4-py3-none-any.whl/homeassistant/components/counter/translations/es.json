@@ -1,0 +1,42 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Contador",
+            "state_attributes": {
+                "editable": {
+                    "name": "Gestionado a trav\u00e9s de la IU",
+                    "state": {
+                        "false": "No",
+                        "true": "S\u00ed"
+                    }
+                },
+                "initial": {
+                    "name": "Valor inicial"
+                },
+                "maximum": {
+                    "name": "M\u00e1ximo"
+                },
+                "minimum": {
+                    "name": "M\u00ednimo"
+                },
+                "step": {
+                    "name": "Paso"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_configure_service": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "El servicio de contador `counter.configure` se va a eliminar y se ha detectado su uso. Si deseas cambiar el valor actual de un contador, utiliza el nuevo servicio `counter.set_value` en su lugar. \n\nElimina el uso de este servicio de tus automatizaciones y scripts y selecciona **enviar** para cerrar este problema.",
+                        "title": "El servicio de configuraci\u00f3n del contador se va a eliminar"
+                    }
+                }
+            },
+            "title": "El servicio de configuraci\u00f3n del contador se va a eliminar"
+        }
+    },
+    "title": "Contador"
+}

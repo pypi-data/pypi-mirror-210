@@ -1,0 +1,42 @@
+{
+    "entity_component": {
+        "_": {
+            "name": "Po\u010d\u00edtadlo",
+            "state_attributes": {
+                "editable": {
+                    "name": "Spravovan\u00e9 cez pou\u017e\u00edvate\u013esk\u00e9 rozhranie",
+                    "state": {
+                        "false": "Nie",
+                        "true": "\u00c1no"
+                    }
+                },
+                "initial": {
+                    "name": "Po\u010diato\u010dn\u00e1 hodnota"
+                },
+                "maximum": {
+                    "name": "Maximum"
+                },
+                "minimum": {
+                    "name": "Minimum"
+                },
+                "step": {
+                    "name": "Krok"
+                }
+            }
+        }
+    },
+    "issues": {
+        "deprecated_configure_service": {
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "Slu\u017eba po\u010d\u00edtadla `counter.configure` sa odstra\u0148uje a bolo zisten\u00e9 jej pou\u017eitie. Ak chcete zmeni\u0165 aktu\u00e1lnu hodnotu po\u010d\u00edtadla, pou\u017eite namiesto toho nov\u00fa slu\u017ebu `counter.set_value`. \n\n Odstr\u00e1\u0148te pou\u017e\u00edvanie tejto slu\u017eby zo svojich automatiz\u00e1ci\u00ed a skriptov a v\u00fdberom mo\u017enosti **odosla\u0165** tento probl\u00e9m zatvorte.",
+                        "title": "Odstra\u0148uje sa slu\u017eba konfigur\u00e1cie po\u010d\u00edtadla"
+                    }
+                }
+            },
+            "title": "Odstra\u0148uje sa slu\u017eba konfigur\u00e1cie po\u010d\u00edtadla"
+        }
+    },
+    "title": "Po\u010d\u00edtadlo"
+}

@@ -1,0 +1,92 @@
+{
+    "config": {
+        "abort": {
+            "cannot_connect": "\u8fde\u63a5\u5931\u8d25",
+            "single_instance_allowed": "\u8be5\u96c6\u6210\u5df2\u7ecf\u914d\u7f6e\u8fc7\u4e86\uff0c\u4e14\u53ea\u80fd\u914d\u7f6e\u4e00\u6b21\u3002\u82e5\u8981\u91cd\u65b0\u914d\u7f6e\uff0c\u8bf7\u5148\u5220\u9664\u65e7\u96c6\u6210\u3002"
+        },
+        "error": {
+            "cannot_connect": "\u8fde\u63a5\u5931\u8d25",
+            "select_single": "\u9009\u62e9\u4e00\u4e2a\u9009\u9879\u3002"
+        },
+        "step": {
+            "hubv1": {
+                "data": {
+                    "host": "IP \u5730\u5740",
+                    "port": "\u7aef\u53e3"
+                },
+                "description": "\u914d\u7f6e Insteon Hub \u7248\u672c 1\uff082014 \u5e74\u4e4b\u524d\uff09\u3002",
+                "title": "Insteon Hub \u7248\u672c 1"
+            },
+            "hubv2": {
+                "data": {
+                    "host": "IP \u5730\u5740",
+                    "password": "\u5bc6\u7801",
+                    "port": "\u7aef\u53e3",
+                    "username": "\u7528\u6237\u540d"
+                },
+                "description": "\u914d\u7f6e Insteon Hub \u7248\u672c 2\u3002",
+                "title": "Insteon Hub \u7248\u672c 2"
+            },
+            "plm": {
+                "data": {
+                    "device": "USB \u8bbe\u5907\u8def\u5f84"
+                },
+                "description": "\u914d\u7f6e Insteon PowerLink \u8c03\u5236\u89e3\u8c03\u5668 (PLM)\u3002",
+                "title": "Insteon PLM"
+            },
+            "user": {
+                "data": {
+                    "modem_type": "\u8c03\u5236\u89e3\u8c03\u5668\u7c7b\u578b\u3002"
+                },
+                "description": "\u9009\u62e9 Insteon \u8c03\u5236\u89e3\u8c03\u5668\u7c7b\u578b\u3002"
+            }
+        }
+    },
+    "options": {
+        "error": {
+            "cannot_connect": "\u8fde\u63a5\u5931\u8d25",
+            "input_error": "\u65e0\u6548\u6761\u76ee\uff0c\u8bf7\u68c0\u67e5\u60a8\u7684\u503c\u3002"
+        },
+        "step": {
+            "add_x10": {
+                "data": {
+                    "housecode": "\u623f\u5c4b\u4ee3\u7801 (a - p)",
+                    "platform": "\u5e73\u53f0",
+                    "steps": "\u8c03\u5149\u6b65\u957f\uff08\u4ec5\u9002\u7528\u4e8e\u7167\u660e\u8bbe\u5907\uff0c\u9ed8\u8ba4\u4e3a 22\uff09",
+                    "unitcode": "\u5355\u4f4d\u4ee3\u7801 (1 - 16)"
+                },
+                "description": "\u66f4\u6539 Insteon Hub \u5bc6\u7801\u3002"
+            },
+            "change_hub_config": {
+                "data": {
+                    "host": "IP \u5730\u5740",
+                    "password": "\u5bc6\u7801",
+                    "port": "\u7aef\u53e3",
+                    "username": "\u7528\u6237\u540d"
+                },
+                "description": "\u66f4\u6539 Insteon Hub \u8fde\u63a5\u4fe1\u606f\u3002\u8fdb\u884c\u6b64\u66f4\u6539\u540e\uff0c\u60a8\u5fc5\u987b\u91cd\u65b0\u542f\u52a8 Home Assistant\u3002\u8fd9\u4e0d\u4f1a\u66f4\u6539\u96c6\u7ebf\u5668\u672c\u8eab\u7684\u914d\u7f6e\u3002\u8981\u66f4\u6539 Hub \u4e2d\u7684\u914d\u7f6e\uff0c\u8bf7\u4f7f\u7528 Hub \u5e94\u7528\u7a0b\u5e8f\u3002"
+            },
+            "init": {
+                "data": {
+                    "add_override": "\u6dfb\u52a0\u8bbe\u5907\u8986\u76d6\u3002",
+                    "add_x10": "\u6dfb\u52a0 X10 \u8bbe\u5907\u3002",
+                    "change_hub_config": "\u66f4\u6539\u96c6\u7ebf\u5668\u914d\u7f6e\u3002",
+                    "remove_override": "\u5220\u9664\u8bbe\u5907\u8986\u76d6\u3002",
+                    "remove_x10": "\u5220\u9664 X10 \u8bbe\u5907\u3002"
+                }
+            },
+            "remove_override": {
+                "data": {
+                    "address": "\u9009\u62e9\u8981\u5220\u9664\u7684\u8bbe\u5907\u5730\u5740"
+                },
+                "description": "\u5220\u9664\u8bbe\u5907\u8986\u76d6"
+            },
+            "remove_x10": {
+                "data": {
+                    "address": "\u9009\u62e9\u8981\u5220\u9664\u7684\u8bbe\u5907\u5730\u5740"
+                },
+                "description": "\u5220\u9664 X10 \u8bbe\u5907"
+            }
+        }
+    }
+}

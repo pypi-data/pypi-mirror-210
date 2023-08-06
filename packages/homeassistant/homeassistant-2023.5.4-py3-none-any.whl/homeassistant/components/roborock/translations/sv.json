@@ -1,0 +1,49 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Enheten \u00e4r redan konfigurerad"
+        },
+        "error": {
+            "invalid_code": "Koden du angav var felaktig, kontrollera den och f\u00f6rs\u00f6k igen.",
+            "invalid_email": "Det finns inget konto kopplat till e-postadressen du angav, f\u00f6rs\u00f6k igen.",
+            "invalid_email_format": "Det finns ett problem med formateringen av din e-post - f\u00f6rs\u00f6k igen.",
+            "unknown": "Ov\u00e4ntat fel",
+            "unknown_roborock": "Ett ok\u00e4nt roborock-undantag intr\u00e4ffade - kontrollera dina loggar.",
+            "unknown_url": "Det uppstod ett problem med att fastst\u00e4lla r\u00e4tt webbadress f\u00f6r ditt roborock-konto - kontrollera dina loggar."
+        },
+        "step": {
+            "code": {
+                "data": {
+                    "code": "Verifierings kod"
+                },
+                "description": "Ange verifieringskoden som skickas till din e-post"
+            },
+            "user": {
+                "data": {
+                    "username": "E-post"
+                },
+                "description": "Ange din Roborock-e-postadress."
+            }
+        }
+    },
+    "entity": {
+        "select": {
+            "mop_intensity": {
+                "name": "Moppintensitet",
+                "state": {
+                    "custom": "Anpassad",
+                    "intense": "Intensiv",
+                    "mild": "Mild",
+                    "moderate": "M\u00e5ttlig",
+                    "off": "Av"
+                }
+            },
+            "mop_mode": {
+                "name": "Moppl\u00e4ge",
+                "state": {
+                    "fast": "Snabb"
+                }
+            }
+        }
+    }
+}
