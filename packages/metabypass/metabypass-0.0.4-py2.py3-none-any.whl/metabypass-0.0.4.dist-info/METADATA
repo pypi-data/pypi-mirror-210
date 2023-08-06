@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: metabypass
+Version: 0.0.4
+Summary: metabypass
+License: MIT
+Author: ad
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+
+
+CLIENT_ID = 'YOUR_CLIENT_ID'  # ****CHANGE HERE WITH YOUR VALUE*******
+
+CLIENT_SECRET = 'YOUR_SECRET_KEY'  # ****CHANGE HERE WITH YOUR VALUE*******
+
+EMAIL = 'YOUR_ACCOUNT_EMAIL'  # ****CHANGE HERE WITH YOUR VALUE*******
+
+PASSWORD = 'YOUR_ACCOUNT_PASSWORD'  # ****CHANGE HERE WITH YOUR VALUE*******
+
+cred=getCredentials(CLIENT_ID,CLIENT_SECRET,EMAIL,PASSWORD)
+
+
