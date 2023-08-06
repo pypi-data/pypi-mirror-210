@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: tvdbAPI
+Version: 0.2.10
+Summary: Python Module for accessing the TVDB API
+Home-page: https://github.com/TehRiehlDeal/TVDB-API
+Author: Kevin Riehl
+Author-email: kevinriehl@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# tvdbAPI
+This is an API library for use when connecting to The TVDB.
+
+## How to Use
+```
+from tvdbAPI import TVDB
+
+t = TVDB()
+
+# Get basic info about a show
+t.getShow("Mythbusters")
+
+# Get a list of all episodes of a show
+t.getEpisodes("Mythbusters")
+
+# Get a specific episodes name
+t.getEpisodeName("Scrubs", 1, 1)
+```
