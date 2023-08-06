@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: BlueWhale3-Text
+Version: 1.6.0
+Summary: 用于文本挖掘的蓝鲸附加组件。
+Home-page: https://github.com/biolab/orange3-text
+Author: 大圣实验楼
+Author-email: dashenglab@163.com
+License: UNKNOWN
+Download-URL: https://github.com/biolab/orange3-text/tarball/1.6.0
+Keywords: orange3-text,data mining,orange3 add-on
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: BlueWhale3 (>=3.28.0)
+Requires-Dist: anyqt
+Requires-Dist: beautifulsoup4
+Requires-Dist: biopython
+Requires-Dist: bluewhale-widget-base (>=4.12.0)
+Requires-Dist: conllu
+Requires-Dist: docx2txt (>=0.6)
+Requires-Dist: gensim (==4.1.2)
+Requires-Dist: lemmagen3
+Requires-Dist: lxml
+Requires-Dist: nltk (>=3.0.5)
+Requires-Dist: numpy
+Requires-Dist: odfpy (==1.4.1)
+Requires-Dist: pandas
+Requires-Dist: pdfminer3k (==1.3.4)
+Requires-Dist: pyqtgraph
+Requires-Dist: pyyaml
+Requires-Dist: requests
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: serverfiles
+Requires-Dist: simhash (>=2.1.1)
+Requires-Dist: six
+Requires-Dist: tweepy (>=4.0.0)
+Requires-Dist: ufal.udpipe (==1.2.0.3)
+Requires-Dist: wikipedia
+Requires-Dist: yake
+Provides-Extra: doc
+Requires-Dist: sphinx ; extra == 'doc'
+Requires-Dist: recommonmark ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Requires-Dist: docutils (<0.17) ; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+
+BlueWhale3 Text
+============
+
+Orange add-on for text mining. It provides access to publicly available data,
+like NY Times, Twitter and PubMed. Further, it provides tools for preprocessing,
+constructing vector spaces (like bag-of-words, topic modeling and word2vec) and
+visualizations like word cloud end geo map. All features can be combined with
+powerful data mining techniques from the Orange data mining framework.
+
+See [documentation](http://orange3-text.readthedocs.org/).
+
+Features
+--------
+#### Access to data
+* Load a corpus of text documents
+* Access publicly available data (The Guardian, NY Times, Twitter, Wikipedia, PubMed)
+
+#### Text analysis
+* Preprocess corpus
+* Generate bag of words
+* Embed documents into vector space
+* Perform sentiment analysis
+* Detect emotions in tweets
+* Discover topics in the text
+* Compute document statistics
+* Visualize frequent words in the word cloud
+* Find words that enrich selected documents
+

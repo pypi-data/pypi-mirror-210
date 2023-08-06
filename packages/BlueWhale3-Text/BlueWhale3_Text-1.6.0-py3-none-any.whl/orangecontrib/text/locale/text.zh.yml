@@ -1,0 +1,765 @@
+package_label: "文本挖掘"
+package_desc: "文本挖掘"
+
+filter:
+  filtering: "过滤中…"
+  stopwords: "停止词"
+  lexicon: "词典"
+  regexp: "正则"
+  fit_filter: "正在安装过滤器…"
+  document_frequency: "文档频率"
+  frequent_tokens: "最频繁tokens"
+  pos_tags: "POS标签"
+
+pos:
+  pos_tag: "位置标记中…"
+  stanford_pos_tag: "Stanford位置标记器"
+  averaged_perceptron_tag: "平均感知器标记器"
+  treebank_pos_tag: "树库项目标记(MaxEnt)"
+
+normalize:
+  normalizing: "正在标准化…"
+  wordnet_lemmatizer: "WordNet词典"
+  porter_stemmer: "英文词干提取算法"
+  snowball_stemmer: "Snowball Stemmer"
+  udpipe_lemmatizer: "UDPipe Lemmatizer"
+
+transform:
+  transform: "正在转换…"
+  lowercase: "小写字母"
+  remove_accents: "删除重音"
+  parse_html: "解析html"
+  remove_urls: "删除URL"
+
+tokenize:
+  tokenizing: "标记化…"
+  word_punctuation: "词语&标点"
+  sentence: "句子"
+  whitespace: "空格"
+  regexp: "正则"
+  tweet: "推特"
+
+bagofwords:
+  count: "计数"
+  binary: "二进制"
+  sublinear: "亚线性"
+  none: "（无）"
+  idf: "IDF"
+  smooth_idf: "平滑IDF"
+  l1: "L1 （元素总和）"
+  l2: "L2 （欧几里得）"
+
+guardian:
+  headline: "标题"
+  content: "目录"
+  trail_text: "记录文本"
+  html: "HTML"
+  type: "类型"
+  language: "语言"
+  tags: "标签"
+  word_count: "字数"
+
+nyt:
+  headline: "标题"
+  abstract: "摘要"
+  snippet: "片段"
+  lead_paragraph: "引言"
+  subject_keywords: "主题关键词"
+  locations: "位置"
+  persons: "人数"
+  organizations: "组织"
+  creative_works: "创作"
+  article_type: "文章类型"
+  word_count: "字数"
+
+twitter:
+  content: '目录'
+  language: '语言'
+  location: '位置'
+  likes: '点赞数'
+  retweets: '转发数'
+  reply_to: '回复'
+  latitude: '纬度'
+  longitude: "经度"
+  author:
+    name: '作者名'
+    description: '作者描述'
+    status_count: '作者状态数'
+    favourites_count: '作者收藏夹数'
+    friends_count: '作者好友数'
+    followers_count: '作者粉丝数'
+    listed_count: '作者列表数'
+    verified: '作者已认证'
+
+wikipedia:
+  title: "标题"
+  content: "目录"
+  summary: "概要"
+  page_id: "页面标识"
+  revision_id: "版本标识"
+  query: "查询"
+
+item:
+  mean: "平均值"
+  median: "中位数"
+  min: "最小值"
+  max: "最大值"
+
+common:
+  corpus: "语料库"
+  query_word: "查询词语"
+  selected_document: "选择的记录"
+  concordance: "一致性"
+  data: "数据"
+  network: "网络"
+  node_data: "节点数据"
+  match_doc: "匹配的文档"
+  other_doc: "其他文档"
+  distance: "距离"
+  corpus_without_duplicates: "无重复语料库"
+  duplicates: "重复群集"
+  select_topic: "选择的主题"
+  all_topic: "所有主题"
+  topic: "主题"
+  select_word: "选择的词语"
+  word_count: "字数"
+  select_data: "选择的数据"
+  lda_wrapper: "LDA文档主题生成模型"
+  lsi_wrapper: "潜在语义索引"
+  hdp_wrapper: "分层狄利克雷模型"
+  skip_document: "跳过的文档"
+  embeddings: "嵌入"
+  words: "词语"
+
+owbasevectorizer:
+  options: "选项"
+  commit: "提交"
+  hide_attrs: "隐藏bow属性"
+
+owbagofwords:
+  name: "词语包"
+  desc: "从输入语料库生成词语包。"
+  row_term_frequency: "频繁项集："
+  row_document_frequency: "频繁记录："
+  row_regular: "正则化："
+
+owconcordance:
+  name: "一致性"
+  desc: "显示词语的上下文。"
+  msg_multiple_words_on_input: "输入多个查询词。只考虑第一个。"
+  box_info: "信息"
+  btn_commit: "提交"
+  btn_auto_commit: "自动提交已打开"
+  row:
+    token: "标记：%(n_tokens)s"
+    type: "类型：%(n_types)s"
+    match: "匹配：%(n_matching)s"
+    num_of_word: "字数："
+    query: "查询："
+  dialog:
+    name: "一致性"
+    label_query: "查询"
+    label_token: "标记"
+    label_type: "类型"
+    label_match: "匹配"
+
+owcorpus:
+  name: "语料库"
+  desc: "加载文本文档的语料库。"
+  msg_cannot_read_file: "无法读取文件（{}）"
+  msg_no_text_features_used: "必须至少使用一个文本型特征。"
+  msg_corpus_without_text_features: "语料库没有文本型特征。"
+  btn_reload: "重新加载"
+  btn_browse: "浏览"
+  placeholder_no_title: "（无标题）"
+  btn_browse_documentation: "浏览文档语料库"
+  status:
+    load: "加载中"
+    none: '(空)'
+  box:
+    corpus_file: "语料库文件"
+    title_var: "标题变量"
+    use_text_feature: "使用的文本型特征"
+    ignore_text_feature: "忽略的文本型特征"
+  dialog:
+    open: "打开蓝鲸文本语料库"
+    all_readable_file: "所有可读文件（{}）；"
+    name: "语料库"
+    label_file: "文件"
+    label_document: "记录"
+    label_use_text_feature: "使用的文本型特征"
+    label_ignore_text_feature: "忽略的文本型特征"
+    label_other_feature: "其他特征"
+    label_target: "目标"
+
+owcorpustonetwork:
+  name: "语料库网络"
+  desc: "用给定语料库构建网络。"
+  msg_unknown_error: "未知错误：{}"
+  msg_no_network_addon: "请安装网络加载项以使用此组件。"
+  msg_params_changed: "参数已更改。点击“开始”使用新参数运行。"
+  gbox_document: "记录"
+  gbox_word: "词语"
+  box_set: "设置"
+  btn_start: "开始"
+  btn_stop: "停止"
+  row:
+    node_type: "节点类型"
+    threshold: "阈值"
+    window_size: "窗口大小"
+    freq_threshold: "频繁阈值"
+
+owcorpusviewer:
+  name: "语料库查看器"
+  desc: "显示语料库内容。"
+  msg_no_feats_search: "搜索中不包含任何特征。"
+  msg_no_feats_display: "没有选择要显示的特征。"
+  box_info: "信息"
+  box_search_feature: "搜索特征"
+  box_display_feature: "显示特征"
+  checkbox_show_token_tag: "显示标记&&标签"
+  btn_send_data: "发送数据"
+  btn_auto_send: "自动发送已打开"
+  label_regexp_filter: "正则筛选器："
+  row:
+    token: "标记：%(n_tokens)s"
+    type: "类型：%(n_types)s"
+    match: "匹配：%(n_matching)s"
+    match_documents: "匹配文档: %(n_matching)s"
+  dialog:
+    label_query: "查询"
+    label_match_document: "匹配的文档"
+    label_matches: "匹配"
+
+owdocmap:
+  name: "文档地图"
+  gbox_world: "世界"
+  gbox_europe: "欧洲"
+  gbox_usa: "美国"
+  gbox_m_world: "世界"
+  gbox_m_europe: "欧洲"
+  gbox_m_usa: "美国"
+  label_region_attr: "区域属性："
+  label_map_type: "地图类型："
+
+owdocumentembedding:
+  name: "文档嵌入"
+  desc: "使用预训练模型嵌入文档。"
+  msg_no_connection: "没有互联网连接。请建立连接或使用其他矢量器。"
+  msg_unexpected_error: "嵌入错误：{}"
+  msg_unsuccessful_embeddings: "部分嵌入失败。"
+  mean: "均值"
+  sum: "求和"
+  max: "最大值"
+  min: "最小值"
+  box_set: "设置"
+  row_language: "语言："
+  row_aggregator: "聚合器："
+  btn_apply: "应用"
+  btn_cancel: "取消"
+
+owduplicates:
+  name: "重复检测"
+  desc: "从语料库中检测并删除重复项。"
+  msg_dist_matrix_invalid_shape: "重复检测仅支持行之间计算的距离。"
+  msg_too_little_documents: "至少需要一条记录。"
+  label_cluster: "集群"
+  label_size: "大小"
+  gbox:
+    single: "单一"
+    average: "平均"
+    complete: "完成"
+    weight: "加权"
+    ward: "选区"
+    attr: "属性"
+    class: "类"
+    meta: "目标"
+  box:
+    info: "信息"
+    linkage: "连接"
+    distance: "距离"
+    output: "输出"
+  row:
+    document: "记录：%(n_documents)s"
+    unique: "  ◦ 唯一：%(n_unique)s"
+    duplicate: "  ◦ 重复：%(n_duplicates)s"
+    distance_threshold: "距离阈值"
+    append_cluster_id: "将群集ID添加到："
+  dialog:
+    linkage: "连接"
+    distance_threshold: "距离阈值"
+    document: "文件"
+    unique: "唯一"
+    duplicates: "重复"
+
+owguardian:
+  btn_key: "Guardian API密钥"
+  name: "The Guardian"
+  desc: "从Guardian API获取文章。"
+  btn_api_key: "Guardian API密钥"
+  box_query: "查询"
+  box_text_include: "文本包括"
+  box_output: "输出"
+  row_article: "文章：%(output_info)s"
+  btn_search: "搜索"
+  btn_stop: "停止"
+  dialog:
+    name: "The Guardian凭据"
+    key_input: "测试"
+    msg_invalid_credentials: "凭据无效。"
+    row: "密钥："
+    btn: "好的"
+    query: "查询"
+    date_from: "数据来自"
+    date_to: "截止日期"
+    text_include: "文本包括"
+    output: "输出"
+  msg:
+    no_text_fields: "未选择文本特征时，将推断文本特征。"
+    no_api: "请提供有效的API密钥。"
+    no_query: "请提供一个查询。"
+    limit_exceeded: "已达到请求限制。"
+
+owimportdocuments:
+  name: "导入文档"
+  desc: "从文件夹导入文本文档。"
+  tooltip_select_folder_to_load: "选择要从中加载文档的文件夹"
+  tooltip_reload_document_set: "重新加载当前文档集"
+  row_no_select_document_set: "未选择文档集"
+  btn:
+    open: "打开/加载文档"
+    reload: "重新加载"
+    cancel: "取消"
+  box:
+    source: "源"
+    folder: "文件夹:"
+    info: "信息"
+    options: "Conllu 导入选项"
+  checkbox:
+    lemma: "引理"
+    pos_tags: "POS标签"
+    ner: "NER"
+  msg:
+    read_error: "{}无法读取"
+    document: "{} 份文档"
+    category: "{}记录 {}类别"
+    skip: "，{}已跳过"
+    cancel: "已取消"
+    error: "错误状态"
+    not_exist: "'{}'不存在"
+    not_folder: "'{}'不是文件夹"
+  text:
+    select_document: "未选择文档集"
+    process: "处理中"
+    cancel: "取消"
+    process_error: "处理过程中出错"
+  dialog:
+    open: "选择顶层文件夹"
+  report:
+    path: "路径"
+    document_number: "文件数量"
+    categories: "类别"
+    skip_number: "跳过数量"
+
+owkeywords:
+  name: "提取关键字"
+  desc: "从输入语料库中推断特征词。"
+  msg:
+    no_words_column: "输入缺少“单词”列。"
+  box:
+    score_methods: "评分方法"
+    agg: "聚合"
+    select_word: "选词"
+    words: "单词"
+  status:
+    calculate: "计算中..."
+  placeholder:
+    filter: "过滤器..."
+  item:
+    none: "无"
+    all: "全部"
+    manual: "手动"
+    top_words: "热门词"
+  report:
+    corpus: "语料库"
+    words: "单词"
+    keywords: "关键字"
+
+ownyt:
+  name: "《纽约时报》"
+  desc: "从《纽约时报》搜索API获取文章。"
+  btn_api_key: "文章API密钥"
+  box_query: "查询"
+  box_include: "文本包括"
+  btn_output: "输出"
+  row_article: "文章：%(output_info)s"
+  btn_search: "搜索"
+  btn_stop: "停止"
+  msg:
+    no_text_fields: "未选择文本特征时，将推断文本特征。"
+    no_api: "请提供有效的API密钥。"
+    no_query: "请提供一个查询。"
+    offline: "没有网络连接。"
+    api_error: "API错误：{}"
+    rate_limit: "超出速率限制。请稍后再试。"
+  dialog:
+    name: "《纽约时报》API密钥"
+    cm_key: "《纽约时报》API密钥"
+    msg_invalid_credentials: "此凭据无效。检查密钥和网络连接。"
+    row_key: "密钥："
+    btn_ok: "好的"
+    query: "查询"
+    date_from: "数据来自"
+    date_to: "截止日期"
+    text_include: "文本包括"
+    output: "输出"
+
+owpreprocess:
+  name: "预处理文本"
+  desc: "构建文本预处理方式。"
+  box:
+    preview: "预览"
+    udpipe_tokenizer: "UDPipe tokenizer"
+    language: "语言："
+  msg:
+    udpipe_offline_no_models: "未选择UDPipe模型。"
+    file_not_found: "找不到文件。"
+    invalid_encoding: "文件编码无效。请将文件另存为UTF-8并重试。"
+    stanford_tagger: "加载Stanford POS标记器时出现问题：\n{}"
+    no_token_left: "输出端没有标记。"
+    udpipe_offline: "没有互联网连接。UDPipe可用于本地模型。"
+    udpipe_offline_no_model: "没有互联网连接。UDPipe模型不可用。"
+    tokenizer_propagated: "标记化应该放在标准化、过滤、n-grams和POS标记之前。"
+    tokenizer_ignored: "由于UDPipe标记器，已忽略标记化。"
+    filtering_ignored: "由于UDPipe标记器，筛选已被忽略。"
+    preprocess_method: "一些预处理方法需要NLTK包中的数据（如单词关系、停用词、标点规则等）。此数据下载到："
+  dialog:
+    open: "打开…"
+    text_file: "文本文件（*.txt）"
+    all_file: "所有文件（*）"
+  row:
+    transform: "转化"
+    tokenize: "标志化"
+    normalize: "标准化"
+    filter: "筛选"
+    ngrams: "N-grams范围"
+    pos: "POS标签"
+    range: "范围："
+    none: "(无)"
+    pattern: "匹配规则:"
+
+owpubmed:
+  name: "Pubmed"
+  desc: "从Pubmed获取数据"
+  box_retrieve: "检索"
+  btn_retrieve_record: "检索记录"
+  btn_stop_retrieve: "停止检索"
+  tooltip_retrieve_document: "检索指定的文档。"
+  btn_email: "电子邮件"
+  btn_find_record: '查找记录'
+  tab_regular_search: "普通搜索"
+  tab_advance_search: "高级搜索"
+  tooltip_search: "搜索符合指定参数的项目。"
+  box_text_include: "文本包括"
+  msg:
+    no_query: "请指定此查询的关键字。"
+    api_error: "API错误：{}."
+    email_error: "未设置邮箱。"
+    num_of_retrieve: "此搜索查询的可检索记录数：{} "
+    record_from: "记录来自{}。"
+    num_of_record: "检索的记录数：{} "
+  row:
+    author: "作者："
+    from: "从："
+    to: "到："
+    query: "查询："
+    num_of_record: "找到的记录数：/"
+    record_from: "记录来自/。"
+    orchid: "兰花"
+    hypertension: "高血压"
+    blood_pressure: "血压"
+    radiology: "放射学"
+  checkbox:
+    author: "作者"
+    article_title: "文章标题"
+    mesh_head: "网格标题"
+    abstract: "摘要"
+    url: "URL"
+  dialog:
+    name:  "Pubmed邮箱"
+    email: "邮箱"
+    msg: "此邮箱无效"
+    row_email: "邮箱："
+    btn_ok: "好的"
+  report:
+    query: "查询"
+    authors: "作者"
+    date: "日期"
+    num_of_record: "检索的记录数"
+
+owscoredocuments:
+  name: "文件评分"
+  msg:
+    missing_words: "请在输入中提供单词"
+    missing_corpus: "请在输入中提供语料库"
+    corpus_not_normalized: "使用预处理文本规范化语料库。"
+  box:
+    method: "单词评分方法"
+    agg: "聚合"
+    select_documents: "选择文档"
+  placeholder:
+    filter: "过滤器..."
+  item:
+    none: "空"
+    all: "所有文件"
+    manual: "手动选择"
+    top_documents: "热门文件"
+  label:
+    word_count: "字数"
+    word_count_tip: "单词在文档中出现的频率。"
+    word_presence: "单词比例"
+    word_presence_tip: "如果单词出现在文档中，则为其评分 1，否则为 0。"
+    similarity: "相似度"
+    similarity_tip: "文档嵌入和词嵌入之间的余弦相似度。"
+
+owsentimentanalysis:
+  name: "情感分析"
+  desc: "从文本中分析所表达的情感。"
+  gbox_english: "英语"
+  gbox_slovenian: "斯洛文尼亚语"
+  msg:
+    senti_offline: "没有网络连接，现在只适用于本地模式。"
+    senti_offline_no_lang: "没有网络连接，现在只适用于本地模式。"
+    one_dict_only: "只加载了一个词典。"
+    no_dicts_loaded: "没有加载词典。"
+  box:
+    mulitilingua_sent: "多语言情感"
+    method: "方法"
+    custom_list: "自定义词典"
+  btn:
+    liu_hu: "Liu Hu"
+    vader: "Vader"
+    commit: "提交"
+    auto_commit: "自动提交已打开"
+  row:
+    language: "语言："
+    positive: "正:"
+    negative: "负:"
+  dialog:
+    method: "方法"
+
+owsimhash:
+  name: "相似度散列"
+  desc: "计算文档散列。"
+  row_simhash_size: "相似度散列大小："
+  row_shingle_length: "Shingle长度"
+
+owstatistics:
+  name: "统计"
+  desc: "为文档创建新的统计变量。"
+  msg_not_computed: "{}统计信息无法计算，并且从结果中省略。"
+  btn_apply: "应用"
+  row_feature: "特征"
+  row_pattern: "模式"
+  gbox:
+    word_count: "字数"
+    character_count: "字符数"
+    n_gram_count: "N-gram数"
+    average_word_length: "平均字长"
+    punctuation_count: "标点数"
+    capital_count: "大写字母数"
+    vowel_count: "元音数"
+    consonant_count: "辅音数"
+    per_cent_unique_word: "唯一词百分比"
+    start_with: "起始处"
+    end_with: "结束处"
+    contain: "包含"
+    regex: "正则表达式"
+    pos_tag: "POS标签"
+    yule: "Yule's I"
+    lix: "LIX 指数"
+
+owtopicmodeling:
+  row_num_of_topic: "主题数"
+  name: "主题建模"
+  desc: "揭示语料库中隐藏的主题结构。"
+  msg_less_topics_found: "找到的主题比要求的少。"
+  btn_commit: "提交"
+  box:
+    option: "选项"
+    topic_evaluation: "话题评价"
+  label:
+    topic: "主题"
+    topic_key: "主题关键词"
+    perplexity: "日志困惑: %(perplexity)s"
+    coherence: "话题连贯: %(coherence)s"
+  gbox:
+    first_level_concentration: "一级聚集(γ)"
+    second_level_concentration: "二级(α)"
+    the_topic_direchlet: "主题Dirichlet (α)"
+    top_level_truncation: "顶级截断级别(Τ)"
+    second_level_truncation: "二级截断级别(Κ)"
+    learn_rate: "学习率(κ)"
+    slow_down_parameter: "减速参数(τ)"
+  dialog:
+    topic: "主题"
+
+owtweetprofiler:
+  name: "推文分析器"
+  desc: "在推特的推文中检测Ekman、Plutchik或状态的主页。"
+  msg_server_down: "服务器没有响应。请稍后再试。"
+  msg_unexpected_error: "未知错误：{}"
+  btn_commit: "提交"
+  btn_cancel: "取消"
+  box_option: "选项"
+  row_attr: "属性："
+  row_emotion: "情感："
+  row_output: "输出："
+  output_mode:
+    classes: "分类"
+    probability: "概率"
+    embeddings: "嵌入"
+  dialog:
+    attr: "属性"
+    emotion: "情感"
+    output: "输出"
+
+owtwitter:
+  name: "推特"
+  desc: "从推特API中加载推文。"
+  gbox_content: "内容"
+  gbox_author: "作者"
+  btn_twitter_api_key: "推特API密钥"
+  tooltip_set_api: "设置此组件的API密钥。"
+  box_query: "查询"
+  box_text_include: "文本包括"
+  btn_search: "搜索"
+  btn_stop: "停止"
+  placeholder_multiple_line: "多行用或连接。"
+  msg:
+    no_text_fields: "未选择文本特征时，将推断文本特征。"
+    api: "Api错误（{}）"
+    rate_limit: "超出速率限制。请稍后再试。"
+    empty_authors: "请提供一些作者。"
+    wrong_authors: "查询不符合推特的用户处理功能。"
+    key_missing: "请提供有效的API密钥以获取数据。"
+  row:
+    query_word_list: "查询词列表："
+    language: "语言："
+    max_tweet: "最大发送量："
+    search_by: "搜索依据："
+    allow_retweet: "允许转发："
+    collect_result: "收集结果："
+  dialog:
+    name: "推特API凭证"
+    cm_key: "推特API密钥"
+    cm_secret: "推特API机密"
+    msg_invalid_credential: "此凭据无效。"
+    row_key: "密钥："
+    row_secret: "机密："
+    btn_ok: "好的"
+
+owwikipedia:
+  name: "维基百科"
+  box_query: "查询"
+  placeholder_each_line_separate_query: "每行表示一个单独的查询。"
+  box_text_include: "文本包括："
+  box_info: "信息"
+  btn_search: "搜索"
+  btn_stop: "停止"
+  dialog:
+    language: "语言"
+    query: "查询"
+    article_count: "文章数"
+  row:
+    query_word_list: "查询词列表："
+    language: "语言："
+    article_per_query: "每次查询的文章数："
+  msg:
+    info_label: "文章数{:d}"
+    api_error: "API错误：{}"
+    no_text_field: "未选择文本特征时，将推断文本特征。"
+
+owwordcloud:
+  name: "词云"
+  box_cloud_preference: "词云偏好"
+  checkbox_color_word: "彩色词云"
+  row_words_tilt: "文字倾斜度："
+  box_word: "词语&&权重"
+  label_weight: "权重"
+  label_word: "词语"
+  value_no: "0"
+  table_name: "Word Counts"
+  topic_name: "Selected Words"
+  msg:
+    topic_precedence: "输入信号主题优先于语料库"
+    bow_weight: "显示词语包的权重。"
+    data_info: "{}记录{}词语"
+    word_in_topic: "主题中的词。"
+    datas_info: "{}记录\n{}选择的词语\n{}计数词"
+  state:
+    calculate: "计算中"
+
+owwordenrichment:
+  name: "词汇丰富"
+  desc: "对所选文档进行词汇丰富性分析。"
+  box_info: "信息"
+  row_word_display: "显示的词语：0"
+  box_filter: "筛选器"
+  checkbox_p_value: "p值"
+  tooltip_filter_p_value: "按词语p值筛选"
+  tooltip_max_p_value: "词语的最大p值"
+  checkbox_fdr: "FDR"
+  tooltip_filter_fdr: "词语FDR筛选"
+  label_word: "词语"
+  label_p_value: "p值"
+  label_fdr: "FDR"
+  msg:
+    no_bow_features: "没有词语包特征。"
+    no_words_overlap: "没有词语重叠。"
+    empty_selection: "所选数据为空。"
+    all_selected: "不能选择所有实例。"
+    data_word: "显示的词语：{}"
+  dialog:
+    enriche_word: "充实的词汇"
+
+owwordlist:
+  name: "词表"
+  desc: "创建一个单词列表。"
+  msg:
+    no_string_vars: "输入数据至少需要一个文本变量。"
+  box:
+    library: "库"
+    input: "输入"
+  tip:
+    add: "将新单词列表添加到库中"
+    add_word: "添加新的单词"
+    remove: "从库中删除词表"
+    update: "将编辑器中的更改保存到库中"
+    more: "更多操作"
+    remove_word: "删除单词"
+    sort: "按字母顺序排列单词"
+  btn:
+    update: "更新"
+    more: "更多"
+    import_file: "从本地文件导入单词"
+    save_file: "保存词表至文件"
+    open: "打开词表"
+    open_type: "文本文件 (*.txt)\n所有文件(*.*)"
+    save_word: "保存词表"
+    sort: "分类"
+  label:
+    word_variable: "词变量:"
+    update: "更新: "
+  report:
+    library: "库"
+    input_words: "输入词"
+    word_var: "词变量"
+    update: "更新"
+    settings: "设置"
+    words: "词"
+  item:
+    intersection: "交集"
+    union: "未知"
+    only_input: "仅输入"
+    ignore_input: "忽略输入"
