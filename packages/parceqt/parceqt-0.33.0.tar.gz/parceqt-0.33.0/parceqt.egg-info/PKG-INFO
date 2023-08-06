@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: parceqt
+Version: 0.33.0
+Summary: The parceqt Python module
+Home-page: https://github.com/wbsoft/parceqt
+Maintainer: Wilbert Berendsen
+Maintainer-email: info@wilbertberendsen.nl
+License: GPL
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Text Processing
+Classifier: Environment :: X11 Applications :: Qt
+License-File: LICENSE
+
+parceqt
+=======
+
+Small Python library to use parce with Qt's QTextDocument.
+
+This module depends on parce (https://parce.info/) and PyQt(https://riverbankcomputing.com/software/pyqt)
+
+| Homepage: https://github.com/wbsoft/parceqt
+| Download: https://pypi.org/project/parceqt
+| Documentation: https://parce.info/parceqt
+
+Example:
+
+.. code:: python
+
+    from PyQt5.QtWidgets import QApplication, QTextEdit
+    from PyQt5.QtGui import QTextDocument
+
+    app = QApplication([])
+    doc = QTextDocument()
+    e = QTextEdit()
+    e.setDocument(doc)
+    e.resize(600, 400)
+    e.show()
+
+    import parceqt
+    from parce.lang.xml import Xml
+
+    parceqt.set_root_lexicon(doc, Xml.root)
+    parceqt.highlight(doc)
+    parceqt.adjust_widget(e)    # adjust widgets font and base colors
+
+Now the text in the document is automatically highlighted using the specified
+root lexicon; the highlighting is updated as the user modifies the text.
+
+
+

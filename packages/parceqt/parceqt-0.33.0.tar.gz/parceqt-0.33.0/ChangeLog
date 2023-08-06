@@ -1,0 +1,147 @@
+ChangeLog
+=========
+
+
+2023-05-28: parceqt-0.33.0
+
+- fixes a TypeError with recent Python and recent PyQt5: supply int to QColor()
+
+
+2022-03-14: parceqt-0.32.0
+
+- requires parce 0.32.0
+- added gadgets module with ExtraSelectionManager and LanguageMenuAction
+- added widgets module with LexiconChooser
+- debugger: added language selection in View menu
+- simplified handling of singleton QObject instances.
+
+
+2022-02-12: parceqt-0.31.0
+
+- requires parce 0.31.0
+- Document() now also can create QTextDocument; use Document(doc) to wrap an
+  existing document
+- small adaptations to parce API changes
+
+
+2021-12-09: parceqt-0.27.0
+
+- requires parce 0.27
+- add work module and adapt design to new parce Document/Worker
+- add Guess button to debugger, to guess the language
+
+
+2021-11-11: parceqt-0.25.0
+
+- bring version number and some API changes on par with parce
+- adjust debugger to API changes of parce.language; now use parce.registry
+
+
+2021-01-21: parceqt-0.17.0
+
+- added Cursor.html() and copy_html() convenience methods
+- moved debugging logic (signals etc) to main treebuilder
+- debug: removed DebugFormatter, parce can now handle debug formatting itself
+- debug window: larger text font by default
+- fixed black colors in palette when textformat didn't specify color
+- fixed other little bugs
+- small api adjustments to parce-0.17.0
+
+
+2021-01-17: parceqt-0.16.0
+
+- added Edit → Copy selection as HTML
+- parceqt.cursor(): fixed new attrname cursor.start → cursor.pos
+
+
+2021-01-12: parceqt-0.15.0
+
+- small api adjustments to parce-0.15.0
+- some cleanups
+- documentation switched to Furo theme, looks better on small devices
+
+
+2021-01-02: parceqt-0.14.0
+
+- added Document.find_start/end_of_line() reimplementation using QTextBlock
+- small api adjustments to parce-0.14.0
+
+
+2020-06-02: parceqt-0.13.0
+
+- small api adjustments to parce-0.13.0
+
+
+2020-05-18: parceqt-0.12.0
+
+- very small api adjustments to parce-0.12.0
+
+
+2020-05-13: parceqt-0.10.0
+
+- very small api adjustments to parce-0.10.0
+
+
+2020-05-04: parceqt-0.9.0
+
+- some small api adjustments to parce-0.9.0
+- set window title of debugger window
+
+
+2020-04-25: parceqt-0.8.5
+
+- add "Debug Unparsed Text" theme, highlighting unparsed text
+- adjust treebuilder and highlighter to the new peek() call of parce.treebuilder
+- debug window:
+  - when opening a file, automatically guess the language to use
+  - new commands to show/hide the tree and to reload the theme stylesheet
+  - Ctrl-wheel zoom now changes the font size of the text editor window
+  - add expand/collapse actions
+  - ability to run the debug window with python3 -m parceqt.debug <filename>
+
+
+2020-04-07: parceqt-0.8.0
+
+- added treemodel.TreeModel
+- added debug module with debugger window
+- use new peek feature to quickly update highlighting surrounding change
+
+
+2020-03-14: parceqt-0.7.0
+
+- don't set a default Theme on init of SyntaxHighlighter, this causes
+  the highlighting to run twice when calling the highlight() helper.
+- really wait til update on Treebuilder.wait()
+
+
+2020-02-16: parceqt-0.6.0
+
+- Improvements, and adjust to changes in parceqt-0.6
+- Convenience function to adjust a text widget to the window() format
+  of a theme.
+
+
+2020-02-07: parceqt-0.5.0
+
+- API to use highlighter and set root lexicon greatly simplfied
+
+
+2020-01-22: parceqt-0.3.0
+
+- Renamed to parceqt
+
+
+2020-01-21: livelex-qt-0.3.0
+
+- Better documentation
+- Split classes over separate modules files, accessible via the toplevel
+  package
+- robustness improvements, highlighting must happen in the main thread but
+  it regularly polls for user events and restarts if needed.
+
+
+2020-01-15: livelex-qt-0.2.0
+
+- Incorporate qtdocument module from livelex
+- Initial release
+

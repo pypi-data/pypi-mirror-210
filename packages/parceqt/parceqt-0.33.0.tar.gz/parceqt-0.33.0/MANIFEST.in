@@ -1,0 +1,5 @@
+include README.rst ChangeLog LICENSE
+graft docs
+prune docs/build
+global-exclude *~ *.py[cod] __pycache__
+global-exclude .gitignore
