@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package vector_pipelines;
+
+message EmbeddingRequest {
+    bytes data = 1;
+}
+
+message EmbeddingResponse {
+    bytes embeddings = 1;
+}
+
+message EmbeddingInfoRequest {}
+
+message EmbeddingInfoResponse {
+    uint32 vector_size = 1;
+}
+
+service EmbeddingService {
+    rpc GenerateEmbeddings(EmbeddingRequest) returns (EmbeddingResponse) {}
+    rpc GetEmbeddingInfo(EmbeddingInfoRequest) returns (EmbeddingInfoResponse) {}
+}

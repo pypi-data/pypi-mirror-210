@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: vector-pipelines
+Version: 0.0.2
+Summary: Create scalable vector search powered pipelines with ease
+Project-URL: Documentation, https://github.com/gabrielmbmb/vector-pipelines#readme
+Project-URL: Issues, https://github.com/gabrielmbmb/vector-pipelines/issues
+Project-URL: Source, https://github.com/gabrielmbmb/vector-pipelines
+Author-email: Gabriel Martín Blázquez <gmartinbdev@gmail.com>
+License-Expression: Apache-2.0
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.8
+Requires-Dist: pydantic>=1.8.2
+Requires-Dist: typer>=0.9.0
+Provides-Extra: dev
+Requires-Dist: black==23.3.0; extra == 'dev'
+Requires-Dist: coverage[toml]>=7.0.0; extra == 'dev'
+Requires-Dist: grpcio-tools>=1.54.0; extra == 'dev'
+Requires-Dist: mypy==1.2.0; extra == 'dev'
+Requires-Dist: pre-commit>=3.2.2; extra == 'dev'
+Requires-Dist: pytest>=7.2.0; extra == 'dev'
+Requires-Dist: ruff==0.0.263; extra == 'dev'
+Provides-Extra: grpc
+Requires-Dist: dill>=0.3.4; extra == 'grpc'
+Requires-Dist: grpcio>=1.54.0; extra == 'grpc'
+Provides-Extra: sentence-transformers
+Requires-Dist: sentence-transformers>=2.0.0; extra == 'sentence-transformers'
+Description-Content-Type: text/markdown
+
+# vector-pipelines
+A framework for creating vector search engine powered applications
