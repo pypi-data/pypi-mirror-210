@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: odh-core
+Version: 0.1.16
+Summary: ODH Core, helper functions and classes
+Author-Email: Jimmy Spets <jimmy.spets@waochurch.com>, Viktor Freiman <viktor.freiman@waochurch.com>
+License: MIT
+Requires-Python: >=3.10
+Requires-Dist: gql[aiohttp]
+Requires-Dist: phonenumbers
+Requires-Dist: python-dotenv
+Requires-Dist: python-jose[cryptography]
+Requires-Dist: Sphinx; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: flake8-bugbear; extra == "dev"
+Requires-Dist: flake8-quotes; extra == "dev"
+Requires-Dist: rinohtype; extra == "dev"
+Requires-Dist: sphinx-autobuild; extra == "dev"
+Requires-Dist: sphinx-rtd-theme; extra == "dev"
+Requires-Dist: toml; extra == "dev"
+Requires-Dist: sphinxcontrib-autoprogram; extra == "dev"
+Requires-Dist: docs-helper; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: azure-identity; extra == "dev"
+Requires-Dist: azure-keyvault-secrets; extra == "dev"
+Provides-Extra: dev
+Description-Content-Type: text/markdown
+
+# ODH CORE
+
+Core helper py lib for working with ODH
+
+# Changelog
+
+see docs/changelog.rst
+
+# Todo
+
+- add logging with docs about uvicorn
+- get secrets from azure key valut
