@@ -1,0 +1,72 @@
+// GAZEFILTERS Filters used to update the PUPIL LABS data 
+
+{
+
+
+
+	// UNUSED!! Mappers arent DECLARED !
+	"Mappers" :[   	{ "Enabled" : true, "name" : "TrackerId",   	 "output" : [ "TrackerId" ]  },				
+				   	{ "Enabled" : true, "name" : "EyeXYbyNoseTip",   "output" : [ "finalX_NoseTip",   "finalY_NoseTip"   ]  },
+					{ "Enabled" : true, "name" : "EyeXYbyEyeRegion", "output" : [ "finalX_EyeRegion", "finalY_EyeRegion" ]  },
+					{ "Enabled" : true, "name" : "EyeXYbyEyeCorner", "output" : [ "finalX_EyeCorner", "finalY_EyeCorner" ]  }    ],
+
+
+	"filters" : [  	// Target sample-rate  
+
+  					{ "Enabled" : true, "input": "record_timestamp", "function" : "dwnsample", "target_samplerate" : 30  },
+
+  					// Information
+
+					{ "Enabled" : true, "input": "x_nom",  		"output": "updated_x_nom",    "function" : "passthrough" }, 
+					{ "Enabled" : true, "input": "y_nom",  		"output": "updated_y_nom",    "function" : "passthrough" },
+
+
+					// remove blinking areas 
+
+					{ "Enabled" : false,   "input": [ "updated_x_nom", "updated_y_nom" ], "output": "isBlinking",  "function" : "deblinker2", "threshold" : 0.001 },
+					{ "Enabled" : false,  "input": [ "updated_X_EyeRegion", "isBlinking" ],  "output": "updated_X_EyeRegion",  "function" : "applymask" },
+					{ "Enabled" : false,  "input": [ "updated_Y_EyeRegion", "isBlinking" ],  "output": "updated_Y_EyeRegion",  "function" : "applymask" },
+ 					
+			
+					// Median filter (Noise Removal)
+
+					{ "Enabled" : true, "input": [ "updated_x_nom" ],  "output" : "updated_x_nom",   "function" : "medianFilter",  "npoint" : 5  },
+					{ "Enabled" : true, "input": [ "updated_y_nom" ],  "output" : "updated_y_nom",   "function" : "medianFilter",  "npoint" : 5  },
+
+					// Shift signal
+
+					{ "Enabled" : false, "input": [ "updated_X_EyeRegion" ],  "output" : "updated_X_EyeRegion",   		"function" : "shiftSignal"  },
+					{ "Enabled" : false, "input": [ "updated_Y_EyeRegion" ],  "output" : "updated_Y_EyeRegion",   		"function" : "shiftSignal"  },
+					
+                    // Gradient
+				
+					{ "Enabled" : true, "input": [ "record_timestamp", "updated_x_nom" ],  "output": "updated_dXdt_nom",  "function" : "gradient" },
+					{ "Enabled" : true, "input": [ "record_timestamp", "updated_y_nom" ],  "output": "updated_dYdt_nom",  "function" : "gradient" },
+
+					// Replace nan by column value
+
+					{ "Enabled" : true, "input": [ "updated_x_nom" ],  "output" : "updated_x_nom",   "function" : "replaceNanBy",  "pointer" : "confidence<=0"  },
+					{ "Enabled" : true, "input": [ "updated_y_nom" ],  "output" : "updated_y_nom",   "function" : "replaceNanBy",  "pointer" : "confidence<=0"  }],
+
+
+	// Graph-It! 
+
+	"Graph"   : {  	"default_profile" 	: "updated_by_nosetip",
+					"time_interval"     : 10,
+					"Profiles" 			: [ { "name" : "raw",  					"overlay" : false, "id": "Id", "t" : "currentTime", "x" : "finalX_NoseTip",		"y" : "finalY_NoseTip",				"dxdt" : "finaldXdt_NoseTip", 	  "scale_factor" : 0.040, "is_tracking" : "isTracked", "is_blinking" : "isBlinking", "filename" : "results.csv" },
+											{ "name" : "default",  				"overlay" : false, "id": "Id", "t" : "currentTime", "x" : "updated_X_NoseTip",	"y" : "updated_Y_NoseTip",			"dxdt" : "updated_dXdt_NoseTip",  "scale_factor" : 0.040, "is_tracking" : "isTracked", "is_blinking" : "isBlinking", "filename" : "results.updated.csv" },											
+											{ "name" : "baseline",  			"overlay" : false, "id": "Id", "t" : "currentTime", "x" : "updated_X_BaseLine",	"y" : "updated_Y_BaseLine",			"dxdt" : "updated_dXdt_BaseLine", "scale_factor" : 0.040, "is_tracking" : "isTracked", "is_blinking" : "isBlinking", "filename" : "results.updated.csv" },																						
+                                            { "name" : "updated_by_eyecorner", 	"overlay" : false, "id": "Id", "t" : "currentTime", "x" : "updated_X_EyeCorner",	"y" : "updated_Y_EyeCorner",	"dxdt" : "updated_dXdt_EyeCorner", "scale_factor" : 0.040, "is_tracking" : "isTracked", "is_blinking" : "isBlinking", "filename" : "results.updated.csv" },
+											{ "name" : "updated_by_eyeregion",  "title": "x-component (w.r.t. eye region)", "source" : "updated",    		"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "updated_X_EyeRegion", 	"v": "updated_dXdt_EyeRegion", 	"scale_factor" : 10 },  
+											{ "name" : "updated_by_nosetip",    "title": "x-component (w.r.t. nose tip)",   "source" : "updated",    		"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "updated_X_NoseTip",   	"v": "updated_dXdt_NoseTip", 	"scale_factor" : 10 },
+											{ "name" : "updated_by_eyecorner",  "title": "x-component (w.r.t. eye corner)", "source" : "updated",    		"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "updated_X_EyeCorner",  "v": "updated_dXdt_EyeCorner", 	"scale_factor" : 10 },												
+											{ "name" : "updated_velocity",     	"title": "Velocity",   						"source" : "updated",    		"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "updated_dXdt_EyeRegion", "scale_factor" : 10  }, 
+											{ "name" : "original_eyecorner",	"title": "Displacement",   					"source" : "original",   		"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "finalX_EyeCorner"  }, 
+											{ "name" : "original_nosetip", 		"title": "Displacement",   					"source" : "original",   		"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "finalX_NoseTip"  }, 											
+											{ "name" : "local_nosetip", 		"title": "Displacement",   					"source" : "local_updated", 	"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "updated_X_NoseTip"  }, 												
+											{ "name" : "local_eyecorner", 		"title": "Displacement",   					"source" : "local_updated", 	"overlay" : false, "id": "Id",   "t" : "currentTime", "x" : "updated_X_EyeCorner"  }, 												
+											{ "name" : "signal_displacement",   "title": "Displacement",  					"source" : "signalfile", 		"overlay" : true,  "id": "id",   "t" : "t", "x" : "x", "scale_factor": 10  },
+											{ "name" : "signal_ka2",   			"title": "Displacement",  					"source" : "signalfile", 		"overlay" : true,  "id": "id",   "t" : "t", "x" : "x", "scale_factor": 4  } ] 
+				}
+
+}
