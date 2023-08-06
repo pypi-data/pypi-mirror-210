@@ -1,0 +1,107 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "CalSciPy"
+version = "0.3.0"
+description = "A collection"
+readme = "README.md"
+requires-python = ">=3.7, <4"
+license = {file = "LICENSE"}
+keywords = ["CalSciPy", "Calcium Imaging"]
+authors = [
+  {name = "Darik A. O'Neil"}
+]
+maintainers = [
+    {name = "Darik A. O'Neil"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "opencv-python",
+    "pillow",
+    "PPVD",
+    "prettytable",
+    "PyQt5",
+    "seaborn",
+    "scikit-learn",
+    "scipy",
+    "tqdm"
+]
+
+[project.urls]
+documentation = "https://calscipy.readthedocs.io/en/latest/?badge=latest"
+repository = "https://github.com/darikoneil/CalSciPy"
+
+
+[project.optional-dependencies]
+
+development = [
+    "build",
+    "coverage[toml]",
+    "coveralls",
+    "flake8",
+    "flake8-annotations",
+    "flake8-bugbear",
+    "flake8-class-attributes-order",
+    "flake8-comprehensions",
+    "flake8-html",
+    "flake8-unused-arguments",
+    "pytest",
+    "pytest-datafiles==2.0.1",
+    "pytest-lazy-fixture",
+    "pytest-sugar",
+    "pytest-clarity",
+    "toml",
+    "tomli",
+    "twine"
+]
+
+gpu = [
+    "cupy"
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+    "-s",
+    "--color=yes",
+    "-vv",
+    "--diff-width=120",
+    "--disable-warnings"
+]
+testpaths = "tests"
+console_output_style = "progress"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+]
+
+[tool.coverage.run]
+branch = true
+command_line = "-m pytest"
+omit = ["*/tests*", "*tests*", "*tests/*", "tests*", "tests/*", "tests", "scratch", "htmlcov", "flake_report", "docs",
+"dist", "lib", ".pytest_cache", ".idea", ".github"]
+dynamic_context = "test_function"
+
+
+[tool.coverage.report]
+fail_under = 10
+
+[tool.coverage.json]
+pretty_print = true
+
+[tool.coverage.html]
+show_contexts = true
