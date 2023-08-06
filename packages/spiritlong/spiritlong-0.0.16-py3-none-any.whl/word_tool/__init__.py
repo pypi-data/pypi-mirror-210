@@ -1,0 +1,1 @@
+from word_tool.word_tool import *
