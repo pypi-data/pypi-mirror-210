@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: careless
+Version: 0.3.0
+Summary: Merging crystallography data without much physics.
+Home-page: https://github.com/rs-station/careless
+Author: Kevin M. Dalton
+Author-email: kmdalton@fas.harvard.edu
+License: MIT
+Project-URL: Bug Tracker, https://github.com/rs-station/careless/issues
+Project-URL: Source Code, https://github.com/rs-station/careless
+Requires-Python: >=3.8,<3.12
+License-File: LICENSE
+Requires-Dist: reciprocalspaceship (>=0.9.16)
+Requires-Dist: tqdm
+Requires-Dist: tensorflow (>=2.8)
+Requires-Dist: tensorflow-probability
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+
+
+``careless`` is a command line utility for merging 
+data from x-ray crystallography experiments. It 
+can be used to simultaneously scale and merge integrated
+reflection intensities from conventional, laue, 
+and free-electron laser experiments. It uses approximate 
+Bayesian inference and deep learning to estimate
+merged structure factor amplitudes under a Wilson prior.
