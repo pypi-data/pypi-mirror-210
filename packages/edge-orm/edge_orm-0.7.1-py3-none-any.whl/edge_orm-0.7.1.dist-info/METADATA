@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: edge-orm
+Version: 0.7.1
+Summary: 
+Author: Jeremy Berman
+Author-email: jerber@sas.upenn.edu
+Requires-Python: >=3.11,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: docs
+Requires-Dist: black
+Requires-Dist: devtools
+Requires-Dist: edgedb (>=1.2.0,<2.0.0)
+Requires-Dist: mkdocs-material (>=8.5.7,<9.0.0) ; extra == "docs"
+Requires-Dist: orjson (>=3.8.0,<4.0.0)
+Requires-Dist: pydantic[email] (>=1.10,<2.0)
+Description-Content-Type: text/markdown
+
+# edge orm
