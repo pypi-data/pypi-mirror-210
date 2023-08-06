@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "pronoundb"
+version = "2.0.0"
+description = "API wrapper for the pronoundb.org API."
+license = "MIT"
+authors = ["SteffoSpieler <steffo@steffospieler.de>"]
+maintainers = ["SteffoSpieler <steffo@steffospieler.de>"]
+readme = "README.md"
+repository = "https://gitlab.com/SteffoSpieler/pronoundb-library"
+keywords = ["pronouns", "pronoundb", "api"]
+packages = [{include = "pronoundb"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiohttp = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2"
+pytest-runner = "^6.0"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
