@@ -1,0 +1,39 @@
+[project]
+name = "llmo"
+version = "0.4.0"
+description = "AI pair programmer"
+authors = [
+    { name = "Stephan Fitzpatrick", email = "stephan@knowsuchagency.com" },
+]
+dependencies = [
+    "textual>=0.26.0",
+    "openai>=0.27.6",
+    "tenacity>=8.2.2",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+
+[project.license]
+text = "Apache-2.0"
+
+[project.urls]
+Source = "https://github.com/knowsuchagency/llmo"
+
+[project.scripts]
+llmo = "llmo.cli:main"
+lm = "llmo.cli:main"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.pdm.scripts]
+debug = "textual console -x EVENT -x WORKER -x DEBUG -x SYSTEM"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "textual[dev]>=0.26.0",
+    "pytest>=7.3.1",
+]
