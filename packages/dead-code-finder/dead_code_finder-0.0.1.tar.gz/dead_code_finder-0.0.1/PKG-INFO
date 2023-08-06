@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: dead-code-finder
+Version: 0.0.1
+Summary: Find and remove dead code.
+Author-email: Albertas Gimbutas <albertasgim@gmail.com>
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+`dead-code-finder` is a package for finding and removing dead code.
+
+
+# Development
+To run tests run:
+- `make env` - to setup virtual environment and install development dependencies to it.
+- `make check` - to run tests using virtual environment.

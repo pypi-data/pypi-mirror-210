@@ -1,0 +1,55 @@
+[project]
+name = "dead-code-finder"
+version = "0.0.1"
+authors = [
+    {name = "Albertas Gimbutas", email = "albertasgim@gmail.com"},
+]
+description = "Find and remove dead code."
+readme = "README.md"
+requires-python = ">= 3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+]
+
+[project.scripts]
+autogit = "dead_code_finder.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.publish.index]
+disable = true
+
+[tool.mypy]
+exclude = ["build", "dist", "venv"]
+python_version = "3.8"
+pretty = true
+color_output = true
+show_error_codes = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+# https://github.com/PyCQA/flake8/issues/234
+# [tool.flake8]
+# inline-quotes = "double"
+# exclude = ["venv"]
+# max-line-length = 120
+# max-complexity = 10
+# max-function-length= 120
+# import-order-style = "google"
+# ignore = "I101,"
