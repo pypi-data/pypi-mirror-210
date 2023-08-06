@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: talk-codebase
+Version: 0.1.0
+Summary: talk-codebase is a powerful tool for querying and analyzing codebases.
+Keywords: chatgpt,openai,cli
+Author: Saryev Rustam
+Author-email: rustam1997@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: faiss-cpu (>=1.7.4,<2.0.0)
+Requires-Dist: fire (>=0.5.0,<0.6.0)
+Requires-Dist: langchain (>=0.0.180,<0.0.181)
+Requires-Dist: openai (>=0.27.7,<0.28.0)
+Requires-Dist: tiktoken (>=0.4.0,<0.5.0)
+Description-Content-Type: text/markdown
+
+# talk-codebase is a powerful tool for querying and analyzing codebases
+
+## Description
+
+In the chat, you can ask questions about the codebase. AI will answer your questions, and if necessary, it will offer code improvements. This is very convenient when you want to quickly find something in the codebase, but don't want to waste time searching. It is also convenient when you want to improve a specific function, you can ask "How can I improve the function {function name}?" and AI will suggest improvements. Codebase is analyzed using openai.
+
+## Installation
+
+```bash
+pip install talk-codebase
+```
+
+## Usage
+
+talk-codebase works only with files of popular programming languages and additionally with .txt files. All other files will be ignored.
+```bash
+# Start chatting with your codebase
+talk-codebase chat <directory>
+
+# Configure
+talk-codebase configure
+
+# Help
+talk-codebase --help
+```
+
