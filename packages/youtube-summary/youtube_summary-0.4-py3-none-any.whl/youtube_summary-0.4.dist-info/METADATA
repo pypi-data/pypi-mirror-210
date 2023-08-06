@@ -1,0 +1,125 @@
+Metadata-Version: 2.1
+Name: youtube-summary
+Version: 0.4
+Home-page: https://github.com/mmaorc/youtube-summary-cli
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: aiohttp (==3.8.4)
+Requires-Dist: aiosignal (==1.3.1)
+Requires-Dist: async-timeout (==4.0.2)
+Requires-Dist: attrs (==23.1.0)
+Requires-Dist: azure-core (==1.26.4)
+Requires-Dist: bleach (==6.0.0)
+Requires-Dist: Brotli (==1.0.9)
+Requires-Dist: certifi (==2023.5.7)
+Requires-Dist: charset-normalizer (==3.1.0)
+Requires-Dist: click (==8.1.3)
+Requires-Dist: dataclasses-json (==0.5.7)
+Requires-Dist: docutils (==0.20.1)
+Requires-Dist: frozenlist (==1.3.3)
+Requires-Dist: idna (==3.4)
+Requires-Dist: importlib-metadata (==6.6.0)
+Requires-Dist: jaraco.classes (==3.2.3)
+Requires-Dist: keyring (==23.13.1)
+Requires-Dist: langchain (==0.0.175)
+Requires-Dist: markdown-it-py (==2.2.0)
+Requires-Dist: marshmallow (==3.19.0)
+Requires-Dist: marshmallow-enum (==1.5.1)
+Requires-Dist: mdurl (==0.1.2)
+Requires-Dist: more-itertools (==9.1.0)
+Requires-Dist: multidict (==6.0.4)
+Requires-Dist: mutagen (==1.46.0)
+Requires-Dist: mypy (==1.3.0)
+Requires-Dist: mypy-extensions (==1.0.0)
+Requires-Dist: numexpr (==2.8.4)
+Requires-Dist: numpy (==1.24.3)
+Requires-Dist: openai (==0.27.7)
+Requires-Dist: openapi-schema-pydantic (==1.2.4)
+Requires-Dist: packaging (==23.1)
+Requires-Dist: pkginfo (==1.9.6)
+Requires-Dist: pycryptodomex (==3.18.0)
+Requires-Dist: pydantic (==1.10.7)
+Requires-Dist: Pygments (==2.15.1)
+Requires-Dist: PyYAML (==6.0)
+Requires-Dist: readme-renderer (==37.3)
+Requires-Dist: regex (==2023.5.5)
+Requires-Dist: requests (==2.30.0)
+Requires-Dist: requests-toolbelt (==1.0.0)
+Requires-Dist: rfc3986 (==2.0.0)
+Requires-Dist: rich (==13.3.5)
+Requires-Dist: six (==1.16.0)
+Requires-Dist: SQLAlchemy (==2.0.15)
+Requires-Dist: tenacity (==8.2.2)
+Requires-Dist: tiktoken (==0.4.0)
+Requires-Dist: tqdm (==4.65.0)
+Requires-Dist: twine (==4.0.2)
+Requires-Dist: typer (==0.9.0)
+Requires-Dist: typing-inspect (==0.8.0)
+Requires-Dist: typing-extensions (==4.5.0)
+Requires-Dist: urllib3 (==2.0.2)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: websockets (==11.0.3)
+Requires-Dist: yarl (==1.9.2)
+Requires-Dist: youtube-transcript-api (==0.6.0)
+Requires-Dist: yt-dlp (==2023.3.4)
+Requires-Dist: zipp (==3.15.0)
+
+# YouTube Summary CLI
+
+A simple CLI tool that summarizes YouTube videos.
+
+![Screenshot](./docs/screenshot.png)
+
+The timestamps are also clickable, try them 🙂
+
+## Installation
+
+### Install from PyPi
+You can install the application using `pip` or `pipx`:
+```bash
+pip install --user youtube-summary
+```
+or
+```bash
+pipx install youtube-summary
+```
+
+### Compile from source
+
+You can compile directly from source:
+```bash
+git clone https://github.com/mmaorc/youtube-summary-cli
+cd youtube-summary-cli
+python setup.py install --user
+```
+
+
+### Development
+For development purposes, clone the repository, navigate to the project directory, and install in a virtual environment:
+
+```bash
+git clone https://github.com/mmaorc/youtube-summary-cli
+cd youtube-summary-cli
+python -m venv .env
+source .env/bin/activate  # On Windows use `.env\Scripts\activate`
+pip install --editable .
+```
+
+
+## Usage
+
+Prior to running the script, ensure that the `OPENAI_API_KEY` environment variable is set up correctly.
+
+To summarize the transcript of a YouTube video, run the `app.py` script with the video URL as an argument:
+
+```bash
+youtube-summary "https://www.youtube.com/watch?v=your_video_id"
+```
+
+Replace `your_video_id` with the actual video ID.
+
+Note that generating a summary might take a couple of minutes, depending on the video's transcript length.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
