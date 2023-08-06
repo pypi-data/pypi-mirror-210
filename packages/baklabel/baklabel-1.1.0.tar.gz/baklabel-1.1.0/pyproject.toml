@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "baklabel"
+version               = '1.1.0'
+authors = [
+  { name="Mike Dewhirst", email="miked@dewhirst.com.au" },
+]
+description = "Baklabel delivers a daily label fragment for grandfathered backups"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://svn.climate.com.au/repos/pysrc/foss/baklabel"
