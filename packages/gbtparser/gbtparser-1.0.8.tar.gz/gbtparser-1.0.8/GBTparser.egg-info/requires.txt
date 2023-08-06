@@ -1,0 +1,16 @@
+bitstruct>=8.16.1
+python-can>=3.3.4
+textparser>=0.21.1
+diskcache
+argparse_addons
+typing_extensions>=3.10.0.0
+crccheck
+windows-curses
+
+[plot]
+matplotlib
+
+[windows-all]
+
+[windows-all:platform_system == "Windows"]
+windows-curses
