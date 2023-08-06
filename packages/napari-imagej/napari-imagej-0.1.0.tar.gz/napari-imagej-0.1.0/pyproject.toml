@@ -1,0 +1,112 @@
+[build-system]
+requires = [ "setuptools>=61.2" ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "napari-imagej"
+version = "0.1.0"
+description = "ImageJ functionality from napari"
+readme = "README.md"
+license = {text = "BSD-2-Clause"}
+authors = [{name = "ImageJ2 developers", email = "ctrueden@wisc.edu"}]
+keywords = ["java", "imagej", "imagej2", "fiji", "napari"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Framework :: napari",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "License :: OSI Approved :: BSD License",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Software Development :: Libraries :: Java Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# NB: Keep this in sync with environment.yml AND dev-environment.yml!
+# Breaking change in 3.11.1 breaks napari - see
+# https://github.com/napari/napari/issues/5705 for the fix
+requires-python = ">=3.8, <=3.11.0"
+dependencies = [
+    "confuse",
+    "imglyb >= 2.1.0",
+    "jpype1 >= 1.4.1",
+    "labeling >= 0.1.12",
+    "magicgui >= 0.5.1",
+    "napari >= 0.4.17",
+    "numpy",
+    "pandas",
+    "pyimagej >= 1.4.1",
+    "scyjava >= 1.8.1",
+    # Version rules to avoid problems
+    "qtconsole != 5.4.2", # https://github.com/napari/napari/issues/5700
+    "typing_extensions != 4.6.0", # https://github.com/pydantic/pydantic/issues/5821
+]
+
+[project.optional-dependencies]
+# NB: Keep this in sync with dev-environment.yml!
+# Development tools
+dev = [
+    "autopep8",
+    "black >= 23.1.0",
+    "build",
+    "flake8",
+    "flake8-pyproject",
+    "flake8-typing-imports",
+    "isort",
+    "myst-parser",
+    "pre-commit",
+    "pyqt5",
+    "pytest",
+    "pytest-cov",
+    "pytest-env",
+    "pytest-qt",
+    "sphinx",
+    "sphinx-copybutton",
+    "sphinx-rtd-theme",
+    "qtpy",
+    "validate-pyproject[all]",
+]
+
+[project.urls]
+homepage = "https://github.com/imagej/napari-imagej"
+documentation = "https://github.com/imagej/napari-imagej#README.md"
+source = "https://github.com/imagej/napari-imagej"
+download = "https://pypi.org/project/napari-imagej/"
+tracker = "https://github.com/imagej/napari-imagej/issues"
+
+[project.entry-points."napari.manifest"]
+napari-imagej = "napari_imagej:napari.yml"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Thanks to Flake8-pyproject, we can configure flake8 here!
+[tool.flake8]
+exclude = ["bin", "build", "docs", "dist"]
+extend-ignore = ["E203"]
+# See https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html#flake8
+max-line-length = 88
+min_python_version = "3.8"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = "-s -p no:faulthandler"
+env = [
+    "NAPARI_IMAGEJ_TESTING=yes",
+    "NAPARI_IMAGEJ_JVM_COMMAND_LINE_ARGUMENTS=-Dfoo=bar",
+]

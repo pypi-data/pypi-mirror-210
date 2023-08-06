@@ -1,0 +1,18 @@
+name: napari-imagej
+display_name: napari-imagej
+contributions:
+  commands:
+    - id: napari-imagej.func
+      python_name: napari_imagej.widgets.napari_imagej:NapariImageJWidget
+      title: Run ImageJ2 commands
+    - id: napari-imagej.get_trackmate_reader
+      python_name: napari_imagej.readers.trackMate_reader:napari_get_reader
+      title: Open TrackMate XML
+  widgets:
+    - command: napari-imagej.func
+      display_name: ImageJ2
+  readers:
+    - command: napari-imagej.get_trackmate_reader
+      filename_patterns:
+      - '*.xml'
+      accepts_directories: false
