@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+    tags:
+    - '*'
+  pull_request:
+
+jobs:
+  initial_checks:
+    # Mandatory checks before CI tests
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      coverage: false
+      envs: |
+        # Code style
+        - linux: codestyle
+
+  tests:
+    needs: initial_checks
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      coverage: codecov
+      libraries: |
+        apt:
+          - libhdf5-dev
+
+      envs: |
+        - linux: py38-test
+        - linux: py39-test
+        - linux: py310-test
+        - linux: py311-test
+
+        - macos: py38-test
+        - macos: py39-test
+        # One of these to be switched to arm64 running natively once the PLAT var is supported.
+        - macos: py311-test
+
+        - windows: py38-test
+        - windows: py39-test
+        - windows: py310-test
+
+  no_coverage:
+    needs: initial_checks
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      coverage: false
+      pytest: false
+
+      envs: |
+        - windows: py39-notebooks
+        - macos: py38-notebooks
+        - linux: py310-notebooks
+
+        - linux: py311-docs
+        - macos: py39-docs
+        - windows: py38-docs
+
+  publish:
+    needs: tests
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/publish_pure_python.yml@v1
+    with:
+      libraries: libhdf5-dev
+      test_extras: test
+      test_command: pytest --pyargs glue_jupyter
+    secrets:
+      pypi_token: ${{ secrets.pypi_token }}
