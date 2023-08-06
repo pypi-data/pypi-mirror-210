@@ -1,0 +1,90 @@
+Metadata-Version: 2.1
+Name: claudia
+Version: 0.0.10
+Summary: Run XRPL Automated Tests
+Home-page: https://xrpl.org/
+Download-URL: https://gitlab.ops.ripple.com/xrpledger/xrpl-nocode-automation
+Author: Kausty Saxena
+Author-email: ksaxena@ripple.com
+Keywords: ripple xrpl python javascript
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Claudia
+Claudia is a helper utility that allows users to run automated XRPL tests on different networks. It also allows building rippled and launching local running networks.
+
+---
+
+## General prerequisites
+Please have the following installed on your machine before proceeding further:
+- [Python3](https://www.python.org/downloads/)
+  - Run ```python3 --version``` to check if Python3 is already installed. 
+  - If Python3 is not installed, follow the next steps.
+    - MacOS:
+        - ```brew update && brew upgrade```
+        - ```brew install python3```
+    - Linux:
+      - ```sudo apt-get update```
+      - ```sudo apt-get install python3.6```
+  - Verify installation by running: ```python3 --version```
+- [pip](https://pip.pypa.io/en/stable/installation/)
+  - Run ```pip --version``` to check if Python3 is already installed. 
+  - If pip is not installed, follow the next steps:
+    - MacOS: 
+      - ```brew install python```
+    - Linux:
+      - ```sudo apt update```
+      - ```sudo apt install python3-pip```
+- [docker](https://docs.docker.com/engine/install/)
+  - Run ```docker --version``` to check if docker is already installed.
+  - If docker is not installed, follow the next steps:
+    - MacOS:
+      - Download and then run the [Docker Desktop installer](https://docs.docker.com/desktop/install/mac-install/).
+    - Linux:
+      - Download and then run the [Docker Desktop installer](https://docs.docker.com/desktop/install/linux-install/).
+-  Following is only required if you intend to run Javascript tests.
+   - [node](https://nodejs.org/en/download)
+     -  Run ```node --version``` to check if node is already installed.
+     -  If node is not installed, follow the next steps:
+        - MacOS:
+          - ```brew install node```
+        - Linux: 
+          - ```curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs```
+   - [npm](https://www.npmjs.com/package/download)
+     - Run ```npm -v``` to check if npm ia already installed. 
+     - If npm in not installed, follow the next steps:
+       - MacOS:
+         - ```brew install npm```
+       - Linux:
+         - ```sudo apt install npm```
+- Pull down a fresh copy of [rippled code base](https://github.com/XRPLF/rippled).
+
+---
+
+## Installation
+
+Install claudia from [PyPi](https://pypi.org/project/claudia/), using the following command:
+
+        pip install claudia
+
+---
+<!-- 
+## Build Rippled
+    More information coming soon...
+---
+
+## Launch Local Network
+    More information coming soon...
+---
+
+## Run tests
+This section contains instructions for running the tests. Please follow the instructions mentioned below:
+
+ - [Install claudia](#installation)
+ - From your terminal, run: `claudia`
+   - Use `--help` option with the CLI to view supported options.
+   - Example Usage:
+     - `claudia build`: Builds rippled locally.
+     - `claudia network`: Launches local network using Rippled. Needs access to built rippled.
+     - `claudia run python`: Runs Python tests on local network. Use `--help` to view other supported options. 
+     - `claudia run javascript`: Runs Javascript tests on local network. Use `--help` to view other supported options.  -->
