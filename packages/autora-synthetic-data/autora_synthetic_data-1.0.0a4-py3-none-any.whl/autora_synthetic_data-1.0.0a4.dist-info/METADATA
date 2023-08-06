@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: autora-synthetic-data
+Version: 1.0.0a4
+Summary: AutoRA Synthetic Data
+License: MIT License
+Project-URL: homepage, http://www.empiricalresearch.ai
+Project-URL: repository, https://github.com/AutoResearch/autora-theorist-template
+Project-URL: documentation, https://autoresearch.github.io/autora/
+Description-Content-Type: text/markdown
+Requires-Dist: autora-core
+Provides-Extra: dev
+Requires-Dist: autora-synthetic-data[test] ; extra == 'dev'
+Requires-Dist: autora-core[dev] ; extra == 'dev'
+Requires-Dist: autora-workflow ; extra == 'dev'
+Requires-Dist: scikit-learn ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: hypothesis ; extra == 'test'
+
+# Synthetic Data
+
+Synthetic experiment data for testing AutoRA theorists and experimentalists. 
+
+## Quickstart Guide
+
+You will need:
+
+- `python` 3.8 or greater: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+Install the synthetic data package:
+
+```shell
+pip install -U "autora[synthetic-data]" --pre
+```
+
+!!! success
+    It is recommended to use a `python` environment manager like `virtualenv`.
+
+Check your installation by running:
+```shell
+python -c "from autora.synthetic import retrieve, describe; describe(retrieve('weber_fechner'))"
+```
