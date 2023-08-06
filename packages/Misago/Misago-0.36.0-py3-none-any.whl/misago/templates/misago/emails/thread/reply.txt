@@ -1,0 +1,15 @@
+{% extends "misago/emails/base.txt" %}
+{% load i18n misago_absoluteurl %}
+
+
+{% block content %}
+{% blocktrans trimmed with sender=sender thread=thread %}
+{{ sender }} has posted a new reply to the "{{ thread }}" thread that you are watching.
+{% endblocktrans %}
+
+{% trans "You can read this reply by clicking on the following link:" %}
+{% absoluteurl post.get_absolute_url %}
+
+{% trans "To stop receiving e-mails with new reply notifications for this thread, click here:" %}
+{% absoluteurl watched_thread.get_disable_emails_url %}
+{% endblock content %}
