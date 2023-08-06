@@ -1,0 +1,260 @@
+Metadata-Version: 2.1
+Name: triton-model-navigator
+Version: 0.5.5
+Summary: Triton Model Navigator provides tools supporting to create Deep Learning production ready inference models
+License: Apache 2.0
+Project-URL: Documentation, https://triton-inference-server.github.io/model_navigator
+Project-URL: Source, https://github.com/triton-inference-server/model_navigator
+Project-URL: Tracker, https://github.com/triton-inference-server/model_navigator/issues
+Keywords: triton,inference,server,service,nvidia,tensorrt,onnx,tensorflow,pytorch,jax
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Requires-Python: <4,>=3.8
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: coloredlogs (>=15.0.0)
+Requires-Dist: dacite (>=1.6.0)
+Requires-Dist: fire (>=0.4.0)
+Requires-Dist: jsonlines (>=3.1.0)
+Requires-Dist: mpmath (<1.0.0)
+Requires-Dist: numpy (<1.24,~=1.21)
+Requires-Dist: onnx (>=1.8.1)
+Requires-Dist: onnxruntime-gpu (<1.14,~=1.13)
+Requires-Dist: onnx-graphsurgeon (>=0.3.14)
+Requires-Dist: protobuf (<3.21.0,>=3.18.3)
+Requires-Dist: polygraphy (>=0.33.1)
+Requires-Dist: psutil (>=5.7)
+Requires-Dist: py-cpuinfo (>=8.0)
+Requires-Dist: pyyaml (~=6.0)
+Requires-Dist: tabulate (>=0.8)
+Requires-Dist: tensorrt
+Requires-Dist: tritonclient[all]
+Provides-Extra: dev
+Requires-Dist: triton-model-navigator[test] ; extra == 'dev'
+Requires-Dist: triton-model-navigator[doc] ; extra == 'dev'
+Requires-Dist: black (>=22.8) ; extra == 'dev'
+Requires-Dist: build (>=0.8) ; extra == 'dev'
+Requires-Dist: ipython (>=7.16) ; extra == 'dev'
+Requires-Dist: isort (>=5.10) ; extra == 'dev'
+Requires-Dist: pdbpp (>=0.10) ; extra == 'dev'
+Requires-Dist: pip (>=21.1) ; extra == 'dev'
+Requires-Dist: pre-commit (>=2.20.0) ; extra == 'dev'
+Requires-Dist: psutil (~=5.1) ; extra == 'dev'
+Requires-Dist: twine (>=4.0) ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: GitPython (>=3.1.30) ; extra == 'doc'
+Requires-Dist: mike (>=1.1.0) ; extra == 'doc'
+Requires-Dist: mkdocs-htmlproofer-plugin (>=0.8.0) ; extra == 'doc'
+Requires-Dist: mkdocs-material (>=8.5.6) ; extra == 'doc'
+Requires-Dist: mkdocstrings[python] (>=0.19.0) ; extra == 'doc'
+Provides-Extra: jax
+Requires-Dist: tf2onnx (>=1.9.3) ; extra == 'jax'
+Provides-Extra: tensorflow
+Requires-Dist: tf2onnx (>=1.9.3) ; extra == 'tensorflow'
+Provides-Extra: test
+Requires-Dist: GitPython (>=3.1.30) ; extra == 'test'
+Requires-Dist: pytest (>=5.2) ; extra == 'test'
+Requires-Dist: pytest-mock (>=3.8.2) ; extra == 'test'
+Requires-Dist: pytype (!=2021.11.18,!=2022.2.17) ; extra == 'test'
+Requires-Dist: pre-commit (>=2.20.0) ; extra == 'test'
+Requires-Dist: pytest-unordered (~=0.5) ; extra == 'test'
+Requires-Dist: tox (>=3.23.1) ; extra == 'test'
+Requires-Dist: tqdm (>=4.64.1) ; extra == 'test'
+
+..
+    Copyright (c) 2021-2023, NVIDIA CORPORATION. All rights reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+Triton Model Navigator
+========================
+
+Model conversion plays a crucial role in unlocking the maximum performance capabilities of the underlying hardware.
+By applying these transformation techniques, models can be optimized to fully utilize the specific features and optimizations offered by the hardware architecture.
+Furthermore, conversions allow for serialization of models, separating them from the source code.
+This serialization process enhances portability, allowing the models to be seamlessly deployed in production environments.
+The decoupling of models from the source code also facilitates maintenance, updates, and collaboration among developers.
+
+However, this process comprises multiple steps and offers various potential paths,
+making manual execution complicated and time-consuming. The `Triton Model Navigator`_ offers a user-friendly and automatic solution for converting,
+optimizing and deploying machine learning models. It offers a single entry point for various supported frameworks,
+allowing users to start the process of searching for the best deployment option with a single call to the dedicated `optimize` function.
+Model Navigator handles model export, conversion, correctness testing, and performance profiling, saving all generated artifacts.
+
+Throughout the optimize process, the Model Navigator considers multiple factors, including different precisions,
+runtimes, and data shapes. This careful consideration allows for the adjustment of the model's configuration to achieve improved performance,
+effectively minimizing the costs associated with serving the model.
+
+Converted models can be easily deployed on the `PyTriton`_ or `Triton Inference Server`_ .
+
+
+The Model Navigator generates multiple optimized and production-ready models.
+The table below illustrates the model formats that can be obtained by using the Model Navigator with various frameworks.
+
+**Table:** Supported conversion target formats per each supported Python framework or file.
+
++--------------------+--------------------+--------------------+----------+
+| PyTorch            | TensorFlow 2       | JAX                | ONNX     |
++====================+====================+====================+==========+
+| Torch 2 Compile    | SavedModel         | SavedModel         | TensorRT |
+| TorchScript Trace  | TensorFlowTensorRT | TensorFlowTensorRT |          |
+| TorchScript Script | ONNX               | ONNX               |          |
+| TorchTensorRT      | TensorRT           | TensorRT           |          |
+| ONNX               |                    |                    |          |
+| TensorRT           |                    |                    |          |
++--------------------+--------------------+--------------------+----------+
+
+**Note:** The Model Navigator has the capability to support any Python function as input.
+However, in this particular case, its role is limited to profiling the function without generating any serialized models.
+
+The Model Navigator stores all artifacts within the `navigator_workspace`.
+Additionally, it provides the option to save a portable and transferable `Navigator Package` that includes only the models with minimal latency and maximal throughput.
+This package also includes base formats that can be used to regenerate the `TensorRT` plan on the target hardware.
+
+**Table:** Model formats that can be generated from saved `Navigator Package` and from model sources.
+
++------------------------+-----------------------------+
+|   From model source    |   From Navigator Package    |
++========================+=============================+
+| SavedModel             | TorchTensorRT               |
+| TensorFlowTensorRT     | TensorFlowTensorRT          |
+| TorchScript Trace      | ONNX                        |
+| TorchScript Script     | TensorRT                    |
+| Torch 2 Compile        |                             |
+| TorchTensorRT          |                             |
+| ONNX                   |                             |
+| TensoRT                |                             |
++------------------------+-----------------------------+
+
+Installation
+--------------
+
+The package can be installed using extra index url:
+
+
+.. code-block:: text
+
+    pip install -U --extra-index-url https://pypi.ngc.nvidia.com triton-model-navigator[<extras,>]
+
+
+or with nvidia-pyindex:
+
+.. code-block:: text
+
+    pip install nvidia-pyindex
+    pip install -U triton-model-navigator[<extras,>]
+
+
+Extras:
+
+- `tensorflow` - Model Navigator with dependencies for TensorFlow2
+- `jax` - Model Navigator with dependencies for JAX
+
+For using with PyTorch no extras are needed.
+
+Quick Start
+-------------
+
+Using Model Navigator is as simply as calling `optimize` with `model` and `dataloader`:
+The `optimize` function will save all the artifacts it generates in the `navigator_workspace`.
+
+**Note:** The `dataloader` is utilized to determine the maximum and minimum shapes of the inputs utilized during model conversions.
+The `Model Navigator` employs a single sample from the `dataloader`, which is then repeated to generate synthetic batches for profiling purposes.
+Correctness tests are conducted on a subset of the `dataloader` samples, while verification tests are executed on the entire `dataloader`.
+
+.. code-block:: python
+
+    import logging
+
+    import torch
+    import model_navigator as nav
+
+    nav.torch.optimize(
+        model=torch.hub.load('NVIDIA/DeepLearningExamples:torchhub', 'nvidia_resnet50', pretrained=True).eval(),
+        dataloader=[torch.randn(1, 3, 256, 256) for _ in range(10)],
+    )
+
+The code snippet below demonstrates the usage of the `PyTritonAdapter` to retrieve the `runner` and other necessary information.
+The `runner` serves as an abstraction that connects the model checkpoint with its runtime, making the inference process more accessible and straightforward.
+Following that, it initiates the `PyTriton`_  server using the provided parameters.
+
+.. code-block:: python
+
+    pytriton_adapter = nav.pytriton.PyTritonAdapter(package=package, strategy=nav.MaxThroughputStrategy())
+    runner = pytriton_adapter.runner
+
+    runner.activate()
+
+    @batch
+    def infer_func(**inputs):
+        return runner.infer(inputs)
+
+    with Triton() as triton:
+        triton.bind(
+            model_name="resnet50",
+            infer_func=infer_func,
+            inputs=pytriton_adapter.inputs,
+            outputs=pytriton_adapter.outputs,
+            config=pytriton_adapter.config,
+        )
+        triton.serve()
+
+Alternatively, Model Navigator can generate `model_repository` that can be served on the `Triton Inference Server`_:
+
+
+.. code-block:: python
+
+    nav.triton.model_repository.add_model_from_package(
+        model_repository_path=pathlib.Path("model_repository"),
+        model_name="resnet50",
+        package=package,
+        strategy=nav.MaxThroughputStrategy(),
+    )
+
+
+Examples
+----------
+
+We provide step-by-step examples that demonstrate how to use various features of Model Navigator.
+For the sake of readability and accessibility, we use a simple `torch.nn.Linear` model as an example.
+These examples illustrate how to optimize, test and deploy the model on
+the PyTriton and Triton Inference Server.
+
+https://github.com/triton-inference-server/model_navigator/tree/main/examples.
+
+Links
+-------
+
+* Documentation: https://triton-inference-server.github.io/model_navigator
+* Source: https://github.com/triton-inference-server/model_navigator
+* Issues: https://github.com/triton-inference-server/model_navigator/issues
+* Changelog: https://github.com/triton-inference-server/model_navigator/blob/main/CHANGELOG.md
+* Known Issues: https://github.com/triton-inference-server/model_navigator/blob/main/docs/known_issues.md
+* Contributing: https://github.com/triton-inference-server/model_navigator/blob/main/CONTRIBUTING.md
+
+.. _Triton Model Navigator: https://github.com/triton-inference-server/model_navigator
+.. _Triton Inference Server: https://github.com/triton-inference-server/server
+.. _TensorRT: https://github.com/NVIDIA/TensorRT
+.. _PyTriton: https://github.com/triton-inference-server/pytriton
