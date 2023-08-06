@@ -1,0 +1,22 @@
+GitPython<3.2,>=3.1
+mkdocs<2,>=1.1
+
+[:python_version < "3.9"]
+pytz==2022.*
+
+[:python_version >= "3.9" and sys_platform == "win32"]
+tzdata==2023.*
+
+[dev]
+black
+feedparser<6.1,>=6.0
+flake8<6.1,>=4
+pre-commit<3.3,>=3
+pytest-cov==4.0.*
+validator-collection<1.6,>=1.5
+
+[doc]
+mkdocs-bootswatch<2,>=1
+mkdocs-minify-plugin==0.6.*
+pygments<3,>=2.5
+pymdown-extensions<10,>=7
