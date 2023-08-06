@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: mybar
+Version: 0.6
+Summary: An async status bar with a highly customizable API.
+Home-page: https://github.com/lonelyabsol/mybar
+Author: lonelyabsol
+License: MIT
+Project-URL: GitHub: repo, https://github.com/lonelyabsol/mybar
+Platform: Platform Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Utilities
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: psutil
+
+# mybar
+  A lightweight, highly customizable asynchronous status bar API for terminal and GUI environments. 
+  I use it in tmux and for my i3bar on Linux.
