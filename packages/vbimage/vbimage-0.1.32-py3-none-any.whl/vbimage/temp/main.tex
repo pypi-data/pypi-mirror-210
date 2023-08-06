@@ -1,0 +1,9 @@
+\documentclass[utf-8]{article}
+\usepackage{v-equation}
+\geometry{paperwidth=5.0in, paperheight=5.0in}
+\begin{document}
+\begin{tikzpicture}
+[remember picture,overlay]
+\shade[upper right=green, upper left=red, lower left=blue, lower right=yellow](current page.south west)rectangle(current page.north east);
+\end{tikzpicture}
+\end{document}
