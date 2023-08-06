@@ -1,0 +1,22 @@
+process_course_data:
+  input_file: data/ssg_courses.csv
+  output_file: data/ssg_courses_clean.csv
+  chunk_size: 3000
+  chunked_file_name: ssg_courses
+
+get_embeddings:
+    embedding_model: text-embedding-ada-002
+    embedding_encoding: cl100k_base
+    max_tokens: 8000
+    api_token: 
+    chunked_dir: data/
+
+merge_indices:
+    indexed_file_path: index/ssg_courses_full_indexed.csv
+    indexed_chunk_dir: index/
+
+download:
+  bucket_name: ada-course-search
+  s3_file_name: index/ssg_courses_full_indexed.csv
+  aws_access_key_id: 
+  aws_secret_access_key: 

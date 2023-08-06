@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: ssg-ada-course-search
+Version: 0.0.2
+Summary: SSG course search using OpenAI Ada Gen2 Text Embedding model
+Home-page: https://github.com/LoisTJ/ada-course-search-package
+Author: LoisJi
+Author-email: lois@dsaid.gov.sg
+License: BSD-3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: pandas (~=1.5.3)
+Requires-Dist: openai (~=0.27.4)
+Requires-Dist: PyYAML (~=6.0)
+Requires-Dist: tqdm (~=4.65.0)
+Requires-Dist: boto3 (~=1.26.116)
+Requires-Dist: botocore (~=1.29.116)
+Requires-Dist: numpy (~=1.24.2)
+Requires-Dist: scipy (~=1.10.1)
+Requires-Dist: scikit-learn (~=1.2.2)
+Requires-Dist: plotly (~=5.14.1)
+Requires-Dist: matplotlib (~=3.7.1)
+
+SSG course search using OpenAI Ada Gen2 Text Embedding model
