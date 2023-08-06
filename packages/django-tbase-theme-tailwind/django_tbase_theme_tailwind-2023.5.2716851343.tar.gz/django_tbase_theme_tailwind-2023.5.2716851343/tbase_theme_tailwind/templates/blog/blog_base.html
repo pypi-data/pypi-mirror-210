@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load solo_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %} tailwind配置信息 {% endcomment %}
+  {% block tailwind_config %}
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: '#da373d',
+            }
+          }
+        }
+      }
+    </script>
+  {% endblock %}
+
+
+{% comment %} tailwindcss {% endcomment %}
+ {% block tailwind_css %}
+<style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+h1 {
+    font-size: 1.6em;
+}
+h2 {
+    font-size: 1.4em;
+}
+h3 {
+    font-size: 1.2em;
+}
+
+  </style>
+{% endblock %}
+
+{% comment %} title start {% endcomment %}
+{% block title %}<title>{% get_solo 'tbase_config.General' as site_config %}{{site_config.site_title}}</title>{% endblock %}
+{% comment %} title end {% endcomment %}
+
+{% block script %}
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% comment %} 拓展js {% endcomment %}
+{% block script_expand %}
+
+{% endblock %}
+
+</head>
+
+
+{% block body %}
+{% comment %} 可以使用 "block body_class" block "body_class_expand" 来给body添加class {% endcomment %}
+<body class=" {% block body_class %}bg-white font-family-karla {% block body_class_expand %}{% endblock %}{% endblock %}">
+
+{% block top_toolbar %}
+    {% comment %} top_toolbar start {% endcomment %}
+
+     <nav class="w-full py-2 bg-zinc-800 shadow">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
+
+            <nav>
+                <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="{% url 'home'%}">Home</a></li>
+                    <li><a class="hover:text-gray-200 hover:underline px-4"  rel="nofollow" href="#">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="flex items-center text-lg no-underline text-white pr-6">
+                <a class="" href="#">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a class="pl-6" href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="pl-6" href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="pl-6" href="#">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+
+    </nav>
+    {% comment %} top_toolbar end {% endcomment %}
+{% endblock %}
+
+
+{% block text_header %}
+    <header class="w-full container mx-auto">
+        <div class="flex flex-col items-center py-12">
+
+                     {% block top_name %}
+            <div class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" >
+                {% get_solo 'tbase_config.General' as site_config %}{{site_config.site_title}}
+            </div>  {% endblock %}
+
+            <p class="text-lg text-gray-600 items-center ">
+                             {% block top_description %}
+
+                             {% get_solo 'tbase_config.General' as site_config %}{{site_config.tagline}}
+                             {% endblock %}
+            </p>
+        </div>
+    </header>
+{% endblock %}
+
+{% block text_nav_warp %}
+<nav class="w-full py-2 border-t border-b bg-gray-100" x-data="{ open: false }">
+        <div class="block sm:hidden">
+            <a
+                href="#"
+                class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+                @click="open = !open"
+            >
+                Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+            </a>
+        </div>
+        <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
+            <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
+
+                {% block top_nav %}
+                <!-- <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Technology</a>
+                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Automotive</a>
+                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Finance</a> -->
+
+                        {% endblock %}
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+
+  <div id="main-warp" class="container mx-auto flex flex-wrap py-6">
+    {% comment %} main 主体内容 {% endcomment %}
+{% block main %}
+         <section class="w-full  flex flex-col  px-3">
+      {% comment %} content start {% endcomment %}
+                {% block content %}
+
+                <article class="w-full flex flex-col shadow my-4">
+
+                <div class="bg-white flex flex-col justify-start p-6">
+
+                </div>
+                </article>
+                {% endblock %}
+             {% comment %} content end {% endcomment %}
+      </section>
+
+{% endblock %}
+{% comment %} main 主体结束 {% endcomment %}
+ </div>
+
+ <footer id="footer-warp" class="w-full border-t bg-white pb-12">
+  {% comment %} footer start {% endcomment %}
+        {% block footer %}
+
+        <div class="w-full container mx-auto flex flex-col items-center">
+
+            <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
+                 {% block footer_nav %}
+                <a href="{%url 'about_us' %}" rel="nofollow" class="uppercase px-3">About Us</a>
+                <a href="{%url 'privacy_policy' %}"  rel="nofollow" class="uppercase px-3">Privacy Policy</a>
+                <a href="{%url 'terms_and_conditions' %}"  rel="nofollow" class="uppercase px-3">Terms & Conditions</a>
+                <a href="{%url 'contact_us' %}"  rel="nofollow" class="uppercase px-3">Contact Us</a>
+                 {% endblock %}
+            </div>
+
+
+            <div class="uppercase pb-6">&copy;
+                {% block footer_copyright %}
+                       {% get_solo 'tbase_config.General' as site_config %}{{site_config.copyright}}
+                {% endblock %}</div>
+        </div>
+        {% endblock %}
+        {% comment %} footer end  {% endcomment %}
+
+        {% comment %} footer_script start 添加额外的脚本到尾部 {% endcomment %}
+        {% block footer_script %}
+        {% autoescape off %}
+                  {% get_solo 'tbase_config.General' as site_config %}{{site_config.footer_script}}
+                  {% endautoescape %}
+                  {% endblock %}
+         {% comment %} footer_script end{% endcomment %}
+
+
+    </footer>
+
+
+</body>
+{% endblock %}
+</html>
