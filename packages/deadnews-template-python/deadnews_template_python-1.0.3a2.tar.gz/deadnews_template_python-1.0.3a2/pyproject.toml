@@ -1,0 +1,85 @@
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry]
+name = "deadnews-template-python"
+version = "1.0.3-alpha.2"
+description = "Python Project Template"
+authors = ["DeadNews <aurczpbgr@mozmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/DeadNews/deadnews-template-python"
+repository = "https://github.com/DeadNews/deadnews-template-python"
+keywords = ["python", "template", "layout"]
+classifiers = ["Operating System :: OS Independent"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.ci.dependencies]
+black = "^23.3.0"
+mypy = "^1.2.0"
+poethepoet = "^0.20.0"
+ruff = "^0.0.267"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.0.0"
+
+[tool.poe.tasks]
+ruff = "ruff check ."
+black = "black --check ."
+mypy = "mypy ."
+ci.sequence = ["ruff", "black", "mypy"]
+
+[tool.poetry-dynamic-versioning]
+enable = false
+vcs = "git"
+style = "semver"
+
+[tool.black]
+line-length = 99
+
+[tool.mypy]
+disallow_untyped_defs = true
+follow_imports = "silent"
+ignore_missing_imports = true
+show_column_numbers = true
+show_error_codes = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+allow_untyped_defs = true
+
+[tool.pytest.ini_options]
+addopts = "--verbose --cov=./src"
+testpaths = ["tests"]
+markers = ["docker", "key_required"]
+
+[tool.coverage.report]
+exclude_lines = ["if TYPE_CHECKING:", "if __name__ == .__main__.:"]
+
+[tool.ruff]
+line-length = 99
+select = ["ALL"]
+ignore = [
+  "COM812", # Trailing comma missing
+  "D203",   # 1 blank line required before class docstring
+  "D212",   # Multi-line docstring summary should start at the first line
+  "E501",   # Line too long
+  "EXE001", # Shebang is present but file is not executable
+  "FBT001", # Boolean positional arg in function definition
+  "FBT002", # Boolean default value in function definition
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["ANN", "D", "PLC1901", "PLR2004", "S"]
+
+[tool.ruff.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = false
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
