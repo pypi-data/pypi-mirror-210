@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: ortoolpy
+Version: 0.6.2
+Summary: `ortoolpy` is a package for Operations Research.
+Home-page: https://github.com/SaitoTsutomu/ortoolpy
+License: Apache-2.0
+Author: SaitoTsutomu
+Author-email: tsutomu7@hotmail.co.jp
+Requires-Python: >=3.11,<4.0
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
+Requires-Dist: more-itertools (>=9.1,<10.0)
+Requires-Dist: pandas (>=1.5.3)
+Requires-Dist: pulp (>=2.7,<3.0)
+Description-Content-Type: text/x-rst
+
+`ortoolpy` is a package for Operations Research.
+It is user's responsibility for the use of `ortoolpy`.
+
+::
+
+   from ortoolpy import knapsack
+   size = [21, 11, 15, 9, 34, 25, 41, 52]
+   weight = [22, 12, 16, 10, 35, 26, 42, 53]
+   capacity = 100
+   knapsack(size, weight, capacity)
+
+Show Table
+----------
+
+::
+
+   import ortoolpy.optimization
+   %typical_optimization
+
+Requirements
+------------
+* Python 3, pandas, pulp, more-itertools
+
+Features
+--------
+* This is a sample. So it may not be efficient.
+* `ortools_vrp` using Google OR-Tools ( https://developers.google.com/optimization/ ).
+
+Setup
+-----
+::
+
+   $ pip install ortoolpy
+
+History
+-------
+0.0.1 (2015-6-26)
+~~~~~~~~~~~~~~~~~~
+* first release
+
