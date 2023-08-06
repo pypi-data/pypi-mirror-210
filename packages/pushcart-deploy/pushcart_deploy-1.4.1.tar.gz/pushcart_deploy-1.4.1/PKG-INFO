@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: pushcart-deploy
+Version: 1.4.1
+Summary: Deployment helper for pipeline configurations using Pushcart
+License: GPL-3.0-or-later
+Author: Georgel Preput
+Author-email: georgelpreput@mailbox.org
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Database :: Database Engines/Servers
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: aiofiles (>=23.1.0,<24.0.0)
+Requires-Dist: click (>=8.1.3,<9.0.0)
+Requires-Dist: databricks-cli (>=0.17.4,<0.18.0)
+Requires-Dist: databricks-connect (>=13.0.0,<14.0.0)
+Requires-Dist: pydantic (>=1.10.7,<2.0.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: tomli (>=2.0.1,<3.0.0)
+Requires-Dist: urllib3 (>=1,<2)
+Description-Content-Type: text/markdown
+
+# pushcart-deploy
+
+Deployment helper for pipeline configurations using Pushcart
+
