@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: assemblyline-service-utilities
+Version: 4.0.0.dev0
+Summary: Assemblyline 4 - Service Utilities
+Home-page: https://github.com/CybercentreCanada/assemblyline-service-utilities/
+Author: CCCS Assemblyline development team
+Author-email: assemblyline@cyber.gc.ca
+License: MIT
+Keywords: assemblyline automated malware analysis gc canada cse-cst cse cst cyber cccs
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+License-File: LICENCE.md
+Requires-Dist: assemblyline
+Requires-Dist: assemblyline-v4-service
+Requires-Dist: cart
+Requires-Dist: fuzzywuzzy
+Requires-Dist: pefile
+Requires-Dist: pillow
+Requires-Dist: regex
+
+# assemblyline-service-utilities
+A library containing common methods and classes that are used across Assemblyline services
+
+
