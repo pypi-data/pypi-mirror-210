@@ -1,0 +1,77 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: null
+
+jobs:
+  tests:
+    name: tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        pyver: ["3.8", "3.9", "3.10", "3.11"]
+        npver: ["1.20", "1.21", "1.23"]
+        exclude:
+          - pyver: "3.11"
+            npver: "1.20"
+          - pyver: "3.11"
+            npver: "1.21"
+          - pyver: "3.10"
+            npver: "1.20"
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: cancel previous runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: ${{ matrix.pyver }}
+          channels: conda-forge,defaults
+          channel-priority: strict
+          show-channel-urls: true
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+
+      - name: install conda deps
+        shell: bash -l {0}
+        run: |
+          conda list
+          mamba install numpy=${{ matrix.npver }} nose cython wget make pytest flake8
+          if [ "${{ matrix.pyver }}" == "3.8" ] || [ "${{ matrix.pyver }}" == "3.9" ] || [ "${{ matrix.pyver }}" == "3.10" ]; then
+            mamba install importlib_resources
+          fi
+
+      - name: build external cfitsio
+        shell: bash -l {0}
+        run: |
+          wget https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/cfitsio-3.49.tar.gz
+          tar -xzvf cfitsio-3.49.tar.gz
+          cd cfitsio-3.49
+          ./configure --disable-shared --prefix=$HOME/cfitsio-static-install
+          make install -j 4
+          cd ..
+
+      - name: test bundled build
+        shell: bash -l {0}
+        run: |
+          pip install -e . 
+          SKIP_BZIP_TEST=true pytest -vv fitsio
+
+      - name: test non-bundled build
+        shell: bash -l {0}
+        run: |
+          pip install -e . --global-option="build_ext" --global-option "--use-system-fitsio"
+          SKIP_BZIP_TEST=true pytest -vv fitsio
+
+      - name: flake8
+        shell: bash -l {0}
+        run: |
+          flake8 fitsio
