@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "nssurge-utils"
+version = "0.1.2"
+description = ""
+authors = ["Teddy Xinyuan Chen <45612704+tddschn@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{ include = "nssurge_utils" }]
+license = "MIT"
+homepage = "https://github.com/tddschn/nssurge-utils"
+repository = "https://github.com/tddschn/nssurge-utils"
+classifiers = ["Topic :: Utilities"]
+keywords = ["nssurge", "surge", "utils"]
+[tool.poetry.scripts]
+nssurge-extract-proxy = "nssurge_utils.extract_proxy:main"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/tddschn/nssurge-utils/issues"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+better-exceptions = "^0.3.3"
+ipython = "^8.13.2"
+rich = "^13.3.5"
+pyinstrument = "^4.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
