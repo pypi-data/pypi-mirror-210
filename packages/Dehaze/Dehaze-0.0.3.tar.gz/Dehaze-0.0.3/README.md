@@ -1,0 +1,41 @@
+# Single image Dehazer
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)                 
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)   
+
+
+## Functionality of the Music Player
+
+- Removes Haze and Fog and enhances quality of image.
+
+## Usage
+
+- Make sure you have Python installed in your system.
+- Run Following command in the CMD.
+ ```
+  pip install Dehaze
+  ```
+## Implementation
+
+ ```
+# test.py
+from Dehaze import dhaze
+dhaze("path of image to dehaze")
+# dhaze returns dehazed image
+
+  ```
+
+## Example
+ ```
+import cv2
+from Dehaze import dhaze
+k= dhaze("any.jpg")
+cv2.imshow('Dehazed_image', k)
+cv2.waitKey(0)
+ ```
+
+## Screenshots
+<img src="https://user-images.githubusercontent.com/91942072/240655447-ad053e1e-a646-40e4-af42-e21c93540f0b.jpg">
+<img src="https://user-images.githubusercontent.com/91942072/240655425-8ab6ed7e-cd4a-431a-bba6-cef25a481173.jpg">
+<img src="https://user-images.githubusercontent.com/91942072/240655359-cf2f5724-d91f-4874-a761-459835c15a24.jpg">
+<img src="https://user-images.githubusercontent.com/91942072/240655369-b30aeb4f-c2bc-4ffa-9a8a-3a9b31444130.jpg">
