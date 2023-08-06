@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: peakventures
+Version: 1.1.1
+Summary: PeakVentures Python Utilities for DataBricks
+Author: Volodymyr Smirnov
+Author-email: volodymyr@peakventures.co
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: azure-storage-blob (>=12.16.0,<13.0.0)
+Requires-Dist: boto3 (>=1.26.141,<2.0.0)
+Requires-Dist: tenacity (>=8.2.2,<9.0.0)
