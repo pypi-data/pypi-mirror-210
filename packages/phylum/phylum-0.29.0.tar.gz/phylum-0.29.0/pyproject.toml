@@ -1,0 +1,156 @@
+[build-system]
+# NOTE: Changes to the build system values should be inspected closely!
+# Python 3.11 support was added in `poetry-core` v1.3.2
+requires = ["poetry-core>=1.3.2"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "phylum"
+version = "0.29.0"
+description = "Utilities for integrating Phylum into CI pipelines (and beyond)"
+license = "GPL-3.0-or-later"
+authors = ["Phylum, Inc. <engineering@phylum.io>"]
+homepage = "https://phylum.io/"
+repository = "https://github.com/phylum-dev/phylum-ci"
+documentation = "https://docs.phylum.io/"
+readme = "README.md"
+keywords = ["dependency", "security", "CI", "integration"]
+# Classifiers can be found here: https://pypi.org/classifiers/
+# TODO: Update the "Development Status" as the project/package matures
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Natural Language :: English",
+    "Environment :: Console",
+    "Topic :: Security",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Quality Assurance",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+packages = [
+    { include = "phylum", from = "src" },
+    { include = "tests", format = "sdist" },
+]
+
+[tool.poetry.urls]
+"Issue Tracker" = "https://github.com/phylum-dev/phylum-ci/issues"
+"CI" = "https://github.com/phylum-dev/phylum-ci/actions"
+
+[tool.poetry.scripts]
+phylum-init = "phylum.init.cli:main"
+phylum-ci = "phylum.ci.cli:script_main"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+requests = "*"
+cryptography = "*"
+packaging = "*"
+"ruamel.yaml" = "*"
+pathspec = "*"
+rich = "*"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+tomli = "*"
+tox = "*"
+dulwich = "*"
+
+[tool.poetry.group.ci]
+optional = true
+
+[tool.poetry.group.ci.dependencies]
+tox-gh-actions = "*"
+pytest-github-actions-annotate-failures = "*"
+python-semantic-release = "*"
+rich-codex = "*"
+
+[tool.poetry.group.qa]
+optional = true
+
+[tool.poetry.group.qa.dependencies]
+types-requests = "*"
+pre-commit = "*"
+tox = "*"
+
+[tool.black]
+line-length = 120
+
+[tool.vulture]
+paths = ["src", "tests"]
+# Vulture doesn't understand pytest's fixture machinery
+exclude = ["conftest.py"]
+
+[tool.refurb]
+python_version = "3.8"
+format = "github"
+
+[tool.ruff]
+# Reference: https://beta.ruff.rs/docs/settings
+line-length = 120
+target-version = "py38"
+force-exclude = true
+src = ["src", "tests"]
+select = [
+    # Using `ALL` has the risk that new rules may be enabled when `ruff` is updated but updates are
+    # automated, with a PR that includes enforced QA checks, to weekly dependency and pre-commit hook bumps.
+    "ALL"
+]
+ignore = [
+    # Reference: https://beta.ruff.rs/docs/rules/
+    #
+    # `one-blank-line-before-class` (D203) and `no-blank-line-before-class` (D211) are incompatible. Prefer D211.
+    "D203", # one-blank-line-before-class
+    # `multi-line-summary-first-line` (D212) and `multi-line-summary-second-line` (D213) are incompatible. Prefer D212.
+    "D213", # multi-line-summary-second-line
+    # Cached instance methods are okay in this project b/c instances are short lived and won't lead to memory leaks.
+    "B019", # cached-instance-method
+    # Assigning to a variable before a return statement is more readable and useful for debugging
+    "RET504",   # unnecessary-assign
+    # These ignores will be removed during https://github.com/phylum-dev/phylum-ci/issues/238
+    "ANN",  # flake8-annotations
+    "TCH",  # flake8-type-checking
+    "FA",   # flake8-future-annotations
+]
+
+[tool.ruff.per-file-ignores]
+"test_*.py" = [
+    # It is expected to use `assert` statements in `pytest` test code
+    "S101", # assert
+    # `subprocess` input is controlled in test code
+    "S603", # subprocess-without-shell-equals-true
+]
+
+[tool.ruff.isort]
+force-sort-within-sections = true
+
+[tool.ruff.pydocstyle]
+# Use PEP-257 style docstrings
+convention = "pep257"
+
+[tool.semantic_release]
+# Reference: https://python-semantic-release.readthedocs.io/en/latest/configuration.html
+branch = "main"
+version_toml = "pyproject.toml:tool.poetry.version"
+prerelease_tag = "rc"
+# If set to true, this will create a new patch release even if there are no commits
+# since the last release that would trigger a release.
+patch_without_tag = true
+# TODO: remove this setting or change it to `true` after the project is stable and no longer zeroVer
+major_on_zero = false
+upload_to_repository = true
+upload_to_release = true
+remove_dist = false
+# Setting build_command to false here b/c `poetry build -vvv` will be used prior to a PSR publish command
+build_command = false
+# The `pre_commit_command` option has proven troublesome so these files get updated in the release workflow instead
+include_additional_files = "docs/img/phylum-ci_options.svg,docs/img/phylum-init_options.svg"
+commit_subject = "chore: bump to v{version}"
+commit_author = "phylum-bot <69485888+phylum-bot@users.noreply.github.com>"
