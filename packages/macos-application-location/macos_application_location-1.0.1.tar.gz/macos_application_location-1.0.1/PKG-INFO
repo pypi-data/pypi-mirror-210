@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: macos-application-location
+Version: 1.0.1
+Summary: 
+Home-page: https://github.com/changyuheng/macos-application-location
+License: MPL-2.0
+Author: Johann Chang
+Author-email: mr.changyuheng@gmail.com
+Requires-Python: >=3.5
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: psutil (>=5.9)
+Project-URL: Repository, https://github.com/changyuheng/macos-application-location
+Description-Content-Type: text/markdown
+
+# macos-application-location.py
+
+## Installation
+
+```sh
+pip install macos-application-location
+```
+
+## Usage
+
+```py
+import pathlib
+
+import macos_application_location
+
+
+app_path: pathlib.Path = macos_application_location.get()
+```
+
