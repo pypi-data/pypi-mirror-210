@@ -1,0 +1,39 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "rigatoni"
+authors = [
+    {name = "Alex Racapé"},
+]
+dynamic = ["version", "description"]
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["noodles", "cbor", "Websockets", "server", "NOODLES"]
+license = {text = "MIT"}
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Visualization"
+]
+dependencies = [
+    "websockets",
+    "cbor2",
+    "pydantic"
+]
+
+[project.optional-dependencies]
+geometry = [
+    "numpy",
+    "meshio"
+]
+testing = [
+    "pytest",
+    "penne",
+    "pandas",
+    "matplotlib"
+]
+
+[project.urls]
+Source = "https://github.com/InsightCenterNoodles/Rigatoni"
