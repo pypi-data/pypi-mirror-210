@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fake_session_maker"
+version = "0.0.1"
+authors = [
+    { name = "Dorian Turba", email = "contact.5rgbj@8shield.net" },
+]
+description = "Create a SQLAlchemy session_maker that won't commit to db for testing purposes."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+#    "Programming Language :: Python :: 3.12",
+    "Typing :: Typed",
+]
+dependencies = [
+    "SQLAlchemy >= 2, < 3",
+    "pytest >= 7, < 8",
+]
+
+[project.urls]
+"Homepage" = "https://lab.frogg.it/dorianturba/fake_session_maker"
+"Bug Tracker" = "https://lab.frogg.it/dorianturba/fake_session_maker"
+
+[project.optional-dependencies]
+ALL = ["fake_session_maker[QUALITY]", "fake_session_maker[TEST]"]
+QUALITY = [
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pre-commit",
+]
+TEST = [
+    "pytest",
+    "coverage",
+    "SQLAlchemy >= 1.4, < 3",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-rA -q --strict-markers"
+testpaths = [
+    "tests",
+    "integration",
+]
+markers = [
+    "regression: prevent regression of functionality",
+    "destructive: make sure unwanted behavior raise errors",
+    "property: property based testing",
+]
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+packages = "fake_session_maker"
+python_version = 3.7
+disallow_untyped_defs = true
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    env_list =
+        py{37,38,39,310,311,312}
+        black
+        flake8
+        mypy
+    isolated_build = true
+
+    [testenv]
+    deps = pytest
+    commands = pytest
+
+    [testenv:black]
+    deps = black
+    commands = black --check .
+
+    [testenv:flake8]
+    deps = flake8
+    commands = flake8
+
+    [testenv:mypy]
+    deps = mypy
+    commands = mypy src
+"""
