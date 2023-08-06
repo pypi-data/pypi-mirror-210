@@ -1,0 +1,39 @@
+[console_scripts]
+fluidsim = fluidsim.util.console.__main__:run
+fluidsim-bench = fluidsim.util.console.__main__:run_bench
+fluidsim-bench-analysis = fluidsim.util.console.__main__:run_bench_analysis
+fluidsim-create-xml-description = fluidsim.base.output:run
+fluidsim-ipy-load = fluidsim.util.scripts.ipy_load:start_ipython_load_sim
+fluidsim-modif-resolution = fluidsim.util.scripts.modif_resolution:main
+fluidsim-profile = fluidsim.util.console.__main__:run_profile
+fluidsim-restart = fluidsim.util.scripts.restart:main
+fluidsim-test = fluidsim.util.testing:run
+
+[fluidsim.solvers]
+Base = fluidsim.base.solvers.base
+BasePS = fluidsim.base.solvers.pseudo_spect
+BaseSH = fluidsim.base.sphericalharmo.solver
+ad1d = fluidsim.solvers.ad1d.solver
+ad1d.pseudo_spect = fluidsim.solvers.ad1d.pseudo_spect.solver
+basil = fluidsim.base.basilisk.solver
+burgers1d = fluidsim.solvers.burgers1d.solver
+burgers1d.skew_sym = fluidsim.solvers.burgers1d.skew_sym.solver
+dedalus = fluidsim.base.dedalus.solver
+models0d.lorenz = fluidsim.solvers.models0d.lorenz.solver
+models0d.predaprey = fluidsim.solvers.models0d.predaprey.solver
+nl1d = fluidsim.solvers.nl1d.solver
+ns2d = fluidsim.solvers.ns2d.solver
+ns2d.bouss = fluidsim.solvers.ns2d.bouss.solver
+ns2d.strat = fluidsim.solvers.ns2d.strat.solver
+ns3d = fluidsim.solvers.ns3d.solver
+ns3d.bouss = fluidsim.solvers.ns3d.bouss.solver
+ns3d.strat = fluidsim.solvers.ns3d.strat.solver
+plate2d = fluidsim.solvers.plate2d.solver
+sphere.ns2d = fluidsim.solvers.sphere.ns2d.solver
+sphere.sw1l = fluidsim.solvers.sphere.sw1l.solver
+sw1l = fluidsim.solvers.sw1l.solver
+sw1l.exactlin = fluidsim.solvers.sw1l.exactlin.solver
+sw1l.exactlin.modified = fluidsim.solvers.sw1l.exactlin.modified.solver
+sw1l.modified = fluidsim.solvers.sw1l.modified.solver
+sw1l.onlywaves = fluidsim.solvers.sw1l.onlywaves.solver
+waves2d = fluidsim.solvers.waves2d.solver

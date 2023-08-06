@@ -1,0 +1,10 @@
+include *.py
+include *.txt
+include *.rst
+include *.md
+prune doc
+prune lib
+prune scripts
+prune bench
+prune old
+prune .github
