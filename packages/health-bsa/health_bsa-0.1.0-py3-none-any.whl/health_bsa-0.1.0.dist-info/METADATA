@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: health-bsa
+Version: 0.1.0
+Summary: This is a small tool to compute Body Surface Area of a human body based on height and weight
+Home-page: https://github.com/lamnvcnsh/health-bsa/tree/main/health-bsa
+License: MIT
+Keywords: Body Surface Area,Health index
+Author: LamNguyen
+Author-email: lamnvcnsh@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Project-URL: Repository, https://github.com/lamnvcnsh/health-bsa/tree/main/health-bsa
+Description-Content-Type: text/markdown
+
+# Health-BSA
+A small tool to compute the human body surface area from body weight (kg) and height (cm)
+
+
+### Getting started
+
+The package can be found in the github.
+```bash
+pip install health-bsa
+```
+
+### Feature
+
+- BSA
+
+
+### Usage
+
+```python
+>>> from health_bsa import compute bsa
+>>> bsa(weight=60,height=100)
+```
+
+### API
+
+```python
+>>> from health_bsa import compute bsa
+>>> bsa(weight=60,height=100)
+```
+
+### Contribution
+Any contributions are welcome
+
+### Author
+Lam Nguyen
