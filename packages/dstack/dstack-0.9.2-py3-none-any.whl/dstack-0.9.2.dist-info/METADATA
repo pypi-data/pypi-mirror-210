@@ -1,0 +1,254 @@
+Metadata-Version: 2.1
+Name: dstack
+Version: 0.9.2
+Summary: Develop ML faster. Easily and cost-effectively run dev environments, pipelines, and apps on any cloud.
+Home-page: https://dstack.ai
+Author: Andrey Cheptsov
+Author-email: andrey@dstack.ai
+License: UNKNOWN
+Project-URL: Source, https://github.com/dstackai/dstack
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: pyyaml
+Requires-Dist: requests
+Requires-Dist: gitpython
+Requires-Dist: tqdm
+Requires-Dist: jsonschema
+Requires-Dist: python-dateutil
+Requires-Dist: paramiko
+Requires-Dist: git-url-parse
+Requires-Dist: rich
+Requires-Dist: rich-argparse
+Requires-Dist: fastapi
+Requires-Dist: starlette (>=0.26.0)
+Requires-Dist: uvicorn
+Requires-Dist: pydantic
+Requires-Dist: sqlalchemy[asyncio] (>=2.0.0)
+Requires-Dist: websocket-client
+Requires-Dist: cursor
+Requires-Dist: simple-term-menu
+Requires-Dist: py-cpuinfo
+Requires-Dist: pygtail
+Requires-Dist: packaging
+Requires-Dist: aiosqlite
+Requires-Dist: apscheduler
+Requires-Dist: alembic (>=1.10.2)
+Requires-Dist: typing-extensions (>=4.0.0)
+Requires-Dist: file-read-backwards (>=3.0.0)
+Requires-Dist: psutil (>=5.0.0)
+Requires-Dist: cryptography
+Requires-Dist: grpcio (<=1.54,>=1.50)
+Provides-Extra: aws
+Requires-Dist: boto3 ; extra == 'aws'
+Requires-Dist: botocore ; extra == 'aws'
+Provides-Extra: azure
+Requires-Dist: azure-identity (>=1.12.0) ; extra == 'azure'
+Requires-Dist: azure-keyvault-secrets (>=4.6.0) ; extra == 'azure'
+Requires-Dist: azure-storage-blob (>=12.15.0) ; extra == 'azure'
+Requires-Dist: azure-monitor-query (>=1.2.0) ; extra == 'azure'
+Requires-Dist: azure-mgmt-subscription (>=3.1.1) ; extra == 'azure'
+Requires-Dist: azure-mgmt-compute (>=29.1.0) ; extra == 'azure'
+Requires-Dist: azure-mgmt-network (==23.0.0b2) ; extra == 'azure'
+Requires-Dist: azure-mgmt-resource (>=22.0.0) ; extra == 'azure'
+Requires-Dist: azure-mgmt-authorization (>=3.0.0) ; extra == 'azure'
+Requires-Dist: azure-mgmt-storage (>=21.0.0) ; extra == 'azure'
+Requires-Dist: azure-mgmt-keyvault (>=10.1.0) ; extra == 'azure'
+Requires-Dist: azure-mgmt-loganalytics (==13.0.0b6) ; extra == 'azure'
+Requires-Dist: azure-mgmt-msi ; extra == 'azure'
+Requires-Dist: azure-mgmt-monitor ; extra == 'azure'
+Requires-Dist: azure-graphrbac ; extra == 'azure'
+Provides-Extra: gcp
+Requires-Dist: google-auth (>=2.3.0) ; extra == 'gcp'
+Requires-Dist: google-cloud-storage (>=2.0.0) ; extra == 'gcp'
+Requires-Dist: google-cloud-compute (>=1.5.0) ; extra == 'gcp'
+Requires-Dist: google-cloud-secret-manager (>=2.0.0) ; extra == 'gcp'
+Requires-Dist: google-cloud-logging (>=2.0.0) ; extra == 'gcp'
+
+<div align="center">
+<h1 align="center">
+  <a target="_blank" href="https://dstack.ai">
+    <img alt="dstack" src="https://raw.githubusercontent.com/dstackai/dstack/master/docs/assets/images/dstack-logo.svg" width="350px"/>
+  </a>
+</h1>
+
+<h3 align="center">
+Develop ML faster. Use any cloud.
+</h3>
+
+<p align="center">
+<a href="https://dstack.ai/docs" target="_blank"><b>Docs</b></a> • 
+<a href="https://dstack.ai/examples/dolly" target="_blank"><b>Examples</b></a> •
+<a href="https://dstack.ai/blog" target="_blank"><b>Blog</b></a> •
+<a href="https://join.slack.com/t/dstackai/shared_invite/zt-xdnsytie-D4qU9BvJP8vkbkHXdi6clQ" target="_blank"><b>Slack</b></a>
+</p>
+
+[![Last commit](https://img.shields.io/github/last-commit/dstackai/dstack?style=flat-square)](https://github.com/dstackai/dstack/commits/)
+[![PyPI - License](https://img.shields.io/pypi/l/dstack?style=flat-square&color=blue)](https://github.com/dstackai/dstack/blob/master/LICENSE.md)
+</div>
+
+`dstack` makes it very easy for ML engineers to run dev environments, pipelines and apps cost-effectively 
+on any cloud.
+
+## Installation and setup
+
+To use `dstack`, install it with `pip` and start the Hub application.
+
+```shell
+pip install "dstack[aws,gcp,azure]"
+dstack start
+```
+
+The `dstack start` command starts the Hub server, and creates the default project to run everything locally.
+
+To enable Hub to run dev environments, pipelines, and apps in your preferred cloud account (AWS, GCP, Azure, etc), 
+log in to Hub, and configure the corresponding project.
+
+## Running a dev environment
+
+A dev environment is a virtual machine that includes the environment and an interactive IDE or notebook setup
+based on a pre-defined configuration.
+
+Go ahead and define this configuration via YAML (under the `.dstack/workflows` folder).
+
+```yaml
+workflows:
+  - name: code-gpu
+    provider: code
+    setup:
+      - pip install -r dev-environments/requirements.txt
+    resources:
+      gpu:
+        count: 1
+```
+
+The YAML file allows you to configure hardware resources, 
+set up the Python environment, expose ports, configure cache, and many more.
+
+Now, you can start it using the `dstack run` command:
+
+```shell
+$ dstack run code-gpu
+
+RUN      WORKFLOW  SUBMITTED  STATUS     TAG
+shady-1  code-gpu  now        Submitted  
+ 
+Starting SSH tunnel...
+
+To exit, press Ctrl+C.
+
+Web UI available at http://127.0.0.1:10000/?tkn=4d9cc05958094ed2996b6832f899fda1
+```
+
+If you configure a project to run dev environments in the cloud, `dstack` will automatically provision the
+required cloud resources, and forward ports of the dev environment to your local machine. 
+
+When you stop the dev environment, `dstack` will automatically clean up cloud resources.
+
+## Running a pipeline
+
+A pipeline is a set of pre-defined configurations that allow to process data, train or fine-tune models, do batch inference 
+or other tasks.
+
+Go ahead and define such a configuration via YAML (under the `.dstack/workflows` folder).
+
+```yaml
+workflows:
+  - name: train-mnist-gpu
+    provider: bash
+    commands:
+      - pip install -r pipelines/requirements.txt
+      - python pipelines/train.py
+    artifacts:
+      - ./lightning_logs
+    resources:
+      gpu:
+        count: 1
+```
+
+The YAML file allows you to configure hardware resources and output artifacts, set up the
+Python environment, expose ports, configure cache, and many more.
+
+Now, you can run the pipeline using the `dstack run` command:
+
+```shell
+$ dstack run train-mnist-gpu
+
+RUN      WORKFLOW         SUBMITTED  STATUS     TAG
+shady-1  train-mnist-gpu  now        Submitted  
+ 
+Provisioning... It may take up to a minute. ✓
+
+GPU available: True, used: True
+
+Epoch 1: [00:03<00:00, 280.17it/s, loss=1.35, v_num=0]
+```
+
+If you configure a project to run pipelines in the cloud, the `dstack run` command will automatically provision the 
+required cloud resources.
+
+After the pipeline is stopped or finished, `dstack` will save output artifacts and clean up cloud resources.
+
+## Running an app
+
+An app can be either a web application (such as Streamlit, Gradio, etc.) or an API endpoint (like FastAPI, Flask, etc.)
+setup based on a pre-defined configuration.
+
+Go ahead and define this configuration via YAML (under the `.dstack/workflows` folder).
+
+```yaml
+workflows:
+  - name: fastapi-gpu
+    provider: bash
+    ports:
+      - 3000
+    commands:
+      - pip install -r apps/requirements.txt
+      - uvicorn apps.main:app --port 3000 --host 0.0.0.0
+    resources:
+      gpu:
+        count: 1
+```
+
+The configuration allows you to customize hardware resources, set up the Python environment, 
+configure cache, and more.
+
+Now, you can run the app using the `dstack run` command:
+
+```shell
+$ dstack run fastapi-gpu
+ RUN           WORKFLOW     SUBMITTED  STATUS     TAG
+ silly-dodo-1  fastapi-gpu  now        Submitted     
+
+Starting SSH tunnel...
+
+To interrupt, press Ctrl+C.
+
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:3000 (Press CTRL+C to quit)
+```
+
+If you configure a project to run apps in the cloud, `dstack` will automatically provision the required cloud
+resources, and forward ports of the app to your local machine.
+If you stop the app, it will automatically clean up cloud resources.
+
+## More information
+
+For additional information and examples, see the following links:
+
+* [Docs](https://dstack.ai/docs)
+* [Examples](https://github.com/dstackai/dstack-examples/blob/main/README.md)
+* [Blog](https://dstack.ai/blog)
+* [Slack](https://join.slack.com/t/dstackai/shared_invite/zt-xdnsytie-D4qU9BvJP8vkbkHXdi6clQ)
+ 
+##  Licence
+
+[Mozilla Public License 2.0](LICENSE.md)
+
