@@ -1,0 +1,43 @@
+{% extends 'admin/app_index.html' %}
+{% load i18n admin_urls static admin_modify %}
+{% load edc_dashboard_extras edc_admin_modify edc_navbar_extras %}
+
+{% block extrahead %}{{ block.super }}
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+{%  for css in edc_model_admin_css_theme_path %}
+<link rel='stylesheet' type="text/css" href='{% static css %}'>
+{% endfor %}
+{% endblock %}
+
+{% block dark-mode-vars %}
+<link rel="stylesheet" type="text/css" href="{% static 'edc_model_admin/css/dark_mode.css' %}">
+{% endblock %}
+
+
+{% block breadcrumbs %}{% endblock %}
+
+
+{% block branding %}
+  <button type="button" class="btn btn-{% if LIVE_SYSTEM and not DEBUG %}live{% else %}test{% endif %}">
+    {% if LIVE_SYSTEM and not DEBUG %}{{ LIVE|title }}{% else %}{{ TEST|title }}{% endif %}
+  </button>&nbsp;
+  {{ protocol_name |default:project_name }}: {{ request.site.name|title }} ({{ request.site.id }}) &nbsp;
+  <a href="/">{% translate 'Home' %}</a> &rsaquo;
+    {% if site_url %}
+        <a href="{{ site_url }}">{% translate 'Administration' %}</a>
+    {% endif %}
+ &rsaquo; {% for app in app_list %}{{ app.name }}{% endfor %}
+{% endblock %}
+
+{% block welcome-msg %}{% endblock %}
+
+{% block userlinks %}{% logout_row %}{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+
+    {% revision_row %}
+{% endblock content %}
