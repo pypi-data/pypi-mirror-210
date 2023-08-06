@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "novella"
+version = "0.2.6"
+description = "Linear build system for Markdown preprocessing and static site generation."
+authors = ["Niklas Rosenstein <rosensteinniklas@gmail.com>"]
+license = "MIT"
+readme = "readme.md"
+packages = [{ include="novella", from="src" }]
+
+  [tool.poetry.urls]
+  Homepage = "https://github.com/NiklasRosenstein/novella"
+  Documentation = "https://niklasrosenstein.github.io/novella"
+
+  [tool.poetry.dependencies]
+  python = "^3.8"
+  craftr-dsl = "^0.7.7"
+  markdown = "^3.0.0"
+  "nr.util" = ">=0.8.7,<1.0.0"
+  PyYAML = ">=4.0"
+  tomli = "^2.0.0"
+  typing-extensions = "*"
+  watchdog = "^2.0.0"
+
+  [tool.poetry.dev-dependencies]
+  pytest = "*"
+  mypy = "*"
+  types-PyYAML = "*"
+  types-markdown = "*"
+  types-requests = "*"
+
+  [tool.poetry.group.docs]
+  optional = true
+  [tool.poetry.group.docs.dependencies]
+  "mkdocs" = "*"
+  "mkdocs-material" = "*"
+  "pydoc-markdown" = "==4.6.0"
+
+  [tool.poetry.scripts]
+  novella = "novella.__main__:main"
+
+  [tool.poetry.plugins."novella.actions"]
+  copy-files = "novella.action:CopyFilesAction"
+  run = "novella.action:RunAction"
+  mkdocs-update-config = "novella.templates.mkdocs:MkdocsUpdateConfigAction"
+  preprocess-markdown = "novella.markdown.preprocessor:MarkdownPreprocessorAction"
+
+  [tool.poetry.plugins."novella.markdown.preprocessors"]
+  anchor = "novella.markdown.tags.anchor:AnchorTagProcessor"
+  cat = "novella.markdown.tags.cat:CatTagProcessor"
+  shell = "novella.markdown.tags.shell:ShellTagProcessor"
+
+  [tool.poetry.plugins."novella.templates"]
+  mkdocs = "novella.templates.mkdocs:MkdocsTemplate"
+  hugo = "novella.templates.hugo:HugoTemplate"
+
+[tool.slap]
+typed = true
+
+  [tool.slap.test]
+  pytest = "pytest -vv tests/"
+  mypy = "mypy src/ --namespace-packages --disallow-untyped-defs"
+  check = "slap check"
+
+  [tool.slap.run]
+  "docs:build" = "cd docs && novella --base-url novella/"
+  "docs:dev" = "cd docs && novella --serve"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

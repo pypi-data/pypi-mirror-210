@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: novella
+Version: 0.2.6
+Summary: Linear build system for Markdown preprocessing and static site generation.
+License: MIT
+Author: Niklas Rosenstein
+Author-email: rosensteinniklas@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: PyYAML (>=4.0)
+Requires-Dist: craftr-dsl (>=0.7.7,<0.8.0)
+Requires-Dist: markdown (>=3.0.0,<4.0.0)
+Requires-Dist: nr.util (>=0.8.7,<1.0.0)
+Requires-Dist: tomli (>=2.0.0,<3.0.0)
+Requires-Dist: typing-extensions
+Requires-Dist: watchdog (>=2.0.0,<3.0.0)
+Project-URL: Documentation, https://niklasrosenstein.github.io/novella
+Project-URL: Homepage, https://github.com/NiklasRosenstein/novella
+Description-Content-Type: text/markdown
+
+# novella
+
+Novella is a build system for processing files in a temporary directory isolated from the project source code. It is
+designed for the preprocessing of documentation source code such as Markdown files before they are passed into a
+static site generator such as [Mkdocs][] or [Hugo][]. Novella was designed as the backbone for [Pydoc-Markdown][],
+but can be used independently.
+
+  [Mkdocs]: https://www.mkdocs.org/
+  [Hugo]: https://gohugo.io/
+  [Pydoc-Markdown]: https://github.com/NiklasRosenstein/pydoc-markdown
+  [Novella Documentation]: https://niklasrosenstein.github.io/novella
+
+Check out the [Novella Documentation][] for more information.
+
+> Note: Novella is currently a work in progress project and is considered unstable.
+
