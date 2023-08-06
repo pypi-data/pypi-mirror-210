@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: jeeves-yeti-pyproject
+Version: 0.2.19
+Summary: Opinionated Jeeves plugin for Python projects.
+Author: Anatoly Scherbakov
+Author-email: altaisoft@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: add-trailing-comma (>=2.4.0,<3.0.0)
+Requires-Dist: flakeheaven (>=3.2.1,<4.0.0)
+Requires-Dist: jeeves-shell[all] (>=2.1.10,<3.0.0)
+Requires-Dist: mkdocs (>=1.4.2,<2.0.0)
+Requires-Dist: mkdocs-iolanta (>=0.1.0,<0.2.0)
+Requires-Dist: mkdocs-macros-plugin (>=0.7.0,<0.8.0)
+Requires-Dist: mkdocs-material (>=9.0.3,<10.0.0)
+Requires-Dist: mypy (>=0.910,<0.911)
+Requires-Dist: pytest (>=6.2,<7.0)
+Requires-Dist: pytest-cov (>=2.12,<3.0)
+Requires-Dist: pytest-randomly (>=3.8,<4.0)
+Requires-Dist: rich (>=13.3.1,<14.0.0)
+Requires-Dist: safety (>=1.10,<2.0)
+Requires-Dist: tomlkit (>=0.11.6,<0.12.0)
+Requires-Dist: urllib3 (<2.0.0)
+Requires-Dist: wemake-python-styleguide (>=0.17.0,<0.18.0)
+Description-Content-Type: text/markdown
+
+# jeeves-yeti-pyproject
+
+This is my personal plugin for [`jeeves-shell`](https://github.com/jeeves-sh/jeeves-shell) that I use for my open source Python projects. If you wish to use it for your projects too, it can be added as easily as:
+
+```shell
+poetry add --group dev jeeves-yeti-pyproject
+```
+
+and then just run:
+
+```shell
+j
+```
+
+## Commands
+
+```
+╭─ Commands ─────────────────────────────────────────────────────────────────────────────────╮
+│ clear-poetry-cache       Clear Poetry cache.                                               │
+│ fmt                      Auto format code.                                                 │
+│ lint                     Lint code.                                                        │
+│ safety                   Check installed Python packages for vulnerabilities.              │
+│ test                     Unit test code.                                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+## Features
+
+* `lint`
+  * Check Python typing with [`mypy`](https://mypy-lang.org),
+  * Run [`wemake-python-stylguide`](https://github.com/wemake-services/wemake-python-styleguide) against your code base;
+  * Both of these are applied **only to those files which were changed against `origin/master`** (thanks [`flakeheaven`](https://github.com/flakeheaven/flakeheaven)!), making `j lint` legacy-friendly by default
+* `fmt`
+  * Add trailing commas automatically;
+  * Apply [`isort`](https://github.com/pycqa/isort);
+  * By design — no `black` here.
+* `test`
+  * Run `pytest` against `tests` directory with coverage enabled.
+
+## Opinions
+
+This plugin is very opinionated and reflects my own preferences of how I like my Python projects to be managed. Feel free to create your own plugins. [Mr Jeeves](https://github.com/jeeves-sh/jeeves-shell) is happy to make your life a little bit easier.
+

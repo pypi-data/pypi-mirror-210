@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "jeeves-yeti-pyproject"
+version = "0.2.19"
+description = "Opinionated Jeeves plugin for Python projects."
+authors = ["Anatoly Scherbakov <altaisoft@gmail.com>"]
+readme = "README.md"
+packages = [{include = "jeeves_yeti_pyproject"}]
+
+[tool.poetry.plugins.jeeves]
+pyproject = "jeeves_yeti_pyproject:jeeves"
+
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+jeeves-shell = {version = "^2.1.10", extras = ["all"]}
+
+mypy = "^0.910"
+
+safety = "^1.10"
+
+pytest = "^6.2"
+pytest-cov = "^2.12"
+pytest-randomly = "^3.8"
+wemake-python-styleguide = "^0.17.0"
+flakeheaven = "^3.2.1"
+rich = "^13.3.1"
+tomlkit = "^0.11.6"
+add-trailing-comma = "^2.4.0"
+mkdocs = "^1.4.2"
+mkdocs-material = "^9.0.3"
+mkdocs-macros-plugin = "^0.7.0"
+mkdocs-iolanta = "^0.1.0"
+
+# For compatibility with Poetry 1.4.2
+urllib3 = "<2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.flakehell.exceptions."**/flags.py"]
+wemake-python-styleguide = [
+    # Found consecutive `yield` expressions
+    "-WPS354",
+    "-WPS213",
+]
