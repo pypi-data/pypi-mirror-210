@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: PVNet
+Version: 0.0.15
+Summary: PVNet
+Author: Peter Dudfield
+Author-email: info@openclimatefix.org
+License: MIT
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: nowcasting-utils
+Requires-Dist: nowcasting-datamodel
+Requires-Dist: ocf-datapipes
+Requires-Dist: ocf-ml-metrics
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: xarray
+Requires-Dist: ipykernel
+Requires-Dist: h5netcdf
+Requires-Dist: torch (>=2.0)
+Requires-Dist: lightning (>=2.0.1)
+Requires-Dist: torchdata
+Requires-Dist: pytest
+Requires-Dist: pytest-cov
+Requires-Dist: typer
+Requires-Dist: sqlalchemy
+Requires-Dist: jedi
+Requires-Dist: fsspec[s3]
+Requires-Dist: tables
+Requires-Dist: tilemapbase
+Requires-Dist: testcontainers
+Requires-Dist: wandb
+Requires-Dist: tensorboard
+Requires-Dist: tqdm
+Requires-Dist: rich
+Requires-Dist: omegaconf
+Requires-Dist: hydra-core
+Requires-Dist: python-dotenv
+Requires-Dist: hydra-optuna-sweeper
+Provides-Extra: all_models
+Requires-Dist: pytorch-tabnet ; extra == 'all_models'
+Requires-Dist: efficientnet-pytorch ; extra == 'all_models'
+
+# PVNet
+[![test-release](https://github.com/openclimatefix/PVNet/actions/workflows/test-release.yml/badge.svg)](https://github.com/openclimatefix/PVNet/actions/workflows/test-release.yml)
+
+## Setup
+```bash
+git clone https://github.com/openclimatefix/PVNet.git
+cd PVNet
+pip install -r requirements.txt
+pip install git+https://github.com/SheffieldSolar/PV_Live-API
+```
+
+## Running
+```bash
+python run.py
+```
+
+## Development
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+pytest
+```
+
+Might need to install PVLive
+```
+pip install git+https://github.com/SheffieldSolar/PV_Live-API#pvlive_api
+```
+
+## Experiments
+
+Notes on these experiments are [here](https://docs.google.com/document/d/1fbkfkBzp16WbnCg7RDuRDvgzInA6XQu3xh4NCjV-WDA/edit?usp=sharing).
