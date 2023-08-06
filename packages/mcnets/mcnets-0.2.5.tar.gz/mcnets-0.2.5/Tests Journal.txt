@@ -1,0 +1,101 @@
+<Net Usage Tests>
+I. Curve fitting
+    - With the addition of activation function customization, this works pretty well.
+    - Some combinations of NONE, ATAN and RELU works well
+    - Training to a few spaced points tends to be efficient and easy to increase
+      or decrease the amount of training points used.
+II. Chess
+III. Snake
+IV. Derivative (Slope) fitting
+V. MNIST Dataset
+VI. Blurry to Sharpened Images
+    - Make use of the image compressor/expander project
+VII. Zeros of Polynomials
+
+
+<Gradient Tests>
+I. Simple
+  - Idea: 
+    Checks if using the same (or reduced by a constant) version of the last successful
+    tweaking will work again -- if not, it trains the net normally and repeats.
+
+  - Results:
+    Sometimes it does help and is a quicker way to progress training. Tends not to give
+    the largest/most effective training iterations however.
+
+II. Regression
+  - Idea:
+    Keep track of the dW sets over a few iterations and see if there is a pattern/Regression
+    that can be used to create the next dW set to train the net with,
+
+  - Results:
+    TODO
+
+
+<Single-Equivalent-Matrix (SEM) Tests>
+- Idea is to matrix multiply all the weight arrays together in advance
+  of actually running calculations to save Time
+- Also tested building the SEM applying the coresponding activation function
+  to the weights before matrix multiplying
+- Results (Primary Function / Best Predictor):
+  I. ATAN --> SEM + activation (Very good)
+  II. ELU --> SEM + activation (Very good)
+  III. RLEU --> SEM (Sometimes good)
+  IV. SIG --> SEM (Good)
+- Time
+  - At worst, the SEM methods are equal to the normal .Calculate method
+  - Above 5-ish calculations, the SEM methods are notably faster
+- Overall
+  - Not worth implementing in this way
+
+
+<Net Functionalities Tests>
+- Biases
+	- Single vector
+		- Applied to all hidden layers
+			- Just created a very off center line
+		- Applied to input layer
+			- Kinda did something, still worse behavior
+	- Bias collection
+		- Hidden + final layer
+			- Kinda fitted, more often than not raised or lowered too much
+		- Hidden layers only
+			- Could fit, had some weird jumps/behavior though
+- 'SSE' for error
+	- Actually did sum(abs(differences)) and reported the inverse to give higher == better for training
+	- Fit not terribly, but overall R^2 is still much more superior method
+
+
+<R^2 Tests of Various Batch Sizes>
+I. R^2 Values (50 iterations):
+    Default0 Size: Avg = 0.787037, Med = 0.786065
+    10 Batch Size: Avg = 0.780430, Med = 0.776033
+    20 Batch Size: Avg = 0.799839, Med = 0.790577
+    50 Batch Size: Avg = 0.837653, Med = 0.854896
+
+II. Time to Complete (2 iterations)
+    T1 = 5.297518100000161   / 2
+    T2 = 3.714165800000046   / 2
+    T3 = 7.308545600000798   / 2
+    T4 = 18.205850700000155  / 2
+
+III. Average dR/dt Ratios (R/t)
+    10-20 D: <dR/dt> = 0.297134
+    10 Size: <dR/dt> = 0.420245
+    20 Size: <dR/dt> = 0.218878
+    50 Size: <dR/dt> = 0.092020
+
+IV. Median dR/dt Ratios
+    10-20 D: dR/dt = 0.296767
+    10 Size: dR/dt = 0.417877
+    20 Size: dR/dt = 0.216343
+    50 Size: dR/dt = 0.093914
+
+V. Results:
+    - The default method finds itself with a preformance of that between the 10 and 20
+      batch sizes as expected due to its decay from 20 to 10 over the training session.
+    - The lowest batch size of 10 is easily to most efficient in terms of training time,
+      nonetheless, it of course does not get nearly the depth of the other methods.
+    - If a particular depth is needed in training, a sacrafice of time would just have 
+      to be made. For example, to go from R2 of ~0.776 to ~0.855 (10.2% increase) the
+      training time goes from ~1.86s to ~9.10s (389% increase).

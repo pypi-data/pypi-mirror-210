@@ -1,0 +1,119 @@
+<To Do>
+- Implement ways for Curve fitting using output as slopes
+	- Test 'derivative' functionallity
+- Add a 'draw net' feature that plots a diagram of the net in pyplot
+	- Normal (line) diagram
+	- Heatmap visual of weights
+- Extend net feature
+	- Add a hidden layer
+		- Train og net, add random layer, then just train that layer
+- Update saving/loading nets to be done in a folder named 'mcnets'
+- Add MicroTweak to change only a few parameters at a time
+- Speed up net calculation for nets with many layers
+- 3D net weight arrays? (I cant see why this would be an improvement)
+- Backwards propogation? (Train net from x -> y; can the weights be reversed to go y -> x?)
+- Languange processing
+	- Letters to slope (for a sorta 'sentiment' value)
+	- Given a question, have an output for yes/no
+- Add intelligent data thinning function (takes points where slope changes)
+- Add test/train split that keeps ordering
+- Add monte-carlo tree search as another advanced training method (might not be worth it?)
+	- Like genTrain, but continues testing a few routes for more than one depth
+- Do test on all acti function combinations for curve fitting test (sin(x+4) - (x^2/10) + x) xE[0,11]
+- Fix training with biases included in .Calculate()
+- Add "Calculation Time" to model __str__ stuff
+
+
+V0.2.5 (Stupidity Fix)
+- Deleted old_versions from local area
+	- Was creating an exponential file size increase whoops
+	- Just retrieve old versions from PyPI if for some reason needed
+
+
+V0.2.4 (Hotfix)
+- Fixed loading nets weights from DIR, not code's folder
+
+
+V0.2.3
+- Added optional weight change return in TweakWeights() for usage with gradient decent stuff later
+- Nets (finally) save and load from their own folder, located along with the code
+- Added ApplyTweak() to easily make use of what is (optionally) returned from TweakWeights in training
+- .Calculate Vector fixes:
+	- Added "raise ValueError(f"Net input size of 1 expected, got {self.inSize} instead. It's also possible the inVector is simply not a numpy array/vector")"
+	- Moved handling for row vectors to before actual calculation stuffs
+	- Before first calculation, added another "calcVec = calcVec.reshape(calcVec.size, 1)"
+
+
+V0.2.2
+- Updated ATAN to the numpy function (faster now lol)
+- Updated ELU to be a true piece-wise exponential and linear function (not the weird thing it was before)
+- Moved the old ELU definition to "EXP"
+- Added the SIG (sigmoid) activation function
+- Remove outdated .Calculate() string info
+- Updated __init__ info string for SIG fucntion
+- Updated activation function list check for too many OR too little functions provided
+- Removed vector reshaping for yHat in netMetrics -> SSreg
+
+
+V0.2.1
+- Added >1D handling for yData in thinData()
+	- Updated description
+- Added 'gamma' as decay factor in genTrain()
+- NOTE: found it is better to increase batch size (essentially search depth) when training
+		rather than increasing iterations (and/or decreasing gamma)
+- Added 'smart' batch sizing to genTrain()
+	- Default is 0 which calls a depth/batchSize from 20 to 10
+	- This depth value exponentially decays from iteration 1 to ~1000
+- Fixed end print statments printing with silent mode on in genTrain()
+
+
+V0.2.0
+- Fixed 'silent' printing in CycleTrain
+- Changed Forecast legend to "validation data" for comparison/Y data
+- Changed forecast vali data plot to "--" type
+- Added Extend()
+	> Increases a net's hidden layer sizes by given int amount
+	> Useful for creating large nets to train by "building up" to a larger net 
+		-> (normal method) 107.7 s for 8.434 -> 1.983e-8 error
+		-> (extend method) 40.2 s for 8.318 -> 3.989e-10 error
+	> Imputing zeros (median/random imputing didn't work)
+- Added RELU activation type
+- Removed Dig() function
+- Added net property activationFunction (list of functions to use for each weight layer)
+	- Updated Calculate()
+	- Updated CopyNet()
+	- Updated SaveNet()
+	- Updated LoadNet()
+	- Removed hiddenFunction input from:
+	  Forecast(), netMetrics(), genTrain(), Calculate()
+- Added netMetrics()
+	> Returns either R^2 or R^2 and the three errors used to find it
+- Added genTrain()
+	> New training method using a batch of new nets to test each iteration
+- Added thinData()
+	> Returns:
+		>> thinned x points (xThin)
+		>> thinned y points	(yThin)
+		>> Data point indicies (xPlot)
+			>>> Useful for plotting the yThin data, particularly on top of the full yData
+	> NOTE:
+		>> Using xThin = [*range(len(yThin))] works great for small nets, but technically
+		   doesn't train to the true data. Larger nets can train to the true indicies (x data)
+		   pretty well which is good, just takes more time (see genTrain #4 pic).
+- Depreceated Train() and CycleTrain()
+
+
+V0.1.5.3
+- Changed validationVals to account for 1D vectors (LN588)
+- Changed 'default' selection in TweakWeight to 'all'
+- Corrected RELU and ELU names (to ELU and ATAN)
+
+
+V0.1.5
+- For nets with inSize = 1, a simple number can be given (no longer required to be that stupid 1x1 numpy array thing).
+- Reduced maxCycles default value to 5 for the cycle training
+
+
+V0.1.4
+- Operational as package
+- Printing an AdvNet now also prints the # of parameters it has
