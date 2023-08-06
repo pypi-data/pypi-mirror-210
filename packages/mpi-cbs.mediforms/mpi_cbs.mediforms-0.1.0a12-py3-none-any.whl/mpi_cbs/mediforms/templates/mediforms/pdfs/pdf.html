@@ -1,0 +1,20 @@
+{% extends "mediforms/base.html" %}
+
+
+{% block extra_styles %}
+@page {
+  size: A4;
+}
+
+body {
+  font-size: 10.9px;
+}
+
+h1 {font-size: 18px; color: {{ method.color }};}
+h2 {font-size: 15px; color: {{ method.color }};}
+h3 {font-size: 13px; color: {{ method.color }};}
+
+.six.wide.column {
+  font-size: 9px;
+}
+{% endblock extra_styles %}
