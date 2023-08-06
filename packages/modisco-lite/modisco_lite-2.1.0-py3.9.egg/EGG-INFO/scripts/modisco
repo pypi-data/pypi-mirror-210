@@ -1,0 +1,7 @@
+#!/users/jmschr/anaconda3/bin/python
+# EASY-INSTALL-DEV-SCRIPT: 'modisco-lite==2.1.0','modisco'
+__requires__ = 'modisco-lite==2.1.0'
+__import__('pkg_resources').require('modisco-lite==2.1.0')
+__file__ = '/users/jmschr/github/tfmodisco-lite/modisco'
+with open(__file__) as f:
+    exec(compile(f.read(), __file__, 'exec'))
