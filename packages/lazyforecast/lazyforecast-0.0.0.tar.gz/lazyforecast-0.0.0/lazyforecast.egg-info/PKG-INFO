@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: lazyforecast
+Version: 0.0.0
+Summary: LazyForecast is a Python library for performing univariate time series analysis using a lazy forecasting approach. This approach is designed to provide quick and simple forecasting models without requiring extensive configuration or parameter tuning.
+Home-page: https://github.com/piyushsinghoffice/LazyForecast.git
+Author: Piyush Singh
+Author-email: piyush.singh.office@gmail.com
+License: MIT
+Keywords: arima,timeseries,forecasting,pyramid,pmdarima,pyramid-arima,scikit-learn,statsmodels,tensorflow,tensor,machine,learning
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE
+
+
+# LazyForecast
+
+LazyForecast is a Python library for performing univariate time series analysis using a lazy forecasting approach. This approach is designed to provide quick and simple forecasting models without requiring extensive configuration or parameter tuning.
+
+# Features
+
+- LazyForecasting automatically selects the best model based on the characteristics of the input time series.
+- It supports univariate time series analysis.
+- LazyForecasting provides functions for data preprocessing, model training, forecasting, and evaluation.
+- It includes various popular forecasting models such as Auto ARIMA, Vanilla LSTM, and RNN.
