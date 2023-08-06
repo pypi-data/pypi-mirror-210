@@ -1,0 +1,115 @@
+[tool.poetry]
+name = "random_names"
+version = "0.2.0"
+description = "Convert int to random name, like tree_dance and convert it back to same int."
+authors = ["Matthew Martin <matthewdeanmartin@gmail.com>"]
+keywords = ["mneumonic", "pseudorandom", "name-generator"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+include = [
+    "random_names/**/*.py",
+    "random_names/**/*.md",
+    "random_names/**/*.txt",
+    "random_names/**/*.html",
+    "random_names/**/*.jinja",
+]
+exclude = [
+
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/matthewdeanmartin/random_names"
+homepage = "https://github.com/matthewdeanmartin/random_names"
+documentation ="https://github.com/matthewdeanmartin/random_names"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/matthewdeanmartin/random_names/issues"
+"Change Log" = "https://github.com/matthewdeanmartin/random_names/blob/main/docs/CHANGES.md"
+
+[tool.poetry.scripts]
+# so_pip = 'so_pip.__main__:main'
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-cov = ">=2.10.1"
+pytest-timeout = "*"
+pytest-xdist = ">=2.1.0"
+pip-check = "==2.6"
+checksumdir = "==1.1.7"
+
+gitchangelog = "==3.0.4"
+liccheck = "==0.4.3"
+psutil = "==5.6.7"
+pebble = "==4.5.0"
+gitpython = "*"
+sshtunnel = "*"
+ifaddr = "*"
+vendorize = "*"
+tox = "*"
+setuptools-scm = "*"
+python-dotenv = "*"
+requests ="*"
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+junit_family = "xunit1"
+norecursedirs = ["vendor", "scripts"]
+# don't know how to do this in toml
+#addopts = "--strict-markers"
+#markers =
+#	slow: marks tests as slow (deselect with '-m "not slow"')
+#	fast: marks tests as fast (deselect with '-m "not fast"')
+
+[tool.isort]
+default_section = "THIRDPARTY"
+force_grid_wrap = 0
+include_trailing_comma = true
+known_first_party = ["random_names"]
+line_length = 88
+multi_line_output = 3
+use_parentheses = true
