@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: faceid-dev
+Version: 0.0.1
+Summary: Simple and flexible AI/ML workflow engine by Picaso - FaceID
+Home-page: https://gitlab.playcourt.id/picaso-faceid/picaso-faceid-engine/v1/faceid-lib
+License: Apache License
+Keywords: machine learning,Deep Learning,Message Broker,Distributed System,pipeline,rabbitmq,ratelimiter
+Author: Dani Gunawan
+Author-email: danigunawan.elektroug@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Requires-Dist: aioredis (==1.3.1)
+Requires-Dist: appengine-python-standard (>=1.1.1,<2.0.0)
+Requires-Dist: fastapi
+Requires-Dist: pika (>=1.2.0,<2.0.0)
+Requires-Dist: requests
+Project-URL: Repository, https://gitlab.playcourt.id/picaso-faceid/picaso-faceid-engine/v1/faceid-lib
+Description-Content-Type: text/markdown
+
+This is the example project for a blog post detailing how to publish proprietary
+packages on PyPI.
+
+You can view the blog post here_.
+
+.. _here: https://aotu.ai/en/blog/2021/01/19/publishing-a-proprietary-python-package-on-pypi-using-poetry/
+
