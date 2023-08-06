@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: autonomy-dev
+Version: 0.1.4
+Summary: A collection of tooling to enable open source development of autonomy tools
+Home-page: https://github.com/8ball030/auto_dev
+License: Apache-2.0
+Author: 8Baller
+Author-email: 8ball030@gmail.com
+Requires-Python: >=3.7.2,<4.0
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Provides-Extra: all
+Provides-Extra: dev
+Provides-Extra: doc
+Requires-Dist: GitPython (>=3.1.27,<4.0.0)
+Requires-Dist: black (>=22.6.0,<23.0.0) ; extra == "all"
+Requires-Dist: bump2version (>=1.0.1,<2.0.0) ; extra == "dev"
+Requires-Dist: click (>=8.0.2)
+Requires-Dist: install (>=1.3.5,<2.0.0)
+Requires-Dist: isort (>=5.10.1,<6.0.0) ; extra == "all"
+Requires-Dist: mkdocs (>=1.3.1,<2.0.0) ; extra == "doc"
+Requires-Dist: mkdocs-autorefs (>=0.4.1,<0.5.0) ; extra == "doc"
+Requires-Dist: mkdocs-include-markdown-plugin (>=3.6.1,<4.0.0) ; extra == "doc"
+Requires-Dist: mkdocs-material (>=8.4.0,<9.0.0) ; extra == "doc"
+Requires-Dist: mkdocs-material-extensions (>=1.0.3,<2.0.0)
+Requires-Dist: mkdocstrings-python (>=0.10.0,<0.11.0)
+Requires-Dist: mypy (>=0.971,<0.972) ; extra == "all"
+Requires-Dist: pip (>=22.2.2,<23.0.0) ; extra == "dev"
+Requires-Dist: pre-commit (>=2.20.0,<3.0.0) ; extra == "dev"
+Requires-Dist: pylama[all] (>=8.4.1,<9.0.0) ; extra == "all"
+Requires-Dist: pylint (>=2.17.4,<3.0.0) ; extra == "all"
+Requires-Dist: pytest-cov (>=3.0.0,<4.0.0) ; extra == "all"
+Requires-Dist: rich-click (>=1.5.2,<2.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0) ; extra == "dev"
+Requires-Dist: tox (>=3.25.1,<4.0.0) ; extra == "dev"
+Requires-Dist: twine (>=4.0.1,<5.0.0) ; extra == "dev"
+Requires-Dist: yamllint (>=1.27.1,<2.0.0)
+Description-Content-Type: text/markdown
+
+# Autonomy Dev
+
+Tooling to speed up autonomy development.
+
+# Installation
+
+```bash
+pip install autonomy-dev[all]
+```
+
