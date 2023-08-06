@@ -1,0 +1,29 @@
+---
+- hosts: all
+  tasks:
+    - name: Build package
+      shell:
+        cmd: |
+          export TAG="{{  tag | default('') }}"
+          export CENTOS_VERS="{{  centos_version | default('centos7') }}"
+          export REPO_SERVER="https://trunk.rdoproject.org"
+          export PYTHON_VERSION="{{ python_version | default('py36') }}"
+          export REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+          if [ ${CENTOS_VERS} = "centos8" ]; then
+              export TARGET="centos8"
+          elif [ ${CENTOS_VERS} = "centos9" ]; then
+              export TARGET="centos9"
+              export USE_COMPONENTS="True"
+          else
+              export TARGET="centos"
+          fi
+          if [ -z "$TAG" ];then
+              ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/"
+              export ZUUL_BRANCH="rpm-master"
+          else
+              ARGS="$TARGET ${REPO_SERVER}/${CENTOS_VERS}/ $TAG"
+              export ZUUL_BRANCH="$TAG-rdo"
+          fi
+          timeout --signal=SIGKILL 3600 ./scripts/run_tests.sh http://review.rdoproject.org/r/rdoinfo.git $ARGS
+      args:
+        chdir: "{{ ansible_user_dir }}/{{ zuul.projects['softwarefactory-project.io/DLRN'].src_dir }}"
