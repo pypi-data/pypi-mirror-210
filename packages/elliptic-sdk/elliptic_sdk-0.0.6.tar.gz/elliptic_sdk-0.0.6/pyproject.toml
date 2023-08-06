@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "elliptic_sdk"
+version = "0.0.6"
+description = "Elliptic SDK"
+authors = ["Olexandr Shalakhin <olexandr@shalakhin.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^1.10.7"
+httpx = "^0.24.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.2.2"
+pytest-asyncio = "^0.21.0"
+pytest = "^7.3.1"
+wemake-python-styleguide = "^0.17.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
