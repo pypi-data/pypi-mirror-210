@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: kisstvshow
+Version: 0.1.0
+Summary: 
+Author: tbdsux
+Author-email: iamcoderx@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: bs4 (>=0.0.1,<0.0.2)
+Requires-Dist: lxml (>=4.9.2,<5.0.0)
+Requires-Dist: requests (>=2.30.0,<3.0.0)
+Description-Content-Type: text/markdown
+
+# kisstvshow
+
+https://kisstvshow.to/ scraper
+
+
+## Install 
+```sh
+pip install kisstvshow
+```
+
+
+## Usage
+```py
+from kisstvshow import KissTVShow
+import json
+
+k = KissTVShow()
+# show = k.get_show(show="Show/Outrun-by-Running-Man-2021")
+# show = k.get_show_episode(show_ep="Show/Outrun-by-Running-Man-2021/Episode-14?id=29879")
+
+show = k.search("hello")
+
+print(json.dumps(show, indent=2))
+
+```
+
+## 
+**&copy; 2023 | tbdsux**
