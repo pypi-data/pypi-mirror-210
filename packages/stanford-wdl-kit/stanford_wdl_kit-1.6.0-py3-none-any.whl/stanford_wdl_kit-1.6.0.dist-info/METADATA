@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: stanford-wdl-kit
+Version: 1.6.0
+Summary: A WDL toolkit with a focus on ETL and Cloud integration
+Home-page: https://github.com/susom/wdl-kit
+Author: Darren Guan, Joe Mesterhazy, Tyler Tollefson, Smita Limaye, Jay Chen
+Author-email: dguan2@stanford.edu, jmesterh@stanford.edu, tjt8712@stanford.edu, slimaye@stanford.edu, jchen313@stanford.edu
+Maintainer: Research IT: Technology & Digital Solutions, Stanford Medicine
+Maintainer-email: rit-oss-admin@stanford.edu
+License: Apache License, Version 2.0
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
+Requires-Dist: miniwdl (>=1.5.1)
+Requires-Dist: pybuilder (>=0.13.7)
+Requires-Dist: google-cloud-bigquery (==2.32.0)
+Requires-Dist: google-cloud-storage (==2.1.0)
+Requires-Dist: pandas (==1.3.5)
+Requires-Dist: dataclasses-json (==0.5.6)
+Requires-Dist: pyarrow (==6.0.1)
+Requires-Dist: PyYAML (==6.0)
+Requires-Dist: slack-sdk (==3.15.2)
+Requires-Dist: boltons (==21.0.0)
+Requires-Dist: importlib-metadata
+Requires-Dist: bump2version (==1.0.1)
+Requires-Dist: google-api-python-client (==2.63.0)
+Requires-Dist: oauth2client (==4.1.3)
+Requires-Dist: pysftp (==0.2.9)
+Requires-Dist: aiohttp (==3.8.3)
+Requires-Dist: cryptography (==39.0.2)
+Requires-Dist: Requests (==2.28.1)
+Requires-Dist: google-auth (==2.12.0)
+Requires-Dist: pg8000 (==1.29.2)
+Requires-Dist: SQLAlchemy (==1.4.42)
+Requires-Dist: cloud-sql-python-connector (==0.9.0)
+Requires-Dist: pyOpenSSL (==23.0.0)
+
+# WDL-kit
+## A WDL toolkit with a focus on ETL and Cloud integration
+
+WDL-kit is a collection of dockerized utilities to simplify the creation of ETL-like workflows in the Workflow Definition Language. 
+
+## Features
+
+* YAML-to-WDL
+  
+  Converts .yaml files into .wdl tasks. This is primarily a workaround for the WDL language not supporting multi-line strings, which is problematic for SQL ETL workflows. 
+
+* Google Cloud
+
+  Wrappers for BigQuery, Google Cloud Storage, etc. 
+
+* Slack
+
+  Wrapper for sending Slack messages
+
+* MailGun
+
+  Wrapper for sending mail via MailGun
