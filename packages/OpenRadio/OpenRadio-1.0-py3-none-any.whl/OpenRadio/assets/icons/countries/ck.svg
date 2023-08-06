@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="600" viewBox="0 0 9600 4800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Flag of the Cook Islands</title>
+  <defs>
+    <clipPath id="f">
+      <path d="m0 0h12v6H0z"/>
+    </clipPath>
+    <clipPath id="c">
+      <path d="m0 0v1.5h8V4zm6 0H3v4h-5z"/>
+    </clipPath>
+  </defs>
+  <g transform="scale(800)" clip-path="url(#f)" fill="#012169" stroke-width=".6">
+    <path d="m0 0h12v6H0z"/>
+    <path d="m0 0 6 3M0 3l6-3" stroke="#fff"/>
+    <path d="m0 0 6 3M0 3l6-3" clip-path="url(#c)" stroke="#c8102e" stroke-width=".4"/>
+    <path d="m3 0v4M0 1.5h7" stroke="#fff" stroke-width="1"/>
+    <path d="m3 0v4M0 1.5h7" stroke="#c8102e"/>
+    <path d="m0 3h6V0h6v6H0z"/>
+  </g>
+  <g transform="translate(7200,2400)">
+    <g id="t">
+      <path id="s" d="m0-1992 81 249h261l-211 153 81 249-212-153-212 153 81-249-211-153h261z" fill="#fff"/>
+      <use transform="rotate(24)" xlink:href="#s"/>
+      <use transform="rotate(48)" xlink:href="#s"/>
+    </g>
+    <use transform="rotate(72)" xlink:href="#t"/>
+    <use transform="rotate(144)" xlink:href="#t"/>
+    <use transform="rotate(216)" xlink:href="#t"/>
+    <use transform="rotate(288)" xlink:href="#t"/>
+  </g>
+</svg>

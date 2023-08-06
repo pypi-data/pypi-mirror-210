@@ -1,0 +1,3 @@
+
+class HTTPApiNotStarting(Exception):
+    pass

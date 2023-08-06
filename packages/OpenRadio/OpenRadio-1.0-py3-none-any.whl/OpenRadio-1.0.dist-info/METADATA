@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: OpenRadio
+Version: 1.0
+Summary: An open-source, touch-focused radio application that is written in Python. The Gui was built using Gtk3. And it is Modular AF.
+Author: 1337Misom
+Project-URL: Homepage, https://gitlab.com/1337Misom/OpenRadio
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: End Users/Desktop
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+License-File: LICENSE_Flags.md
+License-File: LICENSE_Icons.md
+Requires-Dist: requests
+Requires-Dist: PyGObject
+Requires-Dist: toml
+Requires-Dist: python-vlc
+Requires-Dist: pyradios
+Requires-Dist: requests-file
+
+# OpenRadio an Open Source Radio App written in Python.
+
+
+# Todo
+- [x] Rewrite Core
+- [x] Add Basic Audio Player
+- [x] Create Internet Radio app
+- [x] Improve Favorites
+- [x] Add Non visual audio player
+- [x] Add Alarm
+- [x] Add docs
+- [ ] Release v1
+- [ ] Improve Audio Player
+- [ ] Add DAB/FM support
+- [ ] Add HTTP Api to InternetRadio Alarm and DAB/FM
+
+# Social
+[Mastodon](https://fosstodon.org/@openradio)
