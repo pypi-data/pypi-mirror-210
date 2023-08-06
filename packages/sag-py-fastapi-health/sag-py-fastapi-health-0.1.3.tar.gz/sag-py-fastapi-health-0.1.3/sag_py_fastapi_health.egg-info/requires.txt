@@ -1,0 +1,15 @@
+fastapi>=0.70.1
+pydantic>=1.9
+aiohttp[speedups]<4,>=3
+typing-extensions>=4.0.0
+
+[dev]
+flake8
+mypy
+build
+pytest
+pytest-asyncio
+pytest-cov
+coverage-lcov
+mock
+types-mock
