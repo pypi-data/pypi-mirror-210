@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% if cfg.footer is not none and cfg.footer.sections is not none %}
+    {% if cfg.css_framework == 'MUNI' %}
+        {% if cfg.footer.sections[lang] is not none %}
+            {% set colSize = 4 / cfg.footer.sections[lang] | length %}
+        {% else %}
+            {% set colSize = 4 / cfg.sections | length %}
+        {% endif %}
+    {% else %}
+        {% if cfg.footer.sections[lang] is not none %}
+            {% set colSize = 12 / cfg.footer.sections[lang] | length %}
+        {% else %}
+            {% set colSize = 12 / cfg.footer.sections | length %}
+        {% endif %}
+    {% endif %}
+ <footer class="footer text-left{% if not cfg.css_framework == 'MUNI' %} bg-secondary secondary-contrast-color{% endif %}">
+        <div class="{% if cfg.css_framework == 'MUNI' %}grid{% else %}row{% endif%} footer-margin">
+            {% if cfg.footer.sections[lang] is not none %}
+                {% for block in cfg.footer.sections[lang] %}
+                    {% if cfg.footer.format is not none and (cfg.footer.format == 'HTML' or cfg.footer.format == 'markdown') %}
+                        <div class="{% if cfg.css_framework == 'MUNI' %}grid__cell size--m--{{ colSize }}-4{% else %}col-padding-0 col-md-{{ colSize }}{% endif %}">
+                            {{ block |safe}}
+                        </div>
+                    {% else %}
+                        <div class="{% if cfg.css_framework == 'MUNI' %}grid__cell size--m--{{ colSize }}-4{% else %}col-padding-0 col-md-{{ colSize }}{% endif %}">
+                            {{ block }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% for block in cfg.footer.sections %}
+                    {% if cfg.footer.format is not none and (cfg.footer.format == 'HTML' or cfg.footer.format == 'markdown') %}
+                        <div class="{% if cfg.css_framework == 'MUNI' %}grid__cell size--m--{{ colSize }}-4{% else %}col-padding-0 col-md-{{ colSize }}{% endif %}">
+                            {{ block |safe}}
+                        </div>
+                    {% else %}
+                        <div class="{% if cfg.css_framework == 'MUNI'%}grid__cell size--m--{{ colSize }}-4{% else %}col-padding-0 col-md-{{ colSize }}{% endif %}">
+                            {{ block }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </footer>
+{% endif %}

@@ -1,0 +1,16 @@
+Flask-Babel~=3.1
+Flask~=2.2
+PyYAML~=6.0
+SQLAlchemy~=1.4.45
+jwcrypto~=1.3
+perun.connector~=3.3
+pymongo~=4.3.3
+setuptools
+
+[kerberos]
+
+[kerberos:platform_system != "Windows"]
+kerberos~=1.3.1
+
+[kerberos:platform_system == "Windows"]
+winkerberos~=0.9.1
