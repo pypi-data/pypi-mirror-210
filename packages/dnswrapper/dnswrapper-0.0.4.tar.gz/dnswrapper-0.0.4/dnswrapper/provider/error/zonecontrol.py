@@ -1,0 +1,2 @@
+class ZoneControlError(Exception):
+    pass
