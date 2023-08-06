@@ -1,0 +1,264 @@
+########################## Clash-Template #######################
+#                                                               #
+# based on clash wiki                                           #
+#     - https://github.com/Dreamacro/clash/wiki/configuration   #
+#                                                               #
+#                                                               #
+#                🕊️ Woman, Life, Freedom                        #
+#                                                               #
+########################### End ################################# 
+
+# port of HTTP
+port: 7890
+
+# port of SOCKS5
+socks-port: 7891
+
+# (HTTP and SOCKS5 in one port)
+# mixed-port: 7890
+
+# Set to true to allow connections to the local-end server from
+# other LAN IP addresses
+allow-lan: false
+
+# Clash router working mode
+# rule: rule-based packet routing
+# global: all packets will be forwarded to a single endpoint
+# direct: directly forward the packets to the Internet
+mode: Rule
+
+# Clash by default prints logs to STDOUT
+# info / warning / error / debug / silent
+log-level: info
+
+# RESTful web API listening address
+external-controller: 127.0.0.1:9090
+
+# DNS server settings [optional]
+dns:
+  enable: true
+  ipv6: true
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
+  fake-ip-filter:
+    - "*.lan"
+    - stun.*.*.*
+    - stun.*.*
+    - time.windows.com
+    - time.nist.gov
+    - time.apple.com
+    - time.asia.apple.com
+    - "*.openwrt.pool.ntp.org"
+    - pool.ntp.org
+    - ntp.ubuntu.com
+    - time1.apple.com
+    - time2.apple.com
+    - time3.apple.com
+    - time4.apple.com
+    - time5.apple.com
+    - time6.apple.com
+    - time7.apple.com
+    - time1.google.com
+    - time2.google.com
+    - time3.google.com
+    - time4.google.com
+    - api.joox.com
+    - joox.com
+    - "*.xiami.com"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "*.*.stun.playstation.net"
+    - xbox.*.*.microsoft.com
+    - "*.ipv6.microsoft.com"
+    - speedtest.cros.wr.pvp.net
+  nameserver:
+    - https://8.8.8.8/dns-query
+    - https://dns.google/dns-query
+    - https://1.1.1.2/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://azure.cloudflare-dns.com/dns-query
+    - https://mozilla.cloudflare-dns.com/dns-query
+    - https://dns.dnshome.de/dns-query
+    - https://dns.hostux.net/dns-query
+    - https://NoTMIKE.dev/dns.php
+    - https://doh.42l.fr/dns-query
+    - https://DNS.HeN.ee/dns-query
+    - https://doh.dnswarden.com/uncensored
+    - https://dns.quad9.net/dns-query
+    - https://EU2.DNS.LAVATE.CH/dns-query
+    - https://DANDELIONSPROUT.Asuscomm.com:2501/dns-query
+    - https://dns.switch.ch/dns-query
+    - https://dnsforge.de/dns-query
+    - https://dns.adguard.com/dns-query
+    - https://doh-de.blahdns.com/dns-query
+    - https://basic.rethinkdns.com/dns-query
+
+  fallback:
+    - https://8.8.4.4/dns-query
+    - https://dns64.dns.google/dns-query
+    - https://1.0.0.2/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns64.cloudflare-dns.com/dns-query
+    - https://azure.cloudflare-dns.com/dns-query
+    - https://mozilla.cloudflare-dns.com/dns-query
+    - https://dns.dnshome.de/dns-query
+    - https://dns.hostux.net/dns-query
+    - https://NoTMIKE.dev/dns.php
+    - https://doh.42l.fr/dns-query
+    - https://DNS.HeN.ee/dns-query
+    - https://doh.dnswarden.com/uncensored
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+    - https://EU2.DNS.LAVATE.CH/dns-query
+    - https://DANDELIONSPROUT.Asuscomm.com:2501/dns-query
+    - https://dns.switch.ch/dns-query
+    - https://dnsforge.de/dns-query
+    - https://dns.adguard.com/dns-query
+    - https://doh-de.blahdns.com/dns-query
+    - https://basic.rethinkdns.com/dns-query
+    - https://dns1.ryan-palmer.com/dns-query
+    - https://odvr.nic.cz/dns-query
+    - https://doh.crypto.sx/dns-query
+    - https://puredns.org/dns-query
+    - https://doh.seby.io:8443/dns-query
+    - https://ibksturm.synology.me/dns-query
+    - https://doh.libredns.gr/dns-query
+    - https://8888.google/dns-query
+    
+  fallback-filter:
+    geoip: true
+    geoip-code: IR
+    ipcidr:
+      - 0.0.0.0/32
+      - 10.10.34.0/24
+      - 127.0.0.1/32
+      - 240.0.0.0/4
+    domain:
+      - '+.facebook.com'
+      - '+.twitter.com'
+      - '+.youtube.com'
+      - '+.bing.com'
+
+
+proxies:
+  - {"type":"ss","name":"test_ss","server":"198.57.27.218","port":5004,"cipher":"aes-256-gcm","password":"g5MeD6Ft3CWlJId"}
+  - {"type":"ssr","name":"test_ssr","server":"20.239.49.44","port":59814,"protocol":"origin","cipher":"dummy","obfs":"plain","password":"3df57276-03ef-45cf-bdd4-4edb6dfaa0ef"}
+  - {"type":"vmess","name":"test_vmess","ws-opts":{"path":"/"},"server":"154.23.190.162","port":443,"uuid":"b9984674-f771-4e67-a198-c7e60720ba2c","alterId":"0","cipher":"auto","network":"ws"}
+  - {"type":"vless","name":"test_vless","server":"1.2.3.4","port":7777,"uuid":"abc-def-ghi-fge-zsx","skip-cert-verify":true,"network":"tcp","tls":true,"udp":true}
+  - {"type":"trojan","name":"test_trojan","server":"ca-trojan.bonds.id","port":443,"password":"bc7593fe-0604-4fbe-a70bYWVzLTI1Ni1nY206Q1VuZFNabllzUEtjdTaclWNFc1RmRBNk5NQU5KSnga3fa58ac5a3ef0-b4ab-11eb-b65e-1239d0255272","udp":true,"skip-cert-verify":true}
+  - {"type":"http","name":"test_http","server":"124.15.12.24","port":251,"username":"username","password":"password","udp":true}
+  - {"type":"socks5","name":"test_socks5","server":"124.15.12.24","port":2312,"udp":true}
+  - {"type":"hysteria","name":"test_Hys","server":"1.2.3.4","port":12854,"auth_str":"pekopeko","alpn":"h3","protocol":"udp","up":50,"down":250,"sni":"wechat.com","skip-cert-verify":true,"recv_window":104857600,"recv_window_conn":26214400,"disable_mtu_discovery":true}
+
+proxy-groups:
+
+  # select is used for selecting proxy or proxy group
+  - name: "🔆 LIST"
+    type: select  # 🔰 Select
+    disable-udp: false
+    proxies:
+      - "test_ss"
+      - "test_ssr"
+      - "test_vmess"
+      - "test_vless"
+      - "test_trojan"
+      - "test_http"
+      - "test_socks5"
+      - "test_Hys"
+
+  # url-test select which proxy will be used by benchmarking speed to a URL.
+  - name: "🔥 Auto(Best ping)"
+    type: url-test
+    url: 'http://www.gstatic.com/generate_204' #  http://cp.cloudflare.com  http://connectivitycheck.gstatic.com/generate_204 
+    interval: 300  # 600
+    tolerance: 50
+    #lazy: true
+    proxies:
+      - "test_ss"
+      - "test_ssr"
+      - "test_vmess"
+      - "test_vless"
+      - "test_trojan"
+      - "test_http"
+      - "test_socks5"
+      - "test_Hys"
+
+  - name: "Auto-Fallback"
+    type: fallback
+    proxies:
+      - "test_ss"
+      - "test_ssr"
+      - "test_vmess"
+      - "test_vless"
+      - "test_trojan"
+      - "test_http"
+      - "test_socks5"
+      - "test_Hys"
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # load-balance: The request of the same eTLD+1 will be dial to the same proxy.
+  - name: "⚖️ load-balance hash"
+    type: load-balance
+    proxies:
+      - "test_ss"
+      - "test_ssr"
+      - "test_vmess"
+      - "test_vless"
+      - "test_trojan"
+      - "test_http"
+      - "test_socks5"
+      - "test_Hys"
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    strategy: consistent-hashing # or round-robin
+
+  - name: "⚖️ load-balance round-robin"
+    type: load-balance
+    proxies:
+      - "test_ss"
+      - "test_ssr"
+      - "test_vmess"
+      - "test_vless"
+      - "test_trojan"
+      - "test_http"
+      - "test_socks5"
+      - "test_Hys"
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    strategy: round-robin # or consistent-hashing
+
+  # - name: UseProvider
+  #   type: select
+  #   use:
+  #     - provider1
+  #   proxies:
+  #     - DIRECT
+
+# proxy-providers:
+#   provider1:
+#     type: http
+#     url: "some url"
+#     interval: 43200  # 12h = 60*60*12
+#     path: ./provider1.yaml
+#     # filter: 'a|b' # golang regex string
+#     health-check:
+#       enable: true
+#       interval: 432000
+#       # lazy: true
+#       url: http://www.gstatic.com/generate_204
+
+rule-providers:
+  iran:
+    type: http
+    behavior: classical
+    url: "https://github.com/SamadiPour/iran-hosted-domains/releases/latest/download/clash_rules.yaml"
+    path: ./ruleset/iran.yaml
+    interval: 432000
+
+
+rules:
+ - MATCH,🔆 LIST
