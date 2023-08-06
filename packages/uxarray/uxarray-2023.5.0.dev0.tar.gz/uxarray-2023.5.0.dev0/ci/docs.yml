@@ -1,0 +1,24 @@
+name: uxarray-docs
+channels:
+    - conda-forge
+dependencies:
+    - python=3.9
+    - dask
+    - netcdf4
+    - numba
+    - numpy
+    - pathlib
+    - pre_commit
+    - pytest
+    - pytest-cov
+    - scipy
+    - xarray
+    - pip
+    - ipykernel
+    - ipython
+    - jupyter_client
+    - matplotlib-base
+    - sphinx-book-theme<=0.13.1 # pydata-sphinx-theme 0.13.2 broke sphinx_book_theme import
+    - myst-nb
+    - sphinx-design
+    - nbsphinx
