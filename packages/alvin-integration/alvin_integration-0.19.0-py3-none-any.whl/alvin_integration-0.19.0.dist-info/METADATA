@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: alvin-integration
+Version: 0.19.0
+Summary: Alvin lineage python library for integrations
+Home-page: UNKNOWN
+Author: Alvin
+Author-email: tech@alvin.ai
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Requires-Dist: gorilla (==0.4.0)
+Provides-Extra: airflow
+Requires-Dist: openlineage-airflow (==0.6.1) ; extra == 'airflow'
+Provides-Extra: dbt
+Requires-Dist: dbt-core (>=1.0.0) ; extra == 'dbt'
+Requires-Dist: dbt-bigquery (>=1.0.0) ; extra == 'dbt'
+
+UNKNOWN
+
+
