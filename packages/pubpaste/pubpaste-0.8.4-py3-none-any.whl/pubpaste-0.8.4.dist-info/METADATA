@@ -1,0 +1,454 @@
+Metadata-Version: 2.1
+Name: pubpaste
+Version: 0.8.4
+Home-page: https://gitlab.com/anarcat/pubpaste/
+Author: The Anarcat
+Author-email: anarcat@debian.org
+Project-URL: Bug Reports, https://gitlab.com/anarcat/pubpaste/issues
+Project-URL: Say Thanks!, http://saythanks.io/to/anarcat
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Communications :: File Sharing
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# pubpaste - publish files and clipboard online easily
+
+This tool makes it easy to publish files, clipboards, screenshots,
+and photo galleries online with a single command. It's somewhat messy
+but it does its job well.
+
+`pubpaste` is not for novice users: it assumes you have access to an
+SSH server and know how to configure a YAML file. It has been written
+by and for its author in a fit of egoistical mania (unfortunately
+typical for hackers), apologies normal humans out there reading this.
+
+- [Tutorial](#tutorial)
+- [How-to](#how-to)
+    - [Configuration](#configuration)
+    - [Screenshots](#screenshots)
+    - [Image galleries](#image-galleries)
+    - [Clipboard support](#clipboard-support)
+    - [Secret tokens](#secret-tokens)
+    - [History](#history)
+    - [Expiry](#expiry)
+    - [Shortcuts](#shortcuts)
+    - [Installation](#installation)
+- [Credits](#credits)
+    - [Changes from `publish`](#changes-from-publish)
+- [Contributing](#contributing)
+
+# Tutorial
+
+To publish a file:
+
+    pubpaste foo.jpg
+
+The file is then uploaded, with [rsync][], in a directory with a
+secret name, which will generate a URL like this:
+
+    https://example.com/2020-04-20-oMz_C_6Njja_3VbW-f17LFiTAgNsnp22fqTwjQOgmF4/foo.jpg
+
+[rsync]: https://rsync.samba.org/
+
+The published URL is available in the clipboard, <kbd>control-v</kbd>
+in another window to share the results. That URL should be safe from
+guessing as long as the server is properly configured.
+
+If a filename is not provided, text is read from standard input and
+uploaded as a `stdin.txt` file. That name can be changed with the
+`--stdin-name` flag.
+
+You can also upload the current *selection* with:
+
+    pubpaste --xselection
+
+You **MUST** configure `pubpaste` before the above works, however. See
+[Configuration](#configuration) below.
+
+`pubpaste` supports many more ways of sharing content, see the
+detailed how-to below for more information on screenshots, photo
+galleries and more...
+
+# How-to
+
+## Configuration
+
+`pubpaste` requires manual configuration before it
+works. Specifically, the `output` and `url_prefix` should be set in
+the configuration. For example, this will tell `pubpaste` to rsync
+files to `shell.example.com`, in the `~/public_html` directory, and
+that this directory is exposed as <https://example.com/~user>:
+
+    output: "shell.example.com:public_html/"
+    url_prefix: "https://example.com/~user"
+
+This configuration must be stored in `~/.config/pubpaste.yml`. Other
+configuration file paths can be provided with the `--config`
+command-line argument or `pubpaste.yml` in the `$XDG_CONFIG_HOME`
+directory (which defaults to `~/.config`).
+
+Any parameter (like `follow_symlinks`) can be specified in the
+configuration file as well. The rule is that dashes (`-`) MUST be
+converted to underscores (`_`).
+
+Note that the `output` directory should not have directory listings
+enabled, see the [Secret tokens](#secret-tokens) section for more
+information.
+
+Some settings are not visible in the usage because they are better
+suited to be used in the configuration file. Here's a sample
+configuration file with all the settings not mentioned in the usage:
+
+    output: "shell.example.com:public_html/"
+    url_prefix: "https://example.com/~user"
+    base_dir: /home/user/public_html/
+    save_screenshots: ~/snaps/
+
+They can still be used on the command-line, of course.
+
+## Screenshots
+
+To publish a screenshot with [maim][], use:
+
+    pubpaste --screenshot
+
+[maim]: https://github.com/naelstrof/maim
+
+This will:
+
+ 1. start a terminal to show the maim timer
+ 2. start maim to select a window, it will wait 3 seconds before
+    taking the screenshot
+ 3. preview the screenshot using your favorite image view (with
+    [xdg-open(1)][])
+ 4. ask for confirmation before uploading (with [xmessage(1)][])
+ 5. then upload the file
+
+Screenshots therefore require a bit more configuration than other
+mechanisms. First install the dependencies:
+
+    apt install maim
+
+Install *some* image viewer, for example this is the default image
+viewer that comes with GNOME:
+
+    apt install eog
+
+`xdg-open(1)` and `xmessage(1)` are very likely already installed on
+your computer but if they aren't:
+
+    apt install x11-utils xdg-utils
+
+[xmessage(1)]: http://manpages.debian.org/xmessage
+[xdg-open(1)]: https://manpages.debian.org/xdg-open
+
+You might not like the default `xdg-open(1)` picks when opening an
+image. To change that, use:
+
+    xdg-mime default application mimetype(s)
+
+For example, this will pick the [Eye Of GNOME][] image viewer:
+
+    xdg-mime default eog.desktop image/png
+
+[Eye Of GNOME]: https://wiki.gnome.org/Apps/EyeOfGnome/
+
+To see which application is currently in use, see:
+
+    xdg-mime query default image/png
+
+By default, screenshots are not kept locally. But they can be retained
+by setting the `save_screenshots` configuration to a directory, for
+example this will keep all screenshots in `$HOME/snaps`:
+
+    save_screenshots: ~/snaps/
+
+## Image galleries
+
+Build an image gallery with [Sigal][]:
+
+    pubpaste --sigal *.JPG
+
+This will generate an image gallery in a temporary directory and
+upload it to the server as a whole. The gallery configuration is
+currently hard-coded, but could eventually be added to the
+configuration file.
+
+[Sigal]: http://sigal.saimon.org/
+
+## Clipboard support
+
+When doing any upload, the remote URL will be copied to the X
+clipboard (the "CLIPBOARD" selection) that you paste with
+<kbd>control-v</kbd>, or <kbd>control-shift-v</kbd> in a
+terminal. That is different from the X *selection*, which you paste
+with the <kbd>middle mouse button</kbd>.
+
+Note that `pubpaste` *reads* from the X "PRIMARY" selection (the
+highlighted text), when you use:
+
+    pubpaste --xselection
+
+The idea behind this asymmetry is that we do not want the URL to
+override the current selection. By copying the URL in to the
+clipboard instead of the selection, we keep the current selection
+active. The clipboard is also more "durable" as it doesn't get change
+whenever you select some text.
+
+You can use the `--xclipboard` (`-C`) argument to upload the
+"CLIPBOARD" selection instead:
+
+    pubpaste --xclipboard
+
+Do note that this works with "Copy image" links. For example, say you
+have an image in your web browser, you can right-click on it and pick
+the "Copy image" link, then call `pubpaste` with `-x` and it will
+upload the image without having to first download the image as a file.
+
+This is also useful to upload screenshots done within Firefox (in the
+"..." menu of the URL bar, "Take screenshot").
+
+Image support only works if GTK and its Python bindings are installed.
+
+## Secret tokens
+
+`pubpaste` publishes files under a specified root directory but with a
+unique token made of the current date (`YYYY-MM-DD`) and a random,
+presumably hard to guess, string. That token can be overridden with the
+`--token` (`-T`) flag. For example, if you do not worry about
+confidentiality and actually *want* a meaningful name, you can upload
+a file publicly with:
+
+    pubpaste --token my-new-bike bike.jpg
+
+Otherwise a properly secure token is generated. Note that directory
+listings *must* be disabled for the secrecy to work: if you point
+`pubpaste` at a directory with directory listing enabled, all the
+secrets will be *public* and the entire security of the system will
+fail.
+
+This can be fixed simply by adding an empty `index.html` file into the
+`output` directory (if the web server is configured to serve those) or
+by disabling directory listing (`Options -Indexes` in Apache, for
+example).
+
+## History
+
+`pubpaste` keeps an history of the things it has uploaded, in
+`~/.publish.history`. This allows you to cancel the last upload, for
+example:
+
+    pubpaste --undo
+
+... or arbitrary uploads:
+
+    pubpaste -T TOKEN --undo
+
+Similarly, you can republish over the previous upload with:
+
+    pubpaste --republish ...
+
+History can be displayed with the `show-history` command. The last
+token used is also accessible with the `last-token` command.
+
+## Expiry
+
+By default, uploads never expire. You can add a "TTL" (Time To Live)
+file with the `--ttl` argument which marks (in days) the time a paste
+should be kept.
+
+Old entries can be purged by deploying `pubpaste` on the server side
+and running:
+
+    pubpaste --purge --base-dir=/home/user/public_html
+
+... where `/home/user/public_html` is the path provided in `output` on
+the clients. That configuration will usually be store in the configuration
+file, as such:
+
+    base_dir: "/home/user/public_html"
+
+## Shortcuts
+
+The usage has all the details but if you use `pubpaste` from the
+command-line, you might like to use shortcuts for the commands. For
+example, a screenshot is `pubpaste -S`. See `--help` for details.
+
+# Installation
+
+This package is available on PyPI. It can be installed with `pip`:
+
+    pip install pubpaste
+
+Its requirements are minimal so you shouldn't need a [virtual
+environment][].
+
+[virtual environment]: https://docs.python.org/3/library/venv.html
+
+`pubpaste` can also be ran directly from the source directory:
+
+    ./pubpaste.py
+
+or symlinked in your `$PATH`:
+
+    ln -s $PWD/pubpaste.py /usr/local/bin/pubpaste
+
+# Known issues and limitations
+
+Has no unit tests, but has been refactored to make that possible
+lately.
+
+The photo gallery and screenshot code is messy.
+
+Was written over a weekend and might be buggy.
+
+Restricted to elite hackers that have SSH or rsync access and their
+own web server. Could be improved by supporting things like S3,
+"paste bins" or other file sharing systems.
+
+In particular, mis-configuration of the web server can easily be
+catastrophic: if `Indexes` is enabled in the web server *and* the
+parent directory doesn't have an `index.html` to protect from leaks,
+the secret tokens will be revealed and the secrecy of the system
+compromised.
+
+Similarly, secret tokens can easily leak if any peer that received it
+share it by mistake or maliciously. Access revocation is impossible
+without renaming the token, which must be done by hand.
+
+# Credits
+
+This project was inspired by the `publish` program originally written
+by Florian Reitmeir and Peter Palfrader. It was re-written in Python
+to make it easier to document, extend, and maintain.
+
+It was renamed because we did not want to take over the `publish`
+namespace out of respect for the existing one. It's also a little too
+generic for a project name.
+
+`pubpaste` seemed like a nice alternative and didn't seem in use
+according to search engines (checked DuckDuckGo, Google, GitHub, and
+GitLab).
+
+`pub` refers to the inspiration for this project, the `publish` shell
+script that influence the command-line design and implementation.
+
+`paste` refers to the clipboard support. therefore *pubpaste* means
+*publish this paste*, but it can of course do more than just publish
+the clipboard.
+
+`pub` is also a reference to the real-world place that I dearly miss
+since the start of the global pandemic that has everyone isolated and
+bars closed. *pub paste* therefore obliquely refers to the stickiness
+and smell of old pubs and bars, that strange smell of old yeast and
+alcohol mixed with bleach or strong cleaning product that lingers
+until you walk into a sound check the next day.
+
+This is a message of hope: this will not go on forever and the
+messiness of humanity will return humbled yet improved.
+
+## Changes from `publish`
+
+While `pubpaste` generally tries to be backwards-compatible with
+`publish` in terms of command-line interface, it has the following
+changes:
+
+ 1. usage is clearer. different actions are "commands" that are
+    clearly outlined in the usage and correctly "conflict" with each
+    other
+
+ 2. long options: `publish` only has one-letter options, `pubpaste`
+    supports longer form options as well
+
+ 3. `--undo` defaults to the last token, ie. `--republish` is implicit
+
+ 4. `--undo` removes the token from history, allowing the user to
+    "pop" backwards in the history, canceling multiple entries
+
+ 5. `--purge` is builtin instead of being a separate script
+
+ 6. the `-L | --follow-symlinks` option is new
+
+ 7. photo gallery: the `--sigal` option is new
+
+The following are general behavior changes:
+
+ 1. builtin graphical notifications: while `publish` can be modified
+    (through hooks) to notify the user on upload, `pubpaste` does
+    this outside the box.
+
+ 2. We use `xclip -selection clipboard` by default instead of
+    `xclip`, because the latter conflicts with the `-x` option. If
+    available, we use GTK to handle clipboard events, which gives us
+    image support.
+
+ 3. configuration file path and format: `publish`'s configuration is a shell
+    script in `~/.publish.cfg`, `pubpaste`'s configuration is a YAML
+    file in `~/.config/pubpaste.yml`. this breaks backwards
+    compatibility.
+
+ 4. extensibility: `pubpaste` is less extensible than `publish`. the
+    latter has "hooks", shell functions that run before and after
+    various points in the program, and that the configuration can
+    totally override. this is very powerful, but also not well
+    documented and possibly dangerous. we took a more traditional
+    approach in `pubpaste`: modifications should be done in the source
+    code and proposed as patches
+
+The following functionality is missing:
+
+  * `-q`: encodes the URL in a QR code and uploads *that*
+  * maximum history size
+
+Those options were discarded and will not be implemented:
+
+  * `-8`: web server should be properly configured
+  * `-r` obscure rsync function i never use
+  * `is_text` detection: we will just assume stdin is text
+
+# Prior art
+
+Similar projects include, apart from the above publish, ordered
+alphabetically:
+
+ * [0bin.net](https://0bin.net/): client-side encrypted, Javascript
+ * [0x0.st](https://0x0.st/): AKA "the null pointer", minimalistic paste bin
+ * [Stikked](https://github.com/claudehohl/Stikked): PHP, "advanced and beautiful"
+ * [dpaste](https://github.com/sim590/dpaste): novel idea: paste over the DHT
+ * [hardbin](https://hardbin.com/): IPFS-based
+ * [ix.io](http://ix.io/): possibly the OG minimal paste bin (2009)
+ * [microbin](https://microbin.eu/): expiry, raw files, rust, qrcodes, expiry
+ * [pastebinit](https://github.com/pastebinit/pastebinit): supports publishing text to multiple paste sites,
+   Python
+ * [pasthis](https://github.com/moulecorp/pasthis): PHP-based, also command-line tool
+ * [plowshare](https://github.com/mcrapet/plowshare): (collection of) shell scripts to do somewhat the
+   same, delegates site-specific features to unbundled scripts,
+   [removed from Debian because security liability](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1011590)
+ * [privatebin](https://privatebin.info/): minimal, client-side encrypted, PHP
+ * [termbin](https://termbin.com/)/[fiche](https://github.com/solusipse/fiche): minimalist; not even curl, just nc, C
+ * [transfer.sh](https://transfer.sh/): minimalist, Golang
+ * [up1](https://github.com/Upload/Up1): client-side encrypted, Javascript
+
+I am not including here the list of actual sites deploying some of
+those tools or other proprietary ones.
+
+This list is likely incomplete. Note, that said, that none of the
+above implementation have the feature set of pubpaste (not even
+publish). pubpaste and publish both lack the ability to do client-side
+(i.e. browser-based) encryption (no, OpenPGP, Age, or OpenSSL do not
+count).
+
+# Contributing
+
+See the [contribution guide](CONTRIBUTING.rst) for more information. In
+short: this is a free software project and you are welcome to join us
+in improving it, both by fixing things, reporting issues or
+documentation.
+
+This project adheres to the [Covenant code of conduct](CODE_OF_CONDUCT.rst).
