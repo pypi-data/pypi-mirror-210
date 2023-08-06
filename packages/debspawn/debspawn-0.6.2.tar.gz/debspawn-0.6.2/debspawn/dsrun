@@ -1,0 +1,380 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2018-2022 Matthias Klumpp <matthias@tenstral.net>
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+
+# IMPORTANT: This file is placed within a Debspawn container.
+# The containers only contain a minimal set of packages, and only a reduced
+# installation of Python is available via the python3-minimal package.
+# This file must be self-contained and only depend on modules available
+# in that Python installation.
+# It must also not depend on any Python 3 feature introduced after version 3.5.
+# See /usr/share/doc/python3.*-minimal/README.Debian for a list of permitted
+# modules.
+# Additionally, the CLI API of this file should remain as stable as possible,
+# to not introduce odd behavior if a container image wasn't updated and is used
+# with a newer debspawn version.
+
+import os
+import pwd
+import sys
+import time
+import subprocess
+from glob import glob
+from argparse import ArgumentParser
+from contextlib import contextmanager
+
+# the user performing builds in the container
+BUILD_USER = 'builder'
+
+# the directory where we build a package
+BUILD_DIR = '/srv/build'
+
+# additional packages to be used when building
+EXTRAPKG_DIR = '/srv/extra-packages'
+
+
+#
+# Globals
+#
+
+unicode_enabled = True
+color_enabled = True
+
+
+def run_command(cmd, env=None, *, check=True):
+    if isinstance(cmd, str):
+        cmd = cmd.split(' ')
+
+    proc_env = env
+    if proc_env:
+        proc_env = os.environ.copy()
+        proc_env.update(env)
+
+    p = subprocess.run(cmd, env=proc_env, check=False)
+    if p.returncode != 0:
+        if check:
+            print('Command `{}` failed.'.format(' '.join(cmd)))
+            sys.exit(p.returncode)
+        else:
+            return False
+    return True
+
+
+def run_apt_command(cmd):
+    if isinstance(cmd, str):
+        cmd = cmd.split(' ')
+
+    env = {'DEBIAN_FRONTEND': 'noninteractive'}
+    apt_cmd = ['apt-get',
+               '-uyq',
+               '-o Dpkg::Options::="--force-confnew"']
+    apt_cmd.extend(cmd)
+
+    if cmd == 'update':
+        # retry an apt update a few times, to protect a bit against bad
+        # network connections or a flaky mirror / internal build queue repo
+        for i in range(0, 3):
+            is_last = i == 2
+            if run_command(apt_cmd, env, check=is_last):
+                break
+            print('APT update failed, retrying...')
+            time.sleep(5)
+    else:
+        run_command(apt_cmd, env)
+
+
+def print_textbox(title, tl, hline, tr, vline, bl, br):
+    def write_utf8(s):
+        sys.stdout.buffer.write(s.encode('utf-8'))
+
+    tlen = len(title)
+    write_utf8('\n{}'.format(tl))
+    write_utf8(hline * (10 + tlen))
+    write_utf8('{}\n'.format(tr))
+
+    write_utf8('{}  {}'.format(vline, title))
+    write_utf8(' ' * 8)
+    write_utf8('{}\n'.format(vline))
+
+    write_utf8(bl)
+    write_utf8(hline * (10 + tlen))
+    write_utf8('{}\n'.format(br))
+
+    sys.stdout.flush()
+
+
+def print_header(title):
+    if unicode_enabled:
+        print_textbox(title, '╔', '═', '╗', '║', '╚', '╝')
+    else:
+        print_textbox(title, '+', '═', '+', '|', '+', '+')
+
+
+def print_section(title):
+    if unicode_enabled:
+        print_textbox(title, '┌', '─', '┐', '│', '└', '┘')
+    else:
+        print_textbox(title, '+', '-', '+', '|', '+', '+')
+
+
+@contextmanager
+def eatmydata():
+    try:
+        # FIXME: We just override the env vars here, appending to them would
+        # be much cleaner.
+        os.environ['LD_LIBRARY_PATH'] = '/usr/lib/libeatmydata'
+        os.environ['LD_PRELOAD'] = 'libeatmydata.so'
+        yield
+    finally:
+        del os.environ['LD_LIBRARY_PATH']
+        del os.environ['LD_PRELOAD']
+
+
+def update_container(builder_uid):
+    with eatmydata():
+        run_apt_command('update')
+        run_apt_command('full-upgrade')
+
+        run_apt_command(['install', '--no-install-recommends',
+                         'build-essential', 'dpkg-dev', 'fakeroot', 'eatmydata'])
+
+        run_apt_command(['--purge', 'autoremove'])
+        run_apt_command('clean')
+
+    try:
+        pwd.getpwnam(BUILD_USER)
+    except KeyError:
+        print('No "{}" user, creating it.'.format(BUILD_USER))
+        run_command('useradd -M -f -1 -d /nonexistent --uid {} {}'
+                    .format(builder_uid, BUILD_USER))
+
+    run_command('mkdir -p /srv/build')
+    run_command('chown {} /srv/build'.format(BUILD_USER))
+
+    # ensure the non existent directory is gone even if it was
+    # created accidentally
+    run_command('rm -rf /nonexistent')
+
+    return True
+
+
+def prepare_run():
+    print_section('Preparing container')
+
+    with eatmydata():
+        run_apt_command('update')
+        run_apt_command('full-upgrade')
+
+    return True
+
+
+def prepare_package_build(arch_only=False, suite=None):
+    print_section('Preparing container for build')
+
+    with eatmydata():
+        run_command('rm -rf /nonexistent')
+        run_apt_command('update')
+        run_apt_command('full-upgrade')
+        run_apt_command(['install', '--no-install-recommends',
+                         'build-essential', 'dpkg-dev', 'fakeroot'])
+
+        # check if we have extra packages to register with APT
+        if os.path.exists(EXTRAPKG_DIR) and os.path.isdir(EXTRAPKG_DIR):
+            if os.listdir(EXTRAPKG_DIR):
+                run_apt_command(['install', '--no-install-recommends', 'apt-utils'])
+                print()
+                print('Using injected packages as additional APT package source.')
+
+                os.chdir(EXTRAPKG_DIR)
+                with open(os.path.join(EXTRAPKG_DIR, 'Packages'), 'wt') as f:
+                    proc = subprocess.Popen(['apt-ftparchive',
+                                             'packages',
+                                             '.'],
+                                            cwd=EXTRAPKG_DIR,
+                                            stdout=f)
+                    ret = proc.wait()
+                    if ret != 0:
+                        print('ERROR: Unable to generate temporary APT repository for injected packages.')
+                        sys.exit(2)
+
+                with open('/etc/apt/sources.list', 'a') as f:
+                    f.write('deb [trusted=yes] file://{} ./\n'.format(EXTRAPKG_DIR))
+
+                # make APT aware of the new packages, update base packages if needed
+                run_apt_command('update')
+                run_apt_command('full-upgrade')
+
+    # ensure we are in our build directory at this point
+    os.chdir(BUILD_DIR)
+
+    run_command('chown -R {} /srv/build'.format(BUILD_USER))
+    for f in glob('./*'):
+        if os.path.isdir(f):
+            os.chdir(f)
+            break
+
+    print_section('Installing package build-dependencies')
+    with eatmydata():
+        cmd = ['build-dep']
+        if arch_only:
+            cmd.append('--arch-only')
+        cmd.append('./')
+        run_apt_command(cmd)
+
+    return True
+
+
+def build_package(buildflags=None, suite=None):
+    print_section('Build')
+
+    os.chdir(BUILD_DIR)
+    for f in glob('./*'):
+        if os.path.isdir(f):
+            os.chdir(f)
+            break
+
+    cmd = ['dpkg-buildpackage']
+    if suite:
+        cmd.append('--changes-option=-DDistribution={}'.format(suite))
+    if buildflags:
+        cmd.extend(buildflags)
+    run_command(cmd)
+
+    # run_command will exit the whole program if the command failed,
+    # so we can return True here (everything went fine if we are here)
+    return True
+
+
+def run_qatasks(qa_lintian=True):
+    ''' Run QA tasks on a built package immediately after build (currently Lintian) '''
+    os.chdir(BUILD_DIR)
+    for f in glob('./*'):
+        if os.path.isdir(f):
+            os.chdir(f)
+            break
+
+    if qa_lintian:
+        print_section('QA: Prepare')
+
+    if qa_lintian:
+        # install Lintian if Lintian check was requested
+        run_apt_command(['install', 'lintian'])
+
+        print_section('QA: Lintian')
+
+        # drop privileges
+        pw = pwd.getpwnam(BUILD_USER)
+        os.seteuid(pw.pw_uid)
+
+        cmd = ['lintian',
+               '-I',  # infos by default
+               '--pedantic',  # pedantic hints by default,
+               '--tag-display-limit', '0',  # display all tags found (even if that may be a lot occasionally)
+               ]
+        run_command(cmd)
+
+    # run_command will exit the whole program if the command failed,
+    # so we can return True here (everything went fine if we are here)
+    return True
+
+
+def setup_environment(builder_uid=None, use_color=True, use_unicode=True, *, is_update=False):
+    os.environ['LANG'] = 'C.UTF-8' if use_unicode else 'C'
+    os.environ['LC_ALL'] = 'C.UTF-8' if use_unicode else 'C'
+    os.environ['HOME'] = '/nonexistent'
+
+    os.environ['TERM'] = 'xterm-256color' if use_color else 'xterm-mono'
+    os.environ['SHELL'] = '/bin/sh'
+
+    del os.environ['LOGNAME']
+
+    if builder_uid and builder_uid > 0 and os.geteuid() == 0:
+        # we are root and got a UID to change the BUILD_USER to
+        try:
+            pwd.getpwnam(BUILD_USER)
+        except KeyError:
+            if not is_update:
+                print('WARNING: No "{}" user found in this container!'.format(BUILD_USER))
+            return
+        run_command('usermod -u {} {}'.format(builder_uid, BUILD_USER))
+
+
+def main():
+    if not os.environ.get('container'):
+        print('This helper script must be run in a systemd-nspawn container.')
+        return 1
+
+    parser = ArgumentParser(description='Debspawn helper script')
+
+    parser.add_argument('--no-color', action='store_true', dest='no_color',
+                        help='Disable terminal colors.')
+    parser.add_argument('--no-unicode', action='store_true', dest='no_unicode',
+                        help='Disable unicode support.')
+    parser.add_argument('--buid', action='store', type=int, dest='builder_uid',
+                        help='Designated UID of the build user within the container.')
+
+    parser.add_argument('--update', action='store_true', dest='update',
+                        help='Initialize the container.')
+    parser.add_argument('--arch-only', action='store_true', dest='arch_only', default=None,
+                        help='Only get arch-dependent packages (used when satisfying build dependencies).')
+    parser.add_argument('--build-prepare', action='store_true', dest='build_prepare',
+                        help='Prepare building a Debian package.')
+    parser.add_argument('--build-run', action='store_true', dest='build_run',
+                        help='Build a Debian package.')
+    parser.add_argument('--lintian', action='store_true', dest='qa_lintian',
+                        help='Run Lintian on the generated package.')
+    parser.add_argument('--buildflags', action='store', dest='buildflags', default=None,
+                        help='Flags passed to dpkg-buildpackage.')
+    parser.add_argument('--suite', action='store', dest='suite', default=None,
+                        help='The suite we are building for (may be inferred if not set).')
+    parser.add_argument('--prepare-run', action='store_true', dest='prepare_run',
+                        help='Prepare container image for generic script run.')
+    parser.add_argument('--run-qa', action='store_true', dest='run_qatasks',
+                        help='Run QA tasks (only Lintian currently) against a package.')
+
+    options = parser.parse_args(sys.argv[1:])
+
+    # initialize environment defaults
+    global unicode_enabled, color_enabled
+    unicode_enabled = not options.no_unicode
+    color_enabled = not options.no_color
+    setup_environment(options.builder_uid,
+                      color_enabled,
+                      unicode_enabled,
+                      is_update=options.update)
+
+    if options.update:
+        r = update_container(options.builder_uid)
+        if not r:
+            return 2
+    elif options.build_prepare:
+        r = prepare_package_build(options.arch_only, options.suite)
+        if not r:
+            return 2
+    elif options.build_run:
+        buildflags = []
+        if options.buildflags:
+            buildflags = [s.strip('\'" ') for s in options.buildflags.split(';')]
+        r = build_package(buildflags, options.suite)
+        if not r:
+            return 2
+    elif options.prepare_run:
+        r = prepare_run()
+        if not r:
+            return 2
+    elif options.run_qatasks:
+        r = run_qatasks(qa_lintian=options.qa_lintian)
+        if not r:
+            return 2
+    else:
+        print('ERROR: No action specified.')
+        return 1
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

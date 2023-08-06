@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+  <!ENTITY date        "<date>18 August, 2018</date>">
+
+  <!ENTITY pagename    "debspawn-create">
+  <!ENTITY command     "debspawn create">
+]>
+
+<refentry>
+	<refentryinfo>
+	<title>&command;</title>
+	<copyright>
+		<year>2018-2022</year>
+		<holder>Matthias Klumpp</holder>
+	</copyright>
+	<productname>Debspawn</productname>
+	&date;
+	</refentryinfo>
+
+	<refmeta>
+		<refentrytitle>&pagename;</refentrytitle>
+		<manvolnum>1</manvolnum>
+	</refmeta>
+	<refnamediv>
+		<refname>&pagename;</refname>
+		<refpurpose>Create new container images</refpurpose>
+	</refnamediv>
+
+       <refsynopsisdiv>
+	       <cmdsynopsis>
+		       <command>&command;</command>
+		       @CREATE_FLAGS_SYNOPSIS@
+		       <arg choice="req">NAME</arg>
+		</cmdsynopsis>
+	</refsynopsisdiv>
+
+	<refsect1>
+		<title>Description</title>
+		<para>
+			Create a new base image for a suite known to <command>debootstrap(1)</command>. The image will later be used to spawn
+			ephemeral containers in which packages can be built.
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Examples</title>
+		<para>
+			You can easily create images for any suite that has a script in <command>debootstrap</command>. For example, to create a Debian Unstable image for
+			your current machine architecture, you can use:
+		</para>
+		<para>
+			<prompt>$</prompt> <command>&command;</command> unstable
+		</para>
+		<para>
+			A more advanced example, for building on Ubuntu 18.10 on the x86 architecture:
+		</para>
+		<para>
+			<prompt>$</prompt> <command>&command;</command> --arch=i386 cosmic
+		</para>
+		<para>
+			The suite name is inferred from the container image name given as positional parameter. If it can not be inferred,
+			you will need to pass the <option>--suite</option> parameter with the primary suite name for this image.
+			If a <option>--base-suite</option> is passed and no <option>--suite</option> is set, the image name will automatically
+			be assumed to be for an overlay suite, which may not always be the desired result.
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Options</title>
+
+		<variablelist>
+			<varlistentry>
+				<term>NAME</term>
+				<listitem><para>The name of the container image to create (usually the name of the suite).</para></listitem>
+			</varlistentry>
+
+			@CREATE_FLAGS_ENTRIES@
+		</variablelist>
+	</refsect1>
+
+	<refsect1>
+		<title>See Also</title>
+		<para>debspawn-build(1), debootstrap(1), systemd-nspawn(1).</para>
+	</refsect1>
+<refsect1>
+<title>AUTHOR</title>
+<para>
+	This manual page was written by Matthias Klumpp <email>mak@debian.org</email>.
+</para>
+</refsect1>
+</refentry>

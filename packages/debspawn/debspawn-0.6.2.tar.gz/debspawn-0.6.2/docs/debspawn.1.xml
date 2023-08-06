@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+  <!-- Please adjust the date whenever revising the manpage. -->
+  <!ENTITY date        "<date>18 August, 2018</date>">
+  <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
+       allowed: see man(7), man(1). -->
+  <!ENTITY package     "debspawn">
+]>
+
+<refentry>
+	<refentryinfo>
+	<title>debspawn</title>
+	<copyright>
+		<year>2018-2022</year>
+		<holder>Matthias Klumpp</holder>
+	</copyright>
+	<productname>Debspawn</productname>
+	&date;
+	</refentryinfo>
+
+	<refmeta>
+		<refentrytitle>debspawn</refentrytitle>
+		<manvolnum>1</manvolnum>
+	</refmeta>
+	<refnamediv>
+		<refname>&package;</refname>
+		<refpurpose>Build in nspawn containers</refpurpose>
+	</refnamediv>
+
+       <refsynopsisdiv>
+	       <cmdsynopsis>
+		       <command>&package;</command>
+		       @BASE_FLAGS_SYNOPSIS@
+		       <group>
+			       <option choice="req">COMMAND</option>
+		       </group>
+		</cmdsynopsis>
+	</refsynopsisdiv>
+
+	<refsect1>
+		<title>Description</title>
+		<para>
+			This manual page documents the <command>&package;</command> command.
+		</para>
+		<para>
+			<command>&package;</command> is a tool to build Debian packages in an isolated environment, using nspawn containers.
+			By using containers, Debspawn can isolate builds from the host system much better than a regular chroot could.
+			It also allows for more advanced features to manage builds, for example setting resource limits for individual builds.
+		</para>
+		<para>
+			Please keep in mind that Debspawn is not a security feature! While it provides a lot of isolation from the host system, you should not run arbitrary
+			untrusted code with it. The usual warnings for all technology based on Linux containers apply here.
+			See <command>systemd-nspawn(1)</command> for more information on the container solution Debspawn uses.
+		</para>
+		<para>
+			Debspawn also allows one to run arbitrary custom commands in its environment. This is useful to execute a variety of non-package build and QA actions that
+			make sense to be run in the same environment in which packages are usually built.
+		</para>
+		<para>
+			For more information about the Debspawn project, you can visit its <ulink url="https://github.com/lkorigin/debspawn">project page</ulink>.
+		</para>
+	</refsect1>
+
+	<refsect1>
+		<title>Subcommands</title>
+
+		<para>
+			<command>&package;</command> actions are invoked via subcommands. Refer to their individual manual pages for further details.
+		</para>
+
+		<variablelist>
+
+			<varlistentry>
+				<term><option>create</option></term>
+				<listitem>
+					<para>
+						Create a new container base image for a specific suite, architecture and variant. A custom mirror location can also be
+						provided. For details, see <command>debspawn-create(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>list</option></term>
+				<listitem>
+					<para>
+						List information about all container image that Debspawn knows on the current host.
+						For details, see <command>debspawn-list(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>delete</option></term>
+				<listitem>
+					<para>
+						Delete a container base image and all data associated with it.
+						For details, see <command>debspawn-delete(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>update</option></term>
+				<listitem>
+					<para>
+						Update a container base image, ensuring all packages are up to date and the image is set up
+						properly for use with <command>debspawn</command>.
+						For details, see <command>debspawn-update(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>build</option></term>
+				<listitem>
+					<para>
+						Build a Debian package in an isolated environment.
+						For details, see <command>debspawn-build(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>login</option></term>
+				<listitem>
+					<para>
+						Get an interactive shell session in a container.
+						For details, see <command>debspawn-login(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>run</option></term>
+				<listitem>
+					<para>
+						Run arbitrary commands in debspawn container session. This is primarily useful
+						for using <command>&package;</command> to isolate non-package build processes.
+						For details, see <command>debspawn-run(1)</command>.
+					</para>
+				</listitem>
+			</varlistentry>
+
+
+		</variablelist>
+	</refsect1>
+
+	<refsect1>
+		<title>Flags</title>
+
+		<variablelist>
+			@BASE_FLAGS_ENTRIES@
+		</variablelist>
+	</refsect1>
+
+	<refsect1>
+		<title>Configuration</title>
+
+		<para>
+			Configuration is read from an optional TOML file, located at <filename>/etc/debspawn/global.toml</filename> or a location specified
+			with <option>--config</option>. Specifying a config file on the command line will skip loading of the global, system-wide configuration.
+		</para>
+
+		<para>
+			The following keys are valid at the document root level, all are optional:
+		</para>
+
+		<variablelist>
+
+			<varlistentry>
+				<term><option>OSImagesDir</option></term>
+				<listitem>
+					<para>Location for stored container images.</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>ResultsDir</option></term>
+				<listitem>
+					<para>Default output directory for build artifacts on successful builds.</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>APTCacheDir</option></term>
+				<listitem>
+					<para>Location for debspawn's package cache.</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>InjectedPkgsDir</option></term>
+				<listitem>
+					<para>
+						Package files placed in the root of this directory are available to all containers
+						to satisfy build dependencies, while ones placed in subdirectories with the OS image
+						name (e.g. <literal>sid-arm64</literal>) will only be available to the specified container.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>TempDir</option></term>
+				<listitem>
+					<para>Temporary data location (Default: <filename>/var/tmp/debspawn/</filename>).</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>DefaultBootstrapVariant</option></term>
+				<listitem>
+					<para>
+						Set a default variant used for bootstrapping with debootstrap that gets
+						used if no variant is explicitly set when creating a new image.
+						Set to <literal>none</literal> to make "no variant" the default.
+						(Default: <literal>buildd</literal>)
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>SyscallFilter</option></term>
+				<listitem>
+					<para>
+						Set the system call filter used by <command>&package;</command> containers.
+						This will take a list of system call names or set names as described in the
+						"System Call Filtering" section of <literal>systemd.exec(5)</literal>.
+					</para>
+					<para>
+						It also recognizes the special string-only values <code>compat</code> and
+						<code>nspawn-default</code>, where <code>compat</code> will allow
+						enough system calls to permit many builds and tests that would run in a
+						regular <literal>sbuild(1)</literal> chroot to work with <command>&package;</command>
+						as well. By setting <code>nspawn-default</code>, the more restrictive defaults
+						of <literal>systemd-nspawn(1)</literal> are applied.
+						(Default: <literal>compat</literal>)
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>AllowUnsafePermissions</option></term>
+				<listitem>
+					<para>
+						Boolean option. If set to <literal>true</literal>, unsafe options can be used
+						for building software via <command>&package; run</command>, such as making the
+						host's <filename>/dev</filename> and <filename>/proc</filename> filesystems
+						available from within the container. See the <parameter>--allow</parameter> option
+						of <command>&package; run</command> for more details.
+						(Default: <code>false</code>)
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>CachePackages</option></term>
+				<listitem>
+					<para>
+						Boolean option. If set to <literal>false</literal>, <command>&package;</command> will not
+						manage its own local cache of APT packages, but will instead always try to download
+						them. It is only recommended to change this option if you are already running a separate APT
+						package repository mirror or a caching proxy such as apt-cacher-ng(8).
+						(Default: <code>true</code>)
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>BootstrapTool</option></term>
+				<listitem>
+					<para>
+						Set the bootstrap tool that should be used for bootstrapping new images.
+						The tool should have an interface compatible with debootstrap(8). This option
+						allows one to use alternative tools like mmdebstrap(1) with <command>&package;</command>.
+						(Default: <code>debootstrap</code>)
+					</para>
+				</listitem>
+			</varlistentry>
+
+		</variablelist>
+
+	</refsect1>
+
+	<refsect1>
+		<title>See Also</title>
+		<para>dpkg-buildpackage(1), systemd-nspawn(1), sbuild(1).</para>
+	</refsect1>
+<refsect1>
+<title>AUTHOR</title>
+<para>
+	This manual page was written by Matthias Klumpp <email>mak@debian.org</email>.
+</para>
+</refsect1>
+</refentry>
