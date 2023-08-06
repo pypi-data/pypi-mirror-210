@@ -1,0 +1,38 @@
+# pyproject.toml
+
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jade_config"
+version = "1.1.1"
+description = "A python package to quickly and easily make configs, or other things that your program needs to remember."
+readme = "README.md"
+authors = [{ name = "nfoert", email = "jadesoftware1@gmail.com" }]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["jade", "jade_config", "jade config", "config", "remember"]
+dependencies = []
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = []
+
+[project.urls]
+Homepage = "https://github.com/nfoert/jade_config"
+
+[tool.bumpver]
+current_version = "1.0.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message  = "Bump version {old_version} -> {new_version}"
+commit          = true
+tag             = true
+push            = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"src/jade_config/__init__.py" = ["{version}"]
+
