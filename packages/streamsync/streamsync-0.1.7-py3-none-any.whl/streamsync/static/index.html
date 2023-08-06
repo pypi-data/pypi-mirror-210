@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script>self["MonacoEnvironment"] = (function (paths) {
+          return {
+            globalAPI: false,
+            getWorkerUrl : function (moduleId, label) {
+              var result =  paths[label];
+              if (/^((http:)|(https:)|(file:)|(\/\/))/.test(result)) {
+                var currentUrl = String(window.location);
+                var currentOrigin = currentUrl.substr(0, currentUrl.length - window.location.hash.length - window.location.search.length - window.location.pathname.length);
+                if (result.substring(0, currentOrigin.length) !== currentOrigin) {
+                  var js = '/*' + label + '*/importScripts("' + result + '");';
+                  var blob = new Blob([js], { type: 'application/javascript' });
+                  return URL.createObjectURL(blob);
+                }
+              }
+              return result;
+            }
+          };
+        })({
+  "editorWorkerService": "./monacoeditorwork/editor.worker.bundle.js",
+  "css": "./monacoeditorwork/css.worker.bundle.js",
+  "html": "./monacoeditorwork/html.worker.bundle.js",
+  "json": "./monacoeditorwork/json.worker.bundle.js",
+  "typescript": "./monacoeditorwork/ts.worker.bundle.js",
+  "javascript": "./monacoeditorwork/ts.worker.bundle.js",
+  "less": "./monacoeditorwork/css.worker.bundle.js",
+  "scss": "./monacoeditorwork/css.worker.bundle.js",
+  "handlebars": "./monacoeditorwork/html.worker.bundle.js",
+  "razor": "./monacoeditorwork/html.worker.bundle.js"
+});</script>
+
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/png" href="./static/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Streamsync</title>
+		<style>
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+				font-family: inherit;
+				color: currentColor;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			body {
+				font-family: Inter, sans-serif;
+				font-size: 13px;
+			}
+
+			#app {
+				isolation: isolate;
+			}
+
+			#app > * {
+				min-height: 100vh;
+			}
+
+			#loading {
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: sans-serif;
+				font-size: 0.9rem;
+				flex-direction: column;
+				color: #606060;
+			}
+
+			#loading .logoTopBar {
+				animation: logoAnimation 1s alternate infinite;
+			}
+
+			#loading .logoBottomBar {
+				animation: logoAnimation alternate-reverse 1s infinite;
+			}
+
+			@keyframes logoAnimation {
+				0% {
+					x: 19.1875;
+					y: 0;
+				}
+				20% {
+					x: 19.1875;
+					y: 0;
+				}
+				100% {
+					x: 0;
+					y: 45.3478;
+				}
+			}
+		</style>
+		<script type="module" crossorigin src="./assets/index-8eacdf1b.js"></script>
+		<link rel="stylesheet" href="./assets/index-60260e69.css">
+	</head>
+	<body>
+		<div id="app">
+			<div id="loading">
+				<svg
+					width="60"
+					height="50"
+					viewBox="0 0 117 97"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<rect
+						class="logoTopBar"
+						width="97.4012"
+						height="47.3341"
+						rx="23.6671"
+						fill="#CFCFCF"
+					/>
+					<rect
+						class="logoBottomBar"
+						width="97.4012"
+						height="51.6522"
+						rx="25.8261"
+						fill="#E7E7E7"
+					/>
+				</svg>
+			</div>
+		</div>
+		<script type="text/javascript">
+			document.title = "Loading...";
+		</script>
+		
+	</body>
+</html>
