@@ -1,0 +1,51 @@
+.bulma-tocnav {
+  width: var(--tocnav-width);
+  padding: 0 1rem;
+
+  .toc-wrapper {
+    position: sticky;
+    top: calc(var(--navbar-height) + var(--top-content-to-navbar-gap));
+    overflow: hidden;
+  }
+
+  ul.table-of-contents {
+    font-size: var(--toc-font-size);
+
+    li {
+      border-left: 1px solid var(--bst-color-border);
+
+      a {
+        display: inline-block;
+        color: var(--bst-color-text-base);
+        padding-left: 16px;
+        height: 1.6rem;
+        line-height: 1.5rem;
+      }
+
+      &.scroll-current > .reference {
+        border-left: 1px solid $link;
+        color: $link;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.toc-scroll {
+  .nav {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+
+    > .active > ul {
+      display: block;
+    }
+  }
+}
+
+.toc-title {
+  padding-left: 16px;
+  font-size: var(--toc-title-font-size);
+}
