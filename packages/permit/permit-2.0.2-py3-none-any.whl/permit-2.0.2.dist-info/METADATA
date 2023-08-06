@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: permit
+Version: 2.0.2
+Summary: Permit.io python sdk
+Home-page: UNKNOWN
+Author: Asaf Cohen
+Author-email: asaf@permit.io
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.8
+License-File: LICENSE
+Requires-Dist: aiohttp (<4,>=3.8.4)
+Requires-Dist: httpx (<1,>=0.24.1)
+Requires-Dist: loguru (<1,>=0.7.0)
+Requires-Dist: pydantic[email] (<2,>=1.10.7)
+Requires-Dist: typing-extensions (<5,>=4.5.0)
+
+UNKNOWN
+
