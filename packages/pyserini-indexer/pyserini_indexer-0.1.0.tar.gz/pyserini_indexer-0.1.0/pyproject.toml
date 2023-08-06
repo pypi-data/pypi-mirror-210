@@ -1,0 +1,25 @@
+[project]
+name = "pyserini-indexer"
+version = "0.1.0"
+description = "Helper application for building index files that uses pyserini"
+authors = [
+    { name = "michal", email = "michalwilk139@gmail.com" },
+]
+dependencies = [
+    "pyserini>=0.21.0",
+    "faiss-cpu>=1.7.4",
+    "torch>=2.0.1",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+
+[project.license]
+text = "MIT"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool]
