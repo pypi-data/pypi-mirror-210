@@ -1,0 +1,46 @@
+.table-wrapper
+  width: 100%
+  overflow-x: auto
+  margin-top: 1rem
+  margin-bottom: 0.5rem
+  padding: 0.2rem 0.2rem 0.75rem
+
+  &.container
+    height: auto
+
+table.docutils
+  border-radius: 0.2rem
+  border-spacing: 0
+  border-collapse: collapse
+
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.05), 0 0 0.0625rem rgba(0, 0, 0, 0.1)
+
+  th
+    background: var(--bst-color-background-sidenav)
+    color: var(--bst-color-text-base)
+
+  td,
+  th
+    // Space things out properly
+    padding: 0 0.25rem
+
+    // Get the borders looking just-right.
+    border-left: 1px solid var(--bst-color-border)
+    border-right: 1px solid var(--bst-color-border)
+    border-bottom: 1px solid var(--bst-color-border)
+
+    p
+      margin: 0.25rem
+
+    &:first-child
+      border-left: none
+    &:last-child
+      border-right: none
+
+    // MyST-parser tables set these classes for control of column alignment
+    &.text-left
+      text-align: left
+    &.text-right
+      text-align: right
+    &.text-center
+      text-align: center
