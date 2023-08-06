@@ -1,0 +1,21 @@
+requests<3.0
+legendary-gl==0.20.32
+setuptools
+wheel
+PyQt5
+QtAwesome
+typing_extensions
+
+[:platform_system == "Windows"]
+pywin32
+
+[pypresence]
+pypresence
+
+[webview]
+
+[webview:platform_system == "Linux"]
+pywebview[gtk]
+
+[webview:platform_system == "Windows"]
+pywebview[cef]
