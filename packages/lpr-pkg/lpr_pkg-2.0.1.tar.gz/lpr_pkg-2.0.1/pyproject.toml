@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "LPR_pkg"
+version = "2.0.1"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+easydict = "1.9"
+joblib = "^1.2.0"
+numpy = "1.23.5"
+onnxruntime = "1.11.1"
+opencv-python = "4.6.0.66"
+tritonclient = {extras = ["grpc"], version = "^2.33.0"}
+python-levenshtein = "0.20.9"
+tensorflow = "2.11.0"
+
+[tool.poetry.group.dev.dependencies]
+albumentations = "1.2.1"
+gitpython = "3.1.30"
+imageio = "2.19.5"
+imgaug = "0.4.0"
+matplotlib = "3.6.2"
+mlflow = "1.27.0"
+scikit-learn = "^1.2.2"
+tensorflow-model-optimization = "0.7.2"
+tf2onnx = "^1.14.0"
+tqdm = "4.64.0"
+python-dotenv = "^1.0.0"
+boto3 = "^1.26.142"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
