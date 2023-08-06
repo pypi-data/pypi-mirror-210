@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "metabypasscaptcha"
+version = "0.0.1"
+description = "metabypass captcha"
+authors = ["ad"]
+license = "MIT"
+readme = "README.md"
+
+
+classifiers=[
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Operating System :: OS Independent",
+    ]
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0","requests"]
+build-backend = "poetry.core.masonry.api"
