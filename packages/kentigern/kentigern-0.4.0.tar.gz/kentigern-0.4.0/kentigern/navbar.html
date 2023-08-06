@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark kentigern-navbar kentigern-main-navbar">
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="{{ pathto(master_doc) }}">
+      {%- block sidebarlogo %}
+      {%- if logo %}<img src="{{ pathto('_static/' + logo, 1) }}">{%- endif %}
+      {%- endblock %}
+      {% if theme_navbar_title -%}{{ theme_navbar_title|e }}{%- else -%}{{ project|e }}{%- endif -%}
+    </a>
+    <!-- End navbar brand -->
+    <!-- Navbar toggler -->
+    <button class="navbar-toggler"
+	    type="button"
+	    data-toggle="collapse"
+	    data-target="#navbarSupportedContent"
+	    aria-controls="navbarSupportedContent"
+	    aria-expanded="false"
+	    aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+    <!-- End navbar toggler -->
+    
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      {% include "navbarlinks.html" %}
+      {% include "navbarsearchbox.html" %}
+      {% include "versions.html" %}
+      {% include "repository.html" %}
+    </div>
+    {% include "darkmode.html" %}
+    
+</nav>
+
+{# Add document navigation on a second nav below the main one #}
+{% if theme_navbar_sidebarrel %}
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+  {% block sidebarrel %}
+  {% include "relations.html" %}
+  {% endblock %}
+  {% if theme_source_link_position == "nav" %}
+  {% include "sourcelink.html" %}
+  {% endif %}
+  </div>
+</nav>
+{% endif %}

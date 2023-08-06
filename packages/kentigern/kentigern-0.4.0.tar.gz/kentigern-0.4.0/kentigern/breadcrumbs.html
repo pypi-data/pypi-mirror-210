@@ -1,0 +1,15 @@
+{% if parents %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    {%- for parent in parents %}
+    { parent }
+    <li class="breadcrumb-item active" aria-current="page">
+      <a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>
+	{{ parent.title }}
+      </a>
+    </li>
+    {%- endfor %}
+    {%- block relbaritems %} {% endblock %}
+  </ol>
+</nav>
+{% endif %}

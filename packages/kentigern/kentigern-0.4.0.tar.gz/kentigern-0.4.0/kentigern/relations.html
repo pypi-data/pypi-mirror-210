@@ -1,0 +1,28 @@
+{%- if parents %}
+<ul class="navbar-nav mr-auto">
+  <ol class="breadcrumb">
+  {%- for parent in parents %}
+    <li class="breadcrumb-item active" aria-current="page"><a href="{{ parent.href }}">{{ parent.title }}</a></li>
+  {% endfor %}
+  </ol>
+</ul>
+{%- endif %}
+
+<ul class="navbar-nav mr-auto">
+{%- if prev %}
+  <li class="nav-item">
+    <a class="nav-link" href="{{ prev.link|e }}" title="{{ _('Previous Chapter: ') + prev.title|striptags }}">
+      <span class="glyphicon glyphicon-chevron-left visible-sm"></span>
+      <span class="hidden-sm hidden-tablet">{{ "&laquo;"|safe }} {{ prev.title|striptags|truncate(length=40, killwords=True) }}</span>
+    </a>
+  </li>
+{%- endif %}
+{%- if next %}
+  <li class="nav-item">
+    <a class="nav-link" href="{{ next.link|e }}" title="{{ _('Next Chapter: ') + next.title|striptags }}">
+      <span class="glyphicon glyphicon-chevron-right visible-sm"></span>
+      <span class="hidden-sm hidden-tablet">{{ next.title|striptags|truncate(length=40, killwords=True) }} {{ "&raquo;"|safe }}</span>
+    </a>
+  </li>
+{%- endif %}
+</ul>

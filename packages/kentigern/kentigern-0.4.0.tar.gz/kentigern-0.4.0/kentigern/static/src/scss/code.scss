@@ -1,0 +1,34 @@
+.highlight {
+    padding: 1rem;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+}
+
+dl {
+    margin-left: 2rem;
+}
+dl.field-list {
+    border-left: 2px solid #28a745;
+}
+
+dd {
+    margin-top: 0.5rem;
+}
+
+dd > * {
+    margin-left: 2rem;
+}
+
+// Specific code components
+
+.function, .class {
+    padding: 0.5rem;
+    background-color: var(--bs-light);
+}
+
+div.code-block-caption {
+    font-size: small;
+    background-color: black;
+    color: white;
+    padding: 0.3rem 1rem;
+    font-style: italic;
+}
