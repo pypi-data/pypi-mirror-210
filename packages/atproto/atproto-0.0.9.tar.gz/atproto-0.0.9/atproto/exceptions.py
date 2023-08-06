@@ -1,0 +1,81 @@
+import typing as t
+
+if t.TYPE_CHECKING:
+    from atproto.xrpc_client.request import Response
+
+
+class AtProtocolError(Exception):
+    """Base exception"""
+
+
+class LexiconParsingError(AtProtocolError):
+    ...
+
+
+class UnknownPrimitiveTypeError(LexiconParsingError):
+    ...
+
+
+class UnknownDefinitionTypeError(LexiconParsingError):
+    ...
+
+
+class InvalidNsidError(AtProtocolError):
+    ...
+
+
+class ModelError(AtProtocolError):
+    ...
+
+
+class UnexpectedFieldError(ModelError):
+    ...
+
+
+class MissingValueError(ModelError):
+    ...
+
+
+class ModelFieldError(ModelError):
+    ...
+
+
+class WrongTypeError(ModelFieldError):
+    ...
+
+
+class ModelFieldNotFoundError(ModelError):
+    ...
+
+
+class RequestErrorBase(AtProtocolError):
+    def __init__(self, response: t.Optional['Response'] = None):
+        self.response: 'Response' = response
+
+
+class NetworkError(RequestErrorBase):
+    ...
+
+
+class InvokeTimeoutError(NetworkError):
+    ...
+
+
+class UnauthorizedError(RequestErrorBase):
+    ...
+
+
+class RequestException(RequestErrorBase):
+    ...
+
+
+class BadRequestError(RequestErrorBase):
+    ...
+
+
+class InvalidAtUriError(AtProtocolError):
+    ...
+
+
+class FirehoseError(AtProtocolError):
+    ...
