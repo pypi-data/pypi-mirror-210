@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "health-bsa"
+version = "0.1.1"
+description = "This is a small tool to compute Body Surface Area of a human body based on height and weight"
+authors = ["LamNguyen <lamnvcnsh@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+homepage= "https://github.com/lamnvcnsh/health-bsa/"
+repository = "https://github.com/lamnvcnsh/health-bsa"
+keywords = ["Body Surface Area", "Health index"]
+
+packages = [{include = "health_bsa"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
