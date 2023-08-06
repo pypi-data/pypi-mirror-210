@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "mpipartition"
+version = "1.0.5"
+description = "MPI volume decomposition and particle distribution tools"
+authors = ["Michael Buehlmann <buehlmann.michi@gmail.com>"]
+license = "MIT"
+readme = "README.rst"
+homepage = "https://github.com/ArgonneCPAC/MPIPartition"
+repository = "https://github.com/ArgonneCPAC/MPIPartition"
+documentation = "https://argonnecpac.github.io/MPIPartition"
+keywords = ["MPI", "mpi4py", "scientific computing", "parallel computing"]
+include = ["LICENSE"]
+classifiers = [
+    "Topic :: System :: Distributed Computing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+mpi4py = "^3.1.0"
+numpy = "^1.20"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+flake8 = "^4.0.1"
+wheel = "^0.37.1"
+Sphinx = "^4.3.2"
+sphinx-rtd-theme = "^1.0.0"
+sphinxcontrib-napoleon = "^0.7"
+bump2version = "^1.0.1"
+numpydoc = "^1.2.1"
+pytest = "^7.1.1"
+pytest-mpi = "^0.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+include = '\.pyi?$'
+exclude = '\.git|\.venv|build|_build|dist'
