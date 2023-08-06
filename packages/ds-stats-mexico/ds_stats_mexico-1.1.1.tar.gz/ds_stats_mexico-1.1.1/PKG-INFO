@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: ds_stats_mexico
+Version: 1.1.1
+Summary: Librería de estadística (Gráficas) de México (Paises ricos, envejecimiento, mortalidad infantil)
+Home-page: https://github.com/DavichoStar
+Author: DavichoStar
+Author-email: davichostar@protonmail.com
+License: MIT
+Description-Content-Type: text/markdown
+
+# DocumentaciÃ³n
+
+## InstalaciÃ³n
+Para poder ejecutar el proyecto es necesario tener instalado Python 3.7.4 y las siguientes librerÃ­as:
+* matplotlib
+
+```
+pip install matplotlib ds-stats-mexico
+```
+
+## Uso
+
+Importe la librerÃ­a:
+
+```
+import ds_stats_mexico as dsm
+```
+
+Para obtener los datos de los 10 paÃ­ses mÃ¡s ricos del mundo:
+
+```
+dsm.grafica_barras_paises_ricos()
+```
+
+Para obtener los datos del Ã­ndice de envejecimiento de la poblaciÃ³n de MÃ©xico:
+
+```
+dsm.grafica_lineal_envejecimiento_mexico()
+```
+
+Para obtener los datos de mortalidad en menores de un aÃ±o en MÃ©xico:
+
+```
+dsm.grafica_pastel_mortalidad_infantil_mexico_causas()
+```
+
+por sexo:
+
+```
+dsm.grafica_pastel_mortalidad_infantil_mexico_sexo()
+```
+
+_Creado por Erick Flores_
