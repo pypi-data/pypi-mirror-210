@@ -1,0 +1,248 @@
+{
+    "categories": {
+        "Course": [
+            "Appetizer",
+            {
+                "Main Course": [
+                    "First Course", "Second Course"
+                ]
+            },
+            "Dessert"
+        ],
+        "Status": [
+            "Planning", "Ongoing", "Completed", "Cancelled"
+        ],
+        "Cook": {
+            "Junior": [
+                "Alice", "Bob"
+            ],
+            "Senior": [
+                "Charlie", "Dongqiang", "Eve"
+            ]
+        }
+    },
+    "tags": [
+        "Chinese", "Italian", "special", "spicy", "seafood"
+    ],
+    "contents": [
+        {
+            "name": "Greek Salad",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Ongoing",
+                "Cook": "Bob"
+            },
+            "tags": []
+        },
+        {
+            "name": "Caesar Salad",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Completed",
+                "Cook": "Bob"
+            },
+            "tags": []
+        },
+        {
+            "name": "Lobster Bisque",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Completed",
+                "Cook": "Charlie"
+            },
+            "tags": ["special", "seafood"]
+        },
+        {
+            "name": "Mussels",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Completed",
+                "Cook": "Charlie"
+            },
+            "tags": ["seafood"]
+        },
+        {
+            "name": "Kou Shui Ji",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Completed",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special", "spicy"]
+        },
+        {
+            "name": "Jue Gen Fen",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Ongoing",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special", "spicy"]
+        },
+        {
+            "name": "Hua Mao Yi Ti",
+            "categories": {
+                "Course": "Appetizer",
+                "Status": "Ongoing",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special"]
+        },
+
+        {
+            "name": "Snails",
+            "categories": {
+                "Course": "First Course",
+                "Status": "Ongoing",
+                "Cook": "Charlie"
+            },
+            "tags": ["special"]
+        },
+        {
+            "name": "Margherita Pizza",
+            "categories": {
+                "Course": "First Course",
+                "Status": "Ongoing",
+                "Cook": "Alice"
+            },
+            "tags": ["Italian", "special"]
+        },
+        {
+            "name": "Risotto",
+            "categories": {
+                "Course": "First Course",
+                "Status": "Completed",
+                "Cook": "Alice"
+            },
+            "tags": ["Italian", "special"]
+        },
+        {
+            "name": "Gong Bao Ji Ding",
+            "categories": {
+                "Course": "First Course",
+                "Status": "Planning",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special", "spicy"]
+        },
+        {
+            "name": "Xiang You Shan Hu",
+            "categories": {
+                "Course": "First Course",
+                "Status": "Ongoing",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special"]
+        },
+
+        {
+            "name": "Dong Po Zhou Zi",
+            "categories": {
+                "Course": "Second Course",
+                "Status": "Ongoing",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special"]
+        },
+        {
+            "name": "Cong Shao Hai Shen",
+            "categories": {
+                "Course": "Second Course",
+                "Status": "Ongoing",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special"]
+        },
+        {
+            "name": "Pan-Fried Seabass",
+            "categories": {
+                "Course": "Second Course",
+                "Status": "Completed",
+                "Cook": "Eve"
+            },
+            "tags": ["special", "seafood"]
+        },
+        {
+            "name": "Duck Confit",
+            "categories": {
+                "Course": "Second Course",
+                "Status": "Ongoing",
+                "Cook": "Charlie"
+            },
+            "tags": ["special"]
+        },
+        {
+            "name": "Ribeye Steak",
+            "categories": {
+                "Course": "Second Course",
+                "Status": "Planning",
+                "Cook": "Eve"
+            },
+            "tags": []
+        },
+        {
+            "name": "Grilled Lamb Chops",
+            "categories": {
+                "Course": "Second Course",
+                "Status": "Ongoing",
+                "Cook": "Eve"
+            },
+            "tags": []
+        },
+
+        {
+            "name": "Cheesecake",
+            "categories": {
+                "Course": "Dessert",
+                "Status": "Completed",
+                "Cook": "Alice"
+            },
+            "tags": []
+        },
+        {
+            "name": "Tiramisu",
+            "categories": {
+                "Course": "Dessert",
+                "Status": "Ongoing",
+                "Cook": "Alice"
+            },
+            "tags": ["Italian", "special"]
+        },
+        {
+            "name": "Chocolate Sundae",
+            "categories": {
+                "Course": "Dessert",
+                "Status": "Ongoing",
+                "Cook": "Eve"
+            },
+            "tags": []
+        },
+        {
+            "name": "Chili Sundae",
+            "categories": {
+                "Course": "Dessert",
+                "Status": "Planning",
+                "Cook": "Eve"
+            },
+            "tags": ["special", "spicy"]
+        },
+        {
+            "name": "Cilantro Sundae",
+            "categories": {
+                "Course": "Dessert",
+                "Status": "Cancelled",
+                "Cook": "Eve"
+            },
+            "tags": ["special"]
+        },
+        {
+            "name": "Jiu Niang Yuan Zi",
+            "categories": {
+                "Course": "Dessert",
+                "Status": "Ongoing",
+                "Cook": "Dongqiang"
+            },
+            "tags": ["Chinese", "special"]
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "interactive_multi_category_table"
+version = "0.0.4"
+authors = [
+    {name="Xiang CHEN", email="xiangchen.ai@outlook.com"},
+]
+description = "A python package to create interactive tables with alternative category views from formatted json input."
+
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/XiangCHEN-dvi/interactive-multi-category-table"
+"Bug Tracker" = "https://github.com/XiangCHEN-dvi/interactive-multi-category-table/issues"
