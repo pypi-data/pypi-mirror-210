@@ -1,0 +1,32 @@
+# miresta
+
+<!-- This are visual tags that you may add to your package at the beginning with useful information on your package --> 
+[![version](https://img.shields.io/pypi/v/pymiau?color=blue)](https://pypi.org/project/miresta/)
+[![downloads](https://img.shields.io/pypi/dw/pymiau)](https://pypi.org/project/miresta/)
+
+This package performs a subtraction between two numbers.
+
+<p align="center"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cokitos.com%2Fsumas-y-restas-con-el-gato-tom%2F&psig=AOvVaw04zWHvV8ITAnHDRUqTvzye&ust=1685148891291000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCICpsPrikf8CFQAAAAAdAAAAABAE" alt="a subtracting cat""/></p>
+
+## Download and install
+
+
+If you are using `PyPI` installation it's as simple as:
+
+```
+pip install miresta
+```
+
+## Quick start
+
+
+```
+import miresta  
+
+print(miresta.resta(6,2))
+
+```
+
+------------
+
+This package has been designed and written by Diana Carolina Zapata Zuluaga (C) 2023
