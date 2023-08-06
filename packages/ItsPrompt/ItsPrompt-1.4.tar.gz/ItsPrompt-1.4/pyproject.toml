@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ItsPrompt"
+version = "1.4"
+authors = [
+    { name = "ItsNameless" },
+]
+description = "Prompting - the fancy way"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "prompt-toolkit>=3.0.37,<4.0",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = { file = "LICENSE" }
+
+[project.urls]
+Homepage = "https://github.com/TheItsProjects/ItsPrompt"
+Repository = "https://github.com/TheItsProjects/ItsPrompt"
+"Issue Tracker" = "https://github.com/TheItsProjects/ItsPrompt/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "ItsPrompt",
+    "ItsPrompt.*",
+]
+
+[options.extras_require]
+df = "pandas>=1.5.3"
+
+[tool.pytest.ini_options]
+addopts = "--cov=ItsPrompt --cov-report term-missing"
+testpaths = [
+    "tests",
+]
+filterwarnings = [
+    # ignore warning, see https://github.com/prompt-toolkit/python-prompt-toolkit/issues/1696
+    "ignore:There is no current event loop:DeprecationWarning",
+]
+
+[tool.yapf]
+space_between_ending_comma_and_closing_bracket = false
+column_limit = 120
+each_dict_entry_on_separate_line = false
+dedent_closing_brackets = true
+
+[tool.mypy]
+packages = "ItsPrompt"
+explicit_package_bases = true
+check_untyped_defs = true
