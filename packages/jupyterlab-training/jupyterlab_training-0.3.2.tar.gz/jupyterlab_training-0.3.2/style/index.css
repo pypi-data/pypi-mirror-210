@@ -1,0 +1,257 @@
+.formation-icon {
+  background-image: url(logilab-icon.svg);
+}
+
+.formation-header {
+  text-align: center;
+}
+
+.formation-header:before {
+  content: url(logilab.svg);
+}
+
+.stop-app:before {
+  content: "";
+  background-image: url(stop_app.png);
+  background-size: 100% 100%;
+  display: inline-block;
+  height: 30px;
+  width: 345px;
+}
+
+.formation-button {
+  color: #074763;
+  margin: 5px auto;
+  width: 85%;
+  text-align: left;
+}
+
+.formation-title {
+  margin: 0.5em;
+}
+
+#filter {
+  width: 90%;
+  margin: 10px auto;
+}
+
+.exercises,
+.courses {
+  padding: 5px;
+  width: 100%;
+  /* height is 100% of the viewport - the header height - main-status-bar-height */
+  height: calc(100vh - 245px);
+  overflow-y: auto;
+  border-bottom: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  transition: height 400ms linear;
+}
+
+#jp-left-stack {
+  border-right: none;
+}
+
+.jp-TableOfContents {
+  margin-left: 6px;
+}
+
+#jp-left-stack {
+  min-width: 350px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.button-title {
+  word-wrap: break-word;
+  font-weight: bold;
+  font-size: large;
+  color: RGB(56, 96, 175);
+}
+
+.button-tags {
+  word-wrap: break-word;
+  .span {
+    margin: 0.1em;
+  }
+}
+
+.custom-dropdown {
+  color: black !important;
+  background-color: white !important;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.form-control.focus,
+.form-control:focus,
+.btn.focus,
+.btn:focus,
+.custom-dropdown.focus,
+.custom-dropdown:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.current-button {
+  background: #f8f8ff;
+}
+
+.category {
+  text-transform: capitalize;
+}
+
+/* formation cells */
+
+.jp-Cell-inputWrapper {
+  margin-top: 5px;
+}
+
+.jp-CellHeader {
+  height: auto;
+  font-size: 0.7em;
+  padding-left: 6em;
+}
+
+.toggleFormationCellButton {
+  background-color: #90a0b5;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.cellHeaderText {
+  display: inline-block;
+  font-size: 1.5em;
+  margin: 1em;
+  font-weight: bold;
+}
+
+.formation-cell {
+  margin-top: 5px;
+}
+
+.formation-cell .jp-InputArea-editor {
+  background-color: #ebf3fb;
+}
+
+/* Advanced options collapse */
+
+.showHide {
+  text-align: right;
+  color: gray;
+}
+
+.fieldsetContainer {
+  height: 0;
+  overflow: hidden;
+  transition: height 400ms linear;
+  margin-left: 4em;
+  text-align: left;
+}
+
+#toggle {
+  display: none;
+}
+
+#toggle:checked ~ div .fieldsetContainer {
+  height: 150px;
+}
+
+label .arrow-dn {
+  display: inline-block;
+  background-image: var(--jp-icon-search-arrow-down);
+  height: 20px;
+  width: 20px;
+  float: right;
+}
+label .arrow-dh {
+  display: none;
+}
+
+#toggle:checked ~ div label .arrow-dn {
+  display: none;
+}
+
+#toggle:checked ~ div label .arrow-dh {
+  display: inline-block;
+  background-image: var(--jp-icon-search-arrow-up);
+  height: 20px;
+  width: 20px;
+  float: right;
+}
+
+.custom-select {
+  width: auto;
+}
+
+#toggle:checked ~ div div .exercises {
+  transition: height 400ms linear;
+  height: calc(100vh - 400px);
+}
+
+#toggle:checked ~ div div .courses {
+  transition: height 400ms linear;
+  height: calc(100vh - 400px);
+}
+
+.col-form-label {
+  text-align: left;
+}
+
+.stats-ReactWidget {
+  margin: 2em;
+  width: 1000px !important;
+  overflow-y: auto;
+  padding-right: 2em;
+}
+
+.float-right-button {
+  margin-bottom: 1em;
+  margin-left: 1em;
+  float: right;
+}
+
+.selected {
+  background-color: whitesmoke;
+}
+
+.fa-play-circle {
+  padding: 0px 0px;
+  margin-right: 0.5em;
+  color: lightgrey;
+}
+
+.fa-check-circle {
+  padding: 0px 0px;
+  margin-right: 0.5em;
+  color: green;
+}
+
+.fa-hand-stop-o {
+  color: red;
+}
+
+.black {
+  color: black !important;
+}
+
+.red {
+  color: red !important;
+}
+
+.green {
+  color: green !important;
+}
+
+.progress-button {
+  border-radius: 20%;
+}
+
+.jp-MarkdownOutput {
+  border-radius: 6px;
+  font-family: Roboto, sans-serif;
+}
