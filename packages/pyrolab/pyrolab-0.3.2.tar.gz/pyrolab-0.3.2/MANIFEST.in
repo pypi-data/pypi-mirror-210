@@ -1,0 +1,4 @@
+include NOTICE.txt AUTHORS.txt 
+graft pyrolab/ 
+prune pyrolab/data/local/
+global-exclude *.py[cod]
