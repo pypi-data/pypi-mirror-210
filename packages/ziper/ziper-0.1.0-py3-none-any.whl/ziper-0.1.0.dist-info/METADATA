@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: ziper
+Version: 0.1.0
+Summary: Rust-like iterator for Python
+Home-page: https://github.com/cospectrum/ziper
+License: Apache-2.0
+Author: cospectrum
+Author-email: severinalexeyv@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Project-URL: Repository, https://github.com/cospectrum/ziper
+Description-Content-Type: text/markdown
+
+# ziper
+
+Rust-like iterator for Python
+
+
+## Install
+
+From PyPI:
+```sh
+pip install ziper
+```
+
+From git:
+```sh
+pip install git+https://github.com/cospectrum/ziper.git
+```
+
+## Usage
+
+```py
+from ziper import Iter
+
+xs = ['1', '2', 'a', '3', '4', 'b', 'c']
+ys = [6, 7, 8, 9]
+
+result = list(
+    Iter(xs)
+    .filter(lambda x: x.isdecimal())
+    .map(int)
+    .chain(ys)
+    .filter(lambda x: x % 2 == 0)
+)
+assert result == [2, 4, 6, 8]
+```
+
