@@ -1,0 +1,18 @@
+{{data.toc_output_comment}}
+
+# {{data.page_title}}
+{% if data.page_description %}
+{{data.page_description}}
+{% endif %}
+
+{% for header in data.toc_headers: %}
+{% if header.src_level < 3 %}
+{{header.get_text_as_md_header()}}
+{% else %}
+{{header.get_text_as_md_ul_item()}}
+{% endif %}
+{% if header.has_description() %}
+{{header.description}}
+
+{% endif %}
+{% endfor %}
