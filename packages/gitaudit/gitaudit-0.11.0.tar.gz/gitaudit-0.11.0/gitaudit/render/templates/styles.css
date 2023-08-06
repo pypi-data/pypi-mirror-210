@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.git-graph {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+.commit-info {
+    margin-top: -5px;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    max-height: 100%;
+}
+
+.commit {
+    display: flex;
+    align-items: top;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.circle {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    position: relative;
+    background-color: white;
+}
+
+.commit::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 7px;
+    width: 2px;
+    height: calc(100% - 8px - 20px);
+    background-color: lightgray;
+    z-index: -1;
+}
+
+.commit-body {
+    margin-bottom: 0;
+    color: grey;
+    font-size: smaller;
+}
+
+.submodule-update {
+    margin-bottom: 0;
+    color: red;
+    font-size: smaller;
+}
+
+.numstat-entry {
+    margin-bottom: 0;
+    color: grey;
+    font-size: smaller;
+}
+
+.commit-author {
+    margin-bottom: 0;
+    color: grey;
+    font-size: smaller;
+}
+
+.commit-author a {
+    text-decoration: none;
+}
+
+/* .circle:last-child::before {
+    height: 0px;
+} */
+
+.sha {
+    /* font-weight: bold; */
+    font-family: 'Courier New', Courier, monospace;
+    margin-right: 5px;
+}
+
+.sha a {
+    text-decoration: none;
+}
+
+.headline {
+    /* margin-top: -20px; */
+    /* font-size: 14px; */
+}
+
+.commit-date {
+    color: gray;
+}
+
+.search-highlight {
+    background-color: yellow;
+    padding: 2px;
+    margin: -2px;
+    border-radius: 3px;
+}
+
+.commit-info.dimmed {
+    opacity: 0.2;
+    max-height: 1.5rem;
+    overflow: hidden;
+}
+
+.commit-additions {
+    color: #1a7f37;
+}
+
+.commit-deletions {
+    color: #d1242f;
+}
