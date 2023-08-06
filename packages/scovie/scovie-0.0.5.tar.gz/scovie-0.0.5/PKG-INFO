@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: scovie
+Version: 0.0.5
+Summary: Scovie is an open-source digital signage system for high schools.
+Home-page: https://github.com/eldertek/scovie
+License: GPL-3.0-or-later
+Author: André Théo LAURET
+Author-email: andrelauret@eclipse-technology.eu
+Maintainer: André Théo LAURET
+Maintainer-email: andrelauret@eclipse-technology.eu
+Requires-Python: >=3.9,<4.0.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: django-solo (>=2.1.0,<3.0.0)
+Requires-Dist: pillow (>=9.5.0,<10.0.0)
+Requires-Dist: pip (>=23.1.2,<24.0.0)
+Project-URL: Bug Tracker, https://github.com/eldertek/scovie/issues
+Description-Content-Type: text/markdown
+
+# Scovie: Digital Signage for High Schools
+
+![Scovie](docs/images/all.png)
+
+
+Scovie is an open-source digital signage system for high schools, built using Python and Django. It provides an easy-to-use interface for administrators to upload and manage multimedia content, which is then displayed on screens throughout the school.
+
+## Features
+
+- Easy content upload and management
+- Support of classroom organization, missing teachers, images, carousel
+- Support for various multimedia formats, including images and gif
+- Responsive design for different screen sizes
+
+## Requirements
+
+- Python 3.x
+- Django 3.x
+- A web server to host the application
+
+## Installation
+
+To install Scovie, follow these steps (for linux systems):
+
+1. Create the directory: `mkdir /opt/eldertek`
+2. Go into the directory: `cd /opt/eldertek`
+3. Clone the repository: `git clone https://github.com/eldertek/scovie && cd scovie`
+4. Install poetry: `make install-poetry`
+5. Install scovie : `make install`
+6. Voila ! You need now to deploy the application.
+
+**You need to deploy then, see below.**
+## Deployment
+
+To deploy Scovie in a production environment, follow these steps:
+
+1. Install a production-ready web server, such as Nginx or Apache.
+2. Configure the web server to serve the Django application.
+3. Use a process manager, such as Gunicorn or uWSGI, to run the Django application.
+
+## Contributing
+
+We welcome contributions to Scovie! If you would like to contribute, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch for your changes
+3. Commit your changes and push to your fork
+4. Submit a pull request for review
+
+## Support
+
+If you need help with Scovie, please open an issue on the repository. We will do our best to assist you.
+
+Copyright (c) 2023 André Théo LAURET - All rights reserved
+
