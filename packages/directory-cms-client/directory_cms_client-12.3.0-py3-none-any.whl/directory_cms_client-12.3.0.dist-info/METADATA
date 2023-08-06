@@ -1,0 +1,124 @@
+Metadata-Version: 2.1
+Name: directory-cms-client
+Version: 12.3.0
+Summary: Python API client for Directory CMS.
+Home-page: https://github.com/uktrade/directory-cms-client
+Author: Department for International Trade
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: directory-client-core (<8.0.0,>=7.2.2)
+Provides-Extra: test
+Requires-Dist: flake8 (==5.0.4) ; extra == 'test'
+Requires-Dist: freezegun (==1.0.0) ; extra == 'test'
+Requires-Dist: pytest-django (<=4.1.0,>=3.8.0) ; extra == 'test'
+Requires-Dist: pytest-sugar (<1.0.0,>=0.9.2) ; extra == 'test'
+Requires-Dist: pytest (==5.4.0) ; extra == 'test'
+Requires-Dist: pytest-codecov ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: GitPython ; extra == 'test'
+Requires-Dist: requests-mock (==1.8.0) ; extra == 'test'
+Requires-Dist: setuptools (<50.0.0,>=45.2.0) ; extra == 'test'
+Requires-Dist: twine ; extra == 'test'
+Requires-Dist: wheel (<1.0.0,>=0.34.2) ; extra == 'test'
+
+# directory-cms-client
+
+[![code-climate-image]][code-climate]
+[![circle-ci-image]][circle-ci]
+[![codecov-image]][codecov]
+[![pypi-image]][pypi]
+[![semver-image]][semver]
+
+**Directory CMS client.**
+
+Client for the Directory Content Management read-only API.
+---
+
+## Installation
+
+    $ pip install directory-cms-client
+
+The api client expects the following settings:
+
+| Setting                                  | Notes                                                       |
+| -----------------------------------------| ----------------------------------------------------------- |
+| DIRECTORY_CMS_API_CLIENT_BASE_URL        |                                                             |
+| DIRECTORY_CMS_API_CLIENT_API_KEY         | Unique to client. Retrieved during the on-boarding process. |
+| DIRECTORY_CMS_API_CLIENT_SENDER_ID       | Unique to client. Retrieved during the on-boarding process. |
+| DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT |                                                             |
+| DIRECTORY_CMS_API_CLIENT_SERVICE_NAME    | Unique to client, can be hardcoded.                         |
+
+The following [directory client core settings](https://github.com/uktrade/directory-client-core) also apply to directory cms client:
+
+| Setting                                            | Notes                                                 |
+| ---------------------------------------------------| ------------------------------------------------------|
+| DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS         | Duration to store the retrieved content in the cache. |    |
+| DIRECTORY_CLIENT_CORE_CACHE_LOG_THROTTLING_SECONDS | Duration to throttle log events for a given url for.  |
+
+And also specify a cache with name `cms_fallback`:
+
+```
+CACHES = {
+    'cms_fallback': ...
+}
+```
+
+Once that is done the API client can be used:
+
+```py
+from directory_api_client.client import cms_api_client
+```
+
+## Development
+
+```shell
+$ git clone https://github.com/uktrade/directory-cms-client
+$ cd directory-cms-client
+$ [create virtual environment and activate]
+$ make test_requirements
+```
+
+## Publish to PyPI
+
+The package should be published to PyPI on merge to master. If you need to do it locally then get the credentials from rattic and add the environment variables to your host machine:
+
+| Setting                     |
+| --------------------------- |
+| DIRECTORY_PYPI_USERNAME     |
+| DIRECTORY_PYPI_PASSWORD     |
+
+Then run the following command:
+
+    $ make publish
+
+[code-climate-image]: https://codeclimate.com/github/uktrade/directory-cms-client/badges/issue_count.svg
+[code-climate]: https://codeclimate.com/github/uktrade/directory-cms-client
+
+[circle-ci-image]: https://circleci.com/gh/uktrade/directory-cms-client/tree/master.svg?style=svg
+[circle-ci]: https://circleci.com/gh/uktrade/directory-cms-client/tree/master
+
+[codecov-image]: https://codecov.io/gh/uktrade/directory-cms-client/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/uktrade/directory-cms-client
+
+[pypi-image]: https://badge.fury.io/py/directory-cms-client.svg
+[pypi]: https://badge.fury.io/py/directory-cms-client
+
+[semver-image]: https://img.shields.io/badge/Versioning%20strategy-SemVer-5FBB1C.svg
+[semver]: https://semver.org
+
+
