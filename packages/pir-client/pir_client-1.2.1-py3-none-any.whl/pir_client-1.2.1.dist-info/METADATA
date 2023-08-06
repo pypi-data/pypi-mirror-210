@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: pir-client
+Version: 1.2.1
+Summary: API client for PIR
+Home-page: https://github.com/uktrade/invest-pir-api-client
+Author: Department for International Trade
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 4.2
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: directory-client-core (<8.0.0,>=7.2.2)
+Provides-Extra: test
+Requires-Dist: pytest (==5.4.0) ; extra == 'test'
+Requires-Dist: pytest-codecov ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: GitPython ; extra == 'test'
+Requires-Dist: pytest-sugar (==0.9.5) ; extra == 'test'
+Requires-Dist: flake8 (==5.0.4) ; extra == 'test'
+Requires-Dist: requests-mock (==1.1.0) ; extra == 'test'
+Requires-Dist: twine ; extra == 'test'
+Requires-Dist: wheel (<1.0.0,>=0.31.0) ; extra == 'test'
+Requires-Dist: setuptools ; extra == 'test'
+Requires-Dist: httpretty ; extra == 'test'
+
+# Invest PIR API Client
+[![CircleCI](https://circleci.com/gh/uktrade/invest-pir-api-client.svg?style=svg)](https://circleci.com/gh/uktrade/invest-pir-api-client)
+[![codecov](https://codecov.io/gh/uktrade/invest-pir-api-client/branch/master/graph/badge.svg)](https://codecov.io/gh/uktrade/invest-pir-api-client)
+[![PyPI](https://img.shields.io/pypi/v/pir-client.svg)](https://pypi.org/project/pir-client/)
+
+
+Client for the PIR service (yet to be deployed)
+
+## Example 
+
+    from pir_client.client import PIRAPIClient
+
+    client = PIRAPIClient(
+        base_url=settings.PIR_API_URL,
+        api_key=settings.PIR_API_KEY
+    )
+
+    # Creates report and sends email
+    client.create_report({
+        'name': 'test',
+        'sector': 'tech',
+        'market': 'usa',
+        'company': 'Acme',
+        'email': 'foo@acme.com'
+    })
+
+## Install 
+
+    pip install invest-pir-api-client
+
+
