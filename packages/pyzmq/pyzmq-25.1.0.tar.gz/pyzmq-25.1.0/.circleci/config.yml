@@ -1,0 +1,82 @@
+version: 2.1
+
+jobs:
+  arm-wheels:
+    parameters:
+      build:
+        type: string
+      skip:
+        type: string
+        default: ""
+
+    machine:
+      image: ubuntu-2004:2022.04.1
+    resource_class: arm.medium
+
+    environment:
+      CIBW_SKIP: "<< parameters.skip >>"
+      CIBW_BUILD: "<< parameters.build >>"
+
+    steps:
+      - checkout
+      - run:
+          name: install cibuildwheel
+          command: |
+            python3 -m pip install --upgrade pip setuptools
+            python3 -m pip install -r tools/wheel-requirements.txt
+
+      - run:
+          name: pip freeze
+          command: |
+            python3 -m pip freeze
+
+      - run:
+          name: Cython
+          # This assumes pytest is installed via the install-package step above
+          command: |
+            python3 setup.py fetch_libzmq
+            python3 setup.py cython
+
+      - run:
+          name: list wheels
+          command: |
+            python3 -m cibuildwheel . --print-build-identifiers
+
+      - run:
+          name: cibuildwheel
+          command: |
+            python3 -m cibuildwheel .
+
+      - store_artifacts:
+          path: wheelhouse/
+
+      - when:
+          condition:
+            matches:
+              pattern: ".+"
+              value: "<< pipeline.git.tag >>"
+          steps:
+            - run:
+                environment:
+                  TWINE_NONINTERACTIVE: "1"
+                  TWINE_USERNAME: __token__
+                command: |
+                  python3 -m pip install twine
+                  python3 -m twine upload --skip-existing wheelhouse/*
+
+workflows:
+  wheels: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - arm-wheels:
+          name: manylinux
+          build: "*manylinux*"
+          filters:
+            tags:
+              only: /.*/
+      - arm-wheels:
+          name: musllinux
+          build: "*musllinux*"
+          filters:
+            tags:
+              only: /.*/
