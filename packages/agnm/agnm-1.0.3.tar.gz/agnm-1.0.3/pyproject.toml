@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agnm"
+version = "1.0.3"
+authors = [
+  { name="Agnė Moleikaitytė", email="agnmol@ktu.lt" },
+]
+description = "A package for physics motion calculations"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+[tool.poetry.urls]
+GitHub = "https://github.com/MoleikaityteA/agnm"
