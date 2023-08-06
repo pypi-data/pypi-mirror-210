@@ -1,0 +1,323 @@
+from typing import NamedTuple
+
+import geopandas as gpd
+import numpy as np
+import pyproj
+import pytest
+import shapely
+import xarray as xr
+from matplotlib.collections import LineCollection
+from scipy import sparse
+
+import xugrid
+
+from . import requires_meshkernel
+
+try:
+    import meshkernel as mk
+except ImportError:
+    pass
+
+NAME = "network1d"
+
+
+def grid1d(dataset=None, indexes=None, crs=None, attrs=None):
+    xy = np.array(
+        [
+            [0.0, 0.0],
+            [1.0, 1.0],
+            [2.0, 2.0],
+        ]
+    )
+    grid = xugrid.Ugrid1d(
+        node_x=xy[:, 0],
+        node_y=xy[:, 1],
+        fill_value=-1,
+        edge_node_connectivity=np.array([[0, 1], [1, 2]]),
+        dataset=dataset,
+        indexes=indexes,
+        crs=crs,
+        attrs=attrs,
+    )
+    return grid
+
+
+def test_ugrid1d_init():
+    grid = grid1d()
+    assert grid.name == NAME
+    assert grid._dataset is None
+    assert grid.node_x.flags["C_CONTIGUOUS"]
+    assert grid.node_y.flags["C_CONTIGUOUS"]
+
+
+def test_ugrid1d_alternative_init():
+    custom_attrs = {
+        "node_dimension": "nNetNode",
+        "name": "mesh1d",
+        "node_coordinates": "mesh1d_node_x mesh1d_node_y",
+    }
+    indexes = {"node_x": "mesh1d_node_x", "node_y": "mesh1d_node_y"}
+    grid = grid1d(indexes=indexes, attrs=custom_attrs)
+    assert grid.node_dimension == "nNetNode"
+    assert grid.name == NAME
+    # name in attrs should be overwritten by given name.
+    assert grid._attrs["name"] == NAME
+
+    with pytest.raises(ValueError, match="Provide either dataset or attrs, not both"):
+        grid1d(dataset=xr.Dataset, attrs=custom_attrs)
+
+    with pytest.raises(ValueError, match="indexes must be provided for dataset"):
+        grid1d(dataset=xr.Dataset, indexes=None)
+
+    with pytest.raises(ValueError, match="indexes must be provided for attrs"):
+        grid1d(attrs=custom_attrs)
+
+
+def test_ugrid1d_properties():
+    # These are defined in the base class
+    grid = grid1d()
+    assert grid.node_dimension == f"{NAME}_nNodes"
+    assert grid.edge_dimension == f"{NAME}_nEdges"
+    assert grid.n_node == 3
+    assert grid.n_edge == 2
+    expected_coords = np.array([[0.0, 0.0], [1.0, 1.0], [2.0, 2.0]])
+    assert np.allclose(grid.node_coordinates, expected_coords)
+    assert np.allclose(grid.edge_x, [0.5, 1.5])
+    assert np.allclose(grid.edge_y, [0.5, 1.5])
+    assert np.allclose(grid.edge_coordinates, np.column_stack([[0.5, 1.5], [0.5, 1.5]]))
+    assert grid.bounds == (0.0, 0.0, 2.0, 2.0)
+    node_edges = grid.node_edge_connectivity
+    assert isinstance(node_edges, sparse.csr_matrix)
+
+    expected_coords = [
+        [[0.0, 0.0], [1.0, 1.0]],
+        [[1.0, 1.0], [2.0, 2.0]],
+    ]
+    actual_coords = grid.edge_node_coordinates
+    assert actual_coords.shape == (2, 2, 2)
+    assert np.allclose(actual_coords, expected_coords)
+    assert isinstance(grid.attrs, dict)
+
+
+def test_ugrid1d_egde_bounds():
+    grid = grid1d()
+    expected = np.array(
+        [
+            [0.0, 0.0, 1.0, 1.0],
+            [1.0, 1.0, 2.0, 2.0],
+        ]
+    )
+    actual = grid.edge_bounds
+    assert actual.shape == (2, 4)
+    assert np.allclose(actual, expected)
+
+
+def test_set_crs():
+    grid = grid1d()
+
+    with pytest.raises(ValueError, match="Must pass either"):
+        grid.set_crs()
+
+    grid.set_crs("epsg:28992")
+    assert grid.crs == pyproj.CRS.from_epsg(28992)
+
+    # This is allowed: the same crs
+    grid.set_crs("epsg:28992")
+    assert grid.crs == pyproj.CRS.from_epsg(28992)
+
+    # This is not allowed ...
+    with pytest.raises(ValueError, match="The Ugrid already has a CRS"):
+        grid.set_crs("epsg:4326")
+
+    # Unless explicitly set with allow_override
+    grid.set_crs("epsg:4326", allow_override=True)
+    assert grid.crs == pyproj.CRS.from_epsg(4326)
+
+    # Test espg alternative arg
+    grid.crs = None
+    grid.set_crs(epsg=28992)
+    assert grid.crs == pyproj.CRS.from_epsg(28992)
+
+
+def test_to_crs():
+    grid = grid1d()
+
+    with pytest.raises(ValueError, match="Cannot transform naive geometries"):
+        grid.to_crs("epsg:28992")
+
+    grid.set_crs("epsg:4326")
+
+    # Skip reprojection
+    same = grid.to_crs("epsg:4326")
+    assert np.allclose(same.node_coordinates, grid.node_coordinates)
+
+    reprojected = grid.to_crs("epsg:28992")
+    assert reprojected.crs == pyproj.CRS.from_epsg(28992)
+    assert (~(grid.node_coordinates == reprojected.node_coordinates)).all()
+
+
+def test_to_dataset():
+    grid = grid1d()
+    ds = grid.to_dataset()
+    assert isinstance(ds, xr.Dataset)
+    assert f"{NAME}" in ds
+    assert f"{NAME}_nNodes" in ds.dims
+    assert f"{NAME}_nEdges" in ds.dims
+    assert f"{NAME}_node_x" in ds.coords
+    assert f"{NAME}_node_y" in ds.coords
+    assert f"{NAME}_edge_nodes" in ds
+
+    ds = grid.to_dataset(optional_attributes=True)
+    assert f"{NAME}_edge_x" in ds.coords
+    assert f"{NAME}_edge_y" in ds.coords
+
+
+def test_ugrid1d_dataset_roundtrip():
+    grid = grid1d()
+    ds = grid.to_dataset()
+    grid2 = xugrid.Ugrid1d.from_dataset(grid.to_dataset())
+    assert isinstance(grid2._dataset, xr.Dataset)
+    assert grid2._dataset == ds
+
+
+def test_ugrid1d_from_meshkernel():
+    class Mesh1d(NamedTuple):
+        node_x: np.ndarray
+        node_y: np.ndarray
+        edge_nodes: np.ndarray
+
+    mesh1d = Mesh1d(
+        node_x=np.array(
+            [
+                0.0,
+                0.8975979,
+                1.7951958,
+                2.6927937,
+                3.5903916,
+                4.48798951,
+                5.38558741,
+                6.28318531,
+            ]
+        ),
+        node_y=np.array(
+            [
+                0.00000000e00,
+                7.81831482e-01,
+                9.74927912e-01,
+                4.33883739e-01,
+                -4.33883739e-01,
+                -9.74927912e-01,
+                -7.81831482e-01,
+                -2.44929360e-16,
+            ]
+        ),
+        edge_nodes=np.array([0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 0, 0]),
+    )
+
+    grid = xugrid.Ugrid1d.from_meshkernel(mesh1d)
+    assert grid.n_edge == 8
+    assert np.allclose(mesh1d.node_x, grid.node_x)
+    assert np.allclose(mesh1d.node_y, grid.node_y)
+    assert np.allclose(grid.edge_node_connectivity, mesh1d.edge_nodes.reshape((8, 2)))
+
+
+def test_clear_geometry_properties():
+    grid = grid1d()
+    for attr in [
+        "_mesh",
+        "_meshkernel",
+        "_celltree",
+        "_xmin",
+        "_xmax",
+        "_ymin",
+        "_ymax",
+        "_edge_x",
+        "_edge_y",
+    ]:
+        setattr(grid, attr, 1)
+        grid._clear_geometry_properties()
+        assert getattr(grid, attr) is None
+
+
+def test_topology_dimension():
+    grid = grid1d()
+    assert grid.topology_dimension == 1
+
+
+def test_dimensions():
+    grid = grid1d()
+    assert grid.node_dimension == f"{NAME}_nNodes"
+    assert grid.edge_dimension == f"{NAME}_nEdges"
+    assert grid.dimensions == {
+        f"{NAME}_nNodes": 3,
+        f"{NAME}_nEdges": 2,
+    }
+
+
+@requires_meshkernel
+def test_mesh():
+    grid = grid1d()
+    assert isinstance(grid.mesh, mk.Mesh1d)
+
+
+@requires_meshkernel
+def test_meshkernel():
+    grid = grid1d()
+    assert isinstance(grid.meshkernel, mk.MeshKernel)
+
+
+def test_from_geodataframe():
+    x = np.array([0.0, 1.0, 2.0])
+    y = np.array([0.0, 0.0, 0.0])
+    gdf = gpd.GeoDataFrame(geometry=[shapely.linestrings(x, y)])
+    grid = xugrid.Ugrid1d.from_geodataframe(gdf)
+    assert isinstance(grid, xugrid.Ugrid1d)
+
+
+def test_to_shapely():
+    grid = grid1d()
+
+    points = grid.to_shapely(f"{NAME}_nNodes")
+    assert isinstance(points[0], shapely.Geometry)
+
+    lines = grid.to_shapely(f"{NAME}_nEdges")
+    assert isinstance(lines[0], shapely.Geometry)
+
+
+def test_sel():
+    grid = grid1d()
+    obj = xr.DataArray(
+        data=[0, 1],
+        dims=[grid.edge_dimension],
+    )
+    with pytest.raises(ValueError, match="Ugrid1d only supports slice indexing"):
+        grid.sel(obj=obj, x=1.0, y=1.0)
+    with pytest.raises(ValueError, match="Ugrid1d does not support steps"):
+        grid.sel(obj=obj, x=slice(0, 2, 1), y=slice(0, 2, 1))
+    with pytest.raises(ValueError, match="slice start should be smaller"):
+        grid.sel(obj, x=slice(2, 0), y=slice(0, 2))
+
+    actual = grid.sel(obj=obj, x=slice(0, 1), y=slice(0, 1))
+    assert isinstance(actual, tuple)
+    new_obj, new_grid = actual
+
+    assert isinstance(new_obj, xr.DataArray)
+    assert isinstance(new_grid, xugrid.Ugrid1d)
+    assert new_obj.dims[0] == f"{NAME}_nEdges"
+    assert new_grid.edge_dimension == f"{NAME}_nEdges"
+    assert np.array_equal(new_obj.values, [0])
+
+
+def test_topology_subset():
+    grid = grid1d()
+    edge_indices = np.array([1])
+    actual = grid.topology_subset(edge_indices)
+    assert np.array_equal(actual.edge_node_connectivity, [[0, 1]])
+    assert np.array_equal(actual.node_x, [1.0, 2.0])
+    assert np.array_equal(actual.node_y, [1.0, 2.0])
+
+
+def test_ugrid1d_plot():
+    grid = grid1d()
+    primitive = grid.plot()
+    assert isinstance(primitive, LineCollection)
