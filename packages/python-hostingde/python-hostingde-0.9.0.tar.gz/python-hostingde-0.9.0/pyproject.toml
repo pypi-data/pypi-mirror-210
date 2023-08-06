@@ -1,0 +1,17 @@
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+order_by_type = false
+
+[tool.mypy]
+disallow_incomplete_defs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+files = "."
+exclude = "venv|build|setup.py|tests"
+
+[tool.semantic_release]
+branch = "main"
+version_variable = "hostingde/__version__.py:__version__"
+commit_subject = "chore: release v{version}"
+commit_message = ""
