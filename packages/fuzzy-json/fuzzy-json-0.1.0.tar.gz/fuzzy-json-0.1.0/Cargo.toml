@@ -1,0 +1,28 @@
+[package]
+name = "fuzzy-json"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "fuzzy_json"
+crate-type = ["cdylib"]
+
+[dependencies]
+funty = "=1.0.1"
+fuzzy-json = "0.1.0"
+
+[dependencies.pyo3]
+version = "0.13.2"
+features = ["extension-module"]
+
+[target.x86_64-apple-darwin]
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]
+
+[target.aarch64-apple-darwin]
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]

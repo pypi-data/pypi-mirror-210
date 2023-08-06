@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: fuzzy-json
+Version: 0.1.0
+Summary: Python Binding for Fuzzy JSON Parser (fson)
+Home-page: https://github.com/cympfh/fuzzy-json-py
+Author: cympfh
+Author-email: cympfh@gmail.com
+Classifier: License :: OSI Approved :: MIT License
+License-File: LICENSE
+
+fuzzy-json-py
+=============
+
+Fuzzy JSON parser, python binding
+
+Usage
+-----
+
+.. code:: python
+
+   import fuzzy_json
+
+   data = fuzzy_json.loads(
+       """
+   The data is
+   {
+       'x': nil,
+       'a dog': [], // trailing comma is ok
+   }.
+   """
+   )
+   print(data)
