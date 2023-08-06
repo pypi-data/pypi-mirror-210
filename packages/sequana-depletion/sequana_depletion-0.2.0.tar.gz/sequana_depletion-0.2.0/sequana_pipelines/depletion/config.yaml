@@ -1,0 +1,36 @@
+# ============================================================================
+# Config file for Quality Control
+# ==========================================[ Sections for the users ]========
+#
+# One of input_directory, input_pattern and input_samples must be provided
+# If input_directory provided, use it otherwise if input_pattern provided,
+# use it, otherwise use input_samples.
+# ============================================================================
+
+
+input_directory: /home/cokelaer/Work/github/forked/sequana_pipelines/depletion/test/data
+input_readtag: _R[12]_
+input_pattern: '*fastq.gz'
+
+apptainers:
+    bwa: https://zenodo.org/record/7970243/files/bwa_0.7.17.img
+    samtools: https://zenodo.org/record/7437898/files/samtools_1.16.1.img
+    pigz: https://zenodo.org/record/7346805/files/pigz_2.4.0.img
+
+
+##############################################################################
+# Your section
+#
+# :Parameters:
+#
+# - options: string with any valid FastQC options
+# - mode: if set to selection, keeps the reads that match the reference. If set to depletion
+#     removes the reads that match the reference
+general:
+    reference: /home/cokelaer/Work/github/forked/sequana_pipelines/depletion/test/data/measles.fa
+    mode: selection
+
+mapping:
+    threads: 4
+    options: ""
+

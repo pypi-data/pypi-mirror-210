@@ -1,0 +1,39 @@
+# Schema validator for the quality_control
+# author: Thomas Cokelaer
+
+type: map
+mapping:
+    "input_directory":
+        type: str
+        required: False
+    "input_readtag":
+        type: str
+        required: False
+    "input_pattern":
+        type: str
+        required: False
+
+    "general":
+        type: map
+        mapping:
+            "reference":
+               type: str
+               required: True
+            "mode":
+               type: str
+               required: True
+               enum: [selection, depletion]
+
+    "apptainers":
+        type: any
+
+    "mapping":
+      type: map
+      mapping:
+          "threads":
+             type: int
+             range: { min: 1}
+          "options":
+            type: str
+            required: False
+

@@ -1,0 +1,152 @@
+#
+#  This file is part of Sequana software
+#
+#  Copyright (c) 2016-2021 - Sequana Dev Team (https://sequana.readthedocs.io)
+#
+#  Distributed under the terms of the 3-clause BSD license.
+#  The full license is in the LICENSE file, distributed with this software.
+#
+#  Website:       https://github.com/sequana/sequana
+#  Documentation: http://sequana.readthedocs.io
+#  Contributors:  https://github.com/sequana/sequana/graphs/contributors
+##############################################################################
+import os
+
+from sequana_pipetools import snaketools as sm
+
+# This must be defined before the include
+configfile: "config.yaml"
+
+
+# A convenient manager
+manager = sm.PipelineManager("depletion", config)
+
+
+
+def get_final_outputs():
+    expected_output = expand("cleaned/{sample}_R1_.fastq.gz", sample=manager.samples)
+    if manager.paired:
+        expected_output += expand("cleaned/{sample}_R2_.fastq.gz", sample=manager.samples)
+    return expected_output
+
+
+rule all:
+    input:
+        get_final_outputs()
+
+
+rule index:
+    input:
+        str(config['general']['reference'])
+    output:
+        str(config['general']['reference'])+".bwt"
+    container:
+        config['apptainers']['bwa']
+    shell:
+       """
+       bwa index {input}
+       """
+
+
+rule mapping:
+    input:
+        fastq=manager.getrawdata(),
+        index=config['general']['reference']+".bwt"
+    output:
+        temp("{sample}/mapping/{sample}.sam"),
+    params:
+        reference=config['general']['reference'],
+        options=config['mapping'].get("options", "")
+    threads:
+        config["mapping"]["threads"]
+    container:
+        config['apptainers']['bwa']
+    log:
+        "{sample}/mapping/mapping.log"
+    shell:
+        """
+        bwa mem {params.options} -t {threads} {params.options} {params.reference} {input.fastq[0]} {input.fastq[1]} > {output} 2>{log}
+        """
+
+
+rule sam2bam:
+    input: 
+        "{sample}/mapping/{sample}.sam"
+    output:
+        temp("{sample}/mapping/{sample}.bam")
+    container:
+        config['apptainers']['samtools']
+    shell:
+        """
+        samtools view -bS {input} > {output}
+        """
+
+def get_depletion_selection_outputs():
+    if manager.paired:
+        return ("cleaned/{sample}_R1_.fastq", "cleaned/{sample}_R2_.fastq")
+    else:
+        return ("cleaned/{sample}_R1_.fastq",)
+
+
+def get_final_outputs():
+    if manager.paired:
+        return ("cleaned/{sample}_R1_.fastq.gz", "cleaned/{sample}_R2_.fastq.gz")
+    else:
+        return ("cleaned/{sample}_R1_.fastq.gz",)
+
+
+rule depletion_selection:
+    input:
+        "{sample}/mapping/{sample}.bam"
+    output:
+        fastq=get_depletion_selection_outputs(),
+        both_mapped=temp("{sample}/mapping/{sample}_both_mapped.bam")
+    params:
+        ref    = config["general"]["reference"],
+        paired = manager.paired,
+        mode   = config["general"]["mode"]
+    log:
+        "{sample}/mapping/{sample}.log"
+    container:
+        config['apptainers']['samtools']
+    shell:
+        """
+        # uses -f2 to keep only read mapped in proper paired
+        if test {params.mode} == "selection"
+        then
+            samtools view -b -f2 -F 256 {input} 1> {output.both_mapped} 2>{log}
+        else
+            samtools view -b -f 12 -F 256 {input} 1> {output.both_mapped} 2>{log}
+        fi
+
+        if [ {params.paired} == "True" ]
+        then
+             samtools fastq {output.both_mapped} -1 {output.fastq[0]} -2 {output.fastq[1]} -n 2>>{log}
+        else
+             samtools fastq {output.both_mapped} -n > {output.fastq[0]} 2>>{log}
+        fi
+        """
+
+rule compression:
+    input:
+        fastq=get_depletion_selection_outputs(),
+    output:
+        get_final_outputs(),
+    container:
+        config['apptainers']['pigz']
+    shell:
+       """
+       pigz {input}
+       """
+
+
+onsuccess:
+    shell("chmod -R g+w .")
+
+    manager.teardown()
+    print("Once done, please clean up the directory using\n'make clean'")
+
+onerror:
+    from sequana_pipetools.errors import PipeError
+    p = PipeError("depletion")
+    p.status()
