@@ -1,0 +1,94 @@
+Metadata-Version: 2.1
+Name: c7n-kube
+Version: 0.2.26
+Summary: Cloud Custodian - Kubernetes Provider
+Home-page: https://cloudcustodian.io
+License: Apache-2.0
+Author: Cloud Custodian Project
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Topic :: System :: Systems Administration
+Requires-Dist: c7n (==0.9.27) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: kubernetes (==26.1.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: jsonpatch (==1.32) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: argcomplete (==3.0.8) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: boto3 (==1.26.139) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: docutils (==0.18.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: importlib-metadata (==5.2.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: jsonschema (==4.17.3) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: python-dateutil (==2.8.2) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: pyyaml (==6.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: tabulate (==0.9.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: urllib3 (==1.26.16) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: certifi (==2023.5.7) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: google-auth (==2.18.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: requests (==2.31.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: requests-oauthlib (==1.3.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: setuptools (==67.8.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: six (==1.16.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: websocket-client (==1.5.2) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: jsonpointer (==2.3) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: botocore (==1.29.139) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: jmespath (==1.0.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: s3transfer (==0.6.1) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: typing-extensions (==4.6.1) ; python_version >= "3.7" and python_version < "3.8"
+Requires-Dist: zipp (==3.15.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: attrs (==23.1.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: importlib-resources (==5.12.0) ; python_version >= "3.7" and python_version < "3.9"
+Requires-Dist: pkgutil-resolve-name (==1.3.10) ; python_version >= "3.7" and python_version < "3.9"
+Requires-Dist: pyrsistent (==0.19.3) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: cachetools (==5.3.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: pyasn1-modules (==0.3.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: rsa (==4.9) ; python_version >= "3.7" and python_version < "4"
+Requires-Dist: charset-normalizer (==3.1.0) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: idna (==3.4) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: oauthlib (==3.2.2) ; python_version >= "3.7" and python_version < "4.0"
+Requires-Dist: pyasn1 (==0.5.0) ; python_version >= "3.7" and python_version < "4.0"
+Project-URL: Documentation, https://cloudcustodian.io/docs/
+Project-URL: Repository, https://github.com/cloud-custodian/cloud-custodian
+Description-Content-Type: text/markdown
+
+# Custodian Kubernetes Support
+
+Cloud Custodian can run policies directly inside your cluster, reporting on 
+resources that violate those policies, or blocking them altogether.
+
+## Running the server
+
+c7n-kates can be run and installed via poetry. `poetry install && poetry run c7n-kates`.  
+
+| name           | default   | description                                                  |
+|----------------|-----------|--------------------------------------------------------------|
+| --host         | 127.0.0.1 | (optional) The host that the server should listen on.        |
+| --port         | 8800      | (optional) The port the server will listen on.               |
+| --policy-dir   |           | Path to the policy directory.                                |
+| --on-exception | warn      | Action to take on an internal exception. One of: warn, deny. |
+| --cert         |           | Path to the certificate.                                     | 
+| --ca-cert      |           | Path to the CA's certificate.                                |
+| --cert-key     |           | Path to the certificate's key.                               |
+
+## Generate a MutatingWebhookConfiguration
+
+After the server is running, you'll need to configure and install the 
+MutatingWebhookConfiguration manually. To generate a webhook configuration, you
+can run `poetry run c7n-kates --generate --endpoint $ENDPOINT_URL --policy-dir $DIR`, and 
+it will generate an appropriate configuration for you, based on your policies.
+
+Note: some modification of the webhook configuration may be required. See the 
+[documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/) 
+on webhooks for more configuration.
+
+## Development
+
+You can use [skaffold](https://github.com/GoogleContainerTools/skaffold/) to 
+assist with testing and debugging this controller. Run `skaffold dev` in this
+folder to deploy the local container into a local kubernetes cluster. It will 
+automatically redeploy it as files change.
+
