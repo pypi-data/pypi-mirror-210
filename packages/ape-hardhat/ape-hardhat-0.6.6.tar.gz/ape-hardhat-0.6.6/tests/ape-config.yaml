@@ -1,0 +1,35 @@
+contracts_folder: data/contracts/ethereum/local
+
+ethereum:
+  local:
+    default_provider: hardhat
+
+polygon:
+  local:
+    default_provider: hardhat
+  mumbai:
+    default_provider: alchemy
+
+hardhat:
+  request_timeout: 29
+  fork_request_timeout: 360
+
+  fork:
+    ethereum:
+      mainnet:
+        upstream_provider: alchemy
+        block_number: 17040366
+      goerli:
+        upstream_provider: alchemy
+        block_number: 7849922
+      sepolia:
+        upstream_provider: alchemy
+        block_number: 3091950
+
+test:
+  # `false` because running pytest within pytest.
+  disconnect_providers_after: false
+
+  gas:
+    exclude:
+      - method_name: setAdd*
