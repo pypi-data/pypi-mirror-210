@@ -1,0 +1,279 @@
+#!python
+
+# pylint: disable=fixme
+# pylint: disable=invalid-name
+# pylint: disable=line-too-long
+# pylint: disable=raise-missing-from
+# pylint: disable=redefined-outer-name
+# pylint: disable=dangerous-default-value
+# pylint: disable=missing-module-docstring
+
+import os
+import sys
+import atexit
+import pkgutil
+import argparse
+import traceback
+import importlib.abc
+import importlib.util
+from chiakilisp.utils import pprint
+from chiakilisp.lexer import Lexer
+from chiakilisp.parser import Parser
+from chiakilisp.runtime import ENVIRONMENT
+
+
+def wood(source_code: str,
+         source_code_file_name: str) -> list:
+
+    """
+    AST from the source code
+
+    :param source_code: source code
+    :param source_code_file_name: source code file name
+    :return: a list of nodes (Expressions or Literals)
+    """
+
+    lexer = Lexer(source_code, source_code_file_name)
+    try:
+        lexer.lex()
+    except IndexError:  # may occur when input's broken
+        formatted = ':'.join(map(str,     lexer.pos()))
+        raise SyntaxError(
+            f"{formatted}: Couldn't read a source code"
+        )
+    ast = Parser(lexer.tokens())
+    try:
+        ast.parse()
+    except AssertionError:  # occurs on a missing paren
+        formatted = ':'.join(map(str,     lexer.pos()))
+        raise SyntaxError(
+            f'{formatted}: Unable to parse source code'
+        )
+    return ast.wood()  # <------ return a list of nodes
+
+
+def dump(source_code: str,
+         source_code_file_name: str) -> None:
+
+    """
+    AST from the source code dump
+
+    :param source_code: source code
+    :param source_code_file_name: source code file name
+    :return: NoneType
+    """
+
+    for node in wood(source_code, source_code_file_name):
+        node.dump(0)
+
+
+def require(path: str,
+            use_global_env: bool = False) -> object:
+
+    """
+    ChiakiLisp module from the module path
+
+    :param path: path to the ChiakiLisp module
+    :param use_global_env: use global environ or not
+    :return: loaded ChiakiLisp module as a Python 3 module
+    """
+
+    path = path + '.cl' \
+        if not path.endswith('.cl') \
+        else path
+
+    unqualified_path = path.split('/')[-1]
+    module_name = unqualified_path.replace('.cl', '')
+
+    with open(path, 'r', encoding='utf-8') as _r:
+        # If global environment should not be updated, then
+        # initialize local environment based on the global.
+        environment = dict(ENVIRONMENT) \
+            if not use_global_env \
+            else ENVIRONMENT   # use the global environment
+        # Use split('/')[-1] to get a base name of the path
+
+        # TODO: maybe play around `custom_module_loader` ?)
+        custom_module_loader = importlib.abc.Loader()
+        spec = importlib.util.spec_from_loader(
+            module_name, custom_module_loader, origin=path)
+        module = importlib.util.module_from_spec(spec)
+
+        execute(
+            _r.read(),
+            unqualified_path,
+            current_environment=environment,  # specify env
+            silent=True)  # 'silent' prevents from printing
+
+        for name, value in environment.items():
+            setattr(module, name, value)  # populate module
+
+        return module  # return pseudo-python module object
+
+
+def execute(source_code: str,
+            source_code_file_name: str,
+            current_environment: dict = ENVIRONMENT,
+            silent: bool = False) -> None:
+
+    """
+    AST from the source code exec
+
+    :param source_code: source code
+    :param source_code_file_name: source code file name
+    :param current_environment: current environment to use
+    :param silent: if False by default, will print a result
+    :return: NoneType
+    """
+
+    for node in wood(source_code, source_code_file_name):
+        result = node.execute(current_environment)
+        # TODO: store results in *1, *2, and *3 global vars
+        if not silent:
+            pprint(result)  # <-- print with custom printer
+
+
+def repl(history_path: str) -> None:
+
+    """Starts ChiakiLisp REPL environment"""
+
+    try:
+        import readline  # pylint: disable=W0611 disable=import-outside-toplevel     # we only needed this here
+    except ImportError:
+        readline = type('readline', (object,), {  # pylint: disable=invalid-name     # honestly, I don't get it
+            "set_completer": lambda _: None, 'read_history_file': lambda _: None,
+            "parse_and_bind": lambda _: None, 'write_history_file': lambda _: None   # <- a set of stub methods
+        })  # <---------------------------------------------------------------- for MS Windows NT compatibility
+
+    readline.parse_and_bind("tab: complete")  # <----------------------------- functions / variables completion
+    readline.parse_and_bind('set: blink-matching-paren on')   # <------- to visually mark expression boundaries
+
+    if os.path.exists(history_path) \
+            and not args.historyless:  # <--------------------- read ChiakiLisp REPL history from history file
+        readline.read_history_file(history_path)  # <------- do not read history if --historyless option is on
+
+    def save_history() -> None:
+
+        """Save ChiakiLisp REPL history to file"""
+
+        if not args.historyless:
+            readline.write_history_file(history_path)  # <- do not write history if --historyless option is on
+
+    atexit.register(save_history)  # <--- write REPL history (but take into account --historyless option state)
+
+    def completer(text, state) -> str or None:
+
+        """Handle completions in REPL environment"""
+
+        return (tuple(filter(lambda name: name.startswith(text),  tuple(ENVIRONMENT.keys()))) + (None,))[state]
+
+    readline.set_completer(completer)  # when the user hits 'Tab' key, we should be able to display suggestions
+
+    print('Press Ctrl+C to cancel input, press Ctrl+D to exit the REPL, press Tab to see all global functions')
+
+    while True:
+        try:
+            source: str = input('LISP> ')  # <-------------------------------------------------- display prompt
+        except KeyboardInterrupt:  # <-------------------------------------------------- handle Ctrl+D keypress
+            print()  # <----------- print empty line to prevent next prompt line to be printed on the same line
+            continue
+        except EOFError:  # <----------------------------------------------------------- handle Ctrl+C keypress
+            print()  # <----------- print empty line to prevent next prompt line to be printed on the same line
+            return
+        if not source:  # <--------------------------------------------------------- skip over empty user input
+            continue
+        try:
+            execute(source, '<REPL>')  # <-------------------------------- execute source code and print result
+        except (Exception,) as _exc:  # pylint: disable=W0703        # try to catch any possible exception here
+            ENVIRONMENT['*e'] = _exc  # <-------------------------- like in clojure REPL, store exception in *e
+            if ENVIRONMENT.get('repl-show-traceback'):  # if user explicitly decided to print out traceback ...
+                traceback.print_exc()  # then print it using print_exc() function from builtin traceback module
+            else:
+                print(_exc)  # otherwise, print its position (when possible), exception class, name and message
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser('chiakilang - ChiakiLisp Command Line Utility')
+    parser.add_argument('source', help='Path to the source code', nargs="?", default='')
+    parser.add_argument('-d', '--dump',
+                        action='store_true', help='Dump out source code AST')
+    parser.add_argument('--lockdown',
+                        action='store_true', help='Automatically enables:')
+    parser.add_argument('--coreless',
+                        action='store_true', help='Do not load core library')
+    parser.add_argument('--historyless',
+                        action='store_true', help='Do not save REPL history')
+    parser.add_argument('--settingsless',
+                        action='store_true', help='Do not load or create REPL settings')
+    parser.add_argument('--enable-hashed-collections',
+                        action='store_true', help='Enable hashed dictionaries and lists')
+
+    args = parser.parse_args()  # <------------------------------------------------------------ parse arguments
+
+    # TODO: consider lockdown mode to be also a 'security enhanced' mode as well (needed when parsing edn file)
+
+    if args.lockdown:
+        args.coreless = True  # <----------------------------------------------------------- turn on --coreless
+        args.historyless = True  # <----------------------------------------------------- turn on --historyless
+        args.settingsless = True  # <--------------------------------------------------- turn on --settingsless
+
+    user_home = os.path.expanduser('~')  # <---------------------------------------- define OS independent home
+    chiakilisp_home = os.path.join(user_home, '.chiakilisp')  # <------------------- define the ChiakiLisp home
+
+    if not args.settingsless:
+        chiakilisp_repl_settings = os.path.join(chiakilisp_home, 'repl-settings.cl')
+        if os.path.exists(chiakilisp_repl_settings):
+            try:
+                require(chiakilisp_repl_settings,  use_global_env=True)  # <- load the ChiakiLisp REPL settings
+            except (Exception,) as exc:  # pylint: disable=broad-except # do that safely catching any exception
+                if os.environ.get('CHIAKILISP_SHOW_TRACEBACK'):  # == 1
+                    print(exc)
+                else:
+                    print("ChiakiLisp REPL settings file has errors\nSet CHIAKILISP_SHOW_TRACEBACK=1 for more")
+        else:
+            if not os.path.exists(chiakilisp_home):  # <--- if the ChiakiLisp home directory does not exist ...
+                os.mkdir(chiakilisp_home)  # <-------------------------------------------------- ... create one
+            with open(chiakilisp_repl_settings, 'w', encoding='utf-8') as w:
+                w.write("(def repl-show-traceback false) ;; if set to 'false', internal tracebacks are hidden")
+
+    ENVIRONMENT['__require__'] = require  # <------------------ proxy require() helper to use late in (require)
+    BUILTINS = globals()['__builtins__']  # <------------------------ gather all the Python 3 builtin functions
+
+    ENVIRONMENT.update({
+        n: getattr(BUILTINS, n, None)
+        for n in
+        filter(lambda k: k not in ['__import__', '__loader__', '__name__', '__package__', '__spec__'],
+               dir(BUILTINS))})  # proxy only allowed builtin Python 3 symbols, others are proven to cause bugs
+
+    if not args.coreless:
+        if os.path.exists('chiakilisp/corelib/core.cl'):
+            require('chiakilisp/corelib/core.cl', use_global_env=True)  # <------- load ChiakiLisp core library
+        else:
+            execute(
+                pkgutil.get_data('chiakilisp', 'corelib/core.cl').decode('utf-8'),  'corelib.cl',  silent=True)
+
+    # TODO: we certainly need some set of tests to prove hashedcolls work fine and reliably and remove the code
+    if args.enable_hashed_collections:
+        existing_listy_fn = ENVIRONMENT.get('listy')  # <- store existing listy function as it will be replaced
+        existing_dicty_fn = ENVIRONMENT.get('dicty')  # <- store existing dicty function as it will be replaced
+        ENVIRONMENT['listy'] = lambda *arguments: ENVIRONMENT.get('hashed-list')(existing_listy_fn(*arguments))
+        ENVIRONMENT['dicty'] = lambda *arguments: ENVIRONMENT.get('hashed-dict')(existing_dicty_fn(*arguments))
+
+    if args.source:
+        self: str = sys.argv[0]
+        source_code_file_path: str = args.source
+        if not os.path.exists(source_code_file_path):
+            print(f'{self}: {source_code_file_path}: no such file or directory')
+            sys.exit(1)  # <------------------- exit with the error code if there is no such file or directory
+        if not os.path.isfile(source_code_file_path) or os.path.islink(source_code_file_path):
+            print(f'{self}: {source_code_file_path}: the path node is not a file')
+            sys.exit(1)  # <-------------------------- exit with the error code if the path node is not a file
+        source_code_file_base_name: str = source_code_file_path.split('/')[-1]  # split('/')[-1] for base name
+        with open(source_code_file_path, 'r', encoding='utf-8') as r:
+            if args.dump:
+                dump(r.read(), source_code_file_base_name)  # <---------- dump() helper will read, parse, dump
+                sys.exit(0)  # <---------------------------------------------------- exit with zero error code
+            execute(r.read(), source_code_file_base_name,  silent=True)   # silent=True will suppress printing
+    else:
+        repl(history_path=os.path.join(chiakilisp_home, 'repl-history'))  # <- start built-in REPL environment

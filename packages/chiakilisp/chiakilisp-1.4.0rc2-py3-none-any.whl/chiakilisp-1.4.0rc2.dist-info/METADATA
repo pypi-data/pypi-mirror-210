@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: chiakilisp
+Version: 1.4.0rc2
+Summary: ChiakiLisp - Yet another LISP
+Home-page: https://chiakilisp.jedi2light.moe
+Author: @jedi2light
+Author-email: jedi2light@jedi2light.moe
+Maintainer: @jedi2light
+Maintainer-email: jedi2light@jedi2light.moe
+License: WTFPL
+Project-URL: Web Site, https://chiakilisp.jedi2light.moe
+Project-URL: Source, https://gitlab.com/jedi2light/chiakilisp.git
+Project-URL: Bug Tracker, https://gitlab.com/jedi2light/chiakilisp/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: hashedcolls (==1.1.1)
+
+# ChiakiLisp - Yet another LISP
+
+## Demo
+
+![alt Fujisaki Demo](demos/fujisaki.png)
+
+[Qt5 Demo Source Code](examples/fujisaki-example.cl)
+
+## Libraries
+
+All the libraries are written in pure ChiakiLisp and located in the [`libraries`](./libraries) directory.
+
+1. [Fujisaki](libraries/fujisaki.cl) - a small library that allows to write PyQt5 applications in a declarative way.
+
+## Description
+
+[ChiakiLisp](https://chiakilisp.jedi2light.moe) - Yet another LISP
+
+There are few similar projects:
+ - [HyLang](https://hylang.org) - compiles LISP into Python 3 bytecode, then interprets
+
+## License and contribution
+
+This project is licensed under WTFPL license, that means that you can **do whatever you want with this precious thing**
