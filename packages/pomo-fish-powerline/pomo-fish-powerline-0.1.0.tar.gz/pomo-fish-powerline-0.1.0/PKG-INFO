@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: pomo-fish-powerline
+Version: 0.1.0
+Summary: A Powerline segment to display the Pomodoro timer from pomo.fish
+Author-email: Jon Cinque <me@jonc.dev>
+Project-URL: Homepage, https://github.com/joncinque/pomo.fish/powerline
+Project-URL: Bug Tracker, https://github.com/joncinque/pomo.fish/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+## powerline-pomo-fish
+
+A simple Powerline segment to show how much time is left in a Pomodoro session
+started with `pomo.fish`.
+
+### How it works
+
+This just reads the default pomo.fish time file at `~/.local/share/fish/fish_pomo`
+and styles it nicely, e.g. as `🍅20m`. And if no pomodoro is active, it will
+simply say `None`.
+
+### Configuration
+
+* Install the package
+
+```console
+$ pip3 install powerline-pomo-fish
+```
+
+* Add a `powerline_pomo_fish.segments.pomo` segment to your Powerline theme, e.g.:
+
+```json
+{
+    "segments": {
+        "right": [
+            {
+                "function": "powerline_pomo_fish.segments.pomo",
+                "priority": 10
+            }
+        ]
+    }
+}
+```
