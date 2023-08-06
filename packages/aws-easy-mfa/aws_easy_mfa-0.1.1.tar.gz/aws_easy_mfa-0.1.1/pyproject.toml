@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "aws-easy-mfa"
+version = "0.1.1"
+description = "a simple python decorator to make using aws mfa super easy with boto3"
+authors = ["Jeremy Watt <jermwatt@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/jermwatt/aws_easy_mfa"
+packages = [{include = "aws_easy_mfa"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+boto3 = "^1.26.139"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+flake8 = "^4.0.1"
+mypy = "^0.910"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
