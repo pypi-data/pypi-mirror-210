@@ -1,0 +1,82 @@
+# Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+[tool.poetry]
+name = "aws-service-catalog-puppet"
+version = "0.228.0"
+description = "Making it easier to deploy ServiceCatalog products"
+classifiers = ["Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "Programming Language :: Python :: 3", "License :: OSI Approved :: Apache Software License", "Operating System :: OS Independent", "Natural Language :: English"]
+homepage = "https://service-catalog-tools-workshop.com/"
+readme = "README.md"
+repository = "https://github.com/awslabs/aws-service-catalog-puppet-framework"
+authors = ["Eamonn Faherty <aws-service-catalog-tools@amazon.com>"]
+packages = [
+    { include = "servicecatalog_puppet", from = "." },
+]
+include = ["servicecatalog_puppet"]
+
+[tool.poetry.scripts]
+servicecatalog-puppet = "servicecatalog_puppet.cli:cli"
+
+[tool.poetry.urls]
+issues = "https://github.com/awslabs/aws-service-catalog-puppet-framework/issues"
+
+[tool.poetry.dev-dependencies]
+codecov = "^2.1.7"
+behave = "^1.2.6"
+pylint = "^2.5.3"
+black = "^19.10b0"
+pycodestyle = "^2.6.0"
+nose2 = "^0.10.0"
+
+[tool.poetry.group.dev.dependencies]
+viztracer = "^0.15.4"
+importanize = "^0.7.0"
+codecov = "^2.1.13"
+
+[tool.dephell.main]
+versioning = "semver"
+from = {format = "poetrylock", path = "poetry.lock"}
+envs = ["main"]
+to = {format = "poetry", path = "pyproject.toml"}
+
+[tool.poetry.dependencies]
+python = "^3.9" 
+requests = "2.31.0"
+pyyaml = "5.4"
+jinja2 = "2.11.3"
+click = "7.0"
+boto3 = "1.26.15"
+better-boto = "0.42.0"
+terminaltables = "3.1.0"
+colorclass = "2.2.0"
+luigi = "3.1.1"
+cfn-flip = "1.2.3"
+networkx = "2.6.3"
+troposphere = "3.1.0"
+awacs = "2.0.2"
+jmespath = "0.10.0"
+deepdiff = "5.8.1"
+deepmerge = "0.2.1"
+yamale = "3.0.8"
+colorama = "0.4.6"
+orjson = "3.8.2"
+MarkupSafe = "2.0.1"
+botocore = "1.29.16"
+certifi = "2022.12.7"
+charset-normalizer = "2.0.12"
+docutils = "0.19"
+idna = "3.4"
+lockfile = "0.12.2"
+ordered-set = "4.1.0"
+python-daemon = "2.3.2"
+python-dateutil = "2.8.2"
+s3transfer = "0.6.0"
+setuptools = "65.6.3"
+six = "1.16.0"
+tenacity = "8.1.0"
+tornado = "6.2"
+urllib3 = "1.26.13"
+
+[tool.poetry.build]
+generate-setup-file = true
