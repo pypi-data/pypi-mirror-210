@@ -1,0 +1,33 @@
+[general]
+documents_per_page = 20
+enable_passwords = true
+
+[oauth]
+id = "HYZdUCNQ4nOhSBf3e4GRSgMX835dnUhaoz91"
+secret = "B68tLam6l6Xfjsd7fqBGDc6ubd1J6C8kmaVdSG0G5"
+authorize_url = "https://my.oauth.provider.net/oauth2/authorize/"
+
+[log]
+file = "application.log"
+level = "debug"
+
+[session]
+ttl = "90 00:00:00" # 90 days
+cookie = "_croydon_test_session_id"
+
+[database]
+host = "localhost"
+port = 27017
+dbname = "croydon-test"
+timeout = 1.1 # 1.1 seconds
+
+[web]
+bind = "127.0.0.1:3000"
+
+[queue]
+type = "mongo"
+
+[mongo_queue]
+tasks_collection = "croydon_tasks"
+keep_done_tasks_for = "90 00:00:00" # 90 days
+cleanup_interval = "01:00:00" # 1 hour
