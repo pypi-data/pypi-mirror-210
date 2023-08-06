@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: SNAF
+Version: 0.7.0
+Summary: A Python package to predict, prioritize and visualize splicing derived neoantigens, including MHC-bound peptides (T cell antigen) and altered surface protein (B cell antigen)
+Home-page: https://github.com/frankligy/SNAF
+Author: Guangyuan(Frank) Li
+Author-email: li2g2@mail.uc.edu
+Maintainer: Guangyuan(Frank) Li
+Maintainer-email: li2g2@mail.uc.edu
+License: UNKNOWN
+Project-URL: Documentation, https://snaf.readthedocs.io
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: tensorflow (==2.3.0)
+Requires-Dist: pandas (==1.3.4)
+Requires-Dist: numpy (==1.18.5)
+Requires-Dist: numba (==0.53.0)
+Requires-Dist: mhcflurry (==2.0.5)
+Requires-Dist: h5py (==2.10.0)
+Requires-Dist: anndata (==0.7.6)
+Requires-Dist: seaborn (==0.11.2)
+Requires-Dist: biopython (==1.79)
+Requires-Dist: requests (==2.26.0)
+Requires-Dist: xmltodict (==0.12.0)
+Requires-Dist: xmltramp2 (==3.1.1)
+Requires-Dist: tqdm (==4.62.3)
+Requires-Dist: scipy (==1.4.1)
+Requires-Dist: statsmodels (==0.13.1)
+Requires-Dist: lifelines (==0.26.4)
+Requires-Dist: umap-learn (==0.5.2)
+Requires-Dist: plotly (==5.4.0)
+Requires-Dist: Werkzeug (==2.0.2)
+Requires-Dist: dash (==2.0.0)
+Requires-Dist: dash-dangerously-set-inner-html (==0.0.2)
+Requires-Dist: mygene (==3.2.2)
+
+[![Documentation Status](https://readthedocs.org/projects/snaf/badge/?version=latest)](https://snaf.readthedocs.io/en/latest/?badge=latest)  [![Pypi](https://img.shields.io/pypi/v/snaf?logo=PyPI)](https://pypi.org/project/snaf/)  [![Downloads](https://pepy.tech/badge/snaf)](https://pypi.org/project/snaf/)  [![Stars](https://img.shields.io/github/stars/frankligy/SNAF)](https://github.com/frankligy/SNAF/stargazers)
+
+# SNAF
+Splicing Neo Antigen Finder (SNAF) is an easy-to-use Python package to identify splicing-derived tumor neoantigens from RNA sequencing data, it can 
+predict, prioritize and visualize MHC-bound neoantigen for T cell (T antigen) and altered surface protein for B cell (B antigen).
+
+![workflow](./images/fig1.png)
+
+
+# Tutorial and documentation
+
+[Full Documentation](https://snaf.readthedocs.io)
+
+# Interactive Viewers (below, take a few seconds to load)
+
+<p float="left">
+  <img src="images/T_viewer.gif" width="45%" />
+  <img src="images/B_viewer.gif" width="45%" /> 
+</p>
+
+# Input and Output 
+
+Simply put, user needs to supply ``a folder with bam files``, and the ``HLA type`` assciated with each patient (using your favorite HLA typing tool). And it will generate predicted immunogenic MHC-bound peptides and altered surface protein. Moreover, there's a myriad of convenient function that enables users to conduct survival analysis, association analysis and publication-quality visualiztion. Check our tutorials for more detail.
+
+
+# Citation
+
+[Guangyuan Li, Nathan Salomonis. SNAF: Accurate and compatible computational framework for identifying splicing derived neoantigens [abstract]. Cancer Res 2022;82(12_Suppl)](https://aacrjournals.org/cancerres/article/82/12_Supplement/1898/701846/Abstract-1898-SNAF-Accurate-and-compatible)
+
+A preprint will be released soon.
+
+# Contact
+
+Guangyuan(Frank) Li
+
+Email: li2g2@mail.uc.edu
+
+PhD student, Biomedical Informatics
+
+Cincinnati Children’s Hospital Medical Center(CCHMC)
+
+University of Cincinnati, College of Medicine
+
