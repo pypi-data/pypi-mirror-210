@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HXL Proxy error</title>
+    {% include "includes/scripts.html" %}
+  </head>
+  <body class="container-fluid">
+    <header>
+      <h1>Something went wrong!</h1>
+    </header>
+    <main>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h2 class="panel-title">Details</h2>
+        </div>
+        <div class="panel-body">
+          {% if e.human %}
+          <p class="lead">
+            <b>In human-speak:</b>
+            {{ e.human }}
+          </p>
+          {% endif %}
+          <p>
+            <b>In machine-speak:</b>
+            <blockquote>
+            <pre>{% if e.message %}{{ e.message }}{% else %}{{ e }}{%
+            endif %}</pre>
+            </blockquote>
+          </p>
+        </div>
+        <div class="panel-footer small">
+          You can try using your browser's [Back] button to return to the previous page. If you cannot resolve the problem, please help us make the HXL Proxy better! <a href="https://github.com/HXLStandard/hxl-proxy/issues">Report this bug at GitHub</a> (and include the URL).
+        </div>
+      </div>
+    </main>
+    {% include "includes/scripts.html" %}
+  </body>
+</html>

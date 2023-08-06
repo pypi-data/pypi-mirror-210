@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs">
+  {% if not recipe.recipe_id %}
+  <li class="{% if facet=='source' %}active{% endif %}">
+    <a href="{{ data_url_for('data_source', recipe) }}">
+      Source
+    </a>
+  </li>
+  {% if recipe.args.url %}
+  {% if using_tagger_p(recipe) or facet=='tagger' %}
+  <li class="{% if facet=='tagger' %}active{% endif %}">
+    <a href="{{ data_url_for('data_tagger', recipe) }}">
+      Tags
+    </a>
+  </li>
+  {% endif %}
+  {% if source or using_tagger_p(recipe) or in_logger %}
+  <li class="{% if facet=='edit' %}active{% endif %}">
+    <a href="{{ data_url_for('data_edit', recipe) }}">
+      Recipe
+    </a>
+  </li>
+  {% endif %}
+  <li class="{% if facet=='view' %}active{% endif %}">
+    <a href="{{ data_url_for('data_view', recipe) }}">
+      View
+    </a>
+  </li>
+  <li class="{% if facet=='logs' %}active{% endif %}">
+    <a href="{{ data_url_for('data_logs', recipe) }}">
+      Logs
+    </a>
+  </li>
+  {% endif %}
+  {% endif %}
+</ul>
