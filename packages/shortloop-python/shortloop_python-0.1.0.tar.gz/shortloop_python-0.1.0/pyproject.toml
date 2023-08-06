@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "shortloop-python"
+version = "0.1.0"
+description = "Official Shortloop SDK for Python"
+authors = ["ShortLoop <hello@shortloop.dev>"]
+maintainers = ["ShortLoop <hello@shortloop.dev>"]
+homepage = "https://shortloop.dev"
+documentation = "https://docs.shortloop.dev"
+readme = "README.md"
+packages = [{include = "shortloop_python"}]
+keywords = ["shortloop", "middleware"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware",
+    "Topic :: Software Development"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "~5.0.4"
+black = "~22.8.0"
+flake8-pyproject = "~1.2.3"
+isort = "~5.11.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+fast = true
+exclude = '/(\.venv|\.git|dist|tests)/'
+
+[tool.flake8]
+max-line-length = 120
+select = "F,E,W,B,B901,B902,B903"
+exclude = [
+    ".venv",
+    ".git",
+    "dist",
+    "tests"
+]
+ignore = [
+    "E722",
+    "B001",
+    "W503",
+    "E203"
+]
+
+[tool.isort]
+profile = "black"
