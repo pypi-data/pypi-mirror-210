@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: oteapi-dlite
+Version: 0.1.3
+Summary: DLite plugin for OTEAPI.
+Home-page: https://github.com/EMMC-ASBL/oteapi-dlite
+Author: team4.0@sintef.no
+Author-email: team4.0@sintef.no
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: DLite-Python (<1,>=0.3.3)
+Requires-Dist: numpy (<2,>=1.21)
+Requires-Dist: oteapi-core (>=0.1.2)
+Requires-Dist: Pillow (<10,>=9.0.1)
+Requires-Dist: psycopg2-binary (!=2.9.6)
+Requires-Dist: tripper (>=0.1.2)
+Provides-Extra: dev
+Requires-Dist: pre-commit (~=3.3) ; extra == 'dev'
+Requires-Dist: pylint (~=2.17) ; extra == 'dev'
+Requires-Dist: pytest (~=7.3) ; extra == 'dev'
+Requires-Dist: pytest-cov (~=4.0) ; extra == 'dev'
+Requires-Dist: invoke (~=2.1) ; extra == 'dev'
+Requires-Dist: mike (~=1.1) ; extra == 'dev'
+Requires-Dist: mkdocs (~=1.4) ; extra == 'dev'
+Requires-Dist: mkdocs-awesome-pages-plugin (~=2.9) ; extra == 'dev'
+Requires-Dist: mkdocs-material (~=9.1) ; extra == 'dev'
+Requires-Dist: mkdocstrings[python] (~=0.21.2) ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: invoke (~=2.1) ; extra == 'docs'
+Requires-Dist: mike (~=1.1) ; extra == 'docs'
+Requires-Dist: mkdocs (~=1.4) ; extra == 'docs'
+Requires-Dist: mkdocs-awesome-pages-plugin (~=2.9) ; extra == 'docs'
+Requires-Dist: mkdocs-material (~=9.1) ; extra == 'docs'
+Requires-Dist: mkdocstrings[python] (~=0.21.2) ; extra == 'docs'
+
+# OTEAPI DLite Plugin
+
+All strategies implemented in this plugin (except for `create_collection`) assumes that you have the UUID of a DLite collection with the key `collection_id` in the `session`:
+
+```python
+collection_id = session["collection_id"]
+coll = dlite.get_collection(collection_id)
+```
+
+A DLite collection stores references to DLite instances and relations between them as RDF triples.
+Hence, the collection is a knowledge base for the current use case.
+
+In order to make it easy retrieve the collection id when executing a pipeline, the `get()` method of all filters in this plugin should return the `collection_id`.
+
+Further reading:
+
+- [OTE-API Core Documentation](https://emmc-asbl.github.io/oteapi-core)
+- [OTE-API Services Documentation](https://github.com/EMMC-ASBL/oteapi-services)
+- [DLite](https://github.com/SINTEF/dlite)
+
+## License and copyright
+
+The OTEAPI DLite Plugin is released under the [MIT license](LICENSE) with copyright &copy; SINTEF.
+
+## Acknowledgment
+
+OTEAPI DLite Plugin has been created via the [cookiecutter](https://cookiecutter.readthedocs.io/) [template for OTE-API plugins](https://github.com/EMMC-ASBL/oteapi-plugin-template).
+
+OTEAPI DLite Plugin has been supported by the following projects:
+
+- __OntoTrans__ (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement no. 862136.
+
+- __VIPCOAT__ (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 952903.
+
+- __OpenModel__ (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 953167.
