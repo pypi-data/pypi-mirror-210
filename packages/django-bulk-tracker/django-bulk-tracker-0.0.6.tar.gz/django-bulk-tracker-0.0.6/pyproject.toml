@@ -1,0 +1,20 @@
+[build-system]
+requires = ['setuptools>=57.0', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+lines_after_imports = 2
+atomic = true
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+python_files = [
+    "test_*.py",
+]
+#django_find_project = false
