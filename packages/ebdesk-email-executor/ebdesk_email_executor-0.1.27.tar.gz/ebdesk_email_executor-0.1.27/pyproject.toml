@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ebdesk-email-executor"
+version = "0.1.27"
+description = ""
+authors = ["Nasri Adzlani <nasri@jkt1.ebdesk.com>"]
+readme = "README.md"
+packages = [{include = "ebdesk_email_executor"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+uvicorn = "^0.17.4"
+pymongo = "^4.0.1"
+redis = "^4.5.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
