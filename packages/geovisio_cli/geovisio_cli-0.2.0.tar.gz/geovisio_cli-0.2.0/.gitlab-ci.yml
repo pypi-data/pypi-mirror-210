@@ -1,0 +1,47 @@
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+
+cache:
+  paths:
+    - .cache/pip
+
+before_script:
+  - python --version # For debugging
+  - apk add --update --no-cache libc-dev libffi-dev gcc
+
+test mypy:
+  image: python:3.8-alpine
+  script:
+    - pip install .[dev]
+    - mypy geovisio_cli/
+
+lint:
+  image: python:3.8-alpine
+  script:
+    - pip install .[dev]
+    - black --fast --check .
+
+tests:
+  image: python:3.8-alpine
+  services:
+    - docker:dind
+  script:
+    - apk add --update --no-cache docker-cli docker-cli-compose
+    - PROJECT_DIR=$PWD docker compose -f tests/integration/docker-compose-geovisio.yml -f tests/integration/docker-compose-gitlab-override.yml run --rm integration-test-runner
+
+  after_script:
+    - PROJECT_DIR=$PWD docker compose -f tests/integration/docker-compose-geovisio.yml -f tests/integration/docker-compose-gitlab-override.yml logs || true
+    - PROJECT_DIR=$PWD docker compose -f tests/integration/docker-compose-geovisio.yml -f tests/integration/docker-compose-gitlab-override.yml down || true
+
+deploy_pypi:
+  stage: deploy
+  image: python:3.8-alpine
+  script:
+    - apk add --update --no-cache git
+    - pip install .[build]
+    - flit publish # use [flit](https://flit.pypa.io/) and FLIT_USERNAME/FLIT_PASSWORD env var
+  only:
+    - tags
