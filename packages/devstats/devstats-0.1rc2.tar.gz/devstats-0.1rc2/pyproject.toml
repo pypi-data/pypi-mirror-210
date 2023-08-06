@@ -1,0 +1,40 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "devstats"
+version = "0.1rc2"
+requires-python = ">=3.8"
+description = "Developer tool for scientific Python libraries"
+license = {file = "LICENSE"}
+maintainers = [
+  {name = "Scientific Python", email = "devstats@discuss.scientific-python.org"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python"
+]
+dependencies = [
+  "click",
+  "requests",
+  "jupyter",
+  "notebook",
+  "numpy",
+  "networkx",
+]
+
+[project.scripts]
+devstats = "devstats.__main__:cli"
+
+[project.optional-dependencies]
+lint = ["pre-commit >= 3.3.2"]
+
+[project.urls]
+homepage = "https://github.com/scientific-python/devstats"
+
+[tool.setuptools.packages.find]
+include = ["devstats*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.gql", "*.md"]
