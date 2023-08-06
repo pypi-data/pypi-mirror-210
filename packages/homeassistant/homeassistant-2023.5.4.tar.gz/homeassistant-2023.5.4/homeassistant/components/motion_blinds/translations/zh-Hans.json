@@ -1,0 +1,24 @@
+{
+    "config": {
+        "abort": {
+            "connection_error": "\u8fde\u63a5\u5931\u8d25"
+        },
+        "step": {
+            "connect": {
+                "description": "\u60a8\u5c06\u9700\u8981 16 \u4e2a\u5b57\u7b26\u7684 API \u5bc6\u94a5\uff0c\u6709\u5173\u8bf4\u660e\uff0c\u8bf7\u53c2\u9605 https://www.home-assistant.io/integrations/motion_blinds/#retrieving-the-key"
+            },
+            "select": {
+                "data": {
+                    "select_ip": "IP \u5730\u5740"
+                },
+                "description": "\u5982\u679c\u60a8\u60f3\u8fde\u63a5\u5176\u4ed6 Motion \u7f51\u5173\uff0c\u8bf7\u518d\u6b21\u8fd0\u884c\u8bbe\u7f6e",
+                "title": "\u9009\u62e9\u60a8\u8981\u8fde\u63a5\u7684 Motion Gateway"
+            },
+            "user": {
+                "data": {
+                    "host": "IP\u5730\u5740"
+                }
+            }
+        }
+    }
+}

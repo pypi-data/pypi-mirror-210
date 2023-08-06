@@ -1,0 +1,84 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "state": {
+                "name": "K\u00f6r"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "OS Agent version"
+            },
+            "cpu_percent": {
+                "name": "CPU-procent"
+            },
+            "disk_free": {
+                "name": "Fri disk"
+            },
+            "disk_total": {
+                "name": "Total disk"
+            },
+            "disk_used": {
+                "name": "Disk anv\u00e4nds"
+            },
+            "memory_percent": {
+                "name": "Minnesprocent"
+            },
+            "version": {
+                "name": "Version"
+            },
+            "version_latest": {
+                "name": "Nyaste versionen"
+            }
+        }
+    },
+    "issues": {
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Det gick inte att byta namn p\u00e5 filsystemet. Kontrollera supervisorloggarna f\u00f6r mer information."
+                },
+                "step": {
+                    "system_rename_data_disk": {
+                        "description": "'{referens}' \u00e4r ett filsystem med namnet 'hassos-data' och \u00e4r inte den aktiva datadisken. Detta kan g\u00f6ra att Home Assistant v\u00e4ljer fel datadisk vid omstart av systemet. \n\n Anv\u00e4nd fixeringsalternativet f\u00f6r att byta namn p\u00e5 filsystemet f\u00f6r att f\u00f6rhindra detta. Alternativt kan du flytta datadisken till enheten (skriva \u00f6ver dess inneh\u00e5ll) eller ta bort enheten fr\u00e5n systemet."
+                    }
+                }
+            },
+            "title": "Flera datadiskar har uppt\u00e4ckts"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "Det gick inte att starta om systemet. Kontrollera supervisorloggarna f\u00f6r mer information."
+                },
+                "step": {
+                    "system_execute_reboot": {
+                        "description": "Inst\u00e4llningar har \u00e4ndrats som kr\u00e4ver en omstart av systemet f\u00f6r att tr\u00e4da i kraft.\n\nDen h\u00e4r korrigeringen initierar en omstart av systemet som g\u00f6r Home Assistant och alla till\u00e4gg otillg\u00e4ngliga under en kort period."
+                    }
+                }
+            },
+            "title": "Omstart kr\u00e4vs"
+        },
+        "unsupported_network_manager": {
+            "description": "Systemet st\u00f6ds inte eftersom n\u00e4tverkshanteraren saknas, \u00e4r inaktiv eller felkonfigurerad. Anv\u00e4nd l\u00e4nken f\u00f6r att l\u00e4ra dig mer och hur du \u00e5tg\u00e4rdar detta.",
+            "title": "System som inte st\u00f6ds - Problem med n\u00e4tverkshanteraren"
+        }
+    },
+    "system_health": {
+        "info": {
+            "agent_version": "Agentversion",
+            "board": "Kort",
+            "disk_total": "Total disk",
+            "disk_used": "Disk som anv\u00e4nds",
+            "docker_version": "Docker-version",
+            "healthy": "Frisk",
+            "host_os": "V\u00e4rdens operativsystem",
+            "installed_addons": "Installerade till\u00e4gg",
+            "supervisor_api": "Supervisor API",
+            "supervisor_version": "Supervisor version",
+            "supported": "St\u00f6ds",
+            "update_channel": "Uppdatera kanal",
+            "version_api": "Version API"
+        }
+    }
+}

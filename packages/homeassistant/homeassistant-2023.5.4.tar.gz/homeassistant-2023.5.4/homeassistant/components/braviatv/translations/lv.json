@@ -1,0 +1,31 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Ier\u012bce jau pievienota Home Assistant."
+        },
+        "step": {
+            "pin": {
+                "data": {
+                    "pin": "PIN kods"
+                },
+                "title": "Autoriz\u0113t Sony Bravia TV"
+            },
+            "psk": {
+                "data": {
+                    "pin": "PSK"
+                },
+                "title": "Autoriz\u0113t Sony Bravia TV"
+            }
+        }
+    },
+    "entity": {
+        "button": {
+            "restart": {
+                "name": "Restart\u0113t"
+            },
+            "terminate_apps": {
+                "name": "P\u0101rtraukt programmu darb\u012bbu"
+            }
+        }
+    }
+}

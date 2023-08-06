@@ -1,0 +1,91 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "state": {
+                "name": "Em execu\u00e7\u00e3o"
+            }
+        },
+        "sensor": {
+            "agent_version": {
+                "name": "Vers\u00e3o do Agente do SO"
+            },
+            "apparmor_version": {
+                "name": "Vers\u00e3o Apparmor"
+            },
+            "cpu_percent": {
+                "name": "Percentagem da CPU"
+            },
+            "disk_free": {
+                "name": "Disco livre"
+            },
+            "disk_total": {
+                "name": "Total do disco"
+            },
+            "disk_used": {
+                "name": "Disco utilizado"
+            },
+            "memory_percent": {
+                "name": "Percentagem de mem\u00f3ria"
+            },
+            "version": {
+                "name": "Vers\u00e3o"
+            },
+            "version_latest": {
+                "name": "Vers\u00e3o mais recente"
+            }
+        }
+    },
+    "issues": {
+        "issue_system_multiple_data_disks": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "N\u00e3o foi poss\u00edvel renomear o sistema de ficheiros. Verifique os registos do supervisor para obter mais detalhes."
+                },
+                "step": {
+                    "system_rename_data_disk": {
+                        "description": "'{reference}' \u00e9 um sistema de ficheiros com o nome 'hassos-data' e n\u00e3o \u00e9 o disco de dados activo. Isto pode fazer com que o Home Assistant escolha o disco de dados errado aquando do rein\u00edcio do sistema.\n\nUse a op\u00e7\u00e3o de correc\u00e7\u00e3o para renomear o sistema de ficheiros para evitar isto. Em alternativa, pode mover o disco de dados para a unidade (substituindo o seu conte\u00fado) ou remover a unidade do sistema."
+                    }
+                }
+            },
+            "title": "Detectados v\u00e1rios discos de dados"
+        },
+        "issue_system_reboot_required": {
+            "fix_flow": {
+                "abort": {
+                    "apply_suggestion_fail": "N\u00e3o foi poss\u00edvel reiniciar o sistema. Verifique os registos do supervisor para obter mais detalhes."
+                },
+                "step": {
+                    "system_execute_reboot": {
+                        "description": "Foram alteradas defini\u00e7\u00f5es que requerem um rein\u00edcio do sistema para terem efeito.\n\nEsta correc\u00e7\u00e3o dar\u00e1 in\u00edcio a um rein\u00edcio do sistema que tornar\u00e1 o Home Assistant e todos os Suplementos inacess\u00edveis durante um breve per\u00edodo."
+                    }
+                }
+            },
+            "title": "Reinicializa\u00e7\u00e3o necess\u00e1ria"
+        },
+        "unhealthy": {
+            "description": "O sistema n\u00e3o est\u00e1 atualmente saud\u00e1vel devido a {reason}. Utilize a liga\u00e7\u00e3o para obter mais informa\u00e7\u00f5es e saber como resolver o problema.",
+            "title": "Sistema n\u00e3o saud\u00e1vel - {reason}"
+        },
+        "unhealthy_docker": {
+            "description": "O sistema n\u00e3o est\u00e1 atualmente saud\u00e1vel porque o Docker est\u00e1 configurado incorretamente. Use o link para saber mais e como corrigir a situa\u00e7\u00e3o.",
+            "title": "Sistema n\u00e3o saud\u00e1vel - Docker mal configurado"
+        },
+        "unhealthy_privileged": {
+            "description": "O sistema n\u00e3o est\u00e1 atualmente saud\u00e1vel porque n\u00e3o tem acesso privilegiado ao tempo de execu\u00e7\u00e3o do docker. Use o link para saber mais e como corrigir a situa\u00e7\u00e3o."
+        }
+    },
+    "system_health": {
+        "info": {
+            "board": "Tabela",
+            "disk_total": "Disco Total",
+            "disk_used": "Disco Utilizado",
+            "docker_version": "Vers\u00e3o Docker",
+            "healthy": "Saud\u00e1vel",
+            "host_os": "Sistema operativo anfitri\u00e3o",
+            "installed_addons": "Suplementos instalados",
+            "supervisor_api": "API do Supervisor",
+            "supervisor_version": "Vers\u00e3o do Supervisor",
+            "supported": "Suportado"
+        }
+    }
+}
