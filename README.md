@@ -3,36 +3,10 @@
 This repo contains 40000 packages uploaded to PyPI between 
 2023-05-23 14:22 and 2023-05-29 02:21.
 
-The repo is 20% (8000/40000) complete.
+The repo is 25% (10000/40000) complete.
 
-## Packages:
+Package contents can be found [in the code branch](https://github.com/pypi-data/pypi-mirror-210/tree/code/packages).
 
-| Name  | Count |
-| ----- | ----- |
-| xw-utils | 520 |
-| pydantic-core | 324 |
-| mapel-elections | 240 |
-| hl7conv2 | 204 |
-| llm-rs | 194 |
-| pacparser | 192 |
-| mujoco-dev | 180 |
-| arraykit | 176 |
-| ddtrace | 138 |
-| jsonpath-rust-py | 114 |
-| hifitime | 114 |
-| dcss-api | 100 |
-| orjson | 92 |
-| Cython | 91 |
-| camminapy | 90 |
-| lru-dict | 82 |
-| pyzmq | 77 |
-| savant-rs | 74 |
-| graphscope-client | 74 |
-| prfiesta | 70 |
-| types-circuitpython | 68 |
-| text-image-generator | 68 |
-| pseudo-bridgeland-tilt | 68 |
-| netbox-cisco-maintenance | 68 |
-| clickhouse-connect | 65 |
+A browsable package list for all repositories [all packages here](https://pypi-data.github.io/website/repositories/pypi-mirror-210).
 
 
