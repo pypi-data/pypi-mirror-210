@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Log</title>
+    <style>{% include "adapted.min.css" %}</style>
+    <style>{% include "styles.css" %}</style>
+</head>
+<body>
+    <header>
+        <h1>Change Log</h1>
+        <input type="text" id="search-input" placeholder="Search (regex) ..." />
+        <button id="search-button">Clear</button>
+    </header>
+    {% with entries = change_log_entries %}
+    {% include "change_log_entries.html" %}
+    {% endwith %}
+
+    <script>
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+        const commitInfos = document.querySelectorAll(".commit-info");
+        const highLightable = document.querySelectorAll(".commit-info span.headline, .commit-info p.commit-body, .commit-info span.sha a, .commit-info p.commit-author a, .commit-info span.commit-date")
+      
+        function highlightText(text, search) {
+          const regex = new RegExp(search, "gi");
+          return text.replace(regex, (match) => {
+            return `<span class="search-highlight">${match}</span>`;
+        });
+        }
+
+        function removeSearchHighlights() {
+          // Find all spans with the class 'search-highlight'
+          const highlightedSpans = document.querySelectorAll('span.search-highlight');
+          console.log(highlightedSpans.length)
+
+          // Iterate through the list of spans
+          highlightedSpans.forEach(span => {
+            // Create a document fragment to hold the span's content
+            const contentFragment = document.createDocumentFragment();
+
+            // Move the child nodes of the span to the document fragment
+            while (span.firstChild) {
+              contentFragment.appendChild(span.firstChild);
+            }
+
+            // Replace the span with its content
+            span.parentNode.replaceChild(contentFragment, span);
+          });
+        }
+
+      
+        function searchContent() {
+          const searchText = searchInput.value.trim();
+
+          removeSearchHighlights();
+      
+          if (searchText.length < 1) {
+            commitInfos.forEach((commitInfo) => {
+              commitInfo.classList.remove("dimmed");
+            });
+            return;
+          }
+      
+          commitInfos.forEach((commitInfo) => {
+            const regex = new RegExp(searchText, "gi");
+      
+            if (!commitInfo.textContent.match(regex)) {
+              commitInfo.classList.add("dimmed");
+            } else {
+              commitInfo.classList.remove("dimmed");
+            }
+          });
+
+          highLightable.forEach((element) => {
+            element.innerHTML = highlightText(element.innerHTML, searchText);
+          });
+        }
+      
+        searchInput.addEventListener("input", searchContent);
+        searchButton.addEventListener("click", () => {
+          removeSearchHighlights();
+          commitInfos.forEach((commitInfo) => {
+            commitInfo.classList.remove("dimmed");
+          });
+          searchInput.value = '';
+        });
+      </script>
+      
+    
+</body>
+</html>

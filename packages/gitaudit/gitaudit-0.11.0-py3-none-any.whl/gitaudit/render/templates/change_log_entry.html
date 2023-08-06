@@ -1,0 +1,41 @@
+<div class="commit">
+    <svg class="circle" width="16" height="16">
+        <circle cx="8" cy="8" r="4" stroke="grey" stroke-width="2px" fill="white"/>
+    </svg>
+    <div class="commit-info">
+        <span class="sha"><a href="{{entry.url}}">{{ entry.sha[0:7] }}</a></span>
+        <span class="headline">{{ entry.subject }}</span>
+        <span class="commit-additions">+{{calculate_total_additions(entry.numstat)}}</span>
+        <span class="commit-deletions">-{{calculate_total_deletions(entry.numstat)}}</span>
+        <span class="commit-date">{{entry.commit_date.strftime("%B %d, %Y %I:%M:%S")}}</span>
+        <div><p class="commit-author"><a href="mailto:{{entry.author_mail}}">{{entry.author_name}}</a></p></div>
+        {% if entry.body %}
+            <div>
+                {% for line in entry.body.split('\n') %}
+                    <p class="commit-body">{{ line }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if entry.numstat %}
+            <div>
+              {% for numstat_entry in entry.numstat %}
+                  <p class="numstat-entry">
+                    <span class="commit-additions">+{{numstat_entry.additions}}</span>
+                    <span class="commit-deletions">-{{numstat_entry.deletions}}</span>
+                    <span>{{numstat_entry.path}}</span>
+                  </p>
+              {% endfor %}
+            </div>
+        {% endif %}
+        {% if entry.submodule_updates %}
+        <div>
+          {% for sub_update in entry.submodule_updates.values() %}
+              <p class="submodule-update">{{ sub_update.submodule_name }}: {{ sub_update.from_sha[0:7] }} -> {{ sub_update.to_sha[0:7] }}</p>
+              {% with entries = sub_update.entries %}
+              {% include "change_log_entries.html" %}
+              {% endwith %}
+          {% endfor %}
+      </div>
+        {% endif %}
+    </div>
+</div>
