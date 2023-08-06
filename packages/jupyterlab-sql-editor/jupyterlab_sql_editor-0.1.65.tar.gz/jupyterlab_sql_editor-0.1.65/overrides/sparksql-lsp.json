@@ -1,0 +1,21 @@
+{
+    "@krassowski/jupyterlab-lsp:plugin": {
+        "language_servers": {
+            "sparksql-language-server": {
+                "serverSettings": {
+                    "sqlLanguageServer": {
+                        "connections": [
+                            {
+                                "name": "pyspark-conf",
+                                "adapter": "json",
+                                "filename": "/home/jovyan/.local/sparkdb.schema.json",
+                                "jupyterLabMode": true
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "extra_node_roots": []
+    }
+}
