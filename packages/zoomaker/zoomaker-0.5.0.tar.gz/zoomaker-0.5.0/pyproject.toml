@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "zoomaker"
+version = "0.5.0"
+description = "Zoomaker - Friendly house keeping for your AI model zoo and related resources."
+authors = ["Benedikt Groß"]
+readme = "README.md"
+homepage = "https://github.com/hfg-gmuend/zoomaker"
+documentation = "https://github.com/hfg-gmuend/zoomaker"
+repository = "https://github.com/hfg-gmuend/zoomaker"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+huggingface-hub = "^0.14.0"
+GitPython = "^3.1.31"
+
+[tool.poetry.scripts]
+zoomaker = 'zoomaker:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
