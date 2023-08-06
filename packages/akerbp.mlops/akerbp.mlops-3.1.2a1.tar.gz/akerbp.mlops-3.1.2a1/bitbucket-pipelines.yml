@@ -1,0 +1,133 @@
+#  Deployment Pipeline
+#
+#  Developer notes:
+#    - An environment can only be defined in one step per pipeline
+#    - Each step is an independent run of the docker image (i.e. envs defined
+#       or file transformations are not kept)
+#    - Files can be shared between steps if they're defined as artifacts
+#    - We could build a custom image for faster deployments
+
+image: python:3.8.5
+
+clone:
+  depth: full
+  lfs: true
+
+definitions:
+  .set-environment-test: &set-environment-test |
+    export MODEL_ENV=test
+    export SERVICE_NAME=prediction
+
+  .install-mlops: &install-mlops |
+    git pull
+    bash -ex install.sh
+
+  steps:
+    - step: &deploy-test-package
+        name: Deploy Pre-release to Test
+        deployment: test-pypi
+        caches:
+          - pip
+        script:
+          - git pull
+          - bash -ex build.sh
+    - step: &deploy-test-prediction-service
+        name: Deploy Prediction Service to Test
+        deployment: test-prediction
+        caches:
+          - pip
+        script:
+          - *install-mlops
+          - deploy_prediction_service
+    - step: &run-tests-without-deploying
+        name: Run tests without deploying
+        caches:
+          - pip
+        script:
+          - *set-environment-test
+          - *install-mlops
+          - python upload_dummy_artifacts.py
+          - TESTING_ONLY=True deploy_prediction_service
+    - step: &unit-testing
+        name: Unit Testing
+        caches:
+          - pip
+        script:
+          - *set-environment-test
+          - pip install .[cdf]
+          - pip install coverage
+          - coverage run -m pytest test/ -v -ra
+          - coverage report
+    - step: &flake8-linting
+        name: Linting
+        caches:
+          - pip
+        script:
+          - pip install flake8
+          - flake8 .
+    - step: &mypy-type-checking
+        name: Type Checking
+        caches:
+          - pip
+        script:
+          - pip install mypy
+          - pip install pydantic
+          - pip install types-PyYAML types-requests
+          - mypy
+    - step: &security-scan-secrets
+        name: Security Scan for Secrets
+        script:
+          - pipe: atlassian/git-secrets-scan:0.5.1
+    - step: &snyk-scan
+        name: Snyk Scan for Vulnerabilities
+        caches:
+          - pip
+        script:
+          - pip install .[dev,cdf,gc]
+          - pip uninstall akerbp.mlops -y
+          - pip freeze > requirements.txt
+          - curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+          - chmod +x ./snyk
+          - mv ./snyk /usr/local/bin
+          - snyk auth $SNYK_TOKEN
+          - snyk test --fail-on=all --print-deps
+
+pipelines:
+  pull-requests:
+    "**": # Run for PRs on all branches - Deploy pre-release package and prediction services to test
+      - parallel:
+          - step: *unit-testing
+          - step: *flake8-linting
+          - step: *mypy-type-checking
+          - step: *security-scan-secrets
+          - step: *snyk-scan
+      - step: *deploy-test-package
+      - step: *run-tests-without-deploying
+      - step: *deploy-test-prediction-service
+      - step:
+          name: Promote Artifacts to Production
+          script:
+            - *set-environment-test
+            - *install-mlops
+            - python upload_dummy_artifacts.py
+            - python promote_dummy_artifacts.py
+            - python remove_dummy_artifacts.py
+      - step:
+          <<: *deploy-test-prediction-service
+          name: Deploy Prediction Service to Production
+          deployment: production-prediction
+
+  branches:
+    master: # Mirror to public repo and choose to manually deploy package, training and production services to prod
+      - step: *unit-testing
+      - step:
+          name: Mirror Latest Version to Public Repo
+          script:
+            - git remote add public git@bitbucket.org:akerbp/akerbp.mlops.git
+            - git pull
+            - git push public master
+      - step:
+          <<: *deploy-test-package
+          name: Deploy Package to Production
+          deployment: production-pypi
+          trigger: manual
