@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block contentwrapper %}
+    <div class="window {% if cfg.css_framework == 'MUNI' %}framework_muni{% else %}framework_bootstrap5 bg-light{% endif %}">
+        <div id="content">
+            <div class="wrap{% if not cfg.css_framework == 'MUNI' %} container{% endif %}">
+                {% block content %}
+                    {% if cfg.css_framework == 'MUNI' %}
+                        <div class="content">
+                            <div style="clear: both;">
+                                <br>
+                                <h2 style="font-family: Calibre,sans-serif">{{ _("Personal data that will be transferred to the service ") }}{{ requester_name }}</h2>
+                                <h4>{{ _("Information on the processing of personal data of the service ") }}{{ requester_name }}{{ _(" are defined at ") }}<a href="{{ data_protection_redirect }}"><span>{{ _("the page") }}</span></a>{{ _(", please familiarize yourself with the text.") }}</h4>
+                            </div>
+                            {% if warning %}
+                                <br>
+                                <div class="grid__cell size--l--6-12">
+                                    <div class="message message--common message--common-warning" role="alert">
+                                        <span class="message__icon icon icon-exclamation-triangle"></span>
+                                        <p class="message__desc">
+                                            {{ warning[lang] }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if locked_claims %}
+                                <br>
+                                <br>
+                                <div style="clear: both;" >
+                                    <h4>{{ _("Mandatory attributes") }}</h4>
+                                    <br>
+                                    {% for attribute in locked_claims %}
+                                        <div class="grid {{ "box-tabs__fragment--bordered-bottom" if not loop.last }}" style="min-height: 40px">
+                                            <div class="grid__cell size--l--1-12"></div>
+                                            <div class="grid__cell size--l--3-12">
+                                                <strong class="attr_header"> {% if attribute_config and attribute in attribute_config %}{{ attribute_config[attribute][lang].capitalize() }}{% else %}{{ (attribute).capitalize() }}{% endif %} </strong>
+                                            </div>
+                                            <div class="grid__cell size--l--5-12 grid--scroll">
+                                                {% if released_claims[attribute].__class__.__name__ == 'list' %}
+                                                    {% for value in released_claims[attribute] %}
+                                                        • {{ value }}
+                                                        <br>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {{released_claims[attribute]}}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <h4>{{ _("For the following attributes, choose whether you want to send them") }}</h4>
+                            <br>
+                            <form method="GET" action="/test">
+                                {% for attribute in released_claims %}
+                                    {% if not locked_claims or not attribute in locked_claims %}
+                                        <div class="grid {{ "box-tabs__fragment--bordered-bottom" if not loop.last }}" style="min-height: 40px">
+                                            <div class="grid__cell size--l--1-12">
+                                                <label>
+                                                    <input type="checkbox"
+                                                           name="{{ attribute }}"
+                                                           value="{{released_claims[attribute]}}"
+                                                           checked>
+                                                </label>
+                                            </div>
+                                            <div class="grid__cell size--l--3-12">
+                                                <strong>{% if attribute_config and attribute in attribute_config %}{{ attribute_config[attribute][lang].capitalize() }}{% else %}{{ (attribute).capitalize() }}{% endif %}</strong>
+                                            </div>
+                                            <div class="grid__cell size--l--5-12 grid--scroll">
+                                                {% if released_claims[attribute].__class__.__name__ == 'list' %}
+                                                        {% for value in released_claims[attribute] %}
+                                                            • {{ value }}
+                                                            <br>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        {{released_claims[attribute]}}
+                                                    {% endif %}
+                                            </div>
+                                        </div>
+                                        <br>
+                                    {% endif %}
+                                {% endfor %}
+                                <p>{{ _("I confirm that I have read the terms of personal data processing ") }}{{ requester_name }}{{ _(" and I agree to the transfer of personal data:") }}</p>
+                                <div class="grid">
+                                    <div class="grid__cell size--l--5-12 grid--right">
+                                        <p class="btn-wrap">
+                                            <button type="submit" name="consent_status" value="yes" class="btn btn-muni">
+                                                <span>{{ _('Yes, I agree') }}</span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <div class="grid__cell size--l--1-12"></div>
+                                    <div class="grid__cell size--l--5-12">
+                                        <p class="btn-wrap">
+                                            <button type="submit" name="consent_status" value="no" class="btn btn-muni btn-border">
+                                                <span>{{ _('No, I do not agree') }}</span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="state" value="{{ state }}">
+                                <br>
+                                <label>
+                                    <input type="checkbox" name="validation">
+                                    {{ _("remember consent for ") }}{{ months }}{{ _(" months") }}
+                                </label>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="content">
+                            <div style="clear: both;">
+                                <br>
+                                <h2 style="font-family: Calibre,sans-serif">{{ _("Personal data that will be transferred to the service ") }}{{ requester_name }}</h2>
+                                <h4>{{ _("Information on the processing of personal data of the service ") }}{{ requester_name }}{{ _(" are defined at ") }}<a href="{{ data_protection_redirect }}"><span>{{ _("the page") }}</span></a>{{ _(", please familiarize yourself with the text.") }}</h4>
+                            </div>
+                            {% if warning %}
+                                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                  <div class="text-center">
+                                      {{ warning[lang] }}
+                                  </div>
+                                </div>
+                            {% endif %}
+                            {% if locked_claims %}
+                                <div style="clear: both;" >
+                                    <br>
+                                    <h4>{{ _("Mandatory attributes") }}</h4>
+                                    <br>
+                                    {% for attribute in locked_claims %}
+                                         <div class="container">
+                                            <div class="row" style="background-color: {% if loop.index % 2 == 0 %} white {% else %} lightgray {% endif %}; min-height: 40px">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-2">
+                                                    <div class="text-start">
+                                                        <strong class="attr_header"> {% if attribute_config and attribute in attribute_config %}{{ attribute_config[attribute][lang].capitalize() }}{% else %}{{ (attribute).capitalize() }}{% endif %} </strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-7 overflow-auto">
+                                                    <div class="text-start">
+                                                        {% if released_claims[attribute].__class__.__name__ == 'list' %}
+                                                            {% for value in released_claims[attribute] %}
+                                                                {{ value }}
+                                                                <br>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            {{released_claims[attribute]}}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <br>
+                            <h4>{{ _("For the following attributes, choose whether you want to send them") }}</h4>
+                            <br>
+                            <form method="GET" action="/test">
+                                {% for attribute in released_claims %}
+                                    {% if not locked_claims or not attribute in locked_claims %}
+                                        <div class="container">
+                                            <div class="row" style="min-height: 40px; background-color: {% if loop.index % 2 == 0 %} white {% else %} lightgray {% endif %}">
+                                                 <div class="col-sm-1">
+                                                    <label class="btn" for="check_box">
+                                                        <input type="checkbox"
+                                                               name="{{ attribute }}"
+                                                               value="{{released_claims[attribute]}}"
+                                                               checked id="check_box">
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="text-start">
+                                                    <strong>{% if attribute_config and attribute in attribute_config %}{{ attribute_config[attribute][lang].capitalize() }}{% else %}{{ (attribute).capitalize() }}{% endif %}</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-7 overflow-auto">
+                                                    <div class="text-start">
+                                                        {% if released_claims[attribute].__class__.__name__ == 'list' %}
+                                                            {% for value in released_claims[attribute] %}
+                                                                {{ value }}
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            {{released_claims[attribute]}}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <br>
+                                <p>{{ _("I confirm that I have read the terms of personal data processing ") }}{{ requester_name }}{{ _(" and I agree to the transfer of personal data:") }}</p>
+                                <button class="btn btn-success" type="submit" name="consent_status" value="yes">{{ _('Yes, I agree') }}</button>
+                                <button class="btn btn-secondary" type="submit" name="consent_status" value="no">{{ _('No, I do not agree') }}</button>
+                                <input type="hidden" name="state" value="{{ state }}">
+                                <br>
+                                <label>
+                                    <input type="checkbox" value="validation">
+                                    {{ _("remember consent for ")}}{{ months }}{{ _(" months") }}
+                                </label>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

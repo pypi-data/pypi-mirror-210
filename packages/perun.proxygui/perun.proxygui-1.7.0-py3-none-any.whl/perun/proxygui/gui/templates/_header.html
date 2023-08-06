@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% if cfg.css_framework == 'MUNI' %}
+    <header class="header">
+        <div class="row-main header__wrap">
+            <div class="grid">
+                <div class="grid__cell size--m--2-4 push--m--2-4 center">
+                    <div class="header__side">
+                        {% if cfg.languages | length > 2 %}
+                            <nav class="menu-lang menu-lang--select" aria-label="{{ _('lang_selection') }}">
+                                <p class="menu-lang__selected">
+                                    {% if lang in cfg.languages %}
+                                        <a href="#" class="menu-lang__selected__link">
+                                            {{ cfg.languages[lang] }}
+                                        </a>
+                                    {% endif %}
+                                </p>
+                                <p class="menu-lang__popup">
+                                    {% for langKey, langName in cfg.languages.items() %}
+                                        {% if langName != cfg.languages[lang] and request.base_url ~ "&lang=" ~ langKey %}
+                                            <a href="{{ request.base_url ~ "?lang=" ~ langKey }}{%- for name, value in request.args.items() %}{{ '' if name == "lang" else "&" ~ name ~ "=" ~ value }}{%- endfor %}"
+                                               rel="alternate" hreflang="{{ langKey }}" lang="{{ langKey }}" class="menu-lang__popup__link">
+                                                {{ langName }}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </nav>
+                        {% else %}
+                            <nav class="menu-lang" aria-label="{{ _('lang_selection') }}">
+                                <p class="menu-lang__selected">
+                                    {% for langKey, langName in cfg.languages.items() %}
+                                        {% if langName != cfg.languages[lang] and request.base_url ~ "&lang=" ~ langKey %}
+                                            <a href="{{ request.base_url ~ "?lang=" ~ langKey }}{%- for name, value in request.args.items() %}{{ '' if name == "lang" else "&" ~ name ~ "=" ~ value }}{%- endfor %}"
+                                               rel="alternate" hreflang="{{ langKey }}" lang="{{ langKey }}" class="menu-lang__selected__link">
+                                                {{ langName }}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </nav>
+                        {% endif %}
+                        <nav class="menu-mobile" aria-label="{{ _('mobile_lang_selection') }}">
+                            <div class="menu-mobile__wrap">
+                                <div class="row-main">
+                                    <ul class="menu-mobile__list">
+                                        {% set counter = 0 %}
+                                        {% for langKey, langName in cfg.languages.items() %}
+                                            {% if counter < 5 and langName != cfg.languages[lang] and request.base_url ~ "&lang=" ~ langKey %}
+                                                <li class="menu-mobile__item">
+                                                    <a href="{{ request.base_url ~ "?lang=" ~ langKey }}{%- for name, value in request.args.items() %}{{ '' if name == "lang" else "&" ~ name ~ "=" ~ value }}{%- endfor %}"
+                                                       rel="alternate" hreflang="{{ langKey }}" lang="{{ langKey }}" class="menu-mobile__link menu-mobile__link--lang">
+                                                        {{ langKey|upper }}
+                                                    </a>
+                                                </li>
+                                                {% set counter = counter + 1 %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="grid__cell size--m--2-4 pull--m--2-4 center">
+                    <img src="{% if cfg.logo is not none %}{{ cfg.logo }}{% endif %}" class="header-img" alt="{% if cfg.name is not none %}{{ cfg.name }}{% endif %}"/>
+                </div>
+            </div>
+        </div>
+    </header>
+{% else %}
+    <header class="header border-top border-{{ bootstrap_color }} border-5" >
+        <div class="container">
+            <div class="row" >
+                <div class="col-md-6 order-md-last text-md-end" >
+                    {% if cfg.languages | length > 2 %}
+                        <div class="dropdown language-bar mt-3">
+                            <a id="dropdown-language" class="btn btn-secondary dropdown-toggle text-{{ bootstrap_color }} bg-white border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if lang in cfg.languages %}
+                                    <span class="d-md-none">{{ cfg.languages[lang] | upper }}</span><span class="d-none d-md-inline">{{ cfg.languages[lang] }}</span>
+                                {% else %}
+                                    {{ current_language | upper }}
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown-language">
+                                {% for langKey, langName in cfg.languages.items() %}
+                                    {% if langName != cfg.languages[lang] %}
+                                        <li>
+                                            <a class="dropdown-item text-{{ bootstrap_color }}" href="{{ request.base_url ~ "?lang=" ~ langKey }}{%- for name, value in request.args.items() %}{{ '' if name == "lang" else "&" ~ name ~ "=" ~ value }}{%- endfor %}">
+                                                <span class="d-md-none">{{ langKey | upper }}</span><span class="d-none d-md-inline">{{ langName }}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% else %}
+                        <p class="language-bar mt-3">
+                            {% for langKey, langName in cfg.languages.items() %}
+                                {% if langName != cfg.languages[lang] and request.base_url ~ "&lang=" ~ langKey %}
+                                    <a href="{{ request.base_url ~ "?lang=" ~ langKey }}{%- for name, value in request.args.items() %}{{ '' if name == "lang" else "&" ~ name ~ "=" ~ value }}{%- endfor %}"
+                                       rel="alternate" hreflang="{{ langKey }}" lang="{{ langKey }}" class="text-decoration-none text-{{ bootstrap_color }}">
+                                        <span class="d-md-none">{{ langKey | upper }}</span><span class="d-none d-md-inline">{{ langName }}</span>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 order-md-first text-md-start">
+                    <img src="{% if cfg.logo is not none %}{{ cfg.logo }}{% endif %}" class="header-img mt-3" alt="{% if cfg.name is not none %}{{ cfg.name }}{% endif %}"/>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endif %}

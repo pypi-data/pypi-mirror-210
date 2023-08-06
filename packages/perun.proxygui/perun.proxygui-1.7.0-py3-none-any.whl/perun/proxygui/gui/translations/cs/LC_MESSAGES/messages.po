@@ -1,0 +1,158 @@
+# Czech translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-04-28 05:10+0200\n"
+"PO-Revision-Date: 2023-04-28 05:11+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: cs\n"
+"Language-Team: cs <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: perun/proxygui/gui/gui.py:44 perun/proxygui/gui/gui.py:83
+msgid "fail"
+msgstr "selhání"
+
+#: perun/proxygui/gui/gui.py:44
+msgid "Missing request parameter"
+msgstr "Chybí požadovaný parametr"
+
+#: perun/proxygui/gui/gui.py:83
+msgid "received invalid ticket"
+msgstr "neplatný tiket"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:12
+#: perun/proxygui/gui/templates/ConsentRegistration.html:113
+msgid "Personal data that will be transferred to the service "
+msgstr "Osobní údaje, které budou předány službě "
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:13
+#: perun/proxygui/gui/templates/ConsentRegistration.html:114
+msgid "Information on the processing of personal data of the service "
+msgstr "Informace o zpracování osobních údajů služby "
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:13
+#: perun/proxygui/gui/templates/ConsentRegistration.html:114
+msgid " are defined at "
+msgstr "jsou definovány na "
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:13
+#: perun/proxygui/gui/templates/ConsentRegistration.html:114
+msgid "the page"
+msgstr "odkazované stránce"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:13
+#: perun/proxygui/gui/templates/ConsentRegistration.html:114
+msgid ", please familiarize yourself with the text."
+msgstr ", prosím, seznamte se s textem."
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:30
+#: perun/proxygui/gui/templates/ConsentRegistration.html:126
+msgid "Mandatory attributes"
+msgstr "Povinně odesílané atributy"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:52
+#: perun/proxygui/gui/templates/ConsentRegistration.html:155
+msgid "For the following attributes, choose whether you want to send them"
+msgstr "U následujících atributů zvolte, jestli je chcete odeslat"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:83
+#: perun/proxygui/gui/templates/ConsentRegistration.html:191
+msgid "I confirm that I have read the terms of personal data processing "
+msgstr "Potvrzuji seznámení se s podmínkami zpracování osobních údajů "
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:83
+#: perun/proxygui/gui/templates/ConsentRegistration.html:191
+msgid " and I agree to the transfer of personal data:"
+msgstr " a souhlasím s předáním osobních údajů"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:88
+#: perun/proxygui/gui/templates/ConsentRegistration.html:192
+msgid "Yes, I agree"
+msgstr "Ano, souhlasím"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:96
+#: perun/proxygui/gui/templates/ConsentRegistration.html:193
+msgid "No, I do not agree"
+msgstr "Ne, nesouhlasím"
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:105
+#: perun/proxygui/gui/templates/ConsentRegistration.html:198
+msgid "remember consent for "
+msgstr "zapamatovat souhlas na "
+
+#: perun/proxygui/gui/templates/ConsentRegistration.html:105
+#: perun/proxygui/gui/templates/ConsentRegistration.html:198
+msgid " months"
+msgstr " měsíců"
+
+#: perun/proxygui/gui/templates/IsTestingSP.html:10
+msgid "You are about to access service, which is in testing environment."
+msgstr "Přistupujete ke službě, která je v testovacím režimu."
+
+#: perun/proxygui/gui/templates/IsTestingSP.html:11
+msgid "Continue"
+msgstr "Pokračovat"
+
+#: perun/proxygui/gui/templates/SPAuthorization.html:10
+msgid "You are not authorized to access the service "
+msgstr "Nesplňujete autorizační pravidla pro přístup ke službě "
+
+#: perun/proxygui/gui/templates/SPAuthorization.html:10
+msgid "service"
+msgstr "služba"
+
+#: perun/proxygui/gui/templates/SPAuthorization.html:11
+msgid ""
+"We will now redirect you to a registration page, where you will apply for"
+" the access."
+msgstr "Budete přesmerován(a) na stránku, kde můžete o p%rístup na službu zažádat."
+
+#: perun/proxygui/gui/templates/SPAuthorization.html:12
+msgid "Proceed to registration"
+msgstr "Pokračovat na registrační stránku"
+
+#: perun/proxygui/gui/templates/_header.html:9
+#: perun/proxygui/gui/templates/_header.html:29
+msgid "lang_selection"
+msgstr ""
+
+#: perun/proxygui/gui/templates/_header.html:42
+msgid "mobile_lang_selection"
+msgstr ""
+
+#: perun/proxygui/gui/templates/authorization.html:10
+msgid "Access forbidden"
+msgstr "Přístup odepřen"
+
+#: perun/proxygui/gui/templates/authorization.html:12
+msgid "You don't meet the prerequisites for accessing the service: "
+msgstr "Nesplňujete prerekvizity pro přístup ke službě: "
+
+#: perun/proxygui/gui/templates/authorization.html:13
+msgid "For more information about this service please visit this "
+msgstr "Pro více informací o této službě prosím navštivte "
+
+#: perun/proxygui/gui/templates/authorization.html:13
+msgid "page"
+msgstr "stránku"
+
+#: perun/proxygui/gui/templates/authorization.html:14
+msgid "If you think you should have an access contact service operator at "
+msgstr ""
+"Pokud si myslíte, že byste k dané službě měli mít přístup, kontaktujte "
+"prosím správce služby na "
+
+#: perun/proxygui/gui/templates/authorization.html:15
+msgid "Problem with login to service: "
+msgstr "Problém s přihlášením ke službě: "
+
