@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: odoo14-addon-crm-metadata-rest-api
+Version: 14.0.1.0.1
+Summary: Expose CRM Metadata on the Rest API
+Home-page: 
+Author: Coopdevs Treball SCCL
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 14.0
+Requires-Python: >=3.6
+Requires-Dist: odoo14-addon-crm-metadata
+Requires-Dist: odoo14-addon-crm-rest-api
+Requires-Dist: odoo (<14.1dev,>=14.0a)
+
+========================
+CRM metadata rest api
+========================
+
+Expose relationship between crm lead and it's metadatada on the rest api
