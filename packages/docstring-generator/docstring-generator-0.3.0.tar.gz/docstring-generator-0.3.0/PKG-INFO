@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: docstring-generator
+Version: 0.3.0
+Summary: Auto generate docstring from type-hints.
+Home-page: https://github.com/FelixTheC/docstring_generator
+License: MIT
+Author: FelixTheC
+Author-email: felixeisenmenger@gmx.net
+Requires-Python: >=3.9,<=3.11
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Dist: click (>=8.1.3,<9.0.0)
+Requires-Dist: docstring-generator-ext (==0.0.26)
+Requires-Dist: strongtyping (>=3.9.2,<4.0.0)
+Requires-Dist: strongtyping-pyoverload (>=0.3.0,<0.4.0)
+Project-URL: Repository, https://github.com/FelixTheC/docstring_generator
+Description-Content-Type: text/markdown
+
+# docstring_generator
+Auto generate docstring from type-hints for python functions and class methods.
+
+## How to use it
+```shell
+gendocs_new file.py
+```
+
+```shell
+gendocs_new mydir/
+```
+
+## Options
+
+### style
+- `--style`
+- Docstring style [numpy, google, rest].  [default: numpy]
+
+### Add additional information before running `gendocs_new` 
+- when adding `$<num>` into your docstring these will then be replaced with parameter at this index
+- Example:
+```python
+from typing import List
+
+
+def foo(val_a: int, val_b: List[int]):
+    """
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+
+    $1 Lorem ipsum dolor sit amet
+    $2 nonumy eirmod tempor invidun
+    """
+```
+will become (here with numpy style)
+```python
+from typing import List
+
+
+def foo(val_a: int, val_b: List[int]):
+    """
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+    
+    Parameters
+    ----------
+    val_a : argument of type int
+        Lorem ipsum dolor sit amet
+    val_b : argument of type List(int)
+        nonumy eirmod tempor invidun
+
+    """
+```
+
+## FAQ
+#### what happens if I re-run the docstring creation?
+- nothing if all stays the same, changed parameter descriptions will be ignored only changes of the function header will be used
+
+## Examples
+- An example can be found under examples
+
+### Installing
+
+- pip install docstring-generator
+
+#### Versioning
+- For the versions available, see the tags on this repository.
+
+### Support for older version
+- the previous command `gendocs` is still supported for this version.
+
+### Authors
+- Felix Eisenmenger
+
+### License
+- This project is licensed under the MIT License - see the LICENSE.md file for details
+
