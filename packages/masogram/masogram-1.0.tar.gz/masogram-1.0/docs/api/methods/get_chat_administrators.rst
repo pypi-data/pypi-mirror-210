@@ -1,0 +1,45 @@
+#####################
+getChatAdministrators
+#####################
+
+Returns: :obj:`List[Union[ChatMemberOwner, ChatMemberAdministrator, ChatMemberMember, ChatMemberRestricted, ChatMemberLeft, ChatMemberBanned]]`
+
+.. automodule:: masogram.methods.get_chat_administrators
+    :members:
+    :member-order: bysource
+    :undoc-members: True
+
+
+Usage
+=====
+
+As bot method
+-------------
+
+.. code-block::
+
+    result: List[Union[ChatMemberOwner, ChatMemberAdministrator, ChatMemberMember, ChatMemberRestricted, ChatMemberLeft, ChatMemberBanned]] = await bot.get_chat_administrators(...)
+
+
+Method as object
+----------------
+
+Imports:
+
+- :code:`from masogram.methods.get_chat_administrators import GetChatAdministrators`
+- alias: :code:`from masogram.methods import GetChatAdministrators`
+
+With specific bot
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    result: List[Union[ChatMemberOwner, ChatMemberAdministrator, ChatMemberMember, ChatMemberRestricted, ChatMemberLeft, ChatMemberBanned]] = await bot(GetChatAdministrators(...))
+
+
+
+
+As shortcut from received object
+--------------------------------
+
+- :meth:`masogram.types.chat.Chat.get_administrators`

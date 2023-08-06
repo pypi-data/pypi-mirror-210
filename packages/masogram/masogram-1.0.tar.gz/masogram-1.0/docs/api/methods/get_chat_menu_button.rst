@@ -1,0 +1,37 @@
+#################
+getChatMenuButton
+#################
+
+Returns: :obj:`Union[MenuButtonDefault, MenuButtonWebApp, MenuButtonCommands]`
+
+.. automodule:: masogram.methods.get_chat_menu_button
+    :members:
+    :member-order: bysource
+    :undoc-members: True
+
+
+Usage
+=====
+
+As bot method
+-------------
+
+.. code-block::
+
+    result: Union[MenuButtonDefault, MenuButtonWebApp, MenuButtonCommands] = await bot.get_chat_menu_button(...)
+
+
+Method as object
+----------------
+
+Imports:
+
+- :code:`from masogram.methods.get_chat_menu_button import GetChatMenuButton`
+- alias: :code:`from masogram.methods import GetChatMenuButton`
+
+With specific bot
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    result: Union[MenuButtonDefault, MenuButtonWebApp, MenuButtonCommands] = await bot(GetChatMenuButton(...))

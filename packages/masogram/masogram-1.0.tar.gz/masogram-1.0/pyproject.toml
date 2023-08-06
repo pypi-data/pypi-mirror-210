@@ -1,0 +1,338 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "masogram"
+description = 'Modern and fully asynchronous framework for Telegram Bot API'
+readme = "README.rst"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    { name = "Alex Root Junior", email = "jroot.junior@gmail.com" },
+]
+maintainers = [
+    { name = "Alex Root Junior", email = "jroot.junior@gmail.com" },
+]
+keywords = [
+    "telegram",
+    "bot",
+    "api",
+    "framework",
+    "wrapper",
+    "asyncio",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Communications :: Chat",
+]
+dependencies = [
+    "magic-filter~=1.0.9",
+    "aiohttp~=3.8.4",
+    "pydantic~=1.10.7",
+    "aiofiles~=23.1.0",
+    "certifi>=2022.9.24",
+]
+dynamic = ["version"]
+
+[tool.hatch.version]
+path = "masogram/__init__.py"
+
+[project.optional-dependencies]
+fast = [
+    "uvloop>=0.17.0; (sys_platform == 'darwin' or sys_platform == 'linux') and platform_python_implementation != 'PyPy'",
+]
+redis = [
+    "redis~=4.5.4",
+]
+proxy = [
+    "aiohttp-socks~=0.8.0",
+]
+i18n = [
+    "Babel~=2.12.1",
+]
+test = [
+    "pytest~=7.3.1",
+    "pytest-html~=3.2.0",
+    "pytest-asyncio~=0.21.0",
+    "pytest-lazy-fixture~=0.6.3",
+    "pytest-mock~=3.10.0",
+    "pytest-mypy~=0.10.0",
+    "pytest-cov~=4.0.0",
+    "pytest-aiohttp~=1.0.4",
+    "aresponses~=2.1.6",
+    "pytz~=2022.7.1"
+]
+docs = [
+    "Sphinx~=5.2.3",
+    "sphinx-intl~=2.0.1",
+    "sphinx-autobuild~=2021.3.14",
+    "sphinx-copybutton~=0.5.0",
+    "furo~=2022.9.29",
+    "sphinx-prompt~=1.5.0",
+    "Sphinx-Substitution-Extensions~=2022.2.16",
+    "towncrier~=22.8.0",
+    "pygments~=2.4",
+    "pymdown-extensions~=9.6",
+    "markdown-include~=0.7.0",
+    "Pygments~=2.13.0",
+    "sphinxcontrib-towncrier~=0.3.1a3",
+]
+dev = [
+    "black~=23.3.0",
+    "isort~=5.11",
+    "ruff~=0.0.262",
+    "mypy~=1.2.0",
+    "toml~=0.10.2",
+    "pre-commit~=3.2.2",
+    "towncrier~=22.12.0",
+    "packaging~=23.0",
+    "typing-extensions~=4.5.0",
+]
+
+[project.urls]
+Homepage = "https://masogram.dev/"
+Documentation = "https://docs.masogram.dev/"
+Repository = "https://github.com/masogram/masogram/"
+
+[tool.hatch.envs.default]
+features = [
+    "dev",
+    "fast",
+    "redis",
+    "proxy",
+    "i18n",
+]
+post-install-commands = [
+    "pre-commit install",
+]
+
+[tool.hatch.envs.default.scripts]
+reformat = [
+    "black masogram tests",
+    "isort masogram tests",
+]
+lint = "ruff masogram"
+
+[tool.hatch.envs.docs]
+features = [
+    "fast",
+    "redis",
+    "proxy",
+    "i18n",
+    "docs",
+]
+[tool.hatch.envs.docs.scripts]
+serve = "sphinx-autobuild --watch masogram/ --watch CHANGELOG.rst --watch README.rst docs/ docs/_build/ {args}"
+
+[tool.hatch.envs.dev]
+python = "3.11"
+features = [
+    "dev",
+    "fast",
+    "redis",
+    "proxy",
+    "i18n",
+    "test",
+]
+extra-dependencies = [
+    "butcher @ git+https://github.com/masogram/butcher.git@v0.1.14"
+]
+
+[tool.hatch.envs.dev.scripts]
+update = [
+    "butcher parse",
+    "butcher refresh",
+    "butcher apply all",
+]
+
+[tool.hatch.envs.test]
+features = [
+    "fast",
+    "redis",
+    "proxy",
+    "i18n",
+    "test",
+]
+
+[tool.hatch.envs.test.scripts]
+cov = [
+    "pytest --cov-config pyproject.toml --cov=masogram --html=reports/py{matrix:python}/tests/index.html {args}",
+    "coverage html -d reports/py{matrix:python}/coverage",
+]
+cov-redis = [
+    "pytest --cov-config pyproject.toml --cov=masogram --html=reports/py{matrix:python}/tests/index.html --redis {env:REDIS_DNS:'redis://localhost:6379'} {args}",
+    "coverage html -d reports/py{matrix:python}/coverage",
+]
+view-cov = "google-chrome-stable reports/py{matrix:python}/coverage/index.html"
+
+
+[[tool.hatch.envs.test.matrix]]
+python = ["38", "39", "310", "311"]
+
+[tool.ruff]
+line-length = 99
+select = [
+    # "C", # TODO: mccabe - code complecity
+    "C4",
+    "E",
+    "F",
+    "T10",
+    "T20",
+    "Q",
+    "RET",
+]
+ignore = [
+    "F401"
+]
+src = ["masogram", "tests"]
+exclude = [
+    ".git",
+    "build",
+    "dist",
+    "venv",
+    ".venv",
+    "docs",
+    "tests",
+    "dev",
+    "scripts",
+    "*.egg-info",
+]
+target-version = "py310"
+
+[tool.ruff.isort]
+known-first-party = [
+    "masogram",
+    "finite_state_machine",
+    "handlers",
+    "routes",
+]
+
+[tool.ruff.per-file-ignores]
+"masogram/client/bot.py" = ["E501"]
+"masogram/types/*" = ["E501"]
+"masogram/methods/*" = ["E501"]
+"masogram/enums/*" = ["E501"]
+
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+branch = false
+parallel = true
+omit = [
+    "masogram/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if __name__ == .__main__.:",
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+    "@overload",
+]
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+python_version = "3.8"
+show_error_codes = true
+show_error_context = true
+pretty = true
+ignore_missing_imports = false
+warn_unused_configs = true
+disallow_subclassing_any = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+follow_imports_for_stubs = true
+namespace_packages = true
+show_absolute_path = true
+
+[[tool.mypy.overrides]]
+module = [
+    "aiofiles",
+    "async_lru",
+    "uvloop",
+    "redis.*",
+    "babel.*",
+]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+
+[tool.black]
+line-length = 99
+target-version = ['py38', 'py39', 'py310', 'py311']
+exclude = '''
+(
+    \.eggs
+  | \.git
+  | \.tox
+  | build
+  | dist
+  | venv
+  | docs
+)
+'''
+
+[tool.isort]
+profile = "black"
+
+[tool.towncrier]
+package = "masogram"
+filename = "CHANGES.rst"
+directory = "CHANGES/"
+template = "CHANGES/.template.rst.jinja2"
+issue_format = "`#{issue} <https://github.com/masogram/masogram/issues/{issue}>`_"
+
+[[tool.towncrier.section]]
+path = ""
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "Features"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bugfixes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "doc"
+name = "Improved Documentation"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removal"
+name = "Deprecations and Removals"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "misc"
+name = "Misc"
+showcontent = true

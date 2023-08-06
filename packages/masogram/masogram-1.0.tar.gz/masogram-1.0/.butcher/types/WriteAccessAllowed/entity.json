@@ -1,0 +1,25 @@
+{
+  "meta": {},
+  "group": {
+    "title": "Available types",
+    "anchor": "available-types"
+  },
+  "object": {
+    "anchor": "writeaccessallowed",
+    "name": "WriteAccessAllowed",
+    "description": "This object represents a service message about a user allowing a bot to write messages after adding the bot to the attachment menu or launching a Web App from a link.",
+    "html_description": "<p>This object represents a service message about a user allowing a bot to write messages after adding the bot to the attachment menu or launching a Web App from a link.</p>",
+    "rst_description": "This object represents a service message about a user allowing a bot to write messages after adding the bot to the attachment menu or launching a Web App from a link.",
+    "annotations": [
+      {
+        "type": "String",
+        "description": "Name of the Web App which was launched from a link",
+        "html_description": "<td><em>Optional</em>. Name of the Web App which was launched from a link</td>",
+        "rst_description": "*Optional*. Name of the Web App which was launched from a link\n",
+        "name": "web_app_name",
+        "required": false
+      }
+    ],
+    "category": "types"
+  }
+}

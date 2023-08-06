@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: masogram
+Version: 1.0
+Summary: Modern and fully asynchronous framework for Telegram Bot API
+Project-URL: Homepage, https://masogram.dev/
+Project-URL: Documentation, https://docs.masogram.dev/
+Project-URL: Repository, https://github.com/masogram/masogram/
+Author-email: Alex Root Junior <jroot.junior@gmail.com>
+Maintainer-email: Alex Root Junior <jroot.junior@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: api,asyncio,bot,framework,telegram,wrapper
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Requires-Dist: aiofiles~=23.1.0
+Requires-Dist: aiohttp~=3.8.4
+Requires-Dist: certifi>=2022.9.24
+Requires-Dist: magic-filter~=1.0.9
+Requires-Dist: pydantic~=1.10.7
+Provides-Extra: dev
+Requires-Dist: black~=23.3.0; extra == 'dev'
+Requires-Dist: isort~=5.11; extra == 'dev'
+Requires-Dist: mypy~=1.2.0; extra == 'dev'
+Requires-Dist: packaging~=23.0; extra == 'dev'
+Requires-Dist: pre-commit~=3.2.2; extra == 'dev'
+Requires-Dist: ruff~=0.0.262; extra == 'dev'
+Requires-Dist: toml~=0.10.2; extra == 'dev'
+Requires-Dist: towncrier~=22.12.0; extra == 'dev'
+Requires-Dist: typing-extensions~=4.5.0; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: furo~=2022.9.29; extra == 'docs'
+Requires-Dist: markdown-include~=0.7.0; extra == 'docs'
+Requires-Dist: pygments~=2.13.0; extra == 'docs'
+Requires-Dist: pygments~=2.4; extra == 'docs'
+Requires-Dist: pymdown-extensions~=9.6; extra == 'docs'
+Requires-Dist: sphinx-autobuild~=2021.3.14; extra == 'docs'
+Requires-Dist: sphinx-copybutton~=0.5.0; extra == 'docs'
+Requires-Dist: sphinx-intl~=2.0.1; extra == 'docs'
+Requires-Dist: sphinx-prompt~=1.5.0; extra == 'docs'
+Requires-Dist: sphinx-substitution-extensions~=2022.2.16; extra == 'docs'
+Requires-Dist: sphinxcontrib-towncrier~=0.3.1a3; extra == 'docs'
+Requires-Dist: sphinx~=5.2.3; extra == 'docs'
+Requires-Dist: towncrier~=22.8.0; extra == 'docs'
+Provides-Extra: fast
+Requires-Dist: uvloop>=0.17.0; (sys_platform == 'darwin' or sys_platform == 'linux') and platform_python_implementation != 'PyPy' and extra == 'fast'
+Provides-Extra: i18n
+Requires-Dist: babel~=2.12.1; extra == 'i18n'
+Provides-Extra: proxy
+Requires-Dist: aiohttp-socks~=0.8.0; extra == 'proxy'
+Provides-Extra: redis
+Requires-Dist: redis~=4.5.4; extra == 'redis'
+Provides-Extra: test
+Requires-Dist: aresponses~=2.1.6; extra == 'test'
+Requires-Dist: pytest-aiohttp~=1.0.4; extra == 'test'
+Requires-Dist: pytest-asyncio~=0.21.0; extra == 'test'
+Requires-Dist: pytest-cov~=4.0.0; extra == 'test'
+Requires-Dist: pytest-html~=3.2.0; extra == 'test'
+Requires-Dist: pytest-lazy-fixture~=0.6.3; extra == 'test'
+Requires-Dist: pytest-mock~=3.10.0; extra == 'test'
+Requires-Dist: pytest-mypy~=0.10.0; extra == 'test'
+Requires-Dist: pytest~=7.3.1; extra == 'test'
+Requires-Dist: pytz~=2022.7.1; extra == 'test'
+Description-Content-Type: text/x-rst
+
+#####################
+masogram
+#####################
+
+This is a fork of aiogram which was created for personal use by MassonNN

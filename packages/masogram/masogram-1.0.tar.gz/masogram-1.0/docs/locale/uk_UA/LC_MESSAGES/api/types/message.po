@@ -1,0 +1,2564 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, masogram Team
+# This file is distributed under the same license as the masogram package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: masogram \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-11 01:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../api/types/message.rst:3
+msgid "Message"
+msgstr ""
+
+#: masogram.types.message.Message:1 of
+msgid "This object represents a message."
+msgstr ""
+
+#: masogram.types.message.Message:3 of
+msgid "Source: https://core.telegram.org/bots/api#message"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.message_id:1 of
+msgid "Unique message identifier inside this chat"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.date:1 of
+msgid "Date the message was sent in Unix time"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.chat:1 of
+msgid "Conversation the message belongs to"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.message_thread_id:1 of
+msgid ""
+"*Optional*. Unique identifier of a message thread to which the message "
+"belongs; for supergroups only"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.from_user:1 of
+msgid ""
+"*Optional*. Sender of the message; empty for messages sent to channels. "
+"For backward compatibility, the field contains a fake sender user in non-"
+"channel chats, if the message was sent on behalf of a chat."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.sender_chat:1 of
+msgid ""
+"*Optional*. Sender of the message, sent on behalf of a chat. For example,"
+" the channel itself for channel posts, the supergroup itself for messages"
+" from anonymous group administrators, the linked channel for messages "
+"automatically forwarded to the discussion group. For backward "
+"compatibility, the field *from* contains a fake sender user in non-"
+"channel chats, if the message was sent on behalf of a chat."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forward_from:1 of
+msgid "*Optional*. For forwarded messages, sender of the original message"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forward_from_chat:1 of
+msgid ""
+"*Optional*. For messages forwarded from channels or from anonymous "
+"administrators, information about the original sender chat"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forward_from_message_id:1 of
+msgid ""
+"*Optional*. For messages forwarded from channels, identifier of the "
+"original message in the channel"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forward_signature:1 of
+msgid ""
+"*Optional*. For forwarded messages that were originally sent in channels "
+"or by an anonymous chat administrator, signature of the message sender if"
+" present"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forward_sender_name:1 of
+msgid ""
+"*Optional*. Sender's name for messages forwarded from users who disallow "
+"adding a link to their account in forwarded messages"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forward_date:1 of
+msgid ""
+"*Optional*. For forwarded messages, date the original message was sent in"
+" Unix time"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.is_topic_message:1 of
+msgid "*Optional*. :code:`True`, if the message is sent to a forum topic"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.is_automatic_forward:1 of
+msgid ""
+"*Optional*. :code:`True`, if the message is a channel post that was "
+"automatically forwarded to the connected discussion group"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.reply_to_message:1 of
+msgid ""
+"*Optional*. For replies, the original message. Note that the Message "
+"object in this field will not contain further *reply_to_message* fields "
+"even if it itself is a reply."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.via_bot:1 of
+msgid "*Optional*. Bot through which the message was sent"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.edit_date:1 of
+msgid "*Optional*. Date the message was last edited in Unix time"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.has_protected_content:1 of
+msgid "*Optional*. :code:`True`, if the message can't be forwarded"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.media_group_id:1 of
+msgid ""
+"*Optional*. The unique identifier of a media message group this message "
+"belongs to"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.author_signature:1 of
+msgid ""
+"*Optional*. Signature of the post author for messages in channels, or the"
+" custom title of an anonymous group administrator"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.text:1 of
+msgid "*Optional*. For text messages, the actual UTF-8 text of the message"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.entities:1 of
+msgid ""
+"*Optional*. For text messages, special entities like usernames, URLs, bot"
+" commands, etc. that appear in the text"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.animation:1 of
+msgid ""
+"*Optional*. Message is an animation, information about the animation. For"
+" backward compatibility, when this field is set, the *document* field "
+"will also be set"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.audio:1 of
+msgid "*Optional*. Message is an audio file, information about the file"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.document:1 of
+msgid "*Optional*. Message is a general file, information about the file"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.photo:1 of
+msgid "*Optional*. Message is a photo, available sizes of the photo"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.sticker:1 of
+msgid "*Optional*. Message is a sticker, information about the sticker"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.video:1 of
+msgid "*Optional*. Message is a video, information about the video"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.video_note:1 of
+msgid ""
+"*Optional*. Message is a `video note <https://telegram.org/blog/video-"
+"messages-and-telescope>`_, information about the video message"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.voice:1 of
+msgid "*Optional*. Message is a voice message, information about the file"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.caption:1 of
+msgid ""
+"*Optional*. Caption for the animation, audio, document, photo, video or "
+"voice"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.caption_entities:1 of
+msgid ""
+"*Optional*. For messages with a caption, special entities like usernames,"
+" URLs, bot commands, etc. that appear in the caption"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.has_media_spoiler:1 of
+msgid ""
+"*Optional*. :code:`True`, if the message media is covered by a spoiler "
+"animation"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.contact:1 of
+msgid "*Optional*. Message is a shared contact, information about the contact"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.dice:1 of
+msgid "*Optional*. Message is a dice with random value"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.game:1 of
+msgid ""
+"*Optional*. Message is a game, information about the game. `More about "
+"games » <https://core.telegram.org/bots/api#games>`_"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.poll:1 of
+msgid "*Optional*. Message is a native poll, information about the poll"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.venue:1 of
+msgid ""
+"*Optional*. Message is a venue, information about the venue. For backward"
+" compatibility, when this field is set, the *location* field will also be"
+" set"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.location:1 of
+msgid "*Optional*. Message is a shared location, information about the location"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.new_chat_members:1 of
+msgid ""
+"*Optional*. New members that were added to the group or supergroup and "
+"information about them (the bot itself may be one of these members)"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.left_chat_member:1 of
+msgid ""
+"*Optional*. A member was removed from the group, information about them "
+"(this member may be the bot itself)"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.new_chat_title:1 of
+msgid "*Optional*. A chat title was changed to this value"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.new_chat_photo:1 of
+msgid "*Optional*. A chat photo was change to this value"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.delete_chat_photo:1 of
+msgid "*Optional*. Service message: the chat photo was deleted"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.group_chat_created:1 of
+msgid "*Optional*. Service message: the group has been created"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.supergroup_chat_created:1 of
+msgid ""
+"*Optional*. Service message: the supergroup has been created. This field "
+"can't be received in a message coming through updates, because bot can't "
+"be a member of a supergroup when it is created. It can only be found in "
+"reply_to_message if someone replies to a very first message in a directly"
+" created supergroup."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.channel_chat_created:1 of
+msgid ""
+"*Optional*. Service message: the channel has been created. This field "
+"can't be received in a message coming through updates, because bot can't "
+"be a member of a channel when it is created. It can only be found in "
+"reply_to_message if someone replies to a very first message in a channel."
+msgstr ""
+
+#: ../../docstring
+#: masogram.types.message.Message.message_auto_delete_timer_changed:1 of
+msgid ""
+"*Optional*. Service message: auto-delete timer settings changed in the "
+"chat"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.migrate_to_chat_id:1 of
+msgid ""
+"*Optional*. The group has been migrated to a supergroup with the "
+"specified identifier. This number may have more than 32 significant bits "
+"and some programming languages may have difficulty/silent defects in "
+"interpreting it. But it has at most 52 significant bits, so a signed "
+"64-bit integer or double-precision float type are safe for storing this "
+"identifier."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.migrate_from_chat_id:1 of
+msgid ""
+"*Optional*. The supergroup has been migrated from a group with the "
+"specified identifier. This number may have more than 32 significant bits "
+"and some programming languages may have difficulty/silent defects in "
+"interpreting it. But it has at most 52 significant bits, so a signed "
+"64-bit integer or double-precision float type are safe for storing this "
+"identifier."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.pinned_message:1 of
+msgid ""
+"*Optional*. Specified message was pinned. Note that the Message object in"
+" this field will not contain further *reply_to_message* fields even if it"
+" is itself a reply."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.invoice:1 of
+msgid ""
+"*Optional*. Message is an invoice for a `payment "
+"<https://core.telegram.org/bots/api#payments>`_, information about the "
+"invoice. `More about payments » "
+"<https://core.telegram.org/bots/api#payments>`_"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.successful_payment:1 of
+msgid ""
+"*Optional*. Message is a service message about a successful payment, "
+"information about the payment. `More about payments » "
+"<https://core.telegram.org/bots/api#payments>`_"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.user_shared:1 of
+msgid "*Optional*. Service message: a user was shared with the bot"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.chat_shared:1 of
+msgid "*Optional*. Service message: a chat was shared with the bot"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.connected_website:1 of
+msgid ""
+"*Optional*. The domain name of the website on which the user has logged "
+"in. `More about Telegram Login » "
+"<https://core.telegram.org/widgets/login>`_"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.write_access_allowed:1 of
+msgid ""
+"*Optional*. Service message: the user allowed the bot added to the "
+"attachment menu to write messages"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.passport_data:1 of
+msgid "*Optional*. Telegram Passport data"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.proximity_alert_triggered:1 of
+msgid ""
+"*Optional*. Service message. A user in the chat triggered another user's "
+"proximity alert while sharing Live Location."
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forum_topic_created:1 of
+msgid "*Optional*. Service message: forum topic created"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forum_topic_edited:1 of
+msgid "*Optional*. Service message: forum topic edited"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forum_topic_closed:1 of
+msgid "*Optional*. Service message: forum topic closed"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.forum_topic_reopened:1 of
+msgid "*Optional*. Service message: forum topic reopened"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.general_forum_topic_hidden:1
+#: of
+msgid "*Optional*. Service message: the 'General' forum topic hidden"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.general_forum_topic_unhidden:1
+#: of
+msgid "*Optional*. Service message: the 'General' forum topic unhidden"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.video_chat_scheduled:1 of
+msgid "*Optional*. Service message: video chat scheduled"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.video_chat_started:1 of
+msgid "*Optional*. Service message: video chat started"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.video_chat_ended:1 of
+msgid "*Optional*. Service message: video chat ended"
+msgstr ""
+
+#: ../../docstring
+#: masogram.types.message.Message.video_chat_participants_invited:1 of
+msgid "*Optional*. Service message: new participants invited to a video chat"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.web_app_data:1 of
+msgid "*Optional*. Service message: data sent by a Web App"
+msgstr ""
+
+#: ../../docstring masogram.types.message.Message.reply_markup:1 of
+msgid ""
+"*Optional*. Inline keyboard attached to the message. :code:`login_url` "
+"buttons are represented as ordinary :code:`url` buttons."
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:1
+#: masogram.types.message.Message.reply_animation:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_animation.SendAnimation`"
+" will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer:4
+#: masogram.types.message.Message.answer_animation:4
+#: masogram.types.message.Message.answer_audio:4
+#: masogram.types.message.Message.answer_contact:4
+#: masogram.types.message.Message.answer_dice:4
+#: masogram.types.message.Message.answer_document:4
+#: masogram.types.message.Message.answer_game:4
+#: masogram.types.message.Message.answer_invoice:4
+#: masogram.types.message.Message.answer_location:4
+#: masogram.types.message.Message.answer_media_group:4
+#: masogram.types.message.Message.answer_photo:4
+#: masogram.types.message.Message.answer_poll:4
+#: masogram.types.message.Message.answer_sticker:4
+#: masogram.types.message.Message.answer_venue:4
+#: masogram.types.message.Message.answer_video:4
+#: masogram.types.message.Message.answer_video_note:4
+#: masogram.types.message.Message.answer_voice:4
+#: masogram.types.message.Message.delete:4
+#: masogram.types.message.Message.edit_caption:4
+#: masogram.types.message.Message.edit_live_location:4
+#: masogram.types.message.Message.edit_media:4
+#: masogram.types.message.Message.edit_reply_markup:4
+#: masogram.types.message.Message.edit_text:4
+#: masogram.types.message.Message.pin:4 masogram.types.message.Message.reply:4
+#: masogram.types.message.Message.reply_animation:4
+#: masogram.types.message.Message.reply_audio:4
+#: masogram.types.message.Message.reply_contact:4
+#: masogram.types.message.Message.reply_dice:4
+#: masogram.types.message.Message.reply_document:4
+#: masogram.types.message.Message.reply_game:4
+#: masogram.types.message.Message.reply_invoice:4
+#: masogram.types.message.Message.reply_location:4
+#: masogram.types.message.Message.reply_media_group:4
+#: masogram.types.message.Message.reply_photo:4
+#: masogram.types.message.Message.reply_poll:4
+#: masogram.types.message.Message.reply_sticker:4
+#: masogram.types.message.Message.reply_venue:4
+#: masogram.types.message.Message.reply_video:4
+#: masogram.types.message.Message.reply_video_note:4
+#: masogram.types.message.Message.reply_voice:4
+#: masogram.types.message.Message.stop_live_location:4
+#: masogram.types.message.Message.unpin:4 of
+msgid ":code:`chat_id`"
+msgstr ""
+
+#: masogram.types.message.Message.answer:5
+#: masogram.types.message.Message.answer_animation:5
+#: masogram.types.message.Message.answer_audio:5
+#: masogram.types.message.Message.answer_contact:5
+#: masogram.types.message.Message.answer_dice:5
+#: masogram.types.message.Message.answer_document:5
+#: masogram.types.message.Message.answer_game:5
+#: masogram.types.message.Message.answer_invoice:5
+#: masogram.types.message.Message.answer_location:5
+#: masogram.types.message.Message.answer_media_group:5
+#: masogram.types.message.Message.answer_photo:5
+#: masogram.types.message.Message.answer_poll:5
+#: masogram.types.message.Message.answer_sticker:5
+#: masogram.types.message.Message.answer_venue:5
+#: masogram.types.message.Message.answer_video:5
+#: masogram.types.message.Message.answer_video_note:5
+#: masogram.types.message.Message.answer_voice:5
+#: masogram.types.message.Message.reply:5
+#: masogram.types.message.Message.reply_animation:5
+#: masogram.types.message.Message.reply_audio:5
+#: masogram.types.message.Message.reply_contact:5
+#: masogram.types.message.Message.reply_dice:5
+#: masogram.types.message.Message.reply_document:5
+#: masogram.types.message.Message.reply_game:5
+#: masogram.types.message.Message.reply_invoice:5
+#: masogram.types.message.Message.reply_location:5
+#: masogram.types.message.Message.reply_media_group:5
+#: masogram.types.message.Message.reply_photo:5
+#: masogram.types.message.Message.reply_poll:5
+#: masogram.types.message.Message.reply_sticker:5
+#: masogram.types.message.Message.reply_venue:5
+#: masogram.types.message.Message.reply_video:5
+#: masogram.types.message.Message.reply_video_note:5
+#: masogram.types.message.Message.reply_voice:5 of
+msgid ":code:`message_thread_id`"
+msgstr ""
+
+#: masogram.types.message.Message.reply:6
+#: masogram.types.message.Message.reply_animation:6
+#: masogram.types.message.Message.reply_audio:6
+#: masogram.types.message.Message.reply_contact:6
+#: masogram.types.message.Message.reply_dice:6
+#: masogram.types.message.Message.reply_document:6
+#: masogram.types.message.Message.reply_game:6
+#: masogram.types.message.Message.reply_invoice:6
+#: masogram.types.message.Message.reply_location:6
+#: masogram.types.message.Message.reply_media_group:6
+#: masogram.types.message.Message.reply_photo:6
+#: masogram.types.message.Message.reply_poll:6
+#: masogram.types.message.Message.reply_sticker:6
+#: masogram.types.message.Message.reply_venue:6
+#: masogram.types.message.Message.reply_video:6
+#: masogram.types.message.Message.reply_video_note:6
+#: masogram.types.message.Message.reply_voice:6 of
+msgid ":code:`reply_to_message_id`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:7
+#: masogram.types.message.Message.reply_animation:8 of
+msgid ""
+"Use this method to send animation files (GIF or H.264/MPEG-4 AVC video "
+"without sound). On success, the sent "
+":class:`masogram.types.message.Message` is returned. Bots can currently "
+"send animation files of up to 50 MB in size, this limit may be changed in"
+" the future."
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:9
+#: masogram.types.message.Message.reply_animation:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendanimation"
+msgstr ""
+
+#: masogram.types.message.Message.answer
+#: masogram.types.message.Message.answer_animation
+#: masogram.types.message.Message.answer_audio
+#: masogram.types.message.Message.answer_contact
+#: masogram.types.message.Message.answer_dice
+#: masogram.types.message.Message.answer_document
+#: masogram.types.message.Message.answer_game
+#: masogram.types.message.Message.answer_invoice
+#: masogram.types.message.Message.answer_location
+#: masogram.types.message.Message.answer_media_group
+#: masogram.types.message.Message.answer_photo
+#: masogram.types.message.Message.answer_poll
+#: masogram.types.message.Message.answer_sticker
+#: masogram.types.message.Message.answer_venue
+#: masogram.types.message.Message.answer_video
+#: masogram.types.message.Message.answer_video_note
+#: masogram.types.message.Message.answer_voice
+#: masogram.types.message.Message.copy_to
+#: masogram.types.message.Message.edit_caption
+#: masogram.types.message.Message.edit_live_location
+#: masogram.types.message.Message.edit_media
+#: masogram.types.message.Message.edit_reply_markup
+#: masogram.types.message.Message.edit_text
+#: masogram.types.message.Message.forward masogram.types.message.Message.get_url
+#: masogram.types.message.Message.pin masogram.types.message.Message.reply
+#: masogram.types.message.Message.reply_animation
+#: masogram.types.message.Message.reply_audio
+#: masogram.types.message.Message.reply_contact
+#: masogram.types.message.Message.reply_dice
+#: masogram.types.message.Message.reply_document
+#: masogram.types.message.Message.reply_game
+#: masogram.types.message.Message.reply_invoice
+#: masogram.types.message.Message.reply_location
+#: masogram.types.message.Message.reply_media_group
+#: masogram.types.message.Message.reply_photo
+#: masogram.types.message.Message.reply_poll
+#: masogram.types.message.Message.reply_sticker
+#: masogram.types.message.Message.reply_venue
+#: masogram.types.message.Message.reply_video
+#: masogram.types.message.Message.reply_video_note
+#: masogram.types.message.Message.reply_voice
+#: masogram.types.message.Message.send_copy
+#: masogram.types.message.Message.stop_live_location of
+msgid "Parameters"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:11
+#: masogram.types.message.Message.reply_animation:12 of
+msgid ""
+"Animation to send. Pass a file_id as String to send an animation that "
+"exists on the Telegram servers (recommended), pass an HTTP URL as a "
+"String for Telegram to get an animation from the Internet, or upload a "
+"new animation using multipart/form-data. :ref:`More information on "
+"Sending Files » <sending-files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:12
+#: masogram.types.message.Message.reply_animation:13 of
+msgid "Duration of sent animation in seconds"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:13
+#: masogram.types.message.Message.reply_animation:14 of
+msgid "Animation width"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:14
+#: masogram.types.message.Message.reply_animation:15 of
+msgid "Animation height"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:15
+#: masogram.types.message.Message.answer_audio:19
+#: masogram.types.message.Message.answer_document:12
+#: masogram.types.message.Message.answer_video:15
+#: masogram.types.message.Message.answer_video_note:14
+#: masogram.types.message.Message.reply_animation:16
+#: masogram.types.message.Message.reply_audio:20
+#: masogram.types.message.Message.reply_document:13
+#: masogram.types.message.Message.reply_video:16
+#: masogram.types.message.Message.reply_video_note:15 of
+msgid ""
+"Thumbnail of the file sent; can be ignored if thumbnail generation for "
+"the file is supported server-side. The thumbnail should be in JPEG format"
+" and less than 200 kB in size. A thumbnail's width and height should not "
+"exceed 320. Ignored if the file is not uploaded using multipart/form-"
+"data. Thumbnails can't be reused and can be only uploaded as a new file, "
+"so you can pass 'attach://<file_attach_name>' if the thumbnail was "
+"uploaded using multipart/form-data under <file_attach_name>. :ref:`More "
+"information on Sending Files » <sending-files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:16
+#: masogram.types.message.Message.reply_animation:17 of
+msgid ""
+"Animation caption (may also be used when resending animation by "
+"*file_id*), 0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:17
+#: masogram.types.message.Message.reply_animation:18 of
+msgid ""
+"Mode for parsing entities in the animation caption. See `formatting "
+"options <https://core.telegram.org/bots/api#formatting-options>`_ for "
+"more details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:18
+#: masogram.types.message.Message.answer_audio:15
+#: masogram.types.message.Message.answer_document:15
+#: masogram.types.message.Message.answer_photo:14
+#: masogram.types.message.Message.answer_video:18
+#: masogram.types.message.Message.answer_voice:14
+#: masogram.types.message.Message.edit_caption:14
+#: masogram.types.message.Message.reply_animation:19
+#: masogram.types.message.Message.reply_audio:16
+#: masogram.types.message.Message.reply_document:16
+#: masogram.types.message.Message.reply_photo:15
+#: masogram.types.message.Message.reply_video:19
+#: masogram.types.message.Message.reply_voice:15 of
+msgid ""
+"A JSON-serialized list of special entities that appear in the caption, "
+"which can be specified instead of *parse_mode*"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:19
+#: masogram.types.message.Message.reply_animation:20 of
+msgid ""
+"Pass :code:`True` if the animation needs to be covered with a spoiler "
+"animation"
+msgstr ""
+
+#: masogram.types.message.Message.answer:15
+#: masogram.types.message.Message.answer_animation:20
+#: masogram.types.message.Message.answer_audio:20
+#: masogram.types.message.Message.answer_contact:15
+#: masogram.types.message.Message.answer_dice:12
+#: masogram.types.message.Message.answer_document:17
+#: masogram.types.message.Message.answer_game:12
+#: masogram.types.message.Message.answer_invoice:32
+#: masogram.types.message.Message.answer_location:17
+#: masogram.types.message.Message.answer_photo:16
+#: masogram.types.message.Message.answer_poll:23
+#: masogram.types.message.Message.answer_sticker:13
+#: masogram.types.message.Message.answer_venue:19
+#: masogram.types.message.Message.answer_video:21
+#: masogram.types.message.Message.answer_video_note:15
+#: masogram.types.message.Message.answer_voice:16
+#: masogram.types.message.Message.copy_to:16
+#: masogram.types.message.Message.forward:13
+#: masogram.types.message.Message.reply:16
+#: masogram.types.message.Message.reply_animation:21
+#: masogram.types.message.Message.reply_audio:21
+#: masogram.types.message.Message.reply_contact:16
+#: masogram.types.message.Message.reply_dice:13
+#: masogram.types.message.Message.reply_document:18
+#: masogram.types.message.Message.reply_game:13
+#: masogram.types.message.Message.reply_invoice:33
+#: masogram.types.message.Message.reply_location:18
+#: masogram.types.message.Message.reply_photo:17
+#: masogram.types.message.Message.reply_poll:24
+#: masogram.types.message.Message.reply_sticker:14
+#: masogram.types.message.Message.reply_venue:20
+#: masogram.types.message.Message.reply_video:22
+#: masogram.types.message.Message.reply_video_note:16
+#: masogram.types.message.Message.reply_voice:17 of
+msgid ""
+"Sends the message `silently <https://telegram.org/blog/channels-2-0"
+"#silent-messages>`_. Users will receive a notification with no sound."
+msgstr ""
+
+#: masogram.types.message.Message.answer:16
+#: masogram.types.message.Message.answer_animation:21
+#: masogram.types.message.Message.answer_audio:21
+#: masogram.types.message.Message.answer_contact:16
+#: masogram.types.message.Message.answer_document:18
+#: masogram.types.message.Message.answer_game:13
+#: masogram.types.message.Message.answer_invoice:33
+#: masogram.types.message.Message.answer_location:18
+#: masogram.types.message.Message.answer_photo:17
+#: masogram.types.message.Message.answer_poll:24
+#: masogram.types.message.Message.answer_sticker:14
+#: masogram.types.message.Message.answer_venue:20
+#: masogram.types.message.Message.answer_video:22
+#: masogram.types.message.Message.answer_video_note:16
+#: masogram.types.message.Message.answer_voice:17
+#: masogram.types.message.Message.copy_to:17
+#: masogram.types.message.Message.reply:17
+#: masogram.types.message.Message.reply_animation:22
+#: masogram.types.message.Message.reply_audio:22
+#: masogram.types.message.Message.reply_contact:17
+#: masogram.types.message.Message.reply_document:19
+#: masogram.types.message.Message.reply_game:14
+#: masogram.types.message.Message.reply_invoice:34
+#: masogram.types.message.Message.reply_location:19
+#: masogram.types.message.Message.reply_photo:18
+#: masogram.types.message.Message.reply_poll:25
+#: masogram.types.message.Message.reply_sticker:15
+#: masogram.types.message.Message.reply_venue:21
+#: masogram.types.message.Message.reply_video:23
+#: masogram.types.message.Message.reply_video_note:17
+#: masogram.types.message.Message.reply_voice:18 of
+msgid "Protects the contents of the sent message from forwarding and saving"
+msgstr ""
+
+#: masogram.types.message.Message.answer:18
+#: masogram.types.message.Message.answer_animation:23
+#: masogram.types.message.Message.answer_audio:23
+#: masogram.types.message.Message.answer_contact:18
+#: masogram.types.message.Message.answer_dice:15
+#: masogram.types.message.Message.answer_document:20
+#: masogram.types.message.Message.answer_game:15
+#: masogram.types.message.Message.answer_invoice:35
+#: masogram.types.message.Message.answer_location:20
+#: masogram.types.message.Message.answer_media_group:15
+#: masogram.types.message.Message.answer_photo:19
+#: masogram.types.message.Message.answer_poll:26
+#: masogram.types.message.Message.answer_sticker:16
+#: masogram.types.message.Message.answer_venue:22
+#: masogram.types.message.Message.answer_video:24
+#: masogram.types.message.Message.answer_video_note:18
+#: masogram.types.message.Message.answer_voice:19
+#: masogram.types.message.Message.copy_to:19
+#: masogram.types.message.Message.reply:18
+#: masogram.types.message.Message.reply_animation:23
+#: masogram.types.message.Message.reply_audio:23
+#: masogram.types.message.Message.reply_contact:18
+#: masogram.types.message.Message.reply_dice:15
+#: masogram.types.message.Message.reply_document:20
+#: masogram.types.message.Message.reply_game:15
+#: masogram.types.message.Message.reply_invoice:35
+#: masogram.types.message.Message.reply_location:20
+#: masogram.types.message.Message.reply_media_group:15
+#: masogram.types.message.Message.reply_photo:19
+#: masogram.types.message.Message.reply_poll:26
+#: masogram.types.message.Message.reply_sticker:16
+#: masogram.types.message.Message.reply_venue:22
+#: masogram.types.message.Message.reply_video:24
+#: masogram.types.message.Message.reply_video_note:18
+#: masogram.types.message.Message.reply_voice:19 of
+msgid ""
+"Pass :code:`True` if the message should be sent even if the specified "
+"replied-to message is not found"
+msgstr ""
+
+#: masogram.types.message.Message.answer:19
+#: masogram.types.message.Message.answer_animation:24
+#: masogram.types.message.Message.answer_audio:24
+#: masogram.types.message.Message.answer_contact:19
+#: masogram.types.message.Message.answer_dice:16
+#: masogram.types.message.Message.answer_document:21
+#: masogram.types.message.Message.answer_location:21
+#: masogram.types.message.Message.answer_photo:20
+#: masogram.types.message.Message.answer_poll:27
+#: masogram.types.message.Message.answer_sticker:17
+#: masogram.types.message.Message.answer_venue:23
+#: masogram.types.message.Message.answer_video:25
+#: masogram.types.message.Message.answer_video_note:19
+#: masogram.types.message.Message.answer_voice:20
+#: masogram.types.message.Message.copy_to:20
+#: masogram.types.message.Message.reply:19
+#: masogram.types.message.Message.reply_animation:24
+#: masogram.types.message.Message.reply_audio:24
+#: masogram.types.message.Message.reply_contact:19
+#: masogram.types.message.Message.reply_dice:16
+#: masogram.types.message.Message.reply_document:21
+#: masogram.types.message.Message.reply_location:21
+#: masogram.types.message.Message.reply_photo:20
+#: masogram.types.message.Message.reply_poll:27
+#: masogram.types.message.Message.reply_sticker:17
+#: masogram.types.message.Message.reply_venue:23
+#: masogram.types.message.Message.reply_video:25
+#: masogram.types.message.Message.reply_video_note:19
+#: masogram.types.message.Message.reply_voice:20 of
+msgid ""
+"Additional interface options. A JSON-serialized object for an `inline "
+"keyboard <https://core.telegram.org/bots/features#inline-keyboards>`_, "
+"`custom reply keyboard "
+"<https://core.telegram.org/bots/features#keyboards>`_, instructions to "
+"remove reply keyboard or to force a reply from the user."
+msgstr ""
+
+#: masogram.types.message.Message.answer
+#: masogram.types.message.Message.answer_animation
+#: masogram.types.message.Message.answer_audio
+#: masogram.types.message.Message.answer_contact
+#: masogram.types.message.Message.answer_dice
+#: masogram.types.message.Message.answer_document
+#: masogram.types.message.Message.answer_game
+#: masogram.types.message.Message.answer_invoice
+#: masogram.types.message.Message.answer_location
+#: masogram.types.message.Message.answer_media_group
+#: masogram.types.message.Message.answer_photo
+#: masogram.types.message.Message.answer_poll
+#: masogram.types.message.Message.answer_sticker
+#: masogram.types.message.Message.answer_venue
+#: masogram.types.message.Message.answer_video
+#: masogram.types.message.Message.answer_video_note
+#: masogram.types.message.Message.answer_voice
+#: masogram.types.message.Message.copy_to masogram.types.message.Message.delete
+#: masogram.types.message.Message.edit_caption
+#: masogram.types.message.Message.edit_live_location
+#: masogram.types.message.Message.edit_media
+#: masogram.types.message.Message.edit_reply_markup
+#: masogram.types.message.Message.edit_text
+#: masogram.types.message.Message.forward masogram.types.message.Message.get_url
+#: masogram.types.message.Message.pin masogram.types.message.Message.reply
+#: masogram.types.message.Message.reply_animation
+#: masogram.types.message.Message.reply_audio
+#: masogram.types.message.Message.reply_contact
+#: masogram.types.message.Message.reply_dice
+#: masogram.types.message.Message.reply_document
+#: masogram.types.message.Message.reply_game
+#: masogram.types.message.Message.reply_invoice
+#: masogram.types.message.Message.reply_location
+#: masogram.types.message.Message.reply_media_group
+#: masogram.types.message.Message.reply_photo
+#: masogram.types.message.Message.reply_poll
+#: masogram.types.message.Message.reply_sticker
+#: masogram.types.message.Message.reply_venue
+#: masogram.types.message.Message.reply_video
+#: masogram.types.message.Message.reply_video_note
+#: masogram.types.message.Message.reply_voice
+#: masogram.types.message.Message.send_copy
+#: masogram.types.message.Message.stop_live_location
+#: masogram.types.message.Message.unpin of
+msgid "Returns"
+msgstr ""
+
+#: masogram.types.message.Message.answer_animation:25
+#: masogram.types.message.Message.reply_animation:25 of
+msgid "instance of method :class:`masogram.methods.send_animation.SendAnimation`"
+msgstr ""
+
+#: masogram.types.message.Message.answer:17
+#: masogram.types.message.Message.answer_animation:22
+#: masogram.types.message.Message.answer_audio:22
+#: masogram.types.message.Message.answer_contact:17
+#: masogram.types.message.Message.answer_dice:14
+#: masogram.types.message.Message.answer_document:19
+#: masogram.types.message.Message.answer_game:14
+#: masogram.types.message.Message.answer_invoice:34
+#: masogram.types.message.Message.answer_location:19
+#: masogram.types.message.Message.answer_photo:18
+#: masogram.types.message.Message.answer_poll:25
+#: masogram.types.message.Message.answer_sticker:15
+#: masogram.types.message.Message.answer_venue:21
+#: masogram.types.message.Message.answer_video:23
+#: masogram.types.message.Message.answer_video_note:17
+#: masogram.types.message.Message.answer_voice:18
+#: masogram.types.message.Message.copy_to:18 of
+msgid "If the message is a reply, ID of the original message"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:1
+#: masogram.types.message.Message.reply_audio:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_audio.SendAudio` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:7
+#: masogram.types.message.Message.reply_audio:8 of
+msgid ""
+"Use this method to send audio files, if you want Telegram clients to "
+"display them in the music player. Your audio must be in the .MP3 or .M4A "
+"format. On success, the sent :class:`masogram.types.message.Message` is "
+"returned. Bots can currently send audio files of up to 50 MB in size, "
+"this limit may be changed in the future. For sending voice messages, use "
+"the :class:`masogram.methods.send_voice.SendVoice` method instead."
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:10
+#: masogram.types.message.Message.reply_audio:11 of
+msgid "Source: https://core.telegram.org/bots/api#sendaudio"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:12
+#: masogram.types.message.Message.reply_audio:13 of
+msgid ""
+"Audio file to send. Pass a file_id as String to send an audio file that "
+"exists on the Telegram servers (recommended), pass an HTTP URL as a "
+"String for Telegram to get an audio file from the Internet, or upload a "
+"new one using multipart/form-data. :ref:`More information on Sending "
+"Files » <sending-files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:13
+#: masogram.types.message.Message.reply_audio:14 of
+msgid "Audio caption, 0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:14
+#: masogram.types.message.Message.reply_audio:15 of
+msgid ""
+"Mode for parsing entities in the audio caption. See `formatting options "
+"<https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:16
+#: masogram.types.message.Message.reply_audio:17 of
+msgid "Duration of the audio in seconds"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:17
+#: masogram.types.message.Message.reply_audio:18 of
+msgid "Performer"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:18
+#: masogram.types.message.Message.reply_audio:19 of
+msgid "Track name"
+msgstr ""
+
+#: masogram.types.message.Message.answer_audio:25
+#: masogram.types.message.Message.reply_audio:25 of
+msgid "instance of method :class:`masogram.methods.send_audio.SendAudio`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:1
+#: masogram.types.message.Message.reply_contact:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_contact.SendContact` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:7
+#: masogram.types.message.Message.reply_contact:8 of
+msgid ""
+"Use this method to send phone contacts. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:9
+#: masogram.types.message.Message.reply_contact:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendcontact"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:11
+#: masogram.types.message.Message.reply_contact:12 of
+msgid "Contact's phone number"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:12
+#: masogram.types.message.Message.reply_contact:13 of
+msgid "Contact's first name"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:13
+#: masogram.types.message.Message.reply_contact:14 of
+msgid "Contact's last name"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:14
+#: masogram.types.message.Message.reply_contact:15 of
+msgid ""
+"Additional data about the contact in the form of a `vCard "
+"<https://en.wikipedia.org/wiki/VCard>`_, 0-2048 bytes"
+msgstr ""
+
+#: masogram.types.message.Message.answer_contact:20
+#: masogram.types.message.Message.reply_contact:20 of
+msgid "instance of method :class:`masogram.methods.send_contact.SendContact`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:1
+#: masogram.types.message.Message.reply_document:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_document.SendDocument` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:7
+#: masogram.types.message.Message.reply_document:8 of
+msgid ""
+"Use this method to send general files. On success, the sent "
+":class:`masogram.types.message.Message` is returned. Bots can currently "
+"send files of any type of up to 50 MB in size, this limit may be changed "
+"in the future."
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:9
+#: masogram.types.message.Message.reply_document:10 of
+msgid "Source: https://core.telegram.org/bots/api#senddocument"
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:11
+#: masogram.types.message.Message.reply_document:12 of
+msgid ""
+"File to send. Pass a file_id as String to send a file that exists on the "
+"Telegram servers (recommended), pass an HTTP URL as a String for Telegram"
+" to get a file from the Internet, or upload a new one using multipart"
+"/form-data. :ref:`More information on Sending Files » <sending-files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:13
+#: masogram.types.message.Message.reply_document:14 of
+msgid ""
+"Document caption (may also be used when resending documents by "
+"*file_id*), 0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:14
+#: masogram.types.message.Message.reply_document:15 of
+msgid ""
+"Mode for parsing entities in the document caption. See `formatting "
+"options <https://core.telegram.org/bots/api#formatting-options>`_ for "
+"more details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:16
+#: masogram.types.message.Message.reply_document:17 of
+msgid ""
+"Disables automatic server-side content type detection for files uploaded "
+"using multipart/form-data"
+msgstr ""
+
+#: masogram.types.message.Message.answer_document:22
+#: masogram.types.message.Message.reply_document:22 of
+msgid "instance of method :class:`masogram.methods.send_document.SendDocument`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_game:1
+#: masogram.types.message.Message.reply_game:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_game.SendGame` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_game:7
+#: masogram.types.message.Message.reply_game:8 of
+msgid ""
+"Use this method to send a game. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_game:9
+#: masogram.types.message.Message.reply_game:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendgame"
+msgstr ""
+
+#: masogram.types.message.Message.answer_game:11
+#: masogram.types.message.Message.reply_game:12 of
+msgid ""
+"Short name of the game, serves as the unique identifier for the game. Set"
+" up your games via `@BotFather <https://t.me/botfather>`_."
+msgstr ""
+
+#: masogram.types.message.Message.answer_game:16
+#: masogram.types.message.Message.reply_game:16 of
+msgid ""
+"A JSON-serialized object for an `inline keyboard "
+"<https://core.telegram.org/bots/features#inline-keyboards>`_. If empty, "
+"one 'Play game_title' button will be shown. If not empty, the first "
+"button must launch the game."
+msgstr ""
+
+#: masogram.types.message.Message.answer_game:17
+#: masogram.types.message.Message.reply_game:17 of
+msgid "instance of method :class:`masogram.methods.send_game.SendGame`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:1
+#: masogram.types.message.Message.reply_invoice:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_invoice.SendInvoice` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:7
+#: masogram.types.message.Message.reply_invoice:8 of
+msgid ""
+"Use this method to send invoices. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:9
+#: masogram.types.message.Message.reply_invoice:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendinvoice"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:11
+#: masogram.types.message.Message.reply_invoice:12 of
+msgid "Product name, 1-32 characters"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:12
+#: masogram.types.message.Message.reply_invoice:13 of
+msgid "Product description, 1-255 characters"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:13
+#: masogram.types.message.Message.reply_invoice:14 of
+msgid ""
+"Bot-defined invoice payload, 1-128 bytes. This will not be displayed to "
+"the user, use for your internal processes."
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:14
+#: masogram.types.message.Message.reply_invoice:15 of
+msgid ""
+"Payment provider token, obtained via `@BotFather "
+"<https://t.me/botfather>`_"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:15
+#: masogram.types.message.Message.reply_invoice:16 of
+msgid ""
+"Three-letter ISO 4217 currency code, see `more on currencies "
+"<https://core.telegram.org/bots/payments#supported-currencies>`_"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:16
+#: masogram.types.message.Message.reply_invoice:17 of
+msgid ""
+"Price breakdown, a JSON-serialized list of components (e.g. product "
+"price, tax, discount, delivery cost, delivery tax, bonus, etc.)"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:17
+#: masogram.types.message.Message.reply_invoice:18 of
+msgid ""
+"The maximum accepted amount for tips in the *smallest units* of the "
+"currency (integer, **not** float/double). For example, for a maximum tip "
+"of :code:`US$ 1.45` pass :code:`max_tip_amount = 145`. See the *exp* "
+"parameter in `currencies.json "
+"<https://core.telegram.org/bots/payments/currencies.json>`_, it shows the"
+" number of digits past the decimal point for each currency (2 for the "
+"majority of currencies). Defaults to 0"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:18
+#: masogram.types.message.Message.reply_invoice:19 of
+msgid ""
+"A JSON-serialized array of suggested amounts of tips in the *smallest "
+"units* of the currency (integer, **not** float/double). At most 4 "
+"suggested tip amounts can be specified. The suggested tip amounts must be"
+" positive, passed in a strictly increased order and must not exceed "
+"*max_tip_amount*."
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:19
+#: masogram.types.message.Message.reply_invoice:20 of
+msgid ""
+"Unique deep-linking parameter. If left empty, **forwarded copies** of the"
+" sent message will have a *Pay* button, allowing multiple users to pay "
+"directly from the forwarded message, using the same invoice. If non-"
+"empty, forwarded copies of the sent message will have a *URL* button with"
+" a deep link to the bot (instead of a *Pay* button), with the value used "
+"as the start parameter"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:20
+#: masogram.types.message.Message.reply_invoice:21 of
+msgid ""
+"JSON-serialized data about the invoice, which will be shared with the "
+"payment provider. A detailed description of required fields should be "
+"provided by the payment provider."
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:21
+#: masogram.types.message.Message.reply_invoice:22 of
+msgid ""
+"URL of the product photo for the invoice. Can be a photo of the goods or "
+"a marketing image for a service. People like it better when they see what"
+" they are paying for."
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:22
+#: masogram.types.message.Message.reply_invoice:23 of
+msgid "Photo size in bytes"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:23
+#: masogram.types.message.Message.reply_invoice:24 of
+msgid "Photo width"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:24
+#: masogram.types.message.Message.reply_invoice:25 of
+msgid "Photo height"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:25
+#: masogram.types.message.Message.reply_invoice:26 of
+msgid ""
+"Pass :code:`True` if you require the user's full name to complete the "
+"order"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:26
+#: masogram.types.message.Message.reply_invoice:27 of
+msgid ""
+"Pass :code:`True` if you require the user's phone number to complete the "
+"order"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:27
+#: masogram.types.message.Message.reply_invoice:28 of
+msgid ""
+"Pass :code:`True` if you require the user's email address to complete the"
+" order"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:28
+#: masogram.types.message.Message.reply_invoice:29 of
+msgid ""
+"Pass :code:`True` if you require the user's shipping address to complete "
+"the order"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:29
+#: masogram.types.message.Message.reply_invoice:30 of
+msgid "Pass :code:`True` if the user's phone number should be sent to provider"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:30
+#: masogram.types.message.Message.reply_invoice:31 of
+msgid "Pass :code:`True` if the user's email address should be sent to provider"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:31
+#: masogram.types.message.Message.reply_invoice:32 of
+msgid "Pass :code:`True` if the final price depends on the shipping method"
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:36
+#: masogram.types.message.Message.reply_invoice:36 of
+msgid ""
+"A JSON-serialized object for an `inline keyboard "
+"<https://core.telegram.org/bots/features#inline-keyboards>`_. If empty, "
+"one 'Pay :code:`total price`' button will be shown. If not empty, the "
+"first button must be a Pay button."
+msgstr ""
+
+#: masogram.types.message.Message.answer_invoice:37
+#: masogram.types.message.Message.reply_invoice:37 of
+msgid "instance of method :class:`masogram.methods.send_invoice.SendInvoice`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:1
+#: masogram.types.message.Message.reply_location:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_location.SendLocation` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:7
+#: masogram.types.message.Message.reply_location:8 of
+msgid ""
+"Use this method to send point on the map. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:9
+#: masogram.types.message.Message.reply_location:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendlocation"
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:11
+#: masogram.types.message.Message.reply_location:12 of
+msgid "Latitude of the location"
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:12
+#: masogram.types.message.Message.reply_location:13 of
+msgid "Longitude of the location"
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:13
+#: masogram.types.message.Message.edit_live_location:14
+#: masogram.types.message.Message.reply_location:14 of
+msgid "The radius of uncertainty for the location, measured in meters; 0-1500"
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:14
+#: masogram.types.message.Message.reply_location:15 of
+msgid ""
+"Period in seconds for which the location will be updated (see `Live "
+"Locations <https://telegram.org/blog/live-locations>`_, should be between"
+" 60 and 86400."
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:15
+#: masogram.types.message.Message.reply_location:16 of
+msgid ""
+"For live locations, a direction in which the user is moving, in degrees. "
+"Must be between 1 and 360 if specified."
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:16
+#: masogram.types.message.Message.reply_location:17 of
+msgid ""
+"For live locations, a maximum distance for proximity alerts about "
+"approaching another chat member, in meters. Must be between 1 and 100000 "
+"if specified."
+msgstr ""
+
+#: masogram.types.message.Message.answer_location:22
+#: masogram.types.message.Message.reply_location:22 of
+msgid "instance of method :class:`masogram.methods.send_location.SendLocation`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:1
+#: masogram.types.message.Message.reply_media_group:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.send_media_group.SendMediaGroup` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:7
+#: masogram.types.message.Message.reply_media_group:8 of
+msgid ""
+"Use this method to send a group of photos, videos, documents or audios as"
+" an album. Documents and audio files can be only grouped in an album with"
+" messages of the same type. On success, an array of `Messages "
+"<https://core.telegram.org/bots/api#message>`_ that were sent is "
+"returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:9
+#: masogram.types.message.Message.reply_media_group:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendmediagroup"
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:11
+#: masogram.types.message.Message.reply_media_group:12 of
+msgid ""
+"A JSON-serialized array describing messages to be sent, must include 2-10"
+" items"
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:12
+#: masogram.types.message.Message.reply_media_group:13 of
+msgid ""
+"Sends messages `silently <https://telegram.org/blog/channels-2-0#silent-"
+"messages>`_. Users will receive a notification with no sound."
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:13
+#: masogram.types.message.Message.reply_media_group:14 of
+msgid "Protects the contents of the sent messages from forwarding and saving"
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:16
+#: masogram.types.message.Message.reply_media_group:16 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.send_media_group.SendMediaGroup`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_media_group:14 of
+msgid "If the messages are a reply, ID of the original message"
+msgstr ""
+
+#: masogram.types.message.Message.answer:1 masogram.types.message.Message.reply:1
+#: of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_message.SendMessage` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer:7 masogram.types.message.Message.reply:8
+#: of
+msgid ""
+"Use this method to send text messages. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer:9
+#: masogram.types.message.Message.reply:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendmessage"
+msgstr ""
+
+#: masogram.types.message.Message.answer:11
+#: masogram.types.message.Message.reply:12 of
+msgid "Text of the message to be sent, 1-4096 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer:12
+#: masogram.types.message.Message.edit_text:13
+#: masogram.types.message.Message.reply:13 of
+msgid ""
+"Mode for parsing entities in the message text. See `formatting options "
+"<https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.answer:13
+#: masogram.types.message.Message.edit_text:14
+#: masogram.types.message.Message.reply:14 of
+msgid ""
+"A JSON-serialized list of special entities that appear in message text, "
+"which can be specified instead of *parse_mode*"
+msgstr ""
+
+#: masogram.types.message.Message.answer:14
+#: masogram.types.message.Message.edit_text:15
+#: masogram.types.message.Message.reply:15 of
+msgid "Disables link previews for links in this message"
+msgstr ""
+
+#: masogram.types.message.Message.answer:20
+#: masogram.types.message.Message.reply:20 of
+msgid "instance of method :class:`masogram.methods.send_message.SendMessage`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:1
+#: masogram.types.message.Message.reply_photo:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_photo.SendPhoto` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:7
+#: masogram.types.message.Message.reply_photo:8 of
+msgid ""
+"Use this method to send photos. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:9
+#: masogram.types.message.Message.reply_photo:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendphoto"
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:11
+#: masogram.types.message.Message.reply_photo:12 of
+msgid ""
+"Photo to send. Pass a file_id as String to send a photo that exists on "
+"the Telegram servers (recommended), pass an HTTP URL as a String for "
+"Telegram to get a photo from the Internet, or upload a new photo using "
+"multipart/form-data. The photo must be at most 10 MB in size. The photo's"
+" width and height must not exceed 10000 in total. Width and height ratio "
+"must be at most 20. :ref:`More information on Sending Files » <sending-"
+"files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:12
+#: masogram.types.message.Message.reply_photo:13 of
+msgid ""
+"Photo caption (may also be used when resending photos by *file_id*), "
+"0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:13
+#: masogram.types.message.Message.reply_photo:14 of
+msgid ""
+"Mode for parsing entities in the photo caption. See `formatting options "
+"<https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:15
+#: masogram.types.message.Message.reply_photo:16 of
+msgid ""
+"Pass :code:`True` if the photo needs to be covered with a spoiler "
+"animation"
+msgstr ""
+
+#: masogram.types.message.Message.answer_photo:21
+#: masogram.types.message.Message.reply_photo:21 of
+msgid "instance of method :class:`masogram.methods.send_photo.SendPhoto`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:1
+#: masogram.types.message.Message.reply_poll:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_poll.SendPoll` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:7
+#: masogram.types.message.Message.reply_poll:8 of
+msgid ""
+"Use this method to send a native poll. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:9
+#: masogram.types.message.Message.reply_poll:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendpoll"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:11
+#: masogram.types.message.Message.reply_poll:12 of
+msgid "Poll question, 1-300 characters"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:12
+#: masogram.types.message.Message.reply_poll:13 of
+msgid ""
+"A JSON-serialized list of answer options, 2-10 strings 1-100 characters "
+"each"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:13
+#: masogram.types.message.Message.reply_poll:14 of
+msgid ":code:`True`, if the poll needs to be anonymous, defaults to :code:`True`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:14
+#: masogram.types.message.Message.reply_poll:15 of
+msgid "Poll type, 'quiz' or 'regular', defaults to 'regular'"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:15
+#: masogram.types.message.Message.reply_poll:16 of
+msgid ""
+":code:`True`, if the poll allows multiple answers, ignored for polls in "
+"quiz mode, defaults to :code:`False`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:16
+#: masogram.types.message.Message.reply_poll:17 of
+msgid ""
+"0-based identifier of the correct answer option, required for polls in "
+"quiz mode"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:17
+#: masogram.types.message.Message.reply_poll:18 of
+msgid ""
+"Text that is shown when a user chooses an incorrect answer or taps on the"
+" lamp icon in a quiz-style poll, 0-200 characters with at most 2 line "
+"feeds after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:18
+#: masogram.types.message.Message.reply_poll:19 of
+msgid ""
+"Mode for parsing entities in the explanation. See `formatting options "
+"<https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:19
+#: masogram.types.message.Message.reply_poll:20 of
+msgid ""
+"A JSON-serialized list of special entities that appear in the poll "
+"explanation, which can be specified instead of *parse_mode*"
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:20
+#: masogram.types.message.Message.reply_poll:21 of
+msgid ""
+"Amount of time in seconds the poll will be active after creation, 5-600. "
+"Can't be used together with *close_date*."
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:21
+#: masogram.types.message.Message.reply_poll:22 of
+msgid ""
+"Point in time (Unix timestamp) when the poll will be automatically "
+"closed. Must be at least 5 and no more than 600 seconds in the future. "
+"Can't be used together with *open_period*."
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:22
+#: masogram.types.message.Message.reply_poll:23 of
+msgid ""
+"Pass :code:`True` if the poll needs to be immediately closed. This can be"
+" useful for poll preview."
+msgstr ""
+
+#: masogram.types.message.Message.answer_poll:28
+#: masogram.types.message.Message.reply_poll:28 of
+msgid "instance of method :class:`masogram.methods.send_poll.SendPoll`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_dice:1
+#: masogram.types.message.Message.reply_dice:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_dice.SendDice` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_dice:7
+#: masogram.types.message.Message.reply_dice:8 of
+msgid ""
+"Use this method to send an animated emoji that will display a random "
+"value. On success, the sent :class:`masogram.types.message.Message` is "
+"returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_dice:9
+#: masogram.types.message.Message.reply_dice:10 of
+msgid "Source: https://core.telegram.org/bots/api#senddice"
+msgstr ""
+
+#: masogram.types.message.Message.answer_dice:11
+#: masogram.types.message.Message.reply_dice:12 of
+msgid ""
+"Emoji on which the dice throw animation is based. Currently, must be one "
+"of '🎲', '🎯', '🏀', '⚽', '🎳', or '🎰'. Dice can have values 1-6 for '🎲', '🎯'"
+" and '🎳', values 1-5 for '🏀' and '⚽', and values 1-64 for '🎰'. Defaults "
+"to '🎲'"
+msgstr ""
+
+#: masogram.types.message.Message.answer_dice:13
+#: masogram.types.message.Message.reply_dice:14 of
+msgid "Protects the contents of the sent message from forwarding"
+msgstr ""
+
+#: masogram.types.message.Message.answer_dice:17
+#: masogram.types.message.Message.reply_dice:17 of
+msgid "instance of method :class:`masogram.methods.send_dice.SendDice`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_sticker:1
+#: masogram.types.message.Message.reply_sticker:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_sticker.SendSticker` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_sticker:7
+#: masogram.types.message.Message.reply_sticker:8 of
+msgid ""
+"Use this method to send static .WEBP, `animated "
+"<https://telegram.org/blog/animated-stickers>`_ .TGS, or `video "
+"<https://telegram.org/blog/video-stickers-better-reactions>`_ .WEBM "
+"stickers. On success, the sent :class:`masogram.types.message.Message` is "
+"returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_sticker:9
+#: masogram.types.message.Message.reply_sticker:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendsticker"
+msgstr ""
+
+#: masogram.types.message.Message.answer_sticker:11
+#: masogram.types.message.Message.reply_sticker:12 of
+msgid ""
+"Sticker to send. Pass a file_id as String to send a file that exists on "
+"the Telegram servers (recommended), pass an HTTP URL as a String for "
+"Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP "
+"or .TGS sticker using multipart/form-data. :ref:`More information on "
+"Sending Files » <sending-files>`. Video stickers can only be sent by a "
+"file_id. Animated stickers can't be sent via an HTTP URL."
+msgstr ""
+
+#: masogram.types.message.Message.answer_sticker:12
+#: masogram.types.message.Message.reply_sticker:13 of
+msgid "Emoji associated with the sticker; only for just uploaded stickers"
+msgstr ""
+
+#: masogram.types.message.Message.answer_sticker:18
+#: masogram.types.message.Message.reply_sticker:18 of
+msgid "instance of method :class:`masogram.methods.send_sticker.SendSticker`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:1
+#: masogram.types.message.Message.reply_venue:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_venue.SendVenue` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:7
+#: masogram.types.message.Message.reply_venue:8 of
+msgid ""
+"Use this method to send information about a venue. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:9
+#: masogram.types.message.Message.reply_venue:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendvenue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:11
+#: masogram.types.message.Message.reply_venue:12 of
+msgid "Latitude of the venue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:12
+#: masogram.types.message.Message.reply_venue:13 of
+msgid "Longitude of the venue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:13
+#: masogram.types.message.Message.reply_venue:14 of
+msgid "Name of the venue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:14
+#: masogram.types.message.Message.reply_venue:15 of
+msgid "Address of the venue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:15
+#: masogram.types.message.Message.reply_venue:16 of
+msgid "Foursquare identifier of the venue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:16
+#: masogram.types.message.Message.reply_venue:17 of
+msgid ""
+"Foursquare type of the venue, if known. (For example, "
+"'arts_entertainment/default', 'arts_entertainment/aquarium' or "
+"'food/icecream'.)"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:17
+#: masogram.types.message.Message.reply_venue:18 of
+msgid "Google Places identifier of the venue"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:18
+#: masogram.types.message.Message.reply_venue:19 of
+msgid ""
+"Google Places type of the venue. (See `supported types "
+"<https://developers.google.com/places/web-service/supported_types>`_.)"
+msgstr ""
+
+#: masogram.types.message.Message.answer_venue:24
+#: masogram.types.message.Message.reply_venue:24 of
+msgid "instance of method :class:`masogram.methods.send_venue.SendVenue`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:1
+#: masogram.types.message.Message.reply_video:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_video.SendVideo` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:7
+#: masogram.types.message.Message.reply_video:8 of
+msgid ""
+"Use this method to send video files, Telegram clients support MPEG4 "
+"videos (other formats may be sent as "
+":class:`masogram.types.document.Document`). On success, the sent "
+":class:`masogram.types.message.Message` is returned. Bots can currently "
+"send video files of up to 50 MB in size, this limit may be changed in the"
+" future."
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:9
+#: masogram.types.message.Message.reply_video:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendvideo"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:11
+#: masogram.types.message.Message.reply_video:12 of
+msgid ""
+"Video to send. Pass a file_id as String to send a video that exists on "
+"the Telegram servers (recommended), pass an HTTP URL as a String for "
+"Telegram to get a video from the Internet, or upload a new video using "
+"multipart/form-data. :ref:`More information on Sending Files » <sending-"
+"files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:12
+#: masogram.types.message.Message.answer_video_note:12
+#: masogram.types.message.Message.reply_video:13
+#: masogram.types.message.Message.reply_video_note:13 of
+msgid "Duration of sent video in seconds"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:13
+#: masogram.types.message.Message.reply_video:14 of
+msgid "Video width"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:14
+#: masogram.types.message.Message.reply_video:15 of
+msgid "Video height"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:16
+#: masogram.types.message.Message.reply_video:17 of
+msgid ""
+"Video caption (may also be used when resending videos by *file_id*), "
+"0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:17
+#: masogram.types.message.Message.reply_video:18 of
+msgid ""
+"Mode for parsing entities in the video caption. See `formatting options "
+"<https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:19
+#: masogram.types.message.Message.reply_video:20 of
+msgid ""
+"Pass :code:`True` if the video needs to be covered with a spoiler "
+"animation"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:20
+#: masogram.types.message.Message.reply_video:21 of
+msgid "Pass :code:`True` if the uploaded video is suitable for streaming"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video:26
+#: masogram.types.message.Message.reply_video:26 of
+msgid "instance of method :class:`masogram.methods.send_video.SendVideo`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video_note:1
+#: masogram.types.message.Message.reply_video_note:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.send_video_note.SendVideoNote` will automatically"
+" fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video_note:7
+#: masogram.types.message.Message.reply_video_note:8 of
+msgid ""
+"As of `v.4.0 <https://telegram.org/blog/video-messages-and-telescope>`_, "
+"Telegram clients support rounded square MPEG4 videos of up to 1 minute "
+"long. Use this method to send video messages. On success, the sent "
+":class:`masogram.types.message.Message` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.answer_video_note:9
+#: masogram.types.message.Message.reply_video_note:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendvideonote"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video_note:11
+#: masogram.types.message.Message.reply_video_note:12 of
+msgid ""
+"Video note to send. Pass a file_id as String to send a video note that "
+"exists on the Telegram servers (recommended) or upload a new video using "
+"multipart/form-data. :ref:`More information on Sending Files » <sending-"
+"files>`. Sending video notes by a URL is currently unsupported"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video_note:13
+#: masogram.types.message.Message.reply_video_note:14 of
+msgid "Video width and height, i.e. diameter of the video message"
+msgstr ""
+
+#: masogram.types.message.Message.answer_video_note:20
+#: masogram.types.message.Message.reply_video_note:20 of
+msgid "instance of method :class:`masogram.methods.send_video_note.SendVideoNote`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:1
+#: masogram.types.message.Message.reply_voice:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.send_voice.SendVoice` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:7
+#: masogram.types.message.Message.reply_voice:8 of
+msgid ""
+"Use this method to send audio files, if you want Telegram clients to "
+"display the file as a playable voice message. For this to work, your "
+"audio must be in an .OGG file encoded with OPUS (other formats may be "
+"sent as :class:`masogram.types.audio.Audio` or "
+":class:`masogram.types.document.Document`). On success, the sent "
+":class:`masogram.types.message.Message` is returned. Bots can currently "
+"send voice messages of up to 50 MB in size, this limit may be changed in "
+"the future."
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:9
+#: masogram.types.message.Message.reply_voice:10 of
+msgid "Source: https://core.telegram.org/bots/api#sendvoice"
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:11
+#: masogram.types.message.Message.reply_voice:12 of
+msgid ""
+"Audio file to send. Pass a file_id as String to send a file that exists "
+"on the Telegram servers (recommended), pass an HTTP URL as a String for "
+"Telegram to get a file from the Internet, or upload a new one using "
+"multipart/form-data. :ref:`More information on Sending Files » <sending-"
+"files>`"
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:12
+#: masogram.types.message.Message.reply_voice:13 of
+msgid "Voice message caption, 0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:13
+#: masogram.types.message.Message.reply_voice:14 of
+msgid ""
+"Mode for parsing entities in the voice message caption. See `formatting "
+"options <https://core.telegram.org/bots/api#formatting-options>`_ for "
+"more details."
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:15
+#: masogram.types.message.Message.reply_voice:16 of
+msgid "Duration of the voice message in seconds"
+msgstr ""
+
+#: masogram.types.message.Message.answer_voice:21
+#: masogram.types.message.Message.reply_voice:21 of
+msgid "instance of method :class:`masogram.methods.send_voice.SendVoice`"
+msgstr ""
+
+#: masogram.types.message.Message.send_copy:1 of
+msgid "Send copy of message."
+msgstr ""
+
+#: masogram.types.message.Message.send_copy:3 of
+msgid ""
+"Is similar to :meth:`masogram.client.bot.Bot.copy_message` but returning "
+"the sent message instead of :class:`masogram.types.message_id.MessageId`"
+msgstr ""
+
+#: masogram.types.message.Message.send_copy:8 of
+msgid ""
+"This method don't use the API method named `copyMessage` and historically"
+" implemented before the similar method is added to API"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.copy_message.CopyMessage` "
+"will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:4
+#: masogram.types.message.Message.forward:4 of
+msgid ":code:`from_chat_id`"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:5
+#: masogram.types.message.Message.delete:5
+#: masogram.types.message.Message.edit_caption:5
+#: masogram.types.message.Message.edit_live_location:5
+#: masogram.types.message.Message.edit_media:5
+#: masogram.types.message.Message.edit_reply_markup:5
+#: masogram.types.message.Message.edit_text:5
+#: masogram.types.message.Message.forward:5 masogram.types.message.Message.pin:5
+#: masogram.types.message.Message.stop_live_location:5
+#: masogram.types.message.Message.unpin:5 of
+msgid ":code:`message_id`"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:7 of
+msgid ""
+"Use this method to copy messages of any kind. Service messages and "
+"invoice messages can't be copied. A quiz "
+":class:`masogram.methods.poll.Poll` can be copied only if the value of the"
+" field *correct_option_id* is known to the bot. The method is analogous "
+"to the method :class:`masogram.methods.forward_message.ForwardMessage`, "
+"but the copied message doesn't have a link to the original message. "
+"Returns the :class:`masogram.types.message_id.MessageId` of the sent "
+"message on success."
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:9 of
+msgid "Source: https://core.telegram.org/bots/api#copymessage"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:11
+#: masogram.types.message.Message.forward:11 of
+msgid ""
+"Unique identifier for the target chat or username of the target channel "
+"(in the format :code:`@channelusername`)"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:12
+#: masogram.types.message.Message.forward:12 of
+msgid ""
+"Unique identifier for the target message thread (topic) of the forum; for"
+" forum supergroups only"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:13 of
+msgid ""
+"New caption for media, 0-1024 characters after entities parsing. If not "
+"specified, the original caption is kept"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:14 of
+msgid ""
+"Mode for parsing entities in the new caption. See `formatting options "
+"<https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:15 of
+msgid ""
+"A JSON-serialized list of special entities that appear in the new "
+"caption, which can be specified instead of *parse_mode*"
+msgstr ""
+
+#: masogram.types.message.Message.copy_to:21 of
+msgid "instance of method :class:`masogram.methods.copy_message.CopyMessage`"
+msgstr ""
+
+#: masogram.types.message.Message.edit_text:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.edit_message_text.EditMessageText` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.edit_text:7 of
+msgid ""
+"Use this method to edit text and `game "
+"<https://core.telegram.org/bots/api#games>`_ messages. On success, if the"
+" edited message is not an inline message, the edited "
+":class:`masogram.types.message.Message` is returned, otherwise "
+":code:`True` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.edit_text:9 of
+msgid "Source: https://core.telegram.org/bots/api#editmessagetext"
+msgstr ""
+
+#: masogram.types.message.Message.edit_text:11 of
+msgid "New text of the message, 1-4096 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:11
+#: masogram.types.message.Message.edit_live_location:13
+#: masogram.types.message.Message.edit_media:12
+#: masogram.types.message.Message.edit_reply_markup:11
+#: masogram.types.message.Message.edit_text:12
+#: masogram.types.message.Message.stop_live_location:11 of
+msgid ""
+"Required if *chat_id* and *message_id* are not specified. Identifier of "
+"the inline message"
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:15
+#: masogram.types.message.Message.edit_reply_markup:12
+#: masogram.types.message.Message.edit_text:16 of
+msgid ""
+"A JSON-serialized object for an `inline keyboard "
+"<https://core.telegram.org/bots/features#inline-keyboards>`_."
+msgstr ""
+
+#: masogram.types.message.Message.edit_text:17 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.edit_message_text.EditMessageText`"
+msgstr ""
+
+#: masogram.types.message.Message.forward:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.forward_message.ForwardMessage` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.forward:7 of
+msgid ""
+"Use this method to forward messages of any kind. Service messages can't "
+"be forwarded. On success, the sent :class:`masogram.types.message.Message`"
+" is returned."
+msgstr ""
+
+#: masogram.types.message.Message.forward:9 of
+msgid "Source: https://core.telegram.org/bots/api#forwardmessage"
+msgstr ""
+
+#: masogram.types.message.Message.forward:14 of
+msgid "Protects the contents of the forwarded message from forwarding and saving"
+msgstr ""
+
+#: masogram.types.message.Message.forward:15 of
+msgid "instance of method :class:`masogram.methods.forward_message.ForwardMessage`"
+msgstr ""
+
+#: masogram.types.message.Message.edit_media:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.edit_message_media.EditMessageMedia` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.edit_media:7 of
+msgid ""
+"Use this method to edit animation, audio, document, photo, or video "
+"messages. If a message is part of a message album, then it can be edited "
+"only to an audio for audio albums, only to a document for document albums"
+" and to a photo or a video otherwise. When an inline message is edited, a"
+" new file can't be uploaded; use a previously uploaded file via its "
+"file_id or specify a URL. On success, if the edited message is not an "
+"inline message, the edited :class:`masogram.types.message.Message` is "
+"returned, otherwise :code:`True` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.edit_media:9 of
+msgid "Source: https://core.telegram.org/bots/api#editmessagemedia"
+msgstr ""
+
+#: masogram.types.message.Message.edit_media:11 of
+msgid "A JSON-serialized object for a new media content of the message"
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:17
+#: masogram.types.message.Message.edit_media:13
+#: masogram.types.message.Message.stop_live_location:12 of
+msgid ""
+"A JSON-serialized object for a new `inline keyboard "
+"<https://core.telegram.org/bots/features#inline-keyboards>`_."
+msgstr ""
+
+#: masogram.types.message.Message.edit_media:14 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.edit_message_media.EditMessageMedia`"
+msgstr ""
+
+#: masogram.types.message.Message.edit_reply_markup:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.edit_message_reply_markup.EditMessageReplyMarkup`"
+" will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.edit_reply_markup:7 of
+msgid ""
+"Use this method to edit only the reply markup of messages. On success, if"
+" the edited message is not an inline message, the edited "
+":class:`masogram.types.message.Message` is returned, otherwise "
+":code:`True` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.edit_reply_markup:9 of
+msgid "Source: https://core.telegram.org/bots/api#editmessagereplymarkup"
+msgstr ""
+
+#: masogram.types.message.Message.edit_reply_markup:13 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.edit_message_reply_markup.EditMessageReplyMarkup`"
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.edit_message_live_location.EditMessageLiveLocation`"
+" will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:7 of
+msgid ""
+"Use this method to edit live location messages. A location can be edited "
+"until its *live_period* expires or editing is explicitly disabled by a "
+"call to "
+":class:`masogram.methods.stop_message_live_location.StopMessageLiveLocation`."
+" On success, if the edited message is not an inline message, the edited "
+":class:`masogram.types.message.Message` is returned, otherwise "
+":code:`True` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:9 of
+msgid "Source: https://core.telegram.org/bots/api#editmessagelivelocation"
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:11 of
+msgid "Latitude of new location"
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:12 of
+msgid "Longitude of new location"
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:15 of
+msgid ""
+"Direction in which the user is moving, in degrees. Must be between 1 and "
+"360 if specified."
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:16 of
+msgid ""
+"The maximum distance for proximity alerts about approaching another chat "
+"member, in meters. Must be between 1 and 100000 if specified."
+msgstr ""
+
+#: masogram.types.message.Message.edit_live_location:18 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.edit_message_live_location.EditMessageLiveLocation`"
+msgstr ""
+
+#: masogram.types.message.Message.stop_live_location:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.stop_message_live_location.StopMessageLiveLocation`"
+" will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.stop_live_location:7 of
+msgid ""
+"Use this method to stop updating a live location message before "
+"*live_period* expires. On success, if the message is not an inline "
+"message, the edited :class:`masogram.types.message.Message` is returned, "
+"otherwise :code:`True` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.stop_live_location:9 of
+msgid "Source: https://core.telegram.org/bots/api#stopmessagelivelocation"
+msgstr ""
+
+#: masogram.types.message.Message.stop_live_location:13 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.stop_message_live_location.StopMessageLiveLocation`"
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.edit_message_caption.EditMessageCaption` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:7 of
+msgid ""
+"Use this method to edit captions of messages. On success, if the edited "
+"message is not an inline message, the edited "
+":class:`masogram.types.message.Message` is returned, otherwise "
+":code:`True` is returned."
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:9 of
+msgid "Source: https://core.telegram.org/bots/api#editmessagecaption"
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:12 of
+msgid "New caption of the message, 0-1024 characters after entities parsing"
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:13 of
+msgid ""
+"Mode for parsing entities in the message caption. See `formatting options"
+" <https://core.telegram.org/bots/api#formatting-options>`_ for more "
+"details."
+msgstr ""
+
+#: masogram.types.message.Message.edit_caption:16 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.edit_message_caption.EditMessageCaption`"
+msgstr ""
+
+#: masogram.types.message.Message.delete:1 of
+msgid ""
+"Shortcut for method :class:`masogram.methods.delete_message.DeleteMessage`"
+" will automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.delete:7 of
+msgid ""
+"Use this method to delete a message, including service messages, with the"
+" following limitations:"
+msgstr ""
+
+#: masogram.types.message.Message.delete:9 of
+msgid "A message can only be deleted if it was sent less than 48 hours ago."
+msgstr ""
+
+#: masogram.types.message.Message.delete:11 of
+msgid ""
+"Service messages about a supergroup, channel, or forum topic creation "
+"can't be deleted."
+msgstr ""
+
+#: masogram.types.message.Message.delete:13 of
+msgid ""
+"A dice message in a private chat can only be deleted if it was sent more "
+"than 24 hours ago."
+msgstr ""
+
+#: masogram.types.message.Message.delete:15 of
+msgid ""
+"Bots can delete outgoing messages in private chats, groups, and "
+"supergroups."
+msgstr ""
+
+#: masogram.types.message.Message.delete:17 of
+msgid "Bots can delete incoming messages in private chats."
+msgstr ""
+
+#: masogram.types.message.Message.delete:19 of
+msgid ""
+"Bots granted *can_post_messages* permissions can delete outgoing messages"
+" in channels."
+msgstr ""
+
+#: masogram.types.message.Message.delete:21 of
+msgid ""
+"If the bot is an administrator of a group, it can delete any message "
+"there."
+msgstr ""
+
+#: masogram.types.message.Message.delete:23 of
+msgid ""
+"If the bot has *can_delete_messages* permission in a supergroup or a "
+"channel, it can delete any message there."
+msgstr ""
+
+#: masogram.types.message.Message.delete:25 of
+msgid "Returns :code:`True` on success."
+msgstr ""
+
+#: masogram.types.message.Message.delete:27 of
+msgid "Source: https://core.telegram.org/bots/api#deletemessage"
+msgstr ""
+
+#: masogram.types.message.Message.delete:29 of
+msgid "instance of method :class:`masogram.methods.delete_message.DeleteMessage`"
+msgstr ""
+
+#: masogram.types.message.Message.pin:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.pin_chat_message.PinChatMessage` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.pin:7 of
+msgid ""
+"Use this method to add a message to the list of pinned messages in a "
+"chat. If the chat is not a private chat, the bot must be an administrator"
+" in the chat for this to work and must have the 'can_pin_messages' "
+"administrator right in a supergroup or 'can_edit_messages' administrator "
+"right in a channel. Returns :code:`True` on success."
+msgstr ""
+
+#: masogram.types.message.Message.pin:9 of
+msgid "Source: https://core.telegram.org/bots/api#pinchatmessage"
+msgstr ""
+
+#: masogram.types.message.Message.pin:11 of
+msgid ""
+"Pass :code:`True` if it is not necessary to send a notification to all "
+"chat members about the new pinned message. Notifications are always "
+"disabled in channels and private chats."
+msgstr ""
+
+#: masogram.types.message.Message.pin:12 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.pin_chat_message.PinChatMessage`"
+msgstr ""
+
+#: masogram.types.message.Message.unpin:1 of
+msgid ""
+"Shortcut for method "
+":class:`masogram.methods.unpin_chat_message.UnpinChatMessage` will "
+"automatically fill method attributes:"
+msgstr ""
+
+#: masogram.types.message.Message.unpin:7 of
+msgid ""
+"Use this method to remove a message from the list of pinned messages in a"
+" chat. If the chat is not a private chat, the bot must be an "
+"administrator in the chat for this to work and must have the "
+"'can_pin_messages' administrator right in a supergroup or "
+"'can_edit_messages' administrator right in a channel. Returns "
+":code:`True` on success."
+msgstr ""
+
+#: masogram.types.message.Message.unpin:9 of
+msgid "Source: https://core.telegram.org/bots/api#unpinchatmessage"
+msgstr ""
+
+#: masogram.types.message.Message.unpin:11 of
+msgid ""
+"instance of method "
+":class:`masogram.methods.unpin_chat_message.UnpinChatMessage`"
+msgstr ""
+
+#: masogram.types.message.Message.get_url:1 of
+msgid ""
+"Returns message URL. Cannot be used in private (one-to-one) chats. If "
+"chat has a username, returns URL like https://t.me/username/message_id "
+"Otherwise (or if {force_private} flag is set), returns "
+"https://t.me/c/shifted_chat_id/message_id"
+msgstr ""
+
+#: masogram.types.message.Message.get_url:5 of
+msgid "if set, a private URL is returned even for a public chat"
+msgstr ""
+
+#: masogram.types.message.Message.get_url:6 of
+msgid "string with full message URL"
+msgstr ""
+
+#~ msgid "Reply with animation"
+#~ msgstr ""
+
+#~ msgid "Answer with animation"
+#~ msgstr ""
+
+#~ msgid "Reply with audio"
+#~ msgstr ""
+
+#~ msgid "Answer with audio"
+#~ msgstr ""
+
+#~ msgid "Reply with contact"
+#~ msgstr ""
+
+#~ msgid "Answer with contact"
+#~ msgstr ""
+
+#~ msgid "Reply with document"
+#~ msgstr ""
+
+#~ msgid "Answer with document"
+#~ msgstr ""
+
+#~ msgid "Reply with game"
+#~ msgstr ""
+
+#~ msgid "Answer with game"
+#~ msgstr ""
+
+#~ msgid "Reply with invoice"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A JSON-serialized object for an "
+#~ "`inline keyboard <https://core.telegram.org/bots"
+#~ "#inline-keyboards-and-on-the-fly-"
+#~ "updating>`_. If empty, one 'Pay "
+#~ ":code:`total price`' button will be "
+#~ "shown. If not empty, the first "
+#~ "button must be a Pay button."
+#~ msgstr ""
+
+#~ msgid "On success, the sent Message is returned."
+#~ msgstr ""
+
+#~ msgid "Answer with invoice"
+#~ msgstr ""
+
+#~ msgid "Reply with location"
+#~ msgstr ""
+
+#~ msgid "Answer with location"
+#~ msgstr ""
+
+#~ msgid "Reply with media group"
+#~ msgstr ""
+
+#~ msgid "Answer with media group"
+#~ msgstr ""
+
+#~ msgid "Reply with text message"
+#~ msgstr ""
+
+#~ msgid "Answer with text message"
+#~ msgstr ""
+
+#~ msgid "Reply with photo"
+#~ msgstr ""
+
+#~ msgid "Answer with photo"
+#~ msgstr ""
+
+#~ msgid "Reply with poll"
+#~ msgstr ""
+
+#~ msgid "Answer with poll"
+#~ msgstr ""
+
+#~ msgid ":param explanation:"
+#~ msgstr ""
+
+#~ msgid "param explanation"
+#~ msgstr ""
+
+#~ msgid "Reply with dice"
+#~ msgstr ""
+
+#~ msgid "Answer with dice"
+#~ msgstr ""
+
+#~ msgid "Reply with sticker"
+#~ msgstr ""
+
+#~ msgid "Answer with sticker"
+#~ msgstr ""
+
+#~ msgid "Reply with venue"
+#~ msgstr ""
+
+#~ msgid "Answer with venue"
+#~ msgstr ""
+
+#~ msgid "Reply with video"
+#~ msgstr ""
+
+#~ msgid "Answer with video"
+#~ msgstr ""
+
+#~ msgid "Reply wit video note"
+#~ msgstr ""
+
+#~ msgid "Answer wit video note"
+#~ msgstr ""
+
+#~ msgid "Reply with voice"
+#~ msgstr ""
+
+#~ msgid "Answer with voice"
+#~ msgstr ""
+
+#~ msgid "Copy message"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Sticker to send. Pass a file_id as"
+#~ " String to send a file that "
+#~ "exists on the Telegram servers "
+#~ "(recommended), pass an HTTP URL as "
+#~ "a String for Telegram to get a "
+#~ ".WEBP file from the Internet, or "
+#~ "upload a new one using multipart"
+#~ "/form-data. :ref:`More information on "
+#~ "Sending Files » <sending-files>`"
+#~ msgstr ""

@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, masogram Team
+# This file is distributed under the same license as the masogram package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  masogram\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-02 22:41+0200\n"
+"PO-Revision-Date: 2022-10-20 22:00+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../dispatcher/finite_state_machine/storages.rst:3
+msgid "Storages"
+msgstr "Сховища"
+
+#: ../../dispatcher/finite_state_machine/storages.rst:6
+msgid "Storages out of the box"
+msgstr "Вбудоване сховище"
+
+#: ../../dispatcher/finite_state_machine/storages.rst:9
+msgid "MemoryStorage"
+msgstr "MemoryStorage"
+
+#: masogram.fsm.storage.memory.MemoryStorage:1 of
+msgid ""
+"Default FSM storage, stores all data in :class:`dict` and loss everything"
+" on shutdown"
+msgstr ""
+"Сховище кінцевого автомату за замовчуванням, зберігає всі дані в "
+":class:`dict` і забуває все під час вимкнення"
+
+#: masogram.fsm.storage.memory.MemoryStorage:5 of
+msgid ""
+"Is not recommended using in production in due to you will lose all data "
+"when your bot restarts"
+msgstr ""
+"Не рекомендується використовувати на production, оскільки, Ви втратите "
+"всі дані під час перезапуску бота"
+
+#: ../../dispatcher/finite_state_machine/storages.rst:16
+msgid "RedisStorage"
+msgstr "RedisStorage"
+
+#: masogram.fsm.storage.redis.RedisStorage:1 of
+msgid ""
+"Redis storage required :code:`redis` package installed (:code:`pip "
+"install redis`)"
+msgstr ""
+
+#: masogram.fsm.storage.base.BaseStorage.get_data
+#: masogram.fsm.storage.base.BaseStorage.get_state
+#: masogram.fsm.storage.base.BaseStorage.set_data
+#: masogram.fsm.storage.base.BaseStorage.set_state
+#: masogram.fsm.storage.base.BaseStorage.update_data
+#: masogram.fsm.storage.redis.DefaultKeyBuilder.build
+#: masogram.fsm.storage.redis.KeyBuilder.build
+#: masogram.fsm.storage.redis.RedisStorage.__init__
+#: masogram.fsm.storage.redis.RedisStorage.from_url of
+msgid "Parameters"
+msgstr "Параметри"
+
+#: masogram.fsm.storage.redis.RedisStorage.__init__:1 of
+#, fuzzy
+msgid "Instance of Redis connection"
+msgstr "екземпляр поточного бота"
+
+#: masogram.fsm.storage.redis.RedisStorage.__init__:2 of
+msgid "builder that helps to convert contextual key to string"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.__init__:3 of
+msgid "TTL for state records"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.__init__:4 of
+msgid "TTL for data records"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.__init__:5 of
+msgid "Custom arguments for Redis lock"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.from_url:1 of
+msgid ""
+"Create an instance of :class:`RedisStorage` with specifying the "
+"connection string"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.from_url:3 of
+msgid "for example :code:`redis://user:password@host:port/db`"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.from_url:4 of
+msgid "see :code:`redis` docs"
+msgstr ""
+
+#: masogram.fsm.storage.redis.RedisStorage.from_url:5 of
+msgid "arguments to be passed to :class:`RedisStorage`"
+msgstr ""
+
+#: masogram.fsm.storage.base.BaseStorage.get_data
+#: masogram.fsm.storage.base.BaseStorage.get_state
+#: masogram.fsm.storage.base.BaseStorage.update_data
+#: masogram.fsm.storage.redis.DefaultKeyBuilder.build
+#: masogram.fsm.storage.redis.KeyBuilder.build
+#: masogram.fsm.storage.redis.RedisStorage.from_url of
+msgid "Returns"
+msgstr "Повертає"
+
+#: masogram.fsm.storage.redis.RedisStorage.from_url:6 of
+msgid "an instance of :class:`RedisStorage`"
+msgstr "екземпляр класу :class:`RedisStorage`"
+
+#: ../../dispatcher/finite_state_machine/storages.rst:22
+msgid "Keys inside storage can be customized via key builders:"
+msgstr ""
+"Ключі всередині сховища можна налаштувати за допомогою конструкторів "
+"ключів:"
+
+#: masogram.fsm.storage.redis.KeyBuilder:1 of
+msgid "Base class for Redis key builder"
+msgstr ""
+
+#: masogram.fsm.storage.redis.DefaultKeyBuilder.build:1
+#: masogram.fsm.storage.redis.KeyBuilder.build:1 of
+msgid "This method should be implemented in subclasses"
+msgstr ""
+
+#: masogram.fsm.storage.redis.DefaultKeyBuilder.build:3
+#: masogram.fsm.storage.redis.KeyBuilder.build:3 of
+msgid "contextual key"
+msgstr ""
+
+#: masogram.fsm.storage.redis.DefaultKeyBuilder.build:4
+#: masogram.fsm.storage.redis.KeyBuilder.build:4 of
+msgid "part of the record"
+msgstr ""
+
+#: masogram.fsm.storage.redis.DefaultKeyBuilder.build:5
+#: masogram.fsm.storage.redis.KeyBuilder.build:5 of
+msgid "key to be used in Redis queries"
+msgstr ""
+
+#: masogram.fsm.storage.redis.DefaultKeyBuilder:1 of
+msgid "Simple Redis key builder with default prefix."
+msgstr ""
+
+#: masogram.fsm.storage.redis.DefaultKeyBuilder:3 of
+msgid ""
+"Generates a colon-joined string with prefix, chat_id, user_id, optional "
+"bot_id and optional destiny."
+msgstr ""
+
+#: ../../dispatcher/finite_state_machine/storages.rst:34
+msgid "Writing own storages"
+msgstr "Написання власних сховищ"
+
+#: masogram.fsm.storage.base.BaseStorage:1 of
+msgid "Base class for all FSM storages"
+msgstr "Основний клас для всіх сховищ кінцевого автомату"
+
+#: masogram.fsm.storage.base.BaseStorage.set_state:1 of
+msgid "Set state for specified key"
+msgstr "Установити стан для вказаного ключа"
+
+#: masogram.fsm.storage.base.BaseStorage.get_data:3
+#: masogram.fsm.storage.base.BaseStorage.get_state:3
+#: masogram.fsm.storage.base.BaseStorage.set_data:3
+#: masogram.fsm.storage.base.BaseStorage.set_state:3
+#: masogram.fsm.storage.base.BaseStorage.update_data:3 of
+msgid "instance of the current bot"
+msgstr "екземпляр поточного бота"
+
+#: masogram.fsm.storage.base.BaseStorage.get_data:4
+#: masogram.fsm.storage.base.BaseStorage.get_state:4
+#: masogram.fsm.storage.base.BaseStorage.set_data:4
+#: masogram.fsm.storage.base.BaseStorage.set_state:4
+#: masogram.fsm.storage.base.BaseStorage.update_data:4 of
+msgid "storage key"
+msgstr "ключ сховища"
+
+#: masogram.fsm.storage.base.BaseStorage.set_state:5 of
+msgid "new state"
+msgstr "новий стан"
+
+#: masogram.fsm.storage.base.BaseStorage.get_state:1 of
+msgid "Get key state"
+msgstr "Отримання стану ключа"
+
+#: masogram.fsm.storage.base.BaseStorage.get_state:5 of
+msgid "current state"
+msgstr "поточний стан"
+
+#: masogram.fsm.storage.base.BaseStorage.set_data:1 of
+msgid "Write data (replace)"
+msgstr "Запис даних (заміна)"
+
+#: masogram.fsm.storage.base.BaseStorage.set_data:5
+#: masogram.fsm.storage.base.BaseStorage.update_data:6 of
+msgid "new data"
+msgstr "нові дані"
+
+#: masogram.fsm.storage.base.BaseStorage.get_data:1 of
+msgid "Get current data for key"
+msgstr "Отримання поточних даних для ключа"
+
+#: masogram.fsm.storage.base.BaseStorage.get_data:5 of
+msgid "current data"
+msgstr "нинішні дані"
+
+#: masogram.fsm.storage.base.BaseStorage.update_data:1 of
+msgid "Update date in the storage for key (like dict.update)"
+msgstr "Дата оновлення в сховищі для ключа (наприклад, dict.update)"
+
+#: masogram.fsm.storage.base.BaseStorage.update_data:5 of
+msgid "partial data"
+msgstr "неповні дані"
+
+#: masogram.fsm.storage.base.BaseStorage.close:1 of
+msgid "Close storage (database connection, file or etc.)"
+msgstr "Закриття сховища (підключення до бази даних, файлу тощо)"

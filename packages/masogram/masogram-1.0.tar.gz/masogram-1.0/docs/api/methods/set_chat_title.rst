@@ -1,0 +1,50 @@
+############
+setChatTitle
+############
+
+Returns: :obj:`bool`
+
+.. automodule:: masogram.methods.set_chat_title
+    :members:
+    :member-order: bysource
+    :undoc-members: True
+
+
+Usage
+=====
+
+As bot method
+-------------
+
+.. code-block::
+
+    result: bool = await bot.set_chat_title(...)
+
+
+Method as object
+----------------
+
+Imports:
+
+- :code:`from masogram.methods.set_chat_title import SetChatTitle`
+- alias: :code:`from masogram.methods import SetChatTitle`
+
+With specific bot
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    result: bool = await bot(SetChatTitle(...))
+
+As reply into Webhook in handler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    return SetChatTitle(...)
+
+
+As shortcut from received object
+--------------------------------
+
+- :meth:`masogram.types.chat.Chat.set_title`

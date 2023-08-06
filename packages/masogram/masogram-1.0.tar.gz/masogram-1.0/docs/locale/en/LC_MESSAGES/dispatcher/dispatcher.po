@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, masogram Team
+# This file is distributed under the same license as the masogram package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: masogram \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-11 01:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../dispatcher/dispatcher.rst:3
+msgid "Dispatcher"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:5
+msgid ""
+"Dispatcher is root :obj:`Router` and in code Dispatcher can be used "
+"directly for routing updates or attach another routers into dispatcher."
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:7
+msgid ""
+"Here is only listed base information about Dispatcher. All about writing "
+"handlers, filters and etc. you can found in next pages:"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:9
+msgid "`Router <router.html>`__"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:10
+msgid "`Observer <observer.html>`__"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher:1
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:1 of
+msgid "Root router"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_raw_update
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_update
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling of
+msgid "Parameters"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:3 of
+msgid "Storage for FSM"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:4 of
+msgid "FSM strategy"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:5 of
+msgid "Events isolation"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:6 of
+msgid ""
+"Disable FSM, note that if you disable FSM then you should not use storage"
+" and events isolation"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:8 of
+msgid "Other arguments, will be passed as keyword arguments to handlers"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_raw_update:1 of
+msgid ""
+"Main entry point for incoming updates with automatic Dict->Update "
+"serializer"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_update:1 of
+msgid ""
+"Main entry point for incoming updates Response of this method can be used"
+" as Webhook response"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:1 of
+msgid "Run many bots with polling"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:3
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:3 of
+msgid "Bot instances (one or mre)"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:4
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:4 of
+msgid "Long-polling wait time"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:5
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:5 of
+msgid "Run task for each event and no wait result"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:6
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:6 of
+msgid "backoff-retry config"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:7
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:7 of
+msgid "List of the update types you want your bot to receive"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:8
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:8 of
+msgid "handle signals (SIGINT/SIGTERM)"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:9
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:9 of
+msgid "close bot sessions on shutdown"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:10
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:10 of
+msgid "contextual data"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling of
+msgid "Returns"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:1 of
+msgid "Polling runner"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:18
+msgid "Simple usage"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:20 ../../dispatcher/dispatcher.rst:33
+msgid "Example:"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:31
+msgid "Including routers"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:43
+msgid "Handling updates"
+msgstr ""
+
+#: ../../dispatcher/dispatcher.rst:45
+msgid ""
+"All updates can be propagated to the dispatcher by "
+":obj:`Dispatcher.feed_update(bot=..., update=...)` method:"
+msgstr ""
+
+#~ msgid "Bot instances"
+#~ msgstr ""
+
+#~ msgid "Poling timeout"
+#~ msgstr ""

@@ -1,0 +1,179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, masogram Team
+# This file is distributed under the same license as the masogram package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  masogram\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-11 01:52+0200\n"
+"PO-Revision-Date: 2022-12-10 19:44+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../../dispatcher/dispatcher.rst:3
+msgid "Dispatcher"
+msgstr "Диспетчер"
+
+#: ../../dispatcher/dispatcher.rst:5
+msgid ""
+"Dispatcher is root :obj:`Router` and in code Dispatcher can be used "
+"directly for routing updates or attach another routers into dispatcher."
+msgstr ""
+"Диспетчер - це кореневий маршрутизатор, і в коді диспетчер може "
+"використовуватися безпосередньо для маршрутизації подій або підключення "
+"інших маршрутизаторів до диспетчера."
+
+#: ../../dispatcher/dispatcher.rst:7
+msgid ""
+"Here is only listed base information about Dispatcher. All about writing "
+"handlers, filters and etc. you can found in next pages:"
+msgstr ""
+"Тут наведена лише базова інформація про диспетчер. Усе про написання "
+"обробників, фільтрів і т.п. ви можете знайти на наступних сторінках:"
+
+#: ../../dispatcher/dispatcher.rst:9
+msgid "`Router <router.html>`__"
+msgstr "`Router <router.html>`__"
+
+#: ../../dispatcher/dispatcher.rst:10
+msgid "`Observer <observer.html>`__"
+msgstr "`Observer <observer.html>`__"
+
+#: masogram.dispatcher.dispatcher.Dispatcher:1
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:1 of
+msgid "Root router"
+msgstr "Кореневий маршрутизатор"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_raw_update
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_update
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling of
+msgid "Parameters"
+msgstr "Параметри"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:3 of
+msgid "Storage for FSM"
+msgstr "Сховище для кінцевого автомату (FSM)"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:4 of
+msgid "FSM strategy"
+msgstr "Стратегія кінцевого апарату"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:5 of
+msgid "Events isolation"
+msgstr "Ізоляція подій"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:6 of
+msgid ""
+"Disable FSM, note that if you disable FSM then you should not use storage"
+" and events isolation"
+msgstr ""
+"Відключення кінцевого апарату, зауважте що при вимкненому кінцевому "
+"апаратові вам не слід використовувати сховище (кінцевого апарату) та "
+"ізоляцію подій"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.__init__:8 of
+msgid "Other arguments, will be passed as keyword arguments to handlers"
+msgstr "Інші аргументи будуть передані обробникам як іменовані аргументи"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_raw_update:1 of
+msgid ""
+"Main entry point for incoming updates with automatic Dict->Update "
+"serializer"
+msgstr "Основна точка входу для подій"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.feed_update:1 of
+msgid ""
+"Main entry point for incoming updates Response of this method can be used"
+" as Webhook response"
+msgstr ""
+"Основна точка входу для подій. Відповідь цього метода може бути "
+"використана для відповіді у Webhook"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:1 of
+msgid "Run many bots with polling"
+msgstr "Запуск кількох ботів з опитуванням"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:3
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:3 of
+#, fuzzy
+msgid "Bot instances (one or mre)"
+msgstr "Екземпляри ботів"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:4
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:4 of
+msgid "Long-polling wait time"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:5
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:5 of
+msgid "Run task for each event and no wait result"
+msgstr "Запуск обробки без очікування результату"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:6
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:6 of
+msgid "backoff-retry config"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:7
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:7 of
+msgid "List of the update types you want your bot to receive"
+msgstr "Список типів подій, які має опрацьовувати ваш бот"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:8
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:8 of
+msgid "handle signals (SIGINT/SIGTERM)"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:9
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:9 of
+msgid "close bot sessions on shutdown"
+msgstr ""
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling:10
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:10 of
+msgid "contextual data"
+msgstr "контекстні дані"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.run_polling
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling of
+msgid "Returns"
+msgstr "Повертає"
+
+#: masogram.dispatcher.dispatcher.Dispatcher.start_polling:1 of
+msgid "Polling runner"
+msgstr "Запуск кількох ботів з опитуванням (асинхронно)"
+
+#: ../../dispatcher/dispatcher.rst:18
+msgid "Simple usage"
+msgstr "Просте застосування"
+
+#: ../../dispatcher/dispatcher.rst:20 ../../dispatcher/dispatcher.rst:33
+msgid "Example:"
+msgstr "Наприклад:"
+
+#: ../../dispatcher/dispatcher.rst:31
+msgid "Including routers"
+msgstr "Включаючи маршрутизатори"
+
+#: ../../dispatcher/dispatcher.rst:43
+msgid "Handling updates"
+msgstr "Обробка подій"
+
+#: ../../dispatcher/dispatcher.rst:45
+msgid ""
+"All updates can be propagated to the dispatcher by "
+":obj:`Dispatcher.feed_update(bot=..., update=...)` method:"
+msgstr ""
+"Усі оновлення можна передати диспетчеру через "
+":obj:`Dispatcher.feed_update(bot=..., update=...)` method:"
+
+#~ msgid "Poling timeout"
+#~ msgstr "Час очікування на відповідь"
