@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+
+[project]
+name = "tensortrax"
+authors = [
+  {email = "a.dutzler@gmail.com"},
+  {name = "Andreas Dutzler"}
+]
+description = "Math on (Hyper-Dual) Tensors with Trailing Axes"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = [
+  "python", 
+  "constitution",
+  "ad",
+  "automatic-differentiation",
+  "scientific-computing",
+  "tensor",
+  "calculus-of-variations",
+  "hyper-dual-numbers",
+  "hyper-dual-tensors",
+  "trailing-axes",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Utilities"
+]
+dynamic = ["version"]
+requires-python = ">=3.7"
+dependencies = ["numpy", "joblib"]
+
+[tool.setuptools.dynamic]
+version = {attr = "tensortrax.__about__.__version__"}
+
+[project.urls]
+Code = "https://github.com/adtzlr/tensortrax"
+Issues = "https://github.com/adtzlr/tensortrax/issues"
