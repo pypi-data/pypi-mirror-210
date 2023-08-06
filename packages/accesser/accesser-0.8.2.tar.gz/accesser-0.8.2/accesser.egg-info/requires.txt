@@ -1,0 +1,9 @@
+pyopenssl
+tld
+dnspython<2.4
+
+[:python_version < "3.11"]
+tomli>=1.1.0
+
+[doh]
+httpx[http2]
