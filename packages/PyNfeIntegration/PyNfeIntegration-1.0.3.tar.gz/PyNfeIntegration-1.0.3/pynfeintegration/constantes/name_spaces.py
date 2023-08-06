@@ -1,0 +1,6 @@
+NFE_NAMESPACE = 'http://www.portalfiscal.inf.br/nfe'
+SOAP_NAMESPACE = 'http://www.w3.org/2003/05/soap-envelope'
+XSI_NAMESPACE = 'http://www.w3.org/2001/XMLSchema-instance'
+XSD_NAMESPACE = 'http://www.w3.org/2001/XMLSchema'
+METHOD_NAMESPACE = 'http://www.portalfiscal.inf.br/nfe/wsdl/'
+NFED_NAMESPACE = 'http://www.portalfiscal.inf.br/nfe/wsdl/NfeDownloadNF'
