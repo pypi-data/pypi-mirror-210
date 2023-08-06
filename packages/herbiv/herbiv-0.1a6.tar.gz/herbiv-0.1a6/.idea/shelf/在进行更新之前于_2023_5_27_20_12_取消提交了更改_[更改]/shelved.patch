@@ -1,0 +1,2024 @@
+Index: src/herbiv/compute.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/herbiv/compute.py b/herbiv/compute.py
+rename from src/herbiv/compute.py
+rename to herbiv/compute.py
+--- a/src/herbiv/compute.py	(revision 8566cacd6b7858e0299de4bade4ef8616a615af9)
++++ b/herbiv/compute.py	(date 1684823415446)
+@@ -2,6 +2,7 @@
+ import pandas as pd
+ from math import ceil
+ import random
++from tqdm import tqdm
+ 
+ 
+ def score(tcm,
+@@ -86,13 +87,12 @@
+     if random_state is not None:
+         random.seed(random_state)
+ 
+-    for i in range(num):
++    for _ in tqdm(range(num)):
+         random_indices = random.sample(range(len(weights)), n)
+         weights = [weights[i] for i in random_indices]
+         names = [names[i] for i in random_indices]
+         values = [values[i] for i in random_indices]
+-        if i%100 == 0:
+-            print(i)
++
+         # 不能再得出之前的解
+         dp, items = knapsack(weights, n, items_ls, names, values, c)
+         dps.append(dp)
+@@ -189,5 +189,4 @@
+                                               formula_info,
+                                               formula_tcm_links_info)
+     tcms = component(tcm_info.loc[tcm_info['Importance Score'] != 1.0], random_state=138192, c=2)
+-    formulas = component(formula_info.loc[formula_info['Importance Score'] != 1.0], random_state=138192, c=5)
+-    print()
+\ No newline at end of file
++    formulas = component(formula_info.loc[formula_info['Importance Score'] != 1.0], random_state=138192, c=5)
+\ No newline at end of file
+Index: src/herbiv/analysis.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/herbiv/analysis.py b/herbiv/analysis.py
+rename from src/herbiv/analysis.py
+rename to herbiv/analysis.py
+--- a/src/herbiv/analysis.py	(revision 8566cacd6b7858e0299de4bade4ef8616a615af9)
++++ b/herbiv/analysis.py	(date 1685188543332)
+@@ -21,7 +21,7 @@
+     :return: chem_protein_links: pd.DataFrame类型，化合物（中药成分）-蛋白质（靶点）连接信息
+     :return: proteins: pd.DataFrame类型，蛋白质（靶点）信息
+     """
+-    tcm = get.get_tcm('cn_name', tcm)
++    tcm = get.get_tcm('HVMID', tcm)
+     tcm_chem_links = get.get_tcm_chem_links('HVMID', tcm['HVMID'])
+     chem = get.get_chemicals('HVCID', tcm_chem_links['HVCID'])
+     chem_protein_links = get.get_chem_protein_links('HVCID', chem['HVCID'], score)
+Index: demo.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n \"cells\": [\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 1,\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"from herbiv import analysis\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"markdown\",\r\n   \"source\": [\r\n    \"# 经典的正向网络药理学分析\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 2,\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"tcm, tcm_chem_links, chem, chem_protein_links, proteins = analysis.from_tcm(['柴胡', '黄芩'])\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:24.189428Z\",\r\n     \"end_time\": \"2023-04-19T17:43:27.821492Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 3,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVMID cn_name pinyin_name                   en_name          latin_name  \\\\\\n0  HVM0367      柴胡     CHAI HU  root of Chinese Thorowax      Radix Bupleuri   \\n1  HVM1695      黄芩   HUANG QIN   root of Baikal skullcap  Radix Scutellariae   \\n\\n                    Properties  \\\\\\n0  Minor cold; Pungent; Bitter   \\n1                 Cold; Bitter   \\n\\n                                           Meridians UsePart  \\\\\\n0                                 Liver; Gallbladder    root   \\n1  Lung; Large Intestine; Stomach; Small Intestin...    root   \\n\\n                                            Function  \\\\\\n0  To relieve fever, to soothe the liver, and to ...   \\n1  To remove damp-heat, to quench fire and counte...   \\n\\n                                          Indication Toxicity  \\\\\\n0  Common cold, influenza, malaria, acute pancrea...      NaN   \\n1  Chest oppression with retching, diarrhea, jaun...      NaN   \\n\\n                             Clinical_manifestations  \\\\\\n0  1. Increasing the hypotic effect of barbital i...   \\n1  1. Possessing a broad-spectrum bacteriostatic ...   \\n\\n                         Therapeutic_en_class Therapeutic_cn_class  \\\\\\n0                   Pungent Cool Diaphoretics                辛凉解表药   \\n1  Heat-Clearing And Dampnessdrying Medicinal                清热燥湿药   \\n\\n      HERB_id   TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \\n0  HERB000638  SMHB00058     3396.0       58.0      80.0               1.0  \\n1  HERB002563  SMHB00188     6700.0      188.0     371.0               1.0  \",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVMID</th>\\n      <th>cn_name</th>\\n      <th>pinyin_name</th>\\n      <th>en_name</th>\\n      <th>latin_name</th>\\n      <th>Properties</th>\\n      <th>Meridians</th>\\n      <th>UsePart</th>\\n      <th>Function</th>\\n      <th>Indication</th>\\n      <th>Toxicity</th>\\n      <th>Clinical_manifestations</th>\\n      <th>Therapeutic_en_class</th>\\n      <th>Therapeutic_cn_class</th>\\n      <th>HERB_id</th>\\n      <th>TCMID_id</th>\\n      <th>TCM_ID_id</th>\\n      <th>SymMap_id</th>\\n      <th>TCMSP_id</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVM0367</td>\\n      <td>柴胡</td>\\n      <td>CHAI HU</td>\\n      <td>root of Chinese Thorowax</td>\\n      <td>Radix Bupleuri</td>\\n      <td>Minor cold; Pungent; Bitter</td>\\n      <td>Liver; Gallbladder</td>\\n      <td>root</td>\\n      <td>To relieve fever, to soothe the liver, and to ...</td>\\n      <td>Common cold, influenza, malaria, acute pancrea...</td>\\n      <td>NaN</td>\\n      <td>1. Increasing the hypotic effect of barbital i...</td>\\n      <td>Pungent Cool Diaphoretics</td>\\n      <td>辛凉解表药</td>\\n      <td>HERB000638</td>\\n      <td>SMHB00058</td>\\n      <td>3396.0</td>\\n      <td>58.0</td>\\n      <td>80.0</td>\\n      <td>1.0</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVM1695</td>\\n      <td>黄芩</td>\\n      <td>HUANG QIN</td>\\n      <td>root of Baikal skullcap</td>\\n      <td>Radix Scutellariae</td>\\n      <td>Cold; Bitter</td>\\n      <td>Lung; Large Intestine; Stomach; Small Intestin...</td>\\n      <td>root</td>\\n      <td>To remove damp-heat, to quench fire and counte...</td>\\n      <td>Chest oppression with retching, diarrhea, jaun...</td>\\n      <td>NaN</td>\\n      <td>1. Possessing a broad-spectrum bacteriostatic ...</td>\\n      <td>Heat-Clearing And Dampnessdrying Medicinal</td>\\n      <td>清热燥湿药</td>\\n      <td>HERB002563</td>\\n      <td>SMHB00188</td>\\n      <td>6700.0</td>\\n      <td>188.0</td>\\n      <td>371.0</td>\\n      <td>1.0</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 3,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"tcm\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:27.828578Z\",\r\n     \"end_time\": \"2023-04-19T17:43:27.874488Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 4,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVMID    HVCID\\n0  HVM0367  HVC0284\\n1  HVM0367  HVC0396\\n2  HVM0367  HVC0573\\n3  HVM0367  HVC0177\\n4  HVM0367  HVC0188\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVMID</th>\\n      <th>HVCID</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVM0367</td>\\n      <td>HVC0284</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVM0367</td>\\n      <td>HVC0396</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVM0367</td>\\n      <td>HVC0573</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVM0367</td>\\n      <td>HVC0177</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVM0367</td>\\n      <td>HVC0188</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 4,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"tcm_chem_links.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:27.861519Z\",\r\n     \"end_time\": \"2023-04-19T17:43:27.874488Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 5,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVCID         Name                          SMILES      CAS_id  \\\\\\n0  HVC0036      glucose        C(C1C(C(C(C(O1)O)O)O)O)O         NaN   \\n1  HVC0052  anti-biotin  C1C2C(C(S1)CCCCC(=O)O)NC(=O)N2  22879-79-4   \\n2  HVC0071     coumarin        C1=CC=C2C(=C1)C=CC(=O)O2         NaN   \\n3  HVC0081        octyl                        CCCCCCCC    111-65-9   \\n4  HVC0087    octanoate                   CCCCCCCC(=O)O  68937-74-6   \\n\\n   PubChem_id DrugBank_id     STITCH_id     HERB_id  Importance Score  \\n0         NaN         NaN  CIDm00000206  HBIN001003          1.000000  \\n1         NaN         NaN  CIDm00000253  HBIN011003          1.000000  \\n2         NaN         NaN  CIDm00000323  HBIN021605          1.000000  \\n3       356.0         NaN  CIDm00000356  HBIN037187          0.998194  \\n4       379.0         NaN  CIDm00000379  HBIN019688          1.000000  \",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVCID</th>\\n      <th>Name</th>\\n      <th>SMILES</th>\\n      <th>CAS_id</th>\\n      <th>PubChem_id</th>\\n      <th>DrugBank_id</th>\\n      <th>STITCH_id</th>\\n      <th>HERB_id</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVC0036</td>\\n      <td>glucose</td>\\n      <td>C(C1C(C(C(C(O1)O)O)O)O)O</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>CIDm00000206</td>\\n      <td>HBIN001003</td>\\n      <td>1.000000</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVC0052</td>\\n      <td>anti-biotin</td>\\n      <td>C1C2C(C(S1)CCCCC(=O)O)NC(=O)N2</td>\\n      <td>22879-79-4</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>CIDm00000253</td>\\n      <td>HBIN011003</td>\\n      <td>1.000000</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVC0071</td>\\n      <td>coumarin</td>\\n      <td>C1=CC=C2C(=C1)C=CC(=O)O2</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>CIDm00000323</td>\\n      <td>HBIN021605</td>\\n      <td>1.000000</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVC0081</td>\\n      <td>octyl</td>\\n      <td>CCCCCCCC</td>\\n      <td>111-65-9</td>\\n      <td>356.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000356</td>\\n      <td>HBIN037187</td>\\n      <td>0.998194</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVC0087</td>\\n      <td>octanoate</td>\\n      <td>CCCCCCCC(=O)O</td>\\n      <td>68937-74-6</td>\\n      <td>379.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000379</td>\\n      <td>HBIN019688</td>\\n      <td>1.000000</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 5,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"chem.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:27.874488Z\",\r\n     \"end_time\": \"2023-04-19T17:43:27.950487Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 6,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVCID       Ensembl_ID  Combined_score\\n0  HVC5547  ENSP00000297494           0.976\\n1  HVC5512  ENSP00000260630           0.933\\n2  HVC5512  ENSP00000369050           0.912\\n3  HVC5493  ENSP00000260433           0.931\\n4  HVC5480  ENSP00000274278           0.906\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVCID</th>\\n      <th>Ensembl_ID</th>\\n      <th>Combined_score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVC5547</td>\\n      <td>ENSP00000297494</td>\\n      <td>0.976</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVC5512</td>\\n      <td>ENSP00000260630</td>\\n      <td>0.933</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVC5512</td>\\n      <td>ENSP00000369050</td>\\n      <td>0.912</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVC5493</td>\\n      <td>ENSP00000260433</td>\\n      <td>0.931</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVC5480</td>\\n      <td>ENSP00000274278</td>\\n      <td>0.906</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 6,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"chem_protein_links.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:27.902490Z\",\r\n     \"end_time\": \"2023-04-19T17:43:28.074484Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 7,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"        Ensembl_ID                                       protein_name  \\\\\\n0  ENSP00000014930                    Heme-binding protein 1 (p22HBP)   \\n1  ENSP00000043402  Reticulon-4 receptor (Nogo receptor) (NgR) (No...   \\n2  ENSP00000044462  Proteasome subunit alpha type-4 (Macropain sub...   \\n3  ENSP00000075120  Solute carrier family 2, facilitated glucose t...   \\n4  ENSP00000078429  Guanine nucleotide-binding protein subunit alp...   \\n\\n                   gene_name  \\n0                  HEBP1 HBP  \\n1  RTN4R NOGOR UNQ330/PRO526  \\n2             PSMA4 HC9 PSC9  \\n3               SLC2A3 GLUT3  \\n4                 GNA11 GA11  \",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>Ensembl_ID</th>\\n      <th>protein_name</th>\\n      <th>gene_name</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>ENSP00000014930</td>\\n      <td>Heme-binding protein 1 (p22HBP)</td>\\n      <td>HEBP1 HBP</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>ENSP00000043402</td>\\n      <td>Reticulon-4 receptor (Nogo receptor) (NgR) (No...</td>\\n      <td>RTN4R NOGOR UNQ330/PRO526</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>ENSP00000044462</td>\\n      <td>Proteasome subunit alpha type-4 (Macropain sub...</td>\\n      <td>PSMA4 HC9 PSC9</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>ENSP00000075120</td>\\n      <td>Solute carrier family 2, facilitated glucose t...</td>\\n      <td>SLC2A3 GLUT3</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>ENSP00000078429</td>\\n      <td>Guanine nucleotide-binding protein subunit alp...</td>\\n      <td>GNA11 GA11</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 7,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"proteins.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:27.920493Z\",\r\n     \"end_time\": \"2023-04-19T17:43:28.148487Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"markdown\",\r\n   \"source\": [\r\n    \"# 逆向网络药理学分析\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 2,\r\n   \"outputs\": [\r\n    {\r\n     \"name\": \"stdout\",\r\n     \"output_type\": \"stream\",\r\n     \"text\": [\r\n      \"0\\n\",\r\n      \"100\\n\",\r\n      \"200\\n\",\r\n      \"300\\n\",\r\n      \"400\\n\",\r\n      \"500\\n\",\r\n      \"600\\n\",\r\n      \"700\\n\",\r\n      \"800\\n\",\r\n      \"900\\n\",\r\n      \"0\\n\",\r\n      \"100\\n\",\r\n      \"200\\n\",\r\n      \"300\\n\",\r\n      \"400\\n\",\r\n      \"500\\n\",\r\n      \"600\\n\",\r\n      \"700\\n\",\r\n      \"800\\n\",\r\n      \"900\\n\"\r\n     ]\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"formula, tcm, tcm_chem_links, chem, chem_protein_links, proteins, tcms, formulas = analysis.from_proteins(['ENSP00000381588', 'ENSP00000252519'],\\n\",\r\n    \"                                                                                                 score=0,\\n\",\r\n    \"                                                                                                 random_state=138192)\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2023-05-20T09:52:58.906804Z\",\r\n     \"start_time\": \"2023-05-20T09:43:39.864247600Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 4,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"        HVPID     name                           Prescription Composition  \\\\\\n0     HVP3338    益气养元丸  黄耆10两，白术（麸炒）15两，升麻5两，柴胡5两，山药5两，党参（去芦）10两，当归10两...   \\n1     HVP0513    托里化毒汤                人参、黄耆、茯苓、金银花、甘草、当归、白术、牛蒡子、白芷、连翘、陈皮。   \\n2     HVP1780  加减补中益气汤  黄耆2钱（炒），人参4钱，白术3钱（土炒），当归1钱，白芍1钱（酒炒），陈皮7分，柴胡5分，...   \\n3     HVP0402    升阳益胃散  人参3钱，黄耆2钱，白术1钱，甘草（炙）7分，羌活7分，防风1钱，独活7分，柴胡1钱，升麻8...   \\n4     HVP5664    生阳益胃汤                                                NaN   \\n...       ...      ...                                                ...   \\n5879  HVP1081      火精散                                         硫黄4分，胡椒6分。   \\n5880  HVP1083    治疥内消散                                            硫黄1-2钱。   \\n5881  HVP6105    杀虫硫黄散                                                硫黄。   \\n5882  HVP0310      还阳散                                                硫黄。   \\n5883  HVP4643      黄蜡丸                                              硫黄1两。   \\n\\n     Instructions                                 Treatment Symptoms  \\\\\\n0             NaN  元气亏损，脾胃虚弱，身体疲倦，精神不振。[Deficiency of vitality, w...   \\n1             NaN  痘痈成脓。[Acne carbuncle into pus.(Machine transla...   \\n2             NaN                                      No Data.[无数据]   \\n3             NaN  中气亏败，脾湿壅遏，阳气不伸。体重肢节疼痛，口燥舌干，饮食无味，大便不调，小便短涩，不欲食，...   \\n4             NaN  1. Indicated for cases attributive to deficien...   \\n...           ...                                                ...   \\n5879          NaN  阴症心腹冷痛，不可忍者。[Yin disease, heart and abdomen co...   \\n5880          NaN                疥疮。[Scabies.(Machine translation.)]   \\n5881          NaN  疳虫蚀下部五脏。[Chancre insect erosion of the lower f...   \\n5882          NaN  伤寒阴毒，面色青，四肢逆冷，心躁腹痛。[Typhoid Yin poison, green ...   \\n5883          NaN  水泻不止，伤冷虚极。[The water is not only draining, but...   \\n\\n                           Source Document  Importance Score  \\n0                《北京市中药成方选集》。功效:培养元气，健脾和胃。              1.00  \\n1                              《痘疹传心录》卷十五。              1.00  \\n2     《鲁府禁方》卷二。功效:补元气，健脾胃、养心血，平肝火，清湿热，消膨胀。              1.00  \\n3                                  《杏苑》卷三。              1.00  \\n4                               pi wei lun              1.00  \\n...                                    ...               ...  \\n5879                             《鲁府禁方》卷二。              0.15  \\n5880                             《鲁府禁方》卷四。              0.15  \\n5881                             《胎产心法》卷下。              0.15  \\n5882                               《本事》卷九。              0.15  \\n5883                           《圣济总录》卷七十四。              0.15  \\n\\n[5884 rows x 7 columns]\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVPID</th>\\n      <th>name</th>\\n      <th>Prescription Composition</th>\\n      <th>Instructions</th>\\n      <th>Treatment Symptoms</th>\\n      <th>Source Document</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVP3338</td>\\n      <td>益气养元丸</td>\\n      <td>黄耆10两，白术（麸炒）15两，升麻5两，柴胡5两，山药5两，党参（去芦）10两，当归10两...</td>\\n      <td>NaN</td>\\n      <td>元气亏损，脾胃虚弱，身体疲倦，精神不振。[Deficiency of vitality, w...</td>\\n      <td>《北京市中药成方选集》。功效:培养元气，健脾和胃。</td>\\n      <td>1.00</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVP0513</td>\\n      <td>托里化毒汤</td>\\n      <td>人参、黄耆、茯苓、金银花、甘草、当归、白术、牛蒡子、白芷、连翘、陈皮。</td>\\n      <td>NaN</td>\\n      <td>痘痈成脓。[Acne carbuncle into pus.(Machine transla...</td>\\n      <td>《痘疹传心录》卷十五。</td>\\n      <td>1.00</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVP1780</td>\\n      <td>加减补中益气汤</td>\\n      <td>黄耆2钱（炒），人参4钱，白术3钱（土炒），当归1钱，白芍1钱（酒炒），陈皮7分，柴胡5分，...</td>\\n      <td>NaN</td>\\n      <td>No Data.[无数据]</td>\\n      <td>《鲁府禁方》卷二。功效:补元气，健脾胃、养心血，平肝火，清湿热，消膨胀。</td>\\n      <td>1.00</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVP0402</td>\\n      <td>升阳益胃散</td>\\n      <td>人参3钱，黄耆2钱，白术1钱，甘草（炙）7分，羌活7分，防风1钱，独活7分，柴胡1钱，升麻8...</td>\\n      <td>NaN</td>\\n      <td>中气亏败，脾湿壅遏，阳气不伸。体重肢节疼痛，口燥舌干，饮食无味，大便不调，小便短涩，不欲食，...</td>\\n      <td>《杏苑》卷三。</td>\\n      <td>1.00</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVP5664</td>\\n      <td>生阳益胃汤</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>1. Indicated for cases attributive to deficien...</td>\\n      <td>pi wei lun</td>\\n      <td>1.00</td>\\n    </tr>\\n    <tr>\\n      <th>...</th>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n    </tr>\\n    <tr>\\n      <th>5879</th>\\n      <td>HVP1081</td>\\n      <td>火精散</td>\\n      <td>硫黄4分，胡椒6分。</td>\\n      <td>NaN</td>\\n      <td>阴症心腹冷痛，不可忍者。[Yin disease, heart and abdomen co...</td>\\n      <td>《鲁府禁方》卷二。</td>\\n      <td>0.15</td>\\n    </tr>\\n    <tr>\\n      <th>5880</th>\\n      <td>HVP1083</td>\\n      <td>治疥内消散</td>\\n      <td>硫黄1-2钱。</td>\\n      <td>NaN</td>\\n      <td>疥疮。[Scabies.(Machine translation.)]</td>\\n      <td>《鲁府禁方》卷四。</td>\\n      <td>0.15</td>\\n    </tr>\\n    <tr>\\n      <th>5881</th>\\n      <td>HVP6105</td>\\n      <td>杀虫硫黄散</td>\\n      <td>硫黄。</td>\\n      <td>NaN</td>\\n      <td>疳虫蚀下部五脏。[Chancre insect erosion of the lower f...</td>\\n      <td>《胎产心法》卷下。</td>\\n      <td>0.15</td>\\n    </tr>\\n    <tr>\\n      <th>5882</th>\\n      <td>HVP0310</td>\\n      <td>还阳散</td>\\n      <td>硫黄。</td>\\n      <td>NaN</td>\\n      <td>伤寒阴毒，面色青，四肢逆冷，心躁腹痛。[Typhoid Yin poison, green ...</td>\\n      <td>《本事》卷九。</td>\\n      <td>0.15</td>\\n    </tr>\\n    <tr>\\n      <th>5883</th>\\n      <td>HVP4643</td>\\n      <td>黄蜡丸</td>\\n      <td>硫黄1两。</td>\\n      <td>NaN</td>\\n      <td>水泻不止，伤冷虚极。[The water is not only draining, but...</td>\\n      <td>《圣济总录》卷七十四。</td>\\n      <td>0.15</td>\\n    </tr>\\n  </tbody>\\n</table>\\n<p>5884 rows × 7 columns</p>\\n</div>\"\r\n     },\r\n     \"execution_count\": 4,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"formula\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2023-05-20T08:48:30.504587100Z\",\r\n     \"start_time\": \"2023-05-20T08:48:30.471856100Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 4,\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"formulas.to_csv('formulas.csv', index=False)\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2023-05-20T09:53:49.863895500Z\",\r\n     \"start_time\": \"2023-05-20T09:53:49.825433300Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 3,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"        HVMID cn_name       pinyin_name  \\\\\\n0     HVM2997     肉苁蓉     ROU CONG RONG   \\n1     HVM3101     沙苑子       SHA YUAN ZI   \\n2     HVM3090      沙棘            SHA JI   \\n3     HVM2859      荞麦          QIAO MAI   \\n4     HVM1308      广枣         GUANG ZAO   \\n...       ...     ...               ...   \\n1266  HVM1229      构树           GOU SHU   \\n1267  HVM2861    乔木刺桐   QIAO MU CI TONG   \\n1268  HVM0530     穿破石      CHUAN PO SHI   \\n1269  HVM1637     黄大豆      HUANG DA DOU   \\n1270  HVM2751    攀援鱼藤  PAN YUAN YU TENG   \\n\\n                                                en_name  \\\\\\n0                                Desertliving Cistanche   \\n1                               Flatstem Milkvetch Seed   \\n2                                 fruit of seabuckthorn   \\n3                                      Common Buckwheat   \\n4                      fruit of Axillary choerospondias   \\n...                                                 ...   \\n1266                               Common Papermulberry   \\n1267  Himalayan Coralbean Equivalent plant: Erythrin...   \\n1268                         root of Tricuspid cudrania   \\n1269                                 Semen Glycines max   \\n1270                                 Climbing Jewelvine   \\n\\n                    latin_name                      Properties  \\\\\\n0             Herba Cistanches              Warm; Sweet; Salty   \\n1     Semen Astragali Complati                     Sweet; warm   \\n2            fructus hippophae             Warm; Sour; Punkery   \\n3         Fagopyrum esculentum                             NaN   \\n4     Fructus Choerospondiatis             Cold; Sour; Punkery   \\n...                        ...                             ...   \\n1266   Broussonetia papyrifera                             NaN   \\n1267     Erythrina arborescens                             NaN   \\n1268           Radix Cudraniae  Cool; Slightly Bitter; Neutral   \\n1269                       NaN                             NaN   \\n1270           Derris scandens                             NaN   \\n\\n                                             Meridians  \\\\\\n0                              Large Intestine; Kidney   \\n1                                        Liver; kidney   \\n2     Large Intestine; Stomach; Small Intestine; Liver   \\n3                                                  NaN   \\n4                                        Spleen; Liver   \\n...                                                ...   \\n1266                                               NaN   \\n1267                                               NaN   \\n1268                                      Liver; Heart   \\n1269                                               NaN   \\n1270                                               NaN   \\n\\n                        UsePart  \\\\\\n0                   fleshy stem   \\n1                           NaN   \\n2                           NaN   \\n3                          seed   \\n4                           NaN   \\n...                         ...   \\n1266                     branch   \\n1267  dried bark or root cortex   \\n1268                        NaN   \\n1269                        NaN   \\n1270                        NaN   \\n\\n                                               Function  \\\\\\n0     To reinforce the kidney, replenish vital essen...   \\n1     To benefit the liver and the kidney, arrest se...   \\n2                                                   NaN   \\n3     To fortify spleen and disperse accumulation, p...   \\n4     To promote the flow of qi and blood, to replen...   \\n...                                                 ...   \\n1266   To dispel wind, brighten eyes, disinhibit urine.   \\n1267  To dispel wind and eliminate damp, soothe sine...   \\n1268  1. To remove blood stasis, alleviate pain, exp...   \\n1269                                                NaN   \\n1270                                                NaN   \\n\\n                                             Indication Toxicity  \\\\\\n0     Impotence, infertility, backache, limp aching ...      NaN   \\n1     Treatment of back pain, nocturnal emission and...      NaN   \\n2                                                   NaN      NaN   \\n3     Gastrointestinal accumulation, diarrhea, dysen...      NaN   \\n4     Treatment of stagnation of qi and blood with p...      NaN   \\n...                                                 ...      ...   \\n1266  Wind papules, red eyes with gall, inhibited ur...      NaN   \\n1267  Wind-damp impediment pain, hypertonicity in li...      NaN   \\n1268  1. To remove blood stasis, alleviate pain, exp...      NaN   \\n1269                                                NaN      NaN   \\n1270                                                NaN      NaN   \\n\\n                           Clinical_manifestations  \\\\\\n0     1. Hypotensive2. Promoting saliva secretion.   \\n1                                              NaN   \\n2                                              NaN   \\n3                                              NaN   \\n4                                              NaN   \\n...                                            ...   \\n1266                                           NaN   \\n1267                                           NaN   \\n1268                                           NaN   \\n1269                                           NaN   \\n1270                                           NaN   \\n\\n                        Therapeutic_en_class Therapeutic_cn_class     HERB_id  \\\\\\n0                     Yang Reinforcing Drugs                  补阳药  HERB004692   \\n1                     Yang Reinforcing Drugs                  补阳药  HERB004864   \\n2                    Phlegresolving Medicine                  化痰药  HERB004849   \\n3                                        NaN                  NaN  HERB004488   \\n4     Blood Activating Stasis Removing Drugs                活血祛瘀药  HERB002040   \\n...                                      ...                  ...         ...   \\n1266                                     NaN                  NaN  HERB001920   \\n1267                                     NaN                  NaN  HERB004490   \\n1268                                     NaN                  NaN  HERB000873   \\n1269                                     NaN                  NaN  HERB002493   \\n1270                                     NaN                  NaN  HERB004313   \\n\\n       TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \\n0     SMHB00338     1883.0      338.0     596.0          0.999986  \\n1     SMHB00354     1702.0      354.0    1035.0          0.999781  \\n2     SMHB00353     6230.0      353.0     613.0          0.999437  \\n3           NaN     1877.0        NaN       NaN          0.999431  \\n4     SMHB00152     1671.0      152.0     296.0          0.999149  \\n...         ...        ...        ...       ...               ...  \\n1266        NaN     7200.0        NaN       NaN          0.150000  \\n1267        NaN     4911.0        NaN       NaN          0.150000  \\n1268        NaN     7116.0        NaN     112.0          0.150000  \\n1269        NaN     4946.0        NaN       NaN          0.150000  \\n1270        NaN     2770.0        NaN       NaN          0.150000  \\n\\n[1271 rows x 20 columns]\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVMID</th>\\n      <th>cn_name</th>\\n      <th>pinyin_name</th>\\n      <th>en_name</th>\\n      <th>latin_name</th>\\n      <th>Properties</th>\\n      <th>Meridians</th>\\n      <th>UsePart</th>\\n      <th>Function</th>\\n      <th>Indication</th>\\n      <th>Toxicity</th>\\n      <th>Clinical_manifestations</th>\\n      <th>Therapeutic_en_class</th>\\n      <th>Therapeutic_cn_class</th>\\n      <th>HERB_id</th>\\n      <th>TCMID_id</th>\\n      <th>TCM_ID_id</th>\\n      <th>SymMap_id</th>\\n      <th>TCMSP_id</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVM2997</td>\\n      <td>肉苁蓉</td>\\n      <td>ROU CONG RONG</td>\\n      <td>Desertliving Cistanche</td>\\n      <td>Herba Cistanches</td>\\n      <td>Warm; Sweet; Salty</td>\\n      <td>Large Intestine; Kidney</td>\\n      <td>fleshy stem</td>\\n      <td>To reinforce the kidney, replenish vital essen...</td>\\n      <td>Impotence, infertility, backache, limp aching ...</td>\\n      <td>NaN</td>\\n      <td>1. Hypotensive2. Promoting saliva secretion.</td>\\n      <td>Yang Reinforcing Drugs</td>\\n      <td>补阳药</td>\\n      <td>HERB004692</td>\\n      <td>SMHB00338</td>\\n      <td>1883.0</td>\\n      <td>338.0</td>\\n      <td>596.0</td>\\n      <td>0.999986</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVM3101</td>\\n      <td>沙苑子</td>\\n      <td>SHA YUAN ZI</td>\\n      <td>Flatstem Milkvetch Seed</td>\\n      <td>Semen Astragali Complati</td>\\n      <td>Sweet; warm</td>\\n      <td>Liver; kidney</td>\\n      <td>NaN</td>\\n      <td>To benefit the liver and the kidney, arrest se...</td>\\n      <td>Treatment of back pain, nocturnal emission and...</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>Yang Reinforcing Drugs</td>\\n      <td>补阳药</td>\\n      <td>HERB004864</td>\\n      <td>SMHB00354</td>\\n      <td>1702.0</td>\\n      <td>354.0</td>\\n      <td>1035.0</td>\\n      <td>0.999781</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVM3090</td>\\n      <td>沙棘</td>\\n      <td>SHA JI</td>\\n      <td>fruit of seabuckthorn</td>\\n      <td>fructus hippophae</td>\\n      <td>Warm; Sour; Punkery</td>\\n      <td>Large Intestine; Stomach; Small Intestine; Liver</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>Phlegresolving Medicine</td>\\n      <td>化痰药</td>\\n      <td>HERB004849</td>\\n      <td>SMHB00353</td>\\n      <td>6230.0</td>\\n      <td>353.0</td>\\n      <td>613.0</td>\\n      <td>0.999437</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVM2859</td>\\n      <td>荞麦</td>\\n      <td>QIAO MAI</td>\\n      <td>Common Buckwheat</td>\\n      <td>Fagopyrum esculentum</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>seed</td>\\n      <td>To fortify spleen and disperse accumulation, p...</td>\\n      <td>Gastrointestinal accumulation, diarrhea, dysen...</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>HERB004488</td>\\n      <td>NaN</td>\\n      <td>1877.0</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>0.999431</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVM1308</td>\\n      <td>广枣</td>\\n      <td>GUANG ZAO</td>\\n      <td>fruit of Axillary choerospondias</td>\\n      <td>Fructus Choerospondiatis</td>\\n      <td>Cold; Sour; Punkery</td>\\n      <td>Spleen; Liver</td>\\n      <td>NaN</td>\\n      <td>To promote the flow of qi and blood, to replen...</td>\\n      <td>Treatment of stagnation of qi and blood with p...</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>Blood Activating Stasis Removing Drugs</td>\\n      <td>活血祛瘀药</td>\\n      <td>HERB002040</td>\\n      <td>SMHB00152</td>\\n      <td>1671.0</td>\\n      <td>152.0</td>\\n      <td>296.0</td>\\n      <td>0.999149</td>\\n    </tr>\\n    <tr>\\n      <th>...</th>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n      <td>...</td>\\n    </tr>\\n    <tr>\\n      <th>1266</th>\\n      <td>HVM1229</td>\\n      <td>构树</td>\\n      <td>GOU SHU</td>\\n      <td>Common Papermulberry</td>\\n      <td>Broussonetia papyrifera</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>branch</td>\\n      <td>To dispel wind, brighten eyes, disinhibit urine.</td>\\n      <td>Wind papules, red eyes with gall, inhibited ur...</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>HERB001920</td>\\n      <td>NaN</td>\\n      <td>7200.0</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>0.150000</td>\\n    </tr>\\n    <tr>\\n      <th>1267</th>\\n      <td>HVM2861</td>\\n      <td>乔木刺桐</td>\\n      <td>QIAO MU CI TONG</td>\\n      <td>Himalayan Coralbean Equivalent plant: Erythrin...</td>\\n      <td>Erythrina arborescens</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>dried bark or root cortex</td>\\n      <td>To dispel wind and eliminate damp, soothe sine...</td>\\n      <td>Wind-damp impediment pain, hypertonicity in li...</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>HERB004490</td>\\n      <td>NaN</td>\\n      <td>4911.0</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>0.150000</td>\\n    </tr>\\n    <tr>\\n      <th>1268</th>\\n      <td>HVM0530</td>\\n      <td>穿破石</td>\\n      <td>CHUAN PO SHI</td>\\n      <td>root of Tricuspid cudrania</td>\\n      <td>Radix Cudraniae</td>\\n      <td>Cool; Slightly Bitter; Neutral</td>\\n      <td>Liver; Heart</td>\\n      <td>NaN</td>\\n      <td>1. To remove blood stasis, alleviate pain, exp...</td>\\n      <td>1. To remove blood stasis, alleviate pain, exp...</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>HERB000873</td>\\n      <td>NaN</td>\\n      <td>7116.0</td>\\n      <td>NaN</td>\\n      <td>112.0</td>\\n      <td>0.150000</td>\\n    </tr>\\n    <tr>\\n      <th>1269</th>\\n      <td>HVM1637</td>\\n      <td>黄大豆</td>\\n      <td>HUANG DA DOU</td>\\n      <td>Semen Glycines max</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>HERB002493</td>\\n      <td>NaN</td>\\n      <td>4946.0</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>0.150000</td>\\n    </tr>\\n    <tr>\\n      <th>1270</th>\\n      <td>HVM2751</td>\\n      <td>攀援鱼藤</td>\\n      <td>PAN YUAN YU TENG</td>\\n      <td>Climbing Jewelvine</td>\\n      <td>Derris scandens</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>HERB004313</td>\\n      <td>NaN</td>\\n      <td>2770.0</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>0.150000</td>\\n    </tr>\\n  </tbody>\\n</table>\\n<p>1271 rows × 20 columns</p>\\n</div>\"\r\n     },\r\n     \"execution_count\": 3,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"tcm\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2023-05-17T06:46:13.323441400Z\",\r\n     \"start_time\": \"2023-05-17T06:46:13.256514200Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 10,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVMID    HVCID\\n0  HVM0018  HVC0302\\n1  HVM0018  HVC5478\\n2  HVM0026  HVC0462\\n3  HVM0029  HVC0533\\n4  HVM0029  HVC0462\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVMID</th>\\n      <th>HVCID</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVM0018</td>\\n      <td>HVC0302</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVM0018</td>\\n      <td>HVC5478</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVM0026</td>\\n      <td>HVC0462</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVM0029</td>\\n      <td>HVC0533</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVM0029</td>\\n      <td>HVC0462</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 10,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"tcm_chem_links.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:35.327573Z\",\r\n     \"end_time\": \"2023-04-19T17:43:35.434607Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 11,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVCID                 Name                              SMILES   CAS_id  \\\\\\n0  HVC0004  dihydrotestosterone  CC12CCC(=O)CC1CCC3C2CCC4(C3CCC4O)C      NaN   \\n1  HVC0022  5-hydroxytryptophan   C1=CC2=C(C=C1O)C(=CN2)CC(C(=O)O)N      NaN   \\n2  HVC0025              acetate                          CC(=O)[O-]      NaN   \\n3  HVC0026         acetaldehyde                                CC=O  75-07-0   \\n4  HVC0029              acetone                             CC(=O)C      NaN   \\n\\n   PubChem_id DrugBank_id     STITCH_id     HERB_id  Importance Score  \\n0     10635.0         NaN  CIDm00000015  HBIN023995             0.588  \\n1    439280.0         NaN  CIDm00000144  HBIN011695             0.256  \\n2       175.0         NaN  CIDm00000175  HBIN014391             0.521  \\n3       177.0         NaN  CIDm00000177  HBIN014388             0.521  \\n4       180.0         NaN  CIDm00000180  HBIN014420             0.390  \",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVCID</th>\\n      <th>Name</th>\\n      <th>SMILES</th>\\n      <th>CAS_id</th>\\n      <th>PubChem_id</th>\\n      <th>DrugBank_id</th>\\n      <th>STITCH_id</th>\\n      <th>HERB_id</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVC0004</td>\\n      <td>dihydrotestosterone</td>\\n      <td>CC12CCC(=O)CC1CCC3C2CCC4(C3CCC4O)C</td>\\n      <td>NaN</td>\\n      <td>10635.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000015</td>\\n      <td>HBIN023995</td>\\n      <td>0.588</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVC0022</td>\\n      <td>5-hydroxytryptophan</td>\\n      <td>C1=CC2=C(C=C1O)C(=CN2)CC(C(=O)O)N</td>\\n      <td>NaN</td>\\n      <td>439280.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000144</td>\\n      <td>HBIN011695</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVC0025</td>\\n      <td>acetate</td>\\n      <td>CC(=O)[O-]</td>\\n      <td>NaN</td>\\n      <td>175.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000175</td>\\n      <td>HBIN014391</td>\\n      <td>0.521</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVC0026</td>\\n      <td>acetaldehyde</td>\\n      <td>CC=O</td>\\n      <td>75-07-0</td>\\n      <td>177.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000177</td>\\n      <td>HBIN014388</td>\\n      <td>0.521</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVC0029</td>\\n      <td>acetone</td>\\n      <td>CC(=O)C</td>\\n      <td>NaN</td>\\n      <td>180.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000180</td>\\n      <td>HBIN014420</td>\\n      <td>0.390</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 11,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"chem.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:35.344570Z\",\r\n     \"end_time\": \"2023-04-19T17:43:35.462520Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 12,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVCID       Ensembl_ID  Combined_score\\n0  HVC6130  ENSP00000381588           0.150\\n1  HVC6114  ENSP00000381588           0.256\\n2  HVC6092  ENSP00000381588           0.256\\n3  HVC5717  ENSP00000381588           0.167\\n4  HVC5622  ENSP00000381588           0.248\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVCID</th>\\n      <th>Ensembl_ID</th>\\n      <th>Combined_score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVC6130</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.150</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVC6114</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVC6092</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVC5717</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.167</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVC5622</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.248</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 12,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"chem_protein_links.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:35.375573Z\",\r\n     \"end_time\": \"2023-04-19T17:43:35.536476Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 13,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"        Ensembl_ID protein_name gene_name\\n0  ENSP00000381588          NaN   TMPRSS2\\n1  ENSP00000252519          NaN      ACE2\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>Ensembl_ID</th>\\n      <th>protein_name</th>\\n      <th>gene_name</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>ENSP00000381588</td>\\n      <td>NaN</td>\\n      <td>TMPRSS2</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>ENSP00000252519</td>\\n      <td>NaN</td>\\n      <td>ACE2</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 13,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"proteins\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:35.397565Z\",\r\n     \"end_time\": \"2023-04-19T17:43:35.537480Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"markdown\",\r\n   \"source\": [\r\n    \"# 给定中药和靶点进行分析\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 14,\r\n   \"outputs\": [],\r\n   \"source\": [\r\n    \"tcm, tcm_chem_links, chem, chem_protein_links, proteins = analysis.from_tcm_protein(['柴胡', '黄芩'], ['ENSP00000381588', 'ENSP00000252519'])\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:35.411587Z\",\r\n     \"end_time\": \"2023-04-19T17:43:36.175968Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 15,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVMID cn_name pinyin_name                   en_name          latin_name  \\\\\\n0  HVM0367      柴胡     CHAI HU  root of Chinese Thorowax      Radix Bupleuri   \\n1  HVM1695      黄芩   HUANG QIN   root of Baikal skullcap  Radix Scutellariae   \\n\\n                    Properties  \\\\\\n0  Minor cold; Pungent; Bitter   \\n1                 Cold; Bitter   \\n\\n                                           Meridians UsePart  \\\\\\n0                                 Liver; Gallbladder    root   \\n1  Lung; Large Intestine; Stomach; Small Intestin...    root   \\n\\n                                            Function  \\\\\\n0  To relieve fever, to soothe the liver, and to ...   \\n1  To remove damp-heat, to quench fire and counte...   \\n\\n                                          Indication Toxicity  \\\\\\n0  Common cold, influenza, malaria, acute pancrea...      NaN   \\n1  Chest oppression with retching, diarrhea, jaun...      NaN   \\n\\n                             Clinical_manifestations  \\\\\\n0  1. Increasing the hypotic effect of barbital i...   \\n1  1. Possessing a broad-spectrum bacteriostatic ...   \\n\\n                         Therapeutic_en_class Therapeutic_cn_class  \\\\\\n0                   Pungent Cool Diaphoretics                辛凉解表药   \\n1  Heat-Clearing And Dampnessdrying Medicinal                清热燥湿药   \\n\\n      HERB_id   TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \\n0  HERB000638  SMHB00058     3396.0       58.0      80.0          0.993107  \\n1  HERB002563  SMHB00188     6700.0      188.0     371.0          0.586509  \",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVMID</th>\\n      <th>cn_name</th>\\n      <th>pinyin_name</th>\\n      <th>en_name</th>\\n      <th>latin_name</th>\\n      <th>Properties</th>\\n      <th>Meridians</th>\\n      <th>UsePart</th>\\n      <th>Function</th>\\n      <th>Indication</th>\\n      <th>Toxicity</th>\\n      <th>Clinical_manifestations</th>\\n      <th>Therapeutic_en_class</th>\\n      <th>Therapeutic_cn_class</th>\\n      <th>HERB_id</th>\\n      <th>TCMID_id</th>\\n      <th>TCM_ID_id</th>\\n      <th>SymMap_id</th>\\n      <th>TCMSP_id</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVM0367</td>\\n      <td>柴胡</td>\\n      <td>CHAI HU</td>\\n      <td>root of Chinese Thorowax</td>\\n      <td>Radix Bupleuri</td>\\n      <td>Minor cold; Pungent; Bitter</td>\\n      <td>Liver; Gallbladder</td>\\n      <td>root</td>\\n      <td>To relieve fever, to soothe the liver, and to ...</td>\\n      <td>Common cold, influenza, malaria, acute pancrea...</td>\\n      <td>NaN</td>\\n      <td>1. Increasing the hypotic effect of barbital i...</td>\\n      <td>Pungent Cool Diaphoretics</td>\\n      <td>辛凉解表药</td>\\n      <td>HERB000638</td>\\n      <td>SMHB00058</td>\\n      <td>3396.0</td>\\n      <td>58.0</td>\\n      <td>80.0</td>\\n      <td>0.993107</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVM1695</td>\\n      <td>黄芩</td>\\n      <td>HUANG QIN</td>\\n      <td>root of Baikal skullcap</td>\\n      <td>Radix Scutellariae</td>\\n      <td>Cold; Bitter</td>\\n      <td>Lung; Large Intestine; Stomach; Small Intestin...</td>\\n      <td>root</td>\\n      <td>To remove damp-heat, to quench fire and counte...</td>\\n      <td>Chest oppression with retching, diarrhea, jaun...</td>\\n      <td>NaN</td>\\n      <td>1. Possessing a broad-spectrum bacteriostatic ...</td>\\n      <td>Heat-Clearing And Dampnessdrying Medicinal</td>\\n      <td>清热燥湿药</td>\\n      <td>HERB002563</td>\\n      <td>SMHB00188</td>\\n      <td>6700.0</td>\\n      <td>188.0</td>\\n      <td>371.0</td>\\n      <td>0.586509</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 15,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"tcm\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:36.010801Z\",\r\n     \"end_time\": \"2023-04-19T17:43:36.177798Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 16,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVMID    HVCID\\n0  HVM0367  HVC0384\\n1  HVM0367  HVC0384\\n2  HVM0367  HVC0036\\n3  HVM0367  HVC0273\\n4  HVM0367  HVC0533\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVMID</th>\\n      <th>HVCID</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVM0367</td>\\n      <td>HVC0384</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVM0367</td>\\n      <td>HVC0384</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVM0367</td>\\n      <td>HVC0036</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVM0367</td>\\n      <td>HVC0273</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVM0367</td>\\n      <td>HVC0533</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 16,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"tcm_chem_links.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:36.040811Z\",\r\n     \"end_time\": \"2023-04-19T17:43:36.178836Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 17,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVCID               Name                                   SMILES  \\\\\\n0  HVC0036            glucose                 C(C1C(C(C(C(O1)O)O)O)O)O   \\n1  HVC0095  isoliquiritigenin  C1=CC(=CC=C1C=CC(=O)C2=C(C=C(C=C2)O)O)O   \\n2  HVC0230             phenol                           C1=CC=C(C=C1)O   \\n3  HVC0273         tryptophan         C1=CC=C2C(=C1)C(=CN2)CC(C(=O)O)N   \\n4  HVC0384          capsaicin    CC(C)C=CCCCCC(=O)NCC1=CC(=C(C=C1)O)OC   \\n\\n     CAS_id  PubChem_id DrugBank_id     STITCH_id     HERB_id  \\\\\\n0       NaN         NaN         NaN  CIDm00000206  HBIN001003   \\n1       NaN    638278.0         NaN  CIDm00000425  HBIN004214   \\n2       NaN       996.0         NaN  CIDm00000996  HBIN029699   \\n3  153-94-6      9060.0         NaN  CIDm00001148  HBIN024532   \\n4       NaN         NaN         NaN  CIDm00002548  HBIN019514   \\n\\n   Importance Score  \\n0             0.865  \\n1             0.256  \\n2             0.521  \\n3             0.374  \\n4             0.256  \",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVCID</th>\\n      <th>Name</th>\\n      <th>SMILES</th>\\n      <th>CAS_id</th>\\n      <th>PubChem_id</th>\\n      <th>DrugBank_id</th>\\n      <th>STITCH_id</th>\\n      <th>HERB_id</th>\\n      <th>Importance Score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVC0036</td>\\n      <td>glucose</td>\\n      <td>C(C1C(C(C(C(O1)O)O)O)O)O</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>CIDm00000206</td>\\n      <td>HBIN001003</td>\\n      <td>0.865</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVC0095</td>\\n      <td>isoliquiritigenin</td>\\n      <td>C1=CC(=CC=C1C=CC(=O)C2=C(C=C(C=C2)O)O)O</td>\\n      <td>NaN</td>\\n      <td>638278.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000425</td>\\n      <td>HBIN004214</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVC0230</td>\\n      <td>phenol</td>\\n      <td>C1=CC=C(C=C1)O</td>\\n      <td>NaN</td>\\n      <td>996.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00000996</td>\\n      <td>HBIN029699</td>\\n      <td>0.521</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVC0273</td>\\n      <td>tryptophan</td>\\n      <td>C1=CC=C2C(=C1)C(=CN2)CC(C(=O)O)N</td>\\n      <td>153-94-6</td>\\n      <td>9060.0</td>\\n      <td>NaN</td>\\n      <td>CIDm00001148</td>\\n      <td>HBIN024532</td>\\n      <td>0.374</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVC0384</td>\\n      <td>capsaicin</td>\\n      <td>CC(C)C=CCCCCC(=O)NCC1=CC(=C(C=C1)O)OC</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>NaN</td>\\n      <td>CIDm00002548</td>\\n      <td>HBIN019514</td>\\n      <td>0.256</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 17,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"chem.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:36.057803Z\",\r\n     \"end_time\": \"2023-04-19T17:43:36.178836Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 18,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"     HVCID       Ensembl_ID  Combined_score\\n0  HVC5535  ENSP00000381588           0.256\\n1  HVC5478  ENSP00000381588           0.256\\n2  HVC0817  ENSP00000381588           0.256\\n3  HVC0533  ENSP00000381588           0.253\\n4  HVC0462  ENSP00000381588           0.256\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>HVCID</th>\\n      <th>Ensembl_ID</th>\\n      <th>Combined_score</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>HVC5535</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>HVC5478</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>2</th>\\n      <td>HVC0817</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.256</td>\\n    </tr>\\n    <tr>\\n      <th>3</th>\\n      <td>HVC0533</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.253</td>\\n    </tr>\\n    <tr>\\n      <th>4</th>\\n      <td>HVC0462</td>\\n      <td>ENSP00000381588</td>\\n      <td>0.256</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 18,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"chem_protein_links.head()\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:36.087805Z\",\r\n     \"end_time\": \"2023-04-19T17:43:36.178836Z\"\r\n    }\r\n   }\r\n  },\r\n  {\r\n   \"cell_type\": \"code\",\r\n   \"execution_count\": 19,\r\n   \"outputs\": [\r\n    {\r\n     \"data\": {\r\n      \"text/plain\": \"        Ensembl_ID protein_name gene_name\\n0  ENSP00000381588          NaN   TMPRSS2\\n1  ENSP00000252519          NaN      ACE2\",\r\n      \"text/html\": \"<div>\\n<style scoped>\\n    .dataframe tbody tr th:only-of-type {\\n        vertical-align: middle;\\n    }\\n\\n    .dataframe tbody tr th {\\n        vertical-align: top;\\n    }\\n\\n    .dataframe thead th {\\n        text-align: right;\\n    }\\n</style>\\n<table border=\\\"1\\\" class=\\\"dataframe\\\">\\n  <thead>\\n    <tr style=\\\"text-align: right;\\\">\\n      <th></th>\\n      <th>Ensembl_ID</th>\\n      <th>protein_name</th>\\n      <th>gene_name</th>\\n    </tr>\\n  </thead>\\n  <tbody>\\n    <tr>\\n      <th>0</th>\\n      <td>ENSP00000381588</td>\\n      <td>NaN</td>\\n      <td>TMPRSS2</td>\\n    </tr>\\n    <tr>\\n      <th>1</th>\\n      <td>ENSP00000252519</td>\\n      <td>NaN</td>\\n      <td>ACE2</td>\\n    </tr>\\n  </tbody>\\n</table>\\n</div>\"\r\n     },\r\n     \"execution_count\": 19,\r\n     \"metadata\": {},\r\n     \"output_type\": \"execute_result\"\r\n    }\r\n   ],\r\n   \"source\": [\r\n    \"proteins\"\r\n   ],\r\n   \"metadata\": {\r\n    \"collapsed\": false,\r\n    \"ExecuteTime\": {\r\n     \"start_time\": \"2023-04-19T17:43:36.104799Z\",\r\n     \"end_time\": \"2023-04-19T17:43:36.180834Z\"\r\n    }\r\n   }\r\n  }\r\n ],\r\n \"metadata\": {\r\n  \"kernelspec\": {\r\n   \"display_name\": \"Python 3\",\r\n   \"language\": \"python\",\r\n   \"name\": \"python3\"\r\n  },\r\n  \"language_info\": {\r\n   \"codemirror_mode\": {\r\n    \"name\": \"ipython\",\r\n    \"version\": 2\r\n   },\r\n   \"file_extension\": \".py\",\r\n   \"mimetype\": \"text/x-python\",\r\n   \"name\": \"python\",\r\n   \"nbconvert_exporter\": \"python\",\r\n   \"pygments_lexer\": \"ipython2\",\r\n   \"version\": \"2.7.6\"\r\n  }\r\n },\r\n \"nbformat\": 4,\r\n \"nbformat_minor\": 0\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo.ipynb b/demo.ipynb
+--- a/demo.ipynb	(revision 8566cacd6b7858e0299de4bade4ef8616a615af9)
++++ b/demo.ipynb	(date 1684913298287)
+@@ -3,46 +3,175 @@
+   {
+    "cell_type": "code",
+    "execution_count": 1,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-05-24T06:37:12.139998500Z",
++     "start_time": "2023-05-24T06:37:10.873998100Z"
++    }
++   },
+    "outputs": [],
+    "source": [
+     "from herbiv import analysis"
+-   ],
+-   "metadata": {
+-    "collapsed": false
+-   }
++   ]
+   },
+   {
+    "cell_type": "markdown",
++   "metadata": {},
+    "source": [
+     "# 经典的正向网络药理学分析"
+-   ],
+-   "metadata": {
+-    "collapsed": false
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 2,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:27.821492Z",
++     "start_time": "2023-04-19T17:43:24.189428Z"
++    }
++   },
+    "outputs": [],
+    "source": [
+     "tcm, tcm_chem_links, chem, chem_protein_links, proteins = analysis.from_tcm(['柴胡', '黄芩'])"
+-   ],
++   ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 3,
+    "metadata": {
+-    "collapsed": false,
+     "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:24.189428Z",
+-     "end_time": "2023-04-19T17:43:27.821492Z"
++     "end_time": "2023-04-19T17:43:27.874488Z",
++     "start_time": "2023-04-19T17:43:27.828578Z"
+     }
+-   }
+-  },
+-  {
+-   "cell_type": "code",
+-   "execution_count": 3,
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVMID cn_name pinyin_name                   en_name          latin_name  \\\n0  HVM0367      柴胡     CHAI HU  root of Chinese Thorowax      Radix Bupleuri   \n1  HVM1695      黄芩   HUANG QIN   root of Baikal skullcap  Radix Scutellariae   \n\n                    Properties  \\\n0  Minor cold; Pungent; Bitter   \n1                 Cold; Bitter   \n\n                                           Meridians UsePart  \\\n0                                 Liver; Gallbladder    root   \n1  Lung; Large Intestine; Stomach; Small Intestin...    root   \n\n                                            Function  \\\n0  To relieve fever, to soothe the liver, and to ...   \n1  To remove damp-heat, to quench fire and counte...   \n\n                                          Indication Toxicity  \\\n0  Common cold, influenza, malaria, acute pancrea...      NaN   \n1  Chest oppression with retching, diarrhea, jaun...      NaN   \n\n                             Clinical_manifestations  \\\n0  1. Increasing the hypotic effect of barbital i...   \n1  1. Possessing a broad-spectrum bacteriostatic ...   \n\n                         Therapeutic_en_class Therapeutic_cn_class  \\\n0                   Pungent Cool Diaphoretics                辛凉解表药   \n1  Heat-Clearing And Dampnessdrying Medicinal                清热燥湿药   \n\n      HERB_id   TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \n0  HERB000638  SMHB00058     3396.0       58.0      80.0               1.0  \n1  HERB002563  SMHB00188     6700.0      188.0     371.0               1.0  ",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVMID</th>\n      <th>cn_name</th>\n      <th>pinyin_name</th>\n      <th>en_name</th>\n      <th>latin_name</th>\n      <th>Properties</th>\n      <th>Meridians</th>\n      <th>UsePart</th>\n      <th>Function</th>\n      <th>Indication</th>\n      <th>Toxicity</th>\n      <th>Clinical_manifestations</th>\n      <th>Therapeutic_en_class</th>\n      <th>Therapeutic_cn_class</th>\n      <th>HERB_id</th>\n      <th>TCMID_id</th>\n      <th>TCM_ID_id</th>\n      <th>SymMap_id</th>\n      <th>TCMSP_id</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVM0367</td>\n      <td>柴胡</td>\n      <td>CHAI HU</td>\n      <td>root of Chinese Thorowax</td>\n      <td>Radix Bupleuri</td>\n      <td>Minor cold; Pungent; Bitter</td>\n      <td>Liver; Gallbladder</td>\n      <td>root</td>\n      <td>To relieve fever, to soothe the liver, and to ...</td>\n      <td>Common cold, influenza, malaria, acute pancrea...</td>\n      <td>NaN</td>\n      <td>1. Increasing the hypotic effect of barbital i...</td>\n      <td>Pungent Cool Diaphoretics</td>\n      <td>辛凉解表药</td>\n      <td>HERB000638</td>\n      <td>SMHB00058</td>\n      <td>3396.0</td>\n      <td>58.0</td>\n      <td>80.0</td>\n      <td>1.0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVM1695</td>\n      <td>黄芩</td>\n      <td>HUANG QIN</td>\n      <td>root of Baikal skullcap</td>\n      <td>Radix Scutellariae</td>\n      <td>Cold; Bitter</td>\n      <td>Lung; Large Intestine; Stomach; Small Intestin...</td>\n      <td>root</td>\n      <td>To remove damp-heat, to quench fire and counte...</td>\n      <td>Chest oppression with retching, diarrhea, jaun...</td>\n      <td>NaN</td>\n      <td>1. Possessing a broad-spectrum bacteriostatic ...</td>\n      <td>Heat-Clearing And Dampnessdrying Medicinal</td>\n      <td>清热燥湿药</td>\n      <td>HERB002563</td>\n      <td>SMHB00188</td>\n      <td>6700.0</td>\n      <td>188.0</td>\n      <td>371.0</td>\n      <td>1.0</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVMID</th>\n",
++       "      <th>cn_name</th>\n",
++       "      <th>pinyin_name</th>\n",
++       "      <th>en_name</th>\n",
++       "      <th>latin_name</th>\n",
++       "      <th>Properties</th>\n",
++       "      <th>Meridians</th>\n",
++       "      <th>UsePart</th>\n",
++       "      <th>Function</th>\n",
++       "      <th>Indication</th>\n",
++       "      <th>Toxicity</th>\n",
++       "      <th>Clinical_manifestations</th>\n",
++       "      <th>Therapeutic_en_class</th>\n",
++       "      <th>Therapeutic_cn_class</th>\n",
++       "      <th>HERB_id</th>\n",
++       "      <th>TCMID_id</th>\n",
++       "      <th>TCM_ID_id</th>\n",
++       "      <th>SymMap_id</th>\n",
++       "      <th>TCMSP_id</th>\n",
++       "      <th>Importance Score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>柴胡</td>\n",
++       "      <td>CHAI HU</td>\n",
++       "      <td>root of Chinese Thorowax</td>\n",
++       "      <td>Radix Bupleuri</td>\n",
++       "      <td>Minor cold; Pungent; Bitter</td>\n",
++       "      <td>Liver; Gallbladder</td>\n",
++       "      <td>root</td>\n",
++       "      <td>To relieve fever, to soothe the liver, and to ...</td>\n",
++       "      <td>Common cold, influenza, malaria, acute pancrea...</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>1. Increasing the hypotic effect of barbital i...</td>\n",
++       "      <td>Pungent Cool Diaphoretics</td>\n",
++       "      <td>辛凉解表药</td>\n",
++       "      <td>HERB000638</td>\n",
++       "      <td>SMHB00058</td>\n",
++       "      <td>3396.0</td>\n",
++       "      <td>58.0</td>\n",
++       "      <td>80.0</td>\n",
++       "      <td>1.0</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVM1695</td>\n",
++       "      <td>黄芩</td>\n",
++       "      <td>HUANG QIN</td>\n",
++       "      <td>root of Baikal skullcap</td>\n",
++       "      <td>Radix Scutellariae</td>\n",
++       "      <td>Cold; Bitter</td>\n",
++       "      <td>Lung; Large Intestine; Stomach; Small Intestin...</td>\n",
++       "      <td>root</td>\n",
++       "      <td>To remove damp-heat, to quench fire and counte...</td>\n",
++       "      <td>Chest oppression with retching, diarrhea, jaun...</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>1. Possessing a broad-spectrum bacteriostatic ...</td>\n",
++       "      <td>Heat-Clearing And Dampnessdrying Medicinal</td>\n",
++       "      <td>清热燥湿药</td>\n",
++       "      <td>HERB002563</td>\n",
++       "      <td>SMHB00188</td>\n",
++       "      <td>6700.0</td>\n",
++       "      <td>188.0</td>\n",
++       "      <td>371.0</td>\n",
++       "      <td>1.0</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVMID cn_name pinyin_name                   en_name          latin_name  \\\n",
++       "0  HVM0367      柴胡     CHAI HU  root of Chinese Thorowax      Radix Bupleuri   \n",
++       "1  HVM1695      黄芩   HUANG QIN   root of Baikal skullcap  Radix Scutellariae   \n",
++       "\n",
++       "                    Properties  \\\n",
++       "0  Minor cold; Pungent; Bitter   \n",
++       "1                 Cold; Bitter   \n",
++       "\n",
++       "                                           Meridians UsePart  \\\n",
++       "0                                 Liver; Gallbladder    root   \n",
++       "1  Lung; Large Intestine; Stomach; Small Intestin...    root   \n",
++       "\n",
++       "                                            Function  \\\n",
++       "0  To relieve fever, to soothe the liver, and to ...   \n",
++       "1  To remove damp-heat, to quench fire and counte...   \n",
++       "\n",
++       "                                          Indication Toxicity  \\\n",
++       "0  Common cold, influenza, malaria, acute pancrea...      NaN   \n",
++       "1  Chest oppression with retching, diarrhea, jaun...      NaN   \n",
++       "\n",
++       "                             Clinical_manifestations  \\\n",
++       "0  1. Increasing the hypotic effect of barbital i...   \n",
++       "1  1. Possessing a broad-spectrum bacteriostatic ...   \n",
++       "\n",
++       "                         Therapeutic_en_class Therapeutic_cn_class  \\\n",
++       "0                   Pungent Cool Diaphoretics                辛凉解表药   \n",
++       "1  Heat-Clearing And Dampnessdrying Medicinal                清热燥湿药   \n",
++       "\n",
++       "      HERB_id   TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \n",
++       "0  HERB000638  SMHB00058     3396.0       58.0      80.0               1.0  \n",
++       "1  HERB002563  SMHB00188     6700.0      188.0     371.0               1.0  "
++      ]
+      },
+      "execution_count": 3,
+      "metadata": {},
+@@ -51,23 +180,81 @@
+    ],
+    "source": [
+     "tcm"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:27.828578Z",
+-     "end_time": "2023-04-19T17:43:27.874488Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 4,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:27.874488Z",
++     "start_time": "2023-04-19T17:43:27.861519Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVMID    HVCID\n0  HVM0367  HVC0284\n1  HVM0367  HVC0396\n2  HVM0367  HVC0573\n3  HVM0367  HVC0177\n4  HVM0367  HVC0188",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVMID</th>\n      <th>HVCID</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVM0367</td>\n      <td>HVC0284</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVM0367</td>\n      <td>HVC0396</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVM0367</td>\n      <td>HVC0573</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVM0367</td>\n      <td>HVC0177</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVM0367</td>\n      <td>HVC0188</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVMID</th>\n",
++       "      <th>HVCID</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0284</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0396</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0573</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0177</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0188</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVMID    HVCID\n",
++       "0  HVM0367  HVC0284\n",
++       "1  HVM0367  HVC0396\n",
++       "2  HVM0367  HVC0573\n",
++       "3  HVM0367  HVC0177\n",
++       "4  HVM0367  HVC0188"
++      ]
+      },
+      "execution_count": 4,
+      "metadata": {},
+@@ -76,23 +263,130 @@
+    ],
+    "source": [
+     "tcm_chem_links.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:27.861519Z",
+-     "end_time": "2023-04-19T17:43:27.874488Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 5,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:27.950487Z",
++     "start_time": "2023-04-19T17:43:27.874488Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVCID         Name                          SMILES      CAS_id  \\\n0  HVC0036      glucose        C(C1C(C(C(C(O1)O)O)O)O)O         NaN   \n1  HVC0052  anti-biotin  C1C2C(C(S1)CCCCC(=O)O)NC(=O)N2  22879-79-4   \n2  HVC0071     coumarin        C1=CC=C2C(=C1)C=CC(=O)O2         NaN   \n3  HVC0081        octyl                        CCCCCCCC    111-65-9   \n4  HVC0087    octanoate                   CCCCCCCC(=O)O  68937-74-6   \n\n   PubChem_id DrugBank_id     STITCH_id     HERB_id  Importance Score  \n0         NaN         NaN  CIDm00000206  HBIN001003          1.000000  \n1         NaN         NaN  CIDm00000253  HBIN011003          1.000000  \n2         NaN         NaN  CIDm00000323  HBIN021605          1.000000  \n3       356.0         NaN  CIDm00000356  HBIN037187          0.998194  \n4       379.0         NaN  CIDm00000379  HBIN019688          1.000000  ",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVCID</th>\n      <th>Name</th>\n      <th>SMILES</th>\n      <th>CAS_id</th>\n      <th>PubChem_id</th>\n      <th>DrugBank_id</th>\n      <th>STITCH_id</th>\n      <th>HERB_id</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVC0036</td>\n      <td>glucose</td>\n      <td>C(C1C(C(C(C(O1)O)O)O)O)O</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>CIDm00000206</td>\n      <td>HBIN001003</td>\n      <td>1.000000</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVC0052</td>\n      <td>anti-biotin</td>\n      <td>C1C2C(C(S1)CCCCC(=O)O)NC(=O)N2</td>\n      <td>22879-79-4</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>CIDm00000253</td>\n      <td>HBIN011003</td>\n      <td>1.000000</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVC0071</td>\n      <td>coumarin</td>\n      <td>C1=CC=C2C(=C1)C=CC(=O)O2</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>CIDm00000323</td>\n      <td>HBIN021605</td>\n      <td>1.000000</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVC0081</td>\n      <td>octyl</td>\n      <td>CCCCCCCC</td>\n      <td>111-65-9</td>\n      <td>356.0</td>\n      <td>NaN</td>\n      <td>CIDm00000356</td>\n      <td>HBIN037187</td>\n      <td>0.998194</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVC0087</td>\n      <td>octanoate</td>\n      <td>CCCCCCCC(=O)O</td>\n      <td>68937-74-6</td>\n      <td>379.0</td>\n      <td>NaN</td>\n      <td>CIDm00000379</td>\n      <td>HBIN019688</td>\n      <td>1.000000</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVCID</th>\n",
++       "      <th>Name</th>\n",
++       "      <th>SMILES</th>\n",
++       "      <th>CAS_id</th>\n",
++       "      <th>PubChem_id</th>\n",
++       "      <th>DrugBank_id</th>\n",
++       "      <th>STITCH_id</th>\n",
++       "      <th>HERB_id</th>\n",
++       "      <th>Importance Score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVC0036</td>\n",
++       "      <td>glucose</td>\n",
++       "      <td>C(C1C(C(C(C(O1)O)O)O)O)O</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000206</td>\n",
++       "      <td>HBIN001003</td>\n",
++       "      <td>1.000000</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVC0052</td>\n",
++       "      <td>anti-biotin</td>\n",
++       "      <td>C1C2C(C(S1)CCCCC(=O)O)NC(=O)N2</td>\n",
++       "      <td>22879-79-4</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000253</td>\n",
++       "      <td>HBIN011003</td>\n",
++       "      <td>1.000000</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVC0071</td>\n",
++       "      <td>coumarin</td>\n",
++       "      <td>C1=CC=C2C(=C1)C=CC(=O)O2</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000323</td>\n",
++       "      <td>HBIN021605</td>\n",
++       "      <td>1.000000</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVC0081</td>\n",
++       "      <td>octyl</td>\n",
++       "      <td>CCCCCCCC</td>\n",
++       "      <td>111-65-9</td>\n",
++       "      <td>356.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000356</td>\n",
++       "      <td>HBIN037187</td>\n",
++       "      <td>0.998194</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVC0087</td>\n",
++       "      <td>octanoate</td>\n",
++       "      <td>CCCCCCCC(=O)O</td>\n",
++       "      <td>68937-74-6</td>\n",
++       "      <td>379.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000379</td>\n",
++       "      <td>HBIN019688</td>\n",
++       "      <td>1.000000</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVCID         Name                          SMILES      CAS_id  \\\n",
++       "0  HVC0036      glucose        C(C1C(C(C(C(O1)O)O)O)O)O         NaN   \n",
++       "1  HVC0052  anti-biotin  C1C2C(C(S1)CCCCC(=O)O)NC(=O)N2  22879-79-4   \n",
++       "2  HVC0071     coumarin        C1=CC=C2C(=C1)C=CC(=O)O2         NaN   \n",
++       "3  HVC0081        octyl                        CCCCCCCC    111-65-9   \n",
++       "4  HVC0087    octanoate                   CCCCCCCC(=O)O  68937-74-6   \n",
++       "\n",
++       "   PubChem_id DrugBank_id     STITCH_id     HERB_id  Importance Score  \n",
++       "0         NaN         NaN  CIDm00000206  HBIN001003          1.000000  \n",
++       "1         NaN         NaN  CIDm00000253  HBIN011003          1.000000  \n",
++       "2         NaN         NaN  CIDm00000323  HBIN021605          1.000000  \n",
++       "3       356.0         NaN  CIDm00000356  HBIN037187          0.998194  \n",
++       "4       379.0         NaN  CIDm00000379  HBIN019688          1.000000  "
++      ]
+      },
+      "execution_count": 5,
+      "metadata": {},
+@@ -101,23 +395,87 @@
+    ],
+    "source": [
+     "chem.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:27.874488Z",
+-     "end_time": "2023-04-19T17:43:27.950487Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 6,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:28.074484Z",
++     "start_time": "2023-04-19T17:43:27.902490Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVCID       Ensembl_ID  Combined_score\n0  HVC5547  ENSP00000297494           0.976\n1  HVC5512  ENSP00000260630           0.933\n2  HVC5512  ENSP00000369050           0.912\n3  HVC5493  ENSP00000260433           0.931\n4  HVC5480  ENSP00000274278           0.906",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVCID</th>\n      <th>Ensembl_ID</th>\n      <th>Combined_score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVC5547</td>\n      <td>ENSP00000297494</td>\n      <td>0.976</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVC5512</td>\n      <td>ENSP00000260630</td>\n      <td>0.933</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVC5512</td>\n      <td>ENSP00000369050</td>\n      <td>0.912</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVC5493</td>\n      <td>ENSP00000260433</td>\n      <td>0.931</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVC5480</td>\n      <td>ENSP00000274278</td>\n      <td>0.906</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVCID</th>\n",
++       "      <th>Ensembl_ID</th>\n",
++       "      <th>Combined_score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVC5547</td>\n",
++       "      <td>ENSP00000297494</td>\n",
++       "      <td>0.976</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVC5512</td>\n",
++       "      <td>ENSP00000260630</td>\n",
++       "      <td>0.933</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVC5512</td>\n",
++       "      <td>ENSP00000369050</td>\n",
++       "      <td>0.912</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVC5493</td>\n",
++       "      <td>ENSP00000260433</td>\n",
++       "      <td>0.931</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVC5480</td>\n",
++       "      <td>ENSP00000274278</td>\n",
++       "      <td>0.906</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVCID       Ensembl_ID  Combined_score\n",
++       "0  HVC5547  ENSP00000297494           0.976\n",
++       "1  HVC5512  ENSP00000260630           0.933\n",
++       "2  HVC5512  ENSP00000369050           0.912\n",
++       "3  HVC5493  ENSP00000260433           0.931\n",
++       "4  HVC5480  ENSP00000274278           0.906"
++      ]
+      },
+      "execution_count": 6,
+      "metadata": {},
+@@ -126,23 +484,94 @@
+    ],
+    "source": [
+     "chem_protein_links.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:27.902490Z",
+-     "end_time": "2023-04-19T17:43:28.074484Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 7,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:28.148487Z",
++     "start_time": "2023-04-19T17:43:27.920493Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "        Ensembl_ID                                       protein_name  \\\n0  ENSP00000014930                    Heme-binding protein 1 (p22HBP)   \n1  ENSP00000043402  Reticulon-4 receptor (Nogo receptor) (NgR) (No...   \n2  ENSP00000044462  Proteasome subunit alpha type-4 (Macropain sub...   \n3  ENSP00000075120  Solute carrier family 2, facilitated glucose t...   \n4  ENSP00000078429  Guanine nucleotide-binding protein subunit alp...   \n\n                   gene_name  \n0                  HEBP1 HBP  \n1  RTN4R NOGOR UNQ330/PRO526  \n2             PSMA4 HC9 PSC9  \n3               SLC2A3 GLUT3  \n4                 GNA11 GA11  ",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Ensembl_ID</th>\n      <th>protein_name</th>\n      <th>gene_name</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ENSP00000014930</td>\n      <td>Heme-binding protein 1 (p22HBP)</td>\n      <td>HEBP1 HBP</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>ENSP00000043402</td>\n      <td>Reticulon-4 receptor (Nogo receptor) (NgR) (No...</td>\n      <td>RTN4R NOGOR UNQ330/PRO526</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>ENSP00000044462</td>\n      <td>Proteasome subunit alpha type-4 (Macropain sub...</td>\n      <td>PSMA4 HC9 PSC9</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>ENSP00000075120</td>\n      <td>Solute carrier family 2, facilitated glucose t...</td>\n      <td>SLC2A3 GLUT3</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>ENSP00000078429</td>\n      <td>Guanine nucleotide-binding protein subunit alp...</td>\n      <td>GNA11 GA11</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>Ensembl_ID</th>\n",
++       "      <th>protein_name</th>\n",
++       "      <th>gene_name</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>ENSP00000014930</td>\n",
++       "      <td>Heme-binding protein 1 (p22HBP)</td>\n",
++       "      <td>HEBP1 HBP</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>ENSP00000043402</td>\n",
++       "      <td>Reticulon-4 receptor (Nogo receptor) (NgR) (No...</td>\n",
++       "      <td>RTN4R NOGOR UNQ330/PRO526</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>ENSP00000044462</td>\n",
++       "      <td>Proteasome subunit alpha type-4 (Macropain sub...</td>\n",
++       "      <td>PSMA4 HC9 PSC9</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>ENSP00000075120</td>\n",
++       "      <td>Solute carrier family 2, facilitated glucose t...</td>\n",
++       "      <td>SLC2A3 GLUT3</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>ENSP00000078429</td>\n",
++       "      <td>Guanine nucleotide-binding protein subunit alp...</td>\n",
++       "      <td>GNA11 GA11</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "        Ensembl_ID                                       protein_name  \\\n",
++       "0  ENSP00000014930                    Heme-binding protein 1 (p22HBP)   \n",
++       "1  ENSP00000043402  Reticulon-4 receptor (Nogo receptor) (NgR) (No...   \n",
++       "2  ENSP00000044462  Proteasome subunit alpha type-4 (Macropain sub...   \n",
++       "3  ENSP00000075120  Solute carrier family 2, facilitated glucose t...   \n",
++       "4  ENSP00000078429  Guanine nucleotide-binding protein subunit alp...   \n",
++       "\n",
++       "                   gene_name  \n",
++       "0                  HEBP1 HBP  \n",
++       "1  RTN4R NOGOR UNQ330/PRO526  \n",
++       "2             PSMA4 HC9 PSC9  \n",
++       "3               SLC2A3 GLUT3  \n",
++       "4                 GNA11 GA11  "
++      ]
+      },
+      "execution_count": 7,
+      "metadata": {},
+@@ -151,141 +580,224 @@
+    ],
+    "source": [
+     "proteins.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:27.920493Z",
+-     "end_time": "2023-04-19T17:43:28.148487Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "markdown",
++   "metadata": {},
+    "source": [
+     "# 逆向网络药理学分析"
+-   ],
+-   "metadata": {
+-    "collapsed": false
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 2,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-05-24T06:46:49.619376900Z",
++     "start_time": "2023-05-24T06:37:12.140997600Z"
++    }
++   },
+    "outputs": [
+     {
+-     "name": "stdout",
++     "name": "stderr",
+      "output_type": "stream",
+      "text": [
+-      "0\n",
+-      "100\n",
+-      "200\n",
+-      "300\n",
+-      "400\n",
+-      "500\n",
+-      "600\n",
+-      "700\n",
+-      "800\n",
+-      "900\n",
+-      "0\n",
+-      "100\n",
+-      "200\n",
+-      "300\n",
+-      "400\n",
+-      "500\n",
+-      "600\n",
+-      "700\n",
+-      "800\n",
+-      "900\n"
++      "100%|██████████| 1000/1000 [01:30<00:00, 11.10it/s]\n",
++      "100%|██████████| 1000/1000 [07:41<00:00,  2.17it/s]\n"
+      ]
+     }
+    ],
+    "source": [
+     "formula, tcm, tcm_chem_links, chem, chem_protein_links, proteins, tcms, formulas = analysis.from_proteins(['ENSP00000381588', 'ENSP00000252519'],\n",
+-    "                                                                                                 score=0,\n",
+-    "                                                                                                 random_state=138192)"
+-   ],
++    "                                                                                                          score=0,\n",
++    "                                                                                                          random_state= 138192)"
++   ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 3,
+    "metadata": {
+-    "collapsed": false,
+     "ExecuteTime": {
+-     "end_time": "2023-05-20T09:52:58.906804Z",
+-     "start_time": "2023-05-20T09:43:39.864247600Z"
++     "end_time": "2023-05-24T06:48:53.870644100Z",
++     "start_time": "2023-05-24T06:48:53.808646400Z"
+     }
+-   }
+-  },
+-  {
+-   "cell_type": "code",
+-   "execution_count": 4,
++   },
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "        HVPID     name                           Prescription Composition  \\\n0     HVP3338    益气养元丸  黄耆10两，白术（麸炒）15两，升麻5两，柴胡5两，山药5两，党参（去芦）10两，当归10两...   \n1     HVP0513    托里化毒汤                人参、黄耆、茯苓、金银花、甘草、当归、白术、牛蒡子、白芷、连翘、陈皮。   \n2     HVP1780  加减补中益气汤  黄耆2钱（炒），人参4钱，白术3钱（土炒），当归1钱，白芍1钱（酒炒），陈皮7分，柴胡5分，...   \n3     HVP0402    升阳益胃散  人参3钱，黄耆2钱，白术1钱，甘草（炙）7分，羌活7分，防风1钱，独活7分，柴胡1钱，升麻8...   \n4     HVP5664    生阳益胃汤                                                NaN   \n...       ...      ...                                                ...   \n5879  HVP1081      火精散                                         硫黄4分，胡椒6分。   \n5880  HVP1083    治疥内消散                                            硫黄1-2钱。   \n5881  HVP6105    杀虫硫黄散                                                硫黄。   \n5882  HVP0310      还阳散                                                硫黄。   \n5883  HVP4643      黄蜡丸                                              硫黄1两。   \n\n     Instructions                                 Treatment Symptoms  \\\n0             NaN  元气亏损，脾胃虚弱，身体疲倦，精神不振。[Deficiency of vitality, w...   \n1             NaN  痘痈成脓。[Acne carbuncle into pus.(Machine transla...   \n2             NaN                                      No Data.[无数据]   \n3             NaN  中气亏败，脾湿壅遏，阳气不伸。体重肢节疼痛，口燥舌干，饮食无味，大便不调，小便短涩，不欲食，...   \n4             NaN  1. Indicated for cases attributive to deficien...   \n...           ...                                                ...   \n5879          NaN  阴症心腹冷痛，不可忍者。[Yin disease, heart and abdomen co...   \n5880          NaN                疥疮。[Scabies.(Machine translation.)]   \n5881          NaN  疳虫蚀下部五脏。[Chancre insect erosion of the lower f...   \n5882          NaN  伤寒阴毒，面色青，四肢逆冷，心躁腹痛。[Typhoid Yin poison, green ...   \n5883          NaN  水泻不止，伤冷虚极。[The water is not only draining, but...   \n\n                           Source Document  Importance Score  \n0                《北京市中药成方选集》。功效:培养元气，健脾和胃。              1.00  \n1                              《痘疹传心录》卷十五。              1.00  \n2     《鲁府禁方》卷二。功效:补元气，健脾胃、养心血，平肝火，清湿热，消膨胀。              1.00  \n3                                  《杏苑》卷三。              1.00  \n4                               pi wei lun              1.00  \n...                                    ...               ...  \n5879                             《鲁府禁方》卷二。              0.15  \n5880                             《鲁府禁方》卷四。              0.15  \n5881                             《胎产心法》卷下。              0.15  \n5882                               《本事》卷九。              0.15  \n5883                           《圣济总录》卷七十四。              0.15  \n\n[5884 rows x 7 columns]",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVPID</th>\n      <th>name</th>\n      <th>Prescription Composition</th>\n      <th>Instructions</th>\n      <th>Treatment Symptoms</th>\n      <th>Source Document</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVP3338</td>\n      <td>益气养元丸</td>\n      <td>黄耆10两，白术（麸炒）15两，升麻5两，柴胡5两，山药5两，党参（去芦）10两，当归10两...</td>\n      <td>NaN</td>\n      <td>元气亏损，脾胃虚弱，身体疲倦，精神不振。[Deficiency of vitality, w...</td>\n      <td>《北京市中药成方选集》。功效:培养元气，健脾和胃。</td>\n      <td>1.00</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVP0513</td>\n      <td>托里化毒汤</td>\n      <td>人参、黄耆、茯苓、金银花、甘草、当归、白术、牛蒡子、白芷、连翘、陈皮。</td>\n      <td>NaN</td>\n      <td>痘痈成脓。[Acne carbuncle into pus.(Machine transla...</td>\n      <td>《痘疹传心录》卷十五。</td>\n      <td>1.00</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVP1780</td>\n      <td>加减补中益气汤</td>\n      <td>黄耆2钱（炒），人参4钱，白术3钱（土炒），当归1钱，白芍1钱（酒炒），陈皮7分，柴胡5分，...</td>\n      <td>NaN</td>\n      <td>No Data.[无数据]</td>\n      <td>《鲁府禁方》卷二。功效:补元气，健脾胃、养心血，平肝火，清湿热，消膨胀。</td>\n      <td>1.00</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVP0402</td>\n      <td>升阳益胃散</td>\n      <td>人参3钱，黄耆2钱，白术1钱，甘草（炙）7分，羌活7分，防风1钱，独活7分，柴胡1钱，升麻8...</td>\n      <td>NaN</td>\n      <td>中气亏败，脾湿壅遏，阳气不伸。体重肢节疼痛，口燥舌干，饮食无味，大便不调，小便短涩，不欲食，...</td>\n      <td>《杏苑》卷三。</td>\n      <td>1.00</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVP5664</td>\n      <td>生阳益胃汤</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>1. Indicated for cases attributive to deficien...</td>\n      <td>pi wei lun</td>\n      <td>1.00</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>5879</th>\n      <td>HVP1081</td>\n      <td>火精散</td>\n      <td>硫黄4分，胡椒6分。</td>\n      <td>NaN</td>\n      <td>阴症心腹冷痛，不可忍者。[Yin disease, heart and abdomen co...</td>\n      <td>《鲁府禁方》卷二。</td>\n      <td>0.15</td>\n    </tr>\n    <tr>\n      <th>5880</th>\n      <td>HVP1083</td>\n      <td>治疥内消散</td>\n      <td>硫黄1-2钱。</td>\n      <td>NaN</td>\n      <td>疥疮。[Scabies.(Machine translation.)]</td>\n      <td>《鲁府禁方》卷四。</td>\n      <td>0.15</td>\n    </tr>\n    <tr>\n      <th>5881</th>\n      <td>HVP6105</td>\n      <td>杀虫硫黄散</td>\n      <td>硫黄。</td>\n      <td>NaN</td>\n      <td>疳虫蚀下部五脏。[Chancre insect erosion of the lower f...</td>\n      <td>《胎产心法》卷下。</td>\n      <td>0.15</td>\n    </tr>\n    <tr>\n      <th>5882</th>\n      <td>HVP0310</td>\n      <td>还阳散</td>\n      <td>硫黄。</td>\n      <td>NaN</td>\n      <td>伤寒阴毒，面色青，四肢逆冷，心躁腹痛。[Typhoid Yin poison, green ...</td>\n      <td>《本事》卷九。</td>\n      <td>0.15</td>\n    </tr>\n    <tr>\n      <th>5883</th>\n      <td>HVP4643</td>\n      <td>黄蜡丸</td>\n      <td>硫黄1两。</td>\n      <td>NaN</td>\n      <td>水泻不止，伤冷虚极。[The water is not only draining, but...</td>\n      <td>《圣济总录》卷七十四。</td>\n      <td>0.15</td>\n    </tr>\n  </tbody>\n</table>\n<p>5884 rows × 7 columns</p>\n</div>"
+      },
+-     "execution_count": 4,
++     "execution_count": 3,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+    ],
+    "source": [
+     "formula"
++   ]
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 19,
++   "outputs": [],
++   "source": [
++    "formula.to_csv('a.csv')"
+    ],
+    "metadata": {
+     "collapsed": false,
+     "ExecuteTime": {
+-     "end_time": "2023-05-20T08:48:30.504587100Z",
+-     "start_time": "2023-05-20T08:48:30.471856100Z"
++     "end_time": "2023-05-24T07:28:03.506996800Z",
++     "start_time": "2023-05-24T07:28:03.378998600Z"
++    }
++   }
++  },
++  {
++   "cell_type": "code",
++   "execution_count": 5,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-05-24T06:49:15.491838500Z",
++     "start_time": "2023-05-24T06:49:15.418842900Z"
+     }
+-   }
++   },
++   "outputs": [
++    {
++     "data": {
++      "text/plain": "               items  Importance Score         Boost\n0    HVP6126;HVP0046               1.0  7.179671e-09\n1    HVP0249;HVP6126               1.0  6.670587e-09\n2    HVP0249;HVP5899               1.0  6.670587e-09\n3    HVP0300;HVP5899               1.0  6.286480e-09\n4    HVP0606;HVP0300               1.0  6.286480e-09\n..               ...               ...           ...\n995  HVP0376;HVP0894               1.0  5.551115e-16\n996  HVP0376;HVP6019               1.0  5.551115e-16\n997  HVP0376;HVP0974               1.0  5.551115e-16\n998  HVP0376;HVP5800               1.0  5.551115e-16\n999  HVP0376;HVP3769               1.0  5.551115e-16\n\n[1000 rows x 3 columns]",
++      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>items</th>\n      <th>Importance Score</th>\n      <th>Boost</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVP6126;HVP0046</td>\n      <td>1.0</td>\n      <td>7.179671e-09</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVP0249;HVP6126</td>\n      <td>1.0</td>\n      <td>6.670587e-09</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVP0249;HVP5899</td>\n      <td>1.0</td>\n      <td>6.670587e-09</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVP0300;HVP5899</td>\n      <td>1.0</td>\n      <td>6.286480e-09</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVP0606;HVP0300</td>\n      <td>1.0</td>\n      <td>6.286480e-09</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>995</th>\n      <td>HVP0376;HVP0894</td>\n      <td>1.0</td>\n      <td>5.551115e-16</td>\n    </tr>\n    <tr>\n      <th>996</th>\n      <td>HVP0376;HVP6019</td>\n      <td>1.0</td>\n      <td>5.551115e-16</td>\n    </tr>\n    <tr>\n      <th>997</th>\n      <td>HVP0376;HVP0974</td>\n      <td>1.0</td>\n      <td>5.551115e-16</td>\n    </tr>\n    <tr>\n      <th>998</th>\n      <td>HVP0376;HVP5800</td>\n      <td>1.0</td>\n      <td>5.551115e-16</td>\n    </tr>\n    <tr>\n      <th>999</th>\n      <td>HVP0376;HVP3769</td>\n      <td>1.0</td>\n      <td>5.551115e-16</td>\n    </tr>\n  </tbody>\n</table>\n<p>1000 rows × 3 columns</p>\n</div>"
++     },
++     "execution_count": 5,
++     "metadata": {},
++     "output_type": "execute_result"
++    }
++   ],
++   "source": [
++    "formulas"
++   ]
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 4,
+-   "outputs": [],
++   "execution_count": 18,
++   "outputs": [
++    {
++     "data": {
++      "text/plain": "0           [人参散, 护子汤]\n1        [重校定香茸丸, 人参散]\n2        [重校定香茸丸, 柴胡汤]\n3         [苓术二陈煎, 柴胡汤]\n4         [散风汤, 苓术二陈煎]\n            ...       \n995       [治风豁痰汤, 护金汤]\n996       [治风豁痰汤, 防风散]\n997     [治风豁痰汤, 乌风决明丸]\n998    [治风豁痰汤, 加味小柴胡汤]\n999     [治风豁痰汤, 黄连涤暑汤]\nName: items, Length: 1000, dtype: object"
++     },
++     "execution_count": 18,
++     "metadata": {},
++     "output_type": "execute_result"
++    }
++   ],
+    "source": [
+-    "formulas.to_csv('formulas.csv', index=False)"
++    "formulas['items'].apply(lambda x: [formula.loc[formula['HVPID']==i]['name'].iloc[0] for i in x.split(';')])"
+    ],
+    "metadata": {
+     "collapsed": false,
+     "ExecuteTime": {
+-     "end_time": "2023-05-20T09:53:49.863895500Z",
+-     "start_time": "2023-05-20T09:53:49.825433300Z"
++     "end_time": "2023-05-24T06:59:30.844090700Z",
++     "start_time": "2023-05-24T06:59:29.086762700Z"
+     }
+    }
+   },
+   {
+    "cell_type": "code",
+-   "execution_count": 3,
++   "execution_count": 4,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-05-24T06:49:00.803733400Z",
++     "start_time": "2023-05-24T06:49:00.743158300Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+       "text/plain": "        HVMID cn_name       pinyin_name  \\\n0     HVM2997     肉苁蓉     ROU CONG RONG   \n1     HVM3101     沙苑子       SHA YUAN ZI   \n2     HVM3090      沙棘            SHA JI   \n3     HVM2859      荞麦          QIAO MAI   \n4     HVM1308      广枣         GUANG ZAO   \n...       ...     ...               ...   \n1266  HVM1229      构树           GOU SHU   \n1267  HVM2861    乔木刺桐   QIAO MU CI TONG   \n1268  HVM0530     穿破石      CHUAN PO SHI   \n1269  HVM1637     黄大豆      HUANG DA DOU   \n1270  HVM2751    攀援鱼藤  PAN YUAN YU TENG   \n\n                                                en_name  \\\n0                                Desertliving Cistanche   \n1                               Flatstem Milkvetch Seed   \n2                                 fruit of seabuckthorn   \n3                                      Common Buckwheat   \n4                      fruit of Axillary choerospondias   \n...                                                 ...   \n1266                               Common Papermulberry   \n1267  Himalayan Coralbean Equivalent plant: Erythrin...   \n1268                         root of Tricuspid cudrania   \n1269                                 Semen Glycines max   \n1270                                 Climbing Jewelvine   \n\n                    latin_name                      Properties  \\\n0             Herba Cistanches              Warm; Sweet; Salty   \n1     Semen Astragali Complati                     Sweet; warm   \n2            fructus hippophae             Warm; Sour; Punkery   \n3         Fagopyrum esculentum                             NaN   \n4     Fructus Choerospondiatis             Cold; Sour; Punkery   \n...                        ...                             ...   \n1266   Broussonetia papyrifera                             NaN   \n1267     Erythrina arborescens                             NaN   \n1268           Radix Cudraniae  Cool; Slightly Bitter; Neutral   \n1269                       NaN                             NaN   \n1270           Derris scandens                             NaN   \n\n                                             Meridians  \\\n0                              Large Intestine; Kidney   \n1                                        Liver; kidney   \n2     Large Intestine; Stomach; Small Intestine; Liver   \n3                                                  NaN   \n4                                        Spleen; Liver   \n...                                                ...   \n1266                                               NaN   \n1267                                               NaN   \n1268                                      Liver; Heart   \n1269                                               NaN   \n1270                                               NaN   \n\n                        UsePart  \\\n0                   fleshy stem   \n1                           NaN   \n2                           NaN   \n3                          seed   \n4                           NaN   \n...                         ...   \n1266                     branch   \n1267  dried bark or root cortex   \n1268                        NaN   \n1269                        NaN   \n1270                        NaN   \n\n                                               Function  \\\n0     To reinforce the kidney, replenish vital essen...   \n1     To benefit the liver and the kidney, arrest se...   \n2                                                   NaN   \n3     To fortify spleen and disperse accumulation, p...   \n4     To promote the flow of qi and blood, to replen...   \n...                                                 ...   \n1266   To dispel wind, brighten eyes, disinhibit urine.   \n1267  To dispel wind and eliminate damp, soothe sine...   \n1268  1. To remove blood stasis, alleviate pain, exp...   \n1269                                                NaN   \n1270                                                NaN   \n\n                                             Indication Toxicity  \\\n0     Impotence, infertility, backache, limp aching ...      NaN   \n1     Treatment of back pain, nocturnal emission and...      NaN   \n2                                                   NaN      NaN   \n3     Gastrointestinal accumulation, diarrhea, dysen...      NaN   \n4     Treatment of stagnation of qi and blood with p...      NaN   \n...                                                 ...      ...   \n1266  Wind papules, red eyes with gall, inhibited ur...      NaN   \n1267  Wind-damp impediment pain, hypertonicity in li...      NaN   \n1268  1. To remove blood stasis, alleviate pain, exp...      NaN   \n1269                                                NaN      NaN   \n1270                                                NaN      NaN   \n\n                           Clinical_manifestations  \\\n0     1. Hypotensive2. Promoting saliva secretion.   \n1                                              NaN   \n2                                              NaN   \n3                                              NaN   \n4                                              NaN   \n...                                            ...   \n1266                                           NaN   \n1267                                           NaN   \n1268                                           NaN   \n1269                                           NaN   \n1270                                           NaN   \n\n                        Therapeutic_en_class Therapeutic_cn_class     HERB_id  \\\n0                     Yang Reinforcing Drugs                  补阳药  HERB004692   \n1                     Yang Reinforcing Drugs                  补阳药  HERB004864   \n2                    Phlegresolving Medicine                  化痰药  HERB004849   \n3                                        NaN                  NaN  HERB004488   \n4     Blood Activating Stasis Removing Drugs                活血祛瘀药  HERB002040   \n...                                      ...                  ...         ...   \n1266                                     NaN                  NaN  HERB001920   \n1267                                     NaN                  NaN  HERB004490   \n1268                                     NaN                  NaN  HERB000873   \n1269                                     NaN                  NaN  HERB002493   \n1270                                     NaN                  NaN  HERB004313   \n\n       TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \n0     SMHB00338     1883.0      338.0     596.0          0.999986  \n1     SMHB00354     1702.0      354.0    1035.0          0.999781  \n2     SMHB00353     6230.0      353.0     613.0          0.999437  \n3           NaN     1877.0        NaN       NaN          0.999431  \n4     SMHB00152     1671.0      152.0     296.0          0.999149  \n...         ...        ...        ...       ...               ...  \n1266        NaN     7200.0        NaN       NaN          0.150000  \n1267        NaN     4911.0        NaN       NaN          0.150000  \n1268        NaN     7116.0        NaN     112.0          0.150000  \n1269        NaN     4946.0        NaN       NaN          0.150000  \n1270        NaN     2770.0        NaN       NaN          0.150000  \n\n[1271 rows x 20 columns]",
+       "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVMID</th>\n      <th>cn_name</th>\n      <th>pinyin_name</th>\n      <th>en_name</th>\n      <th>latin_name</th>\n      <th>Properties</th>\n      <th>Meridians</th>\n      <th>UsePart</th>\n      <th>Function</th>\n      <th>Indication</th>\n      <th>Toxicity</th>\n      <th>Clinical_manifestations</th>\n      <th>Therapeutic_en_class</th>\n      <th>Therapeutic_cn_class</th>\n      <th>HERB_id</th>\n      <th>TCMID_id</th>\n      <th>TCM_ID_id</th>\n      <th>SymMap_id</th>\n      <th>TCMSP_id</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVM2997</td>\n      <td>肉苁蓉</td>\n      <td>ROU CONG RONG</td>\n      <td>Desertliving Cistanche</td>\n      <td>Herba Cistanches</td>\n      <td>Warm; Sweet; Salty</td>\n      <td>Large Intestine; Kidney</td>\n      <td>fleshy stem</td>\n      <td>To reinforce the kidney, replenish vital essen...</td>\n      <td>Impotence, infertility, backache, limp aching ...</td>\n      <td>NaN</td>\n      <td>1. Hypotensive2. Promoting saliva secretion.</td>\n      <td>Yang Reinforcing Drugs</td>\n      <td>补阳药</td>\n      <td>HERB004692</td>\n      <td>SMHB00338</td>\n      <td>1883.0</td>\n      <td>338.0</td>\n      <td>596.0</td>\n      <td>0.999986</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVM3101</td>\n      <td>沙苑子</td>\n      <td>SHA YUAN ZI</td>\n      <td>Flatstem Milkvetch Seed</td>\n      <td>Semen Astragali Complati</td>\n      <td>Sweet; warm</td>\n      <td>Liver; kidney</td>\n      <td>NaN</td>\n      <td>To benefit the liver and the kidney, arrest se...</td>\n      <td>Treatment of back pain, nocturnal emission and...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>Yang Reinforcing Drugs</td>\n      <td>补阳药</td>\n      <td>HERB004864</td>\n      <td>SMHB00354</td>\n      <td>1702.0</td>\n      <td>354.0</td>\n      <td>1035.0</td>\n      <td>0.999781</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVM3090</td>\n      <td>沙棘</td>\n      <td>SHA JI</td>\n      <td>fruit of seabuckthorn</td>\n      <td>fructus hippophae</td>\n      <td>Warm; Sour; Punkery</td>\n      <td>Large Intestine; Stomach; Small Intestine; Liver</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>Phlegresolving Medicine</td>\n      <td>化痰药</td>\n      <td>HERB004849</td>\n      <td>SMHB00353</td>\n      <td>6230.0</td>\n      <td>353.0</td>\n      <td>613.0</td>\n      <td>0.999437</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVM2859</td>\n      <td>荞麦</td>\n      <td>QIAO MAI</td>\n      <td>Common Buckwheat</td>\n      <td>Fagopyrum esculentum</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>seed</td>\n      <td>To fortify spleen and disperse accumulation, p...</td>\n      <td>Gastrointestinal accumulation, diarrhea, dysen...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>HERB004488</td>\n      <td>NaN</td>\n      <td>1877.0</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>0.999431</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVM1308</td>\n      <td>广枣</td>\n      <td>GUANG ZAO</td>\n      <td>fruit of Axillary choerospondias</td>\n      <td>Fructus Choerospondiatis</td>\n      <td>Cold; Sour; Punkery</td>\n      <td>Spleen; Liver</td>\n      <td>NaN</td>\n      <td>To promote the flow of qi and blood, to replen...</td>\n      <td>Treatment of stagnation of qi and blood with p...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>Blood Activating Stasis Removing Drugs</td>\n      <td>活血祛瘀药</td>\n      <td>HERB002040</td>\n      <td>SMHB00152</td>\n      <td>1671.0</td>\n      <td>152.0</td>\n      <td>296.0</td>\n      <td>0.999149</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>1266</th>\n      <td>HVM1229</td>\n      <td>构树</td>\n      <td>GOU SHU</td>\n      <td>Common Papermulberry</td>\n      <td>Broussonetia papyrifera</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>branch</td>\n      <td>To dispel wind, brighten eyes, disinhibit urine.</td>\n      <td>Wind papules, red eyes with gall, inhibited ur...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>HERB001920</td>\n      <td>NaN</td>\n      <td>7200.0</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>0.150000</td>\n    </tr>\n    <tr>\n      <th>1267</th>\n      <td>HVM2861</td>\n      <td>乔木刺桐</td>\n      <td>QIAO MU CI TONG</td>\n      <td>Himalayan Coralbean Equivalent plant: Erythrin...</td>\n      <td>Erythrina arborescens</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>dried bark or root cortex</td>\n      <td>To dispel wind and eliminate damp, soothe sine...</td>\n      <td>Wind-damp impediment pain, hypertonicity in li...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>HERB004490</td>\n      <td>NaN</td>\n      <td>4911.0</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>0.150000</td>\n    </tr>\n    <tr>\n      <th>1268</th>\n      <td>HVM0530</td>\n      <td>穿破石</td>\n      <td>CHUAN PO SHI</td>\n      <td>root of Tricuspid cudrania</td>\n      <td>Radix Cudraniae</td>\n      <td>Cool; Slightly Bitter; Neutral</td>\n      <td>Liver; Heart</td>\n      <td>NaN</td>\n      <td>1. To remove blood stasis, alleviate pain, exp...</td>\n      <td>1. To remove blood stasis, alleviate pain, exp...</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>HERB000873</td>\n      <td>NaN</td>\n      <td>7116.0</td>\n      <td>NaN</td>\n      <td>112.0</td>\n      <td>0.150000</td>\n    </tr>\n    <tr>\n      <th>1269</th>\n      <td>HVM1637</td>\n      <td>黄大豆</td>\n      <td>HUANG DA DOU</td>\n      <td>Semen Glycines max</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>HERB002493</td>\n      <td>NaN</td>\n      <td>4946.0</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>0.150000</td>\n    </tr>\n    <tr>\n      <th>1270</th>\n      <td>HVM2751</td>\n      <td>攀援鱼藤</td>\n      <td>PAN YUAN YU TENG</td>\n      <td>Climbing Jewelvine</td>\n      <td>Derris scandens</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>HERB004313</td>\n      <td>NaN</td>\n      <td>2770.0</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>0.150000</td>\n    </tr>\n  </tbody>\n</table>\n<p>1271 rows × 20 columns</p>\n</div>"
+      },
+-     "execution_count": 3,
++     "execution_count": 4,
+      "metadata": {},
+      "output_type": "execute_result"
+     }
+    ],
+    "source": [
+     "tcm"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "end_time": "2023-05-17T06:46:13.323441400Z",
+-     "start_time": "2023-05-17T06:46:13.256514200Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 10,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:35.434607Z",
++     "start_time": "2023-04-19T17:43:35.327573Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVMID    HVCID\n0  HVM0018  HVC0302\n1  HVM0018  HVC5478\n2  HVM0026  HVC0462\n3  HVM0029  HVC0533\n4  HVM0029  HVC0462",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVMID</th>\n      <th>HVCID</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVM0018</td>\n      <td>HVC0302</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVM0018</td>\n      <td>HVC5478</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVM0026</td>\n      <td>HVC0462</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVM0029</td>\n      <td>HVC0533</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVM0029</td>\n      <td>HVC0462</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVMID</th>\n",
++       "      <th>HVCID</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVM0018</td>\n",
++       "      <td>HVC0302</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVM0018</td>\n",
++       "      <td>HVC5478</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVM0026</td>\n",
++       "      <td>HVC0462</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVM0029</td>\n",
++       "      <td>HVC0533</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVM0029</td>\n",
++       "      <td>HVC0462</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVMID    HVCID\n",
++       "0  HVM0018  HVC0302\n",
++       "1  HVM0018  HVC5478\n",
++       "2  HVM0026  HVC0462\n",
++       "3  HVM0029  HVC0533\n",
++       "4  HVM0029  HVC0462"
++      ]
+      },
+      "execution_count": 10,
+      "metadata": {},
+@@ -294,23 +806,130 @@
+    ],
+    "source": [
+     "tcm_chem_links.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:35.327573Z",
+-     "end_time": "2023-04-19T17:43:35.434607Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 11,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:35.462520Z",
++     "start_time": "2023-04-19T17:43:35.344570Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVCID                 Name                              SMILES   CAS_id  \\\n0  HVC0004  dihydrotestosterone  CC12CCC(=O)CC1CCC3C2CCC4(C3CCC4O)C      NaN   \n1  HVC0022  5-hydroxytryptophan   C1=CC2=C(C=C1O)C(=CN2)CC(C(=O)O)N      NaN   \n2  HVC0025              acetate                          CC(=O)[O-]      NaN   \n3  HVC0026         acetaldehyde                                CC=O  75-07-0   \n4  HVC0029              acetone                             CC(=O)C      NaN   \n\n   PubChem_id DrugBank_id     STITCH_id     HERB_id  Importance Score  \n0     10635.0         NaN  CIDm00000015  HBIN023995             0.588  \n1    439280.0         NaN  CIDm00000144  HBIN011695             0.256  \n2       175.0         NaN  CIDm00000175  HBIN014391             0.521  \n3       177.0         NaN  CIDm00000177  HBIN014388             0.521  \n4       180.0         NaN  CIDm00000180  HBIN014420             0.390  ",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVCID</th>\n      <th>Name</th>\n      <th>SMILES</th>\n      <th>CAS_id</th>\n      <th>PubChem_id</th>\n      <th>DrugBank_id</th>\n      <th>STITCH_id</th>\n      <th>HERB_id</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVC0004</td>\n      <td>dihydrotestosterone</td>\n      <td>CC12CCC(=O)CC1CCC3C2CCC4(C3CCC4O)C</td>\n      <td>NaN</td>\n      <td>10635.0</td>\n      <td>NaN</td>\n      <td>CIDm00000015</td>\n      <td>HBIN023995</td>\n      <td>0.588</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVC0022</td>\n      <td>5-hydroxytryptophan</td>\n      <td>C1=CC2=C(C=C1O)C(=CN2)CC(C(=O)O)N</td>\n      <td>NaN</td>\n      <td>439280.0</td>\n      <td>NaN</td>\n      <td>CIDm00000144</td>\n      <td>HBIN011695</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVC0025</td>\n      <td>acetate</td>\n      <td>CC(=O)[O-]</td>\n      <td>NaN</td>\n      <td>175.0</td>\n      <td>NaN</td>\n      <td>CIDm00000175</td>\n      <td>HBIN014391</td>\n      <td>0.521</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVC0026</td>\n      <td>acetaldehyde</td>\n      <td>CC=O</td>\n      <td>75-07-0</td>\n      <td>177.0</td>\n      <td>NaN</td>\n      <td>CIDm00000177</td>\n      <td>HBIN014388</td>\n      <td>0.521</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVC0029</td>\n      <td>acetone</td>\n      <td>CC(=O)C</td>\n      <td>NaN</td>\n      <td>180.0</td>\n      <td>NaN</td>\n      <td>CIDm00000180</td>\n      <td>HBIN014420</td>\n      <td>0.390</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVCID</th>\n",
++       "      <th>Name</th>\n",
++       "      <th>SMILES</th>\n",
++       "      <th>CAS_id</th>\n",
++       "      <th>PubChem_id</th>\n",
++       "      <th>DrugBank_id</th>\n",
++       "      <th>STITCH_id</th>\n",
++       "      <th>HERB_id</th>\n",
++       "      <th>Importance Score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVC0004</td>\n",
++       "      <td>dihydrotestosterone</td>\n",
++       "      <td>CC12CCC(=O)CC1CCC3C2CCC4(C3CCC4O)C</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>10635.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000015</td>\n",
++       "      <td>HBIN023995</td>\n",
++       "      <td>0.588</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVC0022</td>\n",
++       "      <td>5-hydroxytryptophan</td>\n",
++       "      <td>C1=CC2=C(C=C1O)C(=CN2)CC(C(=O)O)N</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>439280.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000144</td>\n",
++       "      <td>HBIN011695</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVC0025</td>\n",
++       "      <td>acetate</td>\n",
++       "      <td>CC(=O)[O-]</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>175.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000175</td>\n",
++       "      <td>HBIN014391</td>\n",
++       "      <td>0.521</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVC0026</td>\n",
++       "      <td>acetaldehyde</td>\n",
++       "      <td>CC=O</td>\n",
++       "      <td>75-07-0</td>\n",
++       "      <td>177.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000177</td>\n",
++       "      <td>HBIN014388</td>\n",
++       "      <td>0.521</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVC0029</td>\n",
++       "      <td>acetone</td>\n",
++       "      <td>CC(=O)C</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>180.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000180</td>\n",
++       "      <td>HBIN014420</td>\n",
++       "      <td>0.390</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVCID                 Name                              SMILES   CAS_id  \\\n",
++       "0  HVC0004  dihydrotestosterone  CC12CCC(=O)CC1CCC3C2CCC4(C3CCC4O)C      NaN   \n",
++       "1  HVC0022  5-hydroxytryptophan   C1=CC2=C(C=C1O)C(=CN2)CC(C(=O)O)N      NaN   \n",
++       "2  HVC0025              acetate                          CC(=O)[O-]      NaN   \n",
++       "3  HVC0026         acetaldehyde                                CC=O  75-07-0   \n",
++       "4  HVC0029              acetone                             CC(=O)C      NaN   \n",
++       "\n",
++       "   PubChem_id DrugBank_id     STITCH_id     HERB_id  Importance Score  \n",
++       "0     10635.0         NaN  CIDm00000015  HBIN023995             0.588  \n",
++       "1    439280.0         NaN  CIDm00000144  HBIN011695             0.256  \n",
++       "2       175.0         NaN  CIDm00000175  HBIN014391             0.521  \n",
++       "3       177.0         NaN  CIDm00000177  HBIN014388             0.521  \n",
++       "4       180.0         NaN  CIDm00000180  HBIN014420             0.390  "
++      ]
+      },
+      "execution_count": 11,
+      "metadata": {},
+@@ -319,23 +938,87 @@
+    ],
+    "source": [
+     "chem.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:35.344570Z",
+-     "end_time": "2023-04-19T17:43:35.462520Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 12,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:35.536476Z",
++     "start_time": "2023-04-19T17:43:35.375573Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVCID       Ensembl_ID  Combined_score\n0  HVC6130  ENSP00000381588           0.150\n1  HVC6114  ENSP00000381588           0.256\n2  HVC6092  ENSP00000381588           0.256\n3  HVC5717  ENSP00000381588           0.167\n4  HVC5622  ENSP00000381588           0.248",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVCID</th>\n      <th>Ensembl_ID</th>\n      <th>Combined_score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVC6130</td>\n      <td>ENSP00000381588</td>\n      <td>0.150</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVC6114</td>\n      <td>ENSP00000381588</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVC6092</td>\n      <td>ENSP00000381588</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVC5717</td>\n      <td>ENSP00000381588</td>\n      <td>0.167</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVC5622</td>\n      <td>ENSP00000381588</td>\n      <td>0.248</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVCID</th>\n",
++       "      <th>Ensembl_ID</th>\n",
++       "      <th>Combined_score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVC6130</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.150</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVC6114</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVC6092</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVC5717</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.167</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVC5622</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.248</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVCID       Ensembl_ID  Combined_score\n",
++       "0  HVC6130  ENSP00000381588           0.150\n",
++       "1  HVC6114  ENSP00000381588           0.256\n",
++       "2  HVC6092  ENSP00000381588           0.256\n",
++       "3  HVC5717  ENSP00000381588           0.167\n",
++       "4  HVC5622  ENSP00000381588           0.248"
++      ]
+      },
+      "execution_count": 12,
+      "metadata": {},
+@@ -344,23 +1027,66 @@
+    ],
+    "source": [
+     "chem_protein_links.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:35.375573Z",
+-     "end_time": "2023-04-19T17:43:35.536476Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 13,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:35.537480Z",
++     "start_time": "2023-04-19T17:43:35.397565Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "        Ensembl_ID protein_name gene_name\n0  ENSP00000381588          NaN   TMPRSS2\n1  ENSP00000252519          NaN      ACE2",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Ensembl_ID</th>\n      <th>protein_name</th>\n      <th>gene_name</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ENSP00000381588</td>\n      <td>NaN</td>\n      <td>TMPRSS2</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>ENSP00000252519</td>\n      <td>NaN</td>\n      <td>ACE2</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>Ensembl_ID</th>\n",
++       "      <th>protein_name</th>\n",
++       "      <th>gene_name</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>TMPRSS2</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>ENSP00000252519</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>ACE2</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "        Ensembl_ID protein_name gene_name\n",
++       "0  ENSP00000381588          NaN   TMPRSS2\n",
++       "1  ENSP00000252519          NaN      ACE2"
++      ]
+      },
+      "execution_count": 13,
+      "metadata": {},
+@@ -369,47 +1095,166 @@
+    ],
+    "source": [
+     "proteins"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:35.397565Z",
+-     "end_time": "2023-04-19T17:43:35.537480Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "markdown",
++   "metadata": {},
+    "source": [
+     "# 给定中药和靶点进行分析"
+-   ],
+-   "metadata": {
+-    "collapsed": false
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 14,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:36.175968Z",
++     "start_time": "2023-04-19T17:43:35.411587Z"
++    }
++   },
+    "outputs": [],
+    "source": [
+     "tcm, tcm_chem_links, chem, chem_protein_links, proteins = analysis.from_tcm_protein(['柴胡', '黄芩'], ['ENSP00000381588', 'ENSP00000252519'])"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:35.411587Z",
+-     "end_time": "2023-04-19T17:43:36.175968Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 15,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:36.177798Z",
++     "start_time": "2023-04-19T17:43:36.010801Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVMID cn_name pinyin_name                   en_name          latin_name  \\\n0  HVM0367      柴胡     CHAI HU  root of Chinese Thorowax      Radix Bupleuri   \n1  HVM1695      黄芩   HUANG QIN   root of Baikal skullcap  Radix Scutellariae   \n\n                    Properties  \\\n0  Minor cold; Pungent; Bitter   \n1                 Cold; Bitter   \n\n                                           Meridians UsePart  \\\n0                                 Liver; Gallbladder    root   \n1  Lung; Large Intestine; Stomach; Small Intestin...    root   \n\n                                            Function  \\\n0  To relieve fever, to soothe the liver, and to ...   \n1  To remove damp-heat, to quench fire and counte...   \n\n                                          Indication Toxicity  \\\n0  Common cold, influenza, malaria, acute pancrea...      NaN   \n1  Chest oppression with retching, diarrhea, jaun...      NaN   \n\n                             Clinical_manifestations  \\\n0  1. Increasing the hypotic effect of barbital i...   \n1  1. Possessing a broad-spectrum bacteriostatic ...   \n\n                         Therapeutic_en_class Therapeutic_cn_class  \\\n0                   Pungent Cool Diaphoretics                辛凉解表药   \n1  Heat-Clearing And Dampnessdrying Medicinal                清热燥湿药   \n\n      HERB_id   TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \n0  HERB000638  SMHB00058     3396.0       58.0      80.0          0.993107  \n1  HERB002563  SMHB00188     6700.0      188.0     371.0          0.586509  ",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVMID</th>\n      <th>cn_name</th>\n      <th>pinyin_name</th>\n      <th>en_name</th>\n      <th>latin_name</th>\n      <th>Properties</th>\n      <th>Meridians</th>\n      <th>UsePart</th>\n      <th>Function</th>\n      <th>Indication</th>\n      <th>Toxicity</th>\n      <th>Clinical_manifestations</th>\n      <th>Therapeutic_en_class</th>\n      <th>Therapeutic_cn_class</th>\n      <th>HERB_id</th>\n      <th>TCMID_id</th>\n      <th>TCM_ID_id</th>\n      <th>SymMap_id</th>\n      <th>TCMSP_id</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVM0367</td>\n      <td>柴胡</td>\n      <td>CHAI HU</td>\n      <td>root of Chinese Thorowax</td>\n      <td>Radix Bupleuri</td>\n      <td>Minor cold; Pungent; Bitter</td>\n      <td>Liver; Gallbladder</td>\n      <td>root</td>\n      <td>To relieve fever, to soothe the liver, and to ...</td>\n      <td>Common cold, influenza, malaria, acute pancrea...</td>\n      <td>NaN</td>\n      <td>1. Increasing the hypotic effect of barbital i...</td>\n      <td>Pungent Cool Diaphoretics</td>\n      <td>辛凉解表药</td>\n      <td>HERB000638</td>\n      <td>SMHB00058</td>\n      <td>3396.0</td>\n      <td>58.0</td>\n      <td>80.0</td>\n      <td>0.993107</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVM1695</td>\n      <td>黄芩</td>\n      <td>HUANG QIN</td>\n      <td>root of Baikal skullcap</td>\n      <td>Radix Scutellariae</td>\n      <td>Cold; Bitter</td>\n      <td>Lung; Large Intestine; Stomach; Small Intestin...</td>\n      <td>root</td>\n      <td>To remove damp-heat, to quench fire and counte...</td>\n      <td>Chest oppression with retching, diarrhea, jaun...</td>\n      <td>NaN</td>\n      <td>1. Possessing a broad-spectrum bacteriostatic ...</td>\n      <td>Heat-Clearing And Dampnessdrying Medicinal</td>\n      <td>清热燥湿药</td>\n      <td>HERB002563</td>\n      <td>SMHB00188</td>\n      <td>6700.0</td>\n      <td>188.0</td>\n      <td>371.0</td>\n      <td>0.586509</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVMID</th>\n",
++       "      <th>cn_name</th>\n",
++       "      <th>pinyin_name</th>\n",
++       "      <th>en_name</th>\n",
++       "      <th>latin_name</th>\n",
++       "      <th>Properties</th>\n",
++       "      <th>Meridians</th>\n",
++       "      <th>UsePart</th>\n",
++       "      <th>Function</th>\n",
++       "      <th>Indication</th>\n",
++       "      <th>Toxicity</th>\n",
++       "      <th>Clinical_manifestations</th>\n",
++       "      <th>Therapeutic_en_class</th>\n",
++       "      <th>Therapeutic_cn_class</th>\n",
++       "      <th>HERB_id</th>\n",
++       "      <th>TCMID_id</th>\n",
++       "      <th>TCM_ID_id</th>\n",
++       "      <th>SymMap_id</th>\n",
++       "      <th>TCMSP_id</th>\n",
++       "      <th>Importance Score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>柴胡</td>\n",
++       "      <td>CHAI HU</td>\n",
++       "      <td>root of Chinese Thorowax</td>\n",
++       "      <td>Radix Bupleuri</td>\n",
++       "      <td>Minor cold; Pungent; Bitter</td>\n",
++       "      <td>Liver; Gallbladder</td>\n",
++       "      <td>root</td>\n",
++       "      <td>To relieve fever, to soothe the liver, and to ...</td>\n",
++       "      <td>Common cold, influenza, malaria, acute pancrea...</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>1. Increasing the hypotic effect of barbital i...</td>\n",
++       "      <td>Pungent Cool Diaphoretics</td>\n",
++       "      <td>辛凉解表药</td>\n",
++       "      <td>HERB000638</td>\n",
++       "      <td>SMHB00058</td>\n",
++       "      <td>3396.0</td>\n",
++       "      <td>58.0</td>\n",
++       "      <td>80.0</td>\n",
++       "      <td>0.993107</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVM1695</td>\n",
++       "      <td>黄芩</td>\n",
++       "      <td>HUANG QIN</td>\n",
++       "      <td>root of Baikal skullcap</td>\n",
++       "      <td>Radix Scutellariae</td>\n",
++       "      <td>Cold; Bitter</td>\n",
++       "      <td>Lung; Large Intestine; Stomach; Small Intestin...</td>\n",
++       "      <td>root</td>\n",
++       "      <td>To remove damp-heat, to quench fire and counte...</td>\n",
++       "      <td>Chest oppression with retching, diarrhea, jaun...</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>1. Possessing a broad-spectrum bacteriostatic ...</td>\n",
++       "      <td>Heat-Clearing And Dampnessdrying Medicinal</td>\n",
++       "      <td>清热燥湿药</td>\n",
++       "      <td>HERB002563</td>\n",
++       "      <td>SMHB00188</td>\n",
++       "      <td>6700.0</td>\n",
++       "      <td>188.0</td>\n",
++       "      <td>371.0</td>\n",
++       "      <td>0.586509</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVMID cn_name pinyin_name                   en_name          latin_name  \\\n",
++       "0  HVM0367      柴胡     CHAI HU  root of Chinese Thorowax      Radix Bupleuri   \n",
++       "1  HVM1695      黄芩   HUANG QIN   root of Baikal skullcap  Radix Scutellariae   \n",
++       "\n",
++       "                    Properties  \\\n",
++       "0  Minor cold; Pungent; Bitter   \n",
++       "1                 Cold; Bitter   \n",
++       "\n",
++       "                                           Meridians UsePart  \\\n",
++       "0                                 Liver; Gallbladder    root   \n",
++       "1  Lung; Large Intestine; Stomach; Small Intestin...    root   \n",
++       "\n",
++       "                                            Function  \\\n",
++       "0  To relieve fever, to soothe the liver, and to ...   \n",
++       "1  To remove damp-heat, to quench fire and counte...   \n",
++       "\n",
++       "                                          Indication Toxicity  \\\n",
++       "0  Common cold, influenza, malaria, acute pancrea...      NaN   \n",
++       "1  Chest oppression with retching, diarrhea, jaun...      NaN   \n",
++       "\n",
++       "                             Clinical_manifestations  \\\n",
++       "0  1. Increasing the hypotic effect of barbital i...   \n",
++       "1  1. Possessing a broad-spectrum bacteriostatic ...   \n",
++       "\n",
++       "                         Therapeutic_en_class Therapeutic_cn_class  \\\n",
++       "0                   Pungent Cool Diaphoretics                辛凉解表药   \n",
++       "1  Heat-Clearing And Dampnessdrying Medicinal                清热燥湿药   \n",
++       "\n",
++       "      HERB_id   TCMID_id  TCM_ID_id  SymMap_id  TCMSP_id  Importance Score  \n",
++       "0  HERB000638  SMHB00058     3396.0       58.0      80.0          0.993107  \n",
++       "1  HERB002563  SMHB00188     6700.0      188.0     371.0          0.586509  "
++      ]
+      },
+      "execution_count": 15,
+      "metadata": {},
+@@ -418,23 +1263,81 @@
+    ],
+    "source": [
+     "tcm"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:36.010801Z",
+-     "end_time": "2023-04-19T17:43:36.177798Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 16,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:36.178836Z",
++     "start_time": "2023-04-19T17:43:36.040811Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVMID    HVCID\n0  HVM0367  HVC0384\n1  HVM0367  HVC0384\n2  HVM0367  HVC0036\n3  HVM0367  HVC0273\n4  HVM0367  HVC0533",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVMID</th>\n      <th>HVCID</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVM0367</td>\n      <td>HVC0384</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVM0367</td>\n      <td>HVC0384</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVM0367</td>\n      <td>HVC0036</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVM0367</td>\n      <td>HVC0273</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVM0367</td>\n      <td>HVC0533</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVMID</th>\n",
++       "      <th>HVCID</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0384</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0384</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0036</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0273</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVM0367</td>\n",
++       "      <td>HVC0533</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVMID    HVCID\n",
++       "0  HVM0367  HVC0384\n",
++       "1  HVM0367  HVC0384\n",
++       "2  HVM0367  HVC0036\n",
++       "3  HVM0367  HVC0273\n",
++       "4  HVM0367  HVC0533"
++      ]
+      },
+      "execution_count": 16,
+      "metadata": {},
+@@ -443,23 +1346,137 @@
+    ],
+    "source": [
+     "tcm_chem_links.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:36.040811Z",
+-     "end_time": "2023-04-19T17:43:36.178836Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 17,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:36.178836Z",
++     "start_time": "2023-04-19T17:43:36.057803Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVCID               Name                                   SMILES  \\\n0  HVC0036            glucose                 C(C1C(C(C(C(O1)O)O)O)O)O   \n1  HVC0095  isoliquiritigenin  C1=CC(=CC=C1C=CC(=O)C2=C(C=C(C=C2)O)O)O   \n2  HVC0230             phenol                           C1=CC=C(C=C1)O   \n3  HVC0273         tryptophan         C1=CC=C2C(=C1)C(=CN2)CC(C(=O)O)N   \n4  HVC0384          capsaicin    CC(C)C=CCCCCC(=O)NCC1=CC(=C(C=C1)O)OC   \n\n     CAS_id  PubChem_id DrugBank_id     STITCH_id     HERB_id  \\\n0       NaN         NaN         NaN  CIDm00000206  HBIN001003   \n1       NaN    638278.0         NaN  CIDm00000425  HBIN004214   \n2       NaN       996.0         NaN  CIDm00000996  HBIN029699   \n3  153-94-6      9060.0         NaN  CIDm00001148  HBIN024532   \n4       NaN         NaN         NaN  CIDm00002548  HBIN019514   \n\n   Importance Score  \n0             0.865  \n1             0.256  \n2             0.521  \n3             0.374  \n4             0.256  ",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVCID</th>\n      <th>Name</th>\n      <th>SMILES</th>\n      <th>CAS_id</th>\n      <th>PubChem_id</th>\n      <th>DrugBank_id</th>\n      <th>STITCH_id</th>\n      <th>HERB_id</th>\n      <th>Importance Score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVC0036</td>\n      <td>glucose</td>\n      <td>C(C1C(C(C(C(O1)O)O)O)O)O</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>CIDm00000206</td>\n      <td>HBIN001003</td>\n      <td>0.865</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVC0095</td>\n      <td>isoliquiritigenin</td>\n      <td>C1=CC(=CC=C1C=CC(=O)C2=C(C=C(C=C2)O)O)O</td>\n      <td>NaN</td>\n      <td>638278.0</td>\n      <td>NaN</td>\n      <td>CIDm00000425</td>\n      <td>HBIN004214</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVC0230</td>\n      <td>phenol</td>\n      <td>C1=CC=C(C=C1)O</td>\n      <td>NaN</td>\n      <td>996.0</td>\n      <td>NaN</td>\n      <td>CIDm00000996</td>\n      <td>HBIN029699</td>\n      <td>0.521</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVC0273</td>\n      <td>tryptophan</td>\n      <td>C1=CC=C2C(=C1)C(=CN2)CC(C(=O)O)N</td>\n      <td>153-94-6</td>\n      <td>9060.0</td>\n      <td>NaN</td>\n      <td>CIDm00001148</td>\n      <td>HBIN024532</td>\n      <td>0.374</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVC0384</td>\n      <td>capsaicin</td>\n      <td>CC(C)C=CCCCCC(=O)NCC1=CC(=C(C=C1)O)OC</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>NaN</td>\n      <td>CIDm00002548</td>\n      <td>HBIN019514</td>\n      <td>0.256</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVCID</th>\n",
++       "      <th>Name</th>\n",
++       "      <th>SMILES</th>\n",
++       "      <th>CAS_id</th>\n",
++       "      <th>PubChem_id</th>\n",
++       "      <th>DrugBank_id</th>\n",
++       "      <th>STITCH_id</th>\n",
++       "      <th>HERB_id</th>\n",
++       "      <th>Importance Score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVC0036</td>\n",
++       "      <td>glucose</td>\n",
++       "      <td>C(C1C(C(C(C(O1)O)O)O)O)O</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000206</td>\n",
++       "      <td>HBIN001003</td>\n",
++       "      <td>0.865</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVC0095</td>\n",
++       "      <td>isoliquiritigenin</td>\n",
++       "      <td>C1=CC(=CC=C1C=CC(=O)C2=C(C=C(C=C2)O)O)O</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>638278.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000425</td>\n",
++       "      <td>HBIN004214</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVC0230</td>\n",
++       "      <td>phenol</td>\n",
++       "      <td>C1=CC=C(C=C1)O</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>996.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00000996</td>\n",
++       "      <td>HBIN029699</td>\n",
++       "      <td>0.521</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVC0273</td>\n",
++       "      <td>tryptophan</td>\n",
++       "      <td>C1=CC=C2C(=C1)C(=CN2)CC(C(=O)O)N</td>\n",
++       "      <td>153-94-6</td>\n",
++       "      <td>9060.0</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00001148</td>\n",
++       "      <td>HBIN024532</td>\n",
++       "      <td>0.374</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVC0384</td>\n",
++       "      <td>capsaicin</td>\n",
++       "      <td>CC(C)C=CCCCCC(=O)NCC1=CC(=C(C=C1)O)OC</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>CIDm00002548</td>\n",
++       "      <td>HBIN019514</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVCID               Name                                   SMILES  \\\n",
++       "0  HVC0036            glucose                 C(C1C(C(C(C(O1)O)O)O)O)O   \n",
++       "1  HVC0095  isoliquiritigenin  C1=CC(=CC=C1C=CC(=O)C2=C(C=C(C=C2)O)O)O   \n",
++       "2  HVC0230             phenol                           C1=CC=C(C=C1)O   \n",
++       "3  HVC0273         tryptophan         C1=CC=C2C(=C1)C(=CN2)CC(C(=O)O)N   \n",
++       "4  HVC0384          capsaicin    CC(C)C=CCCCCC(=O)NCC1=CC(=C(C=C1)O)OC   \n",
++       "\n",
++       "     CAS_id  PubChem_id DrugBank_id     STITCH_id     HERB_id  \\\n",
++       "0       NaN         NaN         NaN  CIDm00000206  HBIN001003   \n",
++       "1       NaN    638278.0         NaN  CIDm00000425  HBIN004214   \n",
++       "2       NaN       996.0         NaN  CIDm00000996  HBIN029699   \n",
++       "3  153-94-6      9060.0         NaN  CIDm00001148  HBIN024532   \n",
++       "4       NaN         NaN         NaN  CIDm00002548  HBIN019514   \n",
++       "\n",
++       "   Importance Score  \n",
++       "0             0.865  \n",
++       "1             0.256  \n",
++       "2             0.521  \n",
++       "3             0.374  \n",
++       "4             0.256  "
++      ]
+      },
+      "execution_count": 17,
+      "metadata": {},
+@@ -468,23 +1485,87 @@
+    ],
+    "source": [
+     "chem.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:36.057803Z",
+-     "end_time": "2023-04-19T17:43:36.178836Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 18,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:36.178836Z",
++     "start_time": "2023-04-19T17:43:36.087805Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "     HVCID       Ensembl_ID  Combined_score\n0  HVC5535  ENSP00000381588           0.256\n1  HVC5478  ENSP00000381588           0.256\n2  HVC0817  ENSP00000381588           0.256\n3  HVC0533  ENSP00000381588           0.253\n4  HVC0462  ENSP00000381588           0.256",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>HVCID</th>\n      <th>Ensembl_ID</th>\n      <th>Combined_score</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>HVC5535</td>\n      <td>ENSP00000381588</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>HVC5478</td>\n      <td>ENSP00000381588</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>HVC0817</td>\n      <td>ENSP00000381588</td>\n      <td>0.256</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>HVC0533</td>\n      <td>ENSP00000381588</td>\n      <td>0.253</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>HVC0462</td>\n      <td>ENSP00000381588</td>\n      <td>0.256</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>HVCID</th>\n",
++       "      <th>Ensembl_ID</th>\n",
++       "      <th>Combined_score</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>HVC5535</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>HVC5478</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>2</th>\n",
++       "      <td>HVC0817</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>3</th>\n",
++       "      <td>HVC0533</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.253</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>4</th>\n",
++       "      <td>HVC0462</td>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>0.256</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "     HVCID       Ensembl_ID  Combined_score\n",
++       "0  HVC5535  ENSP00000381588           0.256\n",
++       "1  HVC5478  ENSP00000381588           0.256\n",
++       "2  HVC0817  ENSP00000381588           0.256\n",
++       "3  HVC0533  ENSP00000381588           0.253\n",
++       "4  HVC0462  ENSP00000381588           0.256"
++      ]
+      },
+      "execution_count": 18,
+      "metadata": {},
+@@ -493,23 +1574,66 @@
+    ],
+    "source": [
+     "chem_protein_links.head()"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:36.087805Z",
+-     "end_time": "2023-04-19T17:43:36.178836Z"
+-    }
+-   }
++   ]
+   },
+   {
+    "cell_type": "code",
+    "execution_count": 19,
++   "metadata": {
++    "ExecuteTime": {
++     "end_time": "2023-04-19T17:43:36.180834Z",
++     "start_time": "2023-04-19T17:43:36.104799Z"
++    }
++   },
+    "outputs": [
+     {
+      "data": {
+-      "text/plain": "        Ensembl_ID protein_name gene_name\n0  ENSP00000381588          NaN   TMPRSS2\n1  ENSP00000252519          NaN      ACE2",
+-      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Ensembl_ID</th>\n      <th>protein_name</th>\n      <th>gene_name</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ENSP00000381588</td>\n      <td>NaN</td>\n      <td>TMPRSS2</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>ENSP00000252519</td>\n      <td>NaN</td>\n      <td>ACE2</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
++      "text/html": [
++       "<div>\n",
++       "<style scoped>\n",
++       "    .dataframe tbody tr th:only-of-type {\n",
++       "        vertical-align: middle;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe tbody tr th {\n",
++       "        vertical-align: top;\n",
++       "    }\n",
++       "\n",
++       "    .dataframe thead th {\n",
++       "        text-align: right;\n",
++       "    }\n",
++       "</style>\n",
++       "<table border=\"1\" class=\"dataframe\">\n",
++       "  <thead>\n",
++       "    <tr style=\"text-align: right;\">\n",
++       "      <th></th>\n",
++       "      <th>Ensembl_ID</th>\n",
++       "      <th>protein_name</th>\n",
++       "      <th>gene_name</th>\n",
++       "    </tr>\n",
++       "  </thead>\n",
++       "  <tbody>\n",
++       "    <tr>\n",
++       "      <th>0</th>\n",
++       "      <td>ENSP00000381588</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>TMPRSS2</td>\n",
++       "    </tr>\n",
++       "    <tr>\n",
++       "      <th>1</th>\n",
++       "      <td>ENSP00000252519</td>\n",
++       "      <td>NaN</td>\n",
++       "      <td>ACE2</td>\n",
++       "    </tr>\n",
++       "  </tbody>\n",
++       "</table>\n",
++       "</div>"
++      ],
++      "text/plain": [
++       "        Ensembl_ID protein_name gene_name\n",
++       "0  ENSP00000381588          NaN   TMPRSS2\n",
++       "1  ENSP00000252519          NaN      ACE2"
++      ]
+      },
+      "execution_count": 19,
+      "metadata": {},
+@@ -518,35 +1642,70 @@
+    ],
+    "source": [
+     "proteins"
+-   ],
+-   "metadata": {
+-    "collapsed": false,
+-    "ExecuteTime": {
+-     "start_time": "2023-04-19T17:43:36.104799Z",
+-     "end_time": "2023-04-19T17:43:36.180834Z"
+-    }
+-   }
++   ]
+   }
+  ],
+  "metadata": {
+   "kernelspec": {
+-   "display_name": "Python 3",
++   "display_name": "Python 3 (ipykernel)",
+    "language": "python",
+    "name": "python3"
+   },
+   "language_info": {
+    "codemirror_mode": {
+     "name": "ipython",
+-    "version": 2
++    "version": 3
+    },
+    "file_extension": ".py",
+    "mimetype": "text/x-python",
+    "name": "python",
+    "nbconvert_exporter": "python",
+-   "pygments_lexer": "ipython2",
+-   "version": "2.7.6"
++   "pygments_lexer": "ipython3",
++   "version": "3.8.16"
++  },
++  "toc": {
++   "base_numbering": 1,
++   "nav_menu": {},
++   "number_sections": true,
++   "sideBar": true,
++   "skip_h1_title": false,
++   "title_cell": "Table of Contents",
++   "title_sidebar": "Contents",
++   "toc_cell": false,
++   "toc_position": {},
++   "toc_section_display": true,
++   "toc_window_display": false
++  },
++  "varInspector": {
++   "cols": {
++    "lenName": 16,
++    "lenType": 16,
++    "lenVar": 40
++   },
++   "kernels_config": {
++    "python": {
++     "delete_cmd_postfix": "",
++     "delete_cmd_prefix": "del ",
++     "library": "var_list.py",
++     "varRefreshCmd": "print(var_dic_list())"
++    },
++    "r": {
++     "delete_cmd_postfix": ") ",
++     "delete_cmd_prefix": "rm(",
++     "library": "var_list.r",
++     "varRefreshCmd": "cat(var_dic_list()) "
++    }
++   },
++   "types_to_exclude": [
++    "module",
++    "function",
++    "builtin_function_or_method",
++    "instance",
++    "_Feature"
++   ],
++   "window_display": false
+   }
+  },
+  "nbformat": 4,
+- "nbformat_minor": 0
++ "nbformat_minor": 1
+ }
+diff --git a/src/herbiv/data/HerbiV_proteins.csv b/herbiv/data/HerbiV_proteins.csv
+rename from src/herbiv/data/HerbiV_proteins.csv
+rename to herbiv/data/HerbiV_proteins.csv
+diff --git a/src/herbiv/data/HerbiV_formula.csv b/herbiv/data/HerbiV_formula.csv
+rename from src/herbiv/data/HerbiV_formula.csv
+rename to herbiv/data/HerbiV_formula.csv
+diff --git a/src/herbiv/output.py b/herbiv/output.py
+rename from src/herbiv/output.py
+rename to herbiv/output.py
+diff --git a/src/herbiv/data/HerbiV_tcm.csv b/herbiv/data/HerbiV_tcm.csv
+rename from src/herbiv/data/HerbiV_tcm.csv
+rename to herbiv/data/HerbiV_tcm.csv
+diff --git a/src/herbiv/data/HerbiV_formula_tcm_links.csv b/herbiv/data/HerbiV_formula_tcm_links.csv
+rename from src/herbiv/data/HerbiV_formula_tcm_links.csv
+rename to herbiv/data/HerbiV_formula_tcm_links.csv
+diff --git a/src/herbiv/data/HerbiV_chemicals.csv b/herbiv/data/HerbiV_chemicals.csv
+rename from src/herbiv/data/HerbiV_chemicals.csv
+rename to herbiv/data/HerbiV_chemicals.csv
+diff --git a/src/herbiv/data/HerbiV_tcm_chemical_links.csv b/herbiv/data/HerbiV_tcm_chemical_links.csv
+rename from src/herbiv/data/HerbiV_tcm_chemical_links.csv
+rename to herbiv/data/HerbiV_tcm_chemical_links.csv
+diff --git a/src/herbiv/data/HerbiV_chemical_protein_links.csv b/herbiv/data/HerbiV_chemical_protein_links.csv
+rename from src/herbiv/data/HerbiV_chemical_protein_links.csv
+rename to herbiv/data/HerbiV_chemical_protein_links.csv
+diff --git a/src/herbiv/get.py b/herbiv/get.py
+rename from src/herbiv/get.py
+rename to herbiv/get.py
