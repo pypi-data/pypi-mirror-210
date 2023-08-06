@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: nico-font-tool
+Version: 0.0.3
+Summary: A tool for converting fonts to NICO Game Framework format fonts.
+Author: TakWolf
+Maintainer: TakWolf
+License: MIT License
+Project-URL: homepage, https://github.com/TakWolf/nico-font-tool.python
+Project-URL: source, https://github.com/TakWolf/nico-font-tool.python
+Project-URL: issues, https://github.com/TakWolf/nico-font-tool.python/issues
+Keywords: nico,game-engine,font
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fonttools (==4.39.3)
+Requires-Dist: Brotli (==1.0.9)
+Requires-Dist: bdffont (==0.0.7)
+Requires-Dist: Pillow (==9.5.0)
+Requires-Dist: pypng (==0.20220715.0)
+
+# NICO Font Tool - Python
+
+[![PyPI](https://img.shields.io/pypi/v/nico-font-tool)](https://pypi.org/project/nico-font-tool/)
+
+A tool for converting fonts to [NICO Game Framework](https://github.com/ftsf/nico) format fonts.
+
+This is the Python version. The Nim version see: [nico-font-tool](https://github.com/TakWolf/nico-font-tool).
+
+## Installation
+
+```commandline
+pip install nico-font-tool
+```
+
+## Usage
+
+### Command
+
+Use `nicofont -h` to learn more.
+
+```commandline
+nicofont assets/fonts/quan/quan.ttf build/demo quan --font_size 8
+```
+
+### Scripts
+
+See: [demo](examples/demo.py)
+
+```python
+import nico_font_tool
+
+sheet_data, alphabet = nico_font_tool.create_sheet(
+    font_file_path='your/font/file/path.ttf', 
+    font_size=8,
+)
+
+nico_font_tool.save_palette_png(sheet_data, 'outputs/palette/dir', 'outputs_name')
+nico_font_tool.save_dat_file(alphabet, 'outputs/palette/dir', 'outputs_name')
+    
+nico_font_tool.save_rgba_png(sheet_data, 'outputs/rgba/dir', 'outputs_name')
+nico_font_tool.save_dat_file(alphabet, 'outputs/rgba/dir', 'outputs_name')
+```
+
+## Dependencies
+
+- [FontTools](https://github.com/fonttools/fonttools)
+- [Brotli](https://github.com/google/brotli)
+- [BdfFont](https://github.com/TakWolf/bdffont)
+- [Pillow](https://github.com/python-pillow/Pillow)
+- [PyPNG](https://gitlab.com/drj11/pypng)
+
+## License
+
+Under the [MIT license](LICENSE).
