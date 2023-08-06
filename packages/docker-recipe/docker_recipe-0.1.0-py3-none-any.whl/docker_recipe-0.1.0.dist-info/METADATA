@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: docker-recipe
+Version: 0.1.0
+Summary: A way to cook multiple Dockerfiles
+Home-page: https://github.com/stephanmeijer/docker-recipe
+Author: Stephan Meijer
+Author-email: me@stephanmeijer.com
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: pydantic (~=1.10.8)
+Requires-Dist: PyYaml (~=6.0)
+Requires-Dist: Jinja2 (~=3.1.2)
+
+# Docker Recipe
+
+## Usage
+
+1. Throw in a file `docker-recipe.yml` in your project.
+2. Define a file `.gitlab-ci.recipe.yml`. This is the Jinja2 template being rendered
+3. Execute using `docker-recipe`.
+
+## Installation
+
+```$
+$ pip install docker-recipe
+```
+
+## Development
+
+This project uses [pre-commit](https://pre-commit.com/#installation).
+
+## License
+
+Licensed under **GNU General Public License** (Version 3, 29 June 2007).
+
+See [LICENSE.md](LICENSE.md).
