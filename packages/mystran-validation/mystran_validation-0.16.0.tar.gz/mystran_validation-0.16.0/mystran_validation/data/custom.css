@@ -1,0 +1,178 @@
+/* custom CSS */
+body {
+  max-width: 80%;
+}
+/* dataTables */
+
+:root {
+  --lightColor:#fff;
+  --darkRowColor: #e8003a;
+}
+
+.dataTables_wrapper {
+  overflow: hidden;
+}
+.dataTables_length {
+  width: 25%;
+  max-width: 200px;
+  min-width: 80px;
+  float:left;
+}
+
+.dataTables_filter {
+  overflow: hidden;
+}
+table.dataTable {
+  border:1px solid var(--b-line);
+  background-color: inherit;
+}
+th,tr
+{
+  /* border-color: #000 !important; */
+  /* border:1px solid var(--b-line); */
+  text-align: center;
+}
+td
+{
+  text-align: justify;
+  padding: 0.5em;
+}
+thead {
+  background-color: var(--b-bg-2);
+}
+
+/* margin between "search" and table */
+.dataTables_wrapper > div {
+  margin: 5px;
+}
+table.dataTable.display tbody tr.even > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.even> .sorting_1,
+table.dataTable.display   tbody tr.even,
+table.dataTable.display tbody tr.odd > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_1,
+table.dataTable.display tbody tr.odd {
+  background-color: var(--darkRowColor);
+  color:var(--lightColor);
+}
+/* table.dataTable thead th { */
+/*   position: relative; */
+/*   background-image: none !important; */
+/* } */
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+  /* position: absolute; */
+  /* top: 12px; */
+  /* right: 8px; */
+  display: block;
+  color: var(b-txt);
+}
+table.dataTable thead th.sorting:after {
+  /* content: "◁▷"; */
+  content: "";
+}
+table.dataTable thead th.sorting_asc:after {
+  content: "▲";
+}
+table.dataTable thead th.sorting_desc:after {
+  content: "▼";
+}
+table.dataTable.display tbody tr:hover > .sorting_1,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_1,
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background-color: var(--b-bg-1);
+  color:var(--b-txt);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: none !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:after {
+  content: " | ";
+  color: var(--b-txt);
+}
+
+table {
+  border-collapse:collapse;
+  /* width:100%; */
+  text-indent:0;
+  font-size: small;
+}
+details {
+  background-color:inherit;
+}
+#toc_container {
+    background: var(--b-bg-2) repeat scroll 0 0;
+    border: 1px solid #aaa;
+    display: table;
+    font-size: 95%;
+    margin-bottom: 1em;
+    padding: 10px;
+    width: 90%;
+}
+
+.toc_title {
+    font-weight: 700;
+    text-align: center;
+}
+
+#toc_container li, #toc_container ul, #toc_container ul li{
+    list-style: outside none none !important;
+}
+
+.tc_report_failed {
+  background-color: var(--b-bg-2);
+  border: 1px solid red;
+  border-radius: 4px;
+}
+
+.tc_report_success {
+  background-color: var(--b-bg-2);
+  border: 1px solid blue;
+  border-radius: 4px;
+}
+
+
+.tc_report_skipped {
+  background-color: var(--b-bg-2);
+  border: 1px solid yellow;
+  border-radius: 4px;
+}
+
+.alert-failed {
+  background-color: red;
+  color: white;
+}
+
+.alert-skipped {
+  background-color: yellow;
+  color: black;
+}
+
+.alert-success {
+  background-color: blue;
+  color: white;
+}
+
+.tags { color: darkgray;}
+
+
+
+
+figure{
+   display: block;
+   margin: 0 auto;
+}
+figure img{
+   vertical-align: top;
+}
+figure figcaption{
+   text-align: center;
+}
+ .note {
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+  color: #ce0b0b;
+}
