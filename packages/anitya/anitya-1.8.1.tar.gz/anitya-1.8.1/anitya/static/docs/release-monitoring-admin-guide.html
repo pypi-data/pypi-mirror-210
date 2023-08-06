@@ -1,0 +1,183 @@
+<!--
+	Overriding Alabaster Theme to replace link to static page source
+	with a link to GitHub. Using instructions from official guide.
+
+	https://www.sphinx-doc.org/en/master/templating.html#jinja-sphinx-templating-primer
+-->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>release-monitoring.org guidelines &#8212; Anitya 0.18 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Documentation" href="api.html" />
+    <link rel="prev" title="Administration Guide" href="admin-guide.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="release-monitoring-org-guidelines">
+<h1>release-monitoring.org guidelines<a class="headerlink" href="#release-monitoring-org-guidelines" title="Permalink to this headline">¶</a></h1>
+<p>This guide is intended for people, who have been granted administrator rights on release-monitoring.org.</p>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>try to not remove anything that could be of value</p></li>
+<li><p>when removing something, try to create as little impact for others as possible</p></li>
+<li><p>check <a class="reference external" href="https://release-monitoring.org/flags">https://release-monitoring.org/flags</a> once in a while</p></li>
+<li><p>if in doubt, ask in #fedora-apps on freenode IRC</p></li>
+</ul>
+</div>
+<div class="section" id="cases">
+<h2>Cases<a class="headerlink" href="#cases" title="Permalink to this headline">¶</a></h2>
+<p>Below are a number of common flags submitted by users. Please don’t view these as rigid laws, but as guidelines to make our handling of cases consistent. Feel free to adapt them, if it seems reasonable.</p>
+<div class="section" id="project-x-is-a-duplicate">
+<h3>Project X is a duplicate!<a class="headerlink" href="#project-x-is-a-duplicate" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>check, if this actually is a duplicate; if not, close the flag</p></li>
+<li><p>check which name matches the name used by the project itself</p></li>
+<li><p>check which one seems more correct/complete (i.e. version source, distro mappings, …)</p></li>
+<li><p>transfer valuable information/settings from to-be-deleted project to will-stay project, if any</p></li>
+<li><p>delete the project duplicated, close the flag</p></li>
+</ol>
+<div class="section" id="pypi-gem-duplicates">
+<h4>pypi/gem/… duplicates<a class="headerlink" href="#pypi-gem-duplicates" title="Permalink to this headline">¶</a></h4>
+<p>Two projects: “nispor” on GitHub, “nispor” on pypi/gem/whatever.</p>
+<ol class="arabic simple">
+<li><p>check if there is any value added by the pypi/gem/… package (e.g. the versions are different, pypi lags behind, tagging on github are unreliable …). If there is, do nothing.</p></li>
+<li><p>transfer valuable information/settings from github project to pypi project, if any</p></li>
+<li><p>if there is no added value, delete the pypi one</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="please-delete-this-thing-was-just-testing">
+<h3>“Please delete this thing, was just testing”<a class="headerlink" href="#please-delete-this-thing-was-just-testing" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>check if this seems reasonable</p></li>
+<li><p>delete the thing (project, mapping, version, …).</p></li>
+</ol>
+</div>
+<div class="section" id="package-does-not-exist-in-distribution-please-delete-mapping">
+<h3>Package does not exist in distribution, please delete mapping<a class="headerlink" href="#package-does-not-exist-in-distribution-please-delete-mapping" title="Permalink to this headline">¶</a></h3>
+<p>check, if it really doesn’t exist, then:</p>
+<ol class="loweralpha simple">
+<li><p>does exist: do nothing</p></li>
+<li><p>doesn’t exist: delete the mapping</p></li>
+<li><p>existed in old, non-EOL version: do nothing</p></li>
+<li><p>existed in old, EOL version: delete</p></li>
+</ol>
+</div>
+<div class="section" id="user-s-flag-is-wrong-user-misunderstood">
+<h3>User’s flag is wrong, user misunderstood, …<a class="headerlink" href="#user-s-flag-is-wrong-user-misunderstood" title="Permalink to this headline">¶</a></h3>
+<p>Just close. If you feel very motivated or it seems important, mail them and try to clear it up.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Anitya</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=fedora-infra&repo=anitya&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user-guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="admin-guide.html">Administration Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">release-monitoring.org guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cases">Cases</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database models</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="admin-guide.html" title="previous chapter">Administration Guide</a></li>
+      <li>Next: <a href="api.html" title="next chapter">API Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" style="text-align: center">
+      &copy;2019, Red Hat, Inc. and others.|
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      (<a href="https://github.com/fedora-infra/anitya/tree/master/docs/_templates">customized</a>)
+      |
+      <a href="https://github.com/fedora-infra/anitya/tree/master/docs/release-monitoring-admin-guide.rst"
+          rel="nofollow">View source</a>
+    </div>
+  </body>
+</html>
