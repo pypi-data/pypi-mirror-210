@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: at-fetch-data
+Version: 1.0.4
+Summary: UNKNOWN
+Author: ctwel
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+## at_fetch_data
+
+```
+pip install at_fetch_data
+poetry add at_fetch_data
+```
+
+### example
+
+```
+poetry install
+poetry run python -m example.start_time
+```
+
+### usage
+
+```
+from fetch.fetch import Fetch
+import asyncio
+import time
+
+
+async def main():
+    request = Fetch()
+    start_time = 1533684900
+    end_time = 1533687900
+    symbol = "btcusdt"
+    interval = "1m"
+    start = time.time()
+    # await asyncio.sleep(1)
+    res = await request.get_all_klines_data(
+        "http://47.243.179.153:8000/api/kline/spot", symbol, interval, start_time, end_time
+    )
+    end = time.time()
+    exec_time = end - start
+    print("exec_time", exec_time)
+    # res已经是按照顺序的dataframe数据格式
+    print(res)
+
+
+asyncio.run(main())
+
+```
+
