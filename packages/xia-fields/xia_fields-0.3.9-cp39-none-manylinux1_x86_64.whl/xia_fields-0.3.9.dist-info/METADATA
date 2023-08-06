@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: xia-fields
+Version: 0.3.9
+Summary: X-I-A Field Protocol
+Home-page: https://develop.x-i-a.com/docs/xia-fields/0.3.9/index.html
+Author: X-I-A
+Author-email: admin@x-i-a.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.9
+Description-Content-Type: text/x-rst
+License-File: LICENSE.txt
+
+.. image:: https://img.shields.io/pypi/v/xia-fields.svg?color=blue
+   :alt: PyPI-Server
+   :target: https://pypi.org/project/xia-fields/
+
+====================================
+X-I-A Field Protocol
+====================================
+
+xia-fields provides a flexible way to define data element of a document.
+The definition was designed to be compatible to any database or data model.
+
+The fields could be used in document definition in xia-engine module.
+Once the document is attached to one specific database engine.
+The field definition helps to describe the stored data.
+
+Quick start
+=============================
+
+Install the package::
+
+    pip install xia-fields
+
+
+You could then define a simple field::
+
+    from xia_fields import BaseField
+
+
+    class SimpleField(BaseField):
+        """First Field Definition here"""
+
+So the first field is done, Congrats !
+
+However, this field could hold anything but do nothing as `BaseField` is not context related.
+It is more useful to use (or inherit) a predefined field class.
+please check `Predefined Fields List <https://develop.x-i-a.com/docs/xia-fields/stable/_autosummary/xia_fields.fields.html>`_
+for more details
+
+
+Data Forms
+=============================
+
+Let's start the data form subject by discussing `DateField`
+`API Document <https://develop.x-i-a.com/docs/xia-fields/stable/_autosummary/xia_fields.fields_ext.DateField.html>`_
+
+* It is displayed as '2022-10-08' in the web page
+* It is actual an Python `date` object when loaded
+* It is store as double 1665187200.0 at database level
+
+So as is described in the api document, we have three data form for `DateField`
+
+* Display form: The display value
+* Internal form: The value presented as python object
+* Database form: The value stored in the database
+
+The situation is more complex for some special fields, such as `CompressedStringField`.
+It is designed to hold a large text and it might not a good idea to unpack it while loading from database.
+This mode is called lazy mode which is the default behavior.
+When explicitly request by user or lazy mode is off, we need two more data forms to handle this situation:
+
+* Runtime form: The value unpacked from Internal form
+* Detail form: The display presentation of runtime form
+
+
+Form Transition
+==================
+
+Form transition is handled by the following method.
+Please override them if data form transition is necessary:
+
+* `from_db`: from database to internal
+* `to_db`: from internal to database
+* `from_display`: from display to internal or from detail to internal
+* `to_display`: from internal to display and from display to detail
+* `get_value`: get runtime from internal
+
+
+Data Validation
+==================
+
+Each field could has it own validation process by overriding `validate()` method.
+Here are the already defined validation parameter applied for ALL fields:
+
+* required: Field value couldn't be None
+* min_value: Minimum value
+* max_value: Maximum value
+* choices: Value must be defined among those values
+
+
