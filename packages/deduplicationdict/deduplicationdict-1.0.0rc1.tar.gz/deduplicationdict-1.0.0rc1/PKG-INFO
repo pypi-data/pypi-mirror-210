@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: deduplicationdict
+Version: 1.0.0rc1
+Summary: 
+Keywords: python,dict,de
+Author-email: Vivswan Shah <vivswanshah@pitt.edu>
+Maintainer-email: Vivswan Shah <vivswanshah@pitt.edu>
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Dist: deduplicationdict[dev,doc,test] ; extra == "all"
+Requires-Dist: flit ; extra == "dev"
+Requires-Dist: setuptools>=61.0.0 ; extra == "dev"
+Requires-Dist: build ; extra == "dev"
+Requires-Dist: twine ; extra == "dev"
+Requires-Dist: johnnydep ; extra == "dev"
+Requires-Dist: sphinx>=4.2.0 ; extra == "doc"
+Requires-Dist: sphinx-autobuild ; extra == "doc"
+Requires-Dist: rst-to-myst[sphinx] ; extra == "doc"
+Requires-Dist: furo ; extra == "doc"
+Requires-Dist: myst_parser ; extra == "doc"
+Requires-Dist: sphinx-rtd-theme ; extra == "doc"
+Requires-Dist: sphinx-autoapi ; extra == "doc"
+Requires-Dist: sphinx-copybutton ; extra == "doc"
+Requires-Dist: sphinx-notfound-page ; extra == "doc"
+Requires-Dist: sphinx-inline-tabs ; extra == "doc"
+Requires-Dist: sphinxext-opengraph ; extra == "doc"
+Requires-Dist: sphinxcontrib-katex ; extra == "doc"
+Requires-Dist: flake8 ; extra == "flake8"
+Requires-Dist: flake8-docstrings ; extra == "flake8"
+Requires-Dist: flake8-quotes ; extra == "flake8"
+Requires-Dist: flake8-bugbear ; extra == "flake8"
+Requires-Dist: flake8-comprehensions ; extra == "flake8"
+Requires-Dist: flake8-executable ; extra == "flake8"
+Requires-Dist: flake8-coding ; extra == "flake8"
+Requires-Dist: flake8-return ; extra == "flake8"
+Requires-Dist: flake8-deprecated ; extra == "flake8"
+Requires-Dist: deduplicationdict[flake8] ; extra == "test"
+Requires-Dist: deepdiff ; extra == "test"
+Requires-Dist: coverage ; extra == "test"
+Project-URL: Author, https://vivswan.github.io/
+Project-URL: Bug Reports, https://github.com/Vivswan/DeDuplicationDict/issues
+Project-URL: Documentation, https://deduplicationdict.readthedocs.io/en/latest/
+Project-URL: Homepage, https://github.com/Vivswan/DeDuplicationDict
+Project-URL: Say Thanks!, https://vivswan.github.io/
+Project-URL: Source, https://github.com/Vivswan/DeDuplicationDict
+Provides-Extra: all
+Provides-Extra: dev
+Provides-Extra: doc
+Provides-Extra: flake8
+Provides-Extra: test
+
+# DeDuplicationDict
+
+[![PyPI version](https://badge.fury.io/py/deduplicationdict.svg)](https://badge.fury.io/py/deduplicationdict)
+[![Documentation Status](https://readthedocs.org/projects/deduplicationdict/badge/?version=stable)](https://deduplicationdict.readthedocs.io/en/stable/?badge=stable)
+[![Python](https://img.shields.io/badge/python-3.7--3.11-blue)](https://badge.fury.io/py/deduplicationdict)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-blue.svg)](https://opensource.org/licenses/MPL-2.0)
+
+[![Github](https://img.shields.io/badge/GitHub-Vivswan%2FDeDuplicationDict-blue)](https://github.com/Vivswan/DeDuplicationDict)
+
+A dictionary-like class that deduplicates values by storing them in a separate dictionary and replacing
+them with their corresponding hash values. This class is particularly useful for large dictionaries with
+repetitive entries, as it can save memory by storing values only once and substituting recurring values
+with their hash representations.
+
+This class supports nested structures by automatically converting nested dictionaries into
+`DeDuplicationDict` instances. It also provides various conversion methods to convert between regular
+dictionaries and `DeDuplicationDict` instances.
+
+## Installation
+
+```bash
+pip install deduplicationdict
+```
+
+
