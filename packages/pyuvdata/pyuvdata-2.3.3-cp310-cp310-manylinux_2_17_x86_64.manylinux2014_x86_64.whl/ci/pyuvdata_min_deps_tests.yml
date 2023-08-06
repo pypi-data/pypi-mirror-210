@@ -1,0 +1,18 @@
+name: pyuvdata_min_deps_tests
+channels:
+  - conda-forge
+dependencies:
+  - astropy>=5.0.4
+  - docstring_parser>=0.15
+  - h5py>=3.1
+  - scipy>=1.5
+  - numpy>=1.20.*
+  - pyerfa>=2.0
+  - coverage
+  - pytest>=6.2.0
+  - pytest-cases>=3.6.9
+  - pytest-cov
+  - pytest-xdist
+  - cython
+  - setuptools_scm<7.0|>=7.0.3
+  - pip
