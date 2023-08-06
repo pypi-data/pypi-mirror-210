@@ -1,0 +1,41 @@
+#!python
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4
+# Alan Viars
+
+import argparse
+from jdt.jsondir2ndjson import get_json_list_from_directory, jsonlist2ndjson
+
+if __name__ == "__main__":
+
+    # Parse CLI args
+    parser = argparse.ArgumentParser(
+        description="""Load in directory, which contains JSON documents,
+with .json or .js extensions, and convert it into a single NDJSON file.""")
+
+    parser.add_argument(
+        dest='input_json_dir',
+        action='store',
+        help='Input the JSON dir to load here')
+    parser.add_argument(
+        dest='output_ndjson_file',
+        action='store',
+        help="Enter the output filename")
+
+    # load in cli parser ags
+    args = parser.parse_args()
+
+    # get a list of all JSON objects from a local file path.
+    #
+    # It gets all .json and .js files recursivly.
+    object_list = get_json_list_from_directory(args.input_json_dir)
+
+    # Open the output file
+    out_fh = open(args.output_ndjson_file, 'w')
+
+    # output the ndjson file.
+    output = jsonlist2ndjson(object_list)
+    out_fh.write(output)
+
+    # close the file handle
+    out_fh.close()
