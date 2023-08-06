@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ucampurestorage.lib.tokencreater &mdash; ucampurestorage 1.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ucampurestorage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ucampurestorage.lib.html">ucampurestorage.lib package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ucampurestorage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ucampurestorage.lib.tokencreater</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ucampurestorage.lib.tokencreater</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Token Generation module.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">paramiko</span> <span class="kn">import</span> <span class="n">RSAKey</span><span class="p">,</span> <span class="n">ssh_exception</span>
+<span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">jwt</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TokenCreater"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater">[docs]</a><span class="k">class</span> <span class="nc">TokenCreater</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate Token for the API CALLs&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initiate the Token URL for token authentication.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TOKEN_EXCHANGE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://</span><span class="si">{}</span><span class="s2">/oauth2/1.0/token&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_datetime</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_fatal</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+        <span class="n">LOG</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_access_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_token</span><span class="p">,</span> <span class="n">host</span><span class="p">):</span>
+        <span class="c1"># Ignore the &quot;Unverified HTTPS request is being made.&quot; warning</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;grant_type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:ietf:params:oauth:grant-type:token-exchange&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;subject_token&quot;</span><span class="p">:</span> <span class="n">id_token</span><span class="p">,</span>
+                <span class="s2">&quot;subject_token_type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:ietf:params:oauth:token-type:jwt&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">TOKEN_EXCHANGE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="s2">&quot;access_token&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fatal</span><span class="p">(</span><span class="s2">&quot;Failed to get proper access token:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_generate_id_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aud</span><span class="p">,</span> <span class="n">kid</span><span class="p">,</span> <span class="n">iss</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="n">private_key</span><span class="p">,</span> <span class="n">expire_hours</span><span class="o">=</span><span class="mi">24</span><span class="p">):</span>
+        <span class="n">addtl_header</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;kid&quot;</span><span class="p">:</span> <span class="n">kid</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;aud&quot;</span><span class="p">:</span> <span class="n">aud</span><span class="p">,</span>
+            <span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="n">sub</span><span class="p">,</span>
+            <span class="s2">&quot;iss&quot;</span><span class="p">:</span> <span class="n">iss</span><span class="p">,</span>
+            <span class="s2">&quot;iat&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">()),</span>
+            <span class="s2">&quot;exp&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">())</span> <span class="o">+</span> <span class="n">expire_hours</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">new_jwt</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="n">payload</span><span class="p">,</span> <span class="n">private_key</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;RS256&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">addtl_header</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_jwt</span>
+
+    <span class="k">def</span> <span class="nf">_get_private_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_file_name</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">RSAKey</span><span class="o">.</span><span class="n">from_private_key_file</span><span class="p">(</span><span class="n">key_file_name</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ssh_exception</span><span class="o">.</span><span class="n">PasswordRequiredException</span><span class="p">:</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;Private key password: &quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_private_key</span><span class="p">(</span><span class="n">key_file_name</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ssh_exception</span><span class="o">.</span><span class="n">SSHException</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fatal</span><span class="p">(</span><span class="s2">&quot;Invalid private key password&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fatal</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not find private key file :: </span><span class="si">{</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">key_file_name</span><span class="p">)</span><span class="w"> </span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">with</span> <span class="n">StringIO</span><span class="p">()</span> <span class="k">as</span> <span class="n">buf</span><span class="p">:</span>
+            <span class="n">rsa_key</span><span class="o">.</span><span class="n">write_private_key</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+
+<div class="viewcode-block" id="TokenCreater.token_generation"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater.token_generation">[docs]</a>    <span class="k">def</span> <span class="nf">token_generation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">key_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">client_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">key_file_private</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">fa_fqdn_ip</span><span class="p">:</span> <span class="nb">any</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generation of the Token.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            client_id (str): Client ID created on PureStorage for API calls</span>
+<span class="sd">            key_id (str): Key ID generated on PureStorage while creating client ID for API calls</span>
+<span class="sd">            client_name (str): Client Name created for the api call</span>
+<span class="sd">            key_file_private (str): location of the private key file</span>
+<span class="sd">            username (str): username of the purestorage</span>
+<span class="sd">            fa_fqdn_ip (any): FQDN of the PureStorage</span>
+<span class="sd">            password (_type_, optional): password of the pure storage. Defaults to None.</span>
+<span class="sd">            output_file (_type_, optional): Location of file if the file need to be redirected. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: :Provide the token for API call</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">date_strftime_format</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span>
+        <span class="n">pri_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_private_key</span><span class="p">(</span><span class="n">key_file_private</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="n">id_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_id_token</span><span class="p">(</span>
+            <span class="n">client_id</span><span class="p">,</span> <span class="n">key_id</span><span class="p">,</span> <span class="n">client_name</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">pri_key</span>
+        <span class="p">)</span>
+        <span class="n">access_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_access_token</span><span class="p">(</span><span class="n">id_token</span><span class="p">,</span> <span class="n">fa_fqdn_ip</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_token_modify</span><span class="p">(</span><span class="n">new_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">)</span>
+        <span class="n">creation_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_create_datetime</span><span class="p">(</span>
+            <span class="n">token_cdatetime</span><span class="o">=</span><span class="n">creation_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">date_strftime_format</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">output_file</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">token_output_file</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">access_token</span></div>
+
+<div class="viewcode-block" id="TokenCreater.current_token_modify"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater.current_token_modify">[docs]</a>    <span class="k">def</span> <span class="nf">current_token_modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updating the token of the instance on the new token request.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: provide the new token.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;new_token&quot;</span> <span class="ow">in</span> <span class="n">kwarg</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_token</span> <span class="o">=</span> <span class="n">kwarg</span><span class="p">[</span><span class="s2">&quot;new_token&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_token</span></div>
+
+<div class="viewcode-block" id="TokenCreater.token_create_datetime"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater.token_create_datetime">[docs]</a>    <span class="k">def</span> <span class="nf">token_create_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Provide date and time of the token creation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            datetime: date and time of token creation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;token_cdatetime&quot;</span> <span class="ow">in</span> <span class="n">kwarg</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">token_datetime</span> <span class="o">=</span> <span class="n">kwarg</span><span class="p">[</span><span class="s2">&quot;token_cdatetime&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_datetime</span></div>
+
+<div class="viewcode-block" id="TokenCreater.token_output_file"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater.token_output_file">[docs]</a>    <span class="k">def</span> <span class="nf">token_output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform the write operation on a file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            output_file (str): filename need to be written with information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_token</span><span class="p">)</span>
+            <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Access Token written to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TokenCreater.token_output_json"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater.token_output_json">[docs]</a>    <span class="k">def</span> <span class="nf">token_output_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform the write operation on a file in json format.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            output_file (str): filename need to be written with information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonfile</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token_jsonformat</span><span class="p">(),</span> <span class="n">jsonfile</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TokenCreater.token_jsonformat"><a class="viewcode-back" href="../../../ucampurestorage.lib.html#ucampurestorage.lib.tokencreater.TokenCreater.token_jsonformat">[docs]</a>    <span class="k">def</span> <span class="nf">token_jsonformat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;format data with token and creation date.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: dictory information of token and creation date</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">token_dic</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">token_dic</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_token</span>
+        <span class="n">token_dic</span><span class="p">[</span><span class="s2">&quot;cdate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_create_datetime</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">token_dic</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ishan Mahajan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

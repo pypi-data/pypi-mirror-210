@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  docs:
+    build:
+      context: ..
+      dockerfile: compose/docs.Dockerfile
+    volumes:
+      - type: bind
+        source: ../
+        target: /app
+        read_only: False
+    command: sh -c "cp /myapp/docs/README.rst /app/docs/readme.rst"

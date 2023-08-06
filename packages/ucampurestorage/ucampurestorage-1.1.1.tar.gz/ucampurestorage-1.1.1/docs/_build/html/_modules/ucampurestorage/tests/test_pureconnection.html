@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ucampurestorage.tests.test_pureconnection &mdash; ucampurestorage 1.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ucampurestorage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ucampurestorage.lib.html">ucampurestorage.lib package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ucampurestorage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ucampurestorage.tests.test_pureconnection</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ucampurestorage.tests.test_pureconnection</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">patch</span><span class="p">,</span> <span class="n">Mock</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.httpclient</span> <span class="kn">import</span> <span class="n">HttpClient</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.pureconnect</span> <span class="kn">import</span> <span class="n">PureAdvanceConnection</span> <span class="k">as</span> <span class="n">pure</span>
+<span class="kn">from</span> <span class="nn">ucampurestorage.lib.pureconnect</span> <span class="kn">import</span> <span class="n">totalbytes</span><span class="p">,</span> <span class="n">converttobytes</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PURE_LOGS&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="init_pure"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.init_pure">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">init_pure</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pure</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">pure</span><span class="p">(</span><span class="s2">&quot;pure.com&quot;</span><span class="p">,</span> <span class="mi">443</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;aweaw.1231.asdga&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_pureconnect_totalbytes"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.test_pureconnect_totalbytes">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;input, expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;100k&quot;</span><span class="p">,</span> <span class="mi">102400</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100m&quot;</span><span class="p">,</span> <span class="mi">104857600</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100g&quot;</span><span class="p">,</span> <span class="mi">107374182400</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100t&quot;</span><span class="p">,</span> <span class="mi">109951162777600</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100p&quot;</span><span class="p">,</span> <span class="mi">112589990684262400</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_pureconnect_totalbytes</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">bsize</span> <span class="o">=</span> <span class="n">totalbytes</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">bsize</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_pureconnect_converttobytes"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.test_pureconnect_converttobytes">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;input, unit,expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="mi">102400</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="mi">104857600</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="mi">107374182400</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="mi">109951162777600</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="mi">112589990684262400</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_pureconnect_converttobytes</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">bsize</span> <span class="o">=</span> <span class="n">converttobytes</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">bsize</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_pureconnect__check_result"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.test_pureconnect__check_result">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;input, expected&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">200</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="p">(</span><span class="mi">302</span><span class="p">,</span> <span class="kc">False</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_pureconnect__check_result</span><span class="p">(</span><span class="n">init_pure</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">input_data</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">input_data</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="nb">input</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">init_pure</span><span class="o">.</span><span class="n">_check_result</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">code</span> <span class="o">==</span> <span class="n">expected</span></div>
+
+
+<div class="viewcode-block" id="test_pureconnect_get_json_exception"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.test_pureconnect_get_json_exception">[docs]</a><span class="k">def</span> <span class="nf">test_pureconnect_get_json_exception</span><span class="p">(</span><span class="n">caplog</span><span class="p">,</span> <span class="n">init_pure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">init_pure</span><span class="o">.</span><span class="n">_get_json</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;ERROR: invalid json&quot;</span> <span class="ow">in</span> <span class="n">caplog</span><span class="o">.</span><span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="test_pureconnect_get_json"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.test_pureconnect_get_json">[docs]</a><span class="k">def</span> <span class="nf">test_pureconnect_get_json</span><span class="p">(</span><span class="n">caplog</span><span class="p">,</span> <span class="n">init_pure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">blog</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">blog</span><span class="o">.</span><span class="n">json</span> <span class="o">=</span> <span class="mi">1231</span>
+    <span class="n">blog</span><span class="o">.</span><span class="n">json</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">init_pure</span><span class="o">.</span><span class="n">_get_json</span><span class="p">(</span><span class="n">blog</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;ERROR: invalid json&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">caplog</span><span class="o">.</span><span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="test_pureconnect_get_controllers"><a class="viewcode-back" href="../../../ucampurestorage.tests.html#ucampurestorage.tests.test_pureconnection.test_pureconnect_get_controllers">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;fetched&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;continuation_token&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array_controller&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;FA-C60R3&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;secondary&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;6.3.10&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CT0&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array_controller&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;FA-C60R3&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;primary&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;6.3.10&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CT1&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;more_items_remaining&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;total_item_count&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_pureconnect_get_controllers</span><span class="p">(</span><span class="n">init_pure</span><span class="p">,</span> <span class="n">fetched</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">HttpClient</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fetch</span><span class="p">:</span>
+        <span class="n">fetch</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">fetched</span>
+        <span class="n">fetch</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">return_val</span> <span class="o">=</span> <span class="n">init_pure</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">return_val</span> <span class="ow">is</span> <span class="kc">True</span>
+        <span class="k">assert</span> <span class="n">init_pure</span><span class="o">.</span><span class="n">controllers</span> <span class="o">==</span> <span class="p">{</span>
+            <span class="s2">&quot;CT0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;FA-C60R3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;secondary&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;6.3.10&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;CT1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ready&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;FA-C60R3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;primary&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;6.3.10&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">}</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ishan Mahajan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

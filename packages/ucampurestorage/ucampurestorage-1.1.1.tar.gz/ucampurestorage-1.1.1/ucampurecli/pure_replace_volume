@@ -1,0 +1,120 @@
+#!/bin/bash
+###################################################################
+# do_clone_volume
+# Purpose: Clone one pure storage volume (source) and mount it in place
+#          of another pure storage volume (dest).
+#          The replaced pure storage volume is then deleted
+#
+#    Args: -g -> Gold Image (source) mountpoint
+#          -t -> Target (dest) dest mountpoint
+#
+#  Output: Log of actions
+# Returns: TRUE for success, FALSE for failure
+###################################################################
+os_level = `cat /etc/os-release |grep REDHAT_SUPPORT_PRODUCT_VERSION |awk -F= '{print $2}' |sed s/\"//g |awk -F. '{print $1}'`
+python38 = "/opt/rh/rh-python38"
+if [[ "$os_level" == 7 ]]
+then
+  if [[ -d  "$python38" ]]
+  then
+    ucampurestorage="/opt/rh/rh-python38/root/usr/local/bin/ucampurestorage"
+  else
+    echo "Python 3.8 is not installed as per the recommendatations"
+  fi
+else
+ucampurestorage="/usr/local/bin/ucampurestorage"
+fi
+
+echo "Invoked with: $0 $@"
+echo "My PID is $$"
+
+###################################################################
+# Purpose: usage information
+###################################################################
+function usage()
+{
+cat << EOF
+usage: $0 options
+
+This script refreshes a "target" volume from a gold image.
+
+Restrictions for use:
+  * The target volume must already be a pure storage volume
+  * Both the target and the gold image must be mounted
+  * There must be no processes listed by "fuser -c" for either the gold image or the target
+
+WARNING: The data stored on the target will be removed, and replaced with a copy of the data currently on the gold image
+
+OPTIONS:
+   -h                                  Show this message
+   -g /path/to/goldimage/mountpoint    Define gold image mountpoint
+   -t /path/to/target/mountpoint       Define target mountpoint
+   -k /path/to/secrets.json            Secret file containing URL and credential to access Pure Storage
+   -u true or false                    Optional. If True, unmount the source mountpoint, Otherwise, not.
+                                       Defaults to True.
+
+E.g.
+   $0 -g /d16 -t /d17 -k /path/to/secrets.json
+
+NB.
+1. /path/to/secrets.json must be in the following format:
+{
+  "client_id": "pure_api_client_id",
+  "key_id": "pure_api_key_id",
+  "client_name": "pure_api_client_name",
+  "storage": "purestorage.cam.ac.uk",
+  "user": "pureuser",
+  "password": "purepassword",
+  "keyfile": "private.pem"
+}
+
+2. ucampurestorage must be installed and located under /usr/local/bin/
+EOF
+}
+###################################################################
+# Parse the args
+###################################################################
+unmount_src_mp="true"
+while getopts "hg:t:k:u:" opt
+do
+  case $opt in
+    h)
+      usage
+      exit
+      ;;
+    g)
+      g_mount_point=$OPTARG
+      ;;
+    t)
+      t_mount_point=$OPTARG
+      ;;
+    k)
+      secrets=$OPTARG
+      ;;
+    u)
+      unmount_src_mp=$OPTARG
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+# check required arguments
+if [ -z "$g_mount_point" ] || [ -z "$t_mount_point" ] || [ -z "$secrets" ]
+then
+   usage
+   exit
+fi
+
+# Call ucampurestorage package
+result=$($ucampurestorage --record_config True --file $secrets volume replace --src_mp $g_mount_point --dst_mp $t_mount_point --unmount_src_mp $unmount_src_mp)
+if [[ $result == *"[Command succeeded - Returns True]"* ]]
+then
+    echo "Command succeeded."
+    exit 0
+else
+    echo "Command failed. Please check the ucampurestorage log file in /var/log/ucampurestorage/."
+    exit 1
+fi

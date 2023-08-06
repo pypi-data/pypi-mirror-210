@@ -1,0 +1,8 @@
+version: '3.2'
+services:
+  docs:
+    build:
+      context: ..
+      dockerfile: compose/docshttp.Dockerfile
+    ports:
+      - "80:80"

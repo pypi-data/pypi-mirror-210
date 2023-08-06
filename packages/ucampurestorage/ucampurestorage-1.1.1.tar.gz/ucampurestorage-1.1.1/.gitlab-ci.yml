@@ -1,0 +1,75 @@
+stages:
+  - build
+  - syntax_validation
+  - pytest
+  - documentation
+
+# build image for pytest
+build_pytest:
+  stage: build
+  tags:
+    - im530
+  script:
+    - sudo docker build -t pytest -f compose/pytest.Dockerfile .
+
+# build image for pytest
+build_tox:
+  stage: build
+  tags:
+    - im530
+  script:
+    - sudo docker-compose --file compose/tox.yml build
+
+# build image for pytest
+build_sphinx:
+  stage: build
+  tags:
+    - im530
+  script:
+    - sudo docker-compose --file compose/docs.yml build
+
+# Test code coverage
+flake8:
+  stage: syntax_validation
+  script:
+    - sudo docker-compose --file compose/tox.yml up --exit-code-from tox
+
+pytest:
+  stage: pytest
+  tags:
+    - im530
+  image: pytest
+  needs:
+    - flake8
+  script:
+    - sudo docker run pytest
+
+
+sphinx_make:
+  stage: documentation
+  tags:
+    - im530
+  needs:
+    - pytest
+  script:
+    - sudo docker-compose --file compose/docs.yml up --exit-code-from docs
+
+sphinx_httpd_image_build:
+  stage: documentation
+  tags:
+    - im530
+  needs:
+    - sphinx_make
+  script:
+    - sudo docker build -t web -f compose/docs_http.Dockerfile .
+
+sphinx_httpd:
+  stage: documentation
+  tags:
+    - im530
+  needs:
+    - sphinx_httpd_image_build
+  script:
+    - if [[ $(sudo docker inspect --format '{{json .State.Running}}' httpd) == "true" ]]; then sudo docker stop httpd; sudo docker rm httpd ; fi
+    - sudo docker run --name httpd -p 8080:80 -d web
+

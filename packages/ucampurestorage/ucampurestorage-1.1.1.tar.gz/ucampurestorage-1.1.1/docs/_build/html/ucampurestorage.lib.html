@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ucampurestorage.lib package &mdash; ucampurestorage 1.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ucampurestorage.tests package" href="ucampurestorage.tests.html" />
+    <link rel="prev" title="ucampurestorage package" href="ucampurestorage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ucampurestorage
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="access.html">Pure Storage Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">UCAM PURE STORAGE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ucampurestorage</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ucampurestorage.html">ucampurestorage package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="ucampurestorage.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">ucampurestorage.lib package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ucampurestorage.tests.html">ucampurestorage.tests package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ucampurestorage.html#module-ucampurestorage">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ucampurestorage</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">ucampurestorage</a></li>
+          <li class="breadcrumb-item"><a href="ucampurestorage.html">ucampurestorage package</a></li>
+      <li class="breadcrumb-item active">ucampurestorage.lib package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ucampurestorage.lib.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ucampurestorage-lib-package">
+<h1>ucampurestorage.lib package<a class="headerlink" href="#ucampurestorage-lib-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-ucampurestorage.lib.httpclient">
+<span id="ucampurestorage-lib-httpclient-module"></span><h2>ucampurestorage.lib.httpclient module<a class="headerlink" href="#module-ucampurestorage.lib.httpclient" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.httpclient.</span></span><span class="sig-name descname"><span class="pre">HttpClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/httpclient.html#HttpClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient.API_VERSION">
+<span class="sig-name descname"><span class="pre">API_VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'2.17'</span></em><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient.API_VERSION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/httpclient.html#HttpClient.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient.delete" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a REST DELETE request.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/httpclient.html#HttpClient.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient.get" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a REST GET request.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient.patch">
+<span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/httpclient.html#HttpClient.patch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient.patch" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a REST PATCH request.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/httpclient.html#HttpClient.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient.post" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a REST POST request.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.httpclient.HttpClient.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/httpclient.html#HttpClient.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.httpclient.HttpClient.put" title="Permalink to this definition"></a></dt>
+<dd><p>Perform a REST PUT request.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ucampurestorage.lib.options">
+<span id="ucampurestorage-lib-options-module"></span><h2>ucampurestorage.lib.options module<a class="headerlink" href="#module-ucampurestorage.lib.options" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.LoadFromFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">LoadFromFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">option_strings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#LoadFromFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.LoadFromFile" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">argparse.Action</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.Options">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">Options</span></span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#Options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.Options" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.Options.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#Options.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.Options.parse" title="Permalink to this definition"></a></dt>
+<dd><p>Parse given arguments and execute an action accordingly.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.clone_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">clone_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#clone_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.clone_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Clone volume on Pure storage and mount to the local server.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume clone –name TEST113_clone –srcvol             TEST113 –target_mp /t2</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume clone –name TEST113_clone         –srcvol TEST113 –target_mp /t2</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.clone_volumes">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">clone_volumes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#clone_volumes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.clone_volumes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.connect_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">connect_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#connect_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.connect_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Connect Volume to the host on the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  connect –hostname HOST01 –volname TEST113</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume connect          –hostname HOST01 –volname TEST113</p>
+<p>[optionally define the LUNID]
+Example 3: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  connect –hostname HOST01 –volname             TEST113 –lunid 77</p>
+<p>Example 4: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume connect  –hostname HOST01         –volname TEST113  –lunid 77</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.create_host">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">create_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#create_host"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.create_host" title="Permalink to this definition"></a></dt>
+<dd><p>Create host defination on the Purestorage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  host  create  –name &lt;HOSTNAME&gt; –iqn &lt;IQN number&gt;            –personality &lt;aix,esxi,hpux,solaris,vms,oracle-vm-server,none&gt;</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json host create –name &lt;HOSTNAME&gt;             –iqn &lt;IQN number&gt; –personality &lt;aix,esxi,hpux,solaris,vms,oracle-vm-server,none&gt;</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.create_snapshot">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">create_snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#create_snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.create_snapshot" title="Permalink to this definition"></a></dt>
+<dd><p>Create snapshot of the volume on the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” snapshot create –srcvol TEST113 –suffix snap01</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  snapshot create             –srcvol TEST113 –suffix snap01</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.create_token">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">create_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#create_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.create_token" title="Permalink to this definition"></a></dt>
+<dd><p>Generate Pure Storage token.</p>
+<dl class="simple">
+<dt>Example: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;</dt><dd><p>–client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  tokengen</p>
+</dd>
+</dl>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  tokengen</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.create_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">create_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#create_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.create_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Create Volume on the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  create  –name TEST113 –size 1T</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume create  –name TEST113 –size 1T</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.delete_host">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">delete_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#delete_host"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.delete_host" title="Permalink to this definition"></a></dt>
+<dd><p>Delete host defination on the Pure Storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  host  delete  –name &lt;HOSTNAME&gt;</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json host delete –name &lt;HOSTNAME&gt;</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.delete_snapshot">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">delete_snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#delete_snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.delete_snapshot" title="Permalink to this definition"></a></dt>
+<dd><p>Delete snapshot of the volume on the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” snapshot delete –snapname TEST113.snap01</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  snapshot delete –snapname TEST113.snap01</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.delete_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">delete_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#delete_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.delete_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Delete Volume from the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  delete  –name TEST113</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume delete  –name TEST113</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.detail_host">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">detail_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#detail_host"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.detail_host" title="Permalink to this definition"></a></dt>
+<dd><p>List the detail information of the host connected to the  Pure Storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  host  list  –name cs-dev-db2</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  host list –name cs-dev-db2</p>
+<p>Example 3: ucampurestorage –file=./ucampurestorage/lib/secrets.json  host list –name cs-dev-db2 –format=json</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.detail_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">detail_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#detail_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.detail_volume" title="Permalink to this definition"></a></dt>
+<dd><p>List the detail information of the volume from the  Pure Storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  list  –name TEST113</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume list  –name TEST113</p>
+<p>Example 3: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume list  –name TEST113 –format=json</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.disconnect_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">disconnect_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#disconnect_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.disconnect_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Disconnect Volume from the host on the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  disconnect –hostname HOST01 –volname TEST113</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume disconnect             –hostname HOST01 –volname TEST113</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.eradicate_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">eradicate_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#eradicate_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.eradicate_volume" title="Permalink to this definition"></a></dt>
+<dd><p>eradicate Volume from the Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume  eradicate  –name TEST113</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume eradicate  –name TEST113</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.host_operations">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">host_operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#host_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.host_operations" title="Permalink to this definition"></a></dt>
+<dd><p>Perform Pure Storage host level Operations.</p>
+<dl class="simple">
+<dt>Example: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;</dt><dd><p>–client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  host {list,create,delete}</p>
+</dd>
+</dl>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  host {list,create,delete}</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.list_object">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">list_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#list_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.list_object" title="Permalink to this definition"></a></dt>
+<dd><p>List Pure Storage objects.</p>
+<dl class="simple">
+<dt>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;</dt><dd><p>–client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” list –object controllers</p>
+</dd>
+</dl>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json list –object controllers</p>
+<p>Example 3: ucampurestorage –file=./ucampurestorage/lib/secrets.json list –object controllers –format=json</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.list_snapshots">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">list_snapshots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#list_snapshots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.list_snapshots" title="Permalink to this definition"></a></dt>
+<dd><p>List the detail information of the snapshot from the  Pure Storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  snapshot list –volname TEST12</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  snapshot list –volname TEST12</p>
+<p>Example 3: ucampurestorage –file=./ucampurestorage/lib/secrets.json  snapshot list –volname TEST12  –format=json</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.map_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">map_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#map_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.map_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Map volume to the local server which  is provided by Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume map –name TEST113 –mp /t2</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume map –name TEST113 –mp /t2</p>
+<p>[NOTE: New volume need to be formated therefore -new flag is required]</p>
+<p>Example 3: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume map –name TEST113_new –mp /t2 -new</p>
+<p>Example 4: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume map –name TEST113 –mp /t2 -new</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.replace_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">replace_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#replace_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.replace_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Replace the mounted clone volume with new clone from Pure storage and mount to the local server.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume replace –src_mp /t1  –dst_mp /t2</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume replace –src_mp /t1  –dst_mp /t2</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.run_option">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">run_option</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subparser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#run_option"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.run_option" title="Permalink to this definition"></a></dt>
+<dd><p>Runs a ucampurestorage subcommand.
+:param subparser: the subcommand to run.
+:param args: args to pass to the ucampurestorage subcommand.
+:return: result of the executed subcommand.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.snap_operations">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">snap_operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#snap_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.snap_operations" title="Permalink to this definition"></a></dt>
+<dd><p>Perform Pure Storage Snapshot level Operations.</p>
+<p>Example: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  snapshot {list,create,delete}</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  snapshot {list,create,delete}</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.str2bool">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">str2bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#str2bool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.str2bool" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.unmap_volume">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">unmap_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#unmap_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.unmap_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Map volume to the local server which  is provided by Pure storage.</p>
+<p>Example 1: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume unmap –name TEST113</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume unmap –name TEST113</p>
+<p>[optionally define the WWN]</p>
+<p>Example 3: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume unmap –wwn &lt;WWN number&gt;</p>
+<p>Example 4: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume unmap –wwn &lt;WWN number&gt;</p>
+<p>[optionally define the mountpoint]</p>
+<p>Example 5: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;        –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem” volume unmap –mp /t1</p>
+<p>Example 6: ucampurestorage –file=./ucampurestorage/lib/secrets.json volume unmap –mp /t1</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.options.volume_operations">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.options.</span></span><span class="sig-name descname"><span class="pre">volume_operations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/options.html#volume_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.options.volume_operations" title="Permalink to this definition"></a></dt>
+<dd><p>Perform Pure Storage volume level Operations.</p>
+<p>Example: ucampurestorage –client_id=&lt;clientID&gt; –key_id=&lt;KeyID&gt; –user=&lt;User&gt; –password=&lt;passwd&gt;         –client_name=&lt;ClientName&gt; –keyfile=”privatekey.pem”  volume {list,create,delete,eradicate,connect,                                        disconnect,map,unmap,replace,clone}</p>
+<p>Example 2: ucampurestorage –file=./ucampurestorage/lib/secrets.json  volume {list,create,delete,eradicate,                                        connect,disconnect,map,unmap,replace,clone}</p>
+</dd></dl>
+
+</section>
+<section id="module-ucampurestorage.lib.process">
+<span id="ucampurestorage-lib-process-module"></span><h2>ucampurestorage.lib.process module<a class="headerlink" href="#module-ucampurestorage.lib.process" title="Permalink to this headline"></a></h2>
+<p>Utilities for linux filesystems administration</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.process.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.add_entry_in_fstab">
+<span class="sig-name descname"><span class="pre">add_entry_in_fstab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mountpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fstype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ext4'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'_netdev'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.add_entry_in_fstab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.add_entry_in_fstab" title="Permalink to this definition"></a></dt>
+<dd><p>Adds <cite>fs_device</cite> in FSTAB_CONF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fs_device</strong> – fs device to add.</p></li>
+<li><p><strong>mountpoint</strong> – mountpoint of fs device.</p></li>
+<li><p><strong>fstype</strong> – fs type of fs device.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.add_multipath_alias">
+<span class="sig-name descname"><span class="pre">add_multipath_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.add_multipath_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.add_multipath_alias" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a multipath alias to MULTIPATH_CONF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wwn</strong> – wwn to add to MULTIPATH_CONF.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.backup_file">
+<span class="sig-name descname"><span class="pre">backup_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backup_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.backup_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.backup_file" title="Permalink to this definition"></a></dt>
+<dd><p>Backups a file.</p>
+<p>Copies <cite>file_</cite> to <cite>backup_dir</cite> directory and name the new file <cite>file.timestamp</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> – the full path and the name of the file to back up.</p></li>
+<li><p><strong>backup_dir</strong> – the path of the new file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if backup task succeeded, <cite>False</cite>, otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.create_dir">
+<span class="sig-name descname"><span class="pre">create_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.create_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.create_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Create a directory if provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.create_partition">
+<span class="sig-name descname"><span class="pre">create_partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dev</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.create_partition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.create_partition" title="Permalink to this definition"></a></dt>
+<dd><p>Create partition on the dev.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dev (str): multipath dev path</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: TRUE if dev is partitioned</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.daemon_reload">
+<span class="sig-name descname"><span class="pre">daemon_reload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.daemon_reload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.daemon_reload" title="Permalink to this definition"></a></dt>
+<dd><p>Reloads systemd manager configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.delete_raw_devices">
+<span class="sig-name descname"><span class="pre">delete_raw_devices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.delete_raw_devices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.delete_raw_devices" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes a raw device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>raw_device</strong> – raw device to delete.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.format_partition_with_ext4">
+<span class="sig-name descname"><span class="pre">format_partition_with_ext4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.format_partition_with_ext4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.format_partition_with_ext4" title="Permalink to this definition"></a></dt>
+<dd><p>Format the partition with ext4.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>part (str): partition name crated on the local system.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: TRUE if partition is updated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.generate_devicemapper_alias">
+<span class="sig-name descname"><span class="pre">generate_devicemapper_alias</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.generate_devicemapper_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.generate_devicemapper_alias" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a new device mapper alias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>alias name, <cite>None</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_fsdevice_from_mountpoint">
+<span class="sig-name descname"><span class="pre">get_fsdevice_from_mountpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mountpoint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_fsdevice_from_mountpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_fsdevice_from_mountpoint" title="Permalink to this definition"></a></dt>
+<dd><p>Gets filesystem device from mountpoint.</p>
+<p>Example: mountpoint = /d03 –&gt; fsdevice = /dev/mapper/vold03p1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mountpoint</strong> – the mountpoint to look for its filesystem device.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>fsdevice or <cite>None</cite> if fsdevice not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_hostname">
+<span class="sig-name descname"><span class="pre">get_hostname</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_hostname"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_hostname" title="Permalink to this definition"></a></dt>
+<dd><p>Gets hostname of local server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>server’s hostname or <cite>None</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_index_in_list">
+<span class="sig-name descname"><span class="pre">get_index_in_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_index_in_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_index_in_list" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the available index in a list of int.</p>
+<p>If index_list is empty, return 1.
+If no index is available, return max index in the list + 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index_list</strong> – list of int.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_local_mountpoints">
+<span class="sig-name descname"><span class="pre">get_local_mountpoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_local_mountpoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_local_mountpoints" title="Permalink to this definition"></a></dt>
+<dd><p>fetch information regarding local filesystem.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: All the mounted partitions or False if command fails</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_mountpoint_from_devicename">
+<span class="sig-name descname"><span class="pre">get_mountpoint_from_devicename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_mountpoint_from_devicename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_mountpoint_from_devicename" title="Permalink to this definition"></a></dt>
+<dd><p>Gets mountpoint from devicename.</p>
+<p>Example: device = /dev/mapper/vold03p1 –&gt; mountpoint = /d03.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>device_name</strong> – the device_name to look for its mountpoint.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mountpoint or <cite>None</cite> if fsdevice not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_mpath_from_mountpoint">
+<span class="sig-name descname"><span class="pre">get_mpath_from_mountpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mountpoint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_mpath_from_mountpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_mpath_from_mountpoint" title="Permalink to this definition"></a></dt>
+<dd><p>Gets mpath from mountpoint.</p>
+<p>Example: mountpoint = /d03 –&gt; mpath = /dev/mapper/vold03.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mountpoint</strong> – the mountpoint to look for its mpath.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mpath of mountpoint, or None if no mpath is found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_mpath_from_wwn">
+<span class="sig-name descname"><span class="pre">get_mpath_from_wwn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_mpath_from_wwn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_mpath_from_wwn" title="Permalink to this definition"></a></dt>
+<dd><p>Gets <cite>mpath</cite> of a <cite>wwn</cite> by looking in <cite>multipath -ll</cite> output.</p>
+<p>Example: wwn = ‘6000d31000e3940000000000000001fd’ –&gt; mpath = vold03.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mpath</strong> – mpath to look for its wwn.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mpath or None if mpath is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_multipath_raw_devices">
+<span class="sig-name descname"><span class="pre">get_multipath_raw_devices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_multipath_raw_devices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_multipath_raw_devices" title="Permalink to this definition"></a></dt>
+<dd><p>Gets multipath raw devices of a multipath device.</p>
+<p>Example: wwid = 360dd0d31000e39600000000000000073e –&gt; [‘sdc’, ‘sdb’].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wwid</strong> – wwid of the multipath.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of multipath raw devices, <cite>None</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_release">
+<span class="sig-name descname"><span class="pre">get_release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_release"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_release" title="Permalink to this definition"></a></dt>
+<dd><p>Returns OS release</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_wwid_from_wwn">
+<span class="sig-name descname"><span class="pre">get_wwid_from_wwn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_wwid_from_wwn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_wwid_from_wwn" title="Permalink to this definition"></a></dt>
+<dd><p>Obtains wwid from wwn by looking at <cite>multipath -ll</cite> command output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wwn</strong> – wwn to look for its wwid.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>wwid for success, None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.get_wwn_from_mpath">
+<span class="sig-name descname"><span class="pre">get_wwn_from_mpath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mpath_device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.get_wwn_from_mpath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.get_wwn_from_mpath" title="Permalink to this definition"></a></dt>
+<dd><p>Gets <cite>wwn</cite> of a mpath.</p>
+<p>Example: mpath = vold03p1 –&gt; wwn = ‘6000d31000e3940000000000000001fd’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mpath_device</strong> – mpath device to look for its wwn.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>wwn of mpath device, <cite>None</cite> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_device_in_fstab">
+<span class="sig-name descname"><span class="pre">is_device_in_fstab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_device_in_fstab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_device_in_fstab" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if device is in FSTAB_CONF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>device</strong> – device to check in FSTAB_CONF.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if device in FSTAB_CONF, otherwise, <cite>False</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_device_valid">
+<span class="sig-name descname"><span class="pre">is_device_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_device_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_device_valid" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if device name is valid.</p>
+<p>A valid device name should start with ‘/dev/mapper/vold’ and ends with ‘p1’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>device</strong> – device name to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if device name is valid, otherwise, <cite>False</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_dir_empty">
+<span class="sig-name descname"><span class="pre">is_dir_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_dir_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_dir_empty" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a directory is empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> – path of the directory to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if the directory, <cite>False</cite> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_dir_exist">
+<span class="sig-name descname"><span class="pre">is_dir_exist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_dir_exist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_dir_exist" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a directory is exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> – path of the directory to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if the directory, <cite>False</cite> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_string_in_file">
+<span class="sig-name descname"><span class="pre">is_string_in_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_string_in_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_string_in_file" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a <cite>string</cite> is in <cite>filename</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>string</strong> – the string to look for in the file.</p></li>
+<li><p><strong>file</strong> – the file to search in.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if <cite>string</cite> in <cite>file</cite>, <cite>False</cite>, otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_wwn_mounted">
+<span class="sig-name descname"><span class="pre">is_wwn_mounted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_wwn_mounted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_wwn_mounted" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a device with <cite>wwn</cite> is mounted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wwn</strong> – <cite>wwn</cite> of the device to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mountpoint if the device is mounted, <cite>None</cite>, otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_wwn_serial_valid">
+<span class="sig-name descname"><span class="pre">is_wwn_serial_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_wwn_serial_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_wwn_serial_valid" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if <cite>wwn</cite> is valid.</p>
+<p>A valid WWN should have 32 or 33 characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wwn</strong> – the wwn to check</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if wwn is valid, otherwise, <cite>False</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.is_wwn_valid">
+<span class="sig-name descname"><span class="pre">is_wwn_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.is_wwn_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.is_wwn_valid" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if <cite>wwn</cite> is valid.</p>
+<p>A valid WWN should have 32 or 33 characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wwn</strong> – the wwn to check</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if wwn is valid, otherwise, <cite>False</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.mount">
+<span class="sig-name descname"><span class="pre">mount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.mount"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.mount" title="Permalink to this definition"></a></dt>
+<dd><p>Mounts a filesystem or mountpoint if provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.mountpoint_exists">
+<span class="sig-name descname"><span class="pre">mountpoint_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mountpoint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.mountpoint_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.mountpoint_exists" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if mountpoint exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mountpoint</strong> – mountpoint to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> if the mountpoint exists, <cite>False</cite> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.read_file">
+<span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.read_file" title="Permalink to this definition"></a></dt>
+<dd><p>Reads a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – the name of file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>content of the file to read, or <cite>None</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.record_config_details">
+<span class="sig-name descname"><span class="pre">record_config_details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.record_config_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.record_config_details" title="Permalink to this definition"></a></dt>
+<dd><p>Logs <cite>df</cite>, <cite>multipath</cite>, and <cite>fstab</cite> config details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.reload_multipathd">
+<span class="sig-name descname"><span class="pre">reload_multipathd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.reload_multipathd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.reload_multipathd" title="Permalink to this definition"></a></dt>
+<dd><p>Reloads the multipathd service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.remove_entry_from_fstab">
+<span class="sig-name descname"><span class="pre">remove_entry_from_fstab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs_device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.remove_entry_from_fstab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.remove_entry_from_fstab" title="Permalink to this definition"></a></dt>
+<dd><p>Removes <cite>fs_device</cite> from FSTAB_CONF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fs_device</strong> – fs device to remove.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.remove_multipath_entry">
+<span class="sig-name descname"><span class="pre">remove_multipath_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.remove_multipath_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.remove_multipath_entry" title="Permalink to this definition"></a></dt>
+<dd><p>Removes a multipath entry from MULTIPATH_CONF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wwn</strong> – wwn of the multipath entry to remove.</p></li>
+<li><p><strong>alias</strong> – alias of the multipath entry to remove</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.rescan_scsibus">
+<span class="sig-name descname"><span class="pre">rescan_scsibus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.rescan_scsibus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.rescan_scsibus" title="Permalink to this definition"></a></dt>
+<dd><p>Scans SCSI bus on local server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.run" title="Permalink to this definition"></a></dt>
+<dd><p>Runs a Shell command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>command</strong> – command to run.</p></li>
+<li><p><strong>stdin</strong> – stdin of the command execution, default: subprocess.PIPE.</p></li>
+<li><p><strong>stdout</strong> – stdout of the command execution, default: subprocess.PIPE.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple (return_code, stdout_data, stderr_data).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.umount">
+<span class="sig-name descname"><span class="pre">umount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.umount"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.umount" title="Permalink to this definition"></a></dt>
+<dd><p>Unmounts a filesystem, or mountpoint if provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><cite>True</cite> for success, <cite>False</cite> for error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.process.Process.update_system_partition">
+<span class="sig-name descname"><span class="pre">update_system_partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/process.html#Process.update_system_partition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.process.Process.update_system_partition" title="Permalink to this definition"></a></dt>
+<dd><p>Update about the partition to the local system.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>part (str): partition name crated on the local system.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: TRUE if partition is updated</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ucampurestorage.lib.pureconnect">
+<span id="ucampurestorage-lib-pureconnect-module"></span><h2>ucampurestorage.lib.pureconnect module<a class="headerlink" href="#module-ucampurestorage.lib.pureconnect" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.pureconnect.</span></span><span class="sig-name descname"><span class="pre">PureAdvanceConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ucampurestorage.lib.pureconnect.SystemTask" title="ucampurestorage.lib.pureconnect.SystemTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">ucampurestorage.lib.pureconnect.SystemTask</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.clone_volume">
+<span class="sig-name descname"><span class="pre">clone_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cln_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mt_pt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.clone_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.clone_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Create clone volume.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>cln_name (str): Name of the clone volume to be create on PureStorage Array
+src_name (str): Name of the source volume for which clone need to be created on PureStorage Array</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.connect_volume">
+<span class="sig-name descname"><span class="pre">connect_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hostname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.connect_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.connect_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Connect volume.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>hostname (str): Name of the host specified on PureStorage Array with which volume need to be connect
+volname (str): Name of the volume specified on PureStorage Array which need to be connect</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.create_host">
+<span class="sig-name descname"><span class="pre">create_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iqn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">personality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.create_host"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.create_host" title="Permalink to this definition"></a></dt>
+<dd><p>Create host.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the Host to be create on PureStorage Array
+iqn (str): iqn of Host Eg: “”
+personality (str): personality of the host</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.create_snapshot">
+<span class="sig-name descname"><span class="pre">create_snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.create_snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.create_snapshot" title="Permalink to this definition"></a></dt>
+<dd><p>Create Snapshot of the volume.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the volume for which snapshot to be create on PureStorage Array
+suffix (str): suffix of the snapshot</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.create_volume">
+<span class="sig-name descname"><span class="pre">create_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.create_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.create_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Create volume.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the volume to be create on PureStorage Array
+size (str): Capacity of volume Eg: “1T”, “300G”, “20M”</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.delete_host">
+<span class="sig-name descname"><span class="pre">delete_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.delete_host"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.delete_host" title="Permalink to this definition"></a></dt>
+<dd><p>Delete host.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the host to be deleted on PureStorage Array</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.delete_snapshot">
+<span class="sig-name descname"><span class="pre">delete_snapshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.delete_snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.delete_snapshot" title="Permalink to this definition"></a></dt>
+<dd><p>Delete snapshot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the snapshot to be deleted on PureStorage Array</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.delete_volume">
+<span class="sig-name descname"><span class="pre">delete_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.delete_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.delete_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Delete volume.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the volume to be deleted on PureStorage Array</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.disconnect_volume">
+<span class="sig-name descname"><span class="pre">disconnect_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hostname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.disconnect_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.disconnect_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the connection of volume from .</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>hostname (str): Name of the host specified on PureStorage Array with which volume need to be connect
+volname (str): Name of the volume specified on PureStorage Array which need to be connect</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.eradicate_volume">
+<span class="sig-name descname"><span class="pre">eradicate_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.eradicate_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.eradicate_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Eradicate volume.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the volume to be eradicate on PureStorage Array</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.map_volume">
+<span class="sig-name descname"><span class="pre">map_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mountpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_vol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.map_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.map_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Map volume to local server and mount it to <cite>mountpoint</cite>.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of the volume to map to local server.
+mountpoint (str): Name of the mountpoint on local server to be mounted
+new_vol (bool): Is the volume name newly created in PureStorage Array</p>
+</dd>
+<dt>Returns:</dt><dd><p>boolean: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.replace_volume">
+<span class="sig-name descname"><span class="pre">replace_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_mountpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_mountpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unmount_src_mp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.replace_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.replace_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Clones the volume mounted on <cite>src_mountpoint</cite> and mount it on <cite>dst_mountpoint</cite>,
+the volume that was mounted on <cite>dst_mountpoint</cite> will be deleted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_mountpoint</strong> – mountpoint of the volume to be cloned.</p></li>
+<li><p><strong>dst_mountpoint</strong> – mountpoint of the clone volume.</p></li>
+<li><p><strong>unmount_src_mp</strong> – If True, unmount the source mountpoint, otherwise, not.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureAdvanceConnection.unmap_volume">
+<span class="sig-name descname"><span class="pre">unmap_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wwn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureAdvanceConnection.unmap_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureAdvanceConnection.unmap_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Unmaps a Pure Storage volume with <cite>WWN</cite>. Unmounting the volume should be performed manually.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – <cite>name</cite> of the volume to unmap.</p></li>
+<li><p><strong>wwn</strong> – <cite>wwn</cite> of the volume to unmap.</p></li>
+<li><p><strong>mp</strong> – <cite>mountpoint</cite> of the localsever to unmap.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.pureconnect.</span></span><span class="sig-name descname"><span class="pre">PureConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Pure Storage API interface.</p>
+<p>Handles calls to Pure Storage Management via the REST API interface.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_arrays">
+<span class="sig-name descname"><span class="pre">get_arrays</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_arrays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_arrays" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all arrays and updates <cite>self.arrays</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_controllers">
+<span class="sig-name descname"><span class="pre">get_controllers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_controllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_controllers" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all controllers and updates <cite>self.controllers</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_hostgroups">
+<span class="sig-name descname"><span class="pre">get_hostgroups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_hostgroups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_hostgroups" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all host-groups and updates <cite>self.hostgroups</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_hosts">
+<span class="sig-name descname"><span class="pre">get_hosts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_hosts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_hosts" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all hosts and updates <cite>self.hosts</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_networkports">
+<span class="sig-name descname"><span class="pre">get_networkports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_networkports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_networkports" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all networkports and updates <cite>self.target-ports</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_pods">
+<span class="sig-name descname"><span class="pre">get_pods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_pods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_pods" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all pods and updates <cite>self.pods</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_protectiongroups">
+<span class="sig-name descname"><span class="pre">get_protectiongroups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_protectiongroups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_protectiongroups" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all networkports and updates <cite>self.target-ports</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_protectiongroupsnapshots">
+<span class="sig-name descname"><span class="pre">get_protectiongroupsnapshots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_protectiongroupsnapshots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_protectiongroupsnapshots" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all networkports and updates <cite>self.target-ports</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_protectiongroupvolmembers">
+<span class="sig-name descname"><span class="pre">get_protectiongroupvolmembers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_protectiongroupvolmembers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_protectiongroupvolmembers" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all volumes in protection-groups and updates <cite>self.protectiongroupvolmembers</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_remotepods">
+<span class="sig-name descname"><span class="pre">get_remotepods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_remotepods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_remotepods" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all pods and updates <cite>self.pods</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_targetports">
+<span class="sig-name descname"><span class="pre">get_targetports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_targetports"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_targetports" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all ports and updates <cite>self.target-ports</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_vol_clones">
+<span class="sig-name descname"><span class="pre">get_vol_clones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_vol_clones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_vol_clones" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_vol_destroyed">
+<span class="sig-name descname"><span class="pre">get_vol_destroyed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_vol_destroyed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_vol_destroyed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_vol_name_by_devwwn">
+<span class="sig-name descname"><span class="pre">get_vol_name_by_devwwn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wwn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_vol_name_by_devwwn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_vol_name_by_devwwn" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_volumeconnections">
+<span class="sig-name descname"><span class="pre">get_volumeconnections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_volumeconnections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_volumeconnections" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all connections and updates <cite>self.volumeconnections</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_volumegroups">
+<span class="sig-name descname"><span class="pre">get_volumegroups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_volumegroups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_volumegroups" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all volume-groups and updates <cite>self.volumegroups</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_volumes">
+<span class="sig-name descname"><span class="pre">get_volumes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_volumes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_volumes" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all volumes and updates <cite>self.volumes</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.get_volumesnapshots">
+<span class="sig-name descname"><span class="pre">get_volumesnapshots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.get_volumesnapshots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.get_volumesnapshots" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all volume-snapshots and updates <cite>self.volumesnapshots</cite>.
+:returns: <cite>True</cite> for success, <cite>False</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.PureConnection.run_list_object">
+<span class="sig-name descname"><span class="pre">run_list_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#PureConnection.run_list_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.PureConnection.run_list_object" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the result of get object functions and updates the corresponding data structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_type</strong> – the object type to list.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>couple of (result of object get function, object data structure)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.SystemTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.pureconnect.</span></span><span class="sig-name descname"><span class="pre">SystemTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#SystemTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.SystemTask" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ucampurestorage.lib.pureconnect.PureConnection" title="ucampurestorage.lib.pureconnect.PureConnection"><code class="xref py py-class docutils literal notranslate"><span class="pre">ucampurestorage.lib.pureconnect.PureConnection</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.SystemTask.generate_clone_name">
+<span class="sig-name descname"><span class="pre">generate_clone_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#SystemTask.generate_clone_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.SystemTask.generate_clone_name" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a clone name from a volume name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>volume_name</strong> – the volume name from which to generate a clone name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>clone name, <cite>None</cite>, otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.SystemTask.get_local_mountpoints">
+<span class="sig-name descname"><span class="pre">get_local_mountpoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#SystemTask.get_local_mountpoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.SystemTask.get_local_mountpoints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.SystemTask.get_local_server_name_on_array">
+<span class="sig-name descname"><span class="pre">get_local_server_name_on_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#SystemTask.get_local_server_name_on_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.SystemTask.get_local_server_name_on_array" title="Permalink to this definition"></a></dt>
+<dd><p>Returns local server ID, or <cite>None</cite> on error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.SystemTask.get_mountpoint_info">
+<span class="sig-name descname"><span class="pre">get_mountpoint_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mountpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#SystemTask.get_mountpoint_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.SystemTask.get_mountpoint_info" title="Permalink to this definition"></a></dt>
+<dd><p>Returns details of volume with WWN <cite>wwn</cite> or mounted on <cite>mountpoint</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – volume’s <cite>name</cite>.</p></li>
+<li><p><strong>mountpoint</strong> – <cite>mountpoint</cite> where the volume is mounted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str wwn, <cite>None</cite>, otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.converttobytes">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.pureconnect.</span></span><span class="sig-name descname"><span class="pre">converttobytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fromtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#converttobytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.converttobytes" title="Permalink to this definition"></a></dt>
+<dd><p>Converts megabytes to bytes, etc.
+sample code:</p>
+<blockquote>
+<div><p>print(‘mb= ‘ + str(bytesto(314575262000000, ‘m’)))</p>
+</div></blockquote>
+<dl class="simple">
+<dt>sample output:</dt><dd><p>mb= 300002347.946</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ucampurestorage.lib.pureconnect.totalbytes">
+<span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.pureconnect.</span></span><span class="sig-name descname"><span class="pre">totalbytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/pureconnect.html#totalbytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.pureconnect.totalbytes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ucampurestorage.lib.tokencreater">
+<span id="ucampurestorage-lib-tokencreater-module"></span><h2>ucampurestorage.lib.tokencreater module<a class="headerlink" href="#module-ucampurestorage.lib.tokencreater" title="Permalink to this headline"></a></h2>
+<p>Token Generation module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ucampurestorage.lib.tokencreater.</span></span><span class="sig-name descname"><span class="pre">TokenCreater</span></span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generate Token for the API CALLs</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater.current_token_modify">
+<span class="sig-name descname"><span class="pre">current_token_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwarg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater.current_token_modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater.current_token_modify" title="Permalink to this definition"></a></dt>
+<dd><p>Updating the token of the instance on the new token request.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: provide the new token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater.token_create_datetime">
+<span class="sig-name descname"><span class="pre">token_create_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwarg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater.token_create_datetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater.token_create_datetime" title="Permalink to this definition"></a></dt>
+<dd><p>Provide date and time of the token creation.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>datetime: date and time of token creation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater.token_generation">
+<span class="sig-name descname"><span class="pre">token_generation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_file_private</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fa_fqdn_ip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater.token_generation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater.token_generation" title="Permalink to this definition"></a></dt>
+<dd><p>Generation of the Token.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client_id (str): Client ID created on PureStorage for API calls
+key_id (str): Key ID generated on PureStorage while creating client ID for API calls
+client_name (str): Client Name created for the api call
+key_file_private (str): location of the private key file
+username (str): username of the purestorage
+fa_fqdn_ip (any): FQDN of the PureStorage
+password (_type_, optional): password of the pure storage. Defaults to None.
+output_file (_type_, optional): Location of file if the file need to be redirected. Defaults to None.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: :Provide the token for API call</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater.token_jsonformat">
+<span class="sig-name descname"><span class="pre">token_jsonformat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater.token_jsonformat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater.token_jsonformat" title="Permalink to this definition"></a></dt>
+<dd><p>format data with token and creation date.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>dict: dictory information of token and creation date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater.token_output_file">
+<span class="sig-name descname"><span class="pre">token_output_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater.token_output_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater.token_output_file" title="Permalink to this definition"></a></dt>
+<dd><p>Perform the write operation on a file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>output_file (str): filename need to be written with information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ucampurestorage.lib.tokencreater.TokenCreater.token_output_json">
+<span class="sig-name descname"><span class="pre">token_output_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ucampurestorage/lib/tokencreater.html#TokenCreater.token_output_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ucampurestorage.lib.tokencreater.TokenCreater.token_output_json" title="Permalink to this definition"></a></dt>
+<dd><p>Perform the write operation on a file in json format.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>output_file (str): filename need to be written with information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ucampurestorage.lib">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ucampurestorage.lib" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ucampurestorage.html" class="btn btn-neutral float-left" title="ucampurestorage package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ucampurestorage.tests.html" class="btn btn-neutral float-right" title="ucampurestorage.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Ishan Mahajan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
