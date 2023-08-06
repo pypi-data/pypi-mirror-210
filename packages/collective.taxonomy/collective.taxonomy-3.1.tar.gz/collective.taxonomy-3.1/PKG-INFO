@@ -1,0 +1,745 @@
+Metadata-Version: 2.1
+Name: collective.taxonomy
+Version: 3.1
+Summary: Create, edit and use hierarchical taxonomies in Plone!
+Home-page: https://pypi.org/project/collective.taxonomy/
+Author: Bo Simonsen and Malthe Borch
+Author-email: bo@headnet.dk
+License: GPLv2+
+Keywords: plone taxonomy dexterity
+Classifier: Development Status :: 6 - Mature
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 6.0
+Classifier: Framework :: Plone :: Addon
+Classifier: Framework :: Zope
+Classifier: Framework :: Zope :: 5
+Classifier: License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Provides-Extra: dev
+Provides-Extra: test
+
+Taxonomy Vocabularies
+=====================
+
+|CI|
+
+.. |CI| image:: https://github.com/collective/collective.taxonomy/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/collective/collective.taxonomy/actions
+
+
+Create, edit and use hierarchical taxonomies in `Plone`_.
+
+This add-on provides support for hierarchical taxonomies in multiple
+languages, letting users easily associate existing content with terms
+from one or more taxonomies.
+
+    `Taxonomy <https://en.wikipedia.org/wiki/Taxonomy>`_ is the
+    "discipline of defining groups [...] on the basis of shared
+    characteristics and giving names to those groups. Each group is
+    given a rank and groups of a given rank can be aggregated to form
+    a super group of higher rank and thus create a hierarchical
+    classification".
+
+Here's an example of the "taxonomic kingdoms of life"::
+
+    Living Organisms
+    Living Organisms -> Eukaryotic
+    Living Organisms -> Eukaryotic -> Simple multicells or unicells
+    Living Organisms -> Eukaryotic -> Multicellular
+    Living Organisms -> Eukaryotic -> Multicellular -> Autotrophic
+    Living Organisms -> Eukaryotic -> Multicellular -> ...
+    Living Organisms -> Prokaryotic
+    Living Organisms -> Prokaryotic -> Archaebacteria
+    Living Organisms -> Prokaryotic -> Eubacteria
+    Living Organisms -> Prokaryotic -> Eubacteria -> ...
+
+Taxonomies can be quite large, sometimes in the tens of thousands
+(10,000+). And in sites with multiple languages, each title – or
+*caption* – must appear in translation.
+
+Note that the selection of a term in the hierarchy implies the
+selection of all its parents. In the example above this means that if
+"Eubacteria" is selected, then also "Prokaryotic" and "Living
+Organisms" will be.
+
+
+Overview
+========
+
+The implementation tries to meet the following requirements:
+
+#. Support many (10,000+) terms.
+
+#. Terms can be organized in a hierarchical classification.
+
+#. Easily import and export in a common format (VDEX).
+
+#. Taxonomies will provide vocabularies that are translatable.
+
+#. Use behaviors to provide a choice field for each taxonomy.
+
+#. Manage taxonomies and assign to content types "through-the-web".
+
+In the description below, we touch on each of these requirements.
+
+
+Data structure
+--------------
+
+In order to limit both the memory and computation requirements, the
+term data is contained in exactly one persistent index per language, a
+mapping from the *materialized term path* to its *term identifier*.
+
+The term::
+
+    Living Organisms -> Eukaryotic -> Simple multicells or unicells
+
+will be indexed under this path::
+
+    "Living Organisms/Eukaryotic/Simple multicells or unicells"
+
+The index allows us to provide an iterator over the sorted vocabulary
+terms, virtually without cost (as well as containment queries).
+
+At the same time, while the hierarchy is encoded, we can quickly look
+up terms in a subtree.
+
+Note: As ``collective.taxonomy`` uses slash as separator, you have to
+monkey patch the ``PATH_SEPARATOR`` constant if you want to use '/' in
+your terms.
+
+
+Data exchange
+-------------
+
+While ``collective.taxonomy`` (this package) does make it possible to
+create, manage and edit taxonomies from a browser-based interface, the
+primary focus is to support the exchange of terms in the VDEX format:
+
+    The `IMS Vocabulary Definition Exchange
+    <http://www.imsglobal.org/vdex/>`_ (VDEX) specification defines a
+    grammar for the exchange of value lists of various classes:
+    collections often denoted "vocabulary".
+
+This exchange is integrated with `GenericSetup
+<https://pypi.org/project/Products.GenericSetup/>`_ which manages
+imports and exports using setup profiles. It is also possible to
+use the control panel for importing and exporting VDEX files.
+
+The package comes with integration for the `Dexterity
+<https://pypi.org/project/plone.app.dexterity/>`_ content type framework:
+for each taxonomy, a *behavior* is available that adds a choice field
+which pulls its vocabulary from the taxonomy. The behavior is
+configurable in terms of field name, title and whether it allows the
+selection of one or more multiple terms.  You should *first* install
+dexterity and then ``collective.taxonomy``, otherwise the behaviors
+for the existing taxonomies will be missing.
+
+
+How does it work?
+-----------------
+
+The main objective during this project has been to get a high rate
+of through-the-Web administration. Therefore the use of the product
+will not require any Python programming nor ``configure.zcml`` directives.
+
+In the control panel (``/@@taxonomy-settings``), the user can:
+
+#. Import taxonomies from VDEX files.
+
+#. Export taxonomies existing to VDEX files.
+
+#. Delete taxonomies
+
+#. Add and delete behaviors for taxonomies
+
+When a new behavior is created for a taxonomy, it can easily be added
+to the desired content types using the content type control panel, provided
+by Dexterity. After this is done, the taxonomy is available on add and edit
+forms, and it is also available for collections, if ``plone.app.collection``
+is used on the site. An index is also created, so the taxonomies can easily
+be used for catalog queries.
+
+Please read the detailed `Getting Started Tutorial <https://github.com/collective/collective.taxonomy/blob/master/docs/tutorial.md>`_
+
+
+React/Redux app to edit taxonomies
+----------------------------------
+
+The view ``@@taxonomy-edit-data`` that allow users to edit the taxonomy data
+is a React/Redux app (the source code is in the ``javascripts`` directory.
+
+Here's a preview of this view:
+
+.. image:: https://raw.githubusercontent.com/collective/collective.taxonomy/master/images/edit_taxonomy_data.gif
+    :alt: Edit taxonomy data preview
+
+The languages allowed for the taxonomies are the languages defined in ``portal_languages``.
+
+
+Development
+===========
+
+Run the app, run ``npm start`` in the ``javascripts`` directory.
+To make Plone use the development code, you need the ``NODE_ENV`` environment
+variable to be set to ``development``:
+
+::
+
+    NODE_ENV=development bin/instance fg
+
+
+i18n
+----
+
+The app uses `react-intl <https://github.com/yahoo/react-intl>`_ to handle i18n.
+To translate the app, add a new language in the translations directory. For example,
+create a ``es`` file in the translations directory that contains:
+
+::
+
+    const es = {
+        submitLabel: 'Enviar',
+    }
+
+    export default es
+
+Then, edit ``translations/index.js`` to add the language to the translations object:
+
+::
+
+    import es from './es'
+
+    const translations = {
+        es,
+        fr
+    }
+
+You'll have to rebuild the js bundle: ``npm run build``
+
+That's it!
+
+Restapi support
+---------------
+
+This package also supports endpoints for basic CRUD operations that can be consumend by any frontend service.
+
+The API consumer can create, read, and delete taxonomies.
+
++----------+---------------------+----------------------------------------+
+| Verb     | URL                 | Action                                 |
++==========+=====================+========================================+
+| `POST`   | `/@taxonomy`        | Add taxonomy with specific data        |
++----------+---------------------+----------------------------------------+
+| `GET`    | `/@taxonomy`        | List all taxonomies                    |
++----------+---------------------+----------------------------------------+
+| `GET`    | `/@taxonomy/{name}` | Get taxonomy data                      |
++----------+---------------------+----------------------------------------+
+| `DELETE` | `/@taxonomy/{name}` | Remove one or more taxonomies          |
++----------+---------------------+----------------------------------------+
+| `PATCH`  | `/@taxonomy/{name}` | Update taxonomy data                   |
++----------+---------------------+----------------------------------------+
+| `GET`    | `/@taxonomySchema`  | Get current taxonomy schema            |
++----------+---------------------+----------------------------------------+
+
+Translations
+------------
+
+This product has been translated into
+
+- Danish.
+
+- German.
+
+- French.
+
+- Spanish.
+
+You can contribute for any message missing or other new languages, join us at
+`Plone Collective Team <https://www.transifex.com/plone/plone-collective/>`_
+into *Transifex.net* service with all world Plone translators community.
+
+
+Plone Version Compatibility
+===========================
+
+collective.taxonomy version `3.x`
+
+* Plone 6.0 (py3)
+
+collective.taxonomy version `2.x`
+
+* Plone 5.2 (py2/py3)
+* Plone 5.1
+* Plone 5.0
+
+collective.taxonomy version `1.x`
+
+* Plone 4.3
+* or an older version using a recent version of `plone.dexterity <https://pypi.org/project/plone.dexterity/>`_/`plone.app.dexterity <https://pypi.org/project/plone.app.dexterity/>`_
+
+
+Frequently Asked Questions
+==========================
+
+How can I import an existing ``ATVocabularyManager`` vocabulary?
+
+  Use the script provided in this `gist <https://gist.github.com/3826155>`_. Just
+  remember to edit the vocabIdentifier and vocabName.
+
+
+Contribute
+==========
+
+Have an idea? Found a bug? Let us know by `opening a ticket`_.
+
+- Issue Tracker: https://github.com/collective/collective.taxonomy/issues
+- Source Code: https://github.com/collective/collective.taxonomy
+
+
+Contributors
+============
+
+Author
+------
+
+- Bo Simonsen <bo@headnet.dk>
+
+
+Contributors
+------------
+
+- Malthe Borch <mborch@gmail.com>
+
+- Thomas Clement Mogensen <thomas@headnet.dk>
+
+- Thomas Desvenain <thomas.desvenain@gmail.com>
+
+- Maurits van Rees <maurits@vanrees.org>
+
+- Cédric Messiant <cedric.messiant@gmail.com>
+
+- Leonardo J. Caballero G. <leonardocaballero@gmail.com>
+
+- Peter Mathis <peter.mathis@kombinat.at>
+
+
+Existing work
+=============
+
+In 2010, Rok Garbas <rok@garbas.si> reimplemented and extended prior
+work by `Seantis <https://www.seantis.ch/>`_ and released
+`collective.vdexvocabulary
+<https://pypi.org/project/collective.vdexvocabulary>`_. This
+package allows you to configure and populate vocabulary components
+from a VDEX-specification. The package supports flat vocabularies
+only, and support for multiple languages takes a different approach
+(vocabularies are returned in an already translated form). Note that
+vocabularies are loaded in a read-only mode, although it's been
+proposed that vocabularies might be edited through-the-web.
+
+In 2005, Jens Klein <jens.klein@bluedynamics.com> released
+`ATVocabularyManager
+<https://pypi.org/project/Products.ATVocabularyManager/>`_. This package makes
+it possible to create taxonomies using Plone's content management
+interface with terms existing as regular site content. It's integrated
+with the `Archetypes <https://pypi.org/project/Products.Archetypes/>`_ content
+type framework (now deprecated).
+
+
+.. [#] Term relationships are currently not supported.
+
+
+License
+=======
+
+The project is licensed under the GPL v2 or later (GPLv2+).
+
+.. _Plone: https://plone.org/
+.. _`opening a ticket`: https://github.com/collective/collective.taxonomy/issues
+
+Changes
+=======
+
+3.1 (2023-05-26)
+----------------
+
+- Integrate taxonomies into Collection tabular view, display values are now resolved
+  [MrTango]
+- Restapi endpoints support [cekk, nileshgulia1]
+
+
+3.0.1 (2023-02-02)
+------------------
+
+- export/import of field_prefix value.
+  [eikichi18]
+
+
+3.0.0 (2022-12-13)
+------------------
+
+- Fix deprecated `collections.Iterable` in `TaxonomyIndexerWrapper`. This got
+  removed since python 3.10. Importing `collections.abc.Iterable` now.
+  [petschki]
+
+- Add mising `fetch_vocabulary` record for IQueryField
+  This was introduced in plone.app.querystring 1.5.0
+  [laulaz]
+
+- more markup updates to Bootstrap 5.
+  [petschki]
+
+3.0.0a1 (2022-07-13)
+--------------------
+
+- Fix configlet icon for Plone 6 (#135)
+  [laulaz]
+
+- update markup in `edittaxonomydata.js` to Bootstrap 5
+  [petschki]
+
+2.2.2 (2022-07-12)
+------------------
+
+- Use new 'Manage taxonomies' permission for taxonomies configlet (#134)
+  Permission is by default assigned to Manager and Site Administrator roles.
+  [laulaz]
+
+- Fixed 'Required' and 'Single select' option being compulsory [JeffersonBledsoe] (#131)
+
+
+2.2.1 (2022-03-30)
+------------------
+
+- Fix taxonomy data edition when using Gunicorn WSGI (#123)
+  [laulaz]
+- Implemented possibility to change the IDs. [Petchesi-Iulian] (#113)
+- Added contraints to not allow duplicate IDs. [Petchesi-Iulian] (#113)
+- Improved the editing interface. [Petchesi-Iulian] (#113)
+- Updated the documentation and tutorial. [Petchesi-Iulian] (#113)
+
+2.2.0 (2021-12-13)
+------------------
+
+- Refactor import of synchronized decorator [1letter] (#120)
+
+
+2.1.1 (2021-11-23)
+------------------
+
+- Wrap strings in list while indexing to correctly index single-select taxonomies. [adrianschulz] (#108)
+- Plone 6 / pip install ready [avoinea] (#114)
+
+
+2.1.0 (2021-05-27)
+------------------
+
+- Fix GenericSetup export in python2
+  [gotcha]
+
+- Integrate taxonomies into collective.collectionfilter
+  [MrTango]
+
+
+2.0.1 (2020-07-04)
+------------------
+
+- Add a tutorial
+  [rodfersou]
+
+- Add Cypress test
+  [rodfersou]
+
+- Fix translating msgid when portal language is not found in taxonomy
+  [petschki, rodfersou]
+
+- Fix JavaScript in ``input_widget.pt`` which had python comments
+  [petschki]
+
+- Add Transifex.net service integration to manage the translation process
+  [macagua]
+
+- Added Spanish translation
+  [macagua]
+
+- Updated the i18n support
+  [macagua]
+
+- Added license documentation of package
+  [macagua]
+
+
+2.0.0 (2019-11-25)
+------------------
+
+- add uninstall handler to cleanup persistent utilites and generated behaviors
+  [petschki]
+
+- Fix GenericSetup import/export in python3
+  [erral]
+
+- Use taxonomy default language for indexing if current language is not available
+  [agitator]
+
+- Make generated behaviors language independent
+  [agitator]
+
+- export selected taxonomies as ZIPed folder with XML files
+  [petschki]
+
+- Python 3 compatibility
+  [petschki, agitator]
+
+
+1.5.1 (2018-10-25)
+------------------
+
+- Fix bug in cachekey generator
+  [petschki]
+
+
+1.5.0 (2018-10-18)
+------------------
+
+- Fix controlpanel to show settings navigation
+  [petschki]
+
+- Memoize vocabulary lookup
+  [tomgross, petschki]
+
+- Fix #53 when editing taxonomy data the first time
+  [petschki]
+
+- Update german translations
+  [petschki]
+
+- Add uninstall profile
+  [petschki]
+
+- When using "delete" option on import, clear any previous ordering.
+  [malthe]
+
+- Add support for specifying behavior field prefix.
+  [malthe]
+
+- The `getTermByToken` method now accepts an optional argument
+  `tail_only` which if set, returns a message object where the title
+  translates to the last path segment (the "tail" node).
+  [malthe]
+
+- Added new method `makeTree` on taxonomy vocabulary class which
+  returns a term tree.
+  [malthe]
+
+- Support "slash" character in term title (issue #34).
+  [malthe]
+
+- When uploading a taxonomy there is now an option to purge the
+  existing entries prior to processing.
+  [malthe]
+
+- Taxonomies are now assigned a persistent order. Taxonomies imported
+  from VDEX now preserve the ordering of the input document.
+  [malthe]
+
+- Add new method `iterEntries` on taxonomy vocabulary class that
+  provides a safe way to iterate over the path to identifier mapping
+  (in order).
+  [malthe]
+
+- Vocabulary is a IVocabularyTokenized implementer.
+  [cedricmessiant]
+
+- updateBehavior method can now modify other attributes (and not only `field_title`).
+  [cedricmessiant]
+
+- Add explicit dependency on plone.api >= 1.5 which
+  the api.portal.get_current_language api was introduced.
+  [vincentfretin]
+
+- Add german translation
+  [tomgross]
+
+- Mention Plone 5.0 and 5.1 compatibility
+  [tkimnguyen]
+
+- Enable choosing what fieldset to use for the behavior fields. Fallback to categorization,
+  keeping backwards compatibility.
+  [sunew]
+
+- Change to no longer register example *Test*-taxonomy on install
+  [datakurre]
+
+- Fix issue where taxonomy indexer adapter was not properly unregistered from
+  the persistent local registry on taxonomy removal
+  [datakurre]
+
+- Fix issue where public ++taxonomy++short_name -traverser for returning
+  generator of (key, label) tuples for given taxonomy was broken
+  [datakurre]
+
+
+1.4.4 (2016-11-29)
+------------------
+
+- Fix taxonomy export that was broken since 1.4.0.
+  [vincentfretin]
+
+
+1.4.3 (2016-11-29)
+------------------
+
+- Fix save action to work on Plone 5 (by reading portal url from
+  body[data-portal-url] and adding X-CSRF-TOKEN for post requests
+  [datakurre]
+
+- Fix BehaviorRegistrationNotFound error with Plone 5.0.6
+  [tomgross]
+
+- Use lxml instead of elementtree
+  [tomgross]
+
+- Rename fontello font to taxonomy to avoid clash with Plone 5 theme
+  [vincentfretin]
+
+
+1.4.2 (2016-11-08)
+------------------
+
+- Fix save action in edit-taxonomy-data. This was a regression in 1.4.0, the
+  get parameter should be taxonomy, not form.widgets.taxonomy.
+  [cedricmessiant]
+
+
+1.4.1 (2016-11-03)
+------------------
+
+- Remove Save and Cancel buttons in controlpanel introduced 1.4.0.
+  [vincentfretin]
+
+- Add missing upgrade step to create records in registry.
+  [vincentfretin]
+
+
+1.4.0 (2016-11-03)
+------------------
+
+- Getting language by acquisition, indeed some Dexterity content has no language or empty language.
+  [bsuttor]
+
+- Fix empty context.REQUEST.get('form.widgets.taxonomy'). It add it into POST form.
+  [bsuttor]
+
+- Plone 5 compatibility
+  [tomgross]
+
+- Use context language to find index.
+  [bsuttor]
+
+
+1.3.0 (2016-07-07)
+------------------
+
+- Fix index when taxonomy is added as field.
+  [bsuttor]
+
+- Now uses a React/Redux app to edit taxonomy data. It is now possible to edit
+  the data in multiple languages and to compare between languages.
+  [cedricmessiant]
+
+- Fix index when taxonomy is added as field.
+  [bsuttor]
+
+- Now uses a React/Redux app to edit taxonomy data. It is now possible to edit
+  the data in multiple languages and to compare between languages.
+  [cedricmessiant]
+
+- Add PATH_SEPARATOR constant to be able to use '/' character in terms.
+  [cedricmessiant]
+
+- Add ++taxonomy++[shortname] -traverser to be usable with PloneFormGen
+  dynamic field vocabulary overrides
+  [datakurre]
+
+- prevent taxonomy reset on reinstall if you've defined a vdex xml file
+  in your profile
+  [petschki]
+
+- Plone 5 compatibility
+  [tomgross]
+
+1.2.3 (2014-02-07)
+------------------
+
+- ConfigParser supports allow_no_value on Python 2.6, so we cannot allow empty values,
+  only on 2.7 or newer.
+  [bosim]
+
+1.2.2 (2014-01-03)
+------------------
+
+Bugfix release
+
+- Fixed problem with registration of search citeria in collections, the previous
+  registration broke export feature of plone.app.registry. Upgrade step has been
+  added so please upgrade.
+  [bosim]
+
+1.2.1 (2013-11-12)
+------------------
+
+Bugfix release, please upgrade
+
+- Using Schema from plone.supermodel. Fixes issue #6
+  [bosim]
+
+- Rewrote behavior creation routine. Fixes issue #5
+  [bosim]
+
+1.2 (2013-11-12)
+----------------
+
+- Add collective.js.jqueryui as dependency.  Install it automatically.
+  [maurits]
+
+- i18n fixes,
+  messages extraction script,
+  french translation.
+  [thomasdesvenain]
+
+- Fixed error in vdex import.
+  [thomasdesvenain]
+
+- Avoid failure at export when no default language was selected.
+  [thomasdesvenain]
+
+- Remove dependency form plone.directives
+  [thomasdesvenain]
+
+- Added elementtree in dependencies
+  [thomasdesvenain]
+
+1.1 (2013-07-16)
+----------------
+
+- Taxonomies can now be added without uploading a VDEX file.
+  [bosim]
+
+- Taxonomies can be exported/imported via GenericSetup again.
+  [bosim]
+
+- Single select fields are now possible again.
+  [bosim]
+
+1.0 (2013-05-07)
+----------------
+
+- Initial release
+  [bosim]
