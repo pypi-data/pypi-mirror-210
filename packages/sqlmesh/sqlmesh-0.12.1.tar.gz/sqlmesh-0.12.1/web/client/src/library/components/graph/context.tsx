@@ -1,0 +1,164 @@
+import { type Column } from '@api/client'
+import { useStoreContext } from '@context/context'
+import { type Lineage } from '@context/editor'
+import { type ModelSQLMeshModel } from '@models/sqlmesh-model'
+import { createContext, useState, useContext, useCallback } from 'react'
+import { toNodeOrEdgeId } from './help'
+
+export interface Connections {
+  left: string[]
+  right: string[]
+}
+export type ActiveColumns = Map<string, { ins: string[]; outs: string[] }>
+export type ActiveEdges = Map<string, number>
+
+interface LineageFlow {
+  lineage?: Record<string, Lineage>
+  withColumns: boolean
+  models: Map<string, ModelSQLMeshModel>
+  activeEdges: ActiveEdges
+  connections: Map<string, Connections>
+  setConnections: React.Dispatch<React.SetStateAction<Map<string, Connections>>>
+  hasActiveEdge: (edge?: string | null) => boolean
+  addActiveEdges: (edges: string[]) => void
+  removeActiveEdges: (edges: string[]) => void
+  clearActiveEdges: () => void
+  setActiveEdges: React.Dispatch<React.SetStateAction<ActiveEdges>>
+  setLineage: React.Dispatch<
+    React.SetStateAction<Record<string, Lineage> | undefined>
+  >
+  handleClickModel?: (modelName: string) => void
+  handleError?: (error: Error) => void
+  manuallySelectedColumn?: [ModelSQLMeshModel, Column]
+  setManuallySelectedColumn: React.Dispatch<
+    React.SetStateAction<[ModelSQLMeshModel, Column] | undefined>
+  >
+  isActiveColumn: (modelName: string, columnName: string) => boolean
+}
+
+export const LineageFlowContext = createContext<LineageFlow>({
+  lineage: {},
+  withColumns: true,
+  activeEdges: new Map(),
+  hasActiveEdge: () => false,
+  addActiveEdges: () => {},
+  removeActiveEdges: () => {},
+  clearActiveEdges: () => {},
+  setActiveEdges: () => {},
+  models: new Map(),
+  handleClickModel: () => {},
+  manuallySelectedColumn: undefined,
+  setManuallySelectedColumn: () => {},
+  handleError: () => {},
+  setLineage: () => {},
+  isActiveColumn: () => false,
+  setConnections: () => {},
+  connections: new Map(),
+})
+
+export default function LineageFlowProvider({
+  handleError,
+  handleClickModel,
+  children,
+  withColumns = true,
+}: {
+  children: React.ReactNode
+  handleClickModel?: (modelName: string) => void
+  handleError?: (error: Error) => void
+  withColumns?: boolean
+}): JSX.Element {
+  const models = useStoreContext(s => s.models)
+
+  const [manuallySelectedColumn, setManuallySelectedColumn] =
+    useState<[ModelSQLMeshModel, Column]>()
+  const [activeEdges, setActiveEdges] = useState<ActiveEdges>(new Map())
+  const [lineage, setLineage] = useState<Record<string, Lineage> | undefined>()
+  const [connections, setConnections] = useState<Map<string, Connections>>(
+    new Map(),
+  )
+
+  const hasActiveEdge = useCallback(
+    function hasActiveEdge(edge?: string | null): boolean {
+      return edge == null ? false : (activeEdges.get(edge) ?? 0) > 0
+    },
+    [activeEdges],
+  )
+
+  const addActiveEdges = useCallback(function addActiveEdges(
+    edges: string[],
+  ): void {
+    setActiveEdges(activeEdges => {
+      edges.forEach(edge => {
+        activeEdges.set(edge, 1)
+      })
+
+      return new Map(activeEdges)
+    })
+  }, [])
+
+  const removeActiveEdges = useCallback(
+    function removeActiveEdges(edges: string[]): void {
+      setActiveEdges(activeEdges => {
+        edges.forEach(edge => {
+          activeEdges.set(toNodeOrEdgeId('left', edge), 0)
+          activeEdges.set(toNodeOrEdgeId('right', edge), 0)
+        })
+
+        return new Map(activeEdges)
+      })
+
+      setConnections(connections => {
+        edges.forEach(edge => {
+          connections.delete(edge)
+        })
+
+        return new Map(connections)
+      })
+    },
+    [setActiveEdges, setConnections],
+  )
+
+  const clearActiveEdges = useCallback(function clearActiveEdges(): void {
+    setActiveEdges(new Map())
+  }, [])
+
+  const isActiveColumn = useCallback(
+    function isActive(modelName: string, columnName: string): boolean {
+      return (
+        hasActiveEdge(toNodeOrEdgeId('left', modelName, columnName)) ||
+        hasActiveEdge(toNodeOrEdgeId('right', modelName, columnName))
+      )
+    },
+    [hasActiveEdge],
+  )
+
+  return (
+    <LineageFlowContext.Provider
+      value={{
+        connections,
+        setConnections,
+        setLineage,
+        lineage,
+        withColumns,
+        activeEdges,
+        setActiveEdges,
+        addActiveEdges,
+        clearActiveEdges,
+        removeActiveEdges,
+        hasActiveEdge,
+        models,
+        handleClickModel,
+        manuallySelectedColumn,
+        setManuallySelectedColumn,
+        handleError,
+        isActiveColumn,
+      }}
+    >
+      {children}
+    </LineageFlowContext.Provider>
+  )
+}
+
+export function useLineageFlow(): LineageFlow {
+  return useContext(LineageFlowContext)
+}
