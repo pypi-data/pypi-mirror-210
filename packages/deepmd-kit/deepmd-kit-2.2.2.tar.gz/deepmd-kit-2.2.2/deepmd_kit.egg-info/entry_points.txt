@@ -1,0 +1,5 @@
+[console_scripts]
+dp = deepmd.entrypoints.main:main
+
+[lammps.plugins]
+deepmd = deepmd.lmp:get_op_dir

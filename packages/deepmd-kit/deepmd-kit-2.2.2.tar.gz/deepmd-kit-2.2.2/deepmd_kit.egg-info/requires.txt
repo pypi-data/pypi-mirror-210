@@ -1,0 +1,83 @@
+numpy
+scipy
+pyyaml
+dargs>=0.2.9
+python-hostlist>=1.21
+h5py
+wcmatch
+packaging
+
+[:python_version < "3.7"]
+typing_extensions
+
+[:python_version < "3.8"]
+importlib_metadata>=1.4
+
+[cpu]
+
+[cpu:platform_machine != "aarch64"]
+tensorflow-cpu
+
+[cpu:platform_machine == "aarch64"]
+tensorflow
+
+[cu11]
+nvidia-cuda-runtime-cu11
+nvidia-cublas-cu11
+nvidia-cufft-cu11
+nvidia-curand-cu11
+nvidia-cusolver-cu11
+nvidia-cusparse-cu11
+nvidia-cudnn-cu11
+nvidia-cuda-nvcc-cu11
+
+[cu12]
+nvidia-cuda-runtime-cu12
+nvidia-cublas-cu12
+nvidia-cufft-cu12
+nvidia-curand-cu12
+nvidia-cusolver-cu12
+nvidia-cusparse-cu12
+nvidia-cudnn-cu12
+nvidia-cuda-nvcc-cu12
+
+[docs]
+sphinx>=3.1.1
+sphinx_rtd_theme>=1.0.0rc1
+sphinx_markdown_tables
+myst-nb
+breathe
+exhale
+numpydoc
+ase
+deepmodeling-sphinx>=0.1.0
+dargs>=0.3.4
+sphinx-argparse
+pygments-lammps
+sphinxcontrib-bibtex
+
+[gpu]
+
+[gpu:platform_machine != "aarch64"]
+tensorflow
+
+[gpu:platform_machine == "aarch64"]
+tensorflow
+
+[ipi]
+i-PI
+
+[lmp]
+
+[lmp:platform_system != "Linux"]
+lammps~=2022.6.23.4.0
+
+[lmp:platform_system == "Linux"]
+lammps~=2022.6.23.4.0
+
+[test]
+dpdata>=0.1.9
+ase
+pytest
+pytest-cov
+pytest-sugar
