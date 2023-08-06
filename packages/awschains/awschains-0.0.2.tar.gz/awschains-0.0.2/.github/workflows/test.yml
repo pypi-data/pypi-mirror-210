@@ -1,0 +1,30 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - "main"
+      - "feature/*"
+
+  pull_request:
+    branches:
+      - "main"
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Environment
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run test
+        working-directory: ./test
+        run: |
+          pip install pytest-html pytest-cov
+          pytest --cov=. --cov-report=html
