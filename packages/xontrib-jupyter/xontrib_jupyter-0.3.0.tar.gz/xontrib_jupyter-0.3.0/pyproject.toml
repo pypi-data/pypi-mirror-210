@@ -1,0 +1,101 @@
+
+[tool.poetry]
+name = "xontrib-jupyter"
+version = "0.3.0"
+description = "Xonsh kernel for Jupyter Notebook and Jupyter Lab allows to execute xonsh shell commands in a notebook cell"
+authors = ["Xonsh Dev <jnoortheen@gmail.com>"]
+
+license = "MIT"
+readme = "README.md"
+
+repository = "https://github.com/xonsh/xontrib-jupyter"
+keywords = ['xontrib', 'xonsh']
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Shells",
+    "Topic :: System :: System Shells",
+    "Topic :: Terminals",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+]
+
+
+packages = [{ include = "xontrib" }, { include = "xonsh_jupyter" }]
+
+[tool.poetry.urls]
+Documentation = "https://github.com/xonsh/xontrib-jupyter/blob/master/README.md"
+Code = "https://github.com/xonsh/xontrib-jupyter"
+"Issue tracker" = "https://github.com/xonsh/xontrib-jupyter/issues"
+
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+xonsh = ">=0.12"
+jupyter-client = ">=8"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=6.0"
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.19.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+include = '\.pyi?$'
+force-exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | \.vscode
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | disk-cache.sqlite3
+)/
+'''
+
+[tool.poe.executor]
+type = "simple"
+
+[tool.poe.tasks]
+push-tags = [
+    { cmd = "git push" },
+    { cmd = "git push --tags" },
+    { cmd = "poetry publish --build" },
+]
+release = [
+    { shell = "git tag v$(poetry version --short)" },
+    { cmd = "git add ." },
+    { shell = 'git commit -am "new release $(poetry version --short)"' },
+    { ref = "push-tags" },
+]
+
+[tool.ruff]
+select = [
+    "E",
+    "F",
+    "B",   # flake8-bugbear
+    "I",   # isort
+    "UP",  # pyupgrade
+    "SIM", # simplify
+    "TCH", # flake8-type-checking
+    "RUF", # ruff specific rules
+]
