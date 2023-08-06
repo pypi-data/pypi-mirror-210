@@ -1,0 +1,13 @@
+project: repo_2
+
+gateways:
+    local:
+        connection:
+            type: duckdb
+            database: db.db
+
+    memory:
+        connection:
+            type: duckdb
+
+default_gateway: local
