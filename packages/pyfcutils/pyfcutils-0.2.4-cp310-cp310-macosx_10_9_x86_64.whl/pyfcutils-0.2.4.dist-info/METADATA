@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: pyfcutils
+Version: 0.2.4
+Summary: FlashCam files reader libraries wrapped in Python
+Home-page: https://github.com/legend-exp/pyfcutils
+Author: Simon Sailer
+Author-email: simon.sailer@mpi-hd.mpg.de
+Maintainer: The LEGEND collaboration
+License: OSL-3.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Open Software License 3.0 (OSL-3.0)
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Provides-Extra: test
+Requires-Dist: pre-commit ; extra == 'test'
+Requires-Dist: pylegendtestdata ; extra == 'test'
+Requires-Dist: pytest (>=6.0) ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+
+# pyfcutils
+
+![PyPI](https://img.shields.io/pypi/v/pyfcutils?logo=pypi)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/legend-exp/pyfcutils?logo=git)
+[![GitHub Workflow Status](https://img.shields.io/github/checks-status/legend-exp/pyfcutils/main?label=main%20branch&logo=github)](https://github.com/legend-exp/pyfcutils/actions)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Codecov](https://img.shields.io/codecov/c/github/legend-exp/pyfcutils?logo=codecov)](https://app.codecov.io/gh/legend-exp/pyfcutils)
+![GitHub issues](https://img.shields.io/github/issues/legend-exp/pyfcutils?logo=github)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/legend-exp/pyfcutils?logo=github)
+![License](https://img.shields.io/github/license/legend-exp/pyfcutils)
+
+pyfcutils offers a wrapper (via Cython) around the fcio library, with
+simplified accessors to the config and event data. Install with pip:
+
+```console
+$ pip install pyfcutils
+```
+
+The `example` folder contains examples of how to easily display FlashCam
+waveforms and related data (timestamp, baseline estimate etc).
