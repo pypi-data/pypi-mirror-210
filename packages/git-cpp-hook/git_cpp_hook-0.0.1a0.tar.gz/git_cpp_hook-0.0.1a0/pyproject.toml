@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "git_cpp_hook"
+version = "0.0.1a"
+authors = [
+  { name="Hod Vaknin", email="hodvak@gmail.com" },
+]
+description = "git hook for C++ projects convensions"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/hodvak/cpp-hook"
+"Bug Tracker" = "https://github.com/hodvak/cpp-hook/issues"
