@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: neuromaps
+Version: 0.0.4
+Summary: A toolbox for projecting, resampling, and comparing brain maps
+Home-page: https://github.com/netneurolab/neuromaps
+Download-URL: https://github.com/netneurolab/neuromaps
+Author: Network Neuroscience Lab
+Maintainer: Network Neuroscience Lab
+Maintainer-email: rossmarkello+coding@gmail.com
+License: BSD-3
+Platform: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides: neuromaps
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst; charset=UTF-8
+License-File: LICENSE
+Requires-Dist: matplotlib
+Requires-Dist: nibabel (>=3.0.0)
+Requires-Dist: nilearn
+Requires-Dist: numpy (>=1.14.0)
+Requires-Dist: scikit-learn
+Requires-Dist: scipy (>=0.17)
+Provides-Extra: all
+Requires-Dist: sphinx (>=2.0) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme ; extra == 'all'
+Requires-Dist: brainsmash (>=0.10.0) ; extra == 'all'
+Requires-Dist: brainspace ; extra == 'all'
+Requires-Dist: flake8 ; extra == 'all'
+Requires-Dist: coverage ; extra == 'all'
+Requires-Dist: pytest (>=3.6) ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Provides-Extra: doc
+Requires-Dist: sphinx (>=2.0) ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Provides-Extra: nulls
+Requires-Dist: brainsmash (>=0.10.0) ; extra == 'nulls'
+Requires-Dist: brainspace ; extra == 'nulls'
+Provides-Extra: style
+Requires-Dist: flake8 ; extra == 'style'
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+Requires-Dist: pytest (>=3.6) ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+
+.. image:: neuromaps_logo.png
+
+The ``neuromaps`` toolbox is designed to help researchers make easy,
+statistically-rigorous comparisons between brain maps (or brain annotations).
+
+The accompanying paper is published in `Nature Methods <https://www.nature.com/articles/s41592-022-01625-w>`_.
+
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.5842499.svg
+   :target: https://doi.org/10.5281/zenodo.5842499
+
+Installation requirements
+-------------------------
+
+Currently, ``neuromaps`` works with Python 3.7+ and requires a few
+dependencies:
+
+- matplotlib
+- nibabel (>=3.0)
+- nilearn (>=0.7)
+- numpy (>=1.14)
+- scikit-learn (>=0.17)
+- scipy
+
+You can get started by installing ``neuromaps`` from the source repository
+with:
+
+.. code-block:: bash
+
+    git clone https://github.com/netneurolab/neuromaps
+    cd neuromaps
+    pip install .
+
+You will also need to have `Connectome Workbench <https://www.humanconnectome.
+org/software/connectome-workbench>`_ installed and available on your path in
+order to use most of the transformation / resampling functionality of
+``neuromaps``.
+
+.. _installation:
+
+Citation
+--------
+
+If you use the ``neuromaps`` toolbox, please cite our `paper <https://www.nature.com/articles/s41592-022-01625-w>`_.
+If you use data included in the ``neuromaps`` repository, be sure to cite the original paper that published this data.
+A table with references for each brain map can be found in the Wiki.
+
+License information
+-------------------
+
+This work is licensed under a
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License ``cc-by-nc-sa``.
+The full license can be found in the
+`LICENSE <https://github.com/netneurolab/neuromaps/blob/main/neuromaps
+/LICENSE>`_ file in the ``neuromaps`` distribution.
