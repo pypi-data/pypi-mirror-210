@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "canaveral_cli"
+version = "0.1.7"
+description = "Helper CLI to interact with Devscope's internal platform codename Canaveral"
+authors = ["André Gomes <andre.gomes@devscope.net>", "Hugo Sousa <hugo.sousa@devscope.net>", "Vitor Correia <vitor.correia@devscope.net>"]
+readme = "README.md"
+repository = "https://github.com/DevScope/canaveral-cli"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = {extras = ["all"], version = "^0.9.0"}
+rich = "^13.3.5"
+Jinja2 = "^3.1.2"
+inquirerpy = "^0.3.4"
+python-dotenv = "^1.0.0"
+PyYAML = "^6.0"
+PyGithub = "^1.58.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.3.1"
+
+[tool.poetry.scripts]
+canaveral = "canaveral_cli.cli:app"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
