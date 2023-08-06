@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: mani-skill2
+Version: 0.4.2.post0
+Summary: ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills
+Home-page: https://github.com/haosulab/ManiSkill2
+Author: ManiSkill2 contributors
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy (<1.24)
+Requires-Dist: scipy
+Requires-Dist: gym (<=0.21.0,>=0.18.3)
+Requires-Dist: sapien (==2.2.1)
+Requires-Dist: h5py
+Requires-Dist: pyyaml
+Requires-Dist: tqdm
+Requires-Dist: GitPython
+Requires-Dist: tabulate
+Requires-Dist: gdown (>=4.6.0)
+Requires-Dist: transforms3d
+Requires-Dist: opencv-python
+Requires-Dist: imageio
+Requires-Dist: imageio[ffmpeg]
+Requires-Dist: trimesh
+Requires-Dist: rtree
+Requires-Dist: importlib-metadata (<5) ; python_version < "3.8"
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-autobuild ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinxcontrib.spelling ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Requires-Dist: myst-parser ; extra == 'docs'
+Requires-Dist: sphinx-subfigure ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: black ; extra == 'tests'
+Requires-Dist: isort ; extra == 'tests'
+
+ManiSkill2 is a unified benchmark for learning generalizable robotic manipulation skills powered by [SAPIEN](https://sapien.ucsd.edu/). **It features 20 out-of-box task families with 2000+ diverse object models and 4M+ demonstration frames**. Moreover, it empowers fast visual input learning algorithms so that **a CNN-based policy can collect samples at about 2000 FPS with 1 GPU and 16 processes on a workstation**. The benchmark can be used to study a wide range of algorithms: 2D & 3D vision-based reinforcement learning, imitation learning, sense-plan-act, etc.
+
+Please refer our [documentation](https://haosulab.github.io/ManiSkill2) to learn more information.
