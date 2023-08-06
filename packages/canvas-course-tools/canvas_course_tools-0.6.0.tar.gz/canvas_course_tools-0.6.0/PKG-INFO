@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: canvas-course-tools
+Version: 0.6.0
+Summary: Canvas course tools
+Home-page: https://github.com/davidfokkema/canvas-course-tools
+License: GPL-3.0-or-later
+Author: David Fokkema
+Author-email: d.b.r.a.fokkema@vu.nl
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: appdirs (>=1.4.4,<2.0.0)
+Requires-Dist: canvasapi (>=3.1.0,<4.0.0)
+Requires-Dist: click (>=8.1.3,<9.0.0)
+Requires-Dist: jinja2 (>=3.1.2,<4.0.0)
+Requires-Dist: python-dateutil (>=2.8.1,<3.0.0)
+Requires-Dist: rich (>=13.3.5,<14.0.0)
+Requires-Dist: rich-click (>=1.5.2,<2.0.0)
+Requires-Dist: tomli (>=2.0.1,<3.0.0)
+Requires-Dist: tomli-w (>=1.0.0,<2.0.0)
+Requires-Dist: trogon (>=0.4.0,<0.5.0)
+Description-Content-Type: text/markdown
+
+# canvas-course-tools
+
+Canvas course tools was created at the physics practicals at the Vrije
+Universiteit Amsterdam to greatly reduce the time needed to create class lists
+(with photos!) for staff and teaching assistants. Class lists are also created
+for students so that they can easily lookup their assigned experiments and TA's.
+Furthermore, we use it to create student groups on Canvas for peer feedback.
+
+This package provides the `canvas` command-line utility. After registering a
+Canvas URL and API key (which you can generate on your profile settings page)
+this tool allows you to list courses and students in different sections of your
+courses. The output has a light markup and is ideally suited for saving as a
+text file. It is then easy to copy and move lines inside the file to create
+student groups. The file can then be parsed by the `canvas templates` command to
+render templates based on the text file. This allows for creating class lists
+(with short notes for each student) and even class lists with photos (if you
+provide photos).
+
+You can also use this tool to create groups and group sets on Canvas based on a
+group list file.
