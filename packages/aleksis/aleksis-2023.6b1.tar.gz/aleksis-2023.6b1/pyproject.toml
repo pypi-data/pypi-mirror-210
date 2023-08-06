@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "AlekSIS"
+version = "2023.6b1"
+packages = [ { include = "aleksis_meta" } ]
+include = ["LICNECE.rst"]
+readme = "README.rst"
+
+description = "Free School Information System Distribution"
+authors = ["Dominik George <dominik.george@teckids.org>"]
+maintainers = ["Jonathan Weth <wethjo@katharineum.de>", "Dominik George <dominik.george@teckids.org>"]
+license = "EUPL-1.2-or-later"
+homepage = "https://aleksis.org/"
+repository = "https://edugit.org/AlekSIS/official/AlekSIS"
+keywords = ["SIS", "education", "school", "digitisation", "school apps"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django :: 3.0",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Topic :: Education",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aleksis-core = { version = "~3.0", extras = ["ldap", "s3", "sentry"]}
+aleksis-app-alsijil = "~3.0"
+aleksis-app-chronos = "~3.0"
+aleksis-app-csvimport = "~3.0"
+aleksis-app-dashboardfeeds = "~3.0"
+aleksis-app-hjelp = "~3.0"
+aleksis-app-ldap = "~3.0"
+aleksis-app-resint = "~3.0"
+aleksis-app-untis = "~3.0"
+aleksis-app-matrix = "~2.0"
+aleksis-app-stoelindeling = "~2.0"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
