@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: stale-maccarone
+Version: 0.0.4.dev0
+Summary: Mix natural language into your Python code
+Project-URL: Homepage, https://github.com/bsilverthorn/maccarone
+Project-URL: Repository, https://github.com/bsilverthorn/maccarone
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: openai
+Requires-Dist: pytest
+Requires-Dist: pytest-asyncio
+Provides-Extra: dev
+Requires-Dist: ipython ; extra == 'dev'
+Requires-Dist: pip-tools ; extra == 'dev'
+
