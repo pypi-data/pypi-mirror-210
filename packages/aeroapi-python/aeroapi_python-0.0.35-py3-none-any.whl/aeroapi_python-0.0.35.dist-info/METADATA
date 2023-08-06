@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: aeroapi-python
+Version: 0.0.35
+Summary: FlightAware AeroAPI Caller for Python
+Home-page: https://github.com/derens99/aeroapi-python
+Author: Deren S
+Author-email: derens9999@gmail.com
+License: MIT
+Keywords: python aeroapi flightaware flightaware-api flightaware-aeroapi flightaware-aeroapi-python flightaware-aeroapi-python3 flightaware-aeroapi-python3.5 flightaware-aeroapi-python3.6 flightaware-aeroapi-python3.7 flightaware-aeroapi-python3.8 flightaware-aeroapi-python3.9
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Education :: Testing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Requires-Dist: semantic-version
+Requires-Dist: setuptools
+Requires-Dist: wheel
+Requires-Dist: twine
+Requires-Dist: requests
+
+
+# AeroApi Python
+
+The FlightAware AeroAPI Python Wrapper is a Python package that provides a convenient and easy-to-use interface for interacting with the FlightAware AeroAPI. This package simplifies the process of making API calls to FlightAware, retrieving and processing flight data, and integrating it into your Python applications.
+
+## Installation
+
+```bash
+pip install flightaware-aeroapi-python
+```
+    
