@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: soundstorm-pytorch
+Version: 0.0.14
+Summary: SoundStorm - Efficient Parallel Audio Generation from Google Deepmind, in Pytorch
+Home-page: https://github.com/lucidrains/soundstorm-pytorch
+Author: Phil Wang
+Author-email: lucidrains@gmail.com
+License: MIT
+Keywords: artificial intelligence,deep learning,transformers,attention mechanism,audio generation
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: accelerate
+Requires-Dist: audiolm-pytorch (>=1.0.1)
+Requires-Dist: beartype
+Requires-Dist: classifier-free-guidance-pytorch (>=0.1.5)
+Requires-Dist: einops (>=0.6.1)
+Requires-Dist: torch (>=1.6)
+
