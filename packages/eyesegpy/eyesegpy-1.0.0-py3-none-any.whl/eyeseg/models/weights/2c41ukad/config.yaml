@@ -1,0 +1,12 @@
+device: "spectralis"
+module: "eyeseg.models.feature_refinement_net"
+layer_mapping:
+  0: BM_2c41ukad
+  1: RPE_2c41ukad
+  2: EZ_2c41ukad
+parameters:
+  num_classes: 3
+  filters: 64
+  activation: "swish"
+  dropout: 0.1
+  spatial_dropout: 0.1
