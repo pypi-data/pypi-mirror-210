@@ -1,0 +1,99 @@
+Metadata-Version: 2.1
+Name: baichat-py
+Version: 0.2.2
+Summary: 
+Home-page: https://codeberg.org/Bavarder/baichat-py
+License: GPL-3.0-or-later
+Keywords: openai,gpt3,baichat,chat
+Author: 0xMRTT
+Author-email: 0xMRTT@proton.me
+Maintainer: 0xMRTT
+Maintainer-email: 0xMRTT@proton.me
+Requires-Python: >=3.10,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Dist: aiohttp (>=3.8.0,<4.0.0)
+Requires-Dist: requests (>=2.29.0,<3.0.0)
+Project-URL: Bug Tracker, https://codeberg.org/Bavarder/baichat-py/issues
+Project-URL: Documentation, https://codeberg.org/Bavarder/baichat-py
+Project-URL: Repository, https://github.com/Bavarder/baichat-py
+Description-Content-Type: text/markdown
+
+# BAIChat API Python
+
+## Installation
+
+### Pypi
+
+``` shell
+pip install baichat-py
+```
+
+### Codeberg
+
+``` shell
+pip install --index-url https://codeberg.org/api/packages/Bavarder/pypi/simple/ baichat-py
+```
+
+## Usage
+
+### Async
+
+``` python
+import asyncio
+
+loop = asyncio.get_event_loop() 
+hello = loop.run_until_complete(chat.async_ask("Hi"))
+
+print(hello.text)
+
+# => Hello! How can I assist you today?
+```
+
+### Context manager
+
+``` python
+with BAIChat() as (loop, chat):
+    hello = chat.ask("Hi")
+
+    print(hello.text)
+
+# => Hello! How can I assist you today?
+```
+
+### Delta
+
+``` python
+with BAIChat() as (loop, chat):
+    hello = chat.ask("Hi")
+
+    for delta in hello:
+        print(delta.text)
+    
+# => Hello
+# => Hello!
+# => Hello! How
+# => Hello! How may
+# => Hello! How may I
+# => Hello! How may I assist
+# => Hello! How may I assist you
+# => Hello! How may I assist you today
+# => Hello! How may I assist you today?
+```
+
+### Sync
+
+``` python
+chat = BAIChat()
+print(chat.sync_ask("Hello, how are you?").text)
+
+# => Hello! As an AI language model, I don't have feelings, but I'm functioning properly and ready to assist you. How may I help you today?
+```
