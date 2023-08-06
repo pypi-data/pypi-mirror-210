@@ -1,0 +1,40 @@
+version: '2'
+
+rules:
+- id: use-function-docstrings
+  description: '`${f}` is a non-trivial public function and should have a docstring.'
+  tags:
+  - default
+  - ai-powered
+  paths:
+    exclude: [test, tests]
+  explanation: |
+    In general, every Python function should have a docstring explaining what it does and how it works. Docstrings help
+    you and other developers understand the purpose and use of the function. This rule identifies functions which do
+    not have docstrings and will try to use AI to add one. Private functions (prefixed with `_`) and very short
+    functions are exempt.
+
+    **Use Caution**
+
+    Because we cannot provide a deterministic refactoring for this rule, the fix is provided using AI. As a result, the
+    behaviour of your code may be changed - please check the result carefully.
+  language: python
+  pattern: |
+    def ${f}(...) -> ${return_type?}:
+        ${first_statement}
+        ${body*}
+  condition: |
+    not (first_statement.starts_with('"""') or first_statement.starts_with('r"""') or first_statement.starts_with("'''") or first_statement.starts_with("r'''"))
+    and not f.starts_with("_")
+    and body.statement_count() > 3
+  instruction:
+    instruction: |
+      Add docstring to the Python function `${f}`.
+      The docstring must use the Google style.
+      The docstring must be inside `${f}`.
+      The docstring must include a short summary of the function on the first line.
+      The docstring should include a detailed explanation of the behaviour of the function.
+      The docstring should include `Args` and `Returns`, and may include `Raises` if appropriate.
+      The docstring may include `Examples`.
+    label: Add a docstring to `${f}`
+    context_processor: document_by_range
