@@ -1,0 +1,135 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: ${{ github.event_name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9"]
+        group:
+          - "unit"
+          - "guide"
+          - "biology"
+          - "faq"
+          - "lndb-storage"
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: ".github/workflows/build.yml"
+      - name: cache nox
+        uses: actions/cache@v3
+        with:
+          path: .nox
+          key: nox-${{ runner.os }}
+      - name: cache pre-commit
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: cache postgres
+        id: cache-postgres
+        uses: actions/cache@v3
+        with:
+          path: ~/postgres.tar
+          key: cache-postgres-0
+      - name: cache postgres miss
+        if: steps.cache-postgres.outputs.cache-hit != 'true'
+        run: docker pull postgres:latest && docker image save postgres:latest --output ~/postgres.tar
+      - name: cache postgres use
+        if: steps.cache-postgres.outputs.cache-hit == 'true'
+        run: docker image load --input ~/postgres.tar
+      - name: install Python dependencies
+        run: |
+          python -m pip install -U pip
+          pip install typing_extensions!=4.6.0
+          pip install -U laminci
+      - name: install apt-get dependencies
+        run: |
+          sudo apt-get -y install graphviz
+          sudo apt-get install sqlite3-tools=3.37.2-2
+          sudo apt-get install libpq-dev
+      - run: nox -s lint
+        if: ${{ matrix.python-version == '3.9' && matrix.group == 'unit' }}
+      - run: nox -s install
+      - uses: aws-actions/configure-aws-credentials@v1
+        if: ${{ matrix.group == 'lndb-storage' }}
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: nox -s "build(group='${{ matrix.group }}')"
+      - name: upload coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage${{ matrix.group }}
+          path: .coverage
+      - name: upload docs
+        if: ${{ matrix.group == 'guide' || matrix.group == 'biology' || matrix.group == 'faq' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs-${{ matrix.group }}
+          path: ./docs/${{ matrix.group }}
+
+  coverage-docs:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: checkout lndocs
+        uses: actions/checkout@v3
+        with:
+          repository: laminlabs/lndocs
+          ssh-key: ${{ secrets.READ_LNDOCS }}
+          path: lndocs
+          ref: main
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: "pip"
+          cache-dependency-path: ".github/workflows/build.yml"
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install coverage
+          pip install .
+      - uses: actions/download-artifact@v2
+      - name: run coverage
+        run: |
+          coverage combine coverage*/.coverage*
+          coverage report --fail-under=0
+          coverage xml
+      - uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - run: nox -s docs
+      - uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: "_build/html"
+          production-deploy: ${{ github.event_name == 'push' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
