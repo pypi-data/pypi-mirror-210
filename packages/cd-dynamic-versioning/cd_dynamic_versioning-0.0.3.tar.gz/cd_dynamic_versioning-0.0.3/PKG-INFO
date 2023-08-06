@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: cd-dynamic-versioning
+Version: 0.0.3
+Summary: Testpackage for dynamic versioning
+License: MIT
+Author: Yngve Moe
+Author-email: yngve.m.moe@gmail.com
+Requires-Python: >=3.8.1,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+
+# Template for Statnett Python packages on GitHub
+
+This is a template for Python packages made with Poetry at Statnett.
+The CI pipelines (workflows) are defined in `.github/workflows`, and there are currently two of them:
+
+ * `deploy.yml`
+    - Runs for tags matching the pattern `"*.*.*"`
+    - Runs tests and linting checks and if they succeed, the package is pushed to Test-PyPI and PyPI
+ * `tests.yml`
+    - Runs for all pushes and all PRs
+    - Runs tests and linting checks
+
+We hope to create a workflow for hosting documentation with Sphinx also.
+
