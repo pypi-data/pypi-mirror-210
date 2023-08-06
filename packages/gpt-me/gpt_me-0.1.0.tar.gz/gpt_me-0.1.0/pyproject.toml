@@ -1,0 +1,61 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "gpt-me"
+authors = [{ name = "TKDKid1000", email = "mail@tkdkid1000.net" }]
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["gpt", "ai", "chatgpt", "emulation"]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: Unix",
+]
+dependencies = [
+    "beautifulsoup4",
+    "black",
+    "gptrim",
+    "openai",
+    "Pillow",
+    "pytesseract",
+    "python-dotenv",
+    "requests",
+    "sentence-transformers",
+    "tenacity",
+    "tiktoken",
+    "torch",
+    "tqdm",
+    "transformers",
+]
+dynamic = ["version", "description"]
+
+[project.optional-dependencies]
+scripts = ["streamlit"]
+adapters = ["discord.py-self"]
+dev = ["bumpver"]
+
+[project.urls]
+Home = "https://github.com/TKDKid1000/gpt-me"
+
+# [project.scripts]
+# my-script = "my_package.module:function"
+
+[tool.flit.module]
+name = "gptme"
+
+[tool.bumpver]
+current_version = "0.1.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"']
+"gptme/__init__.py" = ['__version__ = "{version}"']
