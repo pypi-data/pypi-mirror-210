@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: wait-for-docker
+Version: 0.3.0
+Summary: A simple script to wait for Docker daemon to be active.
+Home-page: https://github.com/gh640/wait-for-docker
+License: MIT
+Keywords: docker
+Author: Goto Hayato
+Author-email: habita.gh@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Utilities
+Requires-Dist: docker (>=6.0.0,<7.0.0)
+Requires-Dist: yaspin (>=2.0.0,<3.0.0)
+Project-URL: Repository, https://github.com/gh640/wait-for-docker
+Description-Content-Type: text/markdown
+
+A simple script `wait-for-docker` to wait for Docker daemon to be active.
+
+## Installation
+
+With `pipx`:
+
+```bash
+pipx install wait-for-docker
+```
+
+With `pip`:
+
+```bash
+python3 -m pip install wait-for-docker
+```
+
+## Usage
+
+```bash
+wait-for-docker && command_which_uses_docker
+```
+
+The command waits until Docker daemon gets active. There's no configuration.
+
