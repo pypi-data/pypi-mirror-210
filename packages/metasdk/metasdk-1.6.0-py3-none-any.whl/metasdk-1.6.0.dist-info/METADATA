@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: metasdk
+Version: 1.6.0
+Summary: Devision Meta SDK
+Home-page: https://github.com/devision-io/metasdk
+Author: Artur Geraschenko
+Author-email: arturgspb@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+License-File: LICENSE
+Requires-Dist: elasticsearch (==2.3.0)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: python-logstash (==0.4.6)
+Requires-Dist: fluent-logger (==0.9.6)
+Requires-Dist: PyJWT (==1.7.1)
+Requires-Dist: requests (==2.26.0)
+Requires-Dist: redis (==2.10.6)
+Requires-Dist: pytest (==6.2.5)
+Requires-Dist: pytest-mock (==3.2.0)
+Requires-Dist: urllib3 (==1.26.7)
+
+# MetaSDK Python
+
+[Документация](http://metasdk.readthedocs.io/)
+
+[Полный список примеров](https://github.com/devision-io/metasdk/tree/master/metasdk/examples/)
+
+#### Как обновить metasdk в pypi.org
+
+1. Если кто-то из новых людей будет пробовать обновлять - надо дописать гайд как зарегаться на pypi.org и получить возможность обновлять метасдк
+
+2. Обновляем наш репозиторий в соответствии с общими правилами, не забываем апнуть версию (version) в info.py, как обычно в пайтон-либах (на момент написания это - обновляем мастер, создаём ветку с номером задачи из мастера, заливаем коммиты в ветку, создаём пулл-реквест в стеше, при необходимости мержимся с актуальным мастером, проходим ревью, заливаем в мастер)
+
+3. Если не устанавливали, устанавливаем pip3 install wheel && pip3 install twine (если ещё не делали (это как раз тот этап, когда у кого-то может деплоиться, а у кого-то нет)
+
+4. Делаем make publish. Может спросить пароль от ключа, логи и пароль от pypi.org
+
+5. Обновить версию в тех репозиториях, для которых, собственно, делаются изменения (например, metafeedconnectors)
+
+
+Связанные задачи:
+- META-2941
+- META-2571
+
+
+
