@@ -1,0 +1,27 @@
+name: CD - Publish
+
+on:
+  release:
+    types:
+    - published
+
+jobs:
+  publish:
+    name: External
+    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v1
+    if: github.repository == 'EMMC-ASBL/otelib' && startsWith(github.ref, 'refs/tags/v')
+    with:
+      # General settings
+      git_username: "TEAM 4.0[bot]"
+      git_email: "Team4.0@SINTEF.no"
+      release_branch: master
+
+      # Publish package
+      python_package: true
+      package_dirs: otelib
+      install_extras: "[dev]"
+      python_version_build: "3.9"
+      build_cmd: "pip install -U flit && flit build"
+    secrets:
+      PyPI_token: ${{ secrets.PYPI_TOKEN }}
+      PAT: ${{ secrets.RELEASE_PAT }}

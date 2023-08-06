@@ -1,0 +1,133 @@
+name: CI - Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+      - 'push-action/**'  # Allow pushing to protected branches (using CasperWA/push-protected)
+
+jobs:
+  basic:
+    name: External
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v1
+    with:
+      # General settings
+      install_extras: "[dev]"
+      run_build_docs: false
+
+      # pre-commit
+      run_pre-commit: true
+      python_version_pre-commit: "3.9"
+      skip_pre-commit_hooks: pylint,pylint-tests
+
+      # pylint
+      run_pylint: true
+      python_version_pylint_safety: "3.9"
+      pylint_runs: |
+        --rcfile=pyproject.toml --ignore-paths=tests/ --extension-pkg-whitelist='pydantic' otelib
+        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=import-outside-toplevel,redefined-outer-name,duplicate-code,import-error --recursive=yes tests
+
+      # safety
+      run_safety: true
+      # Ignore ID 44715 for now.
+      # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
+      safety_options: --ignore=44715
+
+      # Build package
+      run_build_package: true
+      python_version_package: "3.9"
+      build_libs: flit
+      build_cmd: flit build
+
+  pytest:
+    name: pytest (${{ matrix.os[1] }}, py${{ matrix.python-version }})
+    runs-on: ${{ matrix.os[0] }}
+    # timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ["ubuntu-latest", "linux"]
+        - ["windows-latest", "windows"]
+        python-version: ["3.9", "3.10"]
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+
+    - name: Set up Python ${{ matrix.python-version}}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version}}
+
+    - name: Install python dependencies
+      run: |
+        python -m pip install -U pip
+        pip install -U setuptools wheel
+        pip install -e .[dev]
+
+    - name: Test with pytest
+      run: pytest -vvv --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/otelib'
+      uses: codecov/codecov-action@v3
+      with:
+        files: coverage.xml
+        flags: ${{ matrix.os[1] }}
+
+  pytest-real-backend:
+    runs-on: ubuntu-latest
+    name: pytest-real backend
+
+    env:
+      PORT: 8080
+      OTEAPI_prefix: "/api/v1"
+
+    services:
+      redis:
+        image: redis:latest
+        volumes:
+          - redis-persist:/data
+        ports:
+          - "6379:6379"
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Install python dependencies
+      run: |
+        python -m pip install -U pip
+        pip install -U setuptools wheel
+        pip install -e .[dev]
+
+    - name: Run OTE server
+      run: |
+        docker pull ghcr.io/emmc-asbl/oteapi:${DOCKER_OTEAPI_VERSION}
+        docker run \
+          --env "OTEAPI_REDIS_TYPE=redis" \
+          --env "OTEAPI_REDIS_HOST=localhost" \
+          --env "OTEAPI_REDIS_PORT=6379" \
+          --env "OTEAPI_prefix=${OTEAPI_prefix}" \
+          --network "host" \
+          ghcr.io/emmc-asbl/oteapi:${DOCKER_OTEAPI_VERSION} &
+
+        .github/utils/wait_for_it.sh localhost:${PORT} -t 240
+        sleep 5
+      env:
+        DOCKER_OTEAPI_VERSION: latest
+
+    - name: Test with pytest
+      run: pytest -vvv
+      env:
+        OTELIB_TEST_OTE_SERVER_URL: "http://localhost:${{ env.PORT }}"
