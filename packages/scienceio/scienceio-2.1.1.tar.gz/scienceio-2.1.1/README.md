@@ -1,0 +1,40 @@
+# ScienceIO
+
+The official ScienceIO Python SDK for the ScienceIO API.
+
+This package is available via [Pypi:scienceIO](https://pypi.org/project/scienceio/). View full documentation at [ScienceIO Docs](https://docs.science.io/docs).
+
+
+## Usage and examples
+
+1. Create a ScienceIO API key. Both the API key ID and the key secret will be
+needed in order to set up the ScienceIO Python SDK for use.
+
+2. Install the ScienceIO Python SDK.
+
+   ```python
+   pip install scienceio
+   ```
+
+3. Create a directory `.scienceio` in your home directory (Mac users, your home directory is `/Users/{username}`. Linux users, your home directory is `/home/{username}`. Windows users, your home directory is `C:\\Users\{username})` Inside this directory, create a text file called `config` containing your credentials:
+
+   ```
+   [SETTINGS]
+   KEY_ID={your ScienceIO API key ID}
+   KEY_SECRET={your ScienceIO API key secret}
+   ```
+
+4. Use the ScienceIO Python SDK to annotate text:
+
+   ```python
+   scio = ScienceIO()
+   input_text = (
+     'The COVID-19 pandemic has shown a markedly low proportion of '
+     'cases among children 1–4. Age disparities in observed cases could be '
+     'explained by children having lower susceptibility to infection, lower '
+     'propensity to show clinical symptoms or both.'
+   )
+
+   results = scio.structure(input_text)
+   print(results)
+   ```

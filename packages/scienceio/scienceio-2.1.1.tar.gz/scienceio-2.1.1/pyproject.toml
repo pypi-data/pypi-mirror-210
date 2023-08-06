@@ -1,0 +1,35 @@
+[build-system]
+requires = ["flit_core>=3.2"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "scienceio"
+authors = [{ name = "ScienceIO", email = "info@science.io" }]
+description = "ScienceIO Python SDK"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = ["requests >=2.26"]
+dynamic = ["version"]
+
+[project.urls]
+Home = "https://github.com/ScienceIO"
+Source = "https://github.com/ScienceIO/scienceio-python"
+Documentation = "https://docs.science.io/docs"
+
+[tool.flit.module]
+name = "scienceio"
+
+[tool.black]
+target-version = ['py36', 'py37', 'py38', 'py39', 'py310']
+
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+src_paths = ["."]
+sections = ["THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+lines_between_types = 1
+known_first_party = ["scienceio"]
