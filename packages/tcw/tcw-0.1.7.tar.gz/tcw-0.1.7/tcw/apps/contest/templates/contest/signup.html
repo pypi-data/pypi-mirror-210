@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script>
+        window.onload = function() {
+            const e = document.getElementById('expires');
+            const d = new Date(e.innerText);
+            e.innerText = d.toDateString() + " " + d.toLocaleTimeString();
+        }
+    </script>
+    <h4 class="text-center mb-4">Raffle Sign Up!</h4>
+    <div class="card">
+        <div class="card-header text-center bg-light">
+            <h6>{{ contest.title }}</h6>
+            <div class="small">
+                contest expires <span id="expires">{{ contest.expires.isoformat() + "Z" }}</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="text-center">{{ contest.instructions | markdown | safe }}</p>
+            {% if contest.entrants|length >= contest.max_entrants %}
+            <div class="alert alert-info" role="alert">
+                Sorry. This contest is full.
+            </div>
+            {% else %}
+                <form method="POST">
+                    <fieldset>
+                    {{ form.hidden_tag() }}
+                    <div class="input-group">
+                    {{ form.name(class_='form-control', id='name') }}
+                    {{ form.submit(class_='btn btn-outline-primary') }}
+                    </div>
+                    </fieldset>
+                </form>
+            {% endif %}
+        </div>
+        <div class="card-footer text-center small">
+            <div class="row">
+                <div class="card m-1 p-0 col">
+                    <div class="card-body m-0 p-0">
+                        <span>max:</span>
+                        <span>{{ contest.max_entrants }}</span>
+                    </div>
+                </div>
+                <div class="card m-1 p-0 col">
+                    <div class="card-body m-0 p-0">
+                        <span>winners:</span>
+                        <span>{{ contest.winners }}</span>
+                    </div>
+                </div>
+                <div class="card m-1 p-0 col">
+                    <div class="card-body m-0 p-0">
+                        <span>sign ups:</span>
+                        <span>{{ contest.entrants | length }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

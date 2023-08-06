@@ -1,0 +1,185 @@
+{% block animation %}
+<script>
+    var EXAMPLES = [
+        {id: 'example-title', text: 'free album download!'},
+        {id: 'example-instructions', text: 'enter email to win!'},
+        {id: 'example-owner', text: 'me@myband.com'},
+        {id: 'example-expires', text: '5 days'},
+        {id: 'example-winners', text: '3'},
+        {id: 'example-entrants', text: '500'}
+    ];
+
+    var CONVERSATIONS = [
+        {class: "me", text: "&#127928;<br>Hey fans! Enter to win copies of our new album. click <a href='#'>here</a>!"},
+        {class: "them", text: "So excited for the new record!! &#128149;"},
+        {class: "them", text: "I just signed up! TCW is cool!"},
+    ];
+
+    var resetCarousel = function(id) {
+        var e = document.getElementById(id);
+        var carousel = new bootstrap.Carousel(e);
+        carousel.to(0);
+    }
+
+    var advanceCarousel = function(id) {
+        var e = document.getElementById(id);
+        var carousel = new bootstrap.Carousel(e);
+        carousel.next();
+    }
+
+    var typeWriter = function(id, text, speed = 50) {
+        let proceed = false;
+        let e = document.getElementById(id);
+        if (e.nodeName.toLowerCase() == "input") {
+            if (e.value.length < text.length) {
+                e.value += text.charAt(e.value.length);
+                proceed = true;
+            }
+        } else {
+            if (e.innerHTML.length < text.length) {
+                e.innerHTML += text.charAt(e.innerHTML.length);
+                proceed = true;
+            }
+        }
+        if (proceed) {
+            setTimeout(function() {
+                typeWriter(id, text, speed);
+            }, speed);
+        }
+    }
+
+    var messageBubble = function(parent, cls, id, text, delay) {
+        let e = document.createElement('div');
+        e.id = id;
+        e.className = "alert";
+        e.innerHTML = text;
+        if (cls == 'me') {
+            e.classList.add('alert-primary');
+            e.classList.add('text-start');
+            e.classList.add('w-75');
+        } else {
+            e.classList.add('alert-secondary');
+            e.classList.add('text-end');
+            e.classList.add('position-relative');
+            e.classList.add('start-50');
+            e.classList.add('w-50');
+        }
+        setTimeout(function() {
+            parent.appendChild(e);
+        }, delay);
+    }
+
+    var resetAnimation = function() {
+        EXAMPLES.map(function(obj) {
+            let e = document.getElementById(obj.id);
+            e.value = "";
+        })
+        let e1 = document.getElementById("example-button");
+        e1.disabled = true;
+
+        let e2 = document.getElementById("example-copy");
+        e2.disabled = true;
+
+        let e3 = document.getElementById("example-conversation");
+        e3.replaceChildren();
+
+    }
+
+    var startAnimation = function() {
+        var next_time = 0;
+        var speed = 75;
+
+        // reset the forms
+        resetAnimation();
+        resetCarousel('carousel');
+        console.log("animation reset");
+
+        // populate the form
+        for (let i = 0; i < EXAMPLES.length; i++) {
+            let obj = EXAMPLES[i];
+            let e = document.getElementById(obj.id);
+            if (e.value.length == 0) {
+                setTimeout(function() {
+                    typeWriter(obj.id, obj.text, speed);
+                }, next_time);
+                next_time += (obj.text.length * speed) + 300;
+            }
+        }
+
+        // click the button
+        next_time += 300;
+        setTimeout(function() {
+            let e = document.getElementById('example-button');
+            e.disabled = false;
+            e.focus()
+        }, next_time);
+
+        // change to next slide
+        next_time += 3000;
+        setTimeout(function() {
+            advanceCarousel('carousel');
+        }, next_time);
+
+        // copy the contest link
+        next_time += 1000;
+        setTimeout(function() {
+            let e = document.getElementById('example-link');
+            e.focus();
+            e.select();
+
+        }, next_time);
+
+        next_time += 2000;
+        setTimeout(function() {
+            let e = document.getElementById('example-copy');
+            e.disabled = false;
+            e.focus();
+        }, next_time);
+
+        // change to next slide
+        next_time += 3000;
+        setTimeout(function() {
+            advanceCarousel('carousel');
+        }, next_time);
+
+        // animate messages
+        next_time += 2000
+        for (let i = 0; i < CONVERSATIONS.length; i++) {
+            let obj = CONVERSATIONS[i];
+            let parent = document.getElementById('example-conversation');
+            let rid = Math.random().toString(36).substr(2, 8);
+            messageBubble(parent, obj.class, rid, obj.text, next_time)
+            next_time += 1500;
+        }
+    }
+
+    window.addEventListener('load', function() {
+        startAnimation();
+    })
+
+    window.setInterval(function() {
+        startAnimation();
+    }, 25000)
+
+</script>
+
+<div class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" id="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#instructions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#instructions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#instructions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        {% include "contest/slide1.html" %}
+    </div>
+    <div class="carousel-item">
+        {% include "contest/slide2.html" %}
+    </div>
+    <div class="carousel-item">
+        {% include "contest/slide3.html" %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>About</h3>
+<p>
+    Create fun contests and raffles!
+</p>
+
+<h3>Creating a contest</h3>
+<p>
+    A contest requires:
+    <ul>
+        <li>A banner title</li>
+        <li>Instructions, to let users know what information to enter (Markdown can be used in this field)</li>
+        <li>The max number of entrants</li>
+        <li>How many winners will be selected</li>
+        <li>An expiration time</li>
+        <li>A contest owner email address, to notify once contest is finished</li>
+    </ul>
+</p>
+
+<h3>Contest Expiration</h3>
+<p>
+    A contest is finished once it's time has expired, or the max number of
+    entrants has been reached.
+</p>
+
+<h3>Winners</h3>
+<p>
+    After the contest is expired, winners are selected at random and emailed to
+    the contest owner. If you did not receive an email, be sure to check your
+    mail spam folder.
+</p>
+
+<h3>Cleanup</h3>
+<p>
+    Once the owner has been successfully notified by email, the contest is
+    deleted. All details and records about the contest are removed, and cannot
+    be recovered.
+</p>
+
+<h3>Open Source</h3>
+<p>
+    Tiny Contest Winners is open-source software, found here:
+    <a href="https://github.com/tinycontestwinners/tcw">
+        https://github.com/tinycontestwinners/tcw
+    </a>
+</p>
+
+<h3>Security</h3>
+<p>
+    Tiny Contest Winners does not harvest any email or contact information from
+    contests. For more information, please see our
+    <a href="{{ url_for('contest.privacy') }}">Privacy Policy</a>
+</p>
+
+{% endblock %}
