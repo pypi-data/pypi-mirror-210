@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: arkindex-base-worker
+Version: 0.3.3
+Summary: Base Worker to easily build Arkindex ML workflows
+Home-page: https://teklia.com
+Author: Teklia
+Author-email: contact@teklia.com
+Requires-Python: >=3.7
+Requires-Dist: arkindex-client (==1.0.12)
+Requires-Dist: peewee (==3.16.2)
+Requires-Dist: Pillow (==9.5.0)
+Requires-Dist: pymdown-extensions (==10.0.1)
+Requires-Dist: python-gitlab (==3.14.0)
+Requires-Dist: python-gnupg (==0.5.0)
+Requires-Dist: sh (==2.0.4)
+Requires-Dist: shapely (==2.0.1)
+Requires-Dist: tenacity (==8.2.2)
+Requires-Dist: zstandard (==0.21.0)
+Provides-Extra: docs
+Requires-Dist: black (==23.3.0) ; extra == 'docs'
+Requires-Dist: doc8 (==1.1.1) ; extra == 'docs'
+Requires-Dist: mkdocs (==1.4.3) ; extra == 'docs'
+Requires-Dist: mkdocs-material (==9.1.14) ; extra == 'docs'
+Requires-Dist: mkdocstrings (==0.21.2) ; extra == 'docs'
+Requires-Dist: mkdocstrings-python (==1.0.0) ; extra == 'docs'
+Requires-Dist: recommonmark (==0.7.1) ; extra == 'docs'
+
