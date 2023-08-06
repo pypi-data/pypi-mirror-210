@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: codetf
+Version: 19.4.6
+Summary: call of duty
+Home-page: UNKNOWN
+Author: cod
+Author-email: callofduty@facebook.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+
+
+# Installation
+
+
+To install requirements: `python -m pip install requirements.txt`
+
+To save requirements: `python -m pip list --format=freeze --exclude-editable -f https://download.pytorch.org/whl/torch_stable.html > requirements.txt`
+
+* Note we use Python 3.9.4 for our experiments
+
+The code in augerino_lib is an extension (with our modification) from the original Augerino code https://github.com/g-benton/learning-invariances. The code in data_augmentation/my_training.py is a modification of the pytorch example in https://github.com/pytorch/examples/tree/master/imagenet.
+
+# Running the code 
+
+For remaining experiments: 
+
+Navigate to the corresponding directory, then execute: `python run.py -m` with the corresponding `config.yaml` file (which stores experiment configs).
+
+# License
+
+Consult License.md
+
+
+
