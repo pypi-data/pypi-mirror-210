@@ -1,0 +1,19 @@
+PyJWT~=2.0
+aiofiles~=0.8.0
+aiohttp_cors~=0.7
+aiohttp~=3.8.1
+aiomonitor-ng~=0.7.2
+aiotools~=1.6.1
+attrs>=20.3
+backend.ai-common==23.03.3
+click>=7.1.2
+dataclasses-json~=0.5.7
+janus~=1.0.0
+setproctitle~=1.2.2
+tenacity>=8.0
+trafaret~=2.1
+yarl~=1.8.2
+zipstream-new~=1.1.8
+
+[:sys_platform != "Windows"]
+uvloop>=0.17
