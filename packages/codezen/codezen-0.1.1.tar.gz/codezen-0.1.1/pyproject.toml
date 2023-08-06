@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "codezen"
+version = "0.1.1"
+description = "Your indispensable partner in programming"
+authors = ["Maor Cohen <me@maorcohen.net>"]
+homepage = "https://github.com/mmaorc/codezen"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.0.177"
+openai = "^0.27.7"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+codezen = "codezen.app:main"
