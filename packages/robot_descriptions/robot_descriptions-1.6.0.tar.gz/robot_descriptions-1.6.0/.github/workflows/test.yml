@@ -1,0 +1,86 @@
+name: CI
+
+on:
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
+    workflow_dispatch:
+
+jobs:
+    coverage:
+        name: "Coverage"
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: "Checkout sources"
+              uses: actions/checkout@v3
+
+            - name: "Set up Python"
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.8"
+
+            - name: "Install dependencies"
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install coveralls tox tox-gh-actions
+
+            - name: "Check coverage"
+              run: |
+                  tox -e coverage
+
+            - name: "Coveralls"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  coveralls --service=github
+
+    lint:
+        name: "Code style"
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: "Checkout sources"
+              uses: actions/checkout@v3
+
+            - name: "Set up Python"
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.8"
+
+            - name: "Install dependencies"
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install tox tox-gh-actions
+
+            - name: "Check code format"
+              run: |
+                  tox -e lint
+
+    loader:
+        name: "Loader: ${{ matrix.loader }}"
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                python-version: ["3.8"]
+                loader: ["idyntree", "mujoco", "pinocchio", "pybullet", "robomeshcat", "yourdfpy"]
+
+        steps:
+            - name: "Checkout sources"
+              uses: actions/checkout@v3
+
+            - name: "Set up Python"
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "${{ matrix.python-version }}"
+
+            - name: "Install dependencies"
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install tox tox-gh-actions
+
+            - name: "Run loader tests"
+              run: |
+                  tox -e loader-${{ matrix.loader }}
