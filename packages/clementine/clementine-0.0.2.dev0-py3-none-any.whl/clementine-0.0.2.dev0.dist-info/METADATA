@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: clementine
+Version: 0.0.2.dev0
+Summary: 🍊 A sweet little Python package
+Author-email: Suzen Fylke <codesue@users.noreply.github.com>
+Project-URL: repository, https://github.com/codesue/clementine
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Provides-Extra: ml
+Requires-Dist: matplotlib ; extra == 'ml'
+Requires-Dist: numpy ; extra == 'ml'
+Requires-Dist: pandas ; extra == 'ml'
+Requires-Dist: scikit-learn ; extra == 'ml'
+Requires-Dist: torch ; extra == 'ml'
+Provides-Extra: packaging
+Requires-Dist: build ; extra == 'packaging'
+Requires-Dist: twine ; extra == 'packaging'
+
+# clementine: a sweet little Python package
+
+[![GitHub][github_badge]][github_link]
+[![PyPI][pypi_badge]][pypi_link]
+
+[github_badge]: https://badgen.net/badge/icon/GitHub?icon=github&color=black&label
+[github_link]: https://github.com/codesue/clementine
+
+[pypi_badge]: https://badgen.net/pypi/v/clementine?icon=pypi&color=black&label
+[pypi_link]: https://pypi.org/project/clementine
+
+## Installation
+
+Installing with pip:
+
+```sh
+pip install clementine
+```
+
+
+Installing from source:
+
+```sh
+git clone https://github.com/codesue/clementine.git
+cd clementine
+pip install -e .
+```
+
+Building:
+
+```sh
+pip install -e ".[packaging]"
+python -m build
+twine check dist/*
+twine upload -r testpypi dist/*
+twine upload dist/*
+```
