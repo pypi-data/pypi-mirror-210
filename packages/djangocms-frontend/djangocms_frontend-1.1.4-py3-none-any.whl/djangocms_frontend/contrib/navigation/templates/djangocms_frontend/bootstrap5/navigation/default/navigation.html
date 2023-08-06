@@ -1,0 +1,18 @@
+{% load cms_tags frontend %}{% spaceless %}
+    <nav{{ instance.get_attributes }}>
+        {% if instance.navbar_container %}<div class="container">{% endif %}
+            <ul class="navbar-nav">
+            {% for plugin in instance.child_plugin_instances %}
+                {% if plugin.plugin_type == "BrandPlugin" %}
+                    {% render_plugin plugin %}
+                {% endif %}
+            {% endfor %}
+            {% for plugin in instance.child_plugin_instances %}
+               {% if plugin.plugin_type != "BrandPlugin" %}
+                   {% with forloop=parentloop parent=instance %}{% render_plugin plugin %}{% endwith %}
+               {% endif %}
+            {% endfor %}
+            </ul>
+        {% if instance.navbar_container %}</div>{% endif %}
+    </nav>
+{% endspaceless %}
