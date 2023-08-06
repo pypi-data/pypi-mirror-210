@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: convcsv2json
+Version: 1.6
+Summary: Convert a CSV file into JSON format based on CSV headers
+Home-page: https://github.com/1337kid/convcsv2json
+Author: 1337kid
+Author-email: 1337kid@proton.me
+License: UNKNOWN
+Project-URL: Source, https://github.com/1337kid/convcsv2json
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# CONVCSV2JSON
+Convert a CSV file into JSON format based on CSV headers
+```bash
+pip install convcsv2json
+```
+## Usage
+```python
+from convcsv2json import csv2json
+
+data=csv2json(
+    'sample.csv',        # CSV filename
+    intend=4,            # JSON intendation
+    numbered=True        # Set JSON data in numbered format or not
+    )
+print(data.json()) # Print in JSON format
+data.export('export.json') # Export the data into a JSON file
+```
+```"intend" and "numbered" parameters are optional. By default, "intend" is set as None and "numbered" is set as False```
+```python
+from convcsv2json import csv2json
+print(csv2json('sample.csv',4).json())
+```
+### Sample CSV
+```
+name,age
+kewldog,12
+kewlcat,23
+```
+### Generated JSON
+```json
+[
+    {
+        "name": "kewldog",
+        "age": "12"
+    },
+    {
+        "name": "kewlcat",
+        "age": "23"
+    }
+]
+```
+
+
