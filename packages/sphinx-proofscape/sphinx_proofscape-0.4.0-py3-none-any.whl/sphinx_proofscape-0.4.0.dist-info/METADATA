@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: sphinx-proofscape
+Version: 0.4.0
+Summary: Sphinx extension for Proofscape
+Home-page: https://github.com/proofscape/sphinx-proofscape/
+License: Apache 2.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+License-File: NOTICE
+Requires-Dist: Sphinx
+Requires-Dist: Pygments
+Provides-Extra: dev
+Requires-Dist: beautifulsoup4 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: build ; extra == 'dev'
+Requires-Dist: invoke ; extra == 'dev'
+
+sphinx-proofscape
+=================
+
+Sphinx extension for use with Proofscape.
+
+In versions ``0.3.x``, this package provided both syntax highlighting (for the
+Proofscape module language and Meson language), and roles and directives for
+chart widgets.
+
+In versions ``0.4.x``, only syntax highlighting is provided. Development of
+widget roles and directives has moved to the ``pise/server`` project.
