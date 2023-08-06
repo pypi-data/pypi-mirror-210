@@ -1,0 +1,61 @@
+{# 
+  input:
+    data -> TemplateData
+  TODO: Fix headers dict
+#}
+{%- macro return_header(header_info) -%}
+  {% if header_info is not none -%}
+    , dict[str, str]
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro return_code(codes) -%}
+  {% set comma = joiner(", ") -%}
+  {% for code in codes -%}
+    {{ comma() }} {{ code }}
+  {%- endfor %}
+{%- endmacro %}
+
+{%- macro return(return_info) -%}
+tuple[{{return_info.data_type_name}}, Literal[{{return_code(return_info.codes)}}]{{ return_header(return_info.returned_headers) }}]
+{%- endmacro %}
+
+{%- macro joined_returns(returns_info) -%}
+  {% set comma = joiner(" | ") -%}
+  {% for return_info in returns_info -%}
+    {{ comma() }}{{ return(return_info) }}
+  {%- endfor %}
+{%- endmacro -%}
+
+{% macro arguments(arguments_signature) -%}
+  {% for arg_sig in arguments_signature -%}
+    , {{arg_sig.argument_name}}: {{arg_sig.argument_type}}{{ ("= " + arg_sig.argument_default) if arg_sig.argument_default is not none }}
+  {%- endfor %}
+{%- endmacro -%}
+
+{% macro based_class_mode(class_mode, protocol_val, abstract_val) -%}
+  {% if class_mode == "protocol" -%}
+    {{ protocol_val }}
+  {%- else -%}
+    {{ abstract_val }}
+  {%- endif %}
+{%- endmacro %}
+
+from __future__ import annotations
+
+from typing import Literal
+
+{{ based_class_mode(data.class_mode, "from typing import Protocol", "from abc import ABC, abstractmethod")}}
+
+{% for import_signature in data.imports %}
+from {{ import_signature.from_ }} import {{ import_signature.import_ }}
+{% endfor %}
+
+{% for cls in data.classes -%} 
+class {{cls.class_name}}({{ based_class_mode(data.class_mode, "Protocol", "ABC") }}):
+  {%- for method in cls.methods %}
+    {{ based_class_mode(data.class_mode, "", "@abstractmethod")}}
+    {{ "async " if data.sync_mode == "async" }}def {{method.method_name}}(self{{ arguments(method.arguments) }}) -> {{ joined_returns(method.returns) }}: ...  # noqa: E501
+  {% endfor %}
+
+{% endfor %}
