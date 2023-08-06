@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "pyheartlib"
+version = "0.0.6"
+description = "A Python package for processing and modeling electrocardiogram signals"
+authors = ["Sadegh Mohammadi"]
+license = "Proprietary"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+numpy = ">=1.22.0"
+wfdb = ">=4.0.0"
+pandas = ">=1.4.0"
+tqdm = ">=4.63.0"
+scikit-learn = ">=1.1.0"
+tensorflow = ">=2.8.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.1.0"
+black = "^23.3.0"
+myst-nb = "^0.17.2"
+sphinx-autoapi = "^2.1.0"
+sphinx-rtd-theme = "^1.2.1"
+third-party-license-file-generator = "^2023.2.22"
+flake8 = "^6.0.0"
+python-semantic-release = "^7.33.5"
+
+[tool.semantic_release]
+version_variable = "pyproject.toml:version" # version location
+branch = "main"                             # branch to make releases of
+changelog_file = "CHANGELOG.md"             # changelog file
+build_command = "poetry build"              # build dists
+dist_path = "dist/"                         # where to put dists
+upload_to_release = true                    # auto-create GitHub release
+upload_to_pypi = false                      # don't auto-upload to PyPI
+remove_dist = false                         # don't remove dists
+patch_without_tag = true                    # patch release by default
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
