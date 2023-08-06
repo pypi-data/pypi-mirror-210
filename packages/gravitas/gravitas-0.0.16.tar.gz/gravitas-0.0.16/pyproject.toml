@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "gravitas"
+version = "0.0.16"
+description = "High-fidelity gravity fields for satellite propagation"
+authors = ["Liam Robinson <robin502@purdue.edu>"]
+readme = "README.md"
+packages = [{include = "gravitas"}]
+include = [{path = "gravitas", format = "sdist"}]
+exclude = ["gravitas/grav.so"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: MacOS",
+]
+
+
+[tool.poetry.dependencies]
+python = ">=3.5,<3.12"
+numpy = "^1.19"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
