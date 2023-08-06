@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: RecruitmentCurveFitting
+Version: 1.0.1
+Summary: A package for fitting sigmoid and bell-shaped functions to EMG recruitment-curve measurements
+Home-page: UNKNOWN
+Author: Jeremy Hill
+Author-email: jezhill@gmail.com
+License: GPL v3+
+Platform: UNKNOWN
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+
+This package provides classes `Sigmoid` and `HillCurve` for fitting, plotting and
+interpolating EMG recruitment curves. These might be suitable for the M-wave and H-reflex
+components, respectively, of the EMG responses to electrical peripheral nerve stimulation.
+Feed in a sequence of stimulation intensities and corresponding sequence of response
+magnitudes. These can be used from the command-line, outside of python.
+
+The package also provides a higher-level class `RecruitmentCurve` which takes in EMG
+waveforms, together with information on the start and end times of the response components
+of interest, and performs either or both of the above fits, optionally rendering the results
+on an interactive plot.
+
+To get started::
+
+    python -m pip install RecruitmentCurveFitting
+    python -m RecruitmentCurveFitting --unpack-examples
+    python -m RecruitmentCurveFitting example-data1.txt example-data2.txt --plot
+    python -m RecruitmentCurveFitting --help
+    python -m RecruitmentCurveFitting --help-module
+    
+
+
+If you use this software in your research, your report should cite the article
+in which this approach was introduced, as follows:
+
+- McKinnon ML, Hill NJ, Carp JS, Dellenbach B & Thompson AK (2023).
+  Automated identification of EMG responses evoked by peripheral nerve
+  stimulation: quantitative effects on critical parameters of diagnostic and
+  closed-loop therapeutic applications.
+  @JOURNAL@ @NUMBER@(@VOLUME@):@PAGES@
+  @DOI@
+    
+The corresponding BibTeX entry is::
+
+    @article{mckinnonhill2023,
+      author  = {McKinnon, Michael L. and Hill, N. Jeremy and Carp, Jonathan S.
+                 and Dellenbach, Blair and Thompson, Aiko K.},
+      title   = {Automated Identification of {EMG} Responses Evoked by Peripheral
+                 Nerve Stimulation: Quantitative Effects on Critical Parameters 
+                 of Diagnostic and Closed-Loop Therapeutic Applications},
+      journal = {TBD},
+      volume  = {TBD},
+      number  = {TBD},
+      pages   = {TBD--TBD},
+      month   = {TBD},
+      year    = {2023},
+      date    = {2023-TBD-TBD},
+      doi     = {TBD/TBD},
+      url     = {https://doi.org/TBD/TBD},
+    }
+
+
+
