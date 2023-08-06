@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "inabox"
+version = "0.5.10"
+description = "Knowit Automation lifecycle management"
+authors = ["Jakob Holst <jakob.holst@knowit.dk>"]
+license = "MIT"
+homepage = "https://inabox.openknowit.com"
+repository = "https://github.com/miracle-as/openknowit_inabox.git"
+
+[tool.poetry.scripts]
+inabox = 'inabox:main'
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25"
+
+
+[project]
+name = "inabox"  
+version = "0.5.10" 
+description = "Knowit automation lifecycle management"
+readme = "README.md" # Optional
+requires-python = ">=3.7"
+license = {file = "LICENSE.txt"}
+keywords = ["inabox", "awx", "ansible", "automation"]  
+authors = [
+  {name = "Jakob Holst", email = "jho@miracle.dk" }
+]
+maintainers = [
+  {name = "Jakob Holst", email = "jho@miracle.dk" }
+]
+
+classifiers = [  # Optional
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+]
+
+dependencies = [ # Optional
+]
+
+[project.optional-dependencies] # Optional
+dev = ["check-manifest"]
+test = ["coverage"]
+
+[project.urls]  # Optional
+"Homepage" = "https://github.com/JakobHolstDK/inabox"
+"Bug Reports" = "https://github.com/JakobHolstDK/inabox/issues"
+"Source" = "https://github.com/JakobHolstDK/inabox"
+
+[project.scripts]  # Optional
+inabox = "inabox:main"
+
+[tool.setuptools]
+package-data = {"inabox" = ["*.dat"]}
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
