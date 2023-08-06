@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: django_threaded_sync_to_async
+Version: 1.0.0
+Summary: FIXME
+Home-page: https://github.com/excitoon/django_threaded_sync_to_async
+Author: Vladimir Chebotarev
+Author-email: vladimir.chebotarev@gmail.com
+License: MIT
+Project-URL: Documentation, https://github.com/excitoon/django_threaded_sync_to_async/blob/master/README.md
+Project-URL: Source, https://github.com/excitoon/django_threaded_sync_to_async
+Project-URL: Tracker, https://github.com/excitoon/django_threaded_sync_to_async/issues
+Keywords: git,gitignore
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: Topic :: Text Processing :: Filters
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+
+## `django_threaded_sync_to_async`
+
+FIXME add description
+
+### `Executor`
+
+Under executor context, `Executor` replaces `sync_to_async` calls to `sync_to_async(thread_sensitive=None, executor=...)`, effectively allowing Django to make calls to database concurrently:
+
+```python3
+async with django_threaded_sync_to_async.Executor(thread_name_prefix="thread", max_workers=3) as executor:
+    a = asgiref.sync.sync_to_async(long_call)(1)
+    b = asgiref.sync.sync_to_async(long_call)(2)
+    c = asgiref.sync.sync_to_async(long_call)(3)
+    d = asgiref.sync.sync_to_async(long_call)(4)
+    await asyncio.gather(a, b, c, d)
+```
+
+### `SharedExecutor`
+
+Maintains global dictionary of executors (`concurrent.futures.ThreadPoolExecutor`) accessed by name and allows to limit utilization of executor for a single context.
+
+```python3
+@django_threaded_sync_to_async.SharedExecutor("common", max_workers=3, max_tasks=2)
+def operations():
+    a = asgiref.sync.sync_to_async(long_call)(1)
+    b = asgiref.sync.sync_to_async(long_call)(2)
+    c = asgiref.sync.sync_to_async(long_call)(3)
+    d = asgiref.sync.sync_to_async(long_call)(4)
+    await asyncio.gather(a, b, c, d)
+```
+
+
