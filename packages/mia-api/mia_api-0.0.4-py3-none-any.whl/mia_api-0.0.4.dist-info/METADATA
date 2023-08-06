@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: mia-api
+Version: 0.0.4
+Summary: A package to communicate with MIA API
+Home-page: https://github.com/meteoia-team/mia_api
+Author: MeteoIA
+Author-email: meteoia.consult@meteoia.com
+Project-URL: Bug Tracker, https://github.com/meteoia-team/mia_api/issues
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: xarray
+Requires-Dist: netCDF4
+Requires-Dist: pandas
+Requires-Dist: tqdm
+Requires-Dist: tabulate
+Requires-Dist: requests
+
+# mia_api
+
+## QuickStart
+
+- If necessary you need insert PYTHONPATH variable in your bashrc
+```python
+export PYTHONPATH='/home/user/scripts/mia_api:$PYTHONPATH'
+```
+## First Login
+
+- Create the file .mia_api in your home directory with your credentials sent to you by a mia_api admin
+
+```
+username: MIA_API_USERNAME
+password: MIA_API_PASSWORD
+```
+
+- Alternatively you can set MIA_API_USERNAME and MIA_API_PASSWORD as environment variables
+
+## Using the API
+
+1. Import the package
+```python
+import mia_api
+```
+
+2. Connect
+```python
+mia_api.connect()
+```
+by default, the API stayed connected during 30 min.
+
+3. knowing all the bar availables
+```python
+mybar=mia_api.JuiceBar('test') 
+JuiceBar.available_bars()
+```
+
+4. Get bar
+```python
+mybar=mia_api.JuiceBar('MIABAR_stable_v1.2_tom3')
+```
+
+5. knowing all juice availables
+```python
+mybar.show_menu()
+```
+
+6. Get juice
+```python
+myjuice=mybar.get_juice('ons_VazaoNat_usinas')
+```
+
+7. Select if you want a historical or operational juice
+```python
+myjuice.historical() --> returns data xarray if dataset=True returns dataset
+
+from datetime import datetime
+myjuice.operational(rundate=datetime(2022,6,22,0,0,0))
+myjuice.operational(rundate=[datetime(2022,6,1,0,0,0), datetime(2022,6,22,0,0,0)])
+myjuice.operational()
+```
+
+# Function
+
+Soon there will by examples
