@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: tvb-storage
+Version: 2.8.1
+Summary: A package which handles the storage of TVB data
+Home-page: https://www.thevirtualbrain.org
+Download-URL: https://github.com/the-virtual-brain/tvb-root
+Author: Lia Domide, Paula Prodan, Bogdan Valean, Robert Vincze
+Author-email: tvb.admin@thevirtualbrain.org
+License: GPL-3.0-or-later
+Keywords: tvb brain storage h5
+Provides-Extra: test
+Provides-Extra: encrypt
+License-File: LICENSE
+License-File: AUTHORS
+
+tvb-storage
+-----------
+
+Part of TVB Distribution package.
+
+Module used for Files Storage of TVB data.
+Currently it has a H5 backend only, but future implementations are intended.
+It contains files read&write mechanisms,
+plus encryption mechanism (by default disabled for speed).
+
+Install::
+
+    pip install tvb-storage
+
+
+API in module `tvb.storage.storage_interface`.
