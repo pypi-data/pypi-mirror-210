@@ -1,0 +1,19 @@
+What’s new in version 1.1.0
+===========================
+Version available since December 7th 2021
+
+
+Bug fixed
+---------
+- Including freeOutputs attribute leads to change optimization results.
+- freeOutputs were not saved in the multi-objective case.
+
+New Features
+------------
+- Add XML export for GeomMaker.
+- A new method of Wrapper class, getIteration, to return the inputs and outputs of an iteration.
+
+
+Contributors
+------------
+Lucas Agobert

@@ -1,0 +1,18 @@
+What’s new in version 1.2.7
+===========================
+Version available since May 26th 2023
+
+
+New Features
+------------
+
+- For simulation of hybrid systems, systems can also be modelised by fixed topology (variable topology was already implemented).
+- New test files 'checkJacobian' and 'Test_Jacobien_ODE_Systems' to compare analytical jacobian and Jax's one.
+- New function 'compute_model_jac' to compute jacobian of the model, in order to be compatible with Jax newest versions.
+- Normalization of LeastSquare algorithm results.
+- 'ExportToXML' function also writes specifications of the optimization problem in the XML file.
+- 'exclude_dominated_points' function in multi_objective files to delete 'bad' points in pareto front.
+
+Contributors
+------------
+Lucas Agobert

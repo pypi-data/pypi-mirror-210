@@ -1,0 +1,19 @@
+What’s new in version 1.1.5
+===========================
+Version available since September 15th 2022
+
+
+New Features
+------------
+- a new method of result class, plotPareto, to display Pareto Front easier.
+- a new method of result class, addParetoList, to display several Pareto Front in one graph.
+- constraints are displayed on the Pareto Front.
+- method plotXY of iteration class displays one output per graph, and is able to display vectorial outputs.
+- a new function, optim2d_weighting, to solve bi-objective optimisation problems with ponderation method
+(a parameter 'method2d' is added on the optim.run function to switch between methods).
+- handle exceptions when specifications variable does not belong to the model outputs.
+- a new package, ODE, with functions to solve ODE systems for dynamic optimization.
+
+Contributors
+------------
+Lucas Agobert

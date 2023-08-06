@@ -1,0 +1,21 @@
+What’s new in version 1.2.6
+===========================
+Version available since April 25th 2023
+
+
+New Features
+------------
+
+- For simulation of hybrid systems, an "output" method must be written to separate state variable from observable variables.
+- In case of model reduction, an "computeotherX" method must be written.
+- For FFT, a new extraction function was added, to get the fundamental value at 0Hz.
+
+Changes
+--------
+
+- For simulation of hybrid systems, interpolation method replaces the prediction method.
+
+
+Contributors
+------------
+Lucas Agobert

@@ -1,0 +1,15 @@
+What’s new in version 1.1.8
+===========================
+Version available since October 10th 2022
+
+
+Changes
+-------
+
+- In odeint45_extract function, state space must be put in a dictionary instead a jax.numpy array.
+- In odeint45 function, both types are accepted.
+- Possibility to import external functions with compute_external function in ode_tools.
+
+Contributors
+------------
+Lucas Agobert

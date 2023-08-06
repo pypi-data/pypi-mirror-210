@@ -1,0 +1,20 @@
+What’s new in version 1.0.1
+===========================
+Version available since October 20th 2021
+
+
+New Features
+------------
+- Optimizations run with automatic differentiation library Jax (quicker than Autograd library).
+- Optimization problems with mono or two-objective function can be solved.
+- Optimization problems with "mixed" constraints (scalars and vectorials) and/or mixed inputs can be solved.
+
+Changes
+------------
+- In Tools.py, "Structlist" class replaces "flatten" and "unflattened" functions.
+- In wrapper.py, a new method "dictionnary" in wrapper class was created to compute "rawResults" attribute.
+- To give specifications, users must use dictionnaries for variables and constraints instead of two lists for each (names + values).
+
+Contributors
+------------
+Lucas Agobert

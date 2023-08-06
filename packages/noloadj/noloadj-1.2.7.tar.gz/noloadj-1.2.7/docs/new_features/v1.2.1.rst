@@ -1,0 +1,18 @@
+What’s new in version 1.2.1
+===========================
+Version available since January 2nd 2023
+
+
+Bug fixed
+---------
+
+- "DeviceArray" is replaced by "Array" because it's depreciated in Jax 0.4.1.
+
+New Features
+------------
+
+- For periodic ODE systems with detection of steady state, time response derivatives according to input variables are computed.
+
+Contributors
+------------
+Lucas Agobert
