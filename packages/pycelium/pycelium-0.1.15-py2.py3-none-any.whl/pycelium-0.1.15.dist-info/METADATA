@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: pycelium
+Version: 0.1.15
+Summary: Python Mycelium Edge Swarm Network
+Home-page: https://github.com/asteriogonzalez/pycelium
+Author: Asterio Gonzalez
+Author-email: asterio.gonzalez@gmail.com
+License: BSD license
+Keywords: pycelium
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.9
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: arrow
+Requires-Dist: asyncio-mqtt
+Requires-Dist: asyncssh
+Requires-Dist: click
+Requires-Dist: codenamize
+Requires-Dist: colorama
+Requires-Dist: debug
+Requires-Dist: glom
+Requires-Dist: Jinja2
+Requires-Dist: jmespath
+Requires-Dist: numpy
+Requires-Dist: paho-mqtt
+Requires-Dist: pytest
+Requires-Dist: python-dateutil
+Requires-Dist: PyYAML
+Requires-Dist: semver
+Requires-Dist: setuptools
+
+========
+pycelium
+========
+
+
+.. image:: https://img.shields.io/pypi/v/pycelium.svg
+        :target: https://pypi.python.org/pypi/pycelium
+
+.. image:: https://img.shields.io/travis/asteriogonzalez/pycelium.svg
+        :target: https://travis-ci.com/asteriogonzalez/pycelium
+
+.. image:: https://readthedocs.org/projects/pycelium/badge/?version=latest
+        :target: https://pycelium.readthedocs.io/en/latest/?version=latest
+        :alt: Documentation Status
+
+
+
+
+Python Mycelium Edge Swarm Network
+
+
+* Free software: BSD license
+* Documentation: https://pycelium.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2022-08-06)
+------------------
+
+* First release on PyPI.
