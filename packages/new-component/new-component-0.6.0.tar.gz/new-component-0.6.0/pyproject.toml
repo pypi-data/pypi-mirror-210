@@ -1,0 +1,133 @@
+[project]
+name = "new_component"
+description = "Quickly create opinionated Styled Components for React Projects"
+authors = [
+    { name = "Ian Cleary", email = "github@iancleary.me" },
+]
+dynamic = []
+requires-python = ">=3.11"
+dependencies = [
+    "typer==0.9.0",
+    "colorama==0.4.6",
+    "shellingham==1.5.0.post1",
+    "rich==13.3.5",
+    "Jinja2==3.1.2",
+]
+readme = "README.md"
+keywords = [
+    "script",
+    "javascript",
+    "styled-components",
+]
+classifiers = [
+    "Topic :: Software Development :: Code Generators",
+    "Programming Language :: Python :: 3.11",
+]
+version = "0.6.0"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Homepage = "https://new-component.iancleary.me"
+Repository = "https://github.com/iancleary/new-component"
+Documentation = "https://new-component.iancleary.me"
+
+[project.scripts]
+new-component = "new_component.main:main"
+
+[tool.pdm.version]
+source = "scm"
+write_to = "new_component/VERSION"
+write_template = "__version__ = '{}'"
+
+[tool.pdm.build]
+package-dir = "src"
+includes = [
+    "src/new_component",
+    "src/new_component/templates/**.j2",
+]
+source-includes = [
+    "tests",
+    "LICENSE",
+    "README.md",
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest==7.2.0",
+    "black==22.10.0",
+    "mypy==0.990",
+    "ruff==0.0.225",
+    "pytest-pretty==1.2.0",
+    "isort==5.12.0",
+]
+
+[tool.isort]
+src_paths = [
+    "new_component",
+    "tests",
+]
+force_single_line = true
+include_trailing_comma = true
+force_grid_wrap = 0
+combine_as_imports = true
+line_length = 88
+
+[tool.autoflake]
+remove-all-unused-imports = true
+recursive = true
+remove-unused-variables = true
+in-place = true
+expand-star-imports = true
+exclude = "__init__.py"
+remove-duplicate-keys = true
+
+[tool.ruff]
+line-length = 88
+select = [
+    "TID2",
+    "E",
+    "F",
+]
+ignore = []
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "docs",
+]
+
+[tool.ruff.isort]
+known-first-party = [
+    "src",
+]
+
+[tool.mypy]
+disallow_untyped_defs = true
+ignore_missing_imports = true
+exclude = [
+    "docs/",
+]
+
+[build-system]
+requires = [
+    "pdm-pep517>=1.0.0",
+]
+build-backend = "pdm.pep517.api"
