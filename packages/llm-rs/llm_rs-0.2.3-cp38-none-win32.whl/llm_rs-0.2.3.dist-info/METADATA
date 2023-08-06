@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: llm-rs
+Version: 0.2.3
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: blake3
+Requires-Dist: huggingface-hub >= 0.14.1
+Requires-Dist: transformers >= 4.29.0; extra == 'convert'
+Requires-Dist: sentencepiece >= 0.1.99; extra == 'convert'
+Requires-Dist: torch >= 2.0.0; extra == 'convert'
+Requires-Dist: accelerate >= 0.19.0; extra == 'convert'
+Requires-Dist: tqdm; extra == 'convert'
+Requires-Dist: einops >= 0.6.1; extra == 'convert'
+Provides-Extra: convert
+License-File: LICENSE
+Summary: Unofficial python bindings for llm-rs. 🐍❤️🦀
+Keywords: LLM,Transformers
+Author: Lukas Kreussel
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: repository, https://github.com/LLukas22/llm-rs-python
+Project-URL: documentation, https://llukas22.github.io/llm-rs-python/
+
+# llm-rs-python: Python Bindings for Rust's llm Library
+
+Welcome to `llm-rs`, an unofficial Python interface for the Rust-based [llm](https://github.com/rustformers/llm) library, made possible through [PyO3](https://github.com/PyO3/pyo3). Our package combines the convenience of Python with the performance of Rust to offer an efficient tool for your machine learning projects. 🐍❤️🦀
+
+With `llm-rs`, you can operate a variety of Large Language Models (LLMs) including LLama and GPT-NeoX directly on your CPU. 
+
+For a detailed overview of all the supported architectures, visit the [llm](https://github.com/rustformers/llm) project page. 
+
+## Installation
+
+Simply install it via pip: `pip install llm-rs`
+
+## Usage
+### Running GGML converted models:
+This example shows how a Llama model can be loaded.
+
+```python 
+from llm_rs import Llama
+
+#load the model
+model = Llama("path/to/model.bin")
+
+#generate
+print(model.generate("The meaning of life is"))
+```
+
+### Running Huggingface Hub Models
+`llm-rs` supports automatic conversion of all supported transformer architectures on the Huggingface Hub. 
+
+To run covnersions additional dependencies are needed which can be installed via `pip install llm-rs[convert]`.
+
+The following example shows how a [Pythia](https://huggingface.co/EleutherAI/pythia-410m) model can be covnverted, quantized and run.
+
+```python
+from llm_rs.convert import AutoConverter
+from llm_rs import AutoModel, AutoQuantizer
+import sys
+
+#define the model which should be converted and an output folder
+export_folder = "path/to/folder" 
+base_model = "EleutherAI/pythia-410m"
+
+#convert the model
+converted_model = AutoConverter.convert(base_model, export_folder)
+
+#quantize the model (this step is optional)
+quantized_model = AutoQuantizer.quantize(converted_model)
+
+#load the quantized model
+model = AutoModel.load(quantized_model,verbose=True)
+
+#generate text
+def callback(text):
+    print(text,end="")
+    sys.stdout.flush()
+
+model.generate("The meaning of life is",callback=callback)
+```
+
+## Documentation
+
+For in-depth information on customizing the loading and generation processes, refer to our detailed [documentation](https://llukas22.github.io/llm-rs-python/).
