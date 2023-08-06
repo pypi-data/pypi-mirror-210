@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: datanalyse
+Version: 0.0.7
+Summary: A data analysis package.
+Author-Email: Maximilian Beyer <maximilian.beyer@tu-dresden.de>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Project-URL: Homepage, https://github.com/MakusuB/datanalyse
+Project-URL: Bug tracker, https://github.com/MakusuB/datanalyse/issues
+Requires-Python: >=3.11
+Requires-Dist: pandas>=2.0.1
+Requires-Dist: matplotlib>=3.7.1
+Requires-Dist: openpyxl>=3.1.2
+Description-Content-Type: text/markdown
+
+# datanalyse
+
+The package name datanalyse is a suitcase word for data and analyse - mainly of experimental data from the Combined Energy Lab at TU Dresden, but perhaps useful for others as well. However, due to its absolute alpha status, I cannot recommend it to anybody in the world but me.
+
+It is more or less a tool-kit for my daily work as an experimentalist and data scientist and makes use of the fantastic packages pandas, pathlib and matplotlib.
