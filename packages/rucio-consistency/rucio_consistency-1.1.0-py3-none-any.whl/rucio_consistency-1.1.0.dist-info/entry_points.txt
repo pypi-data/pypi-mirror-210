@@ -1,0 +1,8 @@
+[console_scripts]
+rce_cmp2 = rucio_consistency.scripts.cmp2:main
+rce_cmp3 = rucio_consistency.scripts.cmp3:main
+rce_cmp5 = rucio_consistency.scripts.cmp5:main
+rce_db_dump = rucio_consistency.scripts.db_dump:main
+rce_partition = rucio_consistency.scripts.partition:main
+rce_scan = rucio_consistency.xrootd.xrootd_scanner:main
+rce_update_stats = rucio_consistency.scripts.update_stats:main
