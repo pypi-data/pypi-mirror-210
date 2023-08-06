@@ -1,0 +1,103 @@
+{
+    "id": 3777464331,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.148.0",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-02-15T17:28:18.535Z",
+    "started_at": "2023-02-15T17:30:12.874Z",
+    "finished_at": "2023-02-15T17:41:26.683Z",
+    "erased_at": null,
+    "duration": 673.808613,
+    "queued_duration": 2.313347,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:48 AM"
+    },
+    "commit": {
+        "id": "3fefecc6b079bb40750721346866ebb4fcedcbdb",
+        "short_id": "3fefecc6",
+        "created_at": "2023-02-15T17:12:54.000+00:00",
+        "parent_ids": [
+            "e10341d8eb519b65b6db1caada1aa7013dc432cd",
+            "49a3b462843af3d0ad0d5a09e36061c0fc2d0a76"
+        ],
+        "title": "Merge branch 'release' into 'master'",
+        "message": "Merge branch 'release' into 'master'\n\nRelease v0.148.0\n\nSee merge request infraspeak/web/web-core-client!5499",
+        "author_name": "Jos\u00e9 Postiga",
+        "author_email": "jpostiga@infraspeak.com",
+        "authored_date": "2023-02-15T17:12:54.000+00:00",
+        "committer_name": "Jos\u00e9 Postiga",
+        "committer_email": "jpostiga@infraspeak.com",
+        "committed_date": "2023-02-15T17:12:54.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/3fefecc6b079bb40750721346866ebb4fcedcbdb"
+    },
+    "pipeline": {
+        "id": 778790599,
+        "iid": 24379,
+        "project_id": 20143087,
+        "sha": "3fefecc6b079bb40750721346866ebb4fcedcbdb",
+        "ref": "v0.148.0",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-02-15T17:28:18.515Z",
+        "updated_at": "2023-02-15T18:01:55.457Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/778790599"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3777464331",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 778790599
+}

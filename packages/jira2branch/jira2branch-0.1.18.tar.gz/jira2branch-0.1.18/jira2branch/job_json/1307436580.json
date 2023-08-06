@@ -1,0 +1,100 @@
+{
+    "id": 1307436580,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.102.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-06-01T00:38:40.527Z",
+    "started_at": "2021-06-01T00:41:58.899Z",
+    "finished_at": "2021-06-01T00:51:35.423Z",
+    "duration": 576.524601,
+    "queued_duration": 0.843142,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "b5d4eac8e40c5aea188375e1ca1183560f2f4e6c",
+        "short_id": "b5d4eac8",
+        "created_at": "2021-06-01T01:23:53.000+01:00",
+        "parent_ids": [
+            "76998e2e27d3596da5198ae688c231157b8f9622"
+        ],
+        "title": "temporary remove third production host",
+        "message": "temporary remove third production host\n",
+        "author_name": "Gon\u00e7alo Queir\u00f3s",
+        "author_email": "mail@goncaloqueiros.net",
+        "authored_date": "2021-06-01T01:23:53.000+01:00",
+        "committer_name": "Gon\u00e7alo Queir\u00f3s",
+        "committer_email": "mail@goncaloqueiros.net",
+        "committed_date": "2021-06-01T01:23:53.000+01:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/b5d4eac8e40c5aea188375e1ca1183560f2f4e6c"
+    },
+    "pipeline": {
+        "id": 312601896,
+        "iid": 6352,
+        "project_id": 20143087,
+        "sha": "b5d4eac8e40c5aea188375e1ca1183560f2f4e6c",
+        "ref": "v0.102.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-06-01T00:38:40.484Z",
+        "updated_at": "2021-06-01T00:51:37.547Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/312601896"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1307436580",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 38820,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 312601896
+}

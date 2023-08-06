@@ -1,0 +1,101 @@
+{
+    "id": 3250879688,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.139.5",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-10-31T10:20:10.261Z",
+    "started_at": "2022-10-31T10:23:59.427Z",
+    "finished_at": "2022-10-31T10:37:07.319Z",
+    "duration": 787.891967,
+    "queued_duration": 0.110907,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "16ac0b4f8d9a45e9a6eb848dce0b6fd665dfb328",
+        "short_id": "16ac0b4f",
+        "created_at": "2022-10-31T09:56:19.000+00:00",
+        "parent_ids": [
+            "d30642a36f9befd25dcc2c459ad8780c921bb3b7",
+            "c9788f0665b7f39f36557040f79e07448a3f7bbf"
+        ],
+        "title": "Merge branch 'fix/CP2-310_remove_max_length_for_chat_input_message' into 'master'",
+        "message": "Merge branch 'fix/CP2-310_remove_max_length_for_chat_input_message' into 'master'\n\nfix/CP2-310: Remove limit for chat input message\n\nSee merge request infraspeak/web/web-core-client!4886",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2022-10-31T09:56:19.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2022-10-31T09:56:19.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/16ac0b4f8d9a45e9a6eb848dce0b6fd665dfb328"
+    },
+    "pipeline": {
+        "id": 681345428,
+        "iid": 20856,
+        "project_id": 20143087,
+        "sha": "16ac0b4f8d9a45e9a6eb848dce0b6fd665dfb328",
+        "ref": "v0.139.5",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-10-31T10:20:09.979Z",
+        "updated_at": "2022-10-31T11:50:05.411Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/681345428"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3250879688",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 615538,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 681345428
+}

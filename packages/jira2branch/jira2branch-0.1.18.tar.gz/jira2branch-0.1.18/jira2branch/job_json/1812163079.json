@@ -1,0 +1,101 @@
+{
+    "id": 1812163079,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.19",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-23T16:25:10.431Z",
+    "started_at": "2021-11-23T16:27:01.756Z",
+    "finished_at": "2021-11-23T16:36:47.474Z",
+    "duration": 585.717863,
+    "queued_duration": 7.942626,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "b7f1d4de5106ef29ad7bdacf2b02dbd30cb36f59",
+        "short_id": "b7f1d4de",
+        "created_at": "2021-11-23T16:12:24.000+00:00",
+        "parent_ids": [
+            "3b87dc040de3411161fe7d8847788a7eabd7e5fd",
+            "407a3c0236c7b1c24797820454ab75a1a657b6da"
+        ],
+        "title": "Merge branch 'fix/IS-7069_Work-Orders-Assets-full-name-not-adjusted-in-side-bar' into 'master'",
+        "message": "Merge branch 'fix/IS-7069_Work-Orders-Assets-full-name-not-adjusted-in-side-bar' into 'master'\n\nFix/IS-7069: Work Orders - Asset's full name not adjusted in side bar\n\nSee merge request infraspeak/web/web-core-client!3086\n\nClose IS-7069",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-11-23T16:12:24.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-11-23T16:12:24.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/b7f1d4de5106ef29ad7bdacf2b02dbd30cb36f59"
+    },
+    "pipeline": {
+        "id": 414861567,
+        "iid": 10699,
+        "project_id": 20143087,
+        "sha": "b7f1d4de5106ef29ad7bdacf2b02dbd30cb36f59",
+        "ref": "v0.114.19",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-23T16:25:10.260Z",
+        "updated_at": "2021-11-23T16:43:09.849Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/414861567"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1812163079",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 2050822,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 414861567
+}

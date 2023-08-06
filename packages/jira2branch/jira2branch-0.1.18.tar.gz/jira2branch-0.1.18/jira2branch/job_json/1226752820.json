@@ -1,0 +1,101 @@
+{
+    "id": 1226752820,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.100.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-30T13:16:36.754Z",
+    "started_at": "2021-04-30T13:19:48.875Z",
+    "finished_at": "2021-04-30T13:27:55.021Z",
+    "duration": 486.145472,
+    "queued_duration": 1.349154,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "94ef44451fc9cf3ac26d6b552f89c6767371af16",
+        "short_id": "94ef4445",
+        "created_at": "2021-04-30T13:04:37.000+00:00",
+        "parent_ids": [
+            "8e88909af231263c17cfa4d5b0fe28b3069d5dac",
+            "a6d01110d505b1459bef1891ce5b7c15cc371e03"
+        ],
+        "title": "Merge branch 'fix/IS-6903-hide-line-observations-when-user-is-contact' into 'master'",
+        "message": "Merge branch 'fix/IS-6903-hide-line-observations-when-user-is-contact' into 'master'\n\nfix/IS-6903  [FE] Hide lines observations from the Sale and Quote modals when authenticated user is a Contact\n\nSee merge request infraspeak/web/web-core-client!2077",
+        "author_name": "Eug\u00eanio Inoc\u00eancio",
+        "author_email": "einocencio@infraspeak.com",
+        "authored_date": "2021-04-30T13:04:37.000+00:00",
+        "committer_name": "Eug\u00eanio Inoc\u00eancio",
+        "committer_email": "einocencio@infraspeak.com",
+        "committed_date": "2021-04-30T13:04:37.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/94ef44451fc9cf3ac26d6b552f89c6767371af16"
+    },
+    "pipeline": {
+        "id": 295080958,
+        "iid": 5647,
+        "project_id": 20143087,
+        "sha": "94ef44451fc9cf3ac26d6b552f89c6767371af16",
+        "ref": "v0.100.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-30T13:16:36.706Z",
+        "updated_at": "2021-04-30T13:42:36.128Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/295080958"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1226752820",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 41777,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 295080958
+}

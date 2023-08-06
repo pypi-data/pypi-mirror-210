@@ -1,0 +1,101 @@
+{
+    "id": 3285849504,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.139.9",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-11-07T16:51:52.853Z",
+    "started_at": "2022-11-07T16:53:41.262Z",
+    "finished_at": "2022-11-07T17:06:55.838Z",
+    "duration": 794.575417,
+    "queued_duration": 1.639281,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "470941aad671d20c987b2c8f80122e485caf547c",
+        "short_id": "470941aa",
+        "created_at": "2022-11-07T16:29:28.000+00:00",
+        "parent_ids": [
+            "0272ca77a2c97c03180f01cb681cfac1fd0da06b",
+            "928046a1e4f0e7b79ad4d63f1a465d75f3fd3849"
+        ],
+        "title": "Merge branch 'fix/IS-8641_cant_input_decimal_places_in_measurements_inside_tasks_in_PJOs_on_Infraspeak_web' into 'master'",
+        "message": "Merge branch 'fix/IS-8641_cant_input_decimal_places_in_measurements_inside_tasks_in_PJOs_on_Infraspeak_web' into 'master'\n\nfix/IS-8641: Planned Jobs: Can't input decimal places in measurements inside tasks in PJOs\n\nSee merge request infraspeak/web/web-core-client!4907",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2022-11-07T16:29:28.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2022-11-07T16:29:28.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/470941aad671d20c987b2c8f80122e485caf547c"
+    },
+    "pipeline": {
+        "id": 687799094,
+        "iid": 21044,
+        "project_id": 20143087,
+        "sha": "470941aad671d20c987b2c8f80122e485caf547c",
+        "ref": "v0.139.9",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-11-07T16:51:52.827Z",
+        "updated_at": "2022-11-07T17:23:41.732Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/687799094"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3285849504",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 615545,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 687799094
+}

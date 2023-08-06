@@ -1,0 +1,101 @@
+{
+    "id": 1572333103,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.109.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-09-08T11:07:19.569Z",
+    "started_at": "2021-09-08T11:11:09.770Z",
+    "finished_at": "2021-09-08T11:20:12.296Z",
+    "duration": 542.52615,
+    "queued_duration": 9.914161,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "83ded1da06e549c7ee9197392049509ad06f53fb",
+        "short_id": "83ded1da",
+        "created_at": "2021-09-08T10:51:22.000+00:00",
+        "parent_ids": [
+            "c71a2fa0ada5f37628af6e9fc4b25cf907689de9",
+            "201f7fb537db0105d34c7bb18c4dcde8b070cdef"
+        ],
+        "title": "Merge branch 'fix/IS-7266_Purchase-When-I-delete-a-purchase-is-displayed-the-error-screen' into 'master'",
+        "message": "Merge branch 'fix/IS-7266_Purchase-When-I-delete-a-purchase-is-displayed-the-error-screen' into 'master'\n\nFix/IS-7266: Purchase - When I delete a purchase is displayed the error screen\n\nSee merge request infraspeak/web/web-core-client!2662\n\nClose IS-7266",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-09-08T10:51:22.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-09-08T10:51:22.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/83ded1da06e549c7ee9197392049509ad06f53fb"
+    },
+    "pipeline": {
+        "id": 367157429,
+        "iid": 8541,
+        "project_id": 20143087,
+        "sha": "83ded1da06e549c7ee9197392049509ad06f53fb",
+        "ref": "v0.109.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-09-08T11:07:19.509Z",
+        "updated_at": "2021-09-08T11:36:44.687Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/367157429"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1572333103",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 60121,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 367157429
+}

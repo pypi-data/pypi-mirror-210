@@ -1,0 +1,100 @@
+{
+    "id": 1824525175,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.115.6",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-26T17:45:01.780Z",
+    "started_at": "2021-11-26T17:46:54.370Z",
+    "finished_at": "2021-11-26T17:55:37.749Z",
+    "duration": 523.379421,
+    "queued_duration": 5.494781,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "2e609327b83e0cd3db8f2632b47a5e1f3a759e13",
+        "short_id": "2e609327",
+        "created_at": "2021-11-26T17:29:10.000+00:00",
+        "parent_ids": [
+            "5812cc74c2f32f55ef5a62812a4b45cd08d9bbe0"
+        ],
+        "title": "Merge branch 'chore/ENG-110-aggregate-parallele-jobs-into-stages' into 'develop'",
+        "message": "Merge branch 'chore/ENG-110-aggregate-parallele-jobs-into-stages' into 'develop'\n\nENG-110: Aggregate parallel jobs into stages\n\nSee merge request infraspeak/web/web-core-client!3110\n\n(cherry picked from commit 94f81109a3520edce90ef5355ab859df3885b03d)\n\n6f43d2d8 update\nd883efb6 fix\n7d1b6d26 update\n110c4a21 update\n4bf02352 test\n4fd5ee15 update\n76289144 test\n810296f6 update\n1640f975 fix",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-11-26T13:11:18.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-11-26T17:29:10.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/2e609327b83e0cd3db8f2632b47a5e1f3a759e13"
+    },
+    "pipeline": {
+        "id": 417325768,
+        "iid": 10878,
+        "project_id": 20143087,
+        "sha": "2e609327b83e0cd3db8f2632b47a5e1f3a759e13",
+        "ref": "v0.115.6",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-26T17:45:01.731Z",
+        "updated_at": "2021-11-26T18:02:51.254Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/417325768"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1824525175",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 2079124,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 417325768
+}

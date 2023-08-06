@@ -1,0 +1,101 @@
+{
+    "id": 1243921307,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.100.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-05-07T09:25:23.664Z",
+    "started_at": "2021-05-07T09:28:34.686Z",
+    "finished_at": "2021-05-07T09:36:43.132Z",
+    "duration": 488.446106,
+    "queued_duration": 0.946178,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "e16018306248a0c3dcf9f7c6d9d21b32ad3c0d51",
+        "short_id": "e1601830",
+        "created_at": "2021-05-07T09:15:04.000+00:00",
+        "parent_ids": [
+            "c83436cbfe3e931b4c48d7b7cac0a6c8d7eba692",
+            "3d0be4cf294cfc00e07440ca4ed1db4a70e5db3d"
+        ],
+        "title": "Merge branch 'fix/IS-6686-work-orders-can-t-edit-a-work-order-area-type-tha' into 'master'",
+        "message": "Merge branch 'fix/IS-6686-work-orders-can-t-edit-a-work-order-area-type-tha' into 'master'\n\nFix/IS-6686: Work Orders: Can't edit a work order area/type that has been deleted in a Work Order.\n\nSee merge request infraspeak/web/web-core-client!2104",
+        "author_name": "Gabriel Monteiro",
+        "author_email": "gmonteiro@infraspeak.com",
+        "authored_date": "2021-05-07T09:15:04.000+00:00",
+        "committer_name": "Gabriel Monteiro",
+        "committer_email": "gmonteiro@infraspeak.com",
+        "committed_date": "2021-05-07T09:15:04.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/e16018306248a0c3dcf9f7c6d9d21b32ad3c0d51"
+    },
+    "pipeline": {
+        "id": 298973238,
+        "iid": 5826,
+        "project_id": 20143087,
+        "sha": "e16018306248a0c3dcf9f7c6d9d21b32ad3c0d51",
+        "ref": "v0.100.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-05-07T09:25:23.617Z",
+        "updated_at": "2021-05-07T13:54:13.745Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/298973238"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1243921307",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 41768,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 298973238
+}

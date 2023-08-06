@@ -1,0 +1,100 @@
+{
+    "id": 1154845415,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.98.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-05T23:45:05.693Z",
+    "started_at": "2021-04-05T23:47:13.204Z",
+    "finished_at": "2021-04-05T23:54:26.630Z",
+    "duration": 433.425728,
+    "queued_duration": 0.207207,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "7897bb9f18c787c3b7a8db1dfca052e49219af8f",
+        "short_id": "7897bb9f",
+        "created_at": "2021-04-06T00:37:20.000+01:00",
+        "parent_ids": [
+            "dfc0c4dac2781cc3b9c3a99ce98f373190534330"
+        ],
+        "title": "fix: Wrong condition on feature toggles enabled for some entities",
+        "message": "fix: Wrong condition on feature toggles enabled for some entities\n",
+        "author_name": "F\u00e1bio Martins",
+        "author_email": "fmartins@infraspeak.com",
+        "authored_date": "2021-04-06T00:37:20.000+01:00",
+        "committer_name": "F\u00e1bio Martins",
+        "committer_email": "fmartins@infraspeak.com",
+        "committed_date": "2021-04-06T00:37:20.000+01:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/7897bb9f18c787c3b7a8db1dfca052e49219af8f"
+    },
+    "pipeline": {
+        "id": 281771932,
+        "iid": 5074,
+        "project_id": 20143087,
+        "sha": "7897bb9f18c787c3b7a8db1dfca052e49219af8f",
+        "ref": "v0.98.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-05T23:45:05.600Z",
+        "updated_at": "2021-04-05T23:57:10.293Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/281771932"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1154845415",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 56493,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 281771932
+}

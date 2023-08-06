@@ -1,0 +1,101 @@
+{
+    "id": 2679717049,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.131.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-07-05T12:10:23.030Z",
+    "started_at": "2022-07-05T12:12:14.904Z",
+    "finished_at": "2022-07-05T12:23:34.769Z",
+    "duration": 679.86532,
+    "queued_duration": 3.125037,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:36 AM"
+    },
+    "commit": {
+        "id": "68910d47be03395d1b71959c9cfa4a366e74ab71",
+        "short_id": "68910d47",
+        "created_at": "2022-07-05T12:01:50.000+00:00",
+        "parent_ids": [
+            "9e773e608d44e2748ab75104555ac8f66959c321",
+            "15bfa162714de2f542723175e7763cb3a8141714"
+        ],
+        "title": "Merge branch 'WT3-940-fe-improve-map-geolocations-load' into 'master'",
+        "message": "Merge branch 'WT3-940-fe-improve-map-geolocations-load' into 'master'\n\nWT3-940: Improve map geolocations load\n\nSee merge request infraspeak/web/web-core-client!4250",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-07-05T12:01:50.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-07-05T12:01:50.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/68910d47be03395d1b71959c9cfa4a366e74ab71"
+    },
+    "pipeline": {
+        "id": 580365683,
+        "iid": 17128,
+        "project_id": 20143087,
+        "sha": "68910d47be03395d1b71959c9cfa4a366e74ab71",
+        "ref": "v0.131.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-07-05T12:10:23.004Z",
+        "updated_at": "2022-07-05T12:48:28.791Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/580365683"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2679717049",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 817284,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 580365683
+}

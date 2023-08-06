@@ -1,0 +1,101 @@
+{
+    "id": 1739255010,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.113.9",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-02T12:34:15.099Z",
+    "started_at": "2021-11-02T12:37:57.818Z",
+    "finished_at": "2021-11-02T12:49:31.608Z",
+    "duration": 693.790326,
+    "queued_duration": 10.542745,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "a56612957aaa7b710f659caeb1dcb41cc91395be",
+        "short_id": "a5661295",
+        "created_at": "2021-11-02T12:19:24.000+00:00",
+        "parent_ids": [
+            "880b8ae88df2f62983f7587bb4f4a8ee4f7eb19e",
+            "644c82ad59adfc68973900968cd720c0ecd110a0"
+        ],
+        "title": "Merge branch 'fix/IS-7447_Planed-jobs-duplicated-behaviour-on-asset-tasks' into 'master'",
+        "message": "Merge branch 'fix/IS-7447_Planed-jobs-duplicated-behaviour-on-asset-tasks' into 'master'\n\nFix/IS-7447: Planned Jobs - Duplicated Behavior on assets tasks\n\nSee merge request infraspeak/web/web-core-client!2912",
+        "author_name": "Pedro Nogueira",
+        "author_email": "pnogueira@infraspeak.com",
+        "authored_date": "2021-11-02T12:19:24.000+00:00",
+        "committer_name": "Pedro Nogueira",
+        "committer_email": "pnogueira@infraspeak.com",
+        "committed_date": "2021-11-02T12:19:24.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/a56612957aaa7b710f659caeb1dcb41cc91395be"
+    },
+    "pipeline": {
+        "id": 400262964,
+        "iid": 10023,
+        "project_id": 20143087,
+        "sha": "a56612957aaa7b710f659caeb1dcb41cc91395be",
+        "ref": "v0.113.9",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-02T12:34:15.041Z",
+        "updated_at": "2021-11-02T12:49:32.091Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/400262964"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1739255010",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1718084,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 400262964
+}

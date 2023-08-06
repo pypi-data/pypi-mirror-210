@@ -1,0 +1,101 @@
+{
+    "id": 1388379675,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.104.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-06-30T09:30:55.818Z",
+    "started_at": "2021-06-30T09:34:19.284Z",
+    "finished_at": "2021-06-30T09:43:07.084Z",
+    "duration": 527.800774,
+    "queued_duration": 2.25163,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "8c38f5f694102ee169b30d7cd18eee3c38063306",
+        "short_id": "8c38f5f6",
+        "created_at": "2021-06-30T09:18:15.000+00:00",
+        "parent_ids": [
+            "a51ece9eabd378a4f08ddaf436eb98a9f974df4c",
+            "d442e02ccf1156a00d9ad0bf65c1aeaa3671fc4d"
+        ],
+        "title": "Merge branch 'chore/WT3-156-merge-master-to-playground-after-deploy-to-product' into 'master'",
+        "message": "Merge branch 'chore/WT3-156-merge-master-to-playground-after-deploy-to-product' into 'master'\n\nWT3-156: Merge master to playground after deploy to production\n\nSee merge request infraspeak/web/web-core-client!2319",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-06-30T09:18:15.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-06-30T09:18:15.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/8c38f5f694102ee169b30d7cd18eee3c38063306"
+    },
+    "pipeline": {
+        "id": 329499972,
+        "iid": 6887,
+        "project_id": 20143087,
+        "sha": "8c38f5f694102ee169b30d7cd18eee3c38063306",
+        "ref": "v0.104.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-06-30T09:30:55.780Z",
+        "updated_at": "2021-06-30T15:13:19.832Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/329499972"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1388379675",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 39448,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 329499972
+}

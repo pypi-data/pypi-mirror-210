@@ -1,0 +1,101 @@
+{
+    "id": 3345012469,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.141.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-11-18T11:44:15.381Z",
+    "started_at": "2022-11-18T11:46:02.114Z",
+    "finished_at": "2022-11-18T11:58:38.112Z",
+    "duration": 755.99803,
+    "queued_duration": 4.450794,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:32 AM"
+    },
+    "commit": {
+        "id": "f874f90d4f6e5bacc881955da4ec305a8f3efab7",
+        "short_id": "f874f90d",
+        "created_at": "2022-11-18T11:21:41.000+00:00",
+        "parent_ids": [
+            "784ac015b085af0b36720dc5a4c325a2c475f9d3",
+            "0ed792158d847c4856a6730b20ed3c012746d207"
+        ],
+        "title": "Merge branch 'fix/IS-8675-high-contrast-light-mode-modal-header' into 'master'",
+        "message": "Merge branch 'fix/IS-8675-high-contrast-light-mode-modal-header' into 'master'\n\nfix/IS-8675: fix text color formula for 3 digit hex colors\n\nSee merge request infraspeak/web/web-core-client!4995",
+        "author_name": "Gon\u00e7alo Marantes",
+        "author_email": "goncalo.marantes@infraspeak.com",
+        "authored_date": "2022-11-18T11:21:41.000+00:00",
+        "committer_name": "Gon\u00e7alo Marantes",
+        "committer_email": "goncalo.marantes@infraspeak.com",
+        "committed_date": "2022-11-18T11:21:41.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/f874f90d4f6e5bacc881955da4ec305a8f3efab7"
+    },
+    "pipeline": {
+        "id": 698778655,
+        "iid": 21455,
+        "project_id": 20143087,
+        "sha": "f874f90d4f6e5bacc881955da4ec305a8f3efab7",
+        "ref": "v0.141.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-11-18T11:44:15.329Z",
+        "updated_at": "2022-11-18T13:03:48.640Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/698778655"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3345012469",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 611344,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 698778655
+}

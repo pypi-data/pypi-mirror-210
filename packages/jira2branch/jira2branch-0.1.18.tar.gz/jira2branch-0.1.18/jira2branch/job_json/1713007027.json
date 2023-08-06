@@ -1,0 +1,101 @@
+{
+    "id": 1713007027,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.113.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-10-25T16:16:55.598Z",
+    "started_at": "2021-10-25T16:20:26.240Z",
+    "finished_at": "2021-10-25T16:31:48.423Z",
+    "duration": 682.182852,
+    "queued_duration": 3.305588,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "cac34b0e1d94c326004d20f5b6ea669e8207b715",
+        "short_id": "cac34b0e",
+        "created_at": "2021-10-25T16:01:27.000+00:00",
+        "parent_ids": [
+            "d1783a6e9051feddf3f1cae1ddac5995811d0d7d",
+            "14c36eb3679dce8b4e2a22bfeb8ec3ef80f1dd85"
+        ],
+        "title": "Merge branch 'fix/IS-7448_Dashboard-localization-widget-image-of-operator-isnt-the-thumbnail' into 'master'",
+        "message": "Merge branch 'fix/IS-7448_Dashboard-localization-widget-image-of-operator-isnt-the-thumbnail' into 'master'\n\nFix/IS-7448: In the Localization Widget - Image of Operator isn't the Thumbnail\n\nSee merge request infraspeak/web/web-core-client!2900",
+        "author_name": "Pedro Nogueira",
+        "author_email": "pnogueira@infraspeak.com",
+        "authored_date": "2021-10-25T16:01:27.000+00:00",
+        "committer_name": "Pedro Nogueira",
+        "committer_email": "pnogueira@infraspeak.com",
+        "committed_date": "2021-10-25T16:01:27.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/cac34b0e1d94c326004d20f5b6ea669e8207b715"
+    },
+    "pipeline": {
+        "id": 395007683,
+        "iid": 9796,
+        "project_id": 20143087,
+        "sha": "cac34b0e1d94c326004d20f5b6ea669e8207b715",
+        "ref": "v0.113.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-10-25T16:16:55.547Z",
+        "updated_at": "2021-10-25T16:31:48.949Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/395007683"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1713007027",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1683720,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 395007683
+}

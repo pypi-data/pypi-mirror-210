@@ -1,0 +1,101 @@
+{
+    "id": 1139558489,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.97.12",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-03-30T11:23:36.247Z",
+    "started_at": "2021-03-30T11:26:08.798Z",
+    "finished_at": "2021-03-30T11:35:21.119Z",
+    "duration": 552.320929,
+    "queued_duration": 1.537115,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "c161b9288bcfbc962d68f373fe5df18c7069be09",
+        "short_id": "c161b928",
+        "created_at": "2021-03-30T11:13:24.000+00:00",
+        "parent_ids": [
+            "5c15fd4041eb25077c3c6b5358b0769196fcc5ad",
+            "af7d233c787bab58559d8a107b9b6844434f7846"
+        ],
+        "title": "Merge branch 'feature/WT3-13-remove-access-to-purchases-from-technicians' into 'master'",
+        "message": "Merge branch 'feature/WT3-13-remove-access-to-purchases-from-technicians' into 'master'\n\nfeature/WT3-13: Remove access to Purchases from technicians\n\nSee merge request infraspeak/web/web-core-client!1921",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-03-30T11:13:24.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-03-30T11:13:24.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/c161b9288bcfbc962d68f373fe5df18c7069be09"
+    },
+    "pipeline": {
+        "id": 278793988,
+        "iid": 4939,
+        "project_id": 20143087,
+        "sha": "c161b9288bcfbc962d68f373fe5df18c7069be09",
+        "ref": "v0.97.12",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-03-30T11:23:36.192Z",
+        "updated_at": "2021-03-30T17:34:10.584Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/278793988"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1139558489",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 56839,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 278793988
+}

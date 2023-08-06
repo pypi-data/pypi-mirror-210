@@ -1,0 +1,101 @@
+{
+    "id": 1055464299,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.95.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-02-25T11:15:34.644Z",
+    "started_at": "2021-02-25T11:37:34.027Z",
+    "finished_at": "2021-02-25T11:45:36.638Z",
+    "duration": 482.611539,
+    "queued_duration": 70.943378,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "b5cf571649c37d6ec1cb72260aa0c805976122d7",
+        "short_id": "b5cf5716",
+        "created_at": "2021-02-25T11:00:54.000+00:00",
+        "parent_ids": [
+            "56d14b429bb71f8c645a64122fcfd39ba64bc39a",
+            "99d363eea76571208dd03ca72734af260962ec4c"
+        ],
+        "title": "Merge branch 'fix/IS-6533-utilities-i-can-t-define-main-meter-and-pricing' into 'master'",
+        "message": "Merge branch 'fix/IS-6533-utilities-i-can-t-define-main-meter-and-pricing' into 'master'\n\nfix/IS-6533: Utilities: I can't define Main Meter and Pricing\n\nSee merge request infraspeak/web/web-core-client!1739",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2021-02-25T11:00:54.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2021-02-25T11:00:54.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/b5cf571649c37d6ec1cb72260aa0c805976122d7"
+    },
+    "pipeline": {
+        "id": 261673211,
+        "iid": 4010,
+        "project_id": 20143087,
+        "sha": "b5cf571649c37d6ec1cb72260aa0c805976122d7",
+        "ref": "v0.95.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-02-25T11:15:34.579Z",
+        "updated_at": "2021-02-25T11:45:36.801Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/261673211"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1055464299",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 45930,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 261673211
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1796041644,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.10",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-18T11:33:55.370Z",
+    "started_at": "2021-11-18T11:35:45.224Z",
+    "finished_at": "2021-11-18T11:46:57.777Z",
+    "duration": 672.553493,
+    "queued_duration": 2.915665,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "db2aaa60d0dc696a3d4815e3c2a373bf115e6deb",
+        "short_id": "db2aaa60",
+        "created_at": "2021-11-18T11:21:27.000+00:00",
+        "parent_ids": [
+            "e037257e9d805f84e395d8757296131cc2fa8f31",
+            "6fc0fe5de88788d9541b03ca0da728e73dd9dc5d"
+        ],
+        "title": "Merge branch 'fix/IS-7500_Work-Orders-Planned-Job-Orders-text-from-sales-and-quotes-overlaps-in-the-WO-PJO-modal' into 'master'",
+        "message": "Merge branch 'fix/IS-7500_Work-Orders-Planned-Job-Orders-text-from-sales-and-quotes-overlaps-in-the-WO-PJO-modal' into 'master'\n\nFix/IS-7500: Work Orders/Planned Job Orders: text from sales and quotes overlaps in the WO/PJO modal\n\nSee merge request infraspeak/web/web-core-client!3053\n\nClose IS-7500",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-11-18T11:21:27.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-11-18T11:21:27.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/db2aaa60d0dc696a3d4815e3c2a373bf115e6deb"
+    },
+    "pipeline": {
+        "id": 411476559,
+        "iid": 10515,
+        "project_id": 20143087,
+        "sha": "db2aaa60d0dc696a3d4815e3c2a373bf115e6deb",
+        "ref": "v0.114.10",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-18T11:33:55.306Z",
+        "updated_at": "2021-11-18T15:09:39.203Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/411476559"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1796041644",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1432888,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 411476559
+}

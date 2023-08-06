@@ -1,0 +1,101 @@
+{
+    "id": 1037321957,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.95.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-02-17T17:59:42.454Z",
+    "started_at": "2021-02-17T18:01:54.542Z",
+    "finished_at": "2021-02-17T18:09:29.251Z",
+    "duration": 454.709574,
+    "queued_duration": 7.084538,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "82388b122be7203242761573cc970339101864a3",
+        "short_id": "82388b12",
+        "created_at": "2021-02-17T17:50:37.000+00:00",
+        "parent_ids": [
+            "2c102ee81fcf65d6e9b746e828d3a6af83c12912",
+            "1b17b449b4127823440397a447d7d9cfa2887c23"
+        ],
+        "title": "Merge branch 'fix/IS-6502_Planned-Jobs-The-Failure-should-not-be-displayed-on-the-Planned-Job-filters' into 'master'",
+        "message": "Merge branch 'fix/IS-6502_Planned-Jobs-The-Failure-should-not-be-displayed-on-the-Planned-Job-filters' into 'master'\n\nFix IS-6502: Planned Jobs: The \"Failure\" shouldn\u2019t be displayed on the Planned Job filters\n\nSee merge request infraspeak/web/web-core-client!1691\n\nClose IS-6502",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2021-02-17T17:50:37.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2021-02-17T17:50:37.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/82388b122be7203242761573cc970339101864a3"
+    },
+    "pipeline": {
+        "id": 257735290,
+        "iid": 3797,
+        "project_id": 20143087,
+        "sha": "82388b122be7203242761573cc970339101864a3",
+        "ref": "v0.95.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-02-17T17:59:42.411Z",
+        "updated_at": "2021-02-17T18:22:00.393Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/257735290"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1037321957",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 46527,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 257735290
+}

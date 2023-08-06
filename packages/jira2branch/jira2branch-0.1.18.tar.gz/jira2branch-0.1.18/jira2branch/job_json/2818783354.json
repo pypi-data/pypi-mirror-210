@@ -1,0 +1,101 @@
+{
+    "id": 2818783354,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.133.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-08-05T09:42:58.454Z",
+    "started_at": "2022-08-05T09:44:42.749Z",
+    "finished_at": "2022-08-05T09:57:23.708Z",
+    "duration": 760.958194,
+    "queued_duration": 2.543273,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:36 AM"
+    },
+    "commit": {
+        "id": "f81d122c9f265a66e129e5e55486cab7f2603595",
+        "short_id": "f81d122c",
+        "created_at": "2022-08-05T09:35:15.000+00:00",
+        "parent_ids": [
+            "0327646ed611dad178fb0717618bd62a8937e79b",
+            "d6ef775ffdd40521a132b6e5c9cd45008500247c"
+        ],
+        "title": "Merge branch 'fix/WT3-977--Where's-my-team-widget-appearing-although-the-FT_GEOLOCATION_DASHBOARD-is-active' into 'master'",
+        "message": "Merge branch 'fix/WT3-977--Where's-my-team-widget-appearing-although-the-FT_GEOLOCATION_DASHBOARD-is-active' into 'master'\n\nfix/WT3-977: Where's my team widget appearing although the FT_GEOLOCATION_DASHBOARD is active\n\nSee merge request infraspeak/web/web-core-client!4424",
+        "author_name": "Gabriel Monteiro",
+        "author_email": "gmonteiro@infraspeak.com",
+        "authored_date": "2022-08-05T09:35:15.000+00:00",
+        "committer_name": "Gabriel Monteiro",
+        "committer_email": "gmonteiro@infraspeak.com",
+        "committed_date": "2022-08-05T09:35:15.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/f81d122c9f265a66e129e5e55486cab7f2603595"
+    },
+    "pipeline": {
+        "id": 605658295,
+        "iid": 18092,
+        "project_id": 20143087,
+        "sha": "f81d122c9f265a66e129e5e55486cab7f2603595",
+        "ref": "v0.133.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-08-05T09:42:58.417Z",
+        "updated_at": "2022-08-05T10:08:58.512Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/605658295"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2818783354",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 628326,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 605658295
+}

@@ -1,0 +1,101 @@
+{
+    "id": 1202899694,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.99.7",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-04-22T11:54:20.225Z",
+    "started_at": "2021-04-22T11:56:29.453Z",
+    "finished_at": "2021-04-22T12:03:22.535Z",
+    "duration": 413.082964,
+    "queued_duration": 0.926101,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "4047889ddc125faab0a5c63b52200d843f85f928",
+        "short_id": "4047889d",
+        "created_at": "2021-04-22T11:45:35.000+00:00",
+        "parent_ids": [
+            "6fe7781c9cb674edffcd3c47c872d7f4df197662",
+            "606981d46199074a0c8a52bc405dae7e44b97b5e"
+        ],
+        "title": "Merge branch 'fix/variant-master' into 'master'",
+        "message": "Merge branch 'fix/variant-master' into 'master'\n\nfix/RT-864 -   Add Direct variant translations to Quotes/Sales\n\nSee merge request infraspeak/web/web-core-client!2021",
+        "author_name": "Eug\u00eanio Inoc\u00eancio",
+        "author_email": "einocencio@infraspeak.com",
+        "authored_date": "2021-04-22T11:45:35.000+00:00",
+        "committer_name": "Eug\u00eanio Inoc\u00eancio",
+        "committer_email": "einocencio@infraspeak.com",
+        "committed_date": "2021-04-22T11:45:35.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/4047889ddc125faab0a5c63b52200d843f85f928"
+    },
+    "pipeline": {
+        "id": 290560347,
+        "iid": 5478,
+        "project_id": 20143087,
+        "sha": "4047889ddc125faab0a5c63b52200d843f85f928",
+        "ref": "v0.99.7",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-04-22T11:54:20.184Z",
+        "updated_at": "2021-04-22T12:03:22.695Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/290560347"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1202899694",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 54597,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 290560347
+}

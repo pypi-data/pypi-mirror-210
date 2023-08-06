@@ -1,0 +1,101 @@
+{
+    "id": 1279021057,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.101.1",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-05-20T09:28:42.032Z",
+    "started_at": "2021-05-20T09:31:55.394Z",
+    "finished_at": "2021-05-20T09:40:12.670Z",
+    "duration": 497.276401,
+    "queued_duration": 1.63538,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "53711cce5c0e9d8996ba92bcea3d51669d396224",
+        "short_id": "53711cce",
+        "created_at": "2021-05-20T09:17:10.000+00:00",
+        "parent_ids": [
+            "5a338d289af3b824d42f34534c058726e147d7db",
+            "ee04dcd04f551ac56548697e83023ec979d02fe9"
+        ],
+        "title": "Merge branch 'chore/FixSuggestionsOnPlayground' into 'master'",
+        "message": "Merge branch 'chore/FixSuggestionsOnPlayground' into 'master'\n\nfix: Fix suggestions on playground\n\nSee merge request infraspeak/web/web-core-client!2184",
+        "author_name": "Ricardo Ferreira",
+        "author_email": "rferreira@infraspeak.com",
+        "authored_date": "2021-05-20T09:17:10.000+00:00",
+        "committer_name": "Ricardo Ferreira",
+        "committer_email": "rferreira@infraspeak.com",
+        "committed_date": "2021-05-20T09:17:10.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/53711cce5c0e9d8996ba92bcea3d51669d396224"
+    },
+    "pipeline": {
+        "id": 306422528,
+        "iid": 6128,
+        "project_id": 20143087,
+        "sha": "53711cce5c0e9d8996ba92bcea3d51669d396224",
+        "ref": "v0.101.1",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-05-20T09:28:41.987Z",
+        "updated_at": "2021-05-20T09:40:12.924Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/306422528"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1279021057",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 44820,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 306422528
+}

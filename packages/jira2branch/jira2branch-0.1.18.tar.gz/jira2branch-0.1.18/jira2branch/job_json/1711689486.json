@@ -1,0 +1,101 @@
+{
+    "id": 1711689486,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.113.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-10-25T11:36:42.478Z",
+    "started_at": "2021-10-25T11:40:23.625Z",
+    "finished_at": "2021-10-25T11:52:03.617Z",
+    "duration": 699.992209,
+    "queued_duration": 10.172252,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "d1783a6e9051feddf3f1cae1ddac5995811d0d7d",
+        "short_id": "d1783a6e",
+        "created_at": "2021-10-25T11:20:31.000+00:00",
+        "parent_ids": [
+            "f0f757f81f56b6e0e05527abc16b40f20dbbf14f",
+            "700683c2993ce0769436542e0371831807282f4b"
+        ],
+        "title": "Merge branch 'fix/IS-7435_Scroll-is-missing-from-web-hook-log' into 'master'",
+        "message": "Merge branch 'fix/IS-7435_Scroll-is-missing-from-web-hook-log' into 'master'\n\nFix/IS-7435: Scroll is missing from Web hook logs\n\nSee merge request infraspeak/web/web-core-client!2898",
+        "author_name": "Pedro Nogueira",
+        "author_email": "pnogueira@infraspeak.com",
+        "authored_date": "2021-10-25T11:20:31.000+00:00",
+        "committer_name": "Pedro Nogueira",
+        "committer_email": "pnogueira@infraspeak.com",
+        "committed_date": "2021-10-25T11:20:31.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/d1783a6e9051feddf3f1cae1ddac5995811d0d7d"
+    },
+    "pipeline": {
+        "id": 394772080,
+        "iid": 9783,
+        "project_id": 20143087,
+        "sha": "d1783a6e9051feddf3f1cae1ddac5995811d0d7d",
+        "ref": "v0.113.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-10-25T11:36:42.403Z",
+        "updated_at": "2021-10-25T13:25:45.619Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/394772080"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1711689486",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1782994,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 394772080
+}

@@ -1,0 +1,101 @@
+{
+    "id": 2220431854,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.123.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-03-18T09:56:39.398Z",
+    "started_at": "2022-03-18T09:58:12.496Z",
+    "finished_at": "2022-03-18T10:09:05.537Z",
+    "duration": 653.041369,
+    "queued_duration": 3.948763,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "98eb0087b98daf78ac71da5e26600e1ac8d028fe",
+        "short_id": "98eb0087",
+        "created_at": "2022-03-18T09:45:11.000+00:00",
+        "parent_ids": [
+            "d10f265545699b5b680effadc9a38071faf59357",
+            "b40c123d1ca9de2defef4b3a84a4a789bc33eee3"
+        ],
+        "title": "Merge branch 'feat/IS-7922_add_automatic_measurements_asset_analytics' into 'master'",
+        "message": "Merge branch 'feat/IS-7922_add_automatic_measurements_asset_analytics' into 'master'\n\nfeat/IS-7922: Add automatic measurement to assets measurements reports and analytic measurements reports\n\nSee merge request infraspeak/web/web-core-client!3616",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2022-03-18T09:45:11.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2022-03-18T09:45:11.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/98eb0087b98daf78ac71da5e26600e1ac8d028fe"
+    },
+    "pipeline": {
+        "id": 495447949,
+        "iid": 13812,
+        "project_id": 20143087,
+        "sha": "98eb0087b98daf78ac71da5e26600e1ac8d028fe",
+        "ref": "v0.123.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-03-18T09:56:39.309Z",
+        "updated_at": "2022-03-18T10:14:46.671Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/495447949"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2220431854",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 991178,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 495447949
+}

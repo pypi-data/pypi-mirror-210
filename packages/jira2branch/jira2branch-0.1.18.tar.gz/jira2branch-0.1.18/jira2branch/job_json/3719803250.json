@@ -1,0 +1,103 @@
+{
+    "id": 3719803250,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.147.5",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2023-02-06T11:08:37.445Z",
+    "started_at": "2023-02-06T11:10:51.157Z",
+    "finished_at": "2023-02-06T11:22:50.396Z",
+    "erased_at": null,
+    "duration": 719.239645,
+    "queued_duration": 3.472896,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "discord": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:48 AM"
+    },
+    "commit": {
+        "id": "8707deef0bff48c8f217945c63096493b80f0d43",
+        "short_id": "8707deef",
+        "created_at": "2023-02-06T11:02:39.000+00:00",
+        "parent_ids": [
+            "6596b0a66feb47911282ef045a5b1b79e841b1df",
+            "0d366330d7bf0232d584d843bcc1d2a16bb4621c"
+        ],
+        "title": "Merge branch 'fix/MC2-807-load-costs-on-sidebar' into 'master'",
+        "message": "Merge branch 'fix/MC2-807-load-costs-on-sidebar' into 'master'\n\nfix: MC2-807 fix sidebar loading costs on assets\n\nSee merge request infraspeak/web/web-core-client!5415",
+        "author_name": "Telmo Martins",
+        "author_email": "telmo.martins@infraspeak.com",
+        "authored_date": "2023-02-06T11:02:39.000+00:00",
+        "committer_name": "Telmo Martins",
+        "committer_email": "telmo.martins@infraspeak.com",
+        "committed_date": "2023-02-06T11:02:39.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/8707deef0bff48c8f217945c63096493b80f0d43"
+    },
+    "pipeline": {
+        "id": 768485995,
+        "iid": 24001,
+        "project_id": 20143087,
+        "sha": "8707deef0bff48c8f217945c63096493b80f0d43",
+        "ref": "v0.147.5",
+        "status": "success",
+        "source": "push",
+        "created_at": "2023-02-06T11:08:37.422Z",
+        "updated_at": "2023-02-06T12:11:18.126Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/768485995"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3719803250",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 4194426,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "34.244.234.2",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 768485995
+}

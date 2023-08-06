@@ -1,0 +1,101 @@
+{
+    "id": 3161927444,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.138.2",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-10-12T12:06:59.742Z",
+    "started_at": "2022-10-12T12:08:48.443Z",
+    "finished_at": "2022-10-12T12:21:36.542Z",
+    "duration": 768.099648,
+    "queued_duration": 2.248804,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "1ac36e8c438d8074fb814fea091244907d871fe6",
+        "short_id": "1ac36e8c",
+        "created_at": "2022-10-12T11:25:24.000+00:00",
+        "parent_ids": [
+            "80c95107ba9368ef50a36930ecd725403d242f66",
+            "8e3d1e057cd4633307bf23d8c4f7dbd3f912f7c4"
+        ],
+        "title": "Merge branch 'fix/IS-8607-work-orders-planned-job-orders-form-missing-translations' into 'master'",
+        "message": "Merge branch 'fix/IS-8607-work-orders-planned-job-orders-form-missing-translations' into 'master'\n\nfix/IS-8607: Work Orders planned job orders form missing translations\n\nSee merge request infraspeak/web/web-core-client!4789",
+        "author_name": "Gon\u00e7alo Marantes",
+        "author_email": "goncalo.marantes@infraspeak.com",
+        "authored_date": "2022-10-12T11:25:24.000+00:00",
+        "committer_name": "Gon\u00e7alo Marantes",
+        "committer_email": "goncalo.marantes@infraspeak.com",
+        "committed_date": "2022-10-12T11:25:24.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/1ac36e8c438d8074fb814fea091244907d871fe6"
+    },
+    "pipeline": {
+        "id": 664822302,
+        "iid": 20213,
+        "project_id": 20143087,
+        "sha": "1ac36e8c438d8074fb814fea091244907d871fe6",
+        "ref": "v0.138.2",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-10-12T12:06:59.715Z",
+        "updated_at": "2022-10-12T14:55:25.351Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/664822302"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3161927444",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 616375,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 664822302
+}

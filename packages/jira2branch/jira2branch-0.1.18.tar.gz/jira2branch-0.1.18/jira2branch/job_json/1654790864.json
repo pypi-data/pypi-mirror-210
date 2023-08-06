@@ -1,0 +1,101 @@
+{
+    "id": 1654790864,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.111.3",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-10-06T13:22:14.040Z",
+    "started_at": "2021-10-06T13:28:30.319Z",
+    "finished_at": "2021-10-06T13:39:13.530Z",
+    "duration": 643.21157,
+    "queued_duration": 36.523649,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "a144fc0c89e0527b8fce2f7c7684b49de71b9f40",
+        "short_id": "a144fc0c",
+        "created_at": "2021-10-06T13:05:16.000+00:00",
+        "parent_ids": [
+            "4117ac3680acc53edecdb928e98af9af3763cf7c",
+            "61f0a6706774a5946aca60439b2d7baecd9f0ec7"
+        ],
+        "title": "Merge branch 'fix/RT-1223_Fix-permissions-to-see-the-Quote-Request-screen' into 'master'",
+        "message": "Merge branch 'fix/RT-1223_Fix-permissions-to-see-the-Quote-Request-screen' into 'master'\n\nFix/RT-1223: Fix permissions to see the Quote Request screen\n\nSee merge request infraspeak/web/web-core-client!2769",
+        "author_name": "Nelson Gon\u00e7alves",
+        "author_email": "ngoncalves@infraspeak.com",
+        "authored_date": "2021-10-06T13:05:16.000+00:00",
+        "committer_name": "Nelson Gon\u00e7alves",
+        "committer_email": "ngoncalves@infraspeak.com",
+        "committed_date": "2021-10-06T13:05:16.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/a144fc0c89e0527b8fce2f7c7684b49de71b9f40"
+    },
+    "pipeline": {
+        "id": 383576377,
+        "iid": 9126,
+        "project_id": 20143087,
+        "sha": "a144fc0c89e0527b8fce2f7c7684b49de71b9f40",
+        "ref": "v0.111.3",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-10-06T13:22:13.985Z",
+        "updated_at": "2021-10-06T16:08:13.168Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/383576377"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1654790864",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 34858,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 383576377
+}

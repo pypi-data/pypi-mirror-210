@@ -1,0 +1,101 @@
+{
+    "id": 3057566812,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.136.16",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-09-20T18:41:16.087Z",
+    "started_at": "2022-09-20T18:43:05.648Z",
+    "finished_at": "2022-09-20T18:56:32.515Z",
+    "duration": 806.866372,
+    "queued_duration": 0.647875,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:34 AM"
+    },
+    "commit": {
+        "id": "b83bf28b3e2cb2c4132ac5369cf203ede212cea6",
+        "short_id": "b83bf28b",
+        "created_at": "2022-09-20T18:25:30.000+00:00",
+        "parent_ids": [
+            "1ec90f6a007eafc751775d8f76859f2c54624658",
+            "fa50b14c507865b0158280a393e7c4e99207b421"
+        ],
+        "title": "Merge branch 'fix/CS-309-fe-allow-for-dates-in-the-future-in-the-date-selection-dialog' into 'master'",
+        "message": "Merge branch 'fix/CS-309-fe-allow-for-dates-in-the-future-in-the-date-selection-dialog' into 'master'\n\nCS-309: Allow for dates in the future in the date selection dialog\n\nSee merge request infraspeak/web/web-core-client!4666",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-09-20T18:25:30.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-09-20T18:25:30.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/b83bf28b3e2cb2c4132ac5369cf203ede212cea6"
+    },
+    "pipeline": {
+        "id": 645842755,
+        "iid": 19560,
+        "project_id": 20143087,
+        "sha": "b83bf28b3e2cb2c4132ac5369cf203ede212cea6",
+        "ref": "v0.136.16",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-09-20T18:41:16.057Z",
+        "updated_at": "2022-09-21T09:37:56.506Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/645842755"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3057566812",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 624496,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 645842755
+}

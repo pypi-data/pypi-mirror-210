@@ -1,0 +1,101 @@
+{
+    "id": 3038371337,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.136.14",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-09-16T08:25:43.733Z",
+    "started_at": "2022-09-16T08:27:58.487Z",
+    "finished_at": "2022-09-16T08:41:16.829Z",
+    "duration": 798.342158,
+    "queued_duration": 2.120255,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:34 AM"
+    },
+    "commit": {
+        "id": "ddd0ee762b18df61df9fca9550a8a0658518e8f9",
+        "short_id": "ddd0ee76",
+        "created_at": "2022-09-16T08:10:40.000+00:00",
+        "parent_ids": [
+            "ae8d728ebc1039b121a89421059607e9c706fa94",
+            "de8b9f66a996f0e5548f24c0ddfa9a72a4937136"
+        ],
+        "title": "Merge branch 'fix/IS-8547-settings-cant-delete-non-mandatory-fields-from-entity-details' into 'master'",
+        "message": "Merge branch 'fix/IS-8547-settings-cant-delete-non-mandatory-fields-from-entity-details' into 'master'\n\nfix/IS-8547 Settings: can't delete non-mandatory fields from Entity Details\n\nSee merge request infraspeak/web/web-core-client!4653",
+        "author_name": "Henrique Figueiredo",
+        "author_email": "hfigueiredo@infraspeak.com",
+        "authored_date": "2022-09-16T08:10:40.000+00:00",
+        "committer_name": "Henrique Figueiredo",
+        "committer_email": "hfigueiredo@infraspeak.com",
+        "committed_date": "2022-09-16T08:10:40.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/ddd0ee762b18df61df9fca9550a8a0658518e8f9"
+    },
+    "pipeline": {
+        "id": 642027001,
+        "iid": 19450,
+        "project_id": 20143087,
+        "sha": "ddd0ee762b18df61df9fca9550a8a0658518e8f9",
+        "ref": "v0.136.14",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-09-16T08:25:43.689Z",
+        "updated_at": "2022-09-16T08:48:28.893Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/642027001"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3038371337",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 623966,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 642027001
+}

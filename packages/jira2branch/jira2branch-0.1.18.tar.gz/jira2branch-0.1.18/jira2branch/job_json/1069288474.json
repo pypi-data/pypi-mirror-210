@@ -1,0 +1,101 @@
+{
+    "id": 1069288474,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.95.13",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-03-03T09:36:11.082Z",
+    "started_at": "2021-03-03T09:38:40.720Z",
+    "finished_at": "2021-03-03T09:46:36.485Z",
+    "duration": 475.765034,
+    "queued_duration": 0.900155,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "447dc70ff1233c99db7b27716ffc3646380b4b42",
+        "short_id": "447dc70f",
+        "created_at": "2021-03-03T09:28:57.000+00:00",
+        "parent_ids": [
+            "caeb0bb54c2dcd49a0767a4b0d2b08d4b8dd74b6",
+            "33e9ffa6eaee2469071d8a3bac2d4ece86cc6d70"
+        ],
+        "title": "Merge branch 'fix/CFT-483-strange-behaviour-changing-positions-card-interventions-works' into 'master'",
+        "message": "Merge branch 'fix/CFT-483-strange-behaviour-changing-positions-card-interventions-works' into 'master'\n\nfix/CFT-483 - [FE] Strange behaviour when changing interventions positions\n\nSee merge request infraspeak/web/web-core-client!1776",
+        "author_name": "Eug\u00eanio Inoc\u00eancio",
+        "author_email": "einocencio@infraspeak.com",
+        "authored_date": "2021-03-03T09:28:57.000+00:00",
+        "committer_name": "Eug\u00eanio Inoc\u00eancio",
+        "committer_email": "einocencio@infraspeak.com",
+        "committed_date": "2021-03-03T09:28:57.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/447dc70ff1233c99db7b27716ffc3646380b4b42"
+    },
+    "pipeline": {
+        "id": 264646360,
+        "iid": 4176,
+        "project_id": 20143087,
+        "sha": "447dc70ff1233c99db7b27716ffc3646380b4b42",
+        "ref": "v0.95.13",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-03-03T09:36:11.024Z",
+        "updated_at": "2021-03-03T09:46:36.877Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/264646360"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1069288474",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 46918,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 264646360
+}

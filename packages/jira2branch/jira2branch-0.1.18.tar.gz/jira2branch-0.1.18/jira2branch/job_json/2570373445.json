@@ -1,0 +1,101 @@
+{
+    "id": 2570373445,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.129.8",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-06-09T16:59:11.721Z",
+    "started_at": "2022-06-09T17:03:59.210Z",
+    "finished_at": "2022-06-09T17:15:51.914Z",
+    "duration": 712.703822,
+    "queued_duration": 0.804017,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:38 AM"
+    },
+    "commit": {
+        "id": "dcb0b7900bd4288c2b0ee02ab5515c4e18f2813c",
+        "short_id": "dcb0b790",
+        "created_at": "2022-06-09T16:52:49.000+00:00",
+        "parent_ids": [
+            "88548f843c3d84431a6444b063b4b67ef449c609",
+            "efc4bb5503b7219b94f3632b344f0ee5c23d65f3"
+        ],
+        "title": "Merge branch 'feat/IS-8182_Change_maximun_widget_interval_dashboard' into 'master'",
+        "message": "Merge branch 'feat/IS-8182_Change_maximun_widget_interval_dashboard' into 'master'\n\nfeat/IS-8182: Dashboard - Change maximum widget interval\n\nSee merge request infraspeak/web/web-core-client!4130",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2022-06-09T16:52:49.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2022-06-09T16:52:49.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/dcb0b7900bd4288c2b0ee02ab5515c4e18f2813c"
+    },
+    "pipeline": {
+        "id": 560040711,
+        "iid": 16494,
+        "project_id": 20143087,
+        "sha": "dcb0b7900bd4288c2b0ee02ab5515c4e18f2813c",
+        "ref": "v0.129.8",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-06-09T16:59:11.685Z",
+        "updated_at": "2022-06-09T17:59:31.297Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/560040711"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2570373445",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 744767,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 560040711
+}

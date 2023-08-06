@@ -1,0 +1,101 @@
+{
+    "id": 1392586733,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.104.5",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-07-01T13:56:51.725Z",
+    "started_at": "2021-07-01T14:00:48.025Z",
+    "finished_at": "2021-07-01T14:10:00.421Z",
+    "duration": 552.396312,
+    "queued_duration": 20.538246,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "9ec5e3afa6c17f462a4f74579407cfb7ec7d638a",
+        "short_id": "9ec5e3af",
+        "created_at": "2021-07-01T13:44:05.000+00:00",
+        "parent_ids": [
+            "8092f874225141f864ae040618ed976acdf5bc76",
+            "9a9761954fd69d1e8217e9d315dc3cee07a5bd53"
+        ],
+        "title": "Merge branch 'fix/IS-7100_Isnt_possible_to_open_the_Closed_planned_jobs' into 'master'",
+        "message": "Merge branch 'fix/IS-7100_Isnt_possible_to_open_the_Closed_planned_jobs' into 'master'\n\nManager App: fix/IS-7100: Isn't possible to open the Closed planned jobs\n\nSee merge request infraspeak/web/web-core-client!2335",
+        "author_name": "Ana Bas\u00edlio",
+        "author_email": "abasilio@infraspeak.com",
+        "authored_date": "2021-07-01T13:44:05.000+00:00",
+        "committer_name": "Ana Bas\u00edlio",
+        "committer_email": "abasilio@infraspeak.com",
+        "committed_date": "2021-07-01T13:44:05.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/9ec5e3afa6c17f462a4f74579407cfb7ec7d638a"
+    },
+    "pipeline": {
+        "id": 330339366,
+        "iid": 6944,
+        "project_id": 20143087,
+        "sha": "9ec5e3afa6c17f462a4f74579407cfb7ec7d638a",
+        "ref": "v0.104.5",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-07-01T13:56:51.674Z",
+        "updated_at": "2021-07-01T14:10:00.730Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/330339366"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1392586733",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 39480,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 330339366
+}

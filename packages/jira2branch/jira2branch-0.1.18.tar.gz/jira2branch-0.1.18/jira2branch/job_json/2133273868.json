@@ -1,0 +1,101 @@
+{
+    "id": 2133273868,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.121.20",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-02-24T15:09:11.251Z",
+    "started_at": "2022-02-24T15:10:41.275Z",
+    "finished_at": "2022-02-24T15:21:41.085Z",
+    "duration": 659.810081,
+    "queued_duration": 2.20698,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "814be0f4e057f2ae61caba604a9446e8596ca63f",
+        "short_id": "814be0f4",
+        "created_at": "2022-02-24T15:02:54.000+00:00",
+        "parent_ids": [
+            "43578e64aa34cd887bfb55afb2621096e5c55a1a",
+            "3fc7619713d84b57f9927925dea75cd3088fab92"
+        ],
+        "title": "Merge branch 'fix/is-7822-settings---buildings-location-type-filter-in' into 'master'",
+        "message": "Merge branch 'fix/is-7822-settings---buildings-location-type-filter-in' into 'master'\n\nfix/IS-7822: Settings - Buildings: location type filter inside locations is not working\n\nSee merge request infraspeak/web/web-core-client!3473",
+        "author_name": "Gabriel Monteiro",
+        "author_email": "gmonteiro@infraspeak.com",
+        "authored_date": "2022-02-24T15:02:54.000+00:00",
+        "committer_name": "Gabriel Monteiro",
+        "committer_email": "gmonteiro@infraspeak.com",
+        "committed_date": "2022-02-24T15:02:54.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/814be0f4e057f2ae61caba604a9446e8596ca63f"
+    },
+    "pipeline": {
+        "id": 478717238,
+        "iid": 13136,
+        "project_id": 20143087,
+        "sha": "814be0f4e057f2ae61caba604a9446e8596ca63f",
+        "ref": "v0.121.20",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-02-24T15:09:11.187Z",
+        "updated_at": "2022-02-24T15:39:22.659Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/478717238"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2133273868",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1245274,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 478717238
+}

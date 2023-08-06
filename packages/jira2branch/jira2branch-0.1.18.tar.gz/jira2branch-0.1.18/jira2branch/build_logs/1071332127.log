@@ -1,0 +1,596 @@
+[0KRunning with gitlab-runner 13.7.0 (943fc252)
+[0;m[0K  on Web Core Client - Tests- docker+machine Gu_oFDiR
+[0;msection_start:1614810057:prepare_executor[0K[0K[36;1mPreparing the "docker+machine" executor[0;m
+[0;m[0KUsing Docker executor with image node:12.16.1 ...
+[0;m[0KPulling docker image node:12.16.1 ...
+[0;m[0KUsing docker image sha256:88c089733a3b980b3517e8e2e8afa46b338f69d7562550cb3c2e9fd852a2fbac for node:12.16.1 with digest node@sha256:46f4c17e1edbde36d60a9f6362db7912cfe301bac89afef7cc92421ab3e7ca18 ...
+[0;msection_end:1614810067:prepare_executor[0Ksection_start:1614810067:prepare_script[0K[0K[36;1mPreparing environment[0;m
+[0;mRunning on runner-guofdir-project-20143087-concurrent-0 via runner-guofdir-IS-Pipeline-gitlab-runner-1614809244-b18dd90d...
+section_end:1614810068:prepare_script[0Ksection_start:1614810068:get_sources[0K[0K[36;1mGetting source from Git repository[0;m
+[0;m[32;1mFetching changes with git depth set to 1...[0;m
+Initialized empty Git repository in /builds/infraspeak/web/web-core-client/.git/
+[32;1mCreated fresh repository.[0;m
+[32;1mChecking out a53b54d7 as v0.96.0...[0;m
+
+[32;1mSkipping Git submodules setup[0;m
+section_end:1614810072:get_sources[0Ksection_start:1614810072:restore_cache[0K[0K[36;1mRestoring cache[0;m
+[0;m[32;1mChecking cache for v0-96-0...[0;m
+Downloading cache.zip from https://is-gitlab-runners-cache.s3.dualstack.eu-west-1.amazonaws.com/project/20143087/v0-96-0[0;m 
+[32;1mSuccessfully extracted cache[0;m
+section_end:1614810105:restore_cache[0Ksection_start:1614810105:step_script[0K[0K[36;1mExecuting "step_script" stage of the job script[0;m
+[0;m[32;1m$ npm run build-production[0;m
+
+> infraspeak-web-core-client@0.96.0 build-production /builds/infraspeak/web/web-core-client
+> vue-cli-service build --mode production --dest dist
+
+
+-  Building for production...
+Starting type checking service...
+Using 1 worker with 2048MB memory limit
+ WARNING  Compiled with 17 warnings10:28:15 PM
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Expected indentation of 4 spaces but found 0 spaces (vue/script-indent) at src/components/card/costs/labor/components/table/CardCostsLaborTable.vue:62:1:
+  60 |     import { Event } from '@/models/event/Event.model'
+  61 |     import { IOperatorManpowerEvents } from '../../CardCostsLabor.model'
+> 62 | import { rootStore } from '@/store/root/Root.store'
+     | ^
+  63 | 
+  64 |     @Component({
+  65 |         components: {
+
+
+1 error found.
+1 error potentially fixable with the `--fix` option.
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Trailing spaces not allowed (no-trailing-spaces) at src/views/old-cms/ScreenOldCms.vue:283:1:
+  281 |         width: 100%;
+  282 |         height: 100%;
+> 283 |         
+      | ^
+  284 |         &__iframe {
+  285 |             position: absolute;
+  286 |             top: 0;
+
+
+1 error found.
+1 error potentially fixable with the `--fix` option.
+
+Module Warning (from ./node_modules/eslint-loader/index.js):
+error: Unexpected console statement (no-console) at src/components/chart/analytic/ChartAnalytic.vue:249:25:
+  247 |                         this.isLoadingData = false
+  248 | 
+> 249 |                         console.error('error getting data: ', error)
+      |                         ^
+  250 |                     })
+  251 |             }
+  252 | 
+
+
+error: Unexpected console statement (no-console) at src/components/chart/analytic/ChartAnalytic.vue:329:29:
+  327 |                         })
+  328 |                         .catch(error => {
+> 329 |                             console.error('error exporting data: ', error)
+      |                             ^
+  330 |                         })
+  331 |                         .finally(progressNoty.close)
+  332 | 
+
+
+2 errors found.
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+ warning  in ./src/models/Base.transformer.ts
+
+Module Warning (from ./node_modules/thread-loader/dist/cjs.js):
+
+/builds/infraspeak/web/web-core-client/src/models/Base.transformer.ts
+  100:17  error  Unexpected console statement  no-console
+  116:9   error  Unexpected console statement  no-console
+
+✖ 2 problems (2 errors, 0 warnings)
+
+
+ @ ./src/models/extension/Extension.transformer.v3.ts 8:0-60 69:2-17
+ @ ./src/api/extension.api.ts
+ @ ./src/store/root/Root.store.ts
+ @ ./src/plugins/analytics/analytics.plugin.ts
+ @ ./src/main.ts
+ @ multi ./src/main.ts
+
+ warning  in ./src/store/root/Root.store.ts
+
+Module Warning (from ./node_modules/thread-loader/dist/cjs.js):
+
+/builds/infraspeak/web/web-core-client/src/store/root/Root.store.ts
+  354:17  error  Unexpected console statement  no-console
+
+✖ 1 problem (1 error, 0 warnings)
+
+
+ @ ./src/plugins/analytics/analytics.plugin.ts 7:0-52 15:14-23 16:16-25 17:16-25 20:8-17 21:27-36 22:28-37 45:19-28 45:49-58
+ @ ./src/main.ts
+ @ multi ./src/main.ts
+
+ warning  
+
+chunk chunk-000011f4 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/tag/file/TagFile.vue?vue&type=style&index=0&id=0f740e49&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/navigation-panel/IsNavigationPanel.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, scheduled-works-screen, purchases-screen, sales-screen, sales-quotes, works-screen, screen-direct-app, , , , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, 
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/section-title/IsSectionTitle.vue?vue&type=style&index=0&id=436d790a&lang=scss&scoped=true&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, scheduled-works-screen, purchases-screen, sales-screen, sales-quotes, works-screen, screen-direct-app, , , , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, 
+
+ warning  
+
+chunk chunk-000011f4 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/section-title/IsSectionTitle.vue?vue&type=style&index=0&id=436d790a&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/card/file/CardFile.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) assets-screen, 
+   - while fulfilling desired order of chunk group(s) failures-screen, scheduled-works-screen, purchases-screen, sales-screen, sales-quotes, works-screen, screen-direct-app, , , , , , 
+
+ warning  
+
+chunk chunk-000011f4 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/card/file/CardFile.vue?vue&type=style&index=0&lang=scss&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/navigation-panel/IsNavigationPanel.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, scheduled-works-screen, purchases-screen, sales-screen, sales-quotes, works-screen, screen-direct-app, , , , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, 
+
+ warning  
+
+chunk chunk-11114a50 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/summary/operator/SummaryOperator.vue?vue&type=style&index=0&id=51377b1a&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/field/IsField.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, purchases-screen, sales-screen, sales-quotes, screen-direct-app, , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, scheduled-works-screen, works-screen, , , , 
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/summary/contact/SummaryContact.vue?vue&type=style&index=0&id=8bf1c9a2&lang=scss&scoped=true&
+   - couldn't fulfill desired order of chunk group(s) sales-quotes, screen-direct-app, , 
+   - while fulfilling desired order of chunk group(s) assets-screen, failures-screen, scheduled-works-screen, purchases-screen, sales-screen, works-screen, , , , , , 
+
+ warning  
+
+chunk chunk-11114a50 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/summary/contact/SummaryContact.vue?vue&type=style&index=0&id=8bf1c9a2&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/chip/operator/ChipOperator.vue?vue&type=style&index=0&id=6fb0e1b8&lang=scss&scoped=true&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, scheduled-works-screen, purchases-screen, sales-screen, works-screen, , , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, sales-quotes, screen-direct-app, , , 
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/field/IsField.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, scheduled-works-screen, purchases-screen, sales-screen, sales-quotes, works-screen, , , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, screen-direct-app, , , 
+
+ warning  
+
+chunk chunk-11114a50 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/chip/operator/ChipOperator.vue?vue&type=style&index=0&id=6fb0e1b8&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/field/IsField.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) failures-screen, purchases-screen, sales-screen, sales-quotes, screen-direct-app, , , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, scheduled-works-screen, works-screen, , , , 
+
+ warning  
+
+chunk chunk-323a1331 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/assets/images/IsGearLogo.vue?vue&type=style&index=0&lang=css&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/tag/popover/IsTagPopover.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) assets-screen, failures-screen, planner-screen, purchases-screen, sales-screen, sales-quotes, , , , , , , , , , , , , 
+   - while fulfilling desired order of chunk group(s) scheduled-works-screen, works-screen, screen-direct-app, , , , 
+
+ warning  
+
+chunk chunk-323a1331 [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/tag/popover/IsTagPopover.vue?vue&type=style&index=0&lang=scss&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/select/IsSelect.vue?vue&type=style&index=0&lang=scss&
+   - couldn't fulfill desired order of chunk group(s) scheduled-works-screen, works-screen, screen-direct-app, , , 
+   - while fulfilling desired order of chunk group(s) assets-screen, failures-screen, planner-screen, purchases-screen, sales-screen, sales-quotes, , , , , , , , , , , , , , 
+
+ warning  
+
+chunk chunk-6ac3dadd [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/summary/operator/SummaryOperator.vue?vue&type=style&index=0&id=51377b1a&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/time-picker/IsTimePicker.vue?vue&type=style&index=0&id=84536cda&lang=scss&scoped=true&
+   - couldn't fulfill desired order of chunk group(s) , 
+   - while fulfilling desired order of chunk group(s) planner-screen
+
+ warning  
+
+chunk chunk-6ac3dadd [mini-css-extract-plugin]
+Conflicting order. Following module has been added:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/chip/operator/ChipOperator.vue?vue&type=style&index=0&id=6fb0e1b8&lang=scss&scoped=true&
+despite it was not able to fulfill desired ordering with these modules:
+ * css ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/common/time-picker/IsTimePicker.vue?vue&type=style&index=0&id=84536cda&lang=scss&scoped=true&
+   - couldn't fulfill desired order of chunk group(s) , 
+   - while fulfilling desired order of chunk group(s) planner-screen
+
+ warning  
+
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  fonts/fa-light-300.1980e028.eot (484 KiB)
+  fonts/fa-light-300.f056755c.woff (247 KiB)
+  fonts/fa-light-300.5bdaa858.ttf (483 KiB)
+  fonts/fa-solid-900.eb397dfa.eot (379 KiB)
+  fonts/fa-solid-900.ba008862.ttf (378 KiB)
+  img/fa-solid-900.bb8ecec4.svg (1.7 MiB)
+  img/fa-light-300.4433b4f4.svg (2.31 MiB)
+  css/app.20b4103f.css (375 KiB)
+  js/app.ba6b4d63.js (417 KiB)
+  js/assets-screen.a7d1c2fc.js (1.26 MiB)
+  js/chunk-0052572d.7cee3df4.js (253 KiB)
+  js/chunk-236e148a.120621a6.js (1.15 MiB)
+  js/chunk-7780c7ff.de1e925d.js (379 KiB)
+  js/chunk-b5ab066e.83c44fe2.js (929 KiB)
+  js/chunk-vendors.84a8f023.js (1.87 MiB)
+  js/dashboard-screen.edd0fe01.js (1.29 MiB)
+  js/failures-screen.13cd8f63.js (340 KiB)
+  js/purchases-screen.b80369f3.js (271 KiB)
+  js/sales-quotes.43cefd1d.js (348 KiB)
+  js/sales-screen.b0e66851.js (360 KiB)
+  js/scheduled-works-screen.fa85bc90.js (554 KiB)
+  js/screen-direct-app.543626fc.js (292 KiB)
+  js/utilities-screen.4521d07d.js (926 KiB)
+  js/works-screen.0af42fa1.js (255 KiB)
+
+ warning  
+
+entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (2.64 MiB)
+      css/chunk-vendors.b7d36435.css
+      js/chunk-vendors.84a8f023.js
+      css/app.20b4103f.css
+      js/app.ba6b4d63.js
+
+
+  File                                      Size             Gzipped
+
+  dist/js/chunk-vendors.84a8f023.js         1911.19 KiB      530.25 KiB
+  dist/js/dashboard-screen.edd0fe01.js      1319.41 KiB      426.27 KiB
+  dist/js/assets-screen.a7d1c2fc.js         1287.71 KiB      409.84 KiB
+  dist/js/chunk-236e148a.120621a6.js        1173.89 KiB      380.37 KiB
+  dist/js/chunk-b5ab066e.83c44fe2.js        928.73 KiB       416.20 KiB
+  dist/js/utilities-screen.4521d07d.js      925.57 KiB       312.61 KiB
+  dist/js/scheduled-works-screen.fa85bc9    554.39 KiB       108.12 KiB
+  0.js
+  dist/js/app.ba6b4d63.js                   416.93 KiB       84.33 KiB
+  dist/js/chunk-7780c7ff.de1e925d.js        379.43 KiB       70.19 KiB
+  dist/js/sales-screen.b0e66851.js          359.53 KiB       73.52 KiB
+  dist/js/sales-quotes.43cefd1d.js          347.73 KiB       67.53 KiB
+  dist/js/failures-screen.13cd8f63.js       339.77 KiB       67.84 KiB
+  dist/js/screen-direct-app.543626fc.js     291.88 KiB       55.87 KiB
+  dist/js/purchases-screen.b80369f3.js      271.43 KiB       55.80 KiB
+  dist/js/works-screen.0af42fa1.js          255.08 KiB       53.73 KiB
+  dist/js/chunk-0052572d.7cee3df4.js        253.34 KiB       48.68 KiB
+  dist/js/chunk-2926440c.d1f28c12.js        236.74 KiB       42.19 KiB
+  dist/js/chunk-4b50dfb9.d575103b.js        233.37 KiB       43.30 KiB
+  dist/js/chunk-6f78b096.95f87444.js        179.29 KiB       33.46 KiB
+  dist/js/chunk-5a3d01c9.11a4d76c.js        179.15 KiB       33.97 KiB
+  dist/js/home-screen.230fc180.js           164.81 KiB       30.17 KiB
+  dist/js/planner-screen.6a3cd047.js        157.60 KiB       31.50 KiB
+  dist/js/chunk-74887f76.59e9827e.js        141.54 KiB       39.40 KiB
+  dist/js/chunk-02044358.4168932a.js        124.94 KiB       23.89 KiB
+  dist/js/chunk-66311c2d.f9057f9f.js        76.32 KiB        14.23 KiB
+  dist/js/chunk-64a06108.d4fc5fec.js        69.12 KiB        14.36 KiB
+  dist/js/client-prices-old-cms-screen.2    67.84 KiB        17.04 KiB
+  955274d.js
+  dist/js/chunk-6f7bde56.3e314848.js        57.62 KiB        12.78 KiB
+  dist/js/iot-management-screen.b75407f7    46.74 KiB        11.50 KiB
+  .js
+  dist/js/webhooks-management-screen.706    46.40 KiB        10.59 KiB
+  c385d.js
+  dist/js/home-screen~planner-screen.c73    45.02 KiB        9.91 KiB
+  432a4.js
+  dist/js/personal-access-tokens-managem    44.40 KiB        9.74 KiB
+  ent-screen.044beace.js
+  dist/js/webhook-logs-management-screen    43.71 KiB        9.95 KiB
+  .d0ab2d7c.js
+  dist/js/chunk-dd9232fc.9a143131.js        42.80 KiB        9.41 KiB
+  dist/js/chunk-912b3dd8.71769706.js        42.44 KiB        9.39 KiB
+  dist/js/utility-types-management-scree    42.15 KiB        8.32 KiB
+  n.efa7104c.js
+  dist/js/analytics-screen.e68ade7c.js      39.69 KiB        9.77 KiB
+  dist/js/chunk-4aa4f8d7.62207317.js        39.02 KiB        9.22 KiB
+  dist/js/cost-center-management-screen.    38.32 KiB        8.40 KiB
+  224d292d.js
+  dist/js/chunk-fffe451a.867ab9b5.js        37.77 KiB        8.78 KiB
+  dist/js/settings-screen.3af44431.js       37.16 KiB        9.17 KiB
+  dist/js/chunk-24819957.0dbb43e9.js        36.14 KiB        11.00 KiB
+  dist/js/chunk-5172609e.c63ae26b.js        35.19 KiB        8.22 KiB
+  dist/js/chunk-20da7ef2.3010903e.js        34.97 KiB        8.23 KiB
+  dist/js/gatekeeper-screen.1ff5d865.js     34.17 KiB        7.63 KiB
+  dist/js/chunk-f701cf02.ac96a319.js        33.46 KiB        8.32 KiB
+  dist/js/chunk-c3fab488.be4c5d4a.js        32.16 KiB        7.85 KiB
+  dist/js/chunk-03083898.cad02cc0.js        31.76 KiB        7.54 KiB
+  dist/js/welcome-screen.ef5b933b.js        31.08 KiB        6.81 KiB
+  dist/js/chunk-0740d18e.a8829ac8.js        30.94 KiB        7.42 KiB
+  dist/js/chunk-51a99e1c.d576a175.js        30.64 KiB        9.42 KiB
+  dist/js/chunk-12f84066.7b62be01.js        30.29 KiB        9.28 KiB
+  dist/precache-manifest.c0256ca480b6e9f    29.94 KiB        7.35 KiB
+  fa84f4553fbe4a72e.js
+  dist/js/chunk-bb8bb71c.c56a4d97.js        29.89 KiB        7.40 KiB
+  dist/js/chunk-000011f4.5cda8abc.js        29.27 KiB        8.95 KiB
+  dist/js/chunk-bd6c36a6.28dba69f.js        26.66 KiB        6.54 KiB
+  dist/js/chunk-edd6f50e.69189985.js        26.52 KiB        6.80 KiB
+  dist/js/chunk-6e79fb70.7fcde42c.js        26.33 KiB        6.48 KiB
+  dist/js/chunk-4099a423.c269f116.js        26.09 KiB        5.85 KiB
+  dist/js/integrations-management-screen    25.75 KiB        7.49 KiB
+  .d5a7d578.js
+  dist/js/chunk-ad7aaefc.15021fbc.js        25.68 KiB        8.25 KiB
+  dist/js/chunk-79831f1f.ff8468b4.js        25.10 KiB        7.91 KiB
+  dist/js/old-cms-screen.557b3183.js        25.08 KiB        6.50 KiB
+  dist/js/chunk-46a43f9d.d4f2892c.js        24.79 KiB        6.44 KiB
+  dist/js/chunk-63ec3a1d.0f28bd22.js        24.77 KiB        6.56 KiB
+  dist/js/chunk-26183dd5.ead2d030.js        24.15 KiB        5.11 KiB
+  dist/js/chunk-8f15fc56.3fd5721f.js        23.82 KiB        7.89 KiB
+  dist/js/chunk-79f7fb9b.3c01294e.js        23.54 KiB        5.21 KiB
+  dist/js/chunk-d447b52a.67c85f70.js        23.19 KiB        5.16 KiB
+  dist/js/cost-center-management-screen~    21.81 KiB        7.38 KiB
+  gatekeeper-screen~personal-access-toke
+  ns-management-screen~utilities-s~75067
+  62a.1d5da5ab.js
+  dist/js/chunk-3683d3dc.eadee5b4.js        21.12 KiB        5.37 KiB
+  dist/js/chunk-0b963646.4515513b.js        21.02 KiB        5.50 KiB
+  dist/js/chunk-50ba1901.402795eb.js        20.61 KiB        5.49 KiB
+  dist/js/dashboard-screen~home-screen~p    20.29 KiB        6.57 KiB
+  lanner-screen.77039e9f.js
+  dist/js/chunk-514f34b5.a6968821.js        19.91 KiB        4.76 KiB
+  dist/js/chunk-3f264440.8b3220c2.js        19.18 KiB        6.93 KiB
+  dist/js/chunk-2f39d752.6af1742e.js        18.98 KiB        5.26 KiB
+  dist/js/welcome-whats-new.043cf067.js     18.35 KiB        5.87 KiB
+  dist/js/chunk-42b58206.c79e9068.js        18.26 KiB        4.49 KiB
+  dist/js/chunk-2c474fae.76085585.js        17.99 KiB        6.68 KiB
+  dist/js/chunk-d486d454.61f7903a.js        17.79 KiB        4.87 KiB
+  dist/js/chunk-6337fcfc.90794efc.js        17.11 KiB        6.48 KiB
+  dist/js/chunk-00679d99.073cbda6.js        16.10 KiB        3.13 KiB
+  dist/js/chunk-323a1331.e7ca7d98.js        15.20 KiB        4.35 KiB
+  dist/js/chunk-351f8eab.ff09bbc9.js        14.38 KiB        3.17 KiB
+  dist/js/chunk-11114a50.29ed4d06.js        13.49 KiB        3.17 KiB
+  dist/js/hub-apps~hub-screen.f104b568.j    13.37 KiB        3.68 KiB
+  s
+  dist/js/chunk-5db3340d.eeaff9a9.js        12.59 KiB        5.20 KiB
+  dist/js/chunk-6ac3dadd.acd427b1.js        12.30 KiB        2.95 KiB
+  dist/js/chunk-60cc3e74.a78a7d82.js        12.18 KiB        2.84 KiB
+  dist/js/chunk-5439ff79.52a4388e.js        12.12 KiB        3.31 KiB
+  dist/js/chunk-36e50286.a9e9a8b1.js        11.93 KiB        3.15 KiB
+  dist/js/chunk-64aebc23.185e271e.js        11.54 KiB        3.25 KiB
+  dist/js/hub-screen.ef57b3e1.js            10.55 KiB        2.91 KiB
+  dist/js/hub-apps.d046d644.js              10.46 KiB        2.88 KiB
+  dist/js/account-blocked.5527c3e1.js       10.24 KiB        3.77 KiB
+  dist/js/login-screen.04e5360f.js          9.90 KiB         3.92 KiB
+  dist/js/chunk-053c745c.13d3c19c.js        8.68 KiB         2.69 KiB
+  dist/js/chunk-a4692d46.1a0c8e15.js        8.11 KiB         2.76 KiB
+  dist/js/chunk-ca4180b2.445eab52.js        7.81 KiB         2.24 KiB
+  dist/js/chunk-5b653a01.21c3dd8c.js        7.79 KiB         2.70 KiB
+  dist/js/chunk-f2b884e2.c90b97df.js        7.54 KiB         2.39 KiB
+  dist/js/chunk-5befc116.a41fcb28.js        7.28 KiB         2.03 KiB
+  dist/js/chunk-27ecb80c.12a895d1.js        7.00 KiB         2.22 KiB
+  dist/js/chunk-7c25761a.e53e01ed.js        6.96 KiB         2.36 KiB
+  dist/js/chunk-751bd99d.c09d698f.js        6.03 KiB         1.71 KiB
+  dist/js/chunk-61bb3ffe.a3c816d5.js        5.76 KiB         1.90 KiB
+  dist/js/chunk-76c155c2.e8494f2a.js        4.41 KiB         1.31 KiB
+  dist/js/chunk-7ea97edc.0bc4258c.js        4.07 KiB         1.52 KiB
+  dist/js/chunk-2d0d8057.3c3ed904.js        3.53 KiB         1.23 KiB
+  dist/js/settings-page-not-found.1319c4    3.46 KiB         1.56 KiB
+  36.js
+  dist/basic.js                             3.36 KiB         1.05 KiB
+  dist/js/chunk-2d212ff2.6629aa81.js        3.05 KiB         1.17 KiB
+  dist/js/chunk-2d2261a8.da626f13.js        3.02 KiB         1.24 KiB
+  dist/js/chunk-2d0b1be8.d9984fd0.js        2.99 KiB         1.16 KiB
+  dist/js/chunk-2d0e91af.ad0f37a9.js        2.69 KiB         1.18 KiB
+  dist/js/chunk-2d0e1dae.cdc5bfc6.js        2.67 KiB         1.22 KiB
+  dist/js/chunk-2d0e4a7c.6b07ec80.js        2.65 KiB         1.19 KiB
+  dist/js/chunk-2d0ce796.5f2a3efe.js        2.57 KiB         1.20 KiB
+  dist/js/chunk-2d0db486.34bed1c2.js        2.55 KiB         1.19 KiB
+  dist/js/chunk-2d21b27e.07be6566.js        2.54 KiB         1.13 KiB
+  dist/js/chunk-421f3692.993d7027.js        2.53 KiB         0.96 KiB
+  dist/js/chunk-2d229616.f7ca2457.js        2.52 KiB         1.17 KiB
+  dist/js/chunk-2d228e49.d768461f.js        2.46 KiB         1.11 KiB
+  dist/js/chunk-2d22d238.2e039c12.js        2.45 KiB         1.15 KiB
+  dist/js/chunk-2d0b2213.6a128350.js        2.43 KiB         1.07 KiB
+  dist/js/chunk-7f881f28.9cc49d1b.js        2.42 KiB         1.03 KiB
+  dist/js/chunk-2d0da6ab.74241921.js        2.24 KiB         1.09 KiB
+  dist/js/chunk-2d0d622d.38de996c.js        2.18 KiB         1.01 KiB
+  dist/js/chunk-2d0cba55.e7d6e534.js        2.12 KiB         1.04 KiB
+  dist/js/chunk-f50c655a.58b27d05.js        2.05 KiB         0.90 KiB
+  dist/js/chunk-2d0f0dec.d782f997.js        2.03 KiB         1.01 KiB
+  dist/js/chunk-2d216de6.77705d1b.js        2.01 KiB         1.06 KiB
+  dist/js/chunk-2d2132bb.b65fbc8c.js        2.01 KiB         0.97 KiB
+  dist/js/chunk-2d0b2ee7.2a81427c.js        2.00 KiB         1.05 KiB
+  dist/js/chunk-2d0cf17f.e3785b20.js        1.99 KiB         1.03 KiB
+  dist/js/chunk-2d0bdb3c.439f6ea8.js        1.98 KiB         1.01 KiB
+  dist/js/chunk-2d237f33.2a8c2cae.js        1.98 KiB         1.04 KiB
+  dist/js/chunk-2d0e26c3.1dbaca88.js        1.98 KiB         1.01 KiB
+  dist/js/chunk-2d2259d8.83888308.js        1.97 KiB         0.98 KiB
+  dist/js/chunk-2d0d70e6.c3640bf9.js        1.96 KiB         1.01 KiB
+  dist/js/chunk-2d0ea0ba.3e43d6b9.js        1.96 KiB         1.02 KiB
+  dist/js/chunk-2d0d6a95.3d883ea9.js        1.95 KiB         0.96 KiB
+  dist/js/chunk-2d0cca32.2bac9c9b.js        1.95 KiB         0.95 KiB
+  dist/js/chunk-2d0d03e8.594e85b0.js        1.95 KiB         0.96 KiB
+  dist/js/chunk-2d0d70c6.67724bf1.js        1.95 KiB         0.99 KiB
+  dist/js/chunk-2d0c575a.9770dc11.js        1.95 KiB         0.97 KiB
+  dist/js/chunk-2d0e9ba2.c8755efe.js        1.94 KiB         0.97 KiB
+  dist/js/chunk-2d0b9447.463d5376.js        1.93 KiB         0.95 KiB
+  dist/js/chunk-2d0a45e0.4ae886a3.js        1.92 KiB         0.95 KiB
+  dist/js/chunk-2d217af6.ab91f521.js        1.92 KiB         1.05 KiB
+  dist/js/chunk-2d0b23c4.8daecc20.js        1.91 KiB         0.97 KiB
+  dist/js/chunk-2d2107bd.2b521a96.js        1.91 KiB         0.96 KiB
+  dist/js/chunk-2d22e165.96d5bfa2.js        1.91 KiB         0.95 KiB
+  dist/js/chunk-2d20f204.6b3c5220.js        1.90 KiB         1.00 KiB
+  dist/js/chunk-2d21a5d7.22ef6e49.js        1.90 KiB         0.95 KiB
+  dist/js/chunk-2d0e57ff.3ecd9637.js        1.90 KiB         0.93 KiB
+  dist/js/chunk-2d2288f4.b828a075.js        1.90 KiB         0.92 KiB
+  dist/js/chunk-77215428.c7d3206c.js        1.89 KiB         0.99 KiB
+  dist/js/chunk-2d0cbca7.f3384819.js        1.88 KiB         0.98 KiB
+  dist/js/chunk-2d0d0f3c.81b63e6b.js        1.85 KiB         0.95 KiB
+  dist/js/chunk-2d0d3ea6.e6f28ebc.js        1.84 KiB         0.96 KiB
+  dist/js/chunk-2d0e5eb9.8665eff2.js        1.84 KiB         0.94 KiB
+  dist/js/chunk-2d20e85d.6479021d.js        1.82 KiB         0.91 KiB
+  dist/js/chunk-2d20f558.03553899.js        1.81 KiB         0.90 KiB
+  dist/service-worker.js                    1.06 KiB         0.62 KiB
+  dist/css/app.20b4103f.css                 375.21 KiB       61.10 KiB
+  dist/css/scheduled-works-screen.15bdc0    73.78 KiB        10.93 KiB
+  58.css
+  dist/css/chunk-7780c7ff.6c4204ee.css      63.53 KiB        9.21 KiB
+  dist/css/assets-screen.86d96053.css       52.51 KiB        8.33 KiB
+  dist/css/sales-screen.a692515e.css        45.10 KiB        7.13 KiB
+  dist/css/chunk-236e148a.c8415c7d.css      43.22 KiB        6.89 KiB
+  dist/css/dashboard-screen.3cf893d1.css    42.11 KiB        10.77 KiB
+  dist/css/chunk-0052572d.e66401c1.css      39.03 KiB        6.14 KiB
+  dist/css/failures-screen.1d12b9bd.css     38.89 KiB        6.52 KiB
+  dist/css/purchases-screen.fc4b50b0.css    38.29 KiB        5.82 KiB
+  dist/css/sales-quotes.23c79691.css        36.07 KiB        6.01 KiB
+  dist/css/screen-direct-app.6117bf72.cs    31.94 KiB        5.36 KiB
+  s
+  dist/css/chunk-4b50dfb9.05a7fdc0.css      31.26 KiB        5.33 KiB
+  dist/css/chunk-6f78b096.8ab52ca7.css      30.69 KiB        4.67 KiB
+  dist/css/chunk-5a3d01c9.40ab443e.css      30.57 KiB        4.66 KiB
+  dist/css/chunk-2926440c.ff45bb97.css      29.88 KiB        5.01 KiB
+  dist/css/works-screen.01b443d4.css        26.74 KiB        4.98 KiB
+  dist/css/home-screen.f288697f.css         24.46 KiB        4.23 KiB
+  dist/css/chunk-b5ab066e.b4d3550f.css      23.47 KiB        4.18 KiB
+  dist/css/planner-screen.367a8f31.css      21.71 KiB        3.93 KiB
+  dist/css/chunk-74887f76.2f424838.css      20.43 KiB        3.52 KiB
+  dist/css/chunk-02044358.89fb4597.css      17.80 KiB        3.49 KiB
+  dist/css/utilities-screen.322a1634.css    16.95 KiB        2.94 KiB
+  dist/css/chunk-4aa4f8d7.ec198faf.css      15.39 KiB        2.77 KiB
+  dist/css/chunk-3683d3dc.3d651d5f.css      15.36 KiB        2.66 KiB
+  dist/css/welcome-screen.4d258227.css      14.76 KiB        1.75 KiB
+  dist/css/chunk-0b963646.9b43a963.css      14.41 KiB        1.73 KiB
+  dist/css/webhook-logs-management-scree    13.62 KiB        2.61 KiB
+  n.a23029e8.css
+  dist/css/chunk-64a06108.ebdd449d.css      13.39 KiB        2.71 KiB
+  dist/css/webhooks-management-screen.3d    12.75 KiB        2.44 KiB
+  61fcb7.css
+  dist/css/chunk-912b3dd8.2d58f8e1.css      12.72 KiB        2.36 KiB
+  dist/css/client-prices-old-cms-screen.    12.01 KiB        2.22 KiB
+  ae503150.css
+  dist/css/chunk-6f7bde56.63f3c2e4.css      11.88 KiB        2.30 KiB
+  dist/css/chunk-f701cf02.6eaea80a.css      11.59 KiB        2.21 KiB
+  dist/css/iot-management-screen.2a4f3c0    11.20 KiB        2.05 KiB
+  6.css
+  dist/css/chunk-66311c2d.4efc2644.css      10.92 KiB        1.92 KiB
+  dist/css/chunk-5172609e.5537d381.css      10.86 KiB        2.16 KiB
+  dist/css/chunk-dd9232fc.1abd30b1.css      10.71 KiB        2.16 KiB
+  dist/css/chunk-bb8bb71c.96674774.css      10.55 KiB        2.09 KiB
+  dist/css/chunk-c3fab488.18bb778f.css      10.49 KiB        2.09 KiB
+  dist/css/chunk-edd6f50e.5162c550.css      10.39 KiB        2.04 KiB
+  dist/css/chunk-000011f4.c2eb3671.css      8.88 KiB         1.81 KiB
+  dist/css/chunk-fffe451a.8b2d85b1.css      8.32 KiB         1.76 KiB
+  dist/basic.css                            8.28 KiB         1.63 KiB
+  dist/css/chunk-323a1331.3b210025.css      7.80 KiB         1.49 KiB
+  dist/css/hub-apps.9844812e.css            7.72 KiB         1.80 KiB
+  dist/css/chunk-60cc3e74.d7c045ed.css      7.54 KiB         1.54 KiB
+  dist/css/chunk-bd6c36a6.b87f8e74.css      7.54 KiB         1.67 KiB
+  dist/css/settings-screen.939374a6.css     7.18 KiB         1.50 KiB
+  dist/css/chunk-5befc116.33ea120a.css      7.09 KiB         1.28 KiB
+  dist/css/chunk-351f8eab.d7d690a7.css      7.06 KiB         1.60 KiB
+  dist/css/analytics-screen.833fb265.css    7.05 KiB         1.37 KiB
+  dist/css/personal-access-tokens-manage    6.48 KiB         1.56 KiB
+  ment-screen.3763855f.css
+  dist/css/welcome-whats-new.4e7a0641.cs    5.85 KiB         1.54 KiB
+  s
+  dist/css/chunk-11114a50.a8220abf.css      5.71 KiB         1.10 KiB
+  dist/css/chunk-20da7ef2.be38a079.css      5.49 KiB         1.37 KiB
+  dist/css/cost-center-management-screen    5.25 KiB         1.31 KiB
+  .f028c7bf.css
+  dist/css/hub-screen.0910a7e2.css          5.20 KiB         1.35 KiB
+  dist/css/chunk-ca4180b2.42fc23da.css      5.19 KiB         1.16 KiB
+  dist/css/gatekeeper-screen.912a12b6.cs    4.97 KiB         1.24 KiB
+  s
+  dist/css/utility-types-management-scre    4.97 KiB         1.24 KiB
+  en.912a12b6.css
+  dist/css/chunk-03083898.ece1f31f.css      4.87 KiB         1.29 KiB
+  dist/css/chunk-6e79fb70.01331cac.css      4.49 KiB         1.19 KiB
+  dist/css/chunk-63ec3a1d.9e70a679.css      4.19 KiB         1.19 KiB
+  dist/css/cost-center-management-screen    4.13 KiB         1.04 KiB
+  ~gatekeeper-screen~personal-access-tok
+  ens-management-screen~utilities-s~7506
+  762a.a17662e9.css
+  dist/css/chunk-42b58206.f8f6ba49.css      3.94 KiB         1.00 KiB
+  dist/css/chunk-0740d18e.16100c1f.css      3.77 KiB         1.06 KiB
+  dist/css/chunk-24819957.e7821156.css      3.70 KiB         1.02 KiB
+  dist/css/chunk-50ba1901.d149da47.css      3.60 KiB         0.99 KiB
+  dist/css/chunk-d486d454.d149da47.css      3.60 KiB         0.99 KiB
+  dist/css/chunk-46a43f9d.2677c49e.css      3.56 KiB         0.97 KiB
+  dist/css/settings-page-not-found.ba001    3.46 KiB         0.58 KiB
+  6c4.css
+  dist/css/chunk-vendors.b7d36435.css       3.37 KiB         0.66 KiB
+  dist/css/login-screen.692cb65f.css        3.35 KiB         0.96 KiB
+  dist/css/chunk-4099a423.5946d312.css      3.27 KiB         0.90 KiB
+  dist/css/chunk-2f39d752.82eb1be9.css      3.26 KiB         0.90 KiB
+  dist/css/chunk-6ac3dadd.be67eb1a.css      3.17 KiB         0.82 KiB
+  dist/css/chunk-26183dd5.12820318.css      3.08 KiB         0.86 KiB
+  dist/css/chunk-7c25761a.afc6d752.css      3.01 KiB         0.88 KiB
+  dist/css/integrations-management-scree    2.99 KiB         0.78 KiB
+  n.cda864ab.css
+  dist/css/chunk-36e50286.513e9a44.css      2.78 KiB         0.81 KiB
+  dist/css/chunk-12f84066.97d011b6.css      2.73 KiB         0.78 KiB
+  dist/css/chunk-51a99e1c.97d011b6.css      2.73 KiB         0.78 KiB
+  dist/css/chunk-79831f1f.97d011b6.css      2.73 KiB         0.78 KiB
+  dist/css/chunk-8f15fc56.97d011b6.css      2.73 KiB         0.78 KiB
+  dist/css/chunk-79f7fb9b.66a8ccf1.css      2.63 KiB         0.75 KiB
+  dist/css/chunk-ad7aaefc.a75d3a54.css      2.59 KiB         0.73 KiB
+  dist/css/chunk-d447b52a.a75d3a54.css      2.59 KiB         0.73 KiB
+  dist/css/chunk-61bb3ffe.a4f9bc31.css      2.44 KiB         0.79 KiB
+  dist/css/chunk-751bd99d.cdc822cf.css      2.22 KiB         0.62 KiB
+  dist/css/chunk-3f264440.88b2c577.css      1.96 KiB         0.58 KiB
+  dist/css/chunk-76c155c2.402c21a8.css      1.82 KiB         0.52 KiB
+  dist/css/dashboard-screen~home-screen~    1.67 KiB         0.57 KiB
+  planner-screen.e93da536.css
+  dist/css/chunk-2c474fae.dfda00ef.css      1.63 KiB         0.52 KiB
+  dist/css/chunk-514f34b5.8da7986f.css      1.08 KiB         0.39 KiB
+  dist/css/hub-apps~hub-screen.5c3ae5cf.    1.06 KiB         0.41 KiB
+  css
+  dist/css/chunk-64aebc23.23c9b06e.css      1.05 KiB         0.40 KiB
+  dist/css/chunk-5439ff79.cfcddede.css      0.92 KiB         0.33 KiB
+  dist/css/account-blocked.df783ce2.css     0.82 KiB         0.34 KiB
+  dist/css/old-cms-screen.c8e0d5f0.css      0.62 KiB         0.32 KiB
+  dist/css/chunk-f2b884e2.48f55a02.css      0.52 KiB         0.25 KiB
+  dist/css/chunk-27ecb80c.17212ed0.css      0.51 KiB         0.25 KiB
+  dist/css/chunk-5db3340d.b12ac32e.css      0.43 KiB         0.20 KiB
+  dist/css/chunk-a4692d46.eb6b6e0e.css      0.36 KiB         0.18 KiB
+  dist/css/chunk-5b653a01.8fa64d17.css      0.34 KiB         0.17 KiB
+  dist/css/chunk-421f3692.3aba1420.css      0.26 KiB         0.17 KiB
+  dist/css/home-screen~planner-screen.cd    0.24 KiB         0.15 KiB
+  e8b4c6.css
+  dist/css/chunk-f50c655a.6ce1c6d5.css      0.23 KiB         0.15 KiB
+  dist/css/chunk-7f881f28.2f279e35.css      0.05 KiB         0.07 KiB
+  dist/css/chunk-7ea97edc.7a674f83.css      0.05 KiB         0.07 KiB
+
+  Images and other types of assets omitted.
+
+ DONE  Build complete. The dist directory is ready to be deployed.
+ INFO  Check out deployment instructions at https://cli.vuejs.org/guide/deployment.html
+      
+section_end:1614810496:step_script[0Ksection_start:1614810496:archive_cache[0K[0K[36;1mSaving cache for successful job[0;m
+[0;m[32;1mCreating cache v0-96-0...[0;m
+dist/: found 503 matching files and directories   [0;m 
+node_modules/: found 106512 matching files and directories[0;m 
+Uploading cache.zip to https://is-gitlab-runners-cache.s3.dualstack.eu-west-1.amazonaws.com/project/20143087/v0-96-0[0;m 
+[32;1mCreated cache[0;m
+section_end:1614810576:archive_cache[0Ksection_start:1614810576:cleanup_file_variables[0K[0K[36;1mCleaning up file based variables[0;m
+[0;msection_end:1614810576:cleanup_file_variables[0K[32;1mJob succeeded
+[0;m

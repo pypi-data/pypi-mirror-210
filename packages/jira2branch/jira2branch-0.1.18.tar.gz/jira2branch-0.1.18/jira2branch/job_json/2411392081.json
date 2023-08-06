@@ -1,0 +1,101 @@
+{
+    "id": 2411392081,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.126.12",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-05-04T09:16:40.199Z",
+    "started_at": "2022-05-04T09:28:16.442Z",
+    "finished_at": "2022-05-04T09:39:48.992Z",
+    "duration": 692.550726,
+    "queued_duration": 61.285055,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "628a74779502d19ab2873f05ceec374ef2192004",
+        "short_id": "628a7477",
+        "created_at": "2022-05-04T09:06:20.000+00:00",
+        "parent_ids": [
+            "14a6103d7e64b8cf8be97cfcff9a4674d650d53e",
+            "92f55fa0d7465a43d939eb09c48d26eabc359634"
+        ],
+        "title": "Merge branch 'fix/button-style-white-space' into 'master'",
+        "message": "Merge branch 'fix/button-style-white-space' into 'master'\n\nFix/IS-8127: The buttons displayed on the PJO menu are cut\n\nSee merge request infraspeak/web/web-core-client!3887\n\nClose IS-8127",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2022-05-04T09:06:20.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2022-05-04T09:06:20.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/628a74779502d19ab2873f05ceec374ef2192004"
+    },
+    "pipeline": {
+        "id": 530836479,
+        "iid": 15185,
+        "project_id": 20143087,
+        "sha": "628a74779502d19ab2873f05ceec374ef2192004",
+        "ref": "v0.126.12",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-05-04T09:16:40.152Z",
+        "updated_at": "2022-05-04T09:56:37.198Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/530836479"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2411392081",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 617496,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 530836479
+}

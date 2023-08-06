@@ -1,0 +1,101 @@
+{
+    "id": 2132726931,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.121.19",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-02-24T13:28:08.203Z",
+    "started_at": "2022-02-24T13:35:27.561Z",
+    "finished_at": "2022-02-24T13:46:37.519Z",
+    "duration": 669.958585,
+    "queued_duration": 345.746023,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "43578e64aa34cd887bfb55afb2621096e5c55a1a",
+        "short_id": "43578e64",
+        "created_at": "2022-02-24T13:17:06.000+00:00",
+        "parent_ids": [
+            "c4608cb8aad6acbf5582ad74ea05591758adec1e",
+            "cdb6fb2c10b8f6abbce6949e7fc0054bd3fdcc29"
+        ],
+        "title": "Merge branch 'fix/IS-7817-settings---buildings-location-characteristic' into 'master'",
+        "message": "Merge branch 'fix/IS-7817-settings---buildings-location-characteristic' into 'master'\n\nfix/IS-7817: Settings - Buildings: location characteristics not organized\n\nSee merge request infraspeak/web/web-core-client!3489",
+        "author_name": "Pedro Costa",
+        "author_email": "pcosta@infraspeak.com",
+        "authored_date": "2022-02-24T13:17:06.000+00:00",
+        "committer_name": "Pedro Costa",
+        "committer_email": "pcosta@infraspeak.com",
+        "committed_date": "2022-02-24T13:17:06.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/43578e64aa34cd887bfb55afb2621096e5c55a1a"
+    },
+    "pipeline": {
+        "id": 478614700,
+        "iid": 13125,
+        "project_id": 20143087,
+        "sha": "43578e64aa34cd887bfb55afb2621096e5c55a1a",
+        "ref": "v0.121.19",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-02-24T13:28:08.164Z",
+        "updated_at": "2022-02-24T14:51:19.876Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/478614700"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/2132726931",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 1245272,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 478614700
+}

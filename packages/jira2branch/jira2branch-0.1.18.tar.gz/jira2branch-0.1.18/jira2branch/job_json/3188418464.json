@@ -1,0 +1,101 @@
+{
+    "id": 3188418464,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.138.4",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2022-10-18T09:32:12.227Z",
+    "started_at": "2022-10-18T09:33:57.724Z",
+    "finished_at": "2022-10-18T09:46:18.823Z",
+    "duration": 741.098846,
+    "queued_duration": 1.679215,
+    "user": {
+        "id": 6412019,
+        "username": "gmourao",
+        "name": "Gabriel Mour\u00e3o",
+        "state": "active",
+        "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/6412019/avatar.png",
+        "web_url": "https://gitlab.com/gmourao",
+        "created_at": "2020-07-13T13:53:48.876Z",
+        "bio": "",
+        "location": "",
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": "",
+        "job_title": "",
+        "pronouns": "",
+        "bot": false,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": "10:33 AM"
+    },
+    "commit": {
+        "id": "9a02af61aabb667998d1b3be25b0864bce8f7c65",
+        "short_id": "9a02af61",
+        "created_at": "2022-10-18T09:15:28.000+00:00",
+        "parent_ids": [
+            "f38fbf2d13420b5b1e023bb43a0dc0d8b4d2b343",
+            "b6f272b3412c0da55f38cd8420749c57ddd793a3"
+        ],
+        "title": "Merge branch 'fix/IS-8592_Utilities-APP-The-total-Consumption-is-not-being-displayed' into 'master'",
+        "message": "Merge branch 'fix/IS-8592_Utilities-APP-The-total-Consumption-is-not-being-displayed' into 'master'\n\nFix/IS-8592: Utilities APP - The total Consumption is not being displayed\n\nSee merge request infraspeak/web/web-core-client!4826",
+        "author_name": "Filipa Sim\u00e3o",
+        "author_email": "fsimao@infraspeak.com",
+        "authored_date": "2022-10-18T09:15:28.000+00:00",
+        "committer_name": "Filipa Sim\u00e3o",
+        "committer_email": "fsimao@infraspeak.com",
+        "committed_date": "2022-10-18T09:15:28.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/9a02af61aabb667998d1b3be25b0864bce8f7c65"
+    },
+    "pipeline": {
+        "id": 669627780,
+        "iid": 20401,
+        "project_id": 20143087,
+        "sha": "9a02af61aabb667998d1b3be25b0864bce8f7c65",
+        "ref": "v0.138.4",
+        "status": "success",
+        "source": "push",
+        "created_at": "2022-10-18T09:32:12.156Z",
+        "updated_at": "2022-10-18T09:48:01.683Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/669627780"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/3188418464",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 615894,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 669627780
+}

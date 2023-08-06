@@ -1,0 +1,101 @@
+{
+    "id": 1811054197,
+    "status": "success",
+    "stage": "build",
+    "name": "build:tag",
+    "ref": "v0.114.18",
+    "tag": true,
+    "coverage": null,
+    "allow_failure": false,
+    "created_at": "2021-11-23T12:48:30.597Z",
+    "started_at": "2021-11-23T12:50:23.929Z",
+    "finished_at": "2021-11-23T13:00:22.706Z",
+    "duration": 598.777052,
+    "queued_duration": 6.531775,
+    "user": {
+        "id": 7441890,
+        "username": "project_20143087_bot",
+        "name": "****",
+        "state": "active",
+        "avatar_url": "https://secure.gravatar.com/avatar/7c5b483cf18099ffe726e021bf2ca502?s=80&d=identicon",
+        "web_url": "https://gitlab.com/project_20143087_bot",
+        "created_at": "2020-10-21T15:44:36.198Z",
+        "bio": "",
+        "location": null,
+        "public_email": "",
+        "skype": "",
+        "linkedin": "",
+        "twitter": "",
+        "website_url": "",
+        "organization": null,
+        "job_title": "",
+        "pronouns": null,
+        "bot": true,
+        "work_information": null,
+        "followers": 0,
+        "following": 0,
+        "local_time": null
+    },
+    "commit": {
+        "id": "3b87dc040de3411161fe7d8847788a7eabd7e5fd",
+        "short_id": "3b87dc04",
+        "created_at": "2021-11-23T12:39:16.000+00:00",
+        "parent_ids": [
+            "52ce612197eba4e4c6ba24b4faf81f23a6c4da28",
+            "67376ebd343818720b4702902655eb3756794883"
+        ],
+        "title": "Merge branch 'fix/IS-6867_cost-center-isnt-displayed-on-special-job' into 'master'",
+        "message": "Merge branch 'fix/IS-6867_cost-center-isnt-displayed-on-special-job' into 'master'\n\nfix/IS-6867_cost-center-isnt-displayed-on-special-job\n\nSee merge request infraspeak/web/web-core-client!3087",
+        "author_name": "Carlos Pinto Guedes",
+        "author_email": "cguedes@infraspeak.com",
+        "authored_date": "2021-11-23T12:39:16.000+00:00",
+        "committer_name": "Carlos Pinto Guedes",
+        "committer_email": "cguedes@infraspeak.com",
+        "committed_date": "2021-11-23T12:39:16.000+00:00",
+        "trailers": {},
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/commit/3b87dc040de3411161fe7d8847788a7eabd7e5fd"
+    },
+    "pipeline": {
+        "id": 414650097,
+        "iid": 10678,
+        "project_id": 20143087,
+        "sha": "3b87dc040de3411161fe7d8847788a7eabd7e5fd",
+        "ref": "v0.114.18",
+        "status": "success",
+        "source": "push",
+        "created_at": "2021-11-23T12:48:30.556Z",
+        "updated_at": "2021-11-23T13:03:51.964Z",
+        "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/pipelines/414650097"
+    },
+    "web_url": "https://gitlab.com/infraspeak/web/web-core-client/-/jobs/1811054197",
+    "project": {
+        "ci_job_token_scope_enabled": true
+    },
+    "artifacts": [
+        {
+            "file_type": "trace",
+            "size": 2132031,
+            "filename": "job.log",
+            "file_format": null
+        }
+    ],
+    "runner": {
+        "id": 2641989,
+        "description": "Web Core Client - Tests- docker+machine",
+        "ip_address": "54.75.110.201",
+        "active": true,
+        "paused": false,
+        "is_shared": false,
+        "runner_type": "project_type",
+        "name": "gitlab-runner",
+        "online": true,
+        "status": "online"
+    },
+    "artifacts_expire_at": null,
+    "tag_list": [
+        "test",
+        "web-core-client"
+    ],
+    "project_id": 20143087,
+    "pipeline_id": 414650097
+}
