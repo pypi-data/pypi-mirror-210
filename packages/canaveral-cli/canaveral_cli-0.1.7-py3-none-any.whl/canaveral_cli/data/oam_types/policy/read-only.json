@@ -1,0 +1,1 @@
+{"name": "read-only", "description": "Configure the resources to be read-only in the application (no update / state-keep).", "type": "policy", "parameters": [{"usage": "Specify the list of rules to control read only strategy at resource level.", "mandatory": false, "name": "rules", "type": "[...#PolicyRule]"}]}

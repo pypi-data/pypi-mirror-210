@@ -1,0 +1,55 @@
+{% macro parameters(section, indent_level=0) %}
+{% for param in section.parameters %}
+{% if (param.mandatory == true) and ('*' not in param.type) and (param.name != 'image') %}
+{{ " " * indent_level }}{{ param.name }}: {{ '#' }} {{ param.usage }}
+{% endif %}
+{% endfor %}
+{% endmacro %}
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: {{ app_name }}
+spec:
+  components:
+{% for component in components %}
+  - name: {{ component.name }}
+    type: {{ component.type.name }}
+    properties:
+      image: {{ component.image }}
+{% if parameters(component.type, 6) %}
+{{ parameters(component.type, 6) }}
+{% endif %}
+{% if component.traits %}
+    traits:
+{% for trait in component.traits %}
+    - type: {{ trait.type.name }}
+      properties:
+{% if parameters(trait.type, 8) %}
+{{ parameters(trait.type, 8) }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% if policies %}
+  policies:
+{% for policy in policies %}
+  - name: {{ policy.name }}
+    type: {{ policy.type.name }}
+    properties:
+{% if parameters(policy.type, 6) %}
+{{ parameters(policy.type, 6) }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if workflow %}
+  workflow:
+    steps:
+{% for step in workflow %}
+    - name: {{ step.name }}
+      type: {{ step.type.name }}
+      properties:
+{% if parameters(step.type, 6) %}
+{{ parameters(step.type, 6) }}
+{% endif %}
+{% endfor %}
+{% endif %}
