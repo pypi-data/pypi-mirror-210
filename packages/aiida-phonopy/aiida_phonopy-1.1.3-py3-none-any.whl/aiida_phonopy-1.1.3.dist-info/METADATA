@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: aiida-phonopy
+Version: 1.1.3
+Summary: The official AiiDA plugin for Phonopy
+Keywords: aiida,phonopy,workflows
+Author-email: Lorenzo Bastonero <bastonero.lorenzo@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: AiiDA
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Requires-Dist: aiida-core>=2.0.0,<3.0.0
+Requires-Dist: phonopy>=2.14,<3.0.0
+Requires-Dist: myst-nb~=0.17 ; extra == "docs"
+Requires-Dist: jupytext>=1.11.2,<1.15.0 ; extra == "docs"
+Requires-Dist: sphinx-togglebutton ; extra == "docs"
+Requires-Dist: sphinx~=5.2 ; extra == "docs"
+Requires-Dist: sphinx-copybutton~=0.5.2 ; extra == "docs"
+Requires-Dist: sphinx-book-theme~=1.0.1 ; extra == "docs"
+Requires-Dist: sphinx-design~=0.4.1 ; extra == "docs"
+Requires-Dist: sphinxcontrib-details-directive~=0.1.0 ; extra == "docs"
+Requires-Dist: sphinx-autoapi~=2.0.1 ; extra == "docs"
+Requires-Dist: pre-commit~=2.17 ; extra == "pre-commit"
+Requires-Dist: pylint==2.17.2 ; extra == "pre-commit"
+Requires-Dist: pylint-aiida~=0.1.1 ; extra == "pre-commit"
+Requires-Dist: toml ; extra == "pre-commit"
+Requires-Dist: pgtest~=1.3 ; extra == "tests"
+Requires-Dist: pytest~=6.0 ; extra == "tests"
+Requires-Dist: pytest-regressions~=2.3 ; extra == "tests"
+Project-URL: Source, https://github.com/aiida-phonopy/aiida-phonopy
+Provides-Extra: docs
+Provides-Extra: pre-commit
+Provides-Extra: tests
+
+# `aiida-phonopy`
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![PyPI version](https://badge.fury.io/py/aiida-phonopy.svg)](https://badge.fury.io/py/aiida-phonopy)
+[![Docs status](https://readthedocs.org/projects/aiida-phonopy/badge)](http://aiida-phonopy.readthedocs.io/)
+
+This is the official AiiDA plugin for [Phonopy](https://phonopy.github.io/phonopy/index.html).
+
+## Compatibility
+
+From `v0.7.0` this plugin does not support retro-compatibility with previous versions,
+due to a restructure of the package.
+
+| Plugin | AiiDA | Phonopy |
+|-|-|-|
+| >=`v1.0.0` < v`2.0.0` | >=`v2.0.0` <`v3.0.0` |  >=`v2.14.0` <`v3.0.0` |
+| >=`v0.7.0` < v`1.0.0` | >=`v1.6.0` <`v2.0.0` |  >=`v2.14.0` <`v3.0.0` |
+
+## Installation
+
+To install from PyPI, simply execute:
+
+    pip install aiida-phonopy
+
+or when installing from source:
+
+    git clone https://github.com/aiida-phonopy/aiida-phonopy
+    pip install .
+
+## License
+
+The `aiida-phonopy` plugin package is released under the MIT license.
+See the `LICENSE.txt` file for more details.
+
+
+## Acknowlegements
+
+We acknowledge support from:
+* the [U Bremen Excellence Chairs](https://www.uni-bremen.de/u-bremen-excellence-chairs) program funded within the scope of the [Excellence Strategy of Germany’s federal and state governments](https://www.dfg.de/en/research_funding/excellence_strategy/index.html);
+* the [MAPEX](https://www.uni-bremen.de/en/mapex) Center for Materials and Processes.
+
+<img src="https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/main/docs/source/images/UBREMEN.png" width="300px" height="108px"/>
+<img src="https://raw.githubusercontent.com/aiida-phonopy/aiida-phonopy/main/docs/source/images/MAPEX.jpg" width="300px" height="99px"/>
+
