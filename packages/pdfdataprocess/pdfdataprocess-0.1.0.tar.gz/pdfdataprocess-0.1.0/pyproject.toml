@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pdfdataprocess"
+version = "0.1.0"
+description = ""
+authors = ["arnos-stuff <bcda0276@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.0.1"
+numpy = "^1.24.3"
+nodejs-bin = "^18.4.0a4"
+typer = "^0.9.0"
+tqdm = "^4.65.0"
+
+[tool.poetry.scripts]
+pdfdataprocess = "pdfdataprocess.cli:app"
+pdfdtp = "pdfdataprocess.cli:app"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
