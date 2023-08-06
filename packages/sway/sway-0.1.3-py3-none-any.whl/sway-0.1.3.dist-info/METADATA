@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: sway
+Version: 0.1.3
+Summary: managing micro-repos for monorepos
+License: MIT
+Author: Saurabh Chopra
+Author-email: sc@saurabhchopra.co.uk
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Description-Content-Type: text/markdown
+
+<div align="center">
+  <h2><strong>Sway:</strong> An Experimental Monorepo Management Solution for Python</h2>
+</div>
+
+## Installation
+
+```console
+$ pip install sway
+```
+
+### Branch Management
+
+Triggers `git checkout <branch in 'dev' env>`
+
+```console
+$ sway branch -e dev
+```
+
+Multiple envs can be setup in `.sway-config.yaml`
+
+### Config
+
+config creation interactively
+
+```console
+$ sway config init
+```
+
+config validation
+
+```console
+$ sway config validate
+```
+
+For example config, see `.sway-config.yml`
+
+---
+
+_More Coming Soon..._
+
