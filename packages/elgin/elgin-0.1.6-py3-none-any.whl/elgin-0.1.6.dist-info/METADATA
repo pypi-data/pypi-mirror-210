@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: elgin
+Version: 0.1.6
+Summary: Biblioteca responsavel por gerar o monitoramento dos processos da empresa elgin.
+Home-page: UNKNOWN
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: awswrangler
+Requires-Dist: mysql-connector-python
+Requires-Dist: requests
+
+# Monitoramento Elgin
+
+Biblioteca criada espeficiamente para ser utilizada para os processos do cliente Elgin.
+
+## Instalação
+
+```bash
+pip install elgin
+```
+
+## Como Usar ?
+
+Para inicar o processo de monitoramento é preciso importar as seguintes classes:
+
+```python
+from elgin.monitoramento import Monitoramento, Level, Status
+```
+
+após importar as classes de Monitoramento , Level e Status, podemos dar inicio monitoramento do processo da seguinte forma:
+
+```python
+#Definindo variavies inicias. 
+environment= 'dev'
+nome_processo = 'nome_teste_01'
+grupo_responsavel = 1 #(1: Deal, 2: Elgin e 3:Ambos)
+
+# Instanciando o objeto de monitoramento
+log = Monitoramento(environment, processo, grupo_responsavel)
+
+try:
+    # Chamando modulo que inicia a execucao.
+    log.inicia_execucao()
+
+    # Chamada do modulo que registra as etapas do processo.
+    log.log(Level.INFO.value,'Testando Etapa imaginaria 01')
+    log.log(Level.INFO.value,'Testando Etapa imaginaria 02')
+    log.log(Level.INFO.value,'Testando Etapa imaginaria 03')
+
+    # Forcando um erro para envio de alertas de erro.
+    x = 1 / 0
+except Exception as e:
+    # Chamada do modulo resgistro das etapas e informando o erro utilizando a lib "traceback"
+    log.log(Level.ERROR.value, traceback.format_exc())
+
+    # Chamando modulo para finalizar o processo.
+    log.finaliza_execucao(Status.ERRO.value, f'Erro no processo {processo}, verificar tabela de log.')
+
+    # Chamando modulo responsavel por enviar os alertar via Teams e Email para os responsaveis.
+    log.envia_alertas(Status.ERRO.value, Level.WARNING.value,  traceback.format_exc())
+    raise e
+```
+
+
