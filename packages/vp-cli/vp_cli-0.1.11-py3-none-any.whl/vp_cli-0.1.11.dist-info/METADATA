@@ -1,0 +1,126 @@
+Metadata-Version: 2.1
+Name: vp-cli
+Version: 0.1.11
+Summary: VantagePoint CLI
+Author: VantagePoint
+Author-email: developers@vantagepoint.co
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: alabaster (==0.7.12)
+Requires-Dist: attrs (==19.3.0)
+Requires-Dist: Babel (==2.8.0)
+Requires-Dist: bcrypt (==3.2.0)
+Requires-Dist: boto3 (==1.17)
+Requires-Dist: botocore (==1.20.0)
+Requires-Dist: certifi (==2019.11.28)
+Requires-Dist: cffi (==1.14.4)
+Requires-Dist: chardet (==5.1.0)
+Requires-Dist: checkov (==2.3.22)
+Requires-Dist: cryptography (==3.2.1)
+Requires-Dist: dateparser (==0.7.6)
+Requires-Dist: docopt (==0.6.2)
+Requires-Dist: docutils (==0.16)
+Requires-Dist: ezenv (==0.91)
+Requires-Dist: filelock (==3.9.0)
+Requires-Dist: idna (==2.8)
+Requires-Dist: imagesize (==1.2.0)
+Requires-Dist: importlib-metadata (==4.4)
+Requires-Dist: Jinja2 (==2.11.1)
+Requires-Dist: jmespath (==0.10.0)
+Requires-Dist: jsonpointer (==2.0)
+Requires-Dist: jsonschema (==4.6.0)
+Requires-Dist: MarkupSafe (==1.1.1)
+Requires-Dist: mock (==3.0.5)
+Requires-Dist: more-itertools (==8.1.0)
+Requires-Dist: orjson (==3.8.6)
+Requires-Dist: packaging (==23.0)
+Requires-Dist: paramiko (==2.7.2)
+Requires-Dist: pluggy (==1)
+Requires-Dist: py (==1.8.1)
+Requires-Dist: pycparser (==2.20)
+Requires-Dist: Pygments (==2.5.2)
+Requires-Dist: PyNaCl (==1.4.0)
+Requires-Dist: pyparsing (==2.4.6)
+Requires-Dist: pypsrp (==0.5.0)
+Requires-Dist: pyrsistent (==0.16.0)
+Requires-Dist: pyspnego (==0.1.5)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2019.3)
+Requires-Dist: PyYAML (==5.4.1)
+Requires-Dist: regex (==2022.1.18)
+Requires-Dist: requests (==2.28.2)
+Requires-Dist: s3transfer (==0.3.3)
+Requires-Dist: six (==1.14.0)
+Requires-Dist: snowballstemmer (==2.0.0)
+Requires-Dist: termcolor (==1.1.0)
+Requires-Dist: texttable (==1.6.2)
+Requires-Dist: toml (==0.10.0)
+Requires-Dist: tzlocal (==2.1)
+Requires-Dist: urllib3 (==1.26.0)
+Requires-Dist: wcwidth (==0.1.8)
+Requires-Dist: zipp (==1.0.0)
+Requires-Dist: activedirectory (==0.14)
+
+# vp_cli
+[![vp-cli](https://github.com/corsis-tech/vp-cli/actions/workflows/build-vp-cli.yml/badge.svg)](https://github.com/corsis-tech/vp-cli/actions/workflows/build-vp-cli.yml)
+
+Command Line interface for VantagePoint
+
+## Installation and Documentation
+The full documentation is available [here](https://vantagepointsecurity.gitlab.io/platform-components/utilities/vp_cli)
+
+## Development
+- In-container development environment
+
+```console
+$ make shell
+```
+Use [.env](https://gitlab.com/vantagepointsecurity/platform-components/utilities/vp_cli/-/blob/staging/.env) file to set development environment
+
+- To install cli (Also works inside development container)
+```console
+$ make install
+```
+
+- Running tests
+```console
+$ tox
+```
+Use `tox.ini` to set the test environment [here](https://gitlab.com/vantagepointsecurity/platform-components/utilities/vp_cli/-/blob/staging/tox.ini#L4)
+
+- To build `.deb`, `.rpm` and `.tar.gz` packages
+
+```console
+$ make build_all
+```
+This will build and place the artifacts in `build` dir
+
+- To build and push to artifactory
+```
+$ make release
+```
+
+- To clean up and uninstall cli
+
+```console
+$ make clean
+```
+
+- Documentation
+
+Updates to documentation are made in the [docs](https://gitlab.com/vantagepointsecurity/platform-components/utilities/vp_cli/-/tree/staging/docs) directory.
+To generate html
+```console
+$ cd docs
+$ make html # this will generate html in the docs/build dir
+```
+
+
