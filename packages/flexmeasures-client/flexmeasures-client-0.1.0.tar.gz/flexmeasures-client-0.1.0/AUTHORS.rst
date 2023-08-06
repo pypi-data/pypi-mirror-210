@@ -1,0 +1,7 @@
+============
+Contributors
+============
+
+* Victor
+* Felix
+* Guus
