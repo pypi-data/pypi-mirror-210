@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: openai2
+Version: 1.5.5
+Summary: 根据openai官方接口‘openai’改造的‘openai2’，比官方接口更好用一点。
+Keywords: openai2,openai
+Author-email: 许灿标 <lcctoor@outlook.com>
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Dist: openai >=0.27.0
+Project-URL: HomePage, https://github.com/lcctoor/lccpy/tree/main/packages/openai2#readme
+
+# 项目描述
+
+根据 openai 官方接口‘openai’改造的‘openai2’，比官方接口更好用一点。
+
+# 安装
+
+```
+pip install openai2
+```
+
+# 获取api_key
+
+[获取链接1](https://platform.openai.com/account/api-keys)
+
+[获取链接2](https://www.baidu.com/s?wd=%E8%8E%B7%E5%8F%96%20openai%20api_key)
+
+# 教程
+
+##### 导入
+
+```python
+from openai2 import Chat
+```
+
+##### 创建对话
+
+```python
+api_key = 'api_key'  # 更换成自己的api_key
+
+Tony = Chat(api_key=api_key, model="gpt-3.5-turbo")
+Lucy = Chat(api_key=api_key, model="gpt-3.5-turbo")  # 每个实例可使用 相同 或者 不同 的api_key
+```
+
+##### 对话
+
+```python
+Tony.request('数字1的后面是几?')  # >>> 2
+Lucy.request('数字101的后面是几?')  # >>> 102
+
+Tony.request('再往后是几?')  # >>> 3
+Lucy.request('再往后是几?')  # >>> 103
+```
+
+##### 存档
+
+```python
+Tony.dump('./talk_record.json')
+```
+
+##### 载入存档
+
+```python
+Jenny = Chat(api_key=api_key, model="gpt-3.5-turbo")
+Jenny.load('./talk_record.json')
+
+Jenny.request('再往后呢?')  # >>> 4
+```
+
+##### 对话回滚
+
+```python
+Anna = Chat(api_key=api_key, model="gpt-3.5-turbo")
+
+Anna.request('数字1的后面是几?')  # >>> 2
+Anna.request('再往后是几?')  # >>> 3
+Anna.request('再往后呢?')  # >>> 4
+
+# 回滚
+Anna.rollback()  # >>> [user]:再往后是几?  [assistant]:3
+
+# 再回滚
+Anna.rollback()  # >>> [user]:数字1的后面是几?  [assistant]:2
+
+Anna.request('再往后是几?')  # >>> 3
+```
+
+注：
+
+执行1次 `Anna.rollback(n=10)` 等效于执行10次 `Anna.rollback()`  。
+
+##### 修改api_key
+
+```python
+Anna.api_key = 'new api_key'
+```
+
+##### 更多方法
+
+openai2.Chat 底层调用了 [openai.ChatCompletion.create](https://platform.openai.com/docs/api-reference/chat/create?lang=python)，在实例化时，支持 openai.ChatCompletion.create 的所有参数，例如：`Chat(api_key=api_key, model="gpt-3.5-turbo", max_tokens=100)` 。
+
+# Bug提交、功能提议
+
+您可以通过 [Github-Issues](https://github.com/lcctoor/lccpy/issues)、[微信](https://raw.githubusercontent.com/lcctoor/me/main/author/WeChatQR-max.jpg)、[技术交流群](https://raw.githubusercontent.com/lcctoor/me/main/lccpy/WechatReadersGroupQR-original.jpg) 与我联系。
+
+# 关于作者
+
+作者：许灿标
+
+邮箱：lcctoor@outlook.com
+
+[主页](https://github.com/lcctoor/me#readme) | [微信](https://raw.githubusercontent.com/lcctoor/me/main/author/WeChatQR-max.jpg) | [微信公众号](https://raw.githubusercontent.com/lcctoor/me/main/author/WechatSubscribeQR-max.jpg) | [Python技术微信交流群](https://raw.githubusercontent.com/lcctoor/me/main/lccpy/WechatReadersGroupQR-original.jpg)
+
+开源项目：[让 Python 更简单一点](https://github.com/lcctoor/lccpy#readme)
+
