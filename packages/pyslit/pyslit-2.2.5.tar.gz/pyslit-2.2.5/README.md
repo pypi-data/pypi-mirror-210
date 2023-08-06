@@ -1,0 +1,197 @@
+# Pyslit 2.1.5
+All in one perfect module for immutable data types
+***
+
+### Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install faiz.
+
+```bash
+pip install pyslit
+```
+
+#### Example
+```
+#data types used here is just for example
+#any data types(list,tuple,string) can be manipulated by all the functions
+#Functions marked with dictionary can only manipulate with dictionary
+
+import pyslit
+
+a = 'ashraq'
+a = pyslit.remove_item(a,'a',2)  #remove element at a particular occurance
+print(a)
+
+s = pyslit.size(a,element='h',balance=True)
+print(b)
+
+b = ('a',1,2,3)
+b = pyslit.edit(b, 0, 0)   #Dictionary
+print(b)
+
+t = (1,2,3,4,5)
+t = pyslit.remove(t)       #Dictionary
+print(t)
+
+t1 = (1,5,5,5,3,4,5,6,7,5)
+t1 = pyslit.remove_items(t1,5)  #remove element for number of times occuranced
+print(t1)
+
+t2 = (1,4,3,6,9)
+t2 = pyslit.add(t2,"ashraq",2)
+print(t2)
+
+t3 = (3,1,2,3,5,8,0)
+t3 = pyslit.sort(t3)
+print(t3)
+
+t3 = (3,1,2,3,'A','e','c',4,3)
+t3 = pyslit.sort_alpha(t3)
+print(t3)
+
+t3 = (3,1,2,3,'A','e','c',4,3)
+t3 = pyslit.sort_alpha(t3,first='num',reverse = True)
+print(t3)
+
+t4 = (3,1,2,3,'A','e','c',4,3)
+t4 = pyslit.sort_num(t4,reverse = True)
+print(t4)
+
+t4 = (3,1,2,3,'A','e','c',4,3)
+t4 = pyslit.sort_num(t4,first='alpha')
+print(t4)
+
+t5 = (3,1,2,3,'A','e','c',4,3)
+t5 = pyslit.sort_all(t5,first='alpha',reverse=True)
+print(t5)
+
+t5 = (3,1,2,3,'A','e','c',4,3)
+t5 = pyslit.sort_all(t5,first='num',reverse_num=True)
+print(t5)
+
+t5 = (3,1,2,3,'A','e','c',4,3)
+t5 = pyslit.sort_all(t5,first='num',reverse_alpha=True)
+print(t5)
+
+t6 = (3,1,2,3,'A','e','c',4,3)
+i = pyslit.index(t6, element=3,10,12,occurance=2)
+print(i)
+
+i_all = pyslit.index_all(t6, element=3, 10, 12)
+print(i_all)
+
+a = 'Ashraq@2006'
+n = pyslit.isnum(a)
+print(n)
+n = pyslit.isnum(a, 0, 7)
+print(n)
+
+al = pyslit.isalpha(a)
+print(al)
+al = pyslit.isnum(a, 7, 11)
+print(al)
+
+aln = pyslit.isalphanum(a)
+print(aln)
+aln = pyslit.isalphanum(a, 6, 7)
+print(aln)
+
+r = 'abracadabra'
+r = pyslit.replace(r, 'ab', 'sp')
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace(r, 'ab', 'sp', occurance=2)
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace(r, 'ab', 'sp', 0, 2)
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replaces(r, 'ab', 'sp')
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replaces(r, 'ab', 'sp', occurance=2)
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace_all(r, 'ab', 'sp')
+print(r)
+
+r = 'abracadabra'
+r = pyslit.replace_all(r, 'ab', 'sp', 0, 2)
+print(r)
+
+d = {1:10,5:10,2:20,6:20,3:30,10:1}
+
+k = pyslit.change_key(d,key=5,n_key=7)   #Dictionary
+print(k)
+k = pyslit.change_key(d,value=1,n_key=10)#Dictionary
+print(k)
+
+gk = pyslit.get_key(d,10)                #Dictionary
+print(gk)
+gk = pyslit.get_key(d,10,multiple=True)  #Dictionary
+print(gk)
+
+gv = pyslit.get_value(d,6)               #Dictionary
+print(gv)
+
+##############################################################
+
+#text to speech
+pyslit.speak('hello')
+pyslit.voice_change(1) #0 for male voice and 1 for female voice
+pyslit.voice_speed(150) #change the speed of voice
+
+#music player(background)
+pyslit.init_mp3() #initalize the player
+pyslit.quit_mp3() #uninitialize the player
+pyslit.music_volume(0.5) #volume rage of float between 0.0 to 1.0
+pyslit.play_music([directory of music file]) #loads and play the music
+pyslit.stop_music() #stops and unloads the music
+pyslit.ismp3playing() #returns True if music is playing else False
+pyslit.pause_music() #pauses the music
+pyslit.unpause_music() #resumes the music
+
+#speech recognizer
+pyslit.listen() #retuns a string of recognized voice from microphone
+
+#youtube
+pyslit.youtube([serach]) #searches and plays the video on youtube
+
+#search
+pyslit.google([search]) #searches in google
+pyslit.wikipedia_s([search],<sentences=2>) #returns a string of defined sentences of the search
+
+#news
+pyslit.news(<website='https://www.thehindu.com/',count=5>)
+#retunrs string of news from 'the hindu' or specified news website
+#'count' parameter is to define the number of news to be returned
+
+#control system
+pyslit.shutdown() #shutdowns the system
+pyslit.log_out() #log out from the curent user in the system
+pyslit.restart() #restarts the system(all applications will be closed)
+pyslit.sleep() #the system will enter into sleep mode
+pyslit.open_app([app]) #opens the basic apps(calculator,notepad,etc..) in pc
+pyslit.run_file([file]) #open the file (enter the directory of the file)
+
+#datetime
+pyslit.time() #returns a string of the current time in system in 12hrs format
+pyslit.date() #returns the date in sting
+pyslit.day() #retuns the day
+pyslit.month() #returns the name of the month
+
+```
+
+#### Contributing
+```
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+Please make sure to update tests as appropriate.
+```
+#### License
+[MIT](https://choosealicense.com/licenses/mit/)
