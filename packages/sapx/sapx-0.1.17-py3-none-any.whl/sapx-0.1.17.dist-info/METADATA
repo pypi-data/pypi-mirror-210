@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: sapx
+Version: 0.1.17
+Summary: Library of re-usable utilities for python web apps.
+Home-page: https://github.com/trellixio/sap
+Author: Trellix Dev
+Author-email: contact@trellix.io
+License: COPYRIGHT @ Trellix
+Classifier: Environment :: Web Environment
+Classifier: Framework :: FastAPI
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.9
+Requires-Dist: aioamqp (~=0.15)
+Requires-Dist: httpx (~=0.23)
+Requires-Dist: redis (~=4.5)
+Requires-Dist: celery (~=5.2)
+Requires-Dist: pydantic (~=1.10)
+Requires-Dist: PyJWT (~=2.6)
+Requires-Dist: fastAPI (~=0.89)
+Requires-Dist: itsdangerous (~=2.1)
+Requires-Dist: beanie (~=1.15)
+Requires-Dist: passlib (~=1.7)
+Requires-Dist: motor (~=3.1)
+Requires-Dist: sqlmodel (~=0.0)
+Requires-Dist: typing-extensions (~=4.5)
+Requires-Dist: PyYAML (~=6.0)
+
+# SAP
+Library of re-usable utilities for python web apps .
+
+
+# Todo
+Add support for Timezone datetime with pydantic 2.0
