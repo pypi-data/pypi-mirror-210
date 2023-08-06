@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: we-factor-quad
+Version: 0.5.0
+Summary: Factor Quad, a data structure for factor analysis
+Home-page: http://192.168.1.7:10600/xiazeyu/we_factor_quad.git
+Author: Xia Zeyu
+Author-email: xiazeyu@wealthengine.cn
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas (<2.0.0)
+Requires-Dist: arrow
+Requires-Dist: sqlalchemy
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: pyarrow
+Requires-Dist: statsmodels
+Requires-Dist: six
+Requires-Dist: sshtunnel
+Requires-Dist: openpyxl
+Requires-Dist: numba
+Requires-Dist: pymysql
+Requires-Dist: tqdm
+Requires-Dist: prettytable
+Requires-Dist: we-report (>0.1.8)
+
+# we_factor_quad
+
+因子分析的标准化数据结构，所有的因子框架都必须要嵌入这个结构
+
