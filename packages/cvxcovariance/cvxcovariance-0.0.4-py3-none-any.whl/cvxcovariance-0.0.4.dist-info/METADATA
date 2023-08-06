@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: cvxcovariance
+Version: 0.0.4
+Summary: ...
+Home-page: https://github.com/cvxgrp/cov_pred_finance
+Author: Kasper
+Requires-Python: >=3.8.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: cvxpy
+Requires-Dist: pandas (<2.0.0)
+Project-URL: Repository, https://github.com/cvxgrp/cov_pred_finance
+Description-Content-Type: text/markdown
+
+# [cvxcovariance](http://www.cvxgrp.org/cov_pred_finance)
+
+## Poetry
+
+We assume you share already the love for [Poetry](https://python-poetry.org). Once you have installed poetry you can perform
+
+```bash
+poetry install
+```
+
+to replicate the virtual environment we have defined in pyproject.toml.
+
+## Kernel
+
+We install [JupyterLab](https://jupyter.org) within your new virtual environment. Executing
+
+```bash
+./create_kernel.sh
+```
+
+constructs a dedicated [Kernel](https://docs.jupyter.org/en/latest/projects/kernels.html) for the project.
+
+
+
