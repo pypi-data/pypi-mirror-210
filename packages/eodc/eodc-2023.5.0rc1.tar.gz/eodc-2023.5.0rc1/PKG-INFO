@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: eodc
+Version: 2023.5.0rc1
+Summary: Python SDK for interacting with EODC services.
+Home-page: https://github.com/eodcgmbh/eodc-sdk
+Author: Lukas Weidenholzer
+Author-email: lukas.weidenholzer@eodc.eu
+Maintainer: EODC Staff
+Maintainer-email: support@eodc.eu
+Requires-Python: >=3.8,<3.12
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: argo-workflows (==6.3.9)
+Requires-Dist: pydantic (>=1.10.7,<2.0.0)
+Requires-Dist: requests (>=2.28.2,<3.0.0)
+Project-URL: Repository, https://github.com/eodcgmbh/eodc-sdk
+Description-Content-Type: text/markdown
+
+# eodc-connect
+Python SDK for interacting with EODC services.
+

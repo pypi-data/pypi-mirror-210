@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "eodc"
+version = "2023.5.0-rc.1"
+description = "Python SDK for interacting with EODC services."
+authors = ["Lukas Weidenholzer <lukas.weidenholzer@eodc.eu>"]
+maintainers = ["EODC Staff <support@eodc.eu>"]
+readme = "README.md"
+repository = "https://github.com/eodcgmbh/eodc-sdk"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+packages = [{include = "eodc"}]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+requests = "^2.28.2"
+pydantic = "^1.10.7"
+argo-workflows = "6.3.9"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.2.0"
+pytest = "^7.2.2"
+pytest-cov = "^4.0.0"
+ipykernel = "^6.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
