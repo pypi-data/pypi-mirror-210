@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "nonebot-plugin-majsoul"
+version = "0.2.0.post1"
+description = ""
+authors = ["ssttkkl <huang.wen.long@hotmail.com>"]
+license = "AGPL-3.0"
+readme = "README.md"
+packages = [
+    { include = "nonebot_plugin_majsoul", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+nonebot2 = "^2.0.0rc3"
+tzlocal = "^4.2"
+httpx = "^0.23.0"
+pydantic = "^1.10.2"
+monthdelta = "^0.9.1"
+icmplib = "^3.0.3"
+matplotlib = "^3.6.2"
+typing-extensions = "^4.4.0"
+nonebot-plugin-send-anything-anywhere = "^0.2.1"
+nonebot-adapter-onebot = "^2.2.3"
+nonebot-plugin-gocqhttp-cross-machine-upload-file = "^0.1.4"
+tensoul = "^0.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
