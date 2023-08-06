@@ -1,0 +1,20 @@
+Looking in links: https://data.dgl.ai/wheels/cu113/repo.html
+Collecting dgl
+  Downloading https://data.dgl.ai/wheels/cu113/dgl-1.1.0%2Bcu113-cp37-cp37m-manylinux1_x86_64.whl (86.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.5/86.5 MB 14.2 MB/s eta 0:00:00
+Requirement already satisfied: numpy>=1.14.0 in ./.venv/lib/python3.7/site-packages (from dgl) (1.21.6)
+Collecting scipy>=1.1.0 (from dgl)
+  Downloading scipy-1.7.3-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (38.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.1/38.1 MB 3.9 MB/s eta 0:00:00
+Collecting networkx>=2.1 (from dgl)
+  Downloading networkx-2.6.3-py3-none-any.whl (1.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 4.5 MB/s eta 0:00:00
+Requirement already satisfied: requests>=2.19.0 in ./.venv/lib/python3.7/site-packages (from dgl) (2.31.0)
+Requirement already satisfied: tqdm in ./.venv/lib/python3.7/site-packages (from dgl) (4.65.0)
+Requirement already satisfied: psutil>=5.8.0 in ./.venv/lib/python3.7/site-packages (from dgl) (5.9.5)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./.venv/lib/python3.7/site-packages (from requests>=2.19.0->dgl) (3.1.0)
+Requirement already satisfied: idna<4,>=2.5 in ./.venv/lib/python3.7/site-packages (from requests>=2.19.0->dgl) (3.4)
+Requirement already satisfied: urllib3<3,>=1.21.1 in ./.venv/lib/python3.7/site-packages (from requests>=2.19.0->dgl) (2.0.2)
+Requirement already satisfied: certifi>=2017.4.17 in ./.venv/lib/python3.7/site-packages (from requests>=2.19.0->dgl) (2023.5.7)
+Installing collected packages: scipy, networkx, dgl
+Successfully installed dgl-1.1.0+cu113 networkx-2.6.3 scipy-1.7.3
