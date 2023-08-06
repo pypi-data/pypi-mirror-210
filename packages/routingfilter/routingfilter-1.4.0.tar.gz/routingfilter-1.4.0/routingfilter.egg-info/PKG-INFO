@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: routingfilter
+Version: 1.4.0
+Summary: Generic Business Logic Implementation for Routing objects as python dictionaries
+Home-page: https://github.com/certego/RoutingFilter
+Author: Certego S.r.l.
+Author-email: support@certego.net
+License: GNU LGPLv3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+# RoutingFilter
+
+This is a Python module to handle routing filters based on dictionaries.
+
+### Usage
+Load a rule and check whether an event matches the rule or not. 
+```
+from routingfilter.routing import Routing
+routing = Routing()
+routing.load_from_dict([test_rule_1])
+routing.match(test_event_1)
+```
+See the [online documentation](https://routingfilter.readthedocs.io/en/latest/) for further details.
+ 
+### License
+This project is licensed under the **GNU LGPLv3** license.
