@@ -1,0 +1,18 @@
+setuptools
+wheel
+
+[dev]
+coverage==7.2.5
+pytest-cov==4.0.0
+pytest>=6.1.1
+parameterized==0.9.0
+pyelftools~=0.29
+black==23.3.0
+ruff==0.0.269
+
+[dev:python_version < "3.8"]
+flake8==3.3.0
+isort<5,>=4.2.5
+
+[dev:python_version >= "3.8"]
+flake8==3.8.4
