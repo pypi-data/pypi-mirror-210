@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: furiosa-optimizer
+Version: 0.9.1
+Summary: FuriosaAI optimizer
+Author-email: "FurioaAI, Inc." <pkg@furiosa.ai>
+Requires-Python: ~=3.8
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Dist: furiosa-common == 0.9.*
+Requires-Dist: numpy ~= 1.24
+Requires-Dist: onnx ~= 1.12.0
+Requires-Dist: onnx-simplifier ~= 0.4.22
+Requires-Dist: onnxoptimizer ~= 0.3.13
+Requires-Dist: onnxruntime ~= 1.13.1
+Project-URL: Bug Tracker, https://github.com/furiosa-ai/furiosa-sdk/issues
+Project-URL: Documentation, https://furiosa-ai.github.io/docs
+Project-URL: Home, https://furiosa.ai
+Project-URL: Source Code, https://github.com/furiosa-ai/furiosa-sdk
+Provides-Extra: test
+
+# Furiosa Optimizer
+
+Optimize an ONNX model so that it can be fed to the furiosa quantizer.
+
