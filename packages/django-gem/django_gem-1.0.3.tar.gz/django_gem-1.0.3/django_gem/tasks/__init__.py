@@ -1,0 +1,3 @@
+from django_gem.tasks.cut_content_type import cut_content_type_task
+from django_gem.tasks.cut_models import cut_models_task
+from django_gem.tasks.cut_queryset import cut_queryset_task
