@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: nanolayer
+Version: 0.4.41
+Author: Daniel Braun
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic (==1.10.7)
+Requires-Dist: typer (==0.7.0)
+Requires-Dist: invoke (==2.0.0)
+Requires-Dist: natsort (==8.3.1)
+Requires-Dist: sentry-sdk (==1.19.1)
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-shell-utilities ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: gitpython ; extra == 'dev'
+Requires-Dist: build ; extra == 'dev'
+Requires-Dist: setuptools ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: setuptools-scm ; extra == 'dev'
+Requires-Dist: packaging ; extra == 'dev'
+Requires-Dist: dcontainer (>=1.0.6) ; extra == 'dev'
+
+# Nanolayer CLI
+
+`nanolayer` helps keep container layers as small as possible.
+
+It does so by automatically deleting any installation leftovers (such as apt-get update lists, ppas, etc)
+
+
+## Installation
+
+
+`pipx install nanolayer`
+
+
+### GH Release installation:
+Usage:
+
+```shell
+nanolayer install gh-release cli/cli gh 
+```
+
+### Example 
+
+```dockerfile
+FROM python:3.10
+
+RUN apt-get -y update && apt-get install -y htop 
+```
+
+layer size:  **22MB**
+
+```dockerfile
+FROM python:3.10
+
+RUN curl -sfL https://github.com/devcontainers-contrib/nanolayer/releases/download/v0.4.0/nanolayer-x86_64-unknown-linux-gnu.tgz | tar fxvz - -C / && \
+    chmod 755 /tmp/nanolayer && ls /tmp && \
+    /nanolayer install apt-get htop && \
+    rm /nanolayer
+```
+
+Layer size: **1.6MB**
