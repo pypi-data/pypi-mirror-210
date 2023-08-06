@@ -1,0 +1,36 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astro-synthesizer"
+version = "0.0.4"
+description = "Generate astronomical synthetic observations from the command-line "
+readme = "README.md"
+authors = [{ name = "Joaquin Zamponi", email = "jzamponi@mpe.mpg.de" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["", "", ""]
+dependencies = [
+    "requests",
+    "astropy",
+    "matplotlib",
+    "numpy",
+    "scipy",
+    "mpmath",
+    "progressbar2",
+    "aplpy",
+    "mayavi",
+    "h5py",
+]
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/jzamponi/synthesizer"
+
+[project.scripts]
+synthesizer = "synthesizer.parser:synthesizer"
