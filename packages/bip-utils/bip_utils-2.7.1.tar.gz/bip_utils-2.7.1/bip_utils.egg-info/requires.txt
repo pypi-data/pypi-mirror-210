@@ -1,0 +1,20 @@
+cbor2~=5.1
+coincurve<18.0.0,>=15.0.1
+crcmod~=1.7
+ecdsa~=0.15
+ed25519-blake2b~=1.4
+pycryptodome~=3.6
+pynacl~=1.4
+py-sr25519-bindings<2.0.0,>=0.1.3
+
+[:python_version == '3.7']
+typing_extensions
+
+[develop]
+coverage>=5.3
+flake8>=3.8
+isort>=5.8
+mypy>=0.900
+prospector[with_mypy,with_pyroma]>=1.7
+pytest>=7.0
+pytest-cov>=2.10
