@@ -1,0 +1,54 @@
+# ktechpay-python
+Python plugin for [KtechPay](https://pay.ktechhub.com/) View on [pypi.python.org](https://pypi.org/project/ktechpayapi/)
+
+## Installation
+```sh
+pip install ktechpayapi
+```
+
+Instantiate KtechPay
+
+```python
+from ktechpayapi.ktechpay import Kteckpay
+
+ktech_secret_key = "kt_test_23cf0"
+
+ktechpay = Kteckpay(ktech_secret_key=ktech_secret_key)
+
+# to use transaction class
+print(ktechpay.transaction.list())
+
+# initiate
+print(ktechpay.transaction.initialize(
+    amount=3,
+    email="info@ktechhub.com"
+))
+
+print(ktechpay.transaction.verify(reference="e1b6679c5aad4bd3999953ac78e677a79d28d539085e409ebde1be640ebc27e7"))
+```
+
+## Static Use
+To start using the KtechPay Python API, you need to start by setting your secret key.
+
+You can set your secret key in your environment by running:
+
+```sh
+export KTECH_SECRET_KEY = 'your_secret_secret_key'
+```
+
+After exporting the keys, you can use the api like this
+```python
+from ktechpayapi.transaction import Transaction
+
+# to use transaction class
+print(Transaction.list())
+
+# initiate
+print(Transaction.initialize(
+    amount=3,
+    email="info@ktechhub.com"
+))
+
+print(Transaction.verify(reference="e1b6679c5aad4bd3999953ac78e677a79d28d539085e409ebde1be640ebc27e7"))
+```
+
