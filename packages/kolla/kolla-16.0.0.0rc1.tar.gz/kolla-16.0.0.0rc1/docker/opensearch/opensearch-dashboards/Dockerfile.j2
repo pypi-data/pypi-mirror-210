@@ -1,0 +1,33 @@
+FROM {{ namespace }}/{{ image_prefix }}base:{{ tag }}
+{% block labels %}
+LABEL maintainer="{{ maintainer }}" name="{{ image_name }}" build-date="{{ build_date }}"
+{% endblock %}
+
+{% block opensearch_header %}{% endblock %}
+
+{% import "macros.j2" as macros with context %}
+
+{{ macros.configure_user(name='opensearch', shell='/bin/bash', homedir='/usr/share/opensearch') }}
+{{ macros.enable_extra_repos(['opensearch-dashboards']) }}
+
+{% set opensearch_dashboards_packages = ['opensearch-dashboards'] %}
+
+{% if base_package_type == 'rpm' %}
+{# TODO: OpenSearch will move from SHA1 in 2.8 release, remove this once 2.8 is out #}
+RUN update-crypto-policies --set DEFAULT:SHA1
+{% endif %}
+
+{# TODO: ugly hack to get past opensearch postinst, remove once #}
+{# https://github.com/opensearch-project/opensearch-build/pull/3435 gets merged #}
+{# and packages get rebuilt #}
+RUN touch /usr/bin/systemd-tmpfiles && chmod a+rx /usr/bin/systemd-tmpfiles \
+    && {{ macros.install_packages(opensearch_dashboards_packages | customizable("packages"), chain=True) }} \
+    && rm -f /usr/bin/systemd-tmpfiles
+
+COPY extend_start.sh /usr/local/bin/kolla_extend_start
+RUN chmod 755 /usr/local/bin/kolla_extend_start
+
+{% block opensearch_footer %}{% endblock %}
+{% block footer %}{% endblock %}
+
+USER opensearch
