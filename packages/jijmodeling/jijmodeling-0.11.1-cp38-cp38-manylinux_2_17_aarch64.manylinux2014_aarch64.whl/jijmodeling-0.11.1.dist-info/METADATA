@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: jijmodeling
+Version: 0.11.1
+Summary: JijModeling: Mathematical modeling tool for JijZept.
+Home-page: https://www.jijzept.com
+Author: Jij Inc.
+Author-email: info@j-ij.com
+License: Other/Proprietary License
+Project-URL: Documentation, https://www.documentation.jijzept.com/docs/jijmodeling_docs/
+Project-URL: Reference, https://www.ref.documentation.jijzept.com/jijmodeling/
+Project-URL: JijZept, https://pypi.org/project/jijzept
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Requires-Python: <3.11,>=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: jijmodeling-schema (==0.2.0)
+Requires-Dist: numpy (<1.25.0)
+Requires-Dist: pandas (<2.1.0)
+Requires-Dist: typeguard (~=3.0.0)
+Requires-Dist: pydantic (<1.11.0)
+Requires-Dist: python-ulid (<1.2.0)
+Requires-Dist: orjson (<3.9.0,>=3.8.7)
+
+# Jij-Modeling
+
+[![PyPI version shields.io](https://img.shields.io/pypi/v/jijmodeling.svg)](https://pypi.python.org/pypi/jijmodeling/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/jijmodeling.svg)](https://pypi.python.org/pypi/jijmodeling/)
+[![PyPI implementation](https://img.shields.io/pypi/implementation/jijmodeling.svg)](https://pypi.python.org/pypi/jijmodeling/)
+[![PyPI format](https://img.shields.io/pypi/format/jijmodeling.svg)](https://pypi.python.org/pypi/jijmodeling/)
+[![PyPI license](https://img.shields.io/pypi/l/jijmodeling.svg)](https://pypi.python.org/pypi/jijmodeling/)
+[![PyPI download month](https://img.shields.io/pypi/dm/jijmodeling.svg)](https://pypi.python.org/pypi/jijmodeling/)
+
+JijModelingは量子アニーリングやイジングマシンを利用する際に使える直感的な数理モデリングツールです。
+
+## インストール
+
+JijModelingの一部の機能はPyPIからインストールすることで無料で使うことができます。
+
+JijModelingを利用する際は仮想環境を構築することをおすすめします。Python標準の`venv`、または`poetry`のようなツールを用いて仮想環境を構築してjijmodelingをインストールしてください。
+
+*   pip & venv
+
+```Bash
+pip install jijmodeling
+```
+
+*   poetry
+
+```Bash
+poetry add jijmodeling
+```
+
+さっそくJijModelingを始めてみましょう。
