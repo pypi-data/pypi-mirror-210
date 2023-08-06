@@ -1,0 +1,97 @@
+Metadata-Version: 2.1
+Name: carpet-concentrations
+Version: 0.3.0
+Summary: Core tools for the development of greenhouse gas concentration input files (i.e. flying carpets).
+Author: Zebedee Nicholls
+Author-email: zebedee.nicholls@climate-resource.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: cfxarray
+Provides-Extra: netcdf
+Provides-Extra: notebooks
+Provides-Extra: plots
+Requires-Dist: attrs (>=23.1.0,<24.0.0)
+Requires-Dist: cf-xarray (>=0.8.1,<0.9.0) ; extra == "cfxarray"
+Requires-Dist: cftime (>=1.6.2,<2.0.0)
+Requires-Dist: ipywidgets (>=8.0.6,<9.0.0) ; extra == "notebooks"
+Requires-Dist: matplotlib (>=3.7.1,<4.0.0)
+Requires-Dist: netcdf4 (>=1.6.3,<2.0.0) ; extra == "netcdf"
+Requires-Dist: notebook (>=6.5.3,<7.0.0) ; extra == "notebooks"
+Requires-Dist: openscm-units (>=0.5.2,<0.6.0)
+Requires-Dist: pint (>=0.19)
+Requires-Dist: pint-xarray (>=0.3,<0.4)
+Requires-Dist: pooch (>=1.7.0,<2.0.0) ; extra == "cfxarray"
+Requires-Dist: seaborn (>=0.12.2,<0.13.0) ; extra == "plots"
+Requires-Dist: xarray (>=2023.4.2,<2024.0.0)
+Description-Content-Type: text/markdown
+
+# Carpet - Concentrations
+
+<!--- sec-begin-description -->
+
+[#1 badges here]
+
+Core tools for the development of greenhouse gas concentration input files (i.e. flying carpets).
+
+<!---
+Can use start-after and end-before directives in docs, see
+https://myst-parser.readthedocs.io/en/latest/syntax/organising_content.html#inserting-other-documents-directly-into-the-current-document
+-->
+
+<!--- sec-end-description -->
+
+Full documentation can be found at: [#2 read the docs link here]
+
+## Installation
+
+<!--- sec-begin-installation -->
+
+Carpet - Concentrations can be installed with conda or pip:
+
+```bash
+pip install carpet-concentrations
+conda install -c conda-forge carpet-concentrations
+```
+
+Additional dependencies can be installed using
+
+```bash
+# To add plotting dependencies
+pip install carpet-concentrations[plots]
+# To add notebook dependencies
+pip install carpet-concentrations[notebooks]
+
+# If you are installing with conda, we recommend
+# installing the extras by hand because there is no stable
+# solution yet (issue here: https://github.com/conda/conda/issues/7502)
+```
+
+<!--- sec-end-installation -->
+
+### For developers
+
+<!--- sec-begin-installation-dev -->
+
+For development, we rely on [poetry](https://python-poetry.org) for all our
+dependency management. To get started, you will need to make sure that poetry
+is installed
+([instructions here](https://python-poetry.org/docs/#installing-with-the-official-installer),
+we found that pipx and pip worked better to install on a Mac).
+
+For all of work, we use our `Makefile`.
+You can read the instructions out and run the commands by hand if you wish,
+but we generally discourage this because it can be error prone.
+In order to create your environment, run `make virtual-environment`.
+
+If there are any issues, the messages from the `Makefile` should guide you
+through. If not, please raise an issue in the [issue tracker][issue_tracker].
+
+For the rest of our developer docs, please see {ref}`development-reference`.
+
+[issue_tracker]: https://gitlab.com/climate-resource/carpet-concentrations/issues
+
+<!--- sec-end-installation-dev -->
+
