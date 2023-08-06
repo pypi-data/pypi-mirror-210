@@ -1,0 +1,38 @@
+*--------------------------------------------------
+* FICHERO RUN PARA TTEREG.F90
+*--------------------------------------------------
+*
+* MEDIO_EJECUCION_MARINO(1)_RIOS(2)
+1
+* SIMULACIÓN 2D(1) O 3D(2)
+1
+* CUANDO SIMULACIÓN 3D: TIPO BLOWOUT (incluye lectura resultados campo cercano): SI(1)_NO(0)
+0
+* DIRECCION_PREDICCION_FORWARD(1)_BACKWARD(2)
+1
+* DIRECTORIO_DATOS_EJECUCIONMODELO(1:DIRECTORIO_ACTUAL(MISMO_SITIO_EJECUTABLE), 2:OTRO_DIRECTORIO)
+2
+****************************************************************************************
+* BUSQUEDA_TIERRA(:1)_COSTA(:2)_(1=SoloMascaraModelo,2=InteraccionMascaraModeloCosta)
+2
+* ALGORITMO_BUSQUEDA_COSTA(1=LowResolution[Regional],2=HighResolution[Local])
+2
+* NUMERO_DE_POLIGONOS_QUE_DEFINEN_LA_COSTA(UNICAMENTE_PARA_HighResolution)
+36
+****************************************************************************************
+* NUMERO_DE_PARTICULAS/VERTIDO (3D, mínimo 5 por 5 clases de tamaño de particula)  LECTURA DE POSICIONES=RESTART (0=NO, 1=SI)(De momento solo valido si tipo vertido Flotante-Plasticos)
+1000  0
+* INCREMENTO_DE_t(s)
+60.0
+* INTERPOLACIÓN TEMPORAL(1:SI,0:NO)_VIENTO _OLEAJE _CORRIENTES
+0 0 0
+* ESQUEMA_EULER(1)_RUNGE-KUTTA(2)
+1
+*
+*--------------------------------------------------
+* RESULTADOS | DERIVADOS[[1]] BORRAR_FICHEROS_FORZAMIENTO[[0]]
+*--------------------------------------------------
+* TIEMPO_PRIMERA_ESCRIT(h) DT_PARTS(s) DT_MALLA(s) DT_PROPRIEDADES(s)
+0.0  3600.0   3600.0 3600.0
+* GRABAR_RESULTADOS(1:SI,0:NO) _PARTICULAS _MALLA _PROPIEDADES
+1  1   1
