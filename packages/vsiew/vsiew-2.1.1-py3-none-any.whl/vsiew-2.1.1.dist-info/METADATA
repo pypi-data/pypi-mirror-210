@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: vsiew
+Version: 2.1.1
+Summary: VapourSynth packages from Irrational Encoding Wizardry
+Author: Irrational Encoding Wizardry
+Author-email: wizards@encode.moe
+Maintainer: Setsugen no ao
+Maintainer-email: setsugen@setsugen.dev
+Project-URL: Source Code, https://github.com/Irrational-Encoding-Wizardry
+Project-URL: Contact, https://discord.gg/qxTxVJGtst
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: VapourSynth (>=60)
+Requires-Dist: vstools (==2.1.0)
+Requires-Dist: vspyplugin (==1.3.2)
+Requires-Dist: vskernels (==2.4.0)
+Requires-Dist: vsexprtools (==1.4.4)
+Requires-Dist: vsrgtools (==1.4.4)
+Requires-Dist: vsmasktools (==1.0.0)
+Requires-Dist: vsaa (==1.7.0)
+Requires-Dist: vsscale (==1.8.0)
+Requires-Dist: vsdenoise (==2.2.0)
+Requires-Dist: vsdehalo (==1.7.0)
+Requires-Dist: vsdeband (==1.0.0)
+Requires-Dist: vsdeinterlace (==0.5.0)
+Requires-Dist: lvsfunc (==0.7.1)
+Requires-Dist: vssource (==0.9.0)
+Requires-Dist: vspreview (==0.4.4)
+
+# vs-iew
+
+### PyPi package for quickly updating and installing all IEW packages.
+
+<br>
+
+<br><br>
+## How to install
+
+Install `vsiew` with the following command:
+
+```sh
+pip install vsiew
+```
+
+<br>
+
+## How to use
+
+Install all iew packages:
+```sh
+python -m vsiew
+```
+
+Install latest git version of all iew packages:
+```sh
+python -m vsiew latest
+```
+
