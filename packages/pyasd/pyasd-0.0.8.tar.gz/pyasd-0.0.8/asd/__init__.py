@@ -1,0 +1,8 @@
+__built_time__        =  "built at Mon May 29 01:01:00 2023_CST"
+__name__              =  "pyasd"
+__version__           =  "0.0.8"
+__author__            =  "Shunhong Zhang"
+__author_email__      =  "zhangshunhong.pku@gmail.com"
+__url__               =  "https://to_be_posted"
+__license__           =  "LICENSE"
+__platform__          =  "linux"
