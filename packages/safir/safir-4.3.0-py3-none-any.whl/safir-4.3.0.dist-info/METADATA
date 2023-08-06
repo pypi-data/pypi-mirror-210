@@ -1,0 +1,115 @@
+Metadata-Version: 2.1
+Name: safir
+Version: 4.3.0
+Summary: The Rubin Observatory SQuaRE framework for FastAPI services.
+Author-email: "Association of Universities for Research in Astronomy, Inc. (AURA)" <sqre-admin@lists.lsst.org>
+License: MIT License
+        
+        Copyright (c) 2020 Association of Universities for Research in Astronomy, Inc. (AURA)
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://safir.lsst.io
+Project-URL: Source, https://github.com/lsst-sqre/safir
+Project-URL: Change log, https://safir.lsst.io/changelog.html
+Project-URL: Issue tracker, https://github.com/lsst-sqre/safir/issues
+Keywords: rubin,lsst
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Typing :: Typed
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: cryptography
+Requires-Dist: fastapi
+Requires-Dist: gidgethub
+Requires-Dist: httpx (>=0.20.0)
+Requires-Dist: pydantic
+Requires-Dist: starlette
+Requires-Dist: structlog (>=21.2.0)
+Provides-Extra: arq
+Requires-Dist: arq (>=0.23) ; extra == 'arq'
+Provides-Extra: db
+Requires-Dist: asyncpg ; extra == 'db'
+Requires-Dist: sqlalchemy[asyncio] (>=1.4.18) ; extra == 'db'
+Provides-Extra: dev
+Requires-Dist: asgi-lifespan ; extra == 'dev'
+Requires-Dist: coverage[toml] ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: psycopg2 ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-asyncio ; extra == 'dev'
+Requires-Dist: respx ; extra == 'dev'
+Requires-Dist: scriv ; extra == 'dev'
+Requires-Dist: sqlalchemy[mypy] ; extra == 'dev'
+Requires-Dist: types-redis ; extra == 'dev'
+Requires-Dist: uvicorn ; extra == 'dev'
+Requires-Dist: documenteer[guide] (>=0.7.0b2) ; extra == 'dev'
+Requires-Dist: autodoc-pydantic ; extra == 'dev'
+Provides-Extra: gcs
+Requires-Dist: google-auth ; extra == 'gcs'
+Requires-Dist: google-cloud-storage ; extra == 'gcs'
+Provides-Extra: kubernetes
+Requires-Dist: kubernetes-asyncio ; extra == 'kubernetes'
+Provides-Extra: redis
+Requires-Dist: redis (!=4.5.2,>=4.2.0rc1) ; extra == 'redis'
+
+# Safir
+
+Safir is Rubin Observatory's library for building [FastAPI](https://fastapi.tiangolo.com/) services for the [Rubin Science Platform (Phalanx)](https://github.com/lsst-sqre/phalanx) and [Roundtable](https://github.com/lsst-sqre/roundtable) Kubernetes clusters.
+Safir is developed, maintained, and field tested by the SQuaRE team.
+
+Safir is available from [PyPI](https://pypi.org/project/safir/):
+
+```sh
+pip install safir
+```
+
+The best way to create a new FastAPI/Safir service is with the [`fastapi_safir_app` template](https://github.com/lsst/templates/blob/main/project_templates/fastapi_safir_app).
+
+Read more about Safir at https://safir.lsst.io.
+
+## Features
+
+- Set up an `httpx.AsyncClient` as part of the application start-up and shutdown lifecycle.
+- Set up structlog-based logging.
+- Middleware for attaching request context to the logger to include a request UUID, method, and route in all log messages.
+- Process `X-Forwarded-*` headers to determine the source IP and related information of the request.
+- Gather and structure standard metadata about your application.
+- Operate a distributed Redis job queue with [arq](https://arq-docs.helpmanual.io) using convenient clients, testing mocks, and a FastAPI dependency.
+
+## Developing Safir
+
+The best way to start contributing to Safir is by cloning this repository creating a virtual environment, and running the init command:
+
+```sh
+git clone https://github.com/lsst-sqre/safir.git
+cd safir
+make init
+```
+
+For details, see https://safir.lsst.io/dev/development.html.
