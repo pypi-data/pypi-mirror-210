@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: arclet-alconna-tools
+Version: 0.6.1
+Summary: Builtin Tools for Alconna
+License: MIT
+Author-email: RF-Tar-Railt <rf_tar_railt@qq.com>
+Requires-Python: >=3.8
+Requires-Dist: arclet-alconna>=1.7.7
+Requires-Dist: nepattern<0.6.0,>=0.5.8
+Description-Content-Type: text/markdown
+
+# Alconna Tools
+
+Provider various tools for Alconna
+
+Extensions:
+
+- `actions`: `exclusion`, `cooldown`, `inclusion`
+- `checker`: `simple_type`
+- `constrcut`: ` AlconnaDecorate`, `AlconnaFormat`, `AlconnaString`, `AlconnaFire`
+- `formatter`: `Shell`, `Markdown`, `RichText`, `RichConsole`
+- `pattern`: `ObjectPattern`
+
+## Example:
+
+`AlconnString`:
+
+```python
+#constrcut.py
+from arclet.alconna.tools import AlconnaString
+
+alc = (
+    AlconnaString('constrcut')
+    .option('alpha', '-a')          
+    .option('beta', '-b [beta]')
+    .option('gamma', '-c <gamma>')
+    .build()
+)
+
+if __name__ == '__main__':
+    alc()
+```
+
+```shell
+$ python constrcut.py -a -b -c abc
+{"alpha": ..., "beta": {}, "gamma": "abc"}
+```
+
