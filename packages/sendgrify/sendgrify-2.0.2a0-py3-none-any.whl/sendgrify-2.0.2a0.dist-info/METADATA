@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: sendgrify
+Version: 2.0.2a0
+Summary: SendGrid for Humans
+Project-URL: homepage, https://github.com/sdelquin/sendgrify
+Project-URL: repository, https://github.com/sdelquin/sendgrify
+Author: Sergio Delgado Quintero
+Author-email: sdelquin@gmail.com
+Maintainer-email: Sergio Delgado Quintero <sdelquin@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2021 Sergio Delgado Quintero
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Requires-Dist: markdown
+Requires-Dist: sendgrid==5.3.0
+Description-Content-Type: text/markdown
+
+# sendgrify
+
+SendGrid for Humans.
+
+**Sendgrify** is a Python package serving as a wrapper over the email delivery service [SendGrid](https://sendgrid.com/).
+
+This is an attempt to simplify the use of [sendgrid-python](https://github.com/sendgrid/sendgrid-python): the Official Twilio SendGrid Led, Community Driven Python API Library.
+
+> Sending emails, the easy way!
+
+## Installation
+
+```console
+$ pip install sendgrify
+```
+
+## Usage
+
+1. Grab your [SendGrid API Key](https://docs.sendgrid.com/ui/account-and-settings/api-keys).
+2. Code!
+
+```python
+>>> from sendgrid import SendGrid
+>>> handler = SendGrid('YOUR_SENDGRID_API_KEY', 'from_addr@example.com', 'From Name')
+>>> handler.send(to='hello@example.com', subject='Hi there', msg='This is just a test')
+```
+
+### Advanced usage
+
+Function `send()` also admits some more parameters:
+
+- `cc`: as a list of emails for carbon copy.
+- `bcc`: as a list of emails for blind carbon copy.
+- `attachments`: as a list of paths for file attachments.
+- `as_markdown`: as a boolean (if True msg will be rendered from Markdown).
+
+## Tests
+
+```console
+$ pip install -r requirements-dev.txt
+$ pytest
+```
+
+## License
+
+MIT
