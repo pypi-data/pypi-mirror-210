@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: fluidsim-core
+Version: 0.7.3
+Summary: Pure-Python core library for FluidSim framework
+Home-page: https://foss.heptapod.net/fluiddyn/fluidsim/-/tree/branch/default/lib
+Author: FluidDyn project
+Author-email: fluiddyn@freelists.org
+License: CeCILL License
+Project-URL: Bug Tracker, https://foss.heptapod.net/fluiddyn/fluidsim/-/issues
+Project-URL: Documentation, https://fluidsim.readthedocs.io/en/latest/generated/fluidsim_core.html
+Keywords: Fluid dynamics,research,CFD,fluiddyn,fluidsim
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+License-File: LICENSE.txt
+Requires-Dist: fluiddyn (>=0.3.2)
+Requires-Dist: importlib-metadata (>=3.6.0) ; python_version < "3.10"
+
+FluidSim Core
+=============
+
+Pure-Python core library for FluidSim_ framework. This package provides
+generic base classes and utilities to build new solvers.
+
+**Documentation**: https://fluidsim.readthedocs.io/en/latest/generated/fluidsim_core.html
+
+.. _FluidSim: https://fluidsim.readthedocs.io
