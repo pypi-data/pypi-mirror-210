@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "freyja-plot"
+version = "0.3.0"
+description = "Plotting lineage abundance for individual samples from aggregated freyja demix results"
+authors = ["Sam Kunkleman <skunklem@uncc.edu>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    {include = "freyja_plot"},
+    {include = "example"}
+]
+repository = "https://github.com/enviro-lab/freyja-plot.git"
+keywords = ["freyja","plot","lineage","abundance","covid"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^2.0.1"
+plotly = "^5.14.1"
+kaleido = "0.1.0"
+pyyaml = "^6.0"
+
+[tool.poetry.scripts]
+freyja_plot = 'freyja_plot.main:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
