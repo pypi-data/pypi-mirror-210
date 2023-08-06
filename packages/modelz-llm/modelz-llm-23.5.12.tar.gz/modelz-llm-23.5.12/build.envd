@@ -1,0 +1,30 @@
+# syntax=v1
+
+
+def basic(gpu=True):
+    install.apt_packages(name=["build-essential"])
+    install.python()
+    if gpu:
+        install.cuda(version="11.6.2")
+        install.python_packages(requirements="requirements.txt")
+    else:
+        install.python_packages(requirements="requirements-cpu.txt")
+
+
+def build():
+    base(dev=True)
+    basic()
+    runtime.expose(envd_port=8000, host_port=8000, service="service")
+
+
+def cpu():
+    base(dev=True)
+    basic(gpu=False)
+    runtime.expose(envd_port=8000, host_port=8000, service="service")
+
+
+def serving():
+    basic()
+    io.copy("main.py", "/")
+    run(["python main.py --dry-run"])
+    config.entrypoint(["python", "main.py", "--timeout", "30000"])
