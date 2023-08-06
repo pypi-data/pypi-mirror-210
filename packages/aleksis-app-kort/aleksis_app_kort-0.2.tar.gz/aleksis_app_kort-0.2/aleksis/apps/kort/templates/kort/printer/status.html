@@ -1,0 +1,5 @@
+{% load i18n %}
+<span class="chip white-text {{ printer.status_color }}" title="{{ printer.status_text }}">
+  <i class="material-icons left iconify" data-icon="{{ printer.status_icon }}"></i>
+  {{ printer.status_label }}
+</span>

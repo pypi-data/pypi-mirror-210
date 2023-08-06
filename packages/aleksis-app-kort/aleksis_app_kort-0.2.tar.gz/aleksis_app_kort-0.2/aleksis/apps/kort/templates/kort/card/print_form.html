@@ -1,0 +1,21 @@
+{% load material_form i18n rules %}
+{% has_perm 'kort.print_card_rule' user card as can_print %}
+{% if can_print %}
+  <form action="{% url "print_card" card.pk %}" method="get">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title"><i class="material-icons left iconify"
+                                   data-icon="mdi:printer-outline"></i> {% trans "Print card" %}</div>
+
+        {% csrf_token %}
+        {% form form=printer_form %}{% endform %}
+      </div>
+      <div class="card-action-light">
+        <button type="submit" class="btn waves-effect waves-light">
+          <i class="material-icons left iconify" data-icon="mdi:printer-outline"></i>
+          {% trans "Print card" %}
+        </button>
+      </div>
+    </div>
+  </form>
+{% endif %}

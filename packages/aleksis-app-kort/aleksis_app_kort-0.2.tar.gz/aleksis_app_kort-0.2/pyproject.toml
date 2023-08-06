@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "AlekSIS-App-Kort"
+version = "0.2"
+packages = [
+    { include = "aleksis" }
+]
+readme = "README.rst"
+include = ["CHANGELOG.rst", "LICENCE.rst", "aleksis/**/*.mo"]
+
+description = "AlekSIS (School Information System) — App Kort (manage student IDs)"
+authors = ["Margarete Grassl <grasslma@katharineum.de>", "Jonathan Weth <dev@jonathanweth.de>"]
+license = "EUPL-1.2"
+homepage = "https://aleksis.org"
+repository = "https://edugit.org/AlekSIS/onboarding/AlekSIS-App-Kort"
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Education",
+    "Topic :: Education"
+]
+
+[[tool.poetry.source]]
+name = "gitlab"
+url = "https://edugit.org/api/v4/projects/461/packages/pypi/simple"
+secondary = true
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aleksis-core = "^3.0"
+python-barcode = "^0.14.0"
+django-formtools = "^2.3"
+django-ace = "^1.0.12"
+
+[tool.poetry.dev-dependencies]
+aleksis-builddeps = "*"
+
+[tool.poetry.plugins."aleksis.app"]
+kort = "aleksis.apps.kort.apps:DefaultConfig"
+
+[tool.black]
+line-length = 100
+exclude = "/migrations/"
+
+[tool.curlylint]
+include = '\.html'
+
+[tool.curlylint.rules]
+aria_role = true
+django_forms_rendering = true
+image_alt = true
+indent = 2
+meta_viewport = true
+no_autofocus = true
+tabindex_no_positive = true
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"

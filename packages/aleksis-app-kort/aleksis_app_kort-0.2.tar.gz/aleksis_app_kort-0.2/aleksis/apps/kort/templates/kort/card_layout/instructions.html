@@ -1,0 +1,28 @@
+{% load i18n %}
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">{% trans "Instructions on templating the card" %}</div>
+    {% blocktrans %}
+      You will be able to use the following data in your individual template. The template has to been written in the
+      Django template language.
+    {% endblocktrans %}
+    <div class="collection">
+      <div class="collection-item">
+        <code>{% verbatim %}{{ chip_number }}{% endverbatim %}</code> - {% trans "The chip number as string" %}
+      </div>
+      <div class="collection-item">
+        <code>{% verbatim %}{{ person.x }}{% endverbatim %}</code>
+        - {% trans "This will give you access to any attributes of the person object like name, personal data or contact data." %}
+      </div>
+      <div class="collection-item">
+        <code>{% verbatim %}{{ valid_until }}{% endverbatim %}</code>
+        - {% trans "The date until when the card is valid" %}
+      </div>
+      <div class="collection-item">
+        <code>{% verbatim %}
+          {{ media_files.0.media_file.url }}{% endverbatim %}</code> -
+        {% trans "This will give you access to the uploaded media files. Replace 0 by the number of your media file (starting with 0)." %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{# -*- engine:django -*- #}
+
+{% extends "core/base.html" %}
+
+{% load i18n rules material_form %}
+{% load render_table from django_tables2 %}
+
+{% block browser_title %}{% blocktrans %}Delete Card Printer{% endblocktrans %}{% endblock %}
+{% block no_page_title %}{% endblock %}
+
+{% block content %}
+  <p class="flow-text">{% trans "Do you really want to delete the following card printer?" %}</p>
+  {% include "kort/printer/short.html" with printer=object %}
+  <figure class="alert warning">
+    <i class="material-icons left iconify" data-icon="mdi:alert-octagon-outline"></i>
+    {% blocktrans %}
+      Please pay attention that this also will deactivate the access for the print client and you would have to
+      reconfigure the client if you want to use it further.
+    {% endblocktrans %}
+  </figure>
+  <form method="post" action="">
+    {% csrf_token %}
+    <a href="{% url "card_printers" %}" class="modal-close waves-effect waves-green btn">
+      <i class="material-icons left iconify" data-icon="mdi:arrow-left"></i>
+      {% trans "Go back" %}
+    </a>
+    <button type="submit" name="delete" class="modal-close waves-effect waves-light red btn">
+      <i class="material-icons left iconify" data-icon="mdi:delete-outline"></i>
+      {% trans "Delete" %}
+    </button>
+  </form>
+{% endblock %}

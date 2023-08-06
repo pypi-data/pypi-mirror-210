@@ -1,0 +1,14 @@
+{# -*- engine:django -*- #}
+
+{% extends "core/base.html" %}
+
+{% load material_form i18n any_js %}
+
+
+{% block browser_title %}{% blocktrans %}Card{% endblocktrans %}{% endblock %}
+{% block page_title %}{% blocktrans with person=object.person %}Card of {{ person }}{% endblocktrans %}{% endblock %}
+
+
+{% block content %}
+  {% include "kort/card/detail_content.html" with card=object %}
+{% endblock %}

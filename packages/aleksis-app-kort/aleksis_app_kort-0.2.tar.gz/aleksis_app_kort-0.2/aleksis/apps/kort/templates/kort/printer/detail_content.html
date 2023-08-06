@@ -1,0 +1,113 @@
+{% load i18n %}
+<div class="row no-margin">
+  <div class="col s12 m12 l6 no-padding">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title">{% trans "Printer details" %}</div>
+        <table>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:printer-outline"></i>
+              {% trans "Name" %}</th>
+            <td>{{ printer.name }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:map-marker-outline"></i>
+              {% trans "Location" %}
+            </th>
+            <td>{{ printer.location|default:"–" }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:card-text-outline"></i>
+              {% trans "Description" %}
+            </th>
+            <td>{{ printer.description|default:"–" }}</td>
+          </tr>
+          <tr>
+            <th>
+              <i class="material-icons left iconify" data-icon="mdi:clock-check-outline"></i>
+              {% trans "Last seen at" %}
+            </th>
+            <td>{{ printer.last_seen_at|default:_("never seen yet") }}</td>
+          </tr>
+          <tr>
+            <th {% if printer.status_text %}rowspan="2"{% endif %}>
+              <i class="material-icons left iconify" data-icon="mdi:checkbox-blank-badge-outline"></i>
+              {% trans "Status" %}
+            </th>
+            <td>
+              {% include "kort/printer/status.html" %}
+            </td>
+          </tr>
+          {% if printer.status_text %}
+            <tr>
+              <td>
+                {{ printer.status_text }}
+              </td>
+            </tr>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m12 l6">
+    <!-- Jobs here -->
+    {% if printer.status == "not_registered" %}
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">{% trans "Setup printer client" %}</div>
+          <p>
+            {% blocktrans %}
+              To enable printing, you have to register the print client on the device
+              which the printer is connected to.
+            {% endblocktrans %}
+          </p>
+          <h6>{% trans "1. Download print client" %}</h6>
+          <h6>{% trans "2. Download configuration file" %}</h6>
+          <a class="btn waves-effect waves-light" href="{% url "card_printer_config" printer.pk %}">
+            <i class="material-icons left iconify" data-icon="mdi:download-outline"></i>
+            {% trans "Download configuration" %}
+          </a>
+          <h6>{% trans "3. Setup client" %}</h6>
+          <code>kort-client setup {{ printer.config_filename }}</code>
+        </div>
+      </div>
+    {% else %}
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">{% trans "Print jobs" %}</div>
+          <table>
+            <tr>
+              <th>
+                {% trans "Card" %}
+              </th>
+              <th>
+                {% trans "Created at" %}
+              </th>
+              <th>
+                {% trans "Status" %}
+              </th>
+            </tr>
+            {% for job in printer.jobs.all %}
+              <tr>
+                <td>
+                  <a href="{% url "card" job.card.pk %}">
+                    {{ job.card }}
+                  </a>
+                </td>
+                <td>
+                  {{ job.created }}
+                </td>
+                <td>
+                  {{ job.status }} {% if job.status_text %}({{ job.status_text }}){% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

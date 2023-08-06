@@ -1,0 +1,6 @@
+{% load i18n %}
+{% if card.is_valid %}
+  <span class="badge new green white-text">{% trans "Valid" %}</span>
+{% else %}
+  <span class="badge new red white-text">{% trans "Not valid" %}</span>
+{% endif %}

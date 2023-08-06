@@ -1,0 +1,49 @@
+{% load i18n rules %}
+{% has_perm 'kort.print_card_rule' user card as can_print %}
+{% has_perm 'kort.deactivate_card_rule' user card as can_deactivate %}
+{% has_perm 'kort.delete_card_rule' user card as can_delete %}
+
+<div id="detail-modal-{{ card.pk }}" class="modal">
+  <div class="modal-content">
+    <h4>{% blocktrans with person=card.person %}Card of {{ person }}{% endblocktrans %}</h4>
+    {% include "kort/card/detail_content.html" %}
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+      <i class="material-icons left iconify" data-icon="mdi:close"></i>
+      {% trans "Close" %}
+    </a>
+  </div>
+</div>
+<a class="btn-flat waves-effect waves-green green-text modal-trigger" href="#detail-modal-{{ card.pk }}">
+  <i class="material-icons left iconify" data-icon="mdi:play-box-outline"></i>
+  {% trans "Show" %}
+</a>
+{% if not card.deactivated and can_deactivate %}
+  <div id="deactivate-modal-{{ card.pk }}" class="modal">
+    <div class="modal-content">
+      <h4>{% trans "Do you really want to deactivate the following card?" %}</h4>
+      {% include "kort/card/short.html" %}
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+        <i class="material-icons left iconify" data-icon="mdi:close"></i>
+        {% trans "Close" %}
+      </a>
+      <a href="{% url "deactivate_card" card.pk %}" class="modal-close waves-effect waves-light orange btn">
+        <i class="material-icons left iconify" data-icon="mdi:timer-off-outline"></i>
+        {% trans "Deactivate" %}
+      </a>
+    </div>
+  </div>
+  <a class="btn-flat waves-effect waves-orange orange-text modal-trigger" href="#deactivate-modal-{{ card.pk }}">
+    <i class="material-icons left iconify" data-icon="mdi:timer-off-outline"></i>
+    {% trans "Deactivate" %}
+  </a>
+{% endif %}
+{% if can_delete %}
+<a class="btn-flat waves-effect waves-red red-text modal-trigger" href="{% url "delete_card" card.pk %}">
+  <i class="material-icons left iconify" data-icon="mdi:delete-outline"></i>
+  {% trans "Delete" %}
+</a>
+{% endif %}

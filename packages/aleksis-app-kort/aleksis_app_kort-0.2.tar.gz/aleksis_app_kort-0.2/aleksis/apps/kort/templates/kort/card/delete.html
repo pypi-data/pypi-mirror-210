@@ -1,0 +1,33 @@
+{# -*- engine:django -*- #}
+
+{% extends "core/base.html" %}
+
+{% load i18n rules material_form %}
+{% load render_table from django_tables2 %}
+
+{% block browser_title %}{% blocktrans %}Delete Card{% endblocktrans %}{% endblock %}
+{% block no_page_title %}{% endblock %}
+
+{% block content %}
+  <p class="flow-text">{% trans "Do you really want to delete the following card?" %}</p>
+  {% include "kort/card/short.html" %}
+  <figure class="alert warning">
+    <i class="material-icons left iconify" data-icon="mdi:alert-octagon-outline"></i>
+    {% blocktrans %}
+      Please pay attention that a deletion of a card is irreversible and should be only used to clean up misprints.
+      If you just want to make a card unusable because a student has lost his card or left the school,
+      please deactivate the card instead.
+    {% endblocktrans %}
+  </figure>
+  <form method="post" action="">
+    {% csrf_token %}
+    <a href="{% url "cards" %}" class="modal-close waves-effect waves-green btn">
+      <i class="material-icons left iconify" data-icon="mdi:arrow-left"></i>
+      {% trans "Go back" %}
+    </a>
+    <button type="submit" name="delete" class="modal-close waves-effect waves-light red btn">
+      <i class="material-icons left iconify" data-icon="mdi:delete-outline"></i>
+      {% trans "Delete" %}
+    </button>
+  </form>
+{% endblock %}

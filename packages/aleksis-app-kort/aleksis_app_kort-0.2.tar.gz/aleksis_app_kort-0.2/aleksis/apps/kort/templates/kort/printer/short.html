@@ -1,0 +1,15 @@
+{% load i18n %}
+<table>
+  <tr>
+    <th>{% trans "Name" %}</th>
+    <td>{{ printer.name }}</td>
+  </tr>
+    <tr>
+    <th>{% trans "Location" %}</th>
+    <td>{{ printer.location|default:"–" }}</td>
+  </tr>
+  <tr>
+    <th>{% trans "Status" %}</th>
+    <td>{% include "kort/printer/status.html" %}</td>
+  </tr>
+</table>
