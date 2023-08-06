@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "django-modshib-CERTIC"
+version = "0.1.0"
+description = ""
+authors = ["Mickaël Desfrênes <mickael.desfrenes@unicaen.fr>"]
+license = "Cecill-B"
+packages = [
+    { include = "modshib"},
+]
+homepage = "https://www.certic.unicaen.fr"
+repository = "https://git.unicaen.fr/certic/django-modshib"
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+Django = ">=4.0"
+django-auth-cli-certic = "^0.1.3"
+
+[tool.poetry.dev-dependencies]
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
