@@ -1,0 +1,72 @@
+{
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "number",
+            "description": "Document version number",
+            "enum": [
+                1.0
+            ]
+        },
+        "reputation_feeds": {
+            "type": "array",
+            "description": "Reputation feeds",
+            "items": {
+                "$ref": "#/definitions/feed"
+            },
+            "minItems": 1
+        }
+    },
+    "required":[
+        "version"
+    ],
+    "definitions": {
+        "feed": {
+            "$$target": "#/definitions/feed",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "risk_score": {
+                    "type": "string"
+                },
+                "entry_type": {
+                    "type": "string",
+                    "enum": [
+                        "STATIC",
+                        "DYNAMIC"
+                    ]
+                },
+                "entries": {
+                    "type": "array",
+                    "minItems": 1
+
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^(https?|http?)://",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "name",
+                "risk_score",
+                "entry_type"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "url"
+                    ]
+                },
+                {
+                    "required": [
+                        "entries"
+                    ]
+                }
+            ]
+        }
+    }
+}
