@@ -1,0 +1,25 @@
+{% load i18n %}
+
+{% trans "Your data" %}
+---------------------------------------------
+
+{% trans "Full name" %}: {{ order.full_name }}
+{% trans "Email" %}: {{ order.email }}
+
+{% if order.shipping_option.address_necessary %}{% trans "Shipping address" %}:
+
+{{ order.shipping_full_name }}
+{{ order.second_address_row }}
+{{ order.street }} {{ order.housenumber }}
+{{ order.plz }} {{ order.place }}
+{% endif %}
+{% trans "Your order" %}
+---------------------------------------------
+
+{% for item in order.items.all %}{{ item.count }} x {{ item.item.name }} ({{ item.item.price|floatformat:"2" }} €) = {{ item.total|floatformat:"2" }} €
+{% endfor %}
++ {{ order.shipping_option.name }} = {{ order.shipping_price|floatformat:"2" }} €
++ {{ order.payment_option.name }} = {{ order.payment_price|floatformat:"2" }} €
+---------------------------------------------
+{% trans "Total" %} = {{ order.total|floatformat:"2" }} €
+=============================================

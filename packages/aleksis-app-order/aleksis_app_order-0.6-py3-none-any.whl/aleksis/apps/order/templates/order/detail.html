@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% load i18n material_form %}
+
+{% block page_title %}
+  {{ object }}
+{% endblock %}
+{% block browser_title %}
+  {{ object }}
+{% endblock %}
+
+{% block content %}
+  <a class="btn waves-effect waves-light" href="{% url "list_orders" %}">
+    <i class="material-icons left iconify" data-icon="mdi:chevron-left"></i> {% trans "Back" %}
+  </a>
+  <a class="btn waves-effect waves-light orange" href="{% url "edit_order" object.pk %}">
+    <i class="material-icons left iconify" data-icon="mdi:pencil-outline"></i> {% trans "Edit order" %}
+  </a>
+  <a class="btn waves-effect waves-light red" href="{% url "delete_order" object.pk %}">
+    <i class="material-icons left iconify" data-icon="mdi:delete-outline"></i> {% trans "Delete order" %}
+  </a>
+  <form action="" method="post" name="single-action">
+    {% csrf_token %}
+    <p>
+      {% if not object.paid %}
+        <button type="submit" class="btn waves-effect waves-light" value="yes" name="mark-as-paid">
+          <i class="material-icons left iconify" data-icon="mdi:currency-eur"></i> {% trans "Mark as paid" %}
+        </button>
+        <button type="submit" class="btn waves-effect waves-light" name="mark-as-paid-email" value="yes">
+          <i class="material-icons left iconify"
+             data-icon="mdi:currency-eur"></i> {% trans "Mark as paid and send pay confirmation" %}
+        </button>
+      {% endif %}
+    </p>
+  </form>
+
+  {% include "order/order_details.html" %}
+{% endblock %}

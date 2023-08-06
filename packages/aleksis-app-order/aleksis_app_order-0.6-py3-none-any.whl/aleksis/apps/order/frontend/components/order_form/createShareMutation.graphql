@@ -1,0 +1,10 @@
+mutation ($key: String!, $orderItem: ID!) {
+  createShare(key: $key, orderItem: $orderItem) {
+    ok
+    share {
+      id
+      shareUrl
+      shareExpiration
+    }
+  }
+}

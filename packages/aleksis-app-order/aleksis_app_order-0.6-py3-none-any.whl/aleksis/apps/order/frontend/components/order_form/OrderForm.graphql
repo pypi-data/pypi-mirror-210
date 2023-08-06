@@ -1,0 +1,36 @@
+query ($id: ID!, $accessCode: String) {
+  orderForm: orderFormById(id: $id, accessCode: $accessCode) {
+    id
+    title
+    helpText
+    availableItems {
+      id
+      name
+      notice
+      price
+      image
+      maxCount
+      digitalProduct
+      countForShipping
+      order
+    }
+    availableShippingOptions {
+      id
+      name
+      notice
+      addressNecessary
+      forDigitalProducts
+      prices {
+        minCount
+        maxCount
+        price
+      }
+    }
+    availablePaymentOptions {
+      id
+      name
+      notice
+      price
+    }
+  }
+}
