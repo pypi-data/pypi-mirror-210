@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "pshlib"
+version = "0.1.0"
+description = "Causal embedding of shell commands into python code."
+authors = ["Yauhen Yakimovich <yauhen.yakimovich.mail@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
