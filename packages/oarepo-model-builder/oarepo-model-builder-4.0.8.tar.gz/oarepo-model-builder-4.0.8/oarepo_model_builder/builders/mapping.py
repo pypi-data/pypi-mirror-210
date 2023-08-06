@@ -1,0 +1,85 @@
+from ..datatypes import ModelDataType, Section
+from ..utils.deepmerge import deepmerge
+from ..utils.dict import dict_get
+from .json_base import JSONBaseBuilder
+
+
+def deep_searchable_enabled(dt):
+    mapping = dt.section_mapping
+    facets = dt.section_facets
+    if (
+        mapping.config.get("enabled", None) is False
+        or facets.config.get("searchable") is False
+    ):
+        return False
+    if mapping.item:
+        return deep_searchable_enabled(mapping.item)
+    for c in mapping.children.values():
+        if not deep_searchable_enabled(c):
+            return False
+    return True
+
+
+class MappingBuilder(JSONBaseBuilder):
+    TYPE = "mapping"
+    output_file_type = "mapping"
+    output_file_name = ["mapping-settings", "file"]
+    skip = ["mapping-settings", "skip"]
+    parent_module_root_name = "mappings"
+    create_parent_packages = True
+
+    def build_node(self, node):
+        skip = dict_get(
+            self.current_model.definition, ["mapping-settings", "skip"], False
+        )
+        if skip:
+            return
+        generated = self.generate_model(node)
+        generated.pop("enabled", None)
+        self.output.merge(generated)
+
+    def generate_model(self, node):
+        generated = self.generate(node)
+        generated.pop("enabled", None)
+        generated.pop("type", None)
+
+        return {**node.section_global_mapping.config, "mappings": generated}
+
+    def generate(self, node, parent_enabled=True):
+        mapping: Section = node.section_mapping
+        facets: Section = node.section_facets
+        ret = {**mapping.config}
+
+        searchable = facets.config.get("searchable")
+        if searchable is not None:
+            ret.setdefault("enabled", searchable)
+
+        this_node_enabled = True
+        if not isinstance(node, ModelDataType):
+            if not deep_searchable_enabled(node):
+                ret.setdefault("enabled", False)
+                return ret
+
+            if not parent_enabled:
+                ret.setdefault("enabled", False)
+
+            if ret.get("enabled") is False:
+                return ret
+        else:
+            this_node_enabled = deep_searchable_enabled(node)
+
+        if mapping.children:
+            properties = ret.setdefault("properties", {})
+            for k, v in mapping.children.items():
+                v = self.generate(v, this_node_enabled)
+                if k in properties:
+                    deepmerge(properties[k], v)
+                else:
+                    properties[k] = v
+        if mapping.item:
+            v = self.generate(mapping.item, this_node_enabled)
+            ret.pop("type", None)
+            deepmerge(ret, v)
+        if ret.get("enabled") is True:  # keep only enabled: False there
+            ret.pop("enabled")
+        return ret
