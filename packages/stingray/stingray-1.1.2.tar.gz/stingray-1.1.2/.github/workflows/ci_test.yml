@@ -1,0 +1,109 @@
+name: CI Tests
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  schedule:
+    # run every Monday at 6am UTC
+    - cron: '0 6 * * 1'
+
+env:
+  SETUP_XVFB: True  # avoid issues if mpl tries to open a GUI window
+  TOXARGS: '-v'
+
+jobs:
+  ci-tests:
+    name: ${{ matrix.os }}, ${{ matrix.tox_env }}
+    runs-on: ${{ matrix.os }}
+    if: "!(contains(github.event.head_commit.message, '[skip ci]') || contains(github.event.head_commit.message, '[ci skip]'))"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # A large number of test environments are defined in tox.ini. In CI,
+          # we select only a few, in order to conserve resources. If you add
+          # an additional environment, please include a comment to indicate
+          # why it is useful.
+          - os: ubuntu-latest
+            python: '3.10'
+            tox_env: 'black'
+          # Basic tests on the oldest & newest supported versions of Python,
+          # recording coverage data for the latter.
+          - os: ubuntu-latest
+            python: '3.8'
+            tox_env: 'py38-test'
+          - os: ubuntu-latest
+            python: '3.10'
+            tox_env: 'py310-test-cov'
+
+          # Basic tests on alternative operating systems.
+          - os: windows-latest
+            python: '3.10'
+            tox_env: 'py310-test'
+          - os: macos-latest
+            python: '3.10'
+            tox_env: 'py310-test'
+
+          # Test with all optional dependencies installed.
+          - os: ubuntu-latest
+            python: '3.10'
+            tox_env: 'py310-test-alldeps-cov'
+            use_remote_data: true
+
+          # Test with the various supported releases of Astropy.
+          - os: ubuntu-latest
+            python: '3.8'
+            tox_env: 'py38-test-astropy4'
+          - os: ubuntu-latest
+            python: '3.10'
+            tox_env: 'py310-test-astropy5'
+
+          # Development version of dependencies
+          - os: ubuntu-latest
+            python: '3.10'
+            tox_env: 'py310-test-devdeps'
+
+          # Test the documentation build
+          - os: ubuntu-latest
+            python: '3.10'
+            tox_env: 'build_docs'
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+      with:
+        submodules: true
+    - name: Check out that no sensitive environment variable is shared
+      run: env
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python }}
+    - name: Install base dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install tox
+    - name: Install system dependencies
+      if: "endsWith(matrix.tox_env, 'build_docs')"
+      run: sudo apt-get -y install graphviz pandoc
+    - name: Print Python, pip, setuptools, and tox versions
+      run: |
+        python -c "import sys; print(f'Python {sys.version}')"
+        python -c "import pip; print(f'pip {pip.__version__}')"
+        python -c "import setuptools; print(f'setuptools {setuptools.__version__}')"
+        python -c "import tox; print(f'tox {tox.__version__}')"
+    - name: Run tests
+      if: "! matrix.use_remote_data"
+      run: tox -e ${{ matrix.tox_env }}
+    - name: Run tests with remote data
+      if: "matrix.use_remote_data"
+      run: |
+        pip install pytest-remotedata
+        tox -e ${{ matrix.tox_env }} -- --remote-data=any
+    - name: Upload coverage to codecov
+      if: "endsWith(matrix.tox_env, '-cov')"
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
