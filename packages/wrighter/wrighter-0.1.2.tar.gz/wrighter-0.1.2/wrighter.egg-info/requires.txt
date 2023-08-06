@@ -1,0 +1,13 @@
+playwright>=1.33.0
+pydantic>=1.10.8
+playwright_stealth>=1.0.5
+stdl>=0.4.4
+loguru>=0.7.0
+
+[dev]
+black
+pytest
+ruff
+
+[test]
+pytest
