@@ -1,0 +1,129 @@
+Metadata-Version: 2.1
+Name: leaf-focus
+Version: 0.6.0
+Summary: Extract structured text from pdf files.
+Project-URL: Homepage, https://github.com/anotherbyte-net/leaf-focus
+Project-URL: Changelog, https://github.com/anotherbyte-net/leaf-focus/blob/main/CHANGELOG.md
+Project-URL: Source, https://github.com/anotherbyte-net/leaf-focus
+Project-URL: Tracker, https://github.com/anotherbyte-net/leaf-focus/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: keras-ocr (~=0.8.9)
+Requires-Dist: tensorflow (~=2.12)
+Requires-Dist: numpy (~=1.23)
+Requires-Dist: matplotlib (~=3.7)
+Requires-Dist: defusedxml (~=0.7)
+Requires-Dist: importlib-resources (~=5.12)
+Requires-Dist: importlib-metadata (~=6.6)
+Provides-Extra: dev
+Requires-Dist: pip ; extra == 'dev'
+Requires-Dist: setuptools ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: build ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: pip-audit ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-mock ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: tblib ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: hypothesis ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: flake8-annotations-coverage ; extra == 'dev'
+Requires-Dist: flake8-black ; extra == 'dev'
+Requires-Dist: flake8-bugbear ; extra == 'dev'
+Requires-Dist: flake8-comprehensions ; extra == 'dev'
+Requires-Dist: flake8-unused-arguments ; extra == 'dev'
+Requires-Dist: flake8-requirements ; extra == 'dev'
+Requires-Dist: ruff ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: pylint ; extra == 'dev'
+Requires-Dist: pydocstyle[toml] ; extra == 'dev'
+Requires-Dist: types-dateparser ; extra == 'dev'
+Requires-Dist: types-PyYAML ; extra == 'dev'
+Requires-Dist: types-requests ; extra == 'dev'
+Requires-Dist: types-backports ; extra == 'dev'
+Requires-Dist: types-urllib3 ; extra == 'dev'
+Requires-Dist: pdoc ; extra == 'dev'
+
+# leaf-focus
+
+Extract structured text from pdf files.
+
+## Install
+
+Install from PyPI using pip:
+
+```bash
+pip install leaf-focus
+```
+
+[![PyPI](https://img.shields.io/pypi/v/leaf-focus)](https://pypi.org/project/leaf-focus/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/leaf-focus)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/anotherbyte-net/leaf-focus/test-package.yml?branch=main)](https://github.com/anotherbyte-net/leaf-focus/actions)
+
+Download the [Xpdf command line tools](https://www.xpdfreader.com/download.html) and extract the executable files.
+
+Provide the directory containing the executable files as `--exe-dir`.
+
+
+## Usage
+
+```text
+usage: leaf-focus [-h] [--version] --exe-dir EXE_DIR [--page-images] [--ocr]
+                  [--first FIRST] [--last LAST]
+                  [--log-level {debug,info,warning,error,critical}]
+                  input_pdf output_dir
+
+Extract structured text from a pdf file.
+
+positional arguments:
+  input_pdf             path to the pdf file to read
+  output_dir            path to the directory to save the extracted text files
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --exe-dir EXE_DIR     path to the directory containing xpdf executable files
+  --page-images         save each page of the pdf as a separate image
+  --ocr                 run optical character recognition on each page of the
+                        pdf
+  --first FIRST         the first pdf page to process
+  --last LAST           the last pdf page to process
+  --log-level {debug,info,warning,error,critical}
+                        the log level: debug, info, warning, error, critical
+```
+
+### Examples
+
+```bash
+# Extract the pdf information and embedded text.
+leaf-focus --exe-dir [path-to-xpdf-exe-dir] file.pdf file-pages
+
+# Extract the pdf information, embedded text, an image of each page, and Optical Character Recognition results of each page.
+leaf-focus --exe-dir [path-to-xpdf-exe-dir] file.pdf file-pages --ocr
+```
+
+## Dependencies
+
+- [xpdf](https://www.xpdfreader.com/download.html)
+- [keras-ocr](https://github.com/faustomorales/keras-ocr)
+- [Tensorflow](https://www.tensorflow.org) (can optionally be run more efficiently [using one or more GPUs](https://www.tensorflow.org/install/pip#hardware_requirements))
