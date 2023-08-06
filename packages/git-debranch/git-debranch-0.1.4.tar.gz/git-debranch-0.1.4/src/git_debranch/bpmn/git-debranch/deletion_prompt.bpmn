@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:spiffworkflow="http://spiffworkflow.org/bpmn/schema/1.0/core" id="Definitions_96f6665" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-dev">
+  <bpmn:process id="deletion_prompt" name="Deletion Prompt" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0p7er6v</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0p7er6v" sourceRef="StartEvent_1" targetRef="Activity_1sjkjk0" />
+    <bpmn:endEvent id="Event_185zs44">
+      <bpmn:incoming>Flow_1lsziov</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0pqk0gt" sourceRef="Activity_1sjkjk0" targetRef="confirm_deletion" />
+    <bpmn:scriptTask id="Activity_1sjkjk0" name="Build branch report">
+      <bpmn:incoming>Flow_0p7er6v</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pqk0gt</bpmn:outgoing>
+      <bpmn:script>def local_only(branches):
+    return sorted(filter(lambda b: b not in head and b not in remote, branches))
+
+def has_remote(branches):
+    return sorted(filter(lambda b: b not in head and b in remote, branches))
+
+def add_section(lines, section_lines, comment, header):
+    if len(section_lines) == 0:
+        return
+    lines.extend(header)
+    lines.append("")
+    if comment:
+        section_lines = map(lambda l: f"# {l}", section_lines)
+    lines.extend(section_lines)
+    lines.append("")
+
+def build_branch_report():
+    lines = [
+        "## git debranch",
+        "##",
+        "## Select branches to delete.",
+        "##",
+        "## Any lines that are non empty and do not start with a # are assumed to ",
+        "## be branch names, one per line. Each uncommented branch name will be ",
+        "## marked for deletion. HEAD and current branches are not shown.",
+        "",
+    ]
+
+    merged_local_only = local_only(merged)
+
+    add_section(lines, merged_local_only, False, [
+        "## The following branches appear safe to delete. They exist locally ",
+        "## but not on any remote and have been merged:",
+    ])
+
+    unmerged_local_only = local_only(unmerged)
+
+    add_section(lines, unmerged_local_only, True, [
+        "## The following branches only exist locally but not may not have ", 
+        "## been merged:",
+    ])
+
+    merged_has_remote_branch = has_remote(merged)
+
+    add_section(lines, merged_has_remote_branch, True, [
+        "## The following branches exist locally as well as on a remote and ",
+        "## have been merged:",
+    ])
+
+    unmerged_has_remote_branch = has_remote(unmerged)
+
+    add_section(lines, unmerged_has_remote_branch, True, [
+        "## The following branches exist locally as well as on a remote and ",
+        "## may not have been merged:",
+    ])
+
+    return "\n".join(lines)
+
+branch_report = build_branch_report()</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0povx4i" sourceRef="confirm_deletion" targetRef="Activity_0a61ymz" />
+    <bpmn:userTask id="confirm_deletion" name="Prompt for confirmation">
+      <bpmn:incoming>Flow_0pqk0gt</bpmn:incoming>
+      <bpmn:outgoing>Flow_0povx4i</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1lsziov" sourceRef="Activity_0a61ymz" targetRef="Event_185zs44" />
+    <bpmn:scriptTask id="Activity_0a61ymz" name="Parse user response">
+      <bpmn:extensionElements>
+        <spiffworkflow:unitTests>
+          <spiffworkflow:unitTest id="happy_path">
+            <spiffworkflow:inputJson>{
+    "branch_report": "# some comment\nbranch1\n\n\n# not-this-branch\nbranch2"
+}</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+    "branches_to_delete": ["branch1", "branch2"]
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+          <spiffworkflow:unitTest id="strips_names">
+            <spiffworkflow:inputJson>{
+  "branch_report": "# some comment\n branch1\n\n\n# not-this-branch\n   branch2   "
+}</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+  "branches_to_delete": [
+    "branch1",
+    "branch2"
+  ]
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+        </spiffworkflow:unitTests>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0povx4i</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lsziov</bpmn:outgoing>
+      <bpmn:script>def branch_line(line):
+    line = line.strip()
+    if len(line) == 0 or line.startswith("#"):
+        return None
+    return line
+
+def user_confirmed_branches():
+    lines = branch_report.split("\n")
+    return list(filter(None, map(branch_line, lines)))
+
+branches_to_delete = user_confirmed_branches()
+
+del(branch_report)</bpmn:script>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="deletion_prompt">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_185zs44_di" bpmnElement="Event_185zs44">
+        <dc:Bounds x="692" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wzugcm_di" bpmnElement="Activity_1sjkjk0">
+        <dc:Bounds x="270" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18aapsf_di" bpmnElement="confirm_deletion">
+        <dc:Bounds x="400" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14dv693_di" bpmnElement="Activity_0a61ymz">
+        <dc:Bounds x="530" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0p7er6v_di" bpmnElement="Flow_0p7er6v">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="270" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pqk0gt_di" bpmnElement="Flow_0pqk0gt">
+        <di:waypoint x="370" y="177" />
+        <di:waypoint x="400" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0povx4i_di" bpmnElement="Flow_0povx4i">
+        <di:waypoint x="500" y="177" />
+        <di:waypoint x="530" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lsziov_di" bpmnElement="Flow_1lsziov">
+        <di:waypoint x="630" y="177" />
+        <di:waypoint x="692" y="177" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

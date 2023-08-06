@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:spiffworkflow="http://spiffworkflow.org/bpmn/schema/1.0/core" id="Definitions_96f6665" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-dev">
+  <bpmn:process id="branch_parser" name="Branch parser" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0zt50xr</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0zt50xr" sourceRef="StartEvent_1" targetRef="Activity_0v238ap" />
+    <bpmn:endEvent id="Event_1ts0rz7">
+      <bpmn:incoming>Flow_1icfqqq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:scriptTask id="Activity_0v238ap" name="Parse branch strings">
+      <bpmn:extensionElements>
+        <spiffworkflow:unitTests>
+          <spiffworkflow:unitTest id="happy_path">
+            <spiffworkflow:inputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "current": "j\n",
+  "merged": " a\n b\n c\n\n",
+  "remote": " g\n h\n i\n\n",
+  "unmerged": " d\n e\n f\n\n"
+}</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "current": "j",
+  "merged": [
+    " a",
+    " b",
+    " c"
+  ],
+  "remote": [
+    " g",
+    " h",
+    " i"
+  ],
+  "unmerged": [
+    " d",
+    " e",
+    " f"
+  ]
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+        </spiffworkflow:unitTests>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0zt50xr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c9l7wr</bpmn:outgoing>
+      <bpmn:script>def to_list(branches):
+    parts = branches.split("\n")
+    non_empty_parts = filter(len, parts)
+    return list(non_empty_parts)
+
+merged = to_list(merged)
+unmerged = to_list(unmerged)
+remote = to_list(remote)
+current = current.strip()</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0edxyrj" sourceRef="Activity_0sdmpoy" targetRef="Activity_1n9ykr2" />
+    <bpmn:scriptTask id="Activity_0sdmpoy" name="Group branches">
+      <bpmn:extensionElements>
+        <spiffworkflow:unitTests>
+          <spiffworkflow:unitTest id="happy_path">
+            <spiffworkflow:inputJson>{
+  "result": {
+    "returncode": 0
+  },
+    "merged": [
+      "  abc",
+      "* main",
+      "  remotes/origin/HEAD -> origin/main",
+      "  remotes/origin/main"
+    ],
+    "unmerged": [
+      "  no-merged-branch",
+      "  some_branch",
+      "  remotes/origin/no-merged-branch"
+    ]
+  }</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "merged": {
+    "current": "main",
+    "local": [
+      "abc"
+    ],
+    "remote": {
+      "main": [
+        "remotes/origin/main"
+      ]
+    }
+  },
+  "unmerged": {
+    "local": [
+      "no-merged-branch",
+      "some_branch"
+    ],
+    "remote": {
+      "no-merged-branch": [
+        "remotes/origin/no-merged-branch"
+      ]
+    }
+  }
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+        </spiffworkflow:unitTests>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0edxyrj</bpmn:outgoing>
+      <bpmn:script>def branch_components(branch):
+    branch_name = branch[2:]
+    branch_type = branch[:2] 
+    if " -&gt; " in branch_name:
+        branch_type = "&gt; "
+    return branch_name, branch_type
+
+def add_branch(branch_name, local_branches, remote_branches):
+    if branch_name.startswith("remotes/"):
+        parts = branch_name.split("/", maxsplit=2)
+        if len(parts) != 3:
+            return
+        local_name = parts[2]
+        if local_name not in remote_branches:
+            remote_branches[local_name] = []
+        remote_branches[local_name].append(branch_name)
+    else:
+        local_branches.append(branch_name)
+
+def group_branches(branches):
+    local_branches = []
+    remote_branches = {}
+    result = {"local": local_branches, "remote": remote_branches}
+
+    for branch in branches:
+        branch_name, branch_type = branch_components(branch)
+
+        if branch_type == "* ":
+            result["current"] = branch_name
+        elif branch_type == "  ":
+            add_branch(branch_name, local_branches, remote_branches)
+    
+    return result
+
+merged = group_branches(merged)
+unmerged = group_branches(unmerged)</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Activity_1n9ykr2" name="Finalize collections">
+      <bpmn:extensionElements>
+        <spiffworkflow:unitTests>
+          <spiffworkflow:unitTest id="happy path">
+            <spiffworkflow:inputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "merged": {
+    "current": "main",
+    "local": [
+      "abc"
+    ],
+    "remote": {
+      "main": [
+        "remotes/origin/main"
+      ]
+    }
+  },
+  "unmerged": {
+    "local": [
+      "no-merged-branch",
+      "some_branch"
+    ],
+    "remote": {
+      "no-merged-branch": [
+        "remotes/origin/no-merged-branch"
+      ]
+    }
+  }
+}</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+  "branches": {
+    "current": "main",
+    "merged_has_remote_branch": [
+      "main"
+    ],
+    "merged_local_only": [
+      "abc"
+    ],
+    "unmerged_has_remote_branch": [
+      "no-merged-branch"
+    ],
+    "unmerged_local_only": [
+      "some_branch"
+    ],
+    "remote": {
+      "main": [
+        "remotes/origin/main"
+      ],
+      "no-merged-branch": [
+        "remotes/origin/no-merged-branch"
+      ]
+    }
+  },
+  "result": {
+    "returncode": 0
+  }
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+        </spiffworkflow:unitTests>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0edxyrj</bpmn:incoming>
+      <bpmn:script>def branch_groups(branch_dict):
+    local = branch_dict.get("local", [])
+    remote = branch_dict.get("remote", {})
+    current = branch_dict.get("current")
+    local_only = list(filter(lambda b: b not in remote, local))
+    has_remote_branch = list(remote.keys())
+    return current, local_only, has_remote_branch
+
+def set_branch_groups(branches, branch_dict, prefix):
+    current, local_only, has_remote_branch = branch_groups(branch_dict)
+    if current is not None:
+        branches["current"] = current
+    branches[f"{prefix}_local_only"] = local_only
+    branches[f"{prefix}_has_remote_branch"] = has_remote_branch
+
+def set_remotes(branches, remotes):
+    merged_remotes = {}
+    for remote in remotes:
+        for k, v in remote.items():
+            if k not in merged_remotes:
+                merged_remotes[k] = []
+            merged_remotes[k].extend(v)
+    branches["remote"] = merged_remotes
+
+def build_branches():
+    branches = {}
+    set_branch_groups(branches, merged, "merged")
+    set_branch_groups(branches, unmerged, "unmerged")
+    set_remotes(branches, [merged["remote"], unmerged["remote"]])
+    return branches
+
+branches = build_branches()
+
+del(merged)
+del(unmerged)</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0c9l7wr" sourceRef="Activity_0v238ap" targetRef="Activity_1k4pxd0" />
+    <bpmn:sequenceFlow id="Flow_1qhumuz" sourceRef="Activity_1k4pxd0" targetRef="Activity_0qmu4iv" />
+    <bpmn:scriptTask id="Activity_1k4pxd0" name="Handle branch marker prefix">
+      <bpmn:extensionElements>
+        <spiffworkflow:unitTests>
+          <spiffworkflow:unitTest id="happy_path">
+            <spiffworkflow:inputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "current": "a",
+  "merged": [
+    "* a",
+    "  b",
+    "  c"
+  ],
+  "remote": [
+    "  g",
+    "  h",
+    "  i"
+  ],
+  "unmerged": [
+    "  d",
+    "  e",
+    "  f"
+  ]
+}</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "current": "a",
+  "merged": [
+    "b",
+    "c"
+  ],
+  "remote": [
+    "g",
+    "h",
+    "i"
+  ],
+  "unmerged": [
+    "d",
+    "e",
+    "f"
+  ]
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+        </spiffworkflow:unitTests>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0c9l7wr</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qhumuz</bpmn:outgoing>
+      <bpmn:script>def branch_with_empty_prefix(branch):
+    if len(branch) &lt; 2 or branch[:2] != "  ":
+        return None
+    return branch[2:]
+
+def branches_with_empty_prefix(branches):
+    return list(filter(None, map(branch_with_empty_prefix, branches)))
+
+merged = branches_with_empty_prefix(merged)
+unmerged = branches_with_empty_prefix(unmerged)
+remote = branches_with_empty_prefix(remote)</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1icfqqq" sourceRef="Activity_0qmu4iv" targetRef="Event_1ts0rz7" />
+    <bpmn:scriptTask id="Activity_0qmu4iv" name="Parse remote branches">
+      <bpmn:extensionElements>
+        <spiffworkflow:unitTests>
+          <spiffworkflow:unitTest id="happy_path">
+            <spiffworkflow:inputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "current": "j",
+  "merged": [
+    "b",
+    "c"
+  ],
+  "remote": [
+    "origin/HEAD -> origin/main",
+    "origin/g",
+    "origin/h",
+    "origin/i",
+    "origin/j/k"
+  ],
+  "unmerged": [
+    "d",
+    "e",
+    "f"
+  ]
+}</spiffworkflow:inputJson>
+            <spiffworkflow:expectedOutputJson>{
+  "result": {
+    "returncode": 0
+  },
+  "current": "j",
+  "merged": [
+    "b",
+    "c"
+  ],
+  "head": {
+    "main": [
+      "origin/HEAD -> origin/main"
+    ]
+  },
+  "remote": {
+    "g": [
+      "origin/g"
+    ],
+    "h": [
+      "origin/h"
+    ],
+    "i": [
+      "origin/i"
+    ],
+    "j/k": [
+      "origin/j/k"
+    ]
+  },
+  "unmerged": [
+    "d",
+    "e",
+    "f"
+  ]
+}</spiffworkflow:expectedOutputJson>
+          </spiffworkflow:unitTest>
+        </spiffworkflow:unitTests>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qhumuz</bpmn:incoming>
+      <bpmn:outgoing>Flow_1icfqqq</bpmn:outgoing>
+      <bpmn:script>def separate_heads(remote_branches):
+    head = []
+    remote = []
+    for branch in remote_branches:
+        if "HEAD -&gt; " in branch:
+            head.append(branch)
+        else:
+            remote.append(branch)
+    return head, remote
+
+def group_heads(head_branches):
+    head = {}
+    for branch in head_branches:
+        parts = branch.split("-&gt;")
+        branch_name = parts[1].split("/", maxsplit=1)[1]
+        if branch_name not in head:
+            head[branch_name] = []
+        head[branch_name].append(branch)
+    return head
+
+def group_remotes(remote_branches):
+    remote = {}
+    for branch in remote_branches:
+        branch_name = branch.split("/", maxsplit=1)[1]
+        if branch_name not in remote:
+            remote[branch_name] = []
+        remote[branch_name].append(branch)
+    return remote
+
+head, remote = separate_heads(remote)
+head = group_heads(head)
+remote = group_remotes(remote)</bpmn:script>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="branch_parser">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1b18f37_di" bpmnElement="Activity_0v238ap">
+        <dc:Bounds x="270" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ui38ib_di" bpmnElement="Activity_0sdmpoy">
+        <dc:Bounds x="400" y="280" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ag9jkv_di" bpmnElement="Activity_1n9ykr2">
+        <dc:Bounds x="530" y="280" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wzmkrf_di" bpmnElement="Activity_1k4pxd0">
+        <dc:Bounds x="400" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ts0rz7_di" bpmnElement="Event_1ts0rz7">
+        <dc:Bounds x="682" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y7rvuw_di" bpmnElement="Activity_0qmu4iv">
+        <dc:Bounds x="530" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0zt50xr_di" bpmnElement="Flow_0zt50xr">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="270" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0edxyrj_di" bpmnElement="Flow_0edxyrj">
+        <di:waypoint x="500" y="320" />
+        <di:waypoint x="530" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c9l7wr_di" bpmnElement="Flow_0c9l7wr">
+        <di:waypoint x="370" y="177" />
+        <di:waypoint x="400" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qhumuz_di" bpmnElement="Flow_1qhumuz">
+        <di:waypoint x="500" y="177" />
+        <di:waypoint x="530" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1icfqqq_di" bpmnElement="Flow_1icfqqq">
+        <di:waypoint x="630" y="177" />
+        <di:waypoint x="682" y="177" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
