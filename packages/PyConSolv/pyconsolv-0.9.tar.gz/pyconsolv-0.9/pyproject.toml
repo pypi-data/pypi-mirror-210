@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling", "hatch-requirements-txt"]
+build-backend = "hatchling.build"
+
+[project]
+name = "PyConSolv"
+version = "0.9"
+dynamic = ["dependencies"]
+authors = [
+  { name="R. A. Talmazan", email="radu.talmazan@tuwien.ac.at" },
+]
+description = "A package for conformer generation of transition-metal-containing complexes"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: Unix",
+    "Natural Language :: English",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Chemistry"
+]
+
+keywords = [
+  "Conformer",
+  "PyConSolv",
+  "Transition metals",
+  "MCPB",
+  "AmberTools",
+  "Simulation",
+  "ORCA",
+  "Generator",
+  "Solvation",
+  "Explicit Solvent",
+  "Parametrization",
+]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements.txt"]
+
+[project.scripts]
+pyconsolv = "PyConSolv.pyconsolv:main"
+
+[project.urls]
+"Homepage" = "https://github.com/PodewitzLab/PyConSolv"
+"Bug Tracker" = "https://github.com/PodewitzLab/PyConSolv/issues"
