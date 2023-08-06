@@ -1,0 +1,172 @@
+Metadata-Version: 2.1
+Name: runway
+Version: 2.6.6
+Summary: Simplify infrastructure/app testing/deployment
+Home-page: https://github.com/onicagroup/runway
+License: Apache-2.0
+Keywords: cli
+Author: Onica Group LLC
+Author-email: opensource@onica.com
+Maintainer: Kyle Finley
+Maintainer-email: kyle@finley.sh
+Requires-Python: >=3.8,<3.12
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Utilities
+Provides-Extra: docs
+Requires-Dist: awacs
+Requires-Dist: backports.cached_property ; python_version < "3.8"
+Requires-Dist: boto3 (>=1.16,<2.0)
+Requires-Dist: cfn-lint
+Requires-Dist: cfn_flip (>=1.2,<2.0)
+Requires-Dist: click (>=8.0,<9.0)
+Requires-Dist: coloredlogs (!=15.0.1)
+Requires-Dist: docker (>=3.0.0)
+Requires-Dist: dunamai (>=1.5,<2.0) ; extra == "docs"
+Requires-Dist: formic2
+Requires-Dist: gitpython
+Requires-Dist: igittigitt (>=2.0.5)
+Requires-Dist: importlib-metadata ; python_version < "3.8"
+Requires-Dist: jinja2 (>=2.7)
+Requires-Dist: jsx-lexer (>=1.0,<2.0) ; extra == "docs"
+Requires-Dist: moto (==3.0.5)
+Requires-Dist: packaging
+Requires-Dist: pipenv (==2022.1.8)
+Requires-Dist: pyOpenSSL
+Requires-Dist: pydantic (>=1.4,<2.0)
+Requires-Dist: pyhcl (>=0.4,<0.5)
+Requires-Dist: python-hcl2 (>=3.0.0)
+Requires-Dist: pyyaml (>5.4)
+Requires-Dist: requests
+Requires-Dist: send2trash
+Requires-Dist: sphinx (>=4.3,<5.0) ; extra == "docs"
+Requires-Dist: sphinx-github-changelog (>=1.1,<2.0) ; extra == "docs"
+Requires-Dist: sphinx-rtd-theme (>=1.0,<2.0) ; extra == "docs"
+Requires-Dist: sphinx-tabs (>=3.2,<4.0) ; extra == "docs"
+Requires-Dist: sphinxcontrib-apidoc (>=0.3,<0.4) ; extra == "docs"
+Requires-Dist: sphinxcontrib-programoutput (>=0.17,<0.18) ; extra == "docs"
+Requires-Dist: str2bool (>=1.1,<2.0)
+Requires-Dist: testfixtures (>=7.0.3,<8.0.0)
+Requires-Dist: tomli (>=1.2.2)
+Requires-Dist: troposphere (>=2.4,<5)
+Requires-Dist: typing_extensions
+Requires-Dist: urllib3
+Requires-Dist: yamllint
+Project-URL: Bug Tracker, https://github.com/onicagroup/runway/issues
+Project-URL: Documentation, https://docs.onica.com/projects/runway
+Project-URL: Repository, https://github.com/onicagroup/runway
+Description-Content-Type: text/markdown
+
+# Runway
+
+[![CI/CD](https://github.com/onicagroup/runway/workflows/CI/CD/badge.svg?branch=master)](https://github.com/onicagroup/runway/actions?query=workflow%3ACI%2FCD)
+[![codecov](https://codecov.io/gh/onicagroup/runway/branch/master/graph/badge.svg?token=Ku28I0RY80)](https://codecov.io/gh/onicagroup/runway)
+[![PyPi](https://img.shields.io/pypi/v/runway?style=flat)](https://pypi.org/project/runway/)
+[![npm](https://img.shields.io/npm/v/@onica/runway?style=flat)](https://www.npmjs.com/package/@onica/runway)
+[![code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat)](https://github.com/psf/black)
+
+![runway-example.gif](https://raw.githubusercontent.com/onicagroup/runway/master/docs/source/images/runway-example.gif)
+
+Runway is a lightweight integration app designed to ease management of infrastructure tools.
+
+Its main goals are to encourage GitOps best-practices, avoid convoluted Makefiles/scripts (enabling identical deployments from a workstation or CI job), and enable developers/admins to use the best tool for any given job.
+
+
+## Features
+
+* Centralized environment-specific configuration
+* Automatic environment identification from git branches
+* Automatic linting/verification
+* Support of IAM roles to assume for each deployment
+* Terraform backend/workspace config management w/per-environment tfvars
+* Automatic kubectl/terraform version management per-environment
+
+### Supported Deployment Tools
+
+* AWS CDK
+* Kubectl
+* Serverless Framework
+* CFNgin (CloudFormation)
+* Static websites (build & deploy to S3+CloudFront)
+* Terraform
+
+
+## Example
+
+A typical Runway configuration is unobtrusive -- it just lists the deployment order and locations (regions).
+
+```yml
+deployments:
+  - modules:
+      - resources.tf  # terraform resources
+      - backend.sls  # serverless lambda functions
+      - frontend  # static web site
+    environments:  # Environments
+      dev: "123456789012"  # AWS development Account ID
+      prod: "234567890123"  # AWS production Account ID
+    regions:
+      - us-east-1
+```
+
+The example above contains enough information for Runway to deploy all resources, lambda functions and a static website backed by S3 and Cloudfront in either dev or prod environments
+
+
+## Install
+
+Runway is available via any of the following installation methods. Use whatever works best for your project/team (it's the same application no matter how you obtain it).
+
+### HTTPS Download (e.g cURL)
+
+Use one of the endpoints below to download a single-binary executable version of Runway based on your operating system.
+
+| Operating System | Endpoint                               |
+|------------------|----------------------------------------|
+| Linux            | <https://oni.ca/runway/latest/linux>   |
+| macOS            | <https://oni.ca/runway/latest/osx>     |
+| Windows          | <https://oni.ca/runway/latest/windows> |
+
+```shell
+$ curl -L oni.ca/runway/latest/osx -o runway
+$ chmod +x runway
+$ ./runway new
+```
+
+**Suggested use:** CloudFormation or Terraform projects
+
+
+### npm
+
+```shell
+$ npm i -D @onica/runway
+$ npx runway new
+```
+
+**Suggested use:** Serverless or AWS CDK projects
+
+
+### pip (or poetry, etc)
+
+```shell
+$ pip install runway
+$ runway new
+# OR
+$ poetry add --dev runway
+$ poetry run runway new
+```
+
+**Suggested use:** Python projects
+
+
+## Documentation
+
+See the [doc site](https://docs.onica.com/projects/runway) for full documentation.
+
+Quickstart documentation, including CloudFormation templates and walkthrough can be found [here](https://docs.onica.com/projects/runway/page/quickstart/index.html)
+
