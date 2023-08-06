@@ -1,0 +1,101 @@
+Metadata-Version: 2.1
+Name: frequenz-repo-config
+Version: 0.2.0
+Summary: Frequenz repository setup tools and common configuration
+Author-email: Frequenz Energy-as-a-Service GmbH <floss@frequenz.com>
+License: MIT
+Project-URL: Changelog, https://github.com/frequenz-floss/frequenz-repo-config-python/releases
+Project-URL: Repository, https://github.com/frequenz-floss/frequenz-repo-config-python
+Project-URL: Issues, https://github.com/frequenz-floss/frequenz-repo-config-python/issues
+Project-URL: Support, https://github.com/frequenz-floss/frequenz-repo-config-python/discussions/categories/support
+Keywords: frequenz,package,project,config,tool,repository,setuptools,nox,grpc,protobuf
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: <4,>=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: nox (>=2022.11.21)
+Provides-Extra: actor
+Provides-Extra: api
+Requires-Dist: grpcio-tools (<2,>=1.47.0) ; extra == 'api'
+Requires-Dist: mypy-protobuf (<4,>=3.0.0) ; extra == 'api'
+Requires-Dist: setuptools (<68,>=67.6.0) ; extra == 'api'
+Provides-Extra: app
+Provides-Extra: dev
+Requires-Dist: frequenz-repo-config[dev-docs-gen,dev-docstrings,dev-formatting,dev-mypy,dev-pylint,dev-pytest] ; extra == 'dev'
+Provides-Extra: dev-docs-gen
+Requires-Dist: mike (==1.1.2) ; extra == 'dev-docs-gen'
+Requires-Dist: mkdocs-gen-files (==0.4.0) ; extra == 'dev-docs-gen'
+Requires-Dist: mkdocs-literate-nav (==0.4.0) ; extra == 'dev-docs-gen'
+Requires-Dist: mkdocs-material (==9.1.4) ; extra == 'dev-docs-gen'
+Requires-Dist: mkdocs-section-index (==0.3.5) ; extra == 'dev-docs-gen'
+Requires-Dist: mkdocstrings[python] (==0.20.0) ; extra == 'dev-docs-gen'
+Provides-Extra: dev-docstrings
+Requires-Dist: pydocstyle (==6.3.0) ; extra == 'dev-docstrings'
+Requires-Dist: darglint (==1.8.1) ; extra == 'dev-docstrings'
+Provides-Extra: dev-formatting
+Requires-Dist: black (==23.3.0) ; extra == 'dev-formatting'
+Requires-Dist: isort (==5.12.0) ; extra == 'dev-formatting'
+Provides-Extra: dev-mypy
+Requires-Dist: mypy (==1.1.1) ; extra == 'dev-mypy'
+Requires-Dist: types-setuptools (<68,>=67.6.0) ; extra == 'dev-mypy'
+Requires-Dist: frequenz-repo-config[dev-docs-gen,dev-pytest] ; extra == 'dev-mypy'
+Provides-Extra: dev-pylint
+Requires-Dist: pylint (==2.17.1) ; extra == 'dev-pylint'
+Requires-Dist: pylint-google-style-guide-imports-enforcing (==1.3.0) ; extra == 'dev-pylint'
+Requires-Dist: frequenz-repo-config[dev-docs-gen,dev-pytest] ; extra == 'dev-pylint'
+Provides-Extra: dev-pytest
+Requires-Dist: pytest (==7.2.2) ; extra == 'dev-pytest'
+Requires-Dist: cookiecutter (==2.1.1) ; extra == 'dev-pytest'
+Provides-Extra: lib
+Provides-Extra: model
+
+# Frequenz repository common configuration for Python
+
+This is very opinionated set of tools and configurations to setup a Python
+repository for Frequenz projects.
+
+If offers:
+
+* [Cookiecutter] templates for scaffolding new projects
+* Trivial build of `noxfile.py` with some predefined sessions with all common
+  checks.
+* Tools to build protobuf/grpc files as Python, including type information.
+
+
+[Cookiecutter]: https://cookiecutter.readthedocs.io/en/stable
+
+## Start a new projects
+
+To start a new project you should first [install
+Cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html).
+It is normally available in any Linux distribution, but some have a very old
+version (for example, Ubuntu/Debian).  You can [check which version your distro
+has in Repology](https://repology.org/project/cookiecutter/versions). You need
+**at least version 2.1.0**.  To make sure to get an up to date version you can
+always uses `pip` and install in a `venv`:
+
+```console
+$ python -m venv cookiecutter
+$ cd cookiecutter
+$ . bin/activate
+[cookiecutter] $ pip install cookiecutter
+Collecting cookiecutter
+...
+```
+
+Then just run cookiecutter where you want to create the new project. A new
+directory will be created with the generated project name. For example:
+
+```sh
+cd ~/devel
+cookiecutter gh:frequenz-floss/frequenz-repo-config-python --directory=cookiecutter
+```
+
+This will prompt for the project type, name and other configuration and
+generate the whole project for you.
