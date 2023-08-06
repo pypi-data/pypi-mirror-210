@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: invisibleroads-macros-web
+Version: 0.3.5
+Summary: Shortcut functions for web operations
+Home-page: https://github.com/invisibleroads/invisibleroads-macros-web
+Author: Roy Hyunjin Han
+Author-email: rhh@crosscompute.com
+Keywords: invisibleroads
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Provides-Extra: jinja
+Provides-Extra: markdown
+Provides-Extra: starlette
+Provides-Extra: test
+
+# Shortcut Functions for Web Operations
+
+## Install
+
+```bash
+# Install without extras
+pip install invisibleroads-macros-web
+# Install with extras
+pip install invisibleroads-macros-web[jinja,markdown,starlette]
+```
+
+## Use
+
+```python
+# Open browser
+from invisibleroads_macros_web.browser import (
+    open_browser)
+
+# Escape characters
+from invisibleroads_macros_web.escape import (
+    escape_quotes_html,
+    escape_quotes_js)
+
+# Check ports
+from invisibleroads_macros_web.port import (
+    find_open_port,
+    is_port_in_use)
+
+# Render markdown
+from invisibleroads_macros_web.markdown import (
+    get_html_from_markdown)
+
+# Configure templates
+from invisibleroads_macros_web.jinja import (
+    RelativeTemplateEnvironment,
+    TemplatePathLoader,
+    url_for)
+from invisibleroads_macros_web.starlette import (
+    TemplateResponseFactory)
+```
+
+## Test
+
+```bash
+git clone https://github.com/invisibleroads/invisibleroads-macros-web
+cd invisibleroads-macros-web
+pip install -e .[jinja,markdown,starlette,test]
+pytest --cov=invisibleroads_macros_web --cov-report term-missing tests
+```
+
+# 0.2
+- Add `TemplateResponseFactory`
+- Add `RelativeTemplateEnvironment`, `TemplatePathLoader`
+- Remove extraneous p tags in `get_html_from_markdown`
+
+# 0.1
+- Add `open_browser`, `escape_quotes_html`, `escape_quotes_js`
+- Add `get_html_from_markdown`, `find_open_port`, `is_port_in_use`
