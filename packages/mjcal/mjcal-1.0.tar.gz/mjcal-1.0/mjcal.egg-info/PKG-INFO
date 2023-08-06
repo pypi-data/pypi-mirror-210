@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: mjcal
+Version: 1.0
+Summary: This is a simple library that performs basic python arithmetic operations.
+Home-page: https://github.com/mengjisan/mjcal
+Author: Meng Jisan
+Author-email: mjian528@gmail.com
+License: MIT
+Keywords: calculator
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE.TXT
+
+This is a simple library that performs
+basic python arithmetic operations.
+
+## Installation
+```
+pip install mjcal
+
+```
+
+## Usage:
+A guide to using the add numbers function is as follows
+
+```
+import mjcal
+add num = mjcal.add numbers(3, 7) # where 3 and 7 are the number you want to add
+print(add num)
+
+```
+The functions in this library are:
+
+1.add numnbers
+
+2.subtract numbers
+
+3.multiply numbers
+
+4.divide numbers float
+
+5.divide numbers floor
+
+6.power numbers
+
+7.mode numbers
+
+## License
+Copyright 2023 MengJisan
+
+This repository is licensed under MIT license.
+
+See LICENSE for details.
+
+Change Log
+##########
+
+1.0 (25/05/2023)
