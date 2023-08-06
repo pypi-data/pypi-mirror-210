@@ -1,0 +1,41 @@
+[tool.pytest.ini_options]
+testpaths = "tests"
+# Options used for every pytest command:
+# - Run tests marked with the "unit" marker (run "integration" tests with `-m integration`)
+# - Generate coverage report for the "corgi/" directory in the terminal
+# - Show extra test summary info ("a" == (a)ll)
+# - Report on the ten slowest tests
+# - Skip applying migrations to save on DB-setup time
+# - Ensure pytest config here is valid, and all defined markers are specified below in `markers`
+addopts = """
+-m unit
+--cov griffon --cov-report html --cov-report xml:coverage.xml
+-ra
+--durations=10
+--strict-config --strict-markers
+"""
+markers = [
+    "unit",
+    "integration",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_configs = true
+warn_unreachable = true
+warn_no_return = true
+warn_unused_ignores = true
+ignore_missing_imports = true
