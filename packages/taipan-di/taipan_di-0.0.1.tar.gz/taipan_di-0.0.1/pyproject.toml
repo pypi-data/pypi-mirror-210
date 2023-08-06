@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "Taipan-DI"
+version = "0.0.1"
+description = "Truly Amazing Inversion of control Python library Analogous to .Net's DI"
+authors = ["Billuc <billuc@hotmail.fr>"]
+license = "MIT"
+readme = "README.md"
+
+keywords = ["taipan", "dependency injection", "dependency", "python"]
+
+homepage = "https://github.com/Billuc/Taipan-DI"
+repository = "https://github.com/Billuc/Taipan-DI"
+documentation = "https://github.com/Billuc/Taipan-DI"
+
+classifiers = [
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+include = ["taipan_di/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+typing-extensions = "^4.6.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-asyncio = "^0.21.0"
+pytest-cov = "^4.0.0"
+black = "^23.3.0"
+mypy = "^1.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".", "taipan_di"
+]
+
+[tool.black]
+line-length = 92
