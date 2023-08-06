@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: ctapipe-io-lst
+Version: 0.20.1
+Summary: ctapipe plugin for reading LST prototype files
+Author: CTA LST Project
+Author-email: maximilian.linhoff@tu-dortmund.de
+License: BSD 3-clause
+Project-URL: Bug Tracker, https://github.com/cta-observatory/ctapipe_io_lst/issues
+Project-URL: Source Code, https://github.com/cta-observatory/ctapipe_io_lst
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Provides-Extra: tests
+Provides-Extra: dev
+Provides-Extra: all
+License-File: LICENSE
+
+# ctapipe_io_lst [![Build Status](https://github.com/cta-observatory/ctapipe_io_lst/workflows/CI/badge.svg?branch=master)](https://github.com/cta-observatory/ctapipe_io_lst/actions?query=workflow%3ACI+branch%3Amaster)
+
+EventSource Plugin for ctapipe, able to read LST zfits files
+and calibration them to R1 as needed for ctapipe tools.
+
+Since version 0.19, `ctapipe_io_lst` is on conda-forge,
+which is the easiest way to install it, since the `protozfits`
+dependency is offered pre-compiled for Linux and mac OS (including arm64).
+
+To install into an exisiting environtment, just do:
+```
+# or conda
+$ mamba install -c conda-forge ctapipe_io_lst
+```
+
+For development, create a new environment and run the development install:
+```
+conda env create -n lstenv -f environment.yml
+conda activate lstenv
+pip install -e .
+```
+
+`ctapipe_io_lst` is also on PyPI, but note that the `protozfits`
+dependency only has wheels for Linux, so you'd need to compile 
+from source on mac OS.
+
+## Test Data
+
+To run the tests, a set of non-public files is needed.
+If you are a member of CTA, ask one of the project maintainers for the credentials
+and then run
+
+```
+./download_test_data.sh
+```
