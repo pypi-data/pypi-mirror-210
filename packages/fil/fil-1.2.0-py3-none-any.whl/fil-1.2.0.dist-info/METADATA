@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: fil
+Version: 1.2.0
+Summary: 🏺 Read/write JSON/TOML/Yaml/txt 🏺
+License: MIT
+Author: Tom Ritchford
+Author-email: tom@swirly.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: safer (>=4.6.1,<5.0.0)
+Description-Content-Type: text/markdown
+
+## Example 1: read a file
+
+    d1 = fil.read('file.json')   # Any Json
+    d2 = fil.read('file.toml')   # A dict
+    d3 = fil.read('file.yaml')   # Any JSON
+    d4 = fil.read('file.txt')    # A string
+
+    # Reading a JSON Line file returns an interator:
+    for record in fil.read('file.jsonl'):
+        print(record)  # A sequence of JSON
+
+## Example 2: write to a file
+
+    fil.write(d1, 'file.json')  # d1 can be any JSON
+    fil.write(d2, 'file.toml')  # d2 must be a dict
+    fil.write(d3, 'file.yaml')  # d3 can be any JSON
+    fil.write(d4, 'file.txt')   # d4 most be a str
+
+    # Write an iterator to a JSON Line file
+    dicts = ({'key': i} for i in range(10))
+    fil.write(dicts, 'file.jsonl')
+
+
+### [API Documentation](https://rec.github.io/fil#fil--api-documentation)
+
