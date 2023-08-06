@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: songwhip
+Version: 1.0
+Summary: simple Songwhip client>
+Author-email: Amethyst Reese <amethyst@n7.gg>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: click >= 8
+Requires-Dist: munch >= 2.5
+Requires-Dist: rich >= 13
+Requires-Dist: attribution==1.6.2 ; extra == "dev"
+Requires-Dist: black==23.3.0 ; extra == "dev"
+Requires-Dist: flake8==6.0.0 ; extra == "dev"
+Requires-Dist: flit==3.8.0 ; extra == "dev"
+Requires-Dist: mypy==1.2.0 ; extra == "dev"
+Requires-Dist: ufmt==2.0.1 ; extra == "dev"
+Requires-Dist: usort==1.0.6 ; extra == "dev"
+Project-URL: Home, https://github.com/amyreese/songwhip
+Provides-Extra: dev
+
+# songwhip
+
+simple Songwhip client
+
+[![version](https://img.shields.io/pypi/v/songwhip.svg)](https://pypi.org/project/songwhip)
+[![license](https://img.shields.io/pypi/l/songwhip.svg)](https://github.com/amyreese/songwhip/blob/main/LICENSE)
+
+
+```shell-session
+$ pip install songwhip
+```
+
+```shell-session
+$ songwhip <url>
+Track: Wild Horseradish Jam
+Artist: Coffee Date, Dj Cutman, GameChops
+Songwhip url: https://songwhip.com/coffeedate/wild-horseradish-jam
+```
+
+
+License
+-------
+
+songwhip is copyright Amethyst Reese, and licensed under the MIT license.
