@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: pquisby
+Version: 0.0.2
+Summary: Quisby is a data processing and visualization tool for benchmark testing.
+Home-page: https://github.com/sousinha1997/Quisby
+Author: Soumya Sinha
+Author-email: sinhasoumya97@gmail.com
+License: GPL v3.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: appier (==1.21.7)
+Requires-Dist: beautifulsoup4 (==4.9.3)
+Requires-Dist: bs4 (==0.0.1)
+Requires-Dist: google-api (==0.1.12)
+Requires-Dist: click
+Requires-Dist: boto3 (==1.17.97) ; (python_version >= "2.7" and python_full_version < "3.0.0") or python_full_version >= "3.6.0"
+Requires-Dist: google-api-core (==1.30.0) ; (python_version >= "2.7" and python_full_version < "3.0.0") or python_full_version >= "3.6.0"
+Requires-Dist: botocore (==1.20.97) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: certifi (==2021.5.30) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: chardet (==4.0.0) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: idna (==2.10) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: jmespath (==0.10.0) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: pyasn1-modules (==0.2.8) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: python-dateutil (==2.8.1) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: s3transfer (==0.4.2) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0"
+Requires-Dist: urllib3 (==1.26.5) ; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version < "4"
+Requires-Dist: pyasn1 (==0.4.8) ; python_version >= "3.5" and python_full_version < "3.0.0" and python_version < "4" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6") or python_version >= "3.5" and python_version < "4" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6") and python_full_version >= "3.6.0"
+Requires-Dist: rsa (==4.7.2) ; python_version >= "3.5" and python_version < "4" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6")
+Requires-Dist: cachetools (==4.2.2) ; python_version >= "3.5" and python_version < "4.0" and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0")
+Requires-Dist: google-api-python-client (==2.9.0) ; python_version >= "3.6"
+Requires-Dist: google-auth-httplib2 (==0.1.0) ; python_version >= "3.6"
+Requires-Dist: google-auth-oauthlib (==0.4.4) ; python_version >= "3.6"
+Requires-Dist: httplib2 (==0.19.1) ; python_version >= "3.6"
+Requires-Dist: soupsieve (==2.2.1) ; python_version >= "3.6"
+Requires-Dist: oauthlib (==3.1.1) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
+Requires-Dist: requests-oauthlib (==1.3.0) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
+Requires-Dist: uritemplate (==3.0.1) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
+Requires-Dist: google-auth (==1.31.0) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: googleapis-common-protos (==1.53.0) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: packaging (==20.9) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: protobuf (==3.17.3) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: pyparsing (==2.4.7) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: pytz (==2019.1) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: requests (==2.25.1) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+Requires-Dist: six (==1.16.0) ; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6"
+
+# Install from sources
+1) First activate the environment using the command 
+`source venv/bin/activate`
+ 
+2) Install requirement
+`pip install -r requirements.txt`
+
+3) Run the project using the command 
+`python manage.py runserver` 
+
+
+# Build container and use
+1. Build container 
+`podman build . -t pquisby-api`
+
+2. Run container
+`podman run -itd -p 8000:8000 localhost/pquisby-api`
+
+
+Note: In both the above setups please add credentials.json in root dir for google auth
+
+
+
