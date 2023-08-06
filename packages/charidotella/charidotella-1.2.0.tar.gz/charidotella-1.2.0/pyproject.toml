@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+extend-exclude = "command_line_tools"
+
+[tool.pyright]
+typeCheckingMode = "basic"
+exclude = ["command_line_tools"]
+
+[tool.isort]
+profile = "black"
+skip = "command_line_tools"
