@@ -1,0 +1,34 @@
+
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "toolsql"
+readme = "README.md"
+requires-python = ">=3.7"
+dynamic = ["version", "description"]
+license = {file = "LICENSE"}
+dependencies = [
+    "typing_extensions>=4.2.0",
+    "toolstr >=0.9.1, <0.10",
+    "polars >=0.17.2, <0.18",
+    "aiosqlite >=0.18.0, <0.19",
+    "psycopg >=3.1.8, <3.2",
+    "connectorx >=0.3.2a3, <0.3.3",
+]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+implicit_reexport = true
+files = ["toolsql"]
+enable_incomplete_feature = "Unpack"
+
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+asyncio_mode = 'auto'
+
