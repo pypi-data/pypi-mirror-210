@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: HighResAnalysis
+Version: 0.0.1
+Summary: Analysis of High Resolution Data from CERN and DESY beam tests
+Home-page: https://github.com/dmitryhits/HighResAnalysis
+Author: dmitryhits
+Author-email: dmitry.hits@phys.ethz.ch
+License: Apache Software License 2.0
+Keywords: nbdev jupyter notebook python
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE
+
+# Analysis Software for the High Resolution Tests at CERN & DESY
+
+## Requirements
+
+- python>=3.6
+- (py)ROOT>=6.22
+- [proteus](https://github.com/diamondIPP/proteus)
+- [judith](https://github.com/diamondIPP/judith) (only for CERN data)
+- [eudaq2](https://github.com/diamondIPP/eudaq-2) (only for DESY data)
+
+## Installation
+
+- downloading code
+
+   ```shell
+   git clone --recurse-submodules https://github.com/diamondIPP/HighResAnalysis.git 
+   cd HighResAnalysis
+   ```
+
+- python3, pip, virtualenv (requires sudo)
+
+   ```shell
+    make prepare-dev 
+   ```
+
+- virtual environment and python packages (included in previous step)
+
+    ```shell
+    make venv
+   ```
+
+- required python packages are listed in [requirements](requirements.txt)
+- activate virtual environment and install aliases
+
+    ```shell
+   source .bash_aliases
+   ```
+
+## Running
+
+ ```shell
+analyse <run_number> <dut_number=0>
+```
+
+- for more information run  ``` analyse -h ```
+
+## Further reading
+
+More information how the code is structured may be found [here](src/README.md).
