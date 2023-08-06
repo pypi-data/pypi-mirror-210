@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name='structify_net'
+license={text = "MIT"}
+description='Network Generation with controlled structure'
+readme='pypi.md'
+authors = [
+    {name = "Remy Cazabet", email = "emy.cazabet@gmail.com"}
+]
+keywords=["network-science","community-detection"]
+dynamic = ["version","dependencies"]
+
+[project.urls]
+Documentation = "http://structify-net.readthedocs.io"
+Source = "https://github.com/Yquetzal/structify_net"
+
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "no-local-version"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
