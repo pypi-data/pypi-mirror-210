@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: RealEstate-package
+Version: 1.3.0
+Summary: МЛ-модель, предсказывающая стоимость недвижимости по её параметрам.
+Home-page: https://github.com/Lada-Rom/RealEstate_package
+Author: Клейменов А., Толстенко Л.
+Author-email: notmy@gmail.com
+License: BSD-3
+Project-URL: Documentation, https://github.com/Lada-Rom/RealEstate_package
+Keywords: lightgbm python real_estate price
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: anyio (==3.6.2)
+Requires-Dist: click (==8.1.3)
+Requires-Dist: fastapi (==0.95.2)
+Requires-Dist: h11 (==0.14.0)
+Requires-Dist: idna (==3.4)
+Requires-Dist: joblib (==1.2.0)
+Requires-Dist: lightgbm (==3.3.5)
+Requires-Dist: numpy (==1.24.3)
+Requires-Dist: pandas (==2.0.1)
+Requires-Dist: pydantic (==1.10.7)
+Requires-Dist: python-dateutil (==2.8.2)
+Requires-Dist: pytz (==2023.3)
+Requires-Dist: scikit-learn (==1.2.2)
+Requires-Dist: scipy (==1.10.1)
+Requires-Dist: six (==1.16.0)
+Requires-Dist: sniffio (==1.3.0)
+Requires-Dist: starlette (==0.27.0)
+Requires-Dist: strictyaml (==1.7.3)
+Requires-Dist: threadpoolctl (==3.1.0)
+Requires-Dist: typing-extensions (==4.5.0)
+Requires-Dist: tzdata (==2023.3)
+Requires-Dist: uvicorn (==0.22.0)
+
+# Структура проекта
+
+- `real_estate_model/` содержит весь основной код пакета: `train.py`, `predict.py`, `config.py` (загрузка параметров обучения и предсказания из файла `config.yml`). Здесь же находится директория `trained_models/`, куда при обучении будут попадать веса новых моделей, и в которой уже есть одна обученная модель.
+- `requirements/` содержит все необходимые зависимости для использования (`requirements.txt`) и тестирования (`test_requirements.txt`) пакета.
+- `tests/` содержит код тестов, запускаемый при помощи pytest.
+
+
+# Использование
+
+Код запускается и тестируется при помощи tox. Параметры обучения и предсказания находятся в `real_estate_model/config.yml`.
+
+## Обучение
+
+В конфиге с параметрам необходимо прописать путь к датасету для обучения - указанный по умолчанию путь работать не будет, так как датасет невозможно загрузить из-за большого размера. Также в конфиге можно указать место для сохранения весов модели (имя автоматическое), какие переменные из датасета не учитывать при обучении и др. Обучение запускается из корневой директории проекта командой:
+
+```
+tox -e train
+```
+
+## Предсказание
+
+Для предсказания в конфиге указывается путь к весам обученной модели (по умолчанию `trained_models/lgb_model.txt`) и список переменных, на которых она обучалась.
+
+```
+tox -e predict
+```
+
+
+# Датасет
+
+Для обучения существующей модели использовался датасет:
+https://www.kaggle.com/datasets/mrdaniilak/russia-real-estate-20182021
+
+
