@@ -1,0 +1,3 @@
+%init sudo=true
+systemctl stop irqbalance
+systemctl disable irqbalance
