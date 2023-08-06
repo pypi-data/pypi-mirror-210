@@ -1,0 +1,35 @@
+[build-system]
+requires = [
+    "setuptools>=42.0.0",
+    "setuptools_scm[toml]>=3.4",
+    "oldest-supported-numpy",
+    "cython"
+]
+
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "src/fcutils/_version.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = "error"
+log_cli_level = "info"
+testpaths = "tests"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.cibuildwheel]
+build = "cp3{8,9,10,11}-*"
+skip = "*_i686" # no 32-bit archs
+test-extras = "test"
+test-command = "pytest {project}/tests"
+build-verbosity = 1
+
+[tool.cibuildwheel.macos]
+archs = ["auto", "universal2"]
+test-skip = ["*universal2:arm64"]
