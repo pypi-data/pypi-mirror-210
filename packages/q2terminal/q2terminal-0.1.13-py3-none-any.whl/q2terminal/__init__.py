@@ -1,0 +1,1 @@
+from q2terminal.version import __version__
