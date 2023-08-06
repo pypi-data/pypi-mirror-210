@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: eodc-faas-force
+Version: 2023.5.1
+Summary: Bindings for the FORCE processor exposed at EODC
+Author: Lukas Weidenholzer
+Author-email: lukas.weidenholzer@eodc.eu
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: argo-workflows (==6.3.9)
+Requires-Dist: pydantic (>=1.10.7,<2.0.0)
+Requires-Dist: pyproj (>=3.5.0,<4.0.0)
+Requires-Dist: requests (>=2.28.2,<3.0.0)
+Description-Content-Type: text/markdown
+
+# FORCE Python Bindings
+
