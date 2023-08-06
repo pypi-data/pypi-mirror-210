@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "config-joker"
+version = "0.6.0"
+description = "A package to ease usage of different configuration conditions in your projects."
+authors = ["Joao Pedro Mendes Goulart"]
+readme = "README.md"
+packages = [
+    {include = "config_joker"},
+    {include = "./config_joker/config.py"},
+    {include = "./config_joker/sources/environment.py"},
+    {include = "./config_joker/sources/yamlfile.py"}
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+regex = "^2023.3.23"
+PyYAML = "^5.1"
+
+
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_type = "semver"
+version_provider = "poetry"
+update_changelog_on_bump = true
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
