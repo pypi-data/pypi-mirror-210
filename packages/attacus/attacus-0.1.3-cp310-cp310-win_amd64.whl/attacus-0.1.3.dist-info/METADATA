@@ -1,0 +1,150 @@
+Metadata-Version: 2.1
+Name: attacus
+Version: 0.1.3
+Summary: Python Flutter Extension
+Author-email: Kurtis Fields <kurtisfields@gmail.com>
+License: MIT License        
+        Copyright (c) 2023 Kurtis Fields        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.        
+Project-URL: homepage, https://github.com/crunge/attacus
+Project-URL: documentation, https://crungelab.github.io/attacus/
+Project-URL: repository, https://github.com/crungelab/attacus
+Project-URL: changelog, https://github.com/crungelab/attacus/blob/main/CHANGELOG.md
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: loguru (~=0.7.0)
+Requires-Dist: platformdirs (~=3.5.1)
+Requires-Dist: requests (~=2.31.0)
+Requires-Dist: rich (~=13.3.5)
+Provides-Extra: dev
+Requires-Dist: cxbuild (==0.1.0) ; extra == 'dev'
+Requires-Dist: black (~=22.12.0) ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest (~=7.2.1) ; extra == 'test'
+
+# Attacus :snake: :butterfly:
+
+Flutter Python Extension
+
+[Flutter](https://flutter.dev/)
+
+[Flutter Embedder](https://github.com/flutter/flutter/wiki/Custom-Flutter-Engine-Embedders)
+
+[SDL](https://github.com/libsdl-org/SDL/)
+
+## Development
+
+### Required
+
+* [Hatch](https://hatch.pypa.io/)
+
+### Optional
+
+* [Ninja](https://ninja-build.org/)
+
+### Clone
+
+```bash
+git clone https://github.com/crungelab/attacus
+cd attacus
+```
+
+### Tool Chain
+
+[cxbuild](https://github.com/crungelab/cxbuild)
+
+[pybind11](https://github.com/pybind/pybind11)
+
+### Develop
+```bash
+hatch shell
+procure
+cxbuild develop
+```
+
+### Build
+```bash
+cxbuild
+```
+
+### [Flutter Custom Devices](https://github.com/flutter/flutter/wiki/Using-custom-embedders-with-the-Flutter-CLI)
+This will enable and display the location of your .flutter_custom_devices.json file
+```
+flutter config --enable-custom-devices
+flutter custom-devices
+```
+Add this to your .flutter_custom_devices.json file
+
+``` json
+    {
+      "id": "attacus",
+      "label": "Attacus",
+      "sdkNameAndVersion": "Attacus 0.1",
+      "platform": null,
+      "enabled": true,
+      "ping": [
+        "ping",
+        "-n",
+        "1",
+        "-w",
+        "500",
+        "localhost"
+      ],
+      "pingSuccessRegex": "[<=]\\d+ms",
+      "postBuild": [
+        "python",
+        "-m",
+        "attacus.post_build"
+      ],
+      "install": [
+        "python",
+        "-m",
+        "attacus.install"
+      ],
+      "uninstall": [
+        "python",
+        "-m",
+        "attacus.uninstall"
+      ],
+      "runDebug": [
+        "python",
+        "main.py"
+      ],
+      "forwardPort": null,
+      "forwardPortSuccessRegex": null,
+      "screenshot": null
+    }
+```
+
+## Examples
+```bash
+flutter build bundle
+python main.py
+```
+or
+```bash
+flutter run
+```
