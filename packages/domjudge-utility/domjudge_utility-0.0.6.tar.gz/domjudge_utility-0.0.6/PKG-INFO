@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: domjudge-utility
+Version: 0.0.6
+Summary: DOMjudge Utility
+License: MIT
+Author: Dup4
+Author-email: lyuzhi.pan@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: bs4 (>=0.0.1,<0.0.2)
+Requires-Dist: grequests (>=0.6.0,<0.7.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: requests (>=2.31.0,<3.0.0)
+Requires-Dist: requests-toolbelt (>=1.0.0,<2.0.0)
+Requires-Dist: xlwt (>=1.3.0,<2.0.0)
+Description-Content-Type: text/markdown
+
+<img align="right" width="96px" src="./assets/python3_logo.png">
+
+# DOMjudge-Utility
+
+[![Test][test-ci-badge]][test-ci]
+[![GitHub release][gh-release-badge]][gh-release]
+
+* [dump](./dump)
+* [submit-stress-test](./submit-stress-test)
+
+## License
+
+[MIT](./LICENSE) License © 2021 [Dup4][dup4]
+
+[dup4]: https://github.com/Dup4
+[test-ci-badge]: https://github.com/Dup4/domjudge-utility/workflows/Test/badge.svg
+[test-ci]: https://github.com/Dup4/domjudge-utility/actions/workflows/test.yml
+[gh-release-badge]: https://img.shields.io/github/release/Dup4/domjudge-utility.svg
+[gh-release]: https://GitHub.com/Dup4/domjudge-utility/releases/
+
