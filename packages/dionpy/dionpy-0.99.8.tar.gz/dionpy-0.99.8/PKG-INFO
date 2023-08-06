@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: dionpy
+Version: 0.99.8
+Summary: Dynamic ionosphere model for global 21 cm experiments
+Home-page: https://github.com/lap1dem/dionpy
+License: MIT
+Author: Vadym Bidula
+Author-email: vadym.bidula@gmail.com
+Requires-Python: >=3.8,<3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: Sphinx (>=5.0.2,<6.0.0)
+Requires-Dist: echaim (>=1.0.8,<2.0.0)
+Requires-Dist: ffmpeg-progress-yield (>=0.3.0,<0.4.0)
+Requires-Dist: h5py (>=3.7.0,<4.0.0)
+Requires-Dist: healpy (>=1.16.1,<2.0.0)
+Requires-Dist: iricore (>=1.4.1,<2.0.0)
+Requires-Dist: it (>=1.0.0,<2.0.0)
+Requires-Dist: matplotlib (>=3.6.0,<4.0.0)
+Requires-Dist: numpy (>=1.22,<2.0)
+Requires-Dist: pymap3d (>=3.0.1,<4.0.0)
+Requires-Dist: pytz (>=2022.1,<2023.0)
+Requires-Dist: scipy (>=1.9.3,<2.0.0)
+Requires-Dist: setuptools (>=67.6.1,<68.0.0)
+Requires-Dist: sphinx-autodoc-typehints (>=1.19.1,<2.0.0)
+Requires-Dist: sphinx-rtd-theme (>=1.0.0,<2.0.0)
+Requires-Dist: sphinxcontrib-bibtex (>=2.5.0,<3.0.0)
+Requires-Dist: tqdm (>=4.64.1,<5.0.0)
+Project-URL: Repository, https://github.com/lap1dem/dionpy
+Description-Content-Type: text/markdown
+
+[//]: # (![]&#40;docs/images/logos/logo_wide.png&#41;)
+
+# DIonPy
+The `dionpy` package provides model of ionosphere refraction and attenuation based on the 
+[IRI2020 Ionosphere Model](https://irimodel.org/).
+
+More details are available at our [documentation page](https://dionpy.readthedocs.io/en/latest/).
