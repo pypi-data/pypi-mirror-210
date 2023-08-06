@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: airplanesdk
+Version: 0.3.29
+Summary: A Python SDK for writing Airplane tasks
+Home-page: https://airplane.dev
+License: MIT
+Author: Airplane
+Author-email: support@airplane.dev
+Requires-Python: >=3.7.0,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: backoff (>=2.2.1,<3.0.0)
+Requires-Dist: deprecation (>=2.1.0,<3.0.0)
+Requires-Dist: docstring-parser (>=0.14.1,<0.15.0)
+Requires-Dist: filetype (>=1.2.0,<2.0.0)
+Requires-Dist: inflection (>=0.5.1,<0.6.0)
+Requires-Dist: python-slugify (>=6.1.2,<7.0.0)
+Requires-Dist: pytimeparse2 (>=1.6.0,<2.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: typing-extensions (>=4.3.0,<5.0.0)
+Project-URL: Repository, https://github.com/airplanedev/python-sdk
+Description-Content-Type: text/markdown
+
+# Airplane Python SDK [![PyPI](https://img.shields.io/pypi/v/airplanesdk)](https://pypi.org/project/airplanesdk/) [![PyPI - License](https://img.shields.io/pypi/l/airplanesdk)](./LICENSE) [![Docs](https://img.shields.io/badge/Docs-airplane-blue)](https://docs.airplane.dev/creating-tasks/python)
+
+SDK for writing [Airplane](https://airplane.dev) tasks in Python.
+
+To learn more, see [the Airplane SDK docs](https://docs.airplane.dev/tasks/python-sdk).
+
