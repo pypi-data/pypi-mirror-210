@@ -1,0 +1,13 @@
+[build-system]
+requires = [
+	"certifi",
+    "cffi",
+    "charset-normalizer",
+    "cryptography",
+    "idna",
+    "pycparser",
+    "requests",
+    "urllib3",
+    "setuptools>=42",
+]
+build-backend = "setuptools.build_meta"
