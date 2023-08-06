@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "gitwithtea-py"
+version = "0.1.0"
+description = "Gigitwithtea API wrapper in Python"
+authors = ["0xMRTT <0xMRTT@proton.me>"]
+maintainers = ["0xMRTT <0xMRTT@proton.me>"]
+readme = "README.md"
+packages = [{include = "gitwithtea_py"}]
+license = "GPL-3.0-or-later"
+homepage = "https://codeberg.org/gitwithtea-py/gitwithtea_py"
+documentation = "https://codeberg.org/gitwithtea-py/gitwithtea_py"
+keywords = ["gitea", "tea", "git", "api", "forgejo", "python", "swagger"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+repository = "https://codeberg.org/gitwithtea-py/gitwithtea_py"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+certifi = "^2023.5.7"
+python-dateutil = "^2.8.2"
+setuptools = "^67.8.0"
+urllib3 = "^2.0.2"
+six = "^1.16.0"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://codeberg.org/gitwithtea-py/gitwithtea_py/issues"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "codeberg"
+url = "https://codeberg.org/api/packages/Bavarder/pypi"
+default = false
+secondary = true
