@@ -1,0 +1,156 @@
+[tool.poetry]
+name = "libvcs"
+version = "0.22.0"
+description = "Lite, typed, python utilities for Git, SVN, Mercurial, etc."
+license = "MIT"
+authors = ["Tony Narlock <tony@git-pull.com>"]
+keywords = [
+  "libvcs",
+  "git",
+  "mercurial",
+  "hg",
+  "svn",
+  "subversion",
+  "library",
+  "lib",
+  "wrapper",
+  "vcs",
+  "version control",
+  "scm",
+  "clone",
+  "checkout",
+  "abstraction",
+  "version-control",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Environment :: Console",
+  "Framework :: Pytest",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX",
+  "Operating System :: MacOS :: MacOS X",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Utilities",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Version Control",
+  "Topic :: Software Development :: Version Control :: Git",
+  "Topic :: Software Development :: Version Control :: Mercurial",
+  "Topic :: System :: Shells",
+  "Typing :: Typed",
+]
+homepage = "http://github.com/vcs-python/libvcs/"
+readme = "README.md"
+packages = [
+  { include = "*", from = "src" },
+]
+include = [
+  { path = "tests", format = "sdist" },
+  { path = "conftest.py", format = "sdist" },
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/vcs-python/libvcs/issues"
+Documentation = "https://libvcs.git-pull.com"
+Repository = "https://github.com/vcs-python/libvcs"
+Changes = "https://github.com/vcs-python/libvcs/blob/master/CHANGES"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+typing-extensions = { version = "*", python = '3.10' }
+
+[tool.poetry.group.dev.dependencies]
+### Docs ###
+sphinx = "*"
+furo = "*"
+sphinx-autobuild = "*"
+sphinx-autodoc-typehints = "*"
+sphinx-inline-tabs = "*"
+sphinxext-opengraph = "<0.8"  # https://github.com/wpilibsuite/sphinxext-opengraph/issues/100
+sphinx-copybutton = "*"
+sphinxext-rediraffe = "*"
+myst_parser = ">=0.18.1"
+
+### Testing ###
+gp-libs = "~0.0.1-alpha.17"
+pytest = "*"
+pytest-rerunfailures = "*"
+pytest-mock = "*"
+pytest-watcher = "*"
+
+### Coverage ###
+codecov = "*"
+coverage = "*"
+pytest-cov = "*"
+
+### Lint ###
+ruff = "^0.0.270"
+mypy = "*"
+types-docutils = "*"
+
+[tool.poetry.extras]
+docs = [
+  "gp-libs",
+  "sphinx",
+  "sphinx-autodoc-typehints",
+  "sphinx-autobuild",
+  "sphinx-copybutton",
+  "sphinxext-opengraph",
+  "sphinx-inline-tabs",
+  "sphinxext-rediraffe",
+  "myst_parser",
+  "furo",
+]
+test = [
+  "gp-libs",
+  "pytest",
+  "pytest-rerunfailures",
+  "pytest-mock",
+  "pytest-watcher",
+]
+coverage = ["codecov", "coverage", "pytest-cov"]
+lint = [
+  "ruff",
+  "mypy",
+  "types-docutils",
+]
+
+[tool.poetry.plugins.pytest11]
+libvcs = "libvcs.pytest_plugin"
+
+[tool.mypy]
+strict = true
+files = [
+  "src",
+  "tests"
+]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "*/_compat.py",
+  "docs/conf.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "raise NotImplementedError",
+  "return NotImplemented",
+  "def parse_args",
+  "if TYPE_CHECKING:",
+  "if t.TYPE_CHECKING:",
+  "@overload( |$)",
+]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
