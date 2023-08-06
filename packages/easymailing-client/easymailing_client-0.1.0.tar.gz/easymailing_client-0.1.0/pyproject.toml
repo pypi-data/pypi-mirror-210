@@ -1,0 +1,33 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "easymailing-client"
+authors = [{name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space"}]
+dynamic = ["version", "description"]
+dependencies = [
+  "httpx >=0.15.4,<0.25.0",
+  "attrs >=21.3.0",
+  "python-dateutil ~=2.8.0",
+]
+
+[tool.flit.module]
+name = "easymailing_api_client"
+
+[tool.black]
+line-length = 120
+target_version = ['py38', 'py39', 'py310', 'py311']
+exclude = '''
+(
+  /(
+    | \.git
+    | \.venv
+    | \.mypy_cache
+  )/
+)
+'''
+
+[tool.isort]
+line_length = 120
+profile = "black"
