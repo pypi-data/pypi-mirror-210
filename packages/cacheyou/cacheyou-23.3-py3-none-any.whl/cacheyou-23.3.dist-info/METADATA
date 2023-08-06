@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: cacheyou
+Version: 23.3
+Summary: httplib2 caching for requests
+Keywords: requests http caching web
+Author-Email: Frost Ming <me@frostming.com>, Eric Larson <eric@ionrock.org>
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Project-URL: Homepage, https://github.com/frostming/cacheyou
+Project-URL: Documentation, https://cacheyou.readthedocs.io
+Project-URL: Release notes, https://cacheyou.readthedocs.io/en/latest/release_notes.html
+Requires-Python: >=3.7
+Requires-Dist: msgpack>=0.5.2
+Requires-Dist: requests
+Requires-Dist: filelock>=3.8.0; extra == "filecache"
+Requires-Dist: redis>=2.10.5; extra == "redis"
+Provides-Extra: filecache
+Provides-Extra: redis
+Description-Content-Type: text/markdown
+
+
+# CacheYou
+
+[![Latest Version](https://img.shields.io/pypi/v/cacheyou.svg)](https://pypi.python.org/pypi/cacheyou)
+[![CI](https://github.com/frostming/cacheyou/actions/workflows/tests.yml/badge.svg)](https://github.com/frostming/cacheyou/actions/workflows/tests.yml)
+
+CacheYou is a fork of [CacheControl] which is a port of the caching algorithms in httplib2 for use with
+requests session object.
+
+[CacheControl]: https://github.com/ionrock/cachecontrol
+
+## Quickstart
+
+```python
+import requests
+from cacheyou import CacheControl
+
+sess = requests.session()
+cached_sess = CacheControl(sess)
+
+response = cached_sess.get('http://google.com')
+```
+
+If the URL contains any caching based headers, it will cache the
+result in a simple dictionary.
+
+For more info, check out the [docs]
+
+[docs]: http://cacheyou.readthedocs.org/en/latest/
