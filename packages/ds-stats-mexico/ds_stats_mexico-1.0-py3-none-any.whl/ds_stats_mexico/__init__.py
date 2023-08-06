@@ -1,0 +1,4 @@
+from .functions import grafica_barras_paises_ricos
+from .functions import grafica_lineal_envejecimiento_mexico
+from .functions import grafica_pastel_mortalidad_infantil_mexico_causas
+from .functions import grafica_pastel_mortalidad_infantil_mexico_sexo
