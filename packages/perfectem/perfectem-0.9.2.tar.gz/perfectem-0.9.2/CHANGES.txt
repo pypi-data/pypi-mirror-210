@@ -1,0 +1,28 @@
+0.9.2:
+    - add eucentricity test
+0.9.1:
+    - adding type hints, pyproject.toml
+    - use change_aperture func
+    - add connect to SEM func
+0.9:
+    - use linear for Falcon, counting for K2/K3
+    - redo SEM commands check
+    - change Young fringes img shift back to 2nm to have enough fringes in the FOV
+    - disable dose rate check for now
+    - add more Pauses for user to recenter the beam
+    - add input arg for the microscope
+0.8:
+    - redone stage drift test
+    - redone tilt axis and mag aniso plots
+    - tested afis script
+0.7:
+    - add divide by 2 check
+    - fix C3 lens presence check
+    - fix drift rate check
+    - add lens normalization depending on the illum. params change
+    - add FOV check before euc. by stage
+0.6:
+    - add delay 1 (Krios) or 2 (Glacios) sec after setting spot size
+    - save jpg from SEM buffer only in debug mode
+    - fix dose rate check
+    - detect C3 lens presence and autofill capability
