@@ -1,0 +1,17 @@
+[build-system]
+requires = ["jupyter_packaging~=0.10,<2", "jupyterlab>=3.3"]
+build-backend = "jupyter_packaging.build_api"
+
+[project]
+name = "jupyterlab-training"
+version = "0.4.0"
+authors = [
+  { name="Logilab", email="ogiorgis@logilab.fr" },
+]
+description = "unittest in jupyter"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
