@@ -1,0 +1,46 @@
+---
+
+title: Advanced Paged
+description: This page mix and match some advanced concepts
+data:
+    title: Locations
+    locations:
+        - Charlotte
+        - Concord
+        - North Carolina
+---
+
+
+<div class="wrapper">
+    <section class="container">
+        <h3 class="title">{{ this.title }}</h3>
+        <p> {{ this.description }} </p>
+        <hr> 
+
+        <h4>Page level data</h4>
+        <h5>{{ this.data.title }}</h5>
+
+        <ul>
+            {% for loc in this.data.locations %}
+            <li>{{ loc }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <h4>Data from <strong>data/cars.json</strong></h4>
+        <h5>{{ get_data("cars.title")}}</h5>
+        <ul>
+            {% for car in get_data("cars.my_list") %}
+            <li>{{ car }}</li>
+            {% endfor %}
+        </ul>
+        
+        <hr>
+        <h4>Include Partials</h4>
+        {% include 'partials/my_table.html' %}
+        <hr>
+
+        <a href="{{ get_url_for('index') }}">Home</a>
+    </section>
+</div>

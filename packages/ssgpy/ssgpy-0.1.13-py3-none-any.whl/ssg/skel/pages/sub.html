@@ -1,0 +1,15 @@
+---
+title: Sub Page 
+description: 
+permalink: my/sub-page/sub-page
+
+---
+
+    
+<a href="{{ get_url_for('index')}}">Home</a> - 
+<a href="{{ get_url_for('about')}}">{{ get_page_meta("about.title") }}</a> - 
+<a href="{{ get_url_for('contact')}}">{{ get_page_meta("contact.title") }}</a> - 
+<a href="{{ get_url_for('advanced')}}">{{ get_page_meta("advanced.title") }}</a> - 
+<a href="{{ get_url_for('info')}}">{{ get_page_meta("info.title") }}</a> - 
+<a href="{{ get_url_for('sub')}}">{{ get_page_meta("sub.title") }}</a> - 
+<a href="{{ get_url_for('redirectme')}}">{{ get_page_meta("redirectme.title") }}</a> - 
