@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: pose3d
+Version: 2.1.1a0
+Summary: Transforming and handling 3D poses and frames.
+License: MIT
+Author: John Halazonetis
+Author-email: john.halazonetis@icloud.com
+Requires-Python: >=3.8,<3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: numpy (>=1.24.3,<2.0.0)
+Requires-Dist: pandas (>=2.0.1,<3.0.0)
+Requires-Dist: scipy (>=1.10.1,<2.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Description-Content-Type: text/markdown
+
+# Pose3D - Position and Orientation Python Library
+
+Handling 2D and 3D poses as well as transformations between reference frames.
+
+## Documentation
+Visit page: <https://johnhalz.github.io/pose3d_python/>
+
+## Installing Library
+This ibrary is freely available at the Python Package Index. You can install the latest version onto your machine with the following command:
+
+``` bash
+pip install --upgrade pose3d
+```
+
