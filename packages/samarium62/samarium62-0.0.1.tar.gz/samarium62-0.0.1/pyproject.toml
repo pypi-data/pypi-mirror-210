@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "samarium62"
+version = "0.0.1"
+authors = [
+  { name="GitYACC", email="shastrysamarth@gmail.com" },
+]
+description = "A wrapper package for creating custom discord embed"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+
+[project.urls]
+"Homepage" = "https://home.page"
+"Bug Tracker" = "https://github.com/Future-Lib/issues"
