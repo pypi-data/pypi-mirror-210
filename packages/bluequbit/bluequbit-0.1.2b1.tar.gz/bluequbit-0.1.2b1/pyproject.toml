@@ -1,0 +1,104 @@
+[tool.pyright]
+pythonVersion = "3.8"
+typeCheckingMode = "off"
+reportImportCycles = true
+reportConstantRedefinition = true
+reportMissingImport = true
+reportUnusedClass = true
+reportUnusedFunction = true
+reportUnusedVariable = true
+reportDuplicateImport = true
+reportWildcardImportFromLibrary = true
+reportPrivateUsage = true
+reportDeprecated = true
+reportIncompatibleMethodOverride = true
+reportIncompatibleVariableOverride = true
+reportInconsistentConstructor = true
+reportOverlappingOverload = true
+reportMissingSuperCall = true
+reportUninitializedInstanceVariable = true
+reportInvalidStringEscapeSequence = true
+
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.black]
+preview = true
+
+[tool.codespell]
+ignore-words-list = 'Braket,braket'
+skip="jquery*.js,.git,./docs/build/html,./.venv,./.venv2,./.gitignore"
+check-filenames = true
+
+[tool.isort]
+profile = "black"
+skip = [".venv", ".venv2"]
+
+[tool.pytest.ini_options]
+timeout = "900"
+timeout_method = "thread"
+
+[tool.ruff]
+# See https://github.com/charliermarsh/ruff#rules for error code definitions.
+select = [
+    "C40", # comprehensions
+    "DTZ", # naive datetime
+    "F", # flakes
+    "E", # style errors
+    "W", # style warnings
+    #"I", # isort
+    "ISC", # string concatenation
+    "N", # naming
+    "PIE", # miscellaneous
+    "PLC", # pylint convention
+    "PLE", # pylint error
+    "PLR", # pylint refactor
+    "PLW", # pylint warning
+    "Q", # quotes
+    "RUF", # Ruff
+    "S", # security
+    "SIM", # simplify
+    # "UP", # pyupgrade
+    "W", # style warnings
+    "YTT", # sys.version
+    "B", # bugbear
+    "PTH", # use Path
+]
+extend-ignore = [
+    "E501",
+    "S101", # use of assert
+    "PLR0912", # Too many branches
+    "PLR2004", # Magic value used in comparison, consider replacing 2 with a constant variable
+    "PLW0602", # Using global, but no assignment is done
+    "PLR0913", # too many function arguments
+]
+
+[tool.pylint.'BASIC']
+good-names = "f,e,i,j,k,m,s,to,rp,d"
+
+[tool.pylint.'SIMILARITIES']
+min-similarity-lines = 7
+
+[tool.pylint.'MASTER']
+init-hook = "sys.path.append('./src/common'); sys.path.append('./src/backend'); sys.path.append('./src/task_runner')"
+
+[tool.pylint.'MESSAGE_CONTROL']
+disable = [
+  "missing-class-docstring",
+  "missing-function-docstring",
+  "missing-module-docstring",
+  "no-else-return",
+  "too-many-lines",
+  "too-many-arguments",
+  "too-many-instance-attributes",
+  "broad-except",
+  "wrong-import-order",
+  "too-many-branches",
+  "too-many-statements",
+  "too-many-locals",
+  "too-many-nested-blocks",
+  "not-callable"
+]
+
+[tool.pylint.'FORMAT']
+max-line-length = 88
