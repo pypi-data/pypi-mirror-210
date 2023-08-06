@@ -1,0 +1,7 @@
+include README.rst
+include COPYING
+recursive-include calcleaner/data/ui/ *.glade
+recursive-include calcleaner/data/images/ *.svg
+recursive-include calcleaner/data/images/ *.png
+recursive-include calcleaner/data/locales/ *.mo
+recursive-include calcleaner/data/style/ *.css
