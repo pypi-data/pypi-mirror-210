@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: novelcraft-sdk
+Version: 0.2.0
+Summary: A Python library for communicating with NovelCraft Servers and accessing NovelCraft game data
+License: Unlicense
+Author: NovelCraft
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: jsonschema (>=4.17.3,<5.0.0)
+Requires-Dist: termcolor (>=2.2.0,<3.0.0)
+Requires-Dist: websockets (>=10.4,<11.0)
+Description-Content-Type: text/markdown
+
+# NovelCraft SDK for Python
+
+NovelCraft SDK for Python is a Python library for communicating with NovelCraft Servers and accessing NovelCraft game data.
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
+
+```bash
+pip install novelcraft.sdk
+```
+
+## Usage
+
+```python
+import asyncio
+
+import novelcraft.sdk as sdk
+
+
+async def main():
+    await sdk.initialize()
+
+    # Do something
+
+    await sdk.finalize()
+
+if __name__ == '__main__':
+    asyncio.run(main())
+```
+
+For more information, please start with _placeholder_.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[Unlicense](choosealicense.com/licenses/unlicense/)
+
