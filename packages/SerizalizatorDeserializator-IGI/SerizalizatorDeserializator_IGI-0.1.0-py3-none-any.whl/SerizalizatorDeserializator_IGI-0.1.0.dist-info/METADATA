@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: SerizalizatorDeserializator-IGI
+Version: 0.1.0
+Summary: Library for class and function serialization and deserialization
+Home-page: UNKNOWN
+Author: Krasovski Valentine
+Author-email: valentinkrasovski8@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: regex
+
+# SerizalizatorDeserializatorLib
+* It is a library that help you to serialize functions, classes, objects etc.
+
+# Installation requirements:
+* Get started: pip install SerizalizatorDeserializatorLib
+
+* from SerizalizatorDeserializatorLib import SerializersFactory, SerializerType
+
+* s = SerializersFactory.create_serializer(SerializerType.XML)
+
+* with open("data_file.xml", "w") as file: s.dump(T.tst4, file)
+
+* with open("data_file.xml", "r") as file: a = s.load(file)
+
+
