@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: aws-glue-sessions
+Version: 0.38.0
+Summary: Glue Interactive Sessions Jupyter kernel that integrates almost anywhere Jupyter does including your favorite IDEs.
+Home-page: https://aws.amazon.com/glue/
+Author: Glue Development Team
+Author-email: glue-sessions-preview@amazon.com
+License: Apache 2.0 License
+Requires-Dist: hdijupyterutils (>=0.6)
+Requires-Dist: autovizwidget (>=0.6)
+Requires-Dist: ipython (>=4.0.2)
+Requires-Dist: nose
+Requires-Dist: requests
+Requires-Dist: ipykernel (>=6.12.1)
+Requires-Dist: ipywidgets (>5.0.0)
+Requires-Dist: notebook (>=4.2)
+Requires-Dist: tornado (>=4)
+Requires-Dist: boto3 (>=1.21.31)
+Requires-Dist: botocore (>=1.24.24)
+Requires-Dist: Click
+Requires-Dist: importlib-metadata (>=4.11.3)
+Requires-Dist: rich
+
