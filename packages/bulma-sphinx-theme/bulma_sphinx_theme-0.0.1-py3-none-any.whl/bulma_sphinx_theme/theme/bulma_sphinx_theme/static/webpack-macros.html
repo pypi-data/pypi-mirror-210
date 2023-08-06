@@ -1,0 +1,13 @@
+<!--
+    AUTO-GENERATED from webpack.config.js, do **NOT** edit by hand.
+    These are re-used in layout.html
+-->
+{% macro head_js_preload() %}
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link rel="preload" as="script" href="{{ pathto('_static/scripts/bulma-sphinx-theme.js', 1) }}?digest=4ab3ef506409f6429cfa" />
+{% endmacro %}
+
+{% macro body_post() %}
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="{{ pathto('_static/scripts/bulma-sphinx-theme.js', 1) }}?digest=4ab3ef506409f6429cfa"></script>
+{% endmacro %}

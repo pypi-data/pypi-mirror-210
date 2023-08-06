@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{%- set sidebar_nav_html = generate_toctree_html(
+"sidebar",
+show_nav_level=theme_show_nav_level|int,
+maxdepth=theme_navigation_depth|int,
+collapse=theme_collapse_navigation|tobool,
+includehidden=True,
+titles_only=True)
+-%}
+
+{%- set head_nav_html = generate_header_nav_html(n_links_before_dropdown=theme_header_links_before_dropdown)
+-%}
+
+{% block htmlbody -%}
+
+{% block docs_headnav %}
+<nav class="navbar has-shadow {% if theme_fix_navbar %} is-fixed-top {% endif %} {% if theme_navbar_color_style %} {{ theme_navbar_color_style }} {% endif %}"
+    role="navigation" aria-label="main navigation">
+    {% include "sections/headnav.html" %}
+</nav>
+{% endblock docs_headnav %}
+
+{%- block mainbody -%}
+<div class="bulma-main">
+    <div class="main-wrapper">
+        {% if theme_show_back_to_top %}
+        {%- include "components/back-to-top.html" -%}
+        {% endif %}
+
+        {%- include "search-wrapper.html" -%}
+
+        <div class="bulma-sidenav is-hidden-mobile">
+            <div class="sidenav-viewport">
+                {% block left_sidebar %}
+                {%- include "sections/sidenav.html" -%}
+                {% endblock left_sidebar %}
+            </div>
+        </div>
+
+        <main class="bulma-content">
+            <div class="columns">
+                <article role="main" class="column is-three-quarters article-container">
+                    {% include "sections/article-top.html" %}
+                    {% include "components/searchbox.html" %}
+
+                    {% block body %}{{ body }}{% endblock body %}
+
+                    {% include "sections/article-bottom.html" %}
+                    {% include "components/prev-next.html" %}
+                </article>
+
+                {% set page_toc = generate_toc_html() %}
+                {%- if page_toc | length >= 1 %}
+                <aside class="column is-one-quarter bulma-tocnav is-hidden-mobile">
+                    <div class="toc-wrapper toc-scroll">
+                        {% if theme_toc_title %}
+                        <div class="toc-title">
+                            <i class="fa-solid fa-list"></i> {{ theme_toc_title }}
+                        </div>
+                        {% endif %}
+                        {{ page_toc }}
+                    </div>
+                </aside>
+                {% endif %}
+            </div>
+
+            {% block footer %}
+            {% if theme_footer %}
+            {% include "sections/footer.html" %}
+            {% endif %}
+            {% endblock footer %}
+        </main>
+    </div>
+</div>
+{%- endblock mainbody -%}
+
+{%- endblock htmlbody %}

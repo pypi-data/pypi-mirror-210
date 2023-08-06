@@ -1,0 +1,9 @@
+<div class="sidenav-drawer">
+    {% include "components/sidenav-panel.html" %}
+
+    <nav class="menu">
+        {%- for sidebar_section in sidebars %}
+        {%- include sidebar_section %}
+        {%- endfor %}
+    </nav>
+</div>
