@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    ".ruff_cache": true,
+    ".pytest_cache": true,
+    "*.egg-info": true,
+    "build": true,
+    ".coverage": true,
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": ["source.organizeImports"]
+  },
+  "python.formatting.provider": "black"
+}
