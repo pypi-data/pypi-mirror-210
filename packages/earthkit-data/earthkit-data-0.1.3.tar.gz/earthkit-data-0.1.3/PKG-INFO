@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: earthkit-data
+Version: 0.1.3
+Summary: A format-agnostic Python interface for geospatial data
+License: Apache License 2.0
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# earthkit-data
+
+![earthkit-data](https://raw.githubusercontent.com/ecmwf/earthkit-data/develop/earthkit-data.png)
+
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/earthkit-data.svg)](https://pypi.python.org/pypi/earthkit-data/)
+
+A format-agnostic interface for geospatial data with a focus on meteorology and
+climate science.
+
+**DISCLAIMER**
+This project is **BETA** and will be **Experimental** for the foreseeable future.
+Interfaces and functionality are likely to change, and the project itself may be scrapped.
+**DO NOT** use this software in any project/software that is operational.
+
+## Documentation
+
+The documentation can be found at https://earthkit-data.readthedocs.io/.
+
+## Install
+
+Install via `pip` with:
+
+```
+$ pip install earthkit-data
+```
+
+More details, such as how to install any necessary binaries, can be found  at https://earthkit-data.readthedocs.io/en/latest/install.html.
+
+Alternatively, install via `conda` with:
+
+```
+$ conda install earthkit-data -c conda-forge
+```
+
+This will bring in some necessary binary dependencies for you.
+
+## License
+
+```
+Copyright 2022, European Centre for Medium Range Weather Forecasts.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+In applying this licence, ECMWF does not waive the privileges and immunities
+granted to it by virtue of its status as an intergovernmental organisation
+nor does it submit to any jurisdiction.
+```
