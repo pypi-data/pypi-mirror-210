@@ -1,0 +1,13 @@
+exec_prefix="/gcl-builds/build/lib.linux-x86_64-cpython-310/ns3/bin"
+libdir="/gcl-builds/build/lib.linux-x86_64-cpython-310/ns3/lib64"
+includedir="/gcl-builds/build/lib.linux-x86_64-cpython-310/ns3/include"
+
+Name: ns3-brite
+Description: 
+URL: 
+Version: 3.dev
+Requires:  ns3-network ns3-core ns3-internet ns3-point-to-point
+Requires.private: 
+Cflags: -I"${includedir}" -I/usr/local/include -I/usr/local; -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gtk-3.0 -I/usr/include/cairo -I/usr/include -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/atk-1.0 -I/usr/include/libxml2 -I/opt/_internal/cpython-3.10.11/include/python3.10
+Libs: -L"${libdir}" -lns3-dev-brite  -lns3-dev-network -lns3-dev-core -lns3-dev-internet -lns3-dev-point-to-point -l-lpthread -lbrite
+Libs.private: -L"${libdir}" 
