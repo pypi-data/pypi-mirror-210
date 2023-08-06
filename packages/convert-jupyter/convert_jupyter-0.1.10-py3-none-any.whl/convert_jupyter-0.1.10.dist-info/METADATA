@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: convert-jupyter
+Version: 0.1.10
+Summary: Package help menage jupyter files. It let convert py to jupyter file and vice versa, and clean jupyter output. Useful to exclude git conflicts
+Project-URL: Homepage, https://github.com/chwilko/menage_jupyter
+Author-email: Bartłomiej Chwiłkowski <bartekchwilkowski@gmail.com>
+License-File: LICENSE.md
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# Menage jupyter 
+This project help menage jupyter flie.
+It let:
+    - convert .ipynb to .py file
+    - convert .py to .ipynb file
+    - clean output jupyter
+
+
+## autors
+Bartłomiej Chwiłkowski (github: chwilko)
+
+
+# Structure
+menage_jupyter:
+    - file with functions
+
+
+## Functions 
+
+jupyter2py(f_in_name: str, f_out_name: str = None)
+py2jupyter(f_in_name: str, f_out_name: str = None)
+clean(path: str)
+    Function clean jupyter file output.
+clean_all(path: str)
+    The function recursively finds all jupyter files and clears their output.
+
+
+## Licence
+MIT
