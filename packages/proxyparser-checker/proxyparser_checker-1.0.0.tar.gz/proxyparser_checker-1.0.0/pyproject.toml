@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ProxyParser-Checker"
+version = "1.0.0"
+description = "ProxyParser is a library for checking/parsing proxies"
+authors = ["TurboKoT1"]
+readme = "README.md"
+packages = [{include = "ProxyParser.py"}]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: proxyparser-checker
+Version: 1.0.0
+Summary: ProxyParser is a library for checking/parsing proxies
+Author: TurboKoT1
+Requires-Python: >=3.6,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+
+# ProxyParser
+
+**ProxyParser** is a library for checking/parsing proxies.
+
+```python
+>>> from ProxyParser import ProxyParser
+>>> 
+>>> working_proxies = []
+>>> proxies = ProxyParser.parseProxy()
+>>> 
+>>> for proxy in proxies:
+>>>    if ProxyParser.checkProxy(proxy):
+>>>       working_proxies.append(proxy)
+>>> print("Working proxies:")
+>>> print(working_proxies)
+Working proxies:
+['101.132.25.152:5678', '120.196.188.21:9091']
+```
+
+## Installing ProxyParser
+
+ProxyParser is available on PyPi:
+```console
+$ python -m pip install Proxy-Parser
+```
+
+[**GitHub**](https://github.com/TurboKoT1/ProxyParser)
