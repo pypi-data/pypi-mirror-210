@@ -1,0 +1,18 @@
+{
+    "CAUTION": "Please do not add any additional entries to the following 'ignore' list. Going forward, we are requiring that all new files in the repository are typesafe. If you do need to disable the typechecker, please use the appropriate # type: ignore, or equivalent directive in order to exclude the particular line or block from type analysis, rather than disabling it for the entire file.",
+    "NOTE": "We also exclude python scripts that are in the root directory, as these may be ad-hoc scripts that people are writing but are not checked in.",
+    "include": [
+        "kumoai/**/*.py"
+    ],
+    "ignore": [
+        "build/"
+    ],
+    "reportUnnecessaryComparison": true,
+    "reportImportCycles": true,
+    "reportUnusedImport": true,
+    "reportUnusedClass": true,
+    "reportUnusedFunction": true,
+    "reportUnusedVariable": true,
+    "reportMissingImports": true,
+    "reportMissingModuleSource": true
+}
