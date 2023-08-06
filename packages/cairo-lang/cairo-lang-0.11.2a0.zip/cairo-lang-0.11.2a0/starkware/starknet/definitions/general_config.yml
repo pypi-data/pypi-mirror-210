@@ -1,0 +1,15 @@
+cairo_resource_fee_weights:
+  n_steps: 1.0
+compiled_class_hash_commitment_tree_height: 251
+contract_storage_commitment_tree_height: 251
+enforce_l1_handler_fee: true
+event_commitment_tree_height: 64
+global_state_commitment_tree_height: 251
+invoke_tx_max_n_steps: 1000000
+min_gas_price: 100000000000
+sequencer_address: "0xedad892bb8c0cd384ff67c0cfabed06ccef6216a1a4ae553a260fb30b03826"
+starknet_os_config:
+  chain_id: 1536727068981429685321 # StarknetChainId.TESTNET.value
+  fee_token_address: "0x168d0cad4a83436210cd43fcf842270762fbca1d55abf291c929b5fab828ed9"
+tx_commitment_tree_height: 64
+validate_max_n_steps: 1000000
