@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: asyncmake
+Version: 0.1.2
+Summary: Neovim plugin for asynchronous calls to GNU Make.
+Author-email: Juan Lara <julara@unal.edu.co>
+Requires-Python: >=3.9
+Requires-Dist: pydantic
+Requires-Dist: pynvim
+Requires-Dist: flit ; extra == "dev"
+Requires-Dist: black ; extra == "dev"
+Requires-Dist: pytest ; extra == "dev"
+Provides-Extra: dev
