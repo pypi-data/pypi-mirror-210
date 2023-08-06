@@ -1,0 +1,41 @@
+name: polymer
+
+channels:
+  - conda-forge
+  - bioconda
+  #- avalentino
+
+dependencies:
+  - python=3.*.*
+  - cython
+  - numpy
+  - pyhdf
+  - scipy
+  - netcdf4
+  - pandas
+
+# MERIS support (optional)
+  #- avalentino::pyepr
+  - pyepr
+
+# S2-MSI support (optional)
+  - glymur
+#  - pyproj
+#  - lxml
+
+# GSW support (global surface water landmask - optional)
+  - gdal
+
+# ERA-Interim support (optional)
+#  - pygrib
+#  - bioconda::ecmwfapi
+
+# ERA5 support (optional)
+  - cdsapi
+  - xarray
+
+# python2 support (optional)
+#  - urllib3
+
+# testing support (optional)
+  - pytest

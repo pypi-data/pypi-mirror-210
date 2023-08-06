@@ -1,0 +1,12 @@
+name: enpt
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - enpt==0.17.2
+  - h5py==3.1.0
+  - pip
+  - pip:
+    - cdsapi==0.5.1
+    - cython==0.29.22
+    - xarray==0.17.0
