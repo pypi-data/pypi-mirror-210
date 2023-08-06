@@ -1,0 +1,9 @@
+[tool.semantic_release]
+version_variable = [
+    'setup.py:__version__',
+    'spin_phonon_suite/__version__.py:__version__',
+    'docs/source/conf.py:release'
+    ]
+upload_to_pypi=true
+branch = "main"
+hvcs="gitlab"
