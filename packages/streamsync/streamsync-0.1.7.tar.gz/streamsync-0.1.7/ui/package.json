@@ -1,0 +1,37 @@
+{
+	"name": "streamsync-ui",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview --port 5050",
+		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+		"buildintopackage": "vite build && cp -R dist/* ../streamsync/static"
+	},
+	"dependencies": {
+		"@monaco-editor/loader": "^1.3.2",
+		"marked": "^4.3.0",
+		"monaco-editor": "^0.34.1",
+		"monaco-languageclient": "^4.0.3",
+		"plotly.js-dist-min": "^2.22.0",
+		"remixicon": "^2.5.0",
+		"typescript": "^5.0.4",
+		"vega": "^5.22.1",
+		"vega-embed": "^6.22.1",
+		"vega-lite": "^5.7.1",
+		"vue": "^3.2.47",
+		"vue-dompurify-html": "^3.1.2"
+	},
+	"devDependencies": {
+		"@rushstack/eslint-patch": "^1.2.0",
+		"@types/marked": "^4.0.8",
+		"@vitejs/plugin-vue": "^4.2.1",
+		"@volar-plugins/vetur": "latest",
+		"@vue/eslint-config-prettier": "^7.1.0",
+		"eslint": "^8.39.0",
+		"eslint-plugin-vue": "^9.11.0",
+		"prettier": "^2.8.8",
+		"vite": "^4.3.3",
+		"vite-plugin-monaco-editor": "^1.1.0"
+	}
+}
