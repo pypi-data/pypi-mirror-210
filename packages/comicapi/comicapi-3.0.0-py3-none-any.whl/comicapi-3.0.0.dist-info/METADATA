@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: comicapi
+Version: 3.0.0
+Summary: Comic archive (cbr/cbz/cbt) and metadata utilities. Extracted from the comictagger project.
+Home-page: https://github.com/OzzieIsaacs/comicapi
+Author: Iris W
+Maintainer: @OzzieIsaacs
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Requires-Python: >=3.0.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: natsort (>=8.1.0)
+Requires-Dist: pillow (>=4.3.0)
+Requires-Dist: pycountry (>=20.7.3)
+Requires-Dist: py7zr (>=0.20.0)
+Provides-Extra: cbr
+Requires-Dist: rarfile (>=0.3.2) ; extra == 'cbr'
+
+# History
+comicapi originates [here](https://github.com/davide-romanini/comicapi), was integrated into [ComicStreamer](https://github.com/davide-romanini/ComicStreamer), was modified in [this fork](https://github.com/kounch/ComicStreamer), and has now been extracted and packaged by yours truly (Iris W).
+
+# Installation
+you can use pip to install this. cbr support is off by default—you'll need to do `pip install rarfile` as well as having "unrar" available.
