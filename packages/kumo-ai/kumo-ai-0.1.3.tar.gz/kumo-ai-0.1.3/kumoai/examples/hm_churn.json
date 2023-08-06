@@ -1,0 +1,219 @@
+{
+  "name": "hm_churn",
+  "query_yaml": "entity: customers.customer_id\ntemporal_entity_filter: COUNT(transactions_train.price, -60, 0) > 0\ntarget: COUNT(transactions_train.price, 0, 30) = 0",
+  "graph": {
+    "tables": {
+      "articles": {
+        "cols": [
+          {
+            "name": "article_id",
+            "stype": "ID"
+          },
+          {
+            "name": "product_code",
+            "stype": "numerical"
+          },
+          {
+            "name": "prod_name",
+            "stype": "text"
+          },
+          {
+            "name": "product_type_no",
+            "stype": "categorical"
+          },
+          {
+            "name": "product_type_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "product_group_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "graphical_appearance_no",
+            "stype": "categorical"
+          },
+          {
+            "name": "graphical_appearance_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "colour_group_code",
+            "stype": "categorical"
+          },
+          {
+            "name": "colour_group_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "perceived_colour_value_id",
+            "stype": "ID"
+          },
+          {
+            "name": "perceived_colour_value_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "perceived_colour_master_id",
+            "stype": "ID"
+          },
+          {
+            "name": "perceived_colour_master_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "department_no",
+            "stype": "categorical"
+          },
+          {
+            "name": "department_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "index_code",
+            "stype": "categorical"
+          },
+          {
+            "name": "index_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "index_group_no",
+            "stype": "categorical"
+          },
+          {
+            "name": "index_group_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "section_no",
+            "stype": "categorical"
+          },
+          {
+            "name": "section_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "garment_group_no",
+            "stype": "categorical"
+          },
+          {
+            "name": "garment_group_name",
+            "stype": "categorical"
+          },
+          {
+            "name": "detail_desc",
+            "stype": "text"
+          }
+        ],
+        "source_table": {
+          "s3_path": "s3://kumo-public-datasets/Kaggle_H&M_reduced/parquet/articles.parquet",
+          "file_type": "PARQUET",
+          "data_source_type": "S3"
+        },
+        "pkey": "article_id",
+        "time_col": null,
+        "sql": null
+      },
+      "customers": {
+        "cols": [
+          {
+            "name": "customer_id",
+            "stype": "ID"
+          },
+          {
+            "name": "FN",
+            "stype": "categorical"
+          },
+          {
+            "name": "Active",
+            "stype": "categorical"
+          },
+          {
+            "name": "club_member_status",
+            "stype": "categorical"
+          },
+          {
+            "name": "fashion_news_frequency",
+            "stype": "categorical"
+          },
+          {
+            "name": "age",
+            "stype": "numerical"
+          },
+          {
+            "name": "postal_code",
+            "stype": "text"
+          }
+        ],
+        "source_table": {
+          "s3_path": "s3://kumo-public-datasets/Kaggle_H&M_reduced/parquet/customers.parquet",
+          "file_type": "PARQUET",
+          "data_source_type": "S3"
+        },
+        "pkey": "customer_id",
+        "time_col": null,
+        "sql": null
+      },
+      "transactions_train": {
+        "cols": [
+          {
+            "name": "t_dat",
+            "stype": "timestamp"
+          },
+          {
+            "name": "customer_id",
+            "stype": "ID"
+          },
+          {
+            "name": "article_id",
+            "stype": "ID"
+          },
+          {
+            "name": "price",
+            "stype": "numerical"
+          },
+          {
+            "name": "sales_channel_id",
+            "stype": "ID"
+          }
+        ],
+        "source_table": {
+          "s3_path": "s3://kumo-public-datasets/Kaggle_H&M_reduced/parquet/transactions_train.parquet",
+          "file_type": "PARQUET",
+          "data_source_type": "S3"
+        },
+        "pkey": null,
+        "time_col": "t_dat",
+        "sql": null
+      }
+    },
+    "col_groups": [
+      {
+        "columns": [
+          {
+            "table_name": "transactions_train",
+            "col_name": "article_id"
+          },
+          {
+            "table_name": "articles",
+            "col_name": "article_id"
+          }
+        ]
+      },
+      {
+        "columns": [
+          {
+            "table_name": "transactions_train",
+            "col_name": "customer_id"
+          },
+          {
+            "table_name": "customers",
+            "col_name": "customer_id"
+          }
+        ]
+      }
+    ]
+  },
+  "graph_display_name": null
+}

@@ -1,0 +1,403 @@
+{
+  "name": "financial_binary_classify_SNOWFLAKE",
+  "query_yaml": "entity: TRANS.TRANS_ID\ntarget: TRANS.K_SYMBOL = 'DUCHOD'",
+  "graph": {
+    "tables": {
+      "DISTRICT": {
+        "table_type": "dimension",
+        "cols": [
+          {
+            "name": "DISTRICT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "A2",
+            "stype": "categorical"
+          },
+          {
+            "name": "A3",
+            "stype": "categorical"
+          },
+          {
+            "name": "A4",
+            "stype": "numerical"
+          },
+          {
+            "name": "A5",
+            "stype": "categorical"
+          },
+          {
+            "name": "A6",
+            "stype": "categorical"
+          },
+          {
+            "name": "A7",
+            "stype": "categorical"
+          },
+          {
+            "name": "A8",
+            "stype": "categorical"
+          },
+          {
+            "name": "A9",
+            "stype": "categorical"
+          },
+          {
+            "name": "A10",
+            "stype": "numerical"
+          },
+          {
+            "name": "A11",
+            "stype": "numerical"
+          },
+          {
+            "name": "A12",
+            "stype": "numerical"
+          },
+          {
+            "name": "A13",
+            "stype": "numerical"
+          },
+          {
+            "name": "A14",
+            "stype": "categorical"
+          },
+          {
+            "name": "A15",
+            "stype": "numerical"
+          },
+          {
+            "name": "A16",
+            "stype": "numerical"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "DISTRICT",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "DISTRICT_ID",
+        "time_col": null,
+        "sql": null
+      },
+      "TRANS": {
+        "table_type": "fact",
+        "cols": [
+          {
+            "name": "TRANS_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "ACCOUNT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "TYPE",
+            "stype": "categorical"
+          },
+          {
+            "name": "OPERATION",
+            "stype": "categorical"
+          },
+          {
+            "name": "AMOUNT",
+            "stype": "categorical"
+          },
+          {
+            "name": "BALANCE",
+            "stype": "numerical"
+          },
+          {
+            "name": "K_SYMBOL",
+            "stype": "categorical"
+          },
+          {
+            "name": "BANK",
+            "stype": "categorical"
+          },
+          {
+            "name": "ACCOUNT",
+            "stype": "numerical"
+          },
+          {
+            "name": "DATE",
+            "stype": "timestamp"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "TRANS",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "TRANS_ID",
+        "time_col": "DATE",
+        "sql": null
+      },
+      "LOAN": {
+        "table_type": "fact",
+        "cols": [
+          {
+            "name": "LOAN_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "ACCOUNT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "AMOUNT",
+            "stype": "numerical"
+          },
+          {
+            "name": "DURATION",
+            "stype": "categorical"
+          },
+          {
+            "name": "PAYMENTS",
+            "stype": "numerical"
+          },
+          {
+            "name": "STATUS",
+            "stype": "categorical"
+          },
+          {
+            "name": "DATE",
+            "stype": "timestamp"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "LOAN",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "LOAN_ID",
+        "time_col": "DATE",
+        "sql": null
+      },
+      "ORDERS": {
+        "table_type": "dimension",
+        "cols": [
+          {
+            "name": "ORDERS_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "ACCOUNT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "BANK_TO",
+            "stype": "categorical"
+          },
+          {
+            "name": "ACCOUNT_TO",
+            "stype": "numerical"
+          },
+          {
+            "name": "AMOUNT",
+            "stype": "numerical"
+          },
+          {
+            "name": "K_SYMBOL",
+            "stype": "categorical"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "ORDERS",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "ORDERS_ID",
+        "time_col": null,
+        "sql": null
+      },
+      "CLIENT": {
+        "table_type": "dimension",
+        "cols": [
+          {
+            "name": "CLIENT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "DISTRICT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "GENDER",
+            "stype": "categorical"
+          },
+          {
+            "name": "BIRTH_DATE",
+            "stype": "timestamp"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "CLIENT",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "CLIENT_ID",
+        "time_col": "BIRTH_DATE",
+        "sql": null
+      },
+      "DISP": {
+        "table_type": "dimension",
+        "cols": [
+          {
+            "name": "DISP_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "CLIENT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "ACCOUNT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "TYPE",
+            "stype": "categorical"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "DISP",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "DISP_ID",
+        "time_col": null,
+        "sql": null
+      },
+      "CARD": {
+        "table_type": "dimension",
+        "cols": [
+          {
+            "name": "CARD_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "DISP_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "TYPE",
+            "stype": "categorical"
+          },
+          {
+            "name": "ISSUED",
+            "stype": "timestamp"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "CARD",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "CARD_ID",
+        "time_col": "ISSUED",
+        "sql": null
+      },
+      "ACCOUNT": {
+        "table_type": "dimension",
+        "cols": [
+          {
+            "name": "ACCOUNT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "DISTRICT_ID",
+            "stype": "ID"
+          },
+          {
+            "name": "FREQUENCY",
+            "stype": "categorical"
+          },
+          {
+            "name": "DATE",
+            "stype": "timestamp"
+          }
+        ],
+        "source_table": {
+          "snowflake_connector_id": "snowflake_connector",
+          "database": "KUMO",
+          "schema_name": "FINANCIAL",
+          "table": "ACCOUNT",
+          "data_source_type": "SNOWFLAKE"
+        },
+        "pkey": "ACCOUNT_ID",
+        "time_col": "DATE",
+        "sql": null
+      }
+    },
+    "col_groups": [
+      {
+        "columns": [
+          {
+            "table_name": "DISTRICT",
+            "col_name": "DISTRICT_ID"
+          },
+          {
+            "table_name": "ACCOUNT",
+            "col_name": "DISTRICT_ID"
+          },
+          {
+            "table_name": "CLIENT",
+            "col_name": "DISTRICT_ID"
+          }
+        ]
+      },
+      {
+        "columns": [
+          {
+            "table_name": "CLIENT",
+            "col_name": "CLIENT_ID"
+          },
+          {
+            "table_name": "DISP",
+            "col_name": "CLIENT_ID"
+          }
+        ]
+      },
+      {
+        "columns": [
+          {
+            "table_name": "ACCOUNT",
+            "col_name": "ACCOUNT_ID"
+          },
+          {
+            "table_name": "DISP",
+            "col_name": "ACCOUNT_ID"
+          },
+          {
+            "table_name": "LOAN",
+            "col_name": "ACCOUNT_ID"
+          },
+          {
+            "table_name": "ORDERS",
+            "col_name": "ACCOUNT_ID"
+          },
+          {
+            "table_name": "TRANS",
+            "col_name": "ACCOUNT_ID"
+          }
+        ]
+      }
+    ]
+  },
+  "graph_display_name": "financial_graph_SNOWFLAKE"
+}

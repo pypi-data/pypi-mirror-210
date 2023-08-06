@@ -1,0 +1,40 @@
+default_language_version:
+  python: python3.8
+
+repos:
+  - repo: https://github.com/regebro/pyroma
+    rev: "4.0"
+    hooks:
+      - id: pyroma
+        name: Check packaging
+        args: [--min=9, .]
+        additional_dependencies: ["setuptools_scm[toml]>=6.2"]
+
+  - repo: https://github.com/pre-commit/mirrors-yapf
+    rev: v0.32.0
+    hooks:
+      - id: yapf
+        name: Format code
+        additional_dependencies: ["toml>=0.10.2"]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: Sort imports
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        name: Check PEP8
+
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.296
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: pyright -p precommit-pyrightconfig.json
+        require_serial: true
+        pass_filenames: false
+        files: '.*\.py'
