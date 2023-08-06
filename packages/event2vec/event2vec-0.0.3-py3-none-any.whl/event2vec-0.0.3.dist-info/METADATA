@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: event2vec
+Version: 0.0.3
+Summary: event2vec
+Home-page: https://gitlab.com/strayMat/event2vec
+License: EUPL-v1.2
+Author: Matthieu Doutreligne
+Author-email: matt.dout@gmail.com
+Requires-Python: >=3.7.1,<3.11
+Classifier: Intended Audience :: Developers
+Classifier: License :: Other/Proprietary License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Provides-Extra: docs
+Provides-Extra: spark
+Requires-Dist: fastparquet (>=0.8.1,<0.9.0)
+Requires-Dist: importlib-metadata (>=4.11.3,<5.0.0) ; extra == "docs"
+Requires-Dist: jedi (>=0.18.1,<0.19.0)
+Requires-Dist: loguru (>=0.6.0,<0.7.0)
+Requires-Dist: matplotlib (>=3.5.0,<4.0.0)
+Requires-Dist: myst-nb (>=0.17.1,<0.18.0) ; extra == "docs"
+Requires-Dist: numpy (>=1.0.0)
+Requires-Dist: pandas (>=1.3.0)
+Requires-Dist: plotly (>=5.11.0,<6.0.0)
+Requires-Dist: pyarrow (>=0.17.0)
+Requires-Dist: pydata-sphinx-theme (>=0.8.0,<0.9.0) ; extra == "docs"
+Requires-Dist: pygments (>=2.11.2,<3.0.0) ; extra == "docs"
+Requires-Dist: pyspark (==2.4.3) ; python_full_version >= "3.7.1" and python_version < "3.8"
+Requires-Dist: python-dotenv (>=0.15.0,<0.16.0)
+Requires-Dist: scikit-learn (>=1.0,<2.0)
+Requires-Dist: sphinx (>=4.4.0,<5.0.0) ; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints (>=1.17.0,<2.0.0) ; extra == "docs"
+Requires-Dist: sphinx-click (>=3.1.0,<4.0.0) ; extra == "docs"
+Requires-Dist: sphinxcontrib-apidoc (>=0.3.0,<0.4.0) ; extra == "docs"
+Requires-Dist: tabulate (>=0.9.0,<0.10.0)
+Project-URL: Repository, https://gitlab.com/strayMat/event2vec
+Description-Content-Type: text/markdown
+
+# event2vec
+
+**Documentation**: [https://straymat.gitlab.io/event2vec/](https://straymat.gitlab.io/event2vec/)
+
+**Source Code**: [https://gitlab.com/strayMat/event2vec](https://gitlab.com/strayMat/event2vec)
+
+## Overview
+
+Electronic Health Record and claims contain sequences of care: every contact
+between a patient and a healthcare system (either hospital, either insurance) is
+recorded in a central database. Medical terminologies are often used to encode
+the type of care : diagnoses, acts, drugs, laboratory, ...
+
+Such healthcare trajectories can be viewed as sequence of tokens, similarly to
+sequences of words.
+
+This package propose to use matrix factorization as a simple and efficient way
+to build event embedding from a medical observational database.
+
