@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>__title__</title>
+<style>
+    body {
+        font-family: Arial;
+        background: #f1f1f1;
+    }
+    #div-container {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+    #div-console {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .div-leaf {
+        background: white;
+        margin: 10px;
+        padding: 10px;
+    }
+    .td-header {
+        text-align: center;
+        padding: 8px;
+        white-space: pre;
+        background: #313131;
+        color: white;
+    }
+    .td-content {
+        text-align: left;
+        padding: 8px;
+        white-space: pre;
+    }
+    table tr:nth-child(even) {
+        background: #d1d1d1;
+    }
+    table tr:nth-child(odd) {
+        background: #f1f1f1;
+    }
+</style>
+<script>
+    const category_list = __category_list__;
+    const tag_list = __tag_list__;
+    const category_dict = __category_dict__;
+    const contents = __contents__;
+
+    var checklist_value_previous = [];
+
+    function find_index_from_category(category, category_arr_arr) {
+        for (var i=0; i<category_arr_arr.length; i++) {
+            var category_arr = category_arr_arr[i];
+            if (category == category_arr.slice(-1)) {
+                return i;
+            }
+        }
+    }
+
+    function gen_html_table(radio_row_current, radio_column_current, checklist_value_current) {
+        width_row_category = category_dict[radio_row_current].length;
+        width_column_category = category_dict[radio_column_current].length;
+        len_row_category = []
+        for (var i=0; i<category_dict[radio_row_current].length; i++) {
+            len_row_category.push(category_dict[radio_row_current][i].length);
+        }
+        depth_row_category = Math.max(...len_row_category);
+        len_column_category = []
+        for (var i=0; i<category_dict[radio_column_current].length; i++) {
+            len_column_category.push(category_dict[radio_column_current][i].length);
+        }
+        depth_column_category = Math.max(...len_column_category);
+
+        td_arr = [...Array(width_row_category)].map(x => Array(width_column_category).fill(''));
+        for (var i=0; i<contents.length; i++) {
+            content = contents[i];
+            if ((checklist_value_current.toString()===['All'].toString()) || content['tags'].some(item => checklist_value_current.includes(item))) {
+                row_index = find_index_from_category(content['categories'][radio_row_current], category_dict[radio_row_current])
+                column_index = find_index_from_category(content['categories'][radio_column_current], category_dict[radio_column_current])
+                if (td_arr[row_index][column_index]=='') {
+                    td_arr[row_index][column_index] = content['name'];
+                } else {
+                    td_arr[row_index][column_index] += '\n'+content['name'];
+                }
+            }
+        }
+        var table = document.createElement("table");
+        for (var row=0; row<depth_column_category+width_row_category; row++) {
+            var tr = document.createElement("tr");
+            for (var column=0; column<depth_row_category+width_column_category; column++) {
+                if (row<depth_column_category && column<depth_row_category) {
+                    if (row==0 && column==0) {
+                        var td = document.createElement("td");
+                        td.colSpan = depth_row_category;
+                        td.rowSpan = depth_column_category;
+                        td.className = "td-header";
+                        tr.appendChild(td);
+                    }
+                } else if (row<depth_column_category && column>=depth_row_category) {
+                    if ((category_dict[radio_column_current][column-depth_row_category].length>row) &&
+                       !((column-depth_row_category>0) &&
+                         (category_dict[radio_column_current][column-depth_row_category].slice(0,row+1).toString()===category_dict[radio_column_current][column-depth_row_category-1].slice(0,row+1).toString()))) {
+                        col_span = 0;
+                        for (var ci=column-depth_row_category; ci<width_column_category; ci++) {
+                            if ((category_dict[radio_column_current][ci].length>row) &&
+                                (category_dict[radio_column_current][ci].slice(0,row+1).toString() ===
+                                 category_dict[radio_column_current][column-depth_row_category].slice(0,row+1).toString())) {
+                                col_span += 1;
+                            }
+                        }
+                        var td = document.createElement("td");
+                        td.colSpan = col_span;
+                        td.rowSpan = (category_dict[radio_column_current][column-depth_row_category].length==row+1)?(depth_column_category-category_dict[radio_column_current][column-depth_row_category].length+1):1;
+                        td.className = "td-header";
+                        td.innerHTML = category_dict[radio_column_current][column-depth_row_category][row];
+                        tr.appendChild(td);
+                    }
+                } else if (row>=depth_column_category && column<depth_row_category) {
+                    if ((category_dict[radio_row_current][row-depth_column_category].length>column) &&
+                       !((row-depth_column_category>0) &&
+                         (category_dict[radio_row_current][row-depth_column_category].slice(0,column+1).toString()===category_dict[radio_row_current][row-depth_column_category-1].slice(0,column+1).toString()))) {
+                        row_span = 0;
+                        for (var ri=row-depth_column_category; ri<width_row_category; ri++) {
+                            if ((category_dict[radio_row_current][ri].length>column) &&
+                                (category_dict[radio_row_current][ri].slice(0,column+1).toString() ===
+                                 category_dict[radio_row_current][row-depth_column_category].slice(0,column+1).toString())) {
+                                row_span += 1;
+                            }
+                        }
+                        var td = document.createElement("td");
+                        td.colSpan = (category_dict[radio_row_current][row-depth_column_category].length==column+1)?(depth_row_category-category_dict[radio_row_current][row-depth_column_category].length+1):1;
+                        td.rowSpan = row_span;
+                        td.className = "td-header";
+                        td.innerHTML = category_dict[radio_row_current][row-depth_column_category][column];
+                        tr.appendChild(td);
+                    }
+                } else if (row>=depth_column_category && column>=depth_row_category) {
+                    var td = document.createElement("td");
+                    td.className = "td-content";
+                    td.innerHTML = td_arr[row-depth_column_category][column-depth_row_category];
+                    tr.appendChild(td);
+                }
+            }
+            table.appendChild(tr);
+        }
+        return table;
+    }
+
+    function init() {
+        var form_row = document.getElementById("form-category-row");
+        var form_column = document.getElementById("form-category-column");
+        for (var i=0; i<category_list.length; i++) {
+            var radioitem_row = document.createElement('input');
+            var radioitem_column = document.createElement('input');
+            var label_row = document.createElement('label');
+            var label_column = document.createElement('label');
+            radioitem_row.type = 'radio';
+            radioitem_column.type = 'radio';
+            radioitem_row.name = 'radio-category-row'
+            radioitem_column.name = 'radio-category-column'
+            radioitem_row.id = 'radio-category-row-'+category_list[i];
+            radioitem_column.id = 'radio-category-column-'+category_list[i];
+            radioitem_row.value = category_list[i];
+            radioitem_column.value = category_list[i];
+            radioitem_row.checked = (i==0?true:false);
+            radioitem_column.checked = (i==1?true:false);
+            radioitem_row.disabled = (i==1?true:false);
+            radioitem_column.disabled = (i==0?true:false);
+            radioitem_row.onclick = update;
+            radioitem_column.onclick = update;
+            label_row.for = radioitem_row.id;
+            label_column.for = radioitem_column.id;
+            label_row.innerHTML = category_list[i];
+            label_column.innerHTML = category_list[i];
+            form_row.appendChild(radioitem_row);
+            form_column.appendChild(radioitem_column);
+            form_row.appendChild(label_row);
+            form_column.appendChild(label_column);
+        }
+        var form_tag = document.getElementById("form-tag");
+        var checkitem = document.createElement('input');
+        var label = document.createElement('label');
+        checkitem.type = 'checkbox';
+        checkitem.name = 'checkbox-tag';
+        checkitem.id = 'checkbox-tag-'+'All';
+        checkitem.value = 'All';
+        checkitem.checked = true;
+        checkitem.onclick = update;
+        label.for = checkitem.id;
+        label.innerHTML = 'All';
+        form_tag.appendChild(checkitem);
+        form_tag.appendChild(label);
+        for (var i=0; i<tag_list.length; i++){
+            var checkitem = document.createElement('input');
+            var label = document.createElement('label');
+            checkitem.type = 'checkbox';
+            checkitem.name = 'checkbox-tag';
+            checkitem.id = 'checkbox-tag-'+tag_list[i];
+            checkitem.value = tag_list[i];
+            checkitem.checked = false;
+            checkitem.onclick = update;
+            label.for = checkitem.id;
+            label.innerHTML = tag_list[i];
+            form_tag.appendChild(checkitem);
+            form_tag.appendChild(label);
+        }
+        checklist_value_previous = ['All'];
+
+        // create table
+        div_table = document.getElementById('div-table');
+        while (div_table.firstChild) {
+            div_table.removeChild(div_table.firstChild);
+        }
+        div_table.appendChild(gen_html_table(category_list[0], category_list[1], checklist_value_previous));
+    }
+
+    function update() {
+        var radio_row_current;
+        var radio_column_current;
+        var checklist_value_current = [];
+
+        // obtain current values
+        var ele = document.getElementsByName('radio-category-row');
+        for (var i=0; i<ele.length; i++) {
+            if (ele[i].checked)
+                radio_row_current = ele[i].value
+        }
+        var ele = document.getElementsByName('radio-category-column');
+        for (var i=0; i<ele.length; i++) {
+            if (ele[i].checked)
+                radio_column_current = ele[i].value
+        }
+        var ele = document.getElementsByName('checkbox-tag');
+        for (var i=0; i<ele.length; i++) {
+            if (ele[i].checked)
+                checklist_value_current.push(ele[i].value);
+        }
+
+        // reconfig radioitems and checkboxes
+        var ele = document.getElementsByName('radio-category-row');
+        for (var i=0; i<ele.length; i++) {
+            ele[i].disabled = (ele[i].value==radio_column_current?true:false);
+        }
+        var ele = document.getElementsByName('radio-category-column');
+        for (var i=0; i<ele.length; i++) {
+            ele[i].disabled = (ele[i].value==radio_row_current?true:false);
+        }
+
+        if (!checklist_value_previous.includes('All') && checklist_value_current.includes('All')) {
+            checklist_value_current = ['All'];
+        } else if (checklist_value_previous.includes('All') && checklist_value_current.includes('All') && (checklist_value_previous.length!=checklist_value_current.length)) {
+            checklist_value_current.splice(checklist_value_current.indexOf('All'), 1);
+        } else if (checklist_value_previous.includes('All') && !checklist_value_current.includes('All')) {
+            checklist_value_current = ['All'];
+        } else if (checklist_value_current.length==0) {
+            checklist_value_current = ['All'];
+        }
+        var ele = document.getElementsByName('checkbox-tag');
+        for (var i=0; i<ele.length; i++) {
+            ele[i].checked = (checklist_value_current.includes(ele[i].value)?true:false);
+        }
+        checklist_value_previous = checklist_value_current;
+
+        // update table
+        div_table = document.getElementById('div-table');
+        while (div_table.firstChild) {
+            div_table.removeChild(div_table.firstChild);
+        }
+        div_table.appendChild(gen_html_table(radio_row_current, radio_column_current, checklist_value_previous));
+    }
+</script>
+</head>
+
+<body onload="init();">
+<div id="div-container">
+    <div id="div-console">
+        <div id="div-category" class="div-leaf">
+            <h3>Categories:</h3>
+            <form action="", id="form-category-row">
+                <label>Row:</label><br>
+            </form>
+            <form action="", id="form-category-column">
+                <label>Column:</label><br>
+            </form>
+        </div>
+        <div id="div-tag" class="div-leaf">
+            <h3>Tags:</h3>
+            <form action="", id="form-tag">
+            </form>
+        </div>
+    </div>
+    <div id="div-table" class="div-leaf">
+    </div>
+</div>
+</body>
+
+</html>
