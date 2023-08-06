@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "almgren_chriss"
+version = "1.0.1"
+description = "functions for implementing the Almgren-Chriss model for optimal execution of portfolio transactions."
+authors = ["Bernardo Paulsen <paulsen.bernardo@gmail.com>"]
+license = "GNU General Public License"
+readme = "README.rst"
+packages = [{ include = "almgren_chriss" }]
+keywords = ["optimal exeuction", "quantitative finance", "Almgren Chriss"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = '^1.0'
+
+[tool.poetry.urls]
+"GitHub" = "https://github.com/bernardopaulsen/almngren-chriss"
+"Documentation" = "https://bernardopaulsen.github.io/almgren-chriss/"
+
+[tool.poetry-dynamic-versioning]
+enable = false
+vcs = 'git'
+format = '{base}'
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
