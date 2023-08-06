@@ -1,0 +1,79 @@
+{% extends 'blog/blog.html' %}
+{% load static %}
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% load post_extras %}
+{% block title %}<title>{{title}}</title>{% endblock %}
+
+
+{% block top_nav %}
+
+{% endblock %}
+
+
+{% block head %}
+{% endblock %}
+
+{% block body_class_expand %}tag{% endblock %}
+ {% block article_list %}
+
+ {% for detail in object_list %}
+
+
+            <article class="w-full flex flex-col shadow my-4">
+                <!-- Article Image -->
+                {%if detail.article_img%}
+                <div class="flex items-center justify-center bg-gray-100">
+                 <p class="hover:opacity-75">
+                     <img alt="{{detail.product_name}}" title="{{detail.title}}" src="{{detail.article_img}}">
+                 </p>
+                </div>
+                {%endif%}
+                <div class="bg-white flex flex-col justify-start p-6">
+                    <a href="{% url 'detail_view' detail.pk %}" class="text-3xl font-bold hover:text-gray-700 pb-4">{{detail.title}}</a>
+                    <p  class="text-sm pb-3">
+                        By <a href="#" class="font-semibold hover:text-gray-800">David Grzyb</a>, Published on {{detail.created_on}}
+                    </p>
+
+                    <p class="pb-6">
+                        {% comment %} 限制文本长度 {% endcomment %}
+                          {{detail.content|truncatechars:3}}
+                    </p>
+{% tags detail.tags.all%}
+
+                    <a href="{% url 'detail_view' detail.pk %}" class="uppercase text-gray-800 hover:text-black">Continue Reading {{detail.product_name}}<i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+ {% endfor %}
+
+
+
+
+
+
+
+{% comment %}
+
+<div class="pagination flex items-center py-8">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="h-10 w-10 bg-blue-800 hover:bg-blue-600 font-semibold text-white text-sm flex items-center justify-center" href="?page=1">&laquo; first</a>
+            <a class="h-10 w-10 font-semibold text-gray-800 hover:bg-blue-600 hover:text-white text-sm flex items-center justify-center" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="h-10 w-10 font-semibold text-gray-800 hover:text-gray-900 text-sm flex items-center justify-center ml-3" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+
+
+</div> {% endcomment %}
+{% endblock %}
+
+
