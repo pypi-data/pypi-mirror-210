@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "inabox"
+version = "0.5.8"
+description = "Knowit Automation lifecycle management"
+authors = ["Jakob Holst <jakob.holst@knowit.dk>"]
+license = "MIT"
+homepage = "https://inabox.openknowit.com"
+repository = "https://github.com/miracle-as/openknowit_inabox.git"
+
+[tool.poetry.scripts]
+inabox = 'inabox:main'
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25"
