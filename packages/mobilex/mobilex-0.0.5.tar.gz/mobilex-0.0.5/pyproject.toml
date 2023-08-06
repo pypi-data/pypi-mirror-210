@@ -1,0 +1,90 @@
+[tool.poetry]
+name = "mobilex"
+version = "0.0.5"
+description = "USSD and SMS exchange framework"
+authors = ["David Kyalo <davidmkyalo@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/davidkyalo/python-mobilex"
+documentation = "https://davidkyalo.github.io/python-mobilex"
+keywords = [
+    "mobilex",
+    "mobile",
+    "USSD",
+    "SMS",
+]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+]
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+typing-extensions = "^4.1.1"
+phonenumbers = "^8.12.51"
+redis = "^4.5.5"
+
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.10.0"
+tox = "^4.4.8"
+cachetools = "^5.2.0"
+black = "*"
+
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.0"
+pytest-asyncio = "^0.20.3"
+pytest-cov = {version = "^4.0.0", extras = ["toml"]}
+tox = "^4.4.8"
+faker = "^18.6.1"
+cachetools = "^5.2.0"
+fakeredis = "^2.12.1"
+
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "*"
+mkdocs-material = "*"
+mike = "*"
+mkdocstrings = "*"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = "True"
+
+
+[tool.pytest.ini_options]
+addopts = "--showlocals --cov=mobilex --cov-report html --cov-config pyproject.toml"
+asyncio_mode="auto"
+xfail_strict= "True"
+log_level = "DEBUG"
+python_files = "tests.py test.py test_*.py"
+python_classes = "test_* Test_*"
+python_functions = "test_* test"
+
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "^\\s*pass\\s*$",
+    "^\\s*\\.\\.\\.\\s*$",
+    "raise NotImplementedError",
+    "if\\s+([a-zA-Z0-9_]+\\.)?TYPE_CHECKING\\s*:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
