@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: cashman
+Version: 0.1.0
+Summary: A cli personal expenses tracker
+Home-page: https://github.com/LordUbuntu/cash-man
+Author: Jacobus Burger
+Author-email: therealjacoburger@gmail.com
+License: MIT
+Keywords: python,expense tracker,personal finance,finance,cli
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: rich (==13.3.4)
+Requires-Dist: click (==8.1.3)
+Requires-Dist: pandas (==1.5.0)
+Provides-Extra: dev
+Requires-Dist: pytest (>=7.2) ; extra == 'dev'
+Requires-Dist: twine (>=4.0.2) ; extra == 'dev'
+
+# Cash Man
+
+Cashman is a personal expenses tracker for fun and profit.
+
+## Info
+
+Cashman uses rich and click to provide a straight-forward eye-candy cli experience for users. Expenses are tracked using CSV files to ensure maximum portability and interoperability for any personal financial workflow.
+
+For usage info, run `cashman --help`
+
+## Notes
+
+May switch to Poetry for packaging in the future...
