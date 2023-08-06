@@ -1,0 +1,193 @@
+#!/bin/bash -xe
+
+# Function to run at the end of each rpm build (success and failure)
+# Cleanup temp dir where was stored src.rpm files
+function finalize() {
+    rm -rf ${TOP_DIR}
+}
+
+function setversionandrelease(){
+    UPSTREAMVERSION=$1
+    # version-release e.g 1.0.0-d7f1b849
+    if [[ "$UPSTREAMVERSION" =~ ([^-]*)-(.+) ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # semver release candidate 7.0.0.0rc2.dev1
+    elif [[ "$UPSTREAMVERSION" =~ (.*?)\.(0rc.+) ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # semver beta milestone 2.0.0.0b4.dev15
+    elif [[ "$UPSTREAMVERSION" =~ (.*?)\.(0b.+) ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # semver alpha pre-release 7.0.0.0a1.dev1
+    elif [[ "$UPSTREAMVERSION" =~ (.*?)\.(0a.+) ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # 2014.2.dev50.g99bef1f 2.0.1.dev17
+    elif [[ "$UPSTREAMVERSION" =~ (.*?)\.(dev.+) ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # 0.10.1.11.ga5f0e3c
+    elif [[ "$UPSTREAMVERSION" =~ (.*?)\.(g.+) ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # prerelease, eg. 1.8.0.pre
+    elif [[ "$UPSTREAMVERSION" =~ (.*?)\.pre.* ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+    # Only version e.g. 1.7.3
+    elif [[ "$UPSTREAMVERSION" =~ ^([.0-9]*)$ ]] ; then
+        VERSION=${BASH_REMATCH[1]}
+        # python-alembic version=0.8.2 but tarball is alembic-0.8.2.dev0
+        if [[ "${TARBALL-}" =~ \.dev[0-9]+\. ]] ; then
+            UPSTREAMVERSION=$(echo ${TARBALL} | sed 's/.*-\(.*\).tar.gz/\1/')
+        fi
+    else
+        # e.g. eb6dbe2
+        echo  "WARNING: Couldn't parse VERSION, falling back to 0.0.1"
+        VERSION=0.0.1
+    fi
+
+    if [ "${RELEASE_NUMBERING-}" = "0.1.date.hash" ] ; then
+        RELEASE=0.1.${RELEASE_DATE}.$2
+    elif [ "${RELEASE_NUMBERING-}" = "minor.date.hash" ] ; then
+        RELEASE=${RELEASE_MINOR}.${RELEASE_DATE}.$2
+    else
+        # Default to 0.date.hash release numbers
+        RELEASE=0.${RELEASE_DATE}.$2
+    fi
+}
+
+function cleanup_sdist() {
+    return
+}
+
+function detect_python() {
+    # We want to make it work for both python2 and python3
+    if [ -x /usr/bin/python3 ]; then
+        PYTHON=python3
+    else
+        # Python 3 not available
+        PYTHON=python2
+    fi
+
+    echo "Using $PYTHON as python interpreter"
+}
+
+function setup_mock() {
+    MOCKOPTS="-v -r ${DATA_DIR}/${MOCK_CONFIG} --resultdir $OUTPUT_DIRECTORY"
+    # Cleanup mock directory and copy sources there, so we can run python setup.py
+    # inside the buildroot
+    /usr/bin/mock $MOCKOPTS --clean
+    /usr/bin/mock $MOCKOPTS --init
+    /usr/bin/mock -q -r ${DATA_DIR}/${MOCK_CONFIG} --chroot "git config --global --add safe.directory /var/tmp/pkgsrc"
+    MOCKDIR=$(/usr/bin/mock -r ${DATA_DIR}/${MOCK_CONFIG} -p)
+}
+
+function copy_src_to_mock_buildroot() {
+    # Reset the git repository to the right commit
+    git checkout -f ${DLRN_SOURCE_COMMIT}
+
+    if [ -d ${MOCKDIR}/var/tmp/pkgsrc ]; then
+        rm -rf ${MOCKDIR}/var/tmp/pkgsrc
+    fi
+    mkdir ${MOCKDIR}/var/tmp/pkgsrc
+    # A simple mock --copyin should be enough, but it does not handle symlinks properly
+    cp -pr . ${MOCKDIR}/var/tmp/pkgsrc
+
+    # Remove any private tags, they could interfere with setuptools
+    # There is a known issue with setuptools_scm, used in Gnocchi
+    pushd ${MOCKDIR}/var/tmp/pkgsrc
+    set +o pipefail
+    git tag -l "private-*" | xargs -n 1 git tag -d
+    set -o pipefail
+    popd
+}
+
+function set_nvr_in_spec() {
+    VERSION=${VERSION/-/.}
+    sed -i -e "s/Version:.*/Version: $VERSION/g" *.spec
+    sed -i -e "s/Release:.*/Release: $RELEASE%{?dist}/g" *.spec
+}
+
+function detect_version_and_release() {
+    if [ -r setup.py -a ! -r metadata.json ]; then
+        # Handle python packages (some puppet modules are carrying a setup.py too)
+        copy_src_to_mock_buildroot
+        # setup.py outputs warning (to stdout) in some cases (python-posix_ipc)
+        # so only look at the last line for version
+        setversionandrelease $(/usr/bin/mock -q -r ${DATA_DIR}/${MOCK_CONFIG} --chroot "cd /var/tmp/pkgsrc && rm -rf *.egg-info && (([ -x /usr/bin/python3 ] && python3 setup.py --version 2> /dev/null) || python setup.py --version 2> /dev/null)"| tail -n 1) \
+                             $(/usr/bin/mock -q -r ${DATA_DIR}/${MOCK_CONFIG} --chroot "cd /var/tmp/pkgsrc && git log --abbrev=7 -n1 --format=format:%h")
+    elif [ -r *.gemspec ]; then
+        copy_src_to_mock_buildroot
+        GEMSPEC=$(ls -l | grep gemspec | awk '{print $9}')
+        PROJECT=$(basename $GEMSPEC .gemspec)
+        VERSION=$(ruby -e "require 'rubygems'; spec = Gem::Specification::load('$GEMSPEC'); puts spec.version")
+        setversionandrelease "$VERSION" $(git log --abbrev=7 -n1 --format=format:%h)
+    else
+        # For Puppet modules, check the version in metadata.json (preferred) or Modulefile
+        if [ -r metadata.json ]; then
+            version=$($PYTHON -c "import json; print(json.loads(open('metadata.json').read(-1))['version'])")
+        elif [ -r Modulefile ]; then
+            version=$(grep version Modulefile | sed "s@version *'\(.*\)'@\1@")
+        else
+            version=""
+        fi
+
+        # Make sure no "private-", "-em" or "-eol" tags are present, since they would lead
+        # to the package version being "private", "<version>-em" or "<version-eol>"
+        set +o pipefail
+        git tag -l "private-*" | xargs -n 1 git tag -d
+        git tag -l "*-em" | xargs -n 1 git tag -d
+        git tag -l "*-eol" | xargs -n 1 git tag -d
+        set -o pipefail
+
+        # Not able to discover version, use git tags
+        if [ -z "$version" ]; then
+            version="$(git describe --abbrev=0 --tags 2> /dev/null|sed 's/^[vVrR]//' || :)"
+        fi
+
+        # One final attempt for openstack/rpm-packaging
+        if [ -z "$version" ]; then
+            pushd ${DISTGIT_DIR}
+            if git remote -v | grep openstack/rpm-packaging; then
+                version=$(grep Version *.spec | awk '{print $2}' | head -n 1)
+            fi
+            popd
+        fi
+        # We got a version. Check if we need to increase a .Z release due to post-tag commits
+        if [ -n "$version" ]; then
+            post_version=$(git describe --tags|sed 's/^[vVrR]//' || :)
+            current_tag=$(git describe --abbrev=0 --tags|sed 's/^[vVrR]//' || :)
+            if [ "$post_version" != "$current_tag" ]; then
+                # We have a potential post-version. Only applies if
+                # version == current_tag without -rc inside
+                if [[ "$version" = "$current_tag" && ! "$version" =~ "-rc" ]]; then
+                    # Now increase the .Z release
+                    version=$(awk -F. '{ for (i=1;i<NF;i++) printf $i"."; print $NF+1 }' <<< $version)
+                fi
+            fi
+        fi
+
+        # fallback to an arbitrary version
+        if [ -z "$version" ]; then
+            version=0.0.1
+        fi
+        # Reset the git repository to the right commit
+        git checkout -f ${DLRN_SOURCE_COMMIT}
+        setversionandrelease "$version" $(git log --abbrev=7 -n1 --format=format:%h)
+    fi
+}
+
+if [ $# = 5 ]; then
+    PROJECT_NAME=$1
+    OUTPUT_DIRECTORY=$2
+    DATA_DIR=$3
+    BASEURL=$4
+    DISTGIT_DIR=$5
+
+    TOP_DIR=$(mktemp -d)
+
+    mkdir -p ${TOP_DIR}/SOURCES ${TOP_DIR}/SPECS $OUTPUT_DIRECTORY
+
+    trap finalize EXIT
+
+    cd ${DATA_DIR}/$PROJECT_NAME
+    git clean -dxf
+else
+    echo "Less than 5 parameters passed, not parsed."
+fi
