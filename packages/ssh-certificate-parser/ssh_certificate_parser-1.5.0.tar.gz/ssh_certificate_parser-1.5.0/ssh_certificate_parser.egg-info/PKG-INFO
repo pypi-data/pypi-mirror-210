@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: ssh-certificate-parser
+Version: 1.5.0
+Summary: Python library for interacting with OpenSSH Certificates
+Home-page: https://github.com/easypost/ssh_certificate_parser
+Author: James Brown
+Author-email: jbrown@easypost.com
+License: ISC
+Project-URL: Docs, https://ssh-certificate-parser.readthedocs.io/
+Project-URL: Tracker, https://github.com/EasyPost/ssh_certificate_parser/issues
+Project-URL: Source, https://github.com/EasyPost/ssh_certificate_parser
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+`ssh_certificate_parser` is a small library for interacting with [OpenSSH host/user certificates](https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/usr.bin/ssh/PROTOCOL.certkeys?rev=1.15&content-type=text/plain). Specifically, it supports RSA, DSA, and Ed25519 keys signed by an RSA certificate authority. It does not currently validate the CA signature, but merely parses out some fields.
+
+![CI](https://github.com/EasyPost/ssh_certificate_parser/workflows/CI/badge.svg)
+[![Documentation Status](https://readthedocs.org/projects/ssh-certificate-parser/badge/?version=latest)](https://ssh-certificate-parser.readthedocs.io/en/latest/?badge=latest)
+
+This work is licensed under the ISC license, a copy of which can be found at [LICENSE.txt](LICENSE.txt)
+
+## Usage
+
+This module contains a single class, `SSHCertificate`. You can construct it with the `.from_bytes` or `.from_file` classmethods.
+
+```python
+from ssh_certificate_parser import SSHCertificate
+
+cert = SSHCertificate.from_file('/etc/ssh/ssh_host_rsa_key-cert.pub')
+
+remaining_seconds_of_validity = cert.remaining_validity
+```
+
+Full documentation is at <https://ssh-certificate-parser.readthedocs.io/en/latest/>.
