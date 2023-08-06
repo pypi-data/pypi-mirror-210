@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: CEEcache
+Version: 1.0.2
+Summary: Caching the JSON request payload and the value in RedisQ
+Home-page: UNKNOWN
+Author: Netcore Cloud
+Author-email: aditya.singh@netcorecloud.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+License-File: LICENCE.txt
+
+This is a caching library that generates a MD5 hash for a JSON payload and caches it as a key-value pair in RedisQ.
+
+Change Log
+============
+
+1.0.0 (22/05/2023)
+-------------------
+-First Release
+
