@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: pygmssl
+Version: 0.0.1
+Summary: A Python ctypes GmSSL implementation
+Author-email: Zhang Jie <zhangj_10ujs@foxmail.com>
+Project-URL: Homepage, https://github.com/jz10ujs/pygmssl
+Project-URL: Bug Tracker, https://github.com/jz10ujs/pygmssl/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# pygmssl
+A Python ctypes GmSSL implementation
+=======
+
+## 1 INSTALL
+### 1.1 install GmSSL
+```bash
+git clone https://github.com/guanzhi/GmSSL.git
+cd GmSSL && mkdir build && cd build && cmake ..
+make && make test && sudo make install
+sudo ldconfig
+
+# check gmssl installed
+gmssl version
+```
+
+### 1.2 install pygmssl
+```bash
+python -m pip install pygmssl
+```
+
+## 2 Usage
+
+```python3
+import pygmssl
+print(pygmssl.get_gmssl_version_str(), pygmssl.get_gmssl_version_num())
+```
