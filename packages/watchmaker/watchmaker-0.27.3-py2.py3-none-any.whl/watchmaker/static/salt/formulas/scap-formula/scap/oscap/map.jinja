@@ -1,0 +1,26 @@
+{%- from 'scap/map.jinja' import scap with context %}
+
+{%- set osrel = salt.grains.get('osmajorrelease') %}
+
+{%- set os = salt.grains.filter_by({
+    'AlmaLinux': 'centos',
+    'CentOS': 'centos',
+    'CentOS Stream': 'centos',
+    'OEL': 'ol',
+    'RedHat': 'rhel',
+    'Rocky': 'centos',
+}, grain='os') %}
+
+{#- Initialize oscap dictionary with defaults and pillar data #}
+{%- set oscap = {
+    'ds': salt.pillar.get('scap:lookup:oscap:ds') | default('openscap/ssg-' ~ os ~ osrel ~ '-ds.xml', true),
+    'profile': salt.pillar.get('scap:lookup:oscap:profile') | default('common', true),
+} %}
+
+{#- Update oscap dictionary with static values #}
+{%- do oscap.update({
+    'ds': scap.content.local_dir ~ '/' ~ oscap.ds,
+    'output_dir': scap.output_dir,
+    'report': scap.output_dir ~ '/oscap-report.' ~ oscap.ds|replace('/','.') ~ '.$(date "+%Y%m%d%H%M").html',
+    'results': scap.output_dir ~ '/oscap-results.' ~ oscap.ds|replace('/','.') ~ '.$(date "+%Y%m%d%H%M").xml'
+}) %}

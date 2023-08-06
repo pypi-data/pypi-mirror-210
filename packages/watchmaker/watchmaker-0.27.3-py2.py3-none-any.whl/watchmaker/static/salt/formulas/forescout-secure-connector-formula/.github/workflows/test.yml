@@ -1,0 +1,60 @@
+name: Run salt formula tests
+on:
+  # Run on demand
+  workflow_dispatch:
+
+  # Run on pull requests against the main branch
+  pull_request:
+    branches:
+      - main
+
+# Cancel prior job when another one starts
+concurrency:
+  group: ${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  saltcheck:
+    runs-on: ubuntu-latest
+    container:
+      image: centos:centos${{ matrix.el_version }}
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      options: --privileged
+    strategy:
+      matrix:
+        el_version:
+          - 7
+        salt_state:
+          - forescout-secure-connector
+    env:
+      SALT_PILLARROOT: ./tests/pillar/test-${{ matrix.salt_state }}
+      SALT_REPO_URL: https://repo.saltproject.io/py3/redhat/${{ matrix.el_version }}/x86_64/3004.repo
+    steps:
+      - name: Clone this git repository
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
+
+      - run: curl -sSL -o /etc/yum.repos.d/salt.repo ${{ env.SALT_REPO_URL }}
+      - run: >-
+          yum install -y 
+          "$(<./tests/requirements.txt)"
+          "$(<./tests/requirements-el${{ matrix.el_version }}.txt)"
+
+      - run: salt-call --versions-report
+
+      - run: >-
+          salt-call --local --retcode-passthrough
+          --file-root=. --pillar-root=${{ env.SALT_PILLARROOT }}
+          saltutil.sync_all
+
+      - run: >-
+          salt-call --local --retcode-passthrough
+          --log-file /var/log/salt/minion --log-file-level debug
+          --file-root=. --pillar-root=${{ env.SALT_PILLARROOT }}
+          state.show_sls ${{ matrix.salt_state }}
+
+      - run: >-
+          salt-call --local --retcode-passthrough
+          --log-file /var/log/salt/minion --log-file-level debug
+          --file-root=. --pillar-root=${{ env.SALT_PILLARROOT }}
+          state.sls ${{ matrix.salt_state }} mock=True
