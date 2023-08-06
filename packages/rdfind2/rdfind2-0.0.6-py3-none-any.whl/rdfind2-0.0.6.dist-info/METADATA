@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: rdfind2
+Version: 0.0.6
+Summary: Find duplicated files very fast
+Author-email: trim21 <trim21.me@gmail.com>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: <4,>=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: click (<9,>=8)
+Requires-Dist: tqdm (<5,>=4.65.0)
+Provides-Extra: pdf
+Requires-Dist: ReportLab (>=1.2) ; extra == 'pdf'
+Requires-Dist: RXP ; extra == 'pdf'
+Provides-Extra: rest
+Requires-Dist: docutils (>=0.3) ; extra == 'rest'
+Requires-Dist: pack (==1.1,==1.3) ; extra == 'rest'
+
+# rdfind2
+
+[![](https://img.shields.io/pypi/v/rdfind2.svg)](https://pypi.python.org/pypi/rdfind2)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rdfind2)](https://pypi.org/project/rdfind2/)
+![](https://img.shields.io/badge/License-MIT-blue.svg)
+
+find duplicated files (in one fs) very fast.
+
+rdfind2 will filter files by size, head, tail and inode.
+
+Only hash full files content when it's necessary.
+
+## Install
+
+with pipx:
+
+```shell
+pipx install rdfind2
+```
+
+with pip:
+
+```shell
+pip install rdfind2
+```
+
+## Usage:
+
+```shell
+rdfind2 [--file-size-threshold=268435456] [--make-hardlink --delete] ./dir1 ./dir2 ...directory
+```
+
+(268435456 is 256mb)
