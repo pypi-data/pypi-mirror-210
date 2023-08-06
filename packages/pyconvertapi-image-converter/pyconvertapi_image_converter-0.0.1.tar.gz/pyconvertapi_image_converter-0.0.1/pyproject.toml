@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyconvertapi_image_converter"
+version = "0.0.1"
+authors = [
+  { name="ti-oluwa", email="tioluwa.dev@gmail.com" },
+]
+maintainers = [
+  { name="ti-oluwa", email="tioluwa.dev@gmail.com" },
+]
+description = "PyConvertAPI Image Converter is a Python library for converting images to different formats using ConvertAPI"
+keywords = [
+    'Image format conversion',
+    'ConvertAPI'
+]
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+]
+dependencies = ['convertapi']
+
+[project.urls]
+"Homepage" = "https://github.com/ti-oluwa/pyconvertapi_image_converter"
+"Bug Tracker" = "https://github.com/ti-oluwa/pyconvertapi_image_converter/issues"
+"Repository" = "https://github.com/ti-oluwa/pyconvertapi_image_converter"
