@@ -1,0 +1,69 @@
+3.13: fix convertInputStep for EER movies
+3.12:
+    - add mc2 1.6.4 binary
+    - odd/even options working again
+3.11:
+    - drop binaries < 1.5.0
+    - create a base protocol and refactor the rest
+3.10.1: hotfix for binary string
+3.10: add mc2 1.6.2 and 1.6.3 binaries, fix log name again
+3.9: remove MOTIONCOR2_PROGRAM, improve validation msg
+3.8:
+    - guess cuda binary version
+    - set gain to output optics table if input movies had one
+3.7: update mc2 to 1.5.0
+3.6 - implement odd/even sums for SPA
+3.5:
+    - use weakImport for tomo
+    - fix DW for TS (not ready)
+    - fix output log filenames
+    - implement odd/even sums for tomo
+3.4: update mc2 to 1.4.7
+3.3: update mc2 to 1.4.5
+3.2:
+    - EER support added:
+        - eer gain file header is parsed to locate defects and prepare defects_eer.txt for mc2
+        - eer gain file is converted to mrc as required by mc2
+        - optics groups are imported from relion plugin
+        - rlnEERGrouping and rlnEERUpsampling are saved in the opticsGroupInfo for output movie set (required for polishing)
+        - rlnMicrographFirstFrame is saved in the opticsGroupInfo
+        - save global frame shifts relative to the first frame
+        - update mc2 to 1.4.4
+3.1.1:
+    - added tiltseries motioncorr protocol
+    - update mc2 to 1.4.2
+3.1.0:
+    - refactor mc2 protocol for using scratch
+    - use eman2 for psd computation, remove xmipp
+    - do not save unweighted mics by default
+    - clean imports
+    - save only full frame alignment log
+3.0.12 - update mc2 to 1.4.0
+3.0.11 - add missing CUDA_LIB var
+3.0.10 - add mc 1.3.2, rearrange GUI form
+3.0.9 - fix failing protocol when no dose found
+3.0.8 - changed version to reflect Scipion 3 support
+1.0.8:
+    - remove unused code
+    - add frame motion plot
+1.0.6:
+    - migrated to python 3
+    - added 1.3.1
+1.0.5:
+    - added 1.3.0, removed versions < 1.2.3
+    - added a new viewer, now you can save failed movies list
+    - update license to GPL3
+1.0.4:
+    - added 1.2.3, 1.2.6 version support, switched from md to rst
+    - drop support for versions <1.1.0
+    - add axes in Angstroms for plots
+1.0.3:
+    - Fixed indentation bug affecting overlapping parameter
+1.0.2:
+    - Include protocol.conf to create the source distribution
+1.0.1:
+	- Updated viewers imports, added protocols.conf
+	- Removing motioncorr v2.1 and all mc2 versions older than 1.0.x;
+	- Cleaning up protocol GUI form, which, in my opinion, was overloaded with params;
+	- Add mc2 1.2.1 as latest default version
+1.0.0 - First version of the plugin
