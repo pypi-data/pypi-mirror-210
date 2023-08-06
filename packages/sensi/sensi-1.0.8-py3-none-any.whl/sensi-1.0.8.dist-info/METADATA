@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: sensi
+Version: 1.0.8
+Summary: Naive-Bayes based sentiment analysis library for the Indonesian Language.
+Home-page: https://github.com/GazDuckington/sensi
+License: MIT
+Keywords: NLP,Bahasa,Indonesia,Sentimen,Analisis
+Author: GazDuckington
+Author-email: dianghazy@protonmail.com
+Requires-Python: >=3.11,<4.0
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Indonesian
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Dist: SQLAlchemy[asyncio] (>=1.4.45,<3.0.0)
+Requires-Dist: aiosqlite (>=0.18,<0.20)
+Requires-Dist: bahasa (>=1.0.1,<2.0.0)
+Requires-Dist: nltk (>=3.8,<4.0)
+Requires-Dist: numpy (>=1.24.1,<2.0.0)
+Requires-Dist: pandas (>=1.5.2,<3.0.0)
+Project-URL: Repository, https://github.com/GazDuckington/sensi
+Description-Content-Type: text/markdown
+
+<div align=center>
+
+## _Library_ analisis sentimen Bahasa Indonesia, berbasis Naive-Bayes.
+
+[![.github/workflows/python-publish.yml](https://github.com/GazDuckington/sensi/actions/workflows/python-publish.yml/badge.svg?branch=main)](https://github.com/GazDuckington/sensi/actions/workflows/python-publish.yml)
+[![Pytest](https://github.com/GazDuckington/sensi/actions/workflows/python-app.yml/badge.svg)](https://github.com/GazDuckington/sensi/actions/workflows/python-app.yml)
+
+</div>
+
+## Dependensi
+
+```python
+bahasa nltk numpy pandas sqlalchemy
+```
+
+## Instalasai
+
+```bash
+pip install sensi
+```
+
+## Penggunaan
+
+- [WIKI](https://github.com/GazDuckington/nbc-sentimen/wiki)
+- Contoh penerapan dapat dilihat pada directory 'apis' pada repository [flask-sk](https://github.com/GazDuckington/flask-sk)
+
+- Baca `resources/predictor.py` untuk berbagai contoh lainnya.
+
+## _Credits_
+
+- [bahasa](https://github.com/kangfend/bahasa) oleh [@kangfend](https://github.com/kangfend).
+
+## Lisensi
+
+[MIT](./LICENSE)
+
