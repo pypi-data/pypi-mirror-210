@@ -1,0 +1,115 @@
+Metadata-Version: 2.1
+Name: phenocam-snow
+Version: 0.0.1
+Summary: Pipeline for building deep learning models to classify PhenoCam images.
+Author-email: Jason Jewik <jason.jewik@cs.ucla.edu>
+Project-URL: Source, https://github.com/jasonjewik/PhenoCamSnowClassifier
+Project-URL: Issue Tracker, https://github.com/jasonjewik/PhenoCamSnowClassifier/issues
+Project-URL: Documentation, https://phenocamsnow.readthedocs.io/en/latest/
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pytorch-lightning (<=1.9.5,>=1.4.0)
+Requires-Dist: numpy
+Requires-Dist: pandas (<=1.3.5,>=1.3.1)
+Requires-Dist: pillow (<=9.5.0,>=8.3.1)
+Requires-Dist: rich
+Requires-Dist: torchmetrics (<=0.11.4,>=0.10.0)
+Requires-Dist: torchvision (<=0.14.1,>=0.8.1)
+Requires-Dist: tensorboard
+Provides-Extra: dev
+Requires-Dist: black (>=23.1.0) ; extra == 'dev'
+Requires-Dist: flake8 (>=3.9.2) ; extra == 'dev'
+Requires-Dist: pytest (>=7.2.1) ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: ipython (>=7.34.0) ; extra == 'docs'
+Requires-Dist: nbsphinx (>=0.8.12) ; extra == 'docs'
+Requires-Dist: sphinx (>=5.3.0) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (>=1.1.1) ; extra == 'docs'
+Provides-Extra: jupyter
+Requires-Dist: jupyter ; extra == 'jupyter'
+Requires-Dist: jupyterlab ; extra == 'jupyter'
+
+<h1 align="center">PhenoCamSnow</h1>
+
+[![Documentation Status](https://readthedocs.org/projects/phenocamsnow/badge/?version=latest)](https://phenocamsnow.readthedocs.io/en/latest/?badge=latest)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+**PhenoCamSnow** is a Python package for quickly building deep learning models to classify [PhenoCam images](https://phenocam.sr.unh.edu/).
+
+## Installation
+
+PhenoCamSnow supports Python 3.7+ and can be installed via pip:
+
+```console
+pip install phenocam-snow
+```
+
+Optional dependencies for development and documentation purposes can be installed by specifying the extras `[dev]` and `[docs]`, repsectively. 
+
+## Quickstart
+
+The following code snippets show how to perform classification of canadaOBS images into "snow", "no snow", and "too dark". If you wish to use a different site, use the canonical site name as listed on [the PhenoCam website](https://phenocam.nau.edu/webcam/network/table/). 
+
+### Training a model
+
+With new data:
+```console
+python -m phenocam_snow.train canadaOBS \
+   --new \
+   --n_train 120 \
+   --n_test 30 \
+   --classes snow no_snow too_dark
+```
+
+With already downloaded and labeled data:
+```console
+python -m phenocam_snow.train \
+   --existing \
+   --train_dir canadaOBS_train \
+   --test_dir canadaOBS_test \
+   --classes snow no_snow too_dark
+```
+
+### Getting predictions
+
+For a local directory of images:
+```console
+python -m phenocam_snow.predict canadaOBS \
+   [path/to/checkpoint_of_best_model.pth] \
+   --directory canadaOBS_test_images
+```
+
+For a single online image:
+```console
+python -m phenocam_snow.predict canadaOBS \
+   [path/to/checkpoint_of_best_model.pth] \
+   --url https://phenocam.sr.unh.edu/[path/to/image]
+```
+
+Advanced usage details can be found in the [documentation](http://phenocamsnow.readthedocs.io/).
+
+## Citation
+
+If you use PhenoCamSnow for your work, please see [`CITATION.cff`](CITATION.cff) or use the citation prompt provided by GitHub in the sidebar.
+
+## Acknowledgements
+
+[Professor Jochen Stutz](https://atmos.ucla.edu/people/faculty/jochen-stutz) and [Zoe Pierrat](https://atmos.ucla.edu/people/graduate-student/zoe-pierrat).
